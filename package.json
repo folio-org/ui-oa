@@ -1,0 +1,96 @@
+{
+  "name": "@folio/oa",
+  "version": "1.0.0",
+  "description": "FOLIO app for Open Access management",
+  "main": "src/index.js",
+  "repository": "folio/ui-oa",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "scripts": {
+    "start": "stripes serve",
+    "build": "stripes build --output ./output",
+    "lint": "eslint .",
+    "test": "stripes test karma"
+  },
+  "stripes": {
+    "actsAs": [
+      "app",
+      "settings"
+    ],
+    "displayName": "ui-oa.meta.title",
+    "route": "/oa",
+    "home": "/oa",
+    "hasSettings": true,
+    "queryResource": "query",
+    "okapiInterfaces": {
+      "oa": "1.0"
+    },
+    "stripesDeps": [
+      "@folio/stripes-erm-components"
+    ],
+    "icons": [
+      {
+        "name": "app",
+        "alt": "FOLIO app for Open Acces Management",
+        "title": "OA"
+      }
+    ],
+    "permissionSets": [
+      {
+        "permissionName": "module.oa.enabled",
+        "displayName": "UI: ui-oa module is enabled"
+      },
+      {
+        "permissionName": "settings.oa.enabled",
+        "displayName": "Settings (OA): display list of settings pages",
+        "subPermissions": [
+          "settings.enabled"
+        ]
+      }
+    ]
+  },
+  "devDependencies": {
+    "@bigtest/interactor": "^0.9.2",
+    "@bigtest/mocha": "^0.5.2",
+    "@bigtest/react": "^0.1.2",
+    "@folio/eslint-config-stripes": "^5.2.0",
+    "@folio/stripes": "^6.0.0",
+    "@folio/stripes-cli": "^1.8.0",
+    "babel-eslint": "^10.0.0",
+    "babel-polyfill": "6.26.0",
+    "chai": "^4.2.0",
+    "eslint": "^6.2.1",
+    "faker": "^4.1.0",
+    "inflected": "^2.0.4",
+    "miragejs": "^0.1.40",
+    "mocha": "^8.0.1",
+    "moment": "^2.22.2",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "react-intl": "^5.8.1",
+    "react-router-dom": "^5.2.0",
+    "sinon": "^9.0.2"
+  },
+  "dependencies": {
+    "@folio/react-intl-safe-html": "^2.0.0",
+    "@folio/stripes-erm-components": "^5.0.0",
+    "compose-function": "^3.0.3",
+    "final-form": "^4.18.5",
+    "final-form-arrays": "^3.0.1",
+    "lodash": "^4.17.11",
+    "prop-types": "^15.6.0",
+    "query-string": "^6.6.0",
+    "react-final-form": "^6.3.0",
+    "react-final-form-arrays": "^3.1.1"
+  },
+  "peerDependencies": {
+    "@folio/stripes": ">6.0.0",
+    "moment": "^2.22.2",
+    "react": "*",
+    "react-dom": "*",
+    "react-intl": "^5.8.1",
+    "react-router-dom": "^5.2.0"
+  }
+}
