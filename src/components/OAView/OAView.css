@@ -1,0 +1,40 @@
+@import '@folio/stripes-components/lib/variables.css';
+
+
+.filterPaneButton {
+  margin-left: var(--gutter-static-two-thirds);
+}
+
+.searchFieldContainer {
+  flex-grow: 1;
+  margin-left: var(--gutter-static-two-thirds);
+
+}
+
+.searchButton{
+  margin-left: var(--gutter-static-two-thirds);
+}
+
+.divider {
+  margin-left: var(--gutter-static-two-thirds);
+}
+
+.searchContainer {
+  display: inline-flex;
+  justify-content: space-around;
+  flex-grow: 1;
+  align-items: center;
+  margin-left: var(--gutter-static-two-thirds);
+}
+
+.actionButtonContainer {
+  margin-left: var(--gutter-static-two-thirds);
+}
+
+.paneHeaderContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-grow: 1;
+  align-items: center;
+}
