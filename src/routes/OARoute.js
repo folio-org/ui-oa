@@ -1,21 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { stripesConnect } from '@folio/stripes/core';
+import { stripesConnect, useOkapiKy } from '@folio/stripes/core';
 import {
   buildFilterString,
   locationQuerySetter,
   locationQueryGetter,
   filterStringToObject
 } from '../util/filterUtils';
+import {
+  useQuery,
+} from 'react-query'
 
 import OAView from '../components/OAView';
 
 const propTypes = {
   location: PropTypes.object,
-  history: PropTypes.object
+  history: PropTypes.object,
+  resources: PropTypes.object,
 };
 
-const OARoute = ({ location, history }) => {
+const OARoute = ({ mutator, resources, location, history }) => {
+
 
   const handleFilterChange = (incomingFilters) => {
     const filterString = buildFilterString(incomingFilters);
@@ -34,8 +39,26 @@ const OARoute = ({ location, history }) => {
 
   const parsedQuery = locationQueryGetter({ location })?.query;
 
+  const [query, setQuery] = useState()
+
+  const querySetter = ({ nsValues }) => setQuery(nsValues)
+
+  const ky = useOkapiKy();
+  const { data: scholarlyWorks } = useQuery(
+    ['ui-oa', 'oaRoute', 'scholarlyWork', query], () => ky('oa/scholarlyWork').json()
+  )
+
+  const queryGetter = () => (query)
+
   return (
-    <OAView />
+    <OAView
+      data={{
+        scholarlyWorks: scholarlyWorks
+      }}
+      queryGetter={queryGetter}
+      querySetter={querySetter}
+    >
+    </OAView>
   );
 };
 

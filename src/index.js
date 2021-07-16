@@ -28,7 +28,7 @@ class App extends React.Component {
     return (
       <Suspense fallback={null}>
         <Switch>
-          <Route component={OARoute} path={`${path}`} />
+          <Route component={OARoute} path={path} />
         </Switch>
       </Suspense>
     );

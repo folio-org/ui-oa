@@ -1,36 +1,70 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
   Pane,
-  PaneMenu,
   Paneset,
+  TextField,
 } from '@folio/stripes/components';
 
 import {
-  CollapseFilterPaneButton,
+  SearchAndSortQuery,
 } from '@folio/stripes/smart-components';
 import { FormattedMessage } from 'react-intl';
+import css from './OAView.css';
 
 const propTypes = {
+  scholarlyWorks: PropTypes.arrayOf(PropTypes.object),
+  queryGetter: PropTypes.func.isRequired,
+  querySetter: PropTypes.func.isRequired,
 };
 
-export default function OAView() {
+const OAView = ({
+  data,
+  queryGetter,
+  querySetter
+}) => {
+  const arr = data.scholarlyWorks
+  console.log(arr)
 
   return (
-    <Paneset>
-      <Pane
-          defaultWidth="20%"
-          paneTitle="sidepane"
-        >
-      </Pane>
-      <Pane
-        defaultWidth="fill"
-      >
-        <p> This is where the OA app will go </p>
-      </Pane>
-    </Paneset>
-  );
+    <SearchAndSortQuery
+      querySetter={querySetter}
+      queryGetter={queryGetter}
+      initialSearchState={{ query: '' }}
+    >
+      {
+        ({
+          searchValue,
+          getSearchHandlers,
+        }) => (<div>
+          <Paneset>
+            <Pane
+              defaultWidth="20%"
+              paneTitle={<FormattedMessage id="stripes-smart-components.searchAndFilter" />}
+            >
+              <TextField
+                label="Filter"
+                name="query"
+                onChange={getSearchHandlers().query}
+                value={searchValue.query}
+              />
+            </Pane>
+            <Pane
+              defaultWidth="fill"
+            >
+              <p> This is where the OA application will go </p>
+              <ul>
+                {data.scholarlyWorks.map((message) => <Item key={message} message={message} />)}
+              </ul>
+            </Pane>
+          </Paneset>
+        </div>)
+      }
+    </SearchAndSortQuery>
+  )
 }
 
 OAView.propTypes = propTypes;
+
+export default OAView;
