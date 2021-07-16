@@ -54,9 +54,6 @@ const OAView = ({
               defaultWidth="fill"
             >
               <p> This is where the OA application will go </p>
-              <ul>
-                {data.scholarlyWorks.map((message) => <Item key={message} message={message} />)}
-              </ul>
             </Pane>
           </Paneset>
         </div>)
