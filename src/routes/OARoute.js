@@ -14,12 +14,13 @@ import {
 import OAView from '../components/OAView';
 
 const propTypes = {
+  children: PropTypes.node,
   location: PropTypes.object,
   history: PropTypes.object,
   resources: PropTypes.object,
 };
 
-const OARoute = ({ mutator, resources, location, history }) => {
+const OARoute = ({ mutator, resources, location, history, children }) => {
 
 
   const handleFilterChange = (incomingFilters) => {
@@ -58,6 +59,7 @@ const OARoute = ({ mutator, resources, location, history }) => {
       queryGetter={queryGetter}
       querySetter={querySetter}
     >
+      {children}
     </OAView>
   );
 };

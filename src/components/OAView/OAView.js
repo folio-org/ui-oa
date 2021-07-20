@@ -3,23 +3,26 @@ import PropTypes from 'prop-types';
 
 import {
   Pane,
-  Paneset,
   TextField,
+  MultiColumnList
 } from '@folio/stripes/components';
 
 import {
   SearchAndSortQuery,
+  PersistedPaneset,
 } from '@folio/stripes/smart-components';
 import { FormattedMessage } from 'react-intl';
 import css from './OAView.css';
 
 const propTypes = {
+  children: PropTypes.object,
   scholarlyWorks: PropTypes.arrayOf(PropTypes.object),
   queryGetter: PropTypes.func.isRequired,
   querySetter: PropTypes.func.isRequired,
 };
 
 const OAView = ({
+  children,
   data,
   queryGetter,
   querySetter
@@ -38,7 +41,10 @@ const OAView = ({
           searchValue,
           getSearchHandlers,
         }) => (<div>
-          <Paneset>
+          <PersistedPaneset
+            appId="@folio/agreements"
+            id="agreements-paneset"
+          >
             <Pane
               defaultWidth="20%"
               paneTitle={<FormattedMessage id="stripes-smart-components.searchAndFilter" />}
@@ -53,9 +59,15 @@ const OAView = ({
             <Pane
               defaultWidth="fill"
             >
-              <p> This is where the OA application will go </p>
+              <MultiColumnList
+                autosize
+                contentData={arr}
+                visibleColumns={['authorNameList', 'publisherURL', 'localReference', 'journalIssueDate', 'journalVolume', 'journalIssue', 'journalPages']}
+                onRowClick={id => `${urls.scholarlyWorkView(id)}`}
+              />
             </Pane>
-          </Paneset>
+            {children}
+          </PersistedPaneset>
         </div>)
       }
     </SearchAndSortQuery>

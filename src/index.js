@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 const Settings = lazy(() => import('./settings'));
 const OARoute = lazy(() => import('./routes/OARoute'));
 
+const scholarlyWorkRoute = lazy(() => import('./routes/scholarlyWorkRoute'));
+
 class App extends React.Component {
 
   static propTypes = {
@@ -27,9 +29,11 @@ class App extends React.Component {
 
     return (
       <Suspense fallback={null}>
-        <Switch>
-          <Route component={OARoute} path={path} />
-        </Switch>
+        {/* <Switch> */}
+        <Route component={OARoute} path={`${path}/:id?`}>
+          <Route component={scholarlyWorkRoute} path={`${path}/:id`} />
+        </Route>
+        {/* </Switch> */}
       </Suspense>
     );
   }
