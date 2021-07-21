@@ -12,7 +12,10 @@ import {
   PersistedPaneset,
 } from '@folio/stripes/smart-components';
 import { FormattedMessage } from 'react-intl';
+import urls from '../../util/urls';
+
 import css from './OAView.css';
+import { useHistory } from 'react-router-dom';
 
 const propTypes = {
   children: PropTypes.object,
@@ -27,8 +30,7 @@ const OAView = ({
   queryGetter,
   querySetter
 }) => {
-  const arr = data.scholarlyWorks
-  console.log(arr)
+  const history = useHistory()
 
   return (
     <SearchAndSortQuery
@@ -61,9 +63,9 @@ const OAView = ({
             >
               <MultiColumnList
                 autosize
-                contentData={arr}
+                contentData={data.scholarlyWorks}
                 visibleColumns={['authorNameList', 'publisherURL', 'localReference', 'journalIssueDate', 'journalVolume', 'journalIssue', 'journalPages']}
-                onRowClick={id => `${urls.scholarlyWorkView(id)}`}
+                onRowClick={(_e, rowData) => history.push(`${urls.scholarlyWorkView(rowData.id)}`)}
               />
             </Pane>
             {children}

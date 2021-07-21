@@ -20,7 +20,7 @@ const propTypes = {
   resources: PropTypes.object,
 };
 
-const OARoute = ({ mutator, resources, location, history, children }) => {
+const OARoute = ({ location, history, children }) => {
 
 
   const handleFilterChange = (incomingFilters) => {

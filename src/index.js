@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 const Settings = lazy(() => import('./settings'));
 const OARoute = lazy(() => import('./routes/OARoute'));
 
-const scholarlyWorkRoute = lazy(() => import('./routes/scholarlyWorkRoute'));
+const scholarlyWorkRoute = lazy(() => import('./routes/scholarlyWorkViewRoute'));
 
 class App extends React.Component {
 
