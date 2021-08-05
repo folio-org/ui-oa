@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import {
   Pane,
+  Button,
   TextField,
-  MultiColumnList
+  MultiColumnList,
+  SearchField,
 } from '@folio/stripes/components';
 
 import {
@@ -28,10 +30,10 @@ const OAView = ({
   children,
   data,
   queryGetter,
-  querySetter
+  querySetter,
+  searchString
 }) => {
   const history = useHistory()
-
   return (
     <SearchAndSortQuery
       querySetter={querySetter}
@@ -42,6 +44,8 @@ const OAView = ({
         ({
           searchValue,
           getSearchHandlers,
+          onSubmitSearch,
+          activeFilters,
         }) => (<div>
           <PersistedPaneset
             appId="@folio/agreements"
@@ -51,12 +55,27 @@ const OAView = ({
               defaultWidth="20%"
               paneTitle={<FormattedMessage id="stripes-smart-components.searchAndFilter" />}
             >
-              <TextField
-                label="Filter"
-                name="query"
-                onChange={getSearchHandlers().query}
-                value={searchValue.query}
-              />
+              <form onSubmit={onSubmitSearch}>
+                <SearchField
+                  autoFocus
+                  className={css.searchField}
+                  id="input-agreement-search"
+                  marginBottom0
+                  name="query"
+                  onChange={getSearchHandlers().query}
+                  onClear={getSearchHandlers().reset}
+                  value={searchValue.query}
+                />
+                <Button
+                  buttonStyle="primary"
+                  disabled={!searchValue.query || searchValue.query === ''}
+                  fullWidth
+                  id="clickable-search-agreements"
+                  type="submit"
+                >
+                  <FormattedMessage id="stripes-smart-components.search" />
+                </Button>
+              </form>
             </Pane>
             <Pane
               defaultWidth="fill"
@@ -65,7 +84,7 @@ const OAView = ({
                 autosize
                 contentData={data.scholarlyWorks}
                 visibleColumns={['authorNameList', 'publisherURL', 'localReference', 'journalIssueDate', 'journalVolume', 'journalIssue', 'journalPages']}
-                onRowClick={(_e, rowData) => history.push(`${urls.scholarlyWorkView(rowData.id)}`)}
+                onRowClick={(_e, rowData) => history.push(`${urls.scholarlyWorkView(rowData.id)}${searchString}`)}
               />
             </Pane>
             {children}

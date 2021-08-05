@@ -7,8 +7,7 @@ import View from '../components/views/scholarlyWorkView';
 const propTypes = {}
 
 const scholarlyWorkViewRoute = (
-  location
-) => {
+  ) => {
   const history = useHistory();
 
   const handleClose = () => {
