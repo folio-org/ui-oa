@@ -53,8 +53,8 @@ const OAView = ({
           onSort
         }) => (<div>
           <PersistedPaneset
-            appId="@folio/agreements"
-            id="agreements-paneset"
+            appId="@folio/oa"
+            id="oa-paneset"
           >
             <Pane
               defaultWidth="20%"
