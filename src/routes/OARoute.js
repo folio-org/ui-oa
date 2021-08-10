@@ -1,18 +1,11 @@
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { stripesConnect, useOkapiKy } from '@folio/stripes/core';
-import {
-  buildFilterString,
-  locationQuerySetter,
-  locationQueryGetter,
-  filterStringToObject
-} from '../util/filterUtils';
+import { useOkapiKy } from '@folio/stripes/core';
+import generateKiwtQuery from '../util/generateKiwtQuery';
 import {
   useQuery,
-} from 'react-query'
-import { generateQueryParams } from '@folio/stripes-erm-components';
-import queryString from 'query-string';
+} from 'react-query';
 import OAView from '../components/OAView';
+import useKiwtSASQuery from '../util/useKiwtSASQuery';
 
 const propTypes = {
   children: PropTypes.node,
@@ -22,47 +15,25 @@ const propTypes = {
 };
 
 const OARoute = ({ children, history, location, match }) => {
+  const { query, queryGetter, querySetter } = useKiwtSASQuery();
 
-  // const handleFilterChange = (incomingFilters) => {
-  //   const filterString = buildFilterString(incomingFilters);
-  //   locationQuerySetter({ location, history, nsValues: { filters: filterString } });
-  // };
-
-  // const parseFilters = () => {
-  //   const query = locationQueryGetter({ location });
-  //   const parsedFilters = filterStringToObject(query.filters);
-  //   return parsedFilters;
-  // };
-
-  const [query, setQuery] = useState({})
-
-  const ky = useOkapiKy();
-  const { data: scholarlyWorks } = useQuery(
-    ['ui-oa', 'oaRoute', 'scholarlyWork', query], () => ky('oa/scholarlyWork').json()
-  )
-
-  // const parsedQuery = locationQueryGetter({ location, history, nsValues }) // ?.query;
-
-  const queryGetter = () => (query)
-
-  const querySetter = ({ nsValues }) => {
-    setQuery(nsValues)
-    handleSearchTermChange(nsValues.query)
+  const SASQ_MAP = {
+    searchKey: 'journalVolume',
+    filterKeys: {
+      journalVolume: 'journalVolume'
+    }
   }
 
-  const handleSearchTermChange = (incomingSearchTerm) => {
-    locationQuerySetter({ location, history, nsValues: { query: incomingSearchTerm } });
-  };
+  const ky = useOkapiKy();
+  const { data: {results: scholarlyWorks} = {} } = useQuery(
+    ['ui-oa', 'oaRoute', 'scholarlyWork', query],
+    () => ky(`oa/scholarlyWork${generateKiwtQuery(SASQ_MAP, query)}`).json()
+  )
 
-
-  // const parsedQuery = queryString.parse(location?.search)
-  // const params = generateQueryParams({})(parsedQuery, match?.params, {query}, null, null)
-  // TODO: Remove this and clean up
-  // console.log(params)
   return (
     <OAView
       data={{
-        scholarlyWorks: scholarlyWorks
+        scholarlyWorks
       }}
       queryGetter={queryGetter}
       querySetter={querySetter}
@@ -75,4 +46,4 @@ const OARoute = ({ children, history, location, match }) => {
 
 OARoute.propTypes = propTypes;
 
-export default stripesConnect(OARoute);
+export default OARoute;

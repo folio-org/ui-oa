@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
+import urls from '../util/urls';
 
 import View from '../components/views/scholarlyWorkView';
 
@@ -9,9 +10,11 @@ const propTypes = {}
 const scholarlyWorkViewRoute = (
   ) => {
   const history = useHistory();
+  const location = useLocation()
 
   const handleClose = () => {
-    history.push('/oa');
+    // TODO: update this URL to go back to search
+    history.push(`${urls.scholarlyWorks}${location.search}`);
   }
 
   return (

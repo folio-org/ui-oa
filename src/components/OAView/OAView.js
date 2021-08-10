@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import {
   Pane,
+  PaneMenu,
   Button,
-  TextField,
   MultiColumnList,
   SearchField,
 } from '@folio/stripes/components';
@@ -18,6 +18,9 @@ import urls from '../../util/urls';
 
 import css from './OAView.css';
 import { useHistory } from 'react-router-dom';
+import { IfPermission } from '@folio/stripes/core';
+
+import OAFilters from '../OAFilters/OAFilters';
 
 const propTypes = {
   children: PropTypes.object,
@@ -31,7 +34,7 @@ const OAView = ({
   data,
   queryGetter,
   querySetter,
-  searchString
+  searchString,
 }) => {
   const history = useHistory()
   return (
@@ -46,6 +49,8 @@ const OAView = ({
           getSearchHandlers,
           onSubmitSearch,
           activeFilters,
+          getFilterHandlers,
+          onSort
         }) => (<div>
           <PersistedPaneset
             appId="@folio/agreements"
@@ -75,16 +80,39 @@ const OAView = ({
                 >
                   <FormattedMessage id="stripes-smart-components.search" />
                 </Button>
+                <OAFilters
+                  activeFilters={activeFilters.state}
+                  filterHandlers={getFilterHandlers()}
+                />
               </form>
             </Pane>
             <Pane
               defaultWidth="fill"
-            >
+              lastMenu={(
+                <IfPermission perm="oa.scholarlyWork.edit">
+                  <PaneMenu>
+                    <FormattedMessage id="ui-oa.scholarlyWork.createScholarlyWork">
+                      {ariaLabel => (
+                        <Button
+                          aria-label={ariaLabel}
+                          buttonStyle="primary"
+                          id="clickable-new-scholarly-work"
+                          marginBottom0
+                          // to={`${urls.agreementCreate()}${searchString}`}
+                        >
+                          <FormattedMessage id="stripes-smart-components.new" />
+                        </Button>
+                      )}
+                    </FormattedMessage>
+                  </PaneMenu>
+                </IfPermission>
+              )}>
               <MultiColumnList
                 autosize
                 contentData={data.scholarlyWorks}
                 visibleColumns={['authorNameList', 'publisherURL', 'localReference', 'journalIssueDate', 'journalVolume', 'journalIssue', 'journalPages']}
                 onRowClick={(_e, rowData) => history.push(`${urls.scholarlyWorkView(rowData.id)}${searchString}`)}
+                onHeaderClick={onSort}
               />
             </Pane>
             {children}
