@@ -13,7 +13,6 @@ const scholarlyWorkViewRoute = (
   const location = useLocation()
 
   const handleClose = () => {
-    // TODO: update this URL to go back to search
     history.push(`${urls.scholarlyWorks()}${location.search}`);
   }
 

@@ -98,7 +98,7 @@ const OAView = ({
                           buttonStyle="primary"
                           id="clickable-new-scholarly-work"
                           marginBottom0
-                          // to={`${urls.agreementCreate()}${searchString}`}
+                          to={`${urls.publicationRequestCreate()}`}
                         >
                           <FormattedMessage id="stripes-smart-components.new" />
                         </Button>

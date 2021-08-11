@@ -7,6 +7,7 @@ const Settings = lazy(() => import('./settings'));
 const OARoute = lazy(() => import('./routes/OARoute'));
 
 const scholarlyWorkRoute = lazy(() => import('./routes/scholarlyWorkViewRoute'));
+const publicationRequestCreateRoute = lazy(() => import('./routes/publicationRequestCreateRoute'));
 
 class App extends React.Component {
 
@@ -29,11 +30,12 @@ class App extends React.Component {
 
     return (
       <Suspense fallback={null}>
-        {/* <Switch> */}
+        <Switch>
+        <Route component={publicationRequestCreateRoute} path={`${path}/publicationRequests/create`} />
         <Route component={OARoute} path={`${path}/:id?`}>
           <Route component={scholarlyWorkRoute} path={`${path}/:id`} />
         </Route>
-        {/* </Switch> */}
+        </Switch>
       </Suspense>
     );
   }
