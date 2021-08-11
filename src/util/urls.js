@@ -1,6 +1,6 @@
 const urls = {
   scholarlyWorks: () => '/oa',
-  scholarlyWorkView: id => `/oa/${id}`,
+  publicationRequest: id => `/oa/${id}`,
   publicationRequestCreate: () => '/oa/publicationRequests/create'
 }
 

@@ -12,7 +12,7 @@ const propTypes = {
   }).isRequired
 }
 
-const scholarlyWorkView = ({
+const publicationRequest = ({
   handlers
 }) => {
   const paneProps = {
@@ -26,11 +26,11 @@ const scholarlyWorkView = ({
     <Pane
       {...paneProps}
     >
-      <div>Scholarly Work</div>
+      <div>Publication Request</div>
     </Pane>
   )
 }
 
-scholarlyWorkView.propTypes = propTypes;
+publicationRequest.propTypes = propTypes;
 
-export default scholarlyWorkView;
+export default publicationRequest;

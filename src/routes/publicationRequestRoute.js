@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { useHistory, useLocation } from 'react-router-dom';
 import urls from '../util/urls';
 
-import View from '../components/views/scholarlyWorkView';
+import View from '../components/views/publicationRequest';
 
 const propTypes = {}
 
-const scholarlyWorkViewRoute = (
+const publicationRequestRoute = (
   ) => {
   const history = useHistory();
   const location = useLocation()
@@ -25,6 +25,6 @@ const scholarlyWorkViewRoute = (
   )
 }
 
-scholarlyWorkViewRoute.propTypes = propTypes;
+publicationRequestRoute.propTypes = propTypes;
 
-export default scholarlyWorkViewRoute;
+export default publicationRequestRoute;

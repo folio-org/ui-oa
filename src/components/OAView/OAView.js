@@ -111,7 +111,7 @@ const OAView = ({
                 autosize
                 contentData={data.scholarlyWorks}
                 visibleColumns={['authorNameList', 'publisherURL', 'localReference', 'journalIssueDate', 'journalVolume', 'journalIssue', 'journalPages']}
-                onRowClick={(_e, rowData) => history.push(`${urls.scholarlyWorkView(rowData.id)}${searchString}`)}
+                onRowClick={(_e, rowData) => history.push(`${urls.publicationRequest(rowData.id)}${searchString}`)}
                 onHeaderClick={onSort}
               />
             </Pane>

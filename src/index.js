@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 const Settings = lazy(() => import('./settings'));
 const OARoute = lazy(() => import('./routes/OARoute'));
 
-const scholarlyWorkRoute = lazy(() => import('./routes/scholarlyWorkViewRoute'));
+const publicationRequestRoute = lazy(() => import('./routes/publicationRequestRoute'));
 const publicationRequestCreateRoute = lazy(() => import('./routes/publicationRequestCreateRoute'));
 
 class App extends React.Component {
@@ -33,7 +33,7 @@ class App extends React.Component {
         <Switch>
         <Route component={publicationRequestCreateRoute} path={`${path}/publicationRequests/create`} />
         <Route component={OARoute} path={`${path}/:id?`}>
-          <Route component={scholarlyWorkRoute} path={`${path}/:id`} />
+          <Route component={publicationRequestRoute} path={`${path}/:id`} />
         </Route>
         </Switch>
       </Suspense>
