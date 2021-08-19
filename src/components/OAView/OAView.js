@@ -91,7 +91,7 @@ const OAView = ({
               lastMenu={(
                 <IfPermission perm="oa.scholarlyWork.edit">
                   <PaneMenu>
-                    <FormattedMessage id="ui-oa.scholarlyWork.createScholarlyWork">
+                    <FormattedMessage id="ui-oa.publicationRequest.createPublicationRequest">
                       {ariaLabel => (
                         <Button
                           aria-label={ariaLabel}

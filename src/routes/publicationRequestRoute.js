@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useHistory, useLocation } from 'react-router-dom';
 import urls from '../util/urls';
 
-import View from '../components/views/publicationRequest';
+import View from '../views/publicationRequest';
 
 const propTypes = {}
 
