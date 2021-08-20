@@ -12,11 +12,12 @@ import {
 } from '@folio/stripes/components';
 
 
-const FundingFieldArray = ({ name: fieldName }) => {
+const FundingFieldArray = () => {
 
   const renderFunders = (fields) => {
     return (
       <div>
+        {/* TODO: Insert dataOptions */}
         {fields.map((name, index) => (
           <Row middle="xs" key={name}>
             <Col xs={3}>
@@ -55,7 +56,7 @@ const FundingFieldArray = ({ name: fieldName }) => {
   }
 
   return (
-    <FieldArray name={fieldName}>
+    <FieldArray name="funding">
       {({ fields }) => (
         <div>
           <div>

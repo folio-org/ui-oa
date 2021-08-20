@@ -20,6 +20,8 @@ import {
   TextLink
 } from '@folio/stripes/components';
 import FundingFieldArray from '../components/publicationRequestCreateSections/fundingFieldArray';
+import OtherEmailFieldArray from '../components/publicationRequestCreateSections/otherEmailFieldArray';
+import AffiliationFieldArray from '../components/publicationRequestCreateSections/affiliationFieldArray';
 
 const publicationRequestCreate = ({
   handlers: {
@@ -182,7 +184,7 @@ const publicationRequestCreate = ({
 
             <Row>
               <Col xs>
-                {/* TODO: FieldArray for Email Addresses */}
+                <OtherEmailFieldArray/>
               </Col>
             </Row>
 
@@ -205,6 +207,12 @@ const publicationRequestCreate = ({
                 <Headline size="large" margin="small" tag="h3">
                   <FormattedMessage id="ui-oa.publicationRequest.affiliations" />
                 </Headline>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col xs>
+                <AffiliationFieldArray/>
               </Col>
             </Row>
 
@@ -468,8 +476,7 @@ const publicationRequestCreate = ({
           </Accordion>
 
           <Accordion label={<FormattedMessage id="ui-oa.publicationRequest.funding" />}>
-            <FundingFieldArray
-            name="funding"/>
+            <FundingFieldArray/>
           </Accordion>
 
         </AccordionSet>
