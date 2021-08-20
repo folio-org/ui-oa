@@ -12,7 +12,7 @@ import {
 } from '@folio/stripes/components';
 
 
-const FunderFieldArray = ({ name: fieldName }) => {
+const FundingFieldArray = ({ name: fieldName }) => {
 
   const renderFunders = (fields) => {
     return (
@@ -72,4 +72,4 @@ const FunderFieldArray = ({ name: fieldName }) => {
 }
 
 
-export default FunderFieldArray;
+export default FundingFieldArray;

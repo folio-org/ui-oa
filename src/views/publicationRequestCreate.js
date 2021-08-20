@@ -19,7 +19,7 @@ import {
   TextField,
   TextLink
 } from '@folio/stripes/components';
-import FunderFieldArray from '../components/publicationRequestCreateSections/funderFieldArray';
+import FundingFieldArray from '../components/publicationRequestCreateSections/fundingFieldArray';
 
 const publicationRequestCreate = ({
   handlers: {
@@ -468,12 +468,7 @@ const publicationRequestCreate = ({
           </Accordion>
 
           <Accordion label={<FormattedMessage id="ui-oa.publicationRequest.funding" />}>
-            {/* <FieldArray
-              component={FunderFieldArray}
-              name="funding"
-              items={values}
-            /> */}
-            <FunderFieldArray
+            <FundingFieldArray
             name="funding"/>
           </Accordion>
 
