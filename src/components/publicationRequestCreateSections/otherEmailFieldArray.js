@@ -10,7 +10,7 @@ import {
   Row,
 } from '@folio/stripes/components';
 
-const OtherEmailFieldArray = () => {
+const OtherEmailFieldArray = ({name: name}) => {
   const renderOtherEmail = (fields) => {
     return (
       <div>
@@ -20,7 +20,7 @@ const OtherEmailFieldArray = () => {
               <Field
                 component={TextField}
                 label={<FormattedMessage id="ui-oa.otherEmail.otherEmailAddress" />}
-                name={`${otherEmail}.otherEmail`}
+                name={`${name}.otherEmail`}
               />
             </Col>
             <Col xs={9}>
@@ -42,7 +42,7 @@ const OtherEmailFieldArray = () => {
   }
 
   return (
-    <FieldArray name="otherEmail">
+    <FieldArray name={name}>
       {({ fields }) => (
         <div>
           <div>

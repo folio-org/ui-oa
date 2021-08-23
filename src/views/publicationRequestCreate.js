@@ -7,6 +7,7 @@ import {
   Accordion,
   AccordionSet,
   Button,
+  Checkbox,
   Col,
   Datepicker,
   Headline,
@@ -82,7 +83,7 @@ const publicationRequestCreate = ({
                 component={Datepicker}
                 label={<FormattedMessage id="ui-oa.publicationRequest.createPublicationRequest" />}
                 name={"requestDate"}
-              required
+                required
               />
             </Col>
             <Col xs={3}>
@@ -91,7 +92,7 @@ const publicationRequestCreate = ({
                 dataOptions={['', ...refValues]}
                 label={<FormattedMessage id="ui-oa.publicationRequest.status" />}
                 name="requestStatus"
-              required
+                required
               />
             </Col>
             <Col xs={3}>
@@ -105,10 +106,10 @@ const publicationRequestCreate = ({
           </Row>
 
           <Row>
-              <Col xs>
-                <ExternalRequestIdFieldArray/>
-              </Col>
-            </Row>
+            <Col xs>
+              <ExternalRequestIdFieldArray />
+            </Col>
+          </Row>
 
 
           <Accordion
@@ -192,7 +193,7 @@ const publicationRequestCreate = ({
 
             <Row>
               <Col xs>
-                <OtherEmailFieldArray/>
+                <OtherEmailFieldArray name="correspondingAuthorOtherEmail"/>
               </Col>
             </Row>
 
@@ -220,7 +221,7 @@ const publicationRequestCreate = ({
 
             <Row>
               <Col xs>
-                <AffiliationFieldArray/>
+                <AffiliationFieldArray />
               </Col>
             </Row>
 
@@ -229,6 +230,17 @@ const publicationRequestCreate = ({
           <Accordion
             label={<FormattedMessage id="ui-oa.publicationRequest.requestContact" />}
           >
+            <Row end="xs">
+              <Col xs={3}>
+                <Field
+                  component={Checkbox}
+                  label={<FormattedMessage id="ui-oa.publicationRequest.useCorrespondingAuthor" />}
+                  name="useCorrespondingAuthor"
+                  type="checkbox"
+                />
+              </Col>
+              <Col xs={9}></Col>
+            </Row>
             <Row end="xs">
               <Col xs={3}>
                 <Field
@@ -290,6 +302,10 @@ const publicationRequestCreate = ({
               </Col>
               <Col xs={3}>
               </Col>
+            </Row>
+
+            <Row>
+              <OtherEmailFieldArray name="requestContactOtherEmail"/>
             </Row>
 
           </Accordion>
@@ -484,7 +500,7 @@ const publicationRequestCreate = ({
           </Accordion>
 
           <Accordion label={<FormattedMessage id="ui-oa.publicationRequest.funding" />}>
-            <FundingFieldArray/>
+            <FundingFieldArray />
           </Accordion>
 
         </AccordionSet>
