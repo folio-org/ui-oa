@@ -22,6 +22,7 @@ import {
 import FundingFieldArray from '../components/publicationRequestCreateSections/fundingFieldArray';
 import OtherEmailFieldArray from '../components/publicationRequestCreateSections/otherEmailFieldArray';
 import AffiliationFieldArray from '../components/publicationRequestCreateSections/affiliationFieldArray';
+import ExternalRequestIdFieldArray from '../components/publicationRequestCreateSections/externalRequestIdFieldArray';
 
 const publicationRequestCreate = ({
   handlers: {
@@ -81,7 +82,7 @@ const publicationRequestCreate = ({
                 component={Datepicker}
                 label={<FormattedMessage id="ui-oa.publicationRequest.createPublicationRequest" />}
                 name={"requestDate"}
-              // required
+              required
               />
             </Col>
             <Col xs={3}>
@@ -90,7 +91,7 @@ const publicationRequestCreate = ({
                 dataOptions={['', ...refValues]}
                 label={<FormattedMessage id="ui-oa.publicationRequest.status" />}
                 name="requestStatus"
-              // required
+              required
               />
             </Col>
             <Col xs={3}>
@@ -102,6 +103,13 @@ const publicationRequestCreate = ({
               />
             </Col>
           </Row>
+
+          <Row>
+              <Col xs>
+                <ExternalRequestIdFieldArray/>
+              </Col>
+            </Row>
+
 
           <Accordion
             label={<FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />}
