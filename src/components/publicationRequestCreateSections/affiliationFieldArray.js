@@ -11,8 +11,9 @@ import {
   Row,
 } from '@folio/stripes/components';
 
-const OtherEmailFieldArray = () => {
+const AffiliationFieldArray = () => {
   const renderAffiliations = (fields) => {
+    // console.log(fields)
     return (
       <div>
         {fields.map((affiliation, index) => (
@@ -148,4 +149,4 @@ const OtherEmailFieldArray = () => {
     </FieldArray>)
 }
 
-export default OtherEmailFieldArray;
+export default AffiliationFieldArray;
