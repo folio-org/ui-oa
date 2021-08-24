@@ -6,10 +6,9 @@
   "settingName.settingLoading": "Loading",
 
   "publicationRequest.addFunding": "Add funding",
+  "publicationRequest.addExternalRequestId": "Add external request ID",
   "publicationRequest.addIdentifier": "Add identifier",
   "publicationRequest.addOtherEmail": "Add other email address",
-  "publicationRequest.addPublicationStatus": "Add publication status",
-  "publicationRequest.addStreetAddress": "Add street address",
   "publicationRequest.affiliations": "Affiliations",
   "publicationRequest.aspectFunded": "Aspect funded",
   "publicationRequest.authorLookup": "Author lookup",
@@ -22,7 +21,6 @@
   "publicationRequest.funder": "Funder",
   "publicationRequest.funding": "Funding",
   "publicationRequest.givenName": "Given name(s)",
-  "publicationRequest.identifier": "Identifier",
   "publicationRequest.identifiers": "Identifiers",
   "publicationRequest.issnElectronic": "ISSN (electronic)",
   "publicationRequest.issnPrint": "ISSN (print)",
@@ -55,8 +53,14 @@
   "publicationRequest.streetAddresses": "Street addresses",
   "publicationRequest.subtype": "Subtype",
   "publicationRequest.title": "Title",
-  "publicationRequest.type": "Type",
   "publicationRequest.useCorrespondingAuthor": "Use corresponding author",
+
+  "externalRequestId.externalRequestId": "External request ID", 
+
+  "identifiers.addIdentifier": "Add identifier",
+  "identifiers.identifier": "Identifier",
+  "identifiers.type": "Type",
+  "identifiers.requestHasNone": "No identifiers for this publication request",
 
   "funders.addFunding": "Add funding",
   "funders.requestHasNone": "No funding for this publication request",
@@ -65,5 +69,23 @@
 
   "affiliation.addAffiliation": "Add affiliation",
   "affiliation.affiliationTitle": "Affiliation {number}",
-  "affiliation.removeAffiliation": "Remove affiliation {number}"
+  "affiliation.removeAffiliation": "Remove affiliation {number}", 
+
+  "publicationStatus.addPublicationStatus": "Add publication status",
+  "publicationStatus.requestHasNone": "No publication statuses for this publication request",
+  "publicationStatus.publicationStatusDate": "Status Date",
+  "publicationStatus.publicationStatusNote": "Status Note",
+
+  "streetAddresses.removeStreetAddress": "Remove street address {number}",
+  "streetAddresses.streetAddressTitle": "Street address {number}",
+  "streetAddresses.addressType": "Address type",
+  "streetAddresses.addressLine1": "Address line 1",
+  "streetAddresses.addressLine2": "Address line 2",
+  "streetAddresses.city": "City",
+  "streetAddresses.stateRegion": "State/Prov./Region",
+  "streetAddresses.postalCode": "Zip/Postal code",
+  "streetAddresses.country": "Country",
+  "streetAddresses.addStreetAddress": "Add street address",
+  "streetAddresses.requestHasNone": "No street addresses for this { section }"
+  
 }

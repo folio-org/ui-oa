@@ -17,6 +17,7 @@ import {
   Paneset,
   Row,
   Select,
+  TextArea,
   TextField,
   TextLink
 } from '@folio/stripes/components';
@@ -24,6 +25,9 @@ import FundingFieldArray from '../components/publicationRequestCreateSections/fu
 import OtherEmailFieldArray from '../components/publicationRequestCreateSections/otherEmailFieldArray';
 import AffiliationFieldArray from '../components/publicationRequestCreateSections/affiliationFieldArray';
 import ExternalRequestIdFieldArray from '../components/publicationRequestCreateSections/externalRequestIdFieldArray';
+import IdentifiersFieldArray from '../components/publicationRequestCreateSections/identifiersFieldArray';
+import PublicationStatusFieldArray from '../components/publicationRequestCreateSections/publicationStatusFieldArray';
+import StreetAddressesFieldArray from '../components/publicationRequestCreateSections/streetAddressesFieldArray';
 
 const publicationRequestCreate = ({
   handlers: {
@@ -193,13 +197,7 @@ const publicationRequestCreate = ({
 
             <Row>
               <Col xs>
-                <OtherEmailFieldArray name="correspondingAuthorOtherEmail"/>
-              </Col>
-            </Row>
-
-            <Row>
-              <Col xs>
-                {/* TODO: FieldArray for Street Addresses */}
+                <OtherEmailFieldArray name="correspondingAuthorOtherEmail" />
               </Col>
             </Row>
 
@@ -208,6 +206,12 @@ const publicationRequestCreate = ({
                 <Headline size="large" margin="small" tag="h3">
                   <FormattedMessage id="ui-oa.publicationRequest.streetAddresses" />
                 </Headline>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col xs>
+                <StreetAddressesFieldArray name="correspondingAuthorStreetAddress" section="corresponding author"/> 
               </Col>
             </Row>
 
@@ -305,15 +309,30 @@ const publicationRequestCreate = ({
             </Row>
 
             <Row>
-              <OtherEmailFieldArray name="requestContactOtherEmail"/>
+              <Col xs>
+                <OtherEmailFieldArray name="requestContactOtherEmail" />
+              </Col>
             </Row>
 
+            <Row>
+              <Col xs>
+                <Headline size="large" margin="small" tag="h3">
+                  <FormattedMessage id="ui-oa.publicationRequest.streetAddresses" />
+                </Headline>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col xs>
+                <StreetAddressesFieldArray name="requestContactStreetAddresses" section="request contact" />
+              </Col>
+            </Row>
           </Accordion>
 
           <Accordion
             label={<FormattedMessage id="ui-oa.publicationRequest.publication" />}
           >
-            <Row end="xs">
+            <Row start="xs" bottom="xs">
               <Col xs={3}>
                 <Field
                   component={Select}
@@ -323,6 +342,9 @@ const publicationRequestCreate = ({
                 />
               </Col>
               <Col xs={3}>
+                <Button>
+                  <FormattedMessage id="ui-oa.publicationRequest.lookupPublication" />
+                </Button>
               </Col>
               <Col xs={3}>
               </Col>
@@ -368,14 +390,14 @@ const publicationRequestCreate = ({
             <Row end="xs">
               <Col xs={6}>
                 <Field
-                  component={TextField}
+                  component={TextArea}
                   label={<FormattedMessage id="ui-oa.publicationRequest.publicationTitle" />}
                   name="asdf"
                 />
               </Col>
               <Col xs={6}>
                 <Field
-                  component={TextField}
+                  component={TextArea}
                   label={<FormattedMessage id="ui-oa.publicationRequest.authorNames" />}
                   name="asdf"
                 />
@@ -404,6 +426,12 @@ const publicationRequestCreate = ({
                 <Headline size="large" margin="small" tag="h3">
                   <FormattedMessage id="ui-oa.publicationRequest.identifiers" />
                 </Headline>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col xs>
+                <IdentifiersFieldArray />
               </Col>
             </Row>
 
@@ -474,27 +502,9 @@ const publicationRequestCreate = ({
           </Accordion>
 
           <Accordion label={<FormattedMessage id="ui-oa.publicationRequest.publicationStatus" />}>
-            <Row end="xs">
-              <Col xs={3}>
-                <Field
-                  component={TextField}
-                  label={<FormattedMessage id="ui-oa.publicationRequest.status" />}
-                  name="asdf"
-                />
-              </Col>
-              <Col xs={3}>
-                <Field
-                  component={TextField}
-                  label={<FormattedMessage id="ui-oa.publicationRequest.statusDate" />}
-                  name="asdf"
-                />
-              </Col>
-              <Col xs={6}>
-                <Field
-                  component={TextField}
-                  label={<FormattedMessage id="ui-oa.publicationRequest.statusNote" />}
-                  name="asdf"
-                />
+            <Row>
+              <Col xs>
+                <PublicationStatusFieldArray/>
               </Col>
             </Row>
           </Accordion>
