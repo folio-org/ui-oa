@@ -13,7 +13,7 @@ const publicationRequestRoute = (
   const location = useLocation()
 
   const handleClose = () => {
-    history.push(`${urls.scholarlyWorks()}${location.search}`);
+    history.push(`${urls.publicationRequests()}${location.search}`);
   }
 
   return (

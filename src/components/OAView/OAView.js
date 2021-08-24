@@ -24,7 +24,7 @@ import OAFilters from '../OAFilters/OAFilters';
 
 const propTypes = {
   children: PropTypes.object,
-  scholarlyWorks: PropTypes.arrayOf(PropTypes.object),
+  publicationRequests: PropTypes.arrayOf(PropTypes.object),
   queryGetter: PropTypes.func.isRequired,
   querySetter: PropTypes.func.isRequired,
 };
@@ -37,6 +37,13 @@ const OAView = ({
   searchString,
 }) => {
   const history = useHistory()
+
+  const formatter = {
+    requestStatus: e => {
+      return e?.requestStatus?.label;
+    },
+  }
+
   return (
     <SearchAndSortQuery
       querySetter={querySetter}
@@ -109,8 +116,9 @@ const OAView = ({
               )}>
               <MultiColumnList
                 autosize
-                contentData={data.scholarlyWorks}
-                visibleColumns={['authorNameList', 'publisherURL', 'localReference', 'journalIssueDate', 'journalVolume', 'journalIssue', 'journalPages']}
+                contentData={data.publicationRequests}
+                formatter={formatter}
+                visibleColumns={['requestDate', 'requestStatus']}
                 onRowClick={(_e, rowData) => history.push(`${urls.publicationRequest(rowData.id)}${searchString}`)}
                 onHeaderClick={onSort}
               />

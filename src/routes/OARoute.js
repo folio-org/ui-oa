@@ -14,7 +14,7 @@ const propTypes = {
   resources: PropTypes.object,
 };
 
-const OARoute = ({ children, history, location, match }) => {
+const OARoute = ({ children, location }) => {
   const { query, queryGetter, querySetter } = useKiwtSASQuery();
 
   const SASQ_MAP = {
@@ -25,15 +25,14 @@ const OARoute = ({ children, history, location, match }) => {
   }
 
   const ky = useOkapiKy();
-  const { data: {results: scholarlyWorks} = {} } = useQuery(
-    ['ui-oa', 'oaRoute', 'scholarlyWork', query],
-    () => ky(`oa/scholarlyWork${generateKiwtQuery(SASQ_MAP, query)}`).json()
+  const { data: {results: publicationRequests} = {} } = useQuery(
+    ['ui-oa', 'oaRoute', 'publicationRequest', query],
+    () => ky(`oa/publicationRequest${generateKiwtQuery(SASQ_MAP, query)}`).json()
   )
-
   return (
     <OAView
       data={{
-        scholarlyWorks
+        publicationRequests
       }}
       queryGetter={queryGetter}
       querySetter={querySetter}

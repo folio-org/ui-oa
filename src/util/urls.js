@@ -1,5 +1,5 @@
 const urls = {
-  scholarlyWorks: () => '/oa',
+  publicationRequests: () => '/oa',
   publicationRequest: id => `/oa/${id}`,
   publicationRequestCreate: () => '/oa/publicationRequests/create'
 }

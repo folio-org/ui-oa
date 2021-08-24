@@ -18,7 +18,6 @@ const publicationRequest = ({
   const paneProps = {
     defaultWidth: '55%',
     dismissible: true,
-    id: 'pane-view-scholarly-work',
     onClose: handlers.onClose,
   };
 
