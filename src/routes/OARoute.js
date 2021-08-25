@@ -1,44 +1,48 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { stripesConnect } from '@folio/stripes/core';
+import { useOkapiKy } from '@folio/stripes/core';
+import generateKiwtQuery from '../util/generateKiwtQuery';
 import {
-  buildFilterString,
-  locationQuerySetter,
-  locationQueryGetter,
-  filterStringToObject
-} from '../util/filterUtils';
-
+  useQuery,
+} from 'react-query';
 import OAView from '../components/OAView';
+import useKiwtSASQuery from '../util/useKiwtSASQuery';
 
 const propTypes = {
+  children: PropTypes.node,
   location: PropTypes.object,
-  history: PropTypes.object
+  history: PropTypes.object,
+  resources: PropTypes.object,
 };
 
-const OARoute = ({ location, history }) => {
+const OARoute = ({ children, location }) => {
+  const { query, queryGetter, querySetter } = useKiwtSASQuery();
 
-  const handleFilterChange = (incomingFilters) => {
-    const filterString = buildFilterString(incomingFilters);
-    locationQuerySetter({ location, history, nsValues: { filters: filterString } });
-  };
+  const SASQ_MAP = {
+    searchKey: 'journalVolume',
+    filterKeys: {
+      journalVolume: 'journalVolume'
+    }
+  }
 
-  const handleSearchTermChange = (incomingSearchTerm) => {
-    locationQuerySetter({ location, history, nsValues: { query: incomingSearchTerm } });
-  };
-
-  const parseFilters = () => {
-    const query = locationQueryGetter({ location });
-    const parsedFilters = filterStringToObject(query.filters);
-    return parsedFilters;
-  };
-
-  const parsedQuery = locationQueryGetter({ location })?.query;
-
+  const ky = useOkapiKy();
+  const { data: {results: publicationRequests} = {} } = useQuery(
+    ['ui-oa', 'oaRoute', 'publicationRequest', query],
+    () => ky(`oa/publicationRequest${generateKiwtQuery(SASQ_MAP, query)}`).json()
+  )
   return (
-    <OAView />
+    <OAView
+      data={{
+        publicationRequests
+      }}
+      queryGetter={queryGetter}
+      querySetter={querySetter}
+      searchString={location.search}
+    >
+      {children}
+    </OAView>
   );
 };
 
 OARoute.propTypes = propTypes;
 
-export default stripesConnect(OARoute);
+export default OARoute;
