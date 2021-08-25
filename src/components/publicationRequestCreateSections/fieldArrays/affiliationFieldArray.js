@@ -13,7 +13,6 @@ import {
 
 const AffiliationFieldArray = () => {
   const renderAffiliations = (fields) => {
-    // console.log(fields)
     return (
       <div>
         {fields.map((affiliation, index) => (

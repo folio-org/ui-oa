@@ -71,7 +71,6 @@ const OAView = ({
                 <SearchField
                   autoFocus
                   className={css.searchField}
-                  id="input-agreement-search"
                   marginBottom0
                   name="query"
                   onChange={getSearchHandlers().query}
@@ -82,7 +81,6 @@ const OAView = ({
                   buttonStyle="primary"
                   disabled={!searchValue.query || searchValue.query === ''}
                   fullWidth
-                  id="clickable-search-agreements"
                   type="submit"
                 >
                   <FormattedMessage id="stripes-smart-components.search" />
