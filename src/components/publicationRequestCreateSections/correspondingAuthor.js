@@ -91,7 +91,7 @@ const CorrespondingAuthor = () => {
             name="asdf"
           />
         </Col>
-        <Col xs={3}/>
+        <Col xs={3} />
       </Row>
 
       <Row>
@@ -116,7 +116,7 @@ const CorrespondingAuthor = () => {
 
       <Row>
         <Col xs>
-          <Headline size="large" margin="small" tag="h3">
+          <Headline margin="small" size="large" tag="h3">
             <FormattedMessage id="ui-oa.publicationRequest.affiliations" />
           </Headline>
         </Col>
@@ -129,7 +129,7 @@ const CorrespondingAuthor = () => {
       </Row>
 
     </Accordion>
-  )
+  );
 };
 
 export default CorrespondingAuthor;

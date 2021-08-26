@@ -49,9 +49,9 @@ const OAView = ({
 
   return (
     <SearchAndSortQuery
-      querySetter={querySetter}
-      queryGetter={queryGetter}
       initialSearchState={{ query: '' }}
+      queryGetter={queryGetter}
+      querySetter={querySetter}
     >
       {
         ({
@@ -97,7 +97,8 @@ const OAView = ({
               </Pane>
               <Pane
                 defaultWidth="fill"
-                lastMenu={(
+                lastMenu={
+                (
                   <IfPermission perm="oa.scholarlyWork.edit">
                     <PaneMenu>
                       <FormattedMessage id="ui-oa.publicationRequest.createPublicationRequest">
@@ -120,9 +121,9 @@ const OAView = ({
                   autosize
                   contentData={data.publicationRequests}
                   formatter={formatter}
-                  visibleColumns={['requestDate', 'requestStatus']}
-                  onRowClick={(_e, rowData) => history.push(`${urls.publicationRequest(rowData.id)}${searchString}`)}
                   onHeaderClick={onSort}
+                  onRowClick={(_e, rowData) => history.push(`${urls.publicationRequest(rowData.id)}${searchString}`)}
+                  visibleColumns={['requestDate', 'requestStatus']}
                 />
               </Pane>
               {children}

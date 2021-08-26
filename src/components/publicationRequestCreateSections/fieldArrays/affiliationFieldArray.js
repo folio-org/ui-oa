@@ -18,8 +18,8 @@ const AffiliationFieldArray = () => {
         { fields.map((affiliation, index) => (
           <EditCard
             key={affiliation}
-            deleteButtonTooltipText={<FormattedMessage id="ui-oa.affiliation.removeAffiliation" values={ { number: index + 1 } } />}
-            header={<FormattedMessage id="ui-oa.affiliation.affiliationTitle" values={ { number: index + 1 } } />}
+            deleteButtonTooltipText={<FormattedMessage id="ui-oa.affiliation.removeAffiliation" values={{ number: index + 1 }} />}
+            header={<FormattedMessage id="ui-oa.affiliation.affiliationTitle" values={{ number: index + 1 }} />}
             onDelete={index !== 0 ? () => fields.remove(index) : undefined}
           >
             {/* TODO: Detect if affiliation is selected / new and render correct func */}
@@ -29,6 +29,7 @@ const AffiliationFieldArray = () => {
     );
   };
 
+  /*
   const renderNewAffiliation = () => {
     return (
       <div>
@@ -60,6 +61,7 @@ const AffiliationFieldArray = () => {
       </div>
     )
   };
+  */
 
   const renderSelectedAffiliation = (affiliation) => {
     return (
