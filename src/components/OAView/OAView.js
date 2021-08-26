@@ -127,7 +127,8 @@ const OAView = ({
               </Pane>
               {children}
             </PersistedPaneset>
-          </div>);
+          </div>
+        )
       }
     </SearchAndSortQuery>
   );
