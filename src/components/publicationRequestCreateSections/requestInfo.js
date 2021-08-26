@@ -11,7 +11,12 @@ import {
 
 import ExternalRequestIdFieldArray from './fieldArrays/externalRequestIdFieldArray';
 
-const RequestInfo = ({refValues}) => {
+const propTypes = {
+  refValues: PropTypes.object
+};
+
+
+const RequestInfo = ({ refValues }) => {
   return (
     <div>
       <Row end="xs">
@@ -58,5 +63,7 @@ const RequestInfo = ({refValues}) => {
     </div>
   )
 }
+
+RequestInfo.propTypes = propTypes;
 
 export default RequestInfo;

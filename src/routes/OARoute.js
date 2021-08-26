@@ -22,13 +22,15 @@ const OARoute = ({ children, location }) => {
     filterKeys: {
       journalVolume: 'journalVolume'
     }
-  }
+  };
 
   const ky = useOkapiKy();
-  const { data: {results: publicationRequests} = {} } = useQuery(
+
+  const { data: { results: publicationRequests} = { } } = useQuery(
     ['ui-oa', 'oaRoute', 'publicationRequest', query],
     () => ky(`oa/publicationRequest${generateKiwtQuery(SASQ_MAP, query)}`).json()
-  )
+  );
+
   return (
     <OAView
       data={{

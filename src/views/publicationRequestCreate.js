@@ -32,6 +32,18 @@ import Publication from '../components/publicationRequestCreateSections/publicat
 import PublicationStatus from '../components/publicationRequestCreateSections/publicationStatus';
 import Funding from '../components/publicationRequestCreateSections/funding';
 
+const propTypes = {
+  handlers: PropTypes.shape({
+    onClose: PropTypes.func.isRequired
+    onSubmit: PropTypes.func.isRequired
+  }).isRequired,
+  pristine:
+  refValues:
+  submitting:
+
+};
+
+
 const publicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, refValues, submitting }) => {
   const renderPaneFooter = () => {
     return (

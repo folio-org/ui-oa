@@ -31,10 +31,10 @@ class App extends React.Component {
     return (
       <Suspense fallback={null}>
         <Switch>
-        <Route component={publicationRequestCreateRoute} path={`${path}/publicationRequests/create`} />
-        <Route component={OARoute} path={`${path}/:id?`}>
-          <Route component={publicationRequestRoute} path={`${path}/:id`} />
-        </Route>
+          <Route component={publicationRequestCreateRoute} path={`${path}/publicationRequests/create`} />
+          <Route component={OARoute} path={`${path}/:id?`}>
+            <Route component={publicationRequestRoute} path={`${path}/:id`} />
+          </Route>
         </Switch>
       </Suspense>
     );
