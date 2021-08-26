@@ -18,7 +18,7 @@ const PublicationStatus = () => {
         </Col>
       </Row>
     </Accordion>
-  )
-}
+  );
+};
 
 export default PublicationStatus;

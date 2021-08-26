@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import PropTypes from 'prop-types';
 
 // import { Field } from 'react-final-form';
 // import { FieldArray } from 'react-final-form-arrays';

@@ -28,7 +28,7 @@ const RequestContact = () => {
             type="checkbox"
           />
         </Col>
-        <Col xs={9}/>
+        <Col xs={9} />
       </Row>
       <Row end="xs">
         <Col xs={3}>
@@ -57,7 +57,7 @@ const RequestContact = () => {
             name="asdf"
           />
         </Col>
-        <Col xs={3}/>
+        <Col xs={3} />
       </Row>
 
       <Row end="xs">
@@ -88,7 +88,7 @@ const RequestContact = () => {
             name="asdf"
           />
         </Col>
-        <Col xs={3}/>
+        <Col xs={3} />
       </Row>
 
       <Row>
@@ -111,8 +111,7 @@ const RequestContact = () => {
         </Col>
       </Row>
     </Accordion>
-
-  )
+  );
 };
 
 export default RequestContact;

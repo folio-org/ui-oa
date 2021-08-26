@@ -15,19 +15,15 @@ const locationQuerySetter = ({ location, history, nsValues }) => {
 };
 
 const useKiwtSASQuery = () => {
-
   const history = useHistory();
   const location = useLocation();
   const [query, setQuery] = useState({});
-
   const queryGetter = () => query;
-
   const querySetter = ({ nsValues }) => {
     setQuery(nsValues)
     locationQuerySetter({ location, history, nsValues });
   };
-
   return { query, queryGetter, querySetter };
-}
+};
 
 export default useKiwtSASQuery;

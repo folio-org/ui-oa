@@ -34,8 +34,8 @@ const Publication = () => {
             <FormattedMessage id="ui-oa.publicationRequest.lookupPublication" />
           </Button>
         </Col>
-        <Col xs={3}/>
-        <Col xs={3}/>
+        <Col xs={3} />
+        <Col xs={3} />
       </Row>
 
       <Row end="xs">
@@ -160,7 +160,7 @@ const Publication = () => {
 
       <Row>
         <Col xs>
-          <Headline size="large" margin="small" tag="h3">
+          <Headline margin="small" size="large" tag="h3">
             <FormattedMessage id="ui-oa.publicationRequest.bookDetails" />
           </Headline>
         </Col>
@@ -181,11 +181,10 @@ const Publication = () => {
             name="asdf"
           />
         </Col>
-        <Col xs={6}/>
+        <Col xs={6} />
       </Row>
     </Accordion>
-
-  )
-}
+  );
+};
 
 export default Publication;
