@@ -52,9 +52,9 @@ const generateKiwtQuery = (options, nsValues) => {
     }));
   }
 
-  paramsArray.push('stats=true')
+  paramsArray.push('stats=true');
 
-  return '?'+paramsArray.map(p => encodeURI(p)).join('&');
+  return '?' + paramsArray.map(p => encodeURI(p)).join('&');
 };
 
 export default generateKiwtQuery;

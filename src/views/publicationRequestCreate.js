@@ -90,7 +90,7 @@ const publicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, r
       </Pane>
     </Paneset>
   );
-}
+};
 
 publicationRequestCreate.propTypes = propTypes;
 

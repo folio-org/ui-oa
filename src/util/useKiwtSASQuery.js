@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 
-import queryString from 'query-string';
+// import queryString from 'query-string';
 import buildUrl from './buildUrl';
 
 // Commented out for lint no-unused-var
@@ -20,7 +20,7 @@ const useKiwtSASQuery = () => {
   const [query, setQuery] = useState({});
   const queryGetter = () => query;
   const querySetter = ({ nsValues }) => {
-    setQuery(nsValues)
+    setQuery(nsValues);
     locationQuerySetter({ location, history, nsValues });
   };
   return { query, queryGetter, querySetter };
