@@ -34,13 +34,12 @@ import Funding from '../components/publicationRequestCreateSections/funding';
 
 const propTypes = {
   handlers: PropTypes.shape({
-    onClose: PropTypes.func.isRequired
+    onClose: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired
   }).isRequired,
-  pristine:
-  refValues:
-  submitting:
-
+  pristine: PropTypes.bool,
+  refValues: PropTypes.object,
+  submitting: PropTypes.bool,
 };
 
 
@@ -91,4 +90,7 @@ const publicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, r
     </Paneset>
   );
 }
+
+publicationRequestCreate.propTypes = propTypes;
+
 export default publicationRequestCreate;

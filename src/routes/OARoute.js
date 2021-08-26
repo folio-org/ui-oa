@@ -33,9 +33,7 @@ const OARoute = ({ children, location }) => {
 
   return (
     <OAView
-      data={{
-        publicationRequests
-      }}
+      data={publicationRequests}
       queryGetter={queryGetter}
       querySetter={querySetter}
       searchString={location.search}
