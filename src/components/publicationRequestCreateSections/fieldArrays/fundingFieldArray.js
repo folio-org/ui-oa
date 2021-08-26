@@ -18,21 +18,21 @@ const FundingFieldArray = () => {
       <div>
         {/* TODO: Insert dataOptions */}
         {fields.map((name, index) => (
-          <Row middle="xs" key={name}>
+          <Row key={name} middle="xs">
             <Col xs={3}>
               <Field
                 component={Select}
-                dataOptions={ ['', { label:'1', value:'1' }, { label:'2', value:'2' } ] }
-                label={ <FormattedMessage id="ui-oa.publicationRequest.aspectFunded" /> }
+                dataOptions={['', { label:'1', value:'1' }, { label:'2', value:'2' }]}
+                label={<FormattedMessage id="ui-oa.publicationRequest.aspectFunded" />}
                 name={`${name}.aspectFunded`}
               />
             </Col>
             <Col xs={3}>
               <Field
-                component={ Select }
-                dataOptions={ ['', { label:'1', value:'1' }, { label:'2', value:'2' } ] }
-                label={ <FormattedMessage id="ui-oa.publicationRequest.funder" /> }
-                name={ `${name}.funder` }
+                component={Select}
+                dataOptions={['', { label:'1', value:'1' }, { label:'2', value:'2' }]}
+                label={<FormattedMessage id="ui-oa.publicationRequest.funder" />}
+                name={`${name}.funder`}
               />
             </Col>
             <Col xs={6}>
@@ -44,14 +44,14 @@ const FundingFieldArray = () => {
           </Row>
         ))}
       </div>
-    )
+    );
   };
 
   const renderEmpty = () => {
     return (
       <Layout className="padding-bottom-gutter">
         <FormattedMessage id="ui-oa.funders.requestHasNone" />
-      </Layout>)
+      </Layout>);
   };
 
   return (
@@ -59,10 +59,10 @@ const FundingFieldArray = () => {
       {({ fields }) => (
         <div>
           <div>
-            { fields.length ? renderFunders(fields) : renderEmpty() }
+            {fields.length ? renderFunders(fields) : renderEmpty()}
           </div>
           <Button
-            onClick={ () => fields.push({}) }
+            onClick={() => fields.push({})}
           >
             Add
           </Button>

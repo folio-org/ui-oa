@@ -19,7 +19,6 @@ const propTypes = {
 
 
 const StreetAddressesFieldArray = ({ name, section }) => {
-
   const renderStreetAddresses = (fields) => {
     return (
       <div>
@@ -83,9 +82,8 @@ const StreetAddressesFieldArray = ({ name, section }) => {
                   name={`${name}.country`}
                 />
               </Col>
-              <Col xs={3}/>
+              <Col xs={3} />
             </Row>
-
           </EditCard>
         ))}
       </div>
@@ -96,7 +94,7 @@ const StreetAddressesFieldArray = ({ name, section }) => {
     return (
       <Layout className="padding-bottom-gutter">
         <FormattedMessage id="ui-oa.streetAddresses.requestHasNone" values={{ section: section }} />
-      </Layout>)
+      </Layout>);
   };
 
   return (

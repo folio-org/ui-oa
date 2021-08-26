@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
@@ -10,7 +11,13 @@ import {
   Row,
 } from '@folio/stripes/components';
 
-const OtherEmailFieldArray = ({name: name}) => {
+
+const propTypes = {
+  name: PropTypes.string,
+};
+
+
+const OtherEmailFieldArray = ({ name }) => {
   const renderOtherEmail = (fields) => {
     return (
       <div>
@@ -33,13 +40,13 @@ const OtherEmailFieldArray = ({name: name}) => {
         ))}
       </div>
     )
-  }
+  };
 
   const renderEmpty = () => {
     return (
-      <div></div>
+      <div/>
     )
-  }
+  };
 
   return (
     <FieldArray name={name}>
@@ -55,7 +62,9 @@ const OtherEmailFieldArray = ({name: name}) => {
           </Button>
         </div>
       )}
-    </FieldArray>)
-}
+    </FieldArray>);
+};
+
+OtherEmailFieldArray.propTypes = propTypes;
 
 export default OtherEmailFieldArray;

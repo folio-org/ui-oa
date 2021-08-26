@@ -5,7 +5,7 @@ import urls from '../util/urls';
 
 import View from '../views/publicationRequest';
 
-const propTypes = {}
+const propTypes = {};
 
 const PublicationRequestRoute = () => {
   const history = useHistory();

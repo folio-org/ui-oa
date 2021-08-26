@@ -17,7 +17,7 @@ const IdentifiersFieldArray = () => {
     return (
       <div>
         {fields.map((identifier, index) => (
-          <Row key={identifier} middle="xs" >
+          <Row key={identifier} middle="xs">
             <Col xs={3}>
               <Field
                 component={Select}
@@ -41,14 +41,14 @@ const IdentifiersFieldArray = () => {
           </Row>
         ))}
       </div>
-    )
+    );
   };
 
   const renderEmpty = () => {
     return (
       <Layout className="padding-bottom-gutter">
         <FormattedMessage id="ui-oa.identifiers.requestHasNone" />
-      </Layout>)
+      </Layout>);
   };
 
   return (
@@ -65,7 +65,7 @@ const IdentifiersFieldArray = () => {
           </Button>
         </div>
       )}
-    </FieldArray>)
+    </FieldArray>);
 };
 
 export default IdentifiersFieldArray;
