@@ -1,1 +1,1 @@
-export { default } from './OAFilters'
+export { default } from './OAFilters';

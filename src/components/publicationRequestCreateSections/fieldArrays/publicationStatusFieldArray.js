@@ -50,14 +50,14 @@ const PublicationStatusFieldArray = () => {
         ))}
       </div>
     )
-  }
+  };
 
   const renderEmpty = () => {
     return (
       <Layout className="padding-bottom-gutter">
         <FormattedMessage id="ui-oa.publicationStatus.requestHasNone" />
       </Layout>)
-  }
+  };
 
   return (
     <FieldArray name="publicationStatus">
@@ -73,7 +73,7 @@ const PublicationStatusFieldArray = () => {
           </Button>
         </div>
       )}
-    </FieldArray>)
+    </FieldArray>);
 }
 
 export default PublicationStatusFieldArray;

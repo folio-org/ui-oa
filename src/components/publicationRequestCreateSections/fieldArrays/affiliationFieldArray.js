@@ -6,7 +6,7 @@ import { EditCard } from '@folio/stripes-erm-components';
 import {
   Button,
   Col,
-  Headline,
+  // Headline,
   Label,
   Row,
 } from '@folio/stripes/components';
@@ -15,19 +15,19 @@ const AffiliationFieldArray = () => {
   const renderAffiliations = (fields) => {
     return (
       <div>
-        {fields.map((affiliation, index) => (
+        { fields.map((affiliation, index) => (
           <EditCard
             key={affiliation}
-            deleteButtonTooltipText={<FormattedMessage id="ui-oa.affiliation.removeAffiliation" values={{ number: index + 1 }}/>}
-            header={<FormattedMessage id="ui-oa.affiliation.affiliationTitle" values={{ number: index + 1 }}/>}
+            deleteButtonTooltipText={<FormattedMessage id="ui-oa.affiliation.removeAffiliation" values={ { number: index + 1 } } />}
+            header={<FormattedMessage id="ui-oa.affiliation.affiliationTitle" values={ { number: index + 1 } } />}
             onDelete={index !== 0 ? () => fields.remove(index) : undefined}
           >
             {/* TODO: Detect if affiliation is selected / new and render correct func */}
           </EditCard>
-        ))}
+        )) }
       </div>
-    )
-  }
+    );
+  };
 
   const renderNewAffiliation = () => {
     return (
@@ -59,7 +59,7 @@ const AffiliationFieldArray = () => {
         </Row>
       </div>
     )
-  }
+  };
 
   const renderSelectedAffiliation = (affiliation) => {
     return (
@@ -109,27 +109,27 @@ const AffiliationFieldArray = () => {
             <Field
               component={Datepicker}
               label={<FormattedMessage id="ui-oa.affiliation.affiliationDateFrom" />}
-              name={"affiliationDateFrom"}
+              name="affiliationDateFrom"
             />
           </Col>
           <Col xs={3}>
             <Field
               component={Datepicker}
               label={<FormattedMessage id="ui-oa.affiliation.affiliationDateTo" />}
-              name={"affiliationDateTo"}
+              name="affiliationDateTo"
             />
           </Col>
           <Col xs={6} />
         </Row>
       </div>
     )
-  }
+  };
 
   const renderEmpty = () => {
     return (
       <div></div>
     )
-  }
+  };
 
   return (
     <FieldArray name="affiliation">
@@ -145,7 +145,7 @@ const AffiliationFieldArray = () => {
           </Button>
         </div>
       )}
-    </FieldArray>)
+    </FieldArray>);
 }
 
 export default AffiliationFieldArray;

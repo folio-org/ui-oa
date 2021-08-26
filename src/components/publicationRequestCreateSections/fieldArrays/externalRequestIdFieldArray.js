@@ -32,14 +32,14 @@ const ExternalRequestIdFieldArray = () => {
           </Row>
         ))}
       </div>
-    )
-  }
+    );
+  };
 
   const renderEmpty = () => {
     return (
       <div></div>
     )
-  }
+  };
 
   return (
     <FieldArray name="externalRequestId">
@@ -56,6 +56,6 @@ const ExternalRequestIdFieldArray = () => {
         </div>
       )}
     </FieldArray>)
-}
+};
 
 export default ExternalRequestIdFieldArray;

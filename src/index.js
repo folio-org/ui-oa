@@ -10,13 +10,11 @@ const publicationRequestRoute = lazy(() => import('./routes/publicationRequestRo
 const publicationRequestCreateRoute = lazy(() => import('./routes/publicationRequestCreateRoute'));
 
 class App extends React.Component {
-
   static propTypes = {
     actAs: PropTypes.string.isRequired,
     match: PropTypes.object.isRequired,
     stripes: PropTypes.object.isRequired,
-  }
-
+  };
   render() {
     const { actAs, match: { path } } = this.props;
 

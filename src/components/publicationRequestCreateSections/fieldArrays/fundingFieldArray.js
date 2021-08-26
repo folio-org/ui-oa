@@ -13,7 +13,6 @@ import {
 
 
 const FundingFieldArray = () => {
-
   const renderFunders = (fields) => {
     return (
       <div>
@@ -23,53 +22,53 @@ const FundingFieldArray = () => {
             <Col xs={3}>
               <Field
                 component={Select}
-                dataOptions={['', {label:'1', value:'1'}, {label:'2', value:'2'}]}
-                label={<FormattedMessage id="ui-oa.publicationRequest.aspectFunded" />}
+                dataOptions={ ['', { label:'1', value:'1' }, { label:'2', value:'2' } ] }
+                label={ <FormattedMessage id="ui-oa.publicationRequest.aspectFunded" /> }
                 name={`${name}.aspectFunded`}
               />
             </Col>
             <Col xs={3}>
               <Field
-                component={Select}
-                dataOptions={['', {label:'1', value:'1'}, {label:'2', value:'2'}]}
-                label={<FormattedMessage id="ui-oa.publicationRequest.funder" />}
-                name={`${name}.funder`}
+                component={ Select }
+                dataOptions={ ['', { label:'1', value:'1' }, { label:'2', value:'2' } ] }
+                label={ <FormattedMessage id="ui-oa.publicationRequest.funder" /> }
+                name={ `${name}.funder` }
               />
             </Col>
             <Col xs={6}>
               <IconButton
                 icon="trash"
-                onClick={() => fields.remove(index)}
+                onClick={ () => fields.remove(index) }
               />
             </Col>
           </Row>
         ))}
       </div>
     )
-  }
+  };
 
   const renderEmpty = () => {
     return (
       <Layout className="padding-bottom-gutter">
         <FormattedMessage id="ui-oa.funders.requestHasNone" />
       </Layout>)
-  }
+  };
 
   return (
     <FieldArray name="funding">
       {({ fields }) => (
         <div>
           <div>
-            {fields.length ? renderFunders(fields) : renderEmpty()}
+            { fields.length ? renderFunders(fields) : renderEmpty() }
           </div>
           <Button
-            onClick={() => fields.push({})}
+            onClick={ () => fields.push({}) }
           >
             Add
           </Button>
         </div>
       )}
-    </FieldArray>)
+    </FieldArray>);
 }
 
 

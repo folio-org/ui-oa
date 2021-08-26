@@ -81,15 +81,15 @@ const StreetAddressesFieldArray = ({ name, section }) => {
           </EditCard>
         ))}
       </div>
-    )
-  }
+    );
+  };
 
   const renderEmpty = () => {
     return (
       <Layout className="padding-bottom-gutter">
         <FormattedMessage id="ui-oa.streetAddresses.requestHasNone" values={{ section: section }} />
       </Layout>)
-  }
+  };
 
   return (
     <FieldArray name={name}>
@@ -105,7 +105,7 @@ const StreetAddressesFieldArray = ({ name, section }) => {
           </Button>
         </div>
       )}
-    </FieldArray>)
+    </FieldArray>);
 }
 
 export default StreetAddressesFieldArray;
