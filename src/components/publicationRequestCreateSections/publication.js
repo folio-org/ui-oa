@@ -20,7 +20,7 @@ const Publication = () => {
     <Accordion
       label={<FormattedMessage id="ui-oa.publicationRequest.publication" />}
     >
-      <Row start="xs" bottom="xs">
+      <Row bottom="xs" start="xs">
         <Col xs={3}>
           <Field
             component={Select}
@@ -34,10 +34,8 @@ const Publication = () => {
             <FormattedMessage id="ui-oa.publicationRequest.lookupPublication" />
           </Button>
         </Col>
-        <Col xs={3}>
-        </Col>
-        <Col xs={3}>
-        </Col>
+        <Col xs={3}/>
+        <Col xs={3}/>
       </Row>
 
       <Row end="xs">
@@ -157,8 +155,7 @@ const Publication = () => {
             name="asdf"
           />
         </Col>
-        <Col xs={9}>
-        </Col>
+        <Col xs={9}/>
       </Row>
 
       <Row>
@@ -184,8 +181,7 @@ const Publication = () => {
             name="asdf"
           />
         </Col>
-        <Col xs={6}>
-        </Col>
+        <Col xs={6}/>
       </Row>
     </Accordion>
 

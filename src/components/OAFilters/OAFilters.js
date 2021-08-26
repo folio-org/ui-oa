@@ -8,6 +8,14 @@ const propTypes = {
 };
 
 function OAFilters({ activeFilters, filterHandlers }) {
+
+  let onChangeHandler = (group) => {
+    filterHandlers.state({
+      ...activeFilters,
+      [group.name]: group.values
+    });
+  };
+
   return (
       <CheckboxFilter
         dataOptions={[
@@ -15,12 +23,7 @@ function OAFilters({ activeFilters, filterHandlers }) {
           { id: '456', label: 'Test 2', value: 'test2' }
         ]}
         name={'journalVolume'}
-        onChange= (group) => {
-          filterHandlers.state({
-            ...activeFilters,
-            [group.name]: group.values
-          });
-        }
+        onChange={onChangeHandler}
         selectedValues={activeFilters['journalVolume'] || []}
       />
   );
@@ -29,4 +32,3 @@ function OAFilters({ activeFilters, filterHandlers }) {
 OAFilters.propTypes = propTypes;
 
 export default OAFilters;
-

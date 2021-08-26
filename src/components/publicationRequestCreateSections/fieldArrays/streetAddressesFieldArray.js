@@ -11,7 +11,7 @@ import {
   Row,
 } from '@folio/stripes/components';
 
-const StreetAddressesFieldArray = ({ name: name, section: section }) => {
+const StreetAddressesFieldArray = ({ name, section }) => {
   const renderStreetAddresses = (fields) => {
     return (
       <div>
