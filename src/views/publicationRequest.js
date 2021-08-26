@@ -10,11 +10,9 @@ const propTypes = {
   handlers: PropTypes.shape({
     onClose: PropTypes.func.isRequired
   }).isRequired
-}
+};
 
-const publicationRequest = ({
-  handlers
-}) => {
+const publicationRequest = ({ handlers }) => {
   const paneProps = {
     defaultWidth: '55%',
     dismissible: true,
@@ -27,8 +25,8 @@ const publicationRequest = ({
     >
       <div>Publication Request</div>
     </Pane>
-  )
-}
+  );
+};
 
 publicationRequest.propTypes = propTypes;
 

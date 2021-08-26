@@ -1,6 +1,6 @@
 const generateKiwtQuery = (options, nsValues) => {
   const { query, filters, sort } = nsValues;
-  console.log(nsValues)
+  // console.log(nsValues)
   const {
     searchKey = '',
     /* Assumtion made that if no filterKey is provided then the given filterValues for that key are standalaone, ie require no comparator or key */
@@ -52,9 +52,9 @@ const generateKiwtQuery = (options, nsValues) => {
     }));
   }
 
-  paramsArray.push(`stats=true`)
+  paramsArray.push('stats=true')
 
-  return `?${paramsArray.map(p => encodeURI(p)).join('&')}`;
+  return '?'+paramsArray.map(p => encodeURI(p)).join('&');
 };
 
 export default generateKiwtQuery;
