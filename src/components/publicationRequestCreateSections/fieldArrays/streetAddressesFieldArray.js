@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
@@ -11,7 +12,14 @@ import {
   Row,
 } from '@folio/stripes/components';
 
+const propTypes = {
+  name: PropTypes.string,
+  section: PropTypes.string,
+};
+
+
 const StreetAddressesFieldArray = ({ name, section }) => {
+
   const renderStreetAddresses = (fields) => {
     return (
       <div>
@@ -107,5 +115,7 @@ const StreetAddressesFieldArray = ({ name, section }) => {
       )}
     </FieldArray>);
 }
+
+StreetAddressesFieldArray.propTypes = propTypes;
 
 export default StreetAddressesFieldArray;

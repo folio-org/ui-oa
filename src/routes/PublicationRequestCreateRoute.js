@@ -5,34 +5,26 @@ import { useOkapiKy } from '@folio/stripes/core';
 import { useMutation, useQuery } from 'react-query';
 import View from '../views/publicationRequestCreate';
 
-// It's a rule of react that components have to have a capitalised first letter - publicationRequestCreateRoute 
-// as a component name will throw a lint error. Commenting here before I try to unpick
-const publicationRequestCreateRoute = () => {
-
+const PublicationRequestCreateRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
-
   // TODO: Change all of the refdatavalues work to use useRefData()
   const getRefValues = () => {
     const { data: refdata } = useQuery(
-      ['ui-oa', 'publicationRequestCreateRoute', 'getRefValues', ''],
+      ['ui-oa', 'PublicationRequestCreateRoute', 'getRefValues', ''],
       () => ky('oa/refdata/PublicationRequest/RequestStatus').json()
     );
     return refdata || [];
   };
-
   const { mutateAsync: postPublicationRequest } = useMutation(
-    ['ui-oa', 'publicationRequestCreateRoute', 'postPublicationRequest'],
+    ['ui-oa', 'PublicationRequestCreateRoute', 'postPublicationRequest'],
     (data) => ky.post('oa/publicationRequest', { json: data })
   );
-
   const requestStatusValues = getRefValues();
-
   const doTheSubmit = (values) => {
     // console.log(values)
-    postPublicationRequest(values)
+    postPublicationRequest(values);
   };
-
   const handleClose = () => {
     history.push('/oa/publicationRequests/');
   };
@@ -54,7 +46,7 @@ const publicationRequestCreateRoute = () => {
         </form>
       )}
     </Form>
-  )
-}
+  );
+};
 
-export default publicationRequestCreateRoute;
+export default PublicationRequestCreateRoute;

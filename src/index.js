@@ -7,7 +7,7 @@ const Settings = lazy(() => import('./settings'));
 const OARoute = lazy(() => import('./routes/OARoute'));
 
 const PublicationRequestRoute = lazy(() => import('./routes/PublicationRequestRoute'));
-const publicationRequestCreateRoute = lazy(() => import('./routes/publicationRequestCreateRoute'));
+const PublicationRequestCreateRoute = lazy(() => import('./routes/PublicationRequestCreateRoute'));
 
 class App extends React.Component {
   static propTypes = {
@@ -15,6 +15,7 @@ class App extends React.Component {
     match: PropTypes.object.isRequired,
     stripes: PropTypes.object.isRequired,
   };
+
   render() {
     const { actAs, match: { path } } = this.props;
 
@@ -29,7 +30,7 @@ class App extends React.Component {
     return (
       <Suspense fallback={null}>
         <Switch>
-          <Route component={publicationRequestCreateRoute} path={`${path}/publicationRequests/create`} />
+          <Route component={PublicationRequestCreateRoute} path={`${path}/publicationRequests/create`} />
           <Route component={OARoute} path={`${path}/:id?`}>
             <Route component={PublicationRequestRoute} path={`${path}/:id`} />
           </Route>

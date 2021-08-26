@@ -99,7 +99,7 @@ const RequestContact = () => {
 
       <Row>
         <Col xs>
-          <Headline size="large" margin="small" tag="h3">
+          <Headline margin="small" size="large" tag="h3">
             <FormattedMessage id="ui-oa.publicationRequest.streetAddresses" />
           </Headline>
         </Col>

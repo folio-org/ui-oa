@@ -9,7 +9,7 @@ const Funding = () => {
     <Accordion label={<FormattedMessage id="ui-oa.publicationRequest.funding" />}>
       <FundingFieldArray />
     </Accordion>
-  )
-}
+  );
+};
 
 export default Funding;

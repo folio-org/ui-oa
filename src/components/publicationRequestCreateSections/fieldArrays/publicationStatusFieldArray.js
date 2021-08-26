@@ -49,14 +49,14 @@ const PublicationStatusFieldArray = () => {
           </Row>
         ))}
       </div>
-    )
+    );
   };
 
   const renderEmpty = () => {
     return (
       <Layout className="padding-bottom-gutter">
         <FormattedMessage id="ui-oa.publicationStatus.requestHasNone" />
-      </Layout>)
+      </Layout>);
   };
 
   return (

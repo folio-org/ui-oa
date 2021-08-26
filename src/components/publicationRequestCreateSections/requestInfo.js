@@ -24,16 +24,16 @@ const RequestInfo = ({ refValues }) => {
         <Col xs={3}>
           <Field
             component={TextLink}
-            label={<FormattedMessage id='ui-oa.publicationRequest.createPublicationRequest' />}
-            name='requestDate'
+            label={<FormattedMessage id="ui-oa.publicationRequest.createPublicationRequest" />}
+            name="requestDate"
           // required
           />
         </Col>
         <Col xs={3}>
           <Field
             component={Datepicker}
-            label={<FormattedMessage id='ui-oa.publicationRequest.createPublicationRequest' />}
-            name='requestDate'
+            label={<FormattedMessage id="ui-oa.publicationRequest.createPublicationRequest" />}
+            name="requestDate"
             required
           />
         </Col>
@@ -42,7 +42,7 @@ const RequestInfo = ({ refValues }) => {
             component={Select}
             dataOptions={['', ...refValues]}
             label={<FormattedMessage id="ui-oa.publicationRequest.status" />}
-            name='requestStatus'
+            name="requestStatus"
             required
           />
         </Col>
@@ -61,7 +61,7 @@ const RequestInfo = ({ refValues }) => {
         </Col>
       </Row>
     </div>
-  )
+  );
 };
 
 RequestInfo.propTypes = propTypes;
