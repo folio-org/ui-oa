@@ -12,10 +12,9 @@
     "start": "stripes serve",
     "build": "stripes build --output ./output",
     "lint": "eslint .",
-    "test": "yarn run test:jest",
-    "test:jest": "jest --ci --coverage",
-    "test-all": "yarn run test-bigtest-once; yarn run test-int",
-    "test-bigtest-once": "stripes test karma --karma.singleRun"
+    "test": "yarn run test:unit",
+    "test:unit": "jest --ci --coverage && yarn run test:unit:report",
+    "test:unit:report": "cp -r ./artifacts/coverage-jest ./artifacts/coverage"
   },
   "stripes": {
     "actsAs": [
