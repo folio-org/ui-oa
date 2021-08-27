@@ -55,6 +55,8 @@
   "publicationRequest.title": "Title",
   "publicationRequest.useCorrespondingAuthor": "Use corresponding author",
 
+  "publicactionRequests": "Requests",
+
   "externalRequestId.externalRequestId": "External request ID", 
 
   "identifiers.addIdentifier": "Add identifier",
