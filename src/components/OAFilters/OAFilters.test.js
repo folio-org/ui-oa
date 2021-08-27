@@ -5,12 +5,13 @@ import OAFilters from './OAFilters';
 
 describe('OAFilters', () => {
   test('renders expected OAFilters', () => {
-    const { getByText } = renderWithIntl(
+    // const { getByText } = renderWithIntl(
+    renderWithIntl(
       <OAFilters />
     );
 
     // @sam - please help me fill this out
-    expect(1).toBe(1)
+    expect(1).toBe(1);
   });
 });
 
