@@ -97,8 +97,7 @@ const OAView = ({
               </Pane>
               <Pane
                 defaultWidth="fill"
-                lastMenu={
-                  (
+                lastMenu={(
                     <IfPermission perm="oa.scholarlyWork.edit">
                       <PaneMenu>
                         <FormattedMessage id="ui-oa.publicationRequest.createPublicationRequest">
@@ -116,8 +115,8 @@ const OAView = ({
                         </FormattedMessage>
                       </PaneMenu>
                     </IfPermission>
-                  )
-                }>
+                )}
+              >
                 <MultiColumnList
                   autosize
                   contentData={data.publicationRequests}

@@ -71,7 +71,6 @@ const AffiliationFieldArray = () => {
               <FormattedMessage id="ui-oa.affiliation.faculty" />
             </Label>
             <p>
-              {/* {affiliation.faculty} */}
               Science
             </p>
           </Col>
@@ -80,7 +79,6 @@ const AffiliationFieldArray = () => {
               <FormattedMessage id="ui-oa.affiliation.school" />
             </Label>
             <p>
-              {/* {affiliation.school} */}
               Science
             </p>
           </Col>
@@ -89,7 +87,6 @@ const AffiliationFieldArray = () => {
               <FormattedMessage id="ui-oa.affiliation.department" />
             </Label>
             <p>
-              {/* {affiliation.department} */}
               Science
             </p>
           </Col>

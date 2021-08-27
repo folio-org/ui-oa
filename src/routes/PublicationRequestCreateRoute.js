@@ -11,7 +11,7 @@ const PublicationRequestCreateRoute = () => {
 
   // TODO: Change all of the refdatavalues work to use useRefData()
 
-  const { data: ( requestStatusValues || [] ) } = useQuery(
+  const { data: requestStatusValues } = useQuery(
     ['ui-oa', 'PublicationRequestCreateRoute', 'getRefValues', ''],
     () => ky('oa/refdata/PublicationRequest/RequestStatus').json()
   );
@@ -40,7 +40,7 @@ const PublicationRequestCreateRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit
             }}
-            refValues={requestStatusValues}
+            refValues={requestStatusValues||[]}
           />
         </form>
       )}
