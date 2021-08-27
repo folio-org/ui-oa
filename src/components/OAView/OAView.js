@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
+  Button,
+  ButtonGroup,
+  MultiColumnList,
   Pane,
   PaneMenu,
-  Button,
-  MultiColumnList,
   SearchField,
 } from '@folio/stripes/components';
 
@@ -72,6 +73,20 @@ const OAView = ({
                 paneTitle={<FormattedMessage id="stripes-smart-components.searchAndFilter" />}
               >
                 <form onSubmit={onSubmitSearch}>
+                  <ButtonGroup fullWidth>
+                    <Button
+                      buttonStyle="primary"
+                      id="clickable-nav-oa-publication-requests"
+                    >
+                      <FormattedMessage id="ui-oa.publicationRequests" />
+                    </Button>
+                    <Button
+                      id="clickable-nav-oa-something-else"
+                      to={urls.publicationRequests()}
+                    >
+                      <FormattedMessage id="ui-oa.publicationRequests" />
+                    </Button>
+                  </ButtonGroup>
                   <SearchField
                     autoFocus
                     className={css.searchField}

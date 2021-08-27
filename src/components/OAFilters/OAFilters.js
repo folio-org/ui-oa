@@ -22,7 +22,7 @@ function OAFilters({ activeFilters, filterHandlers }) {
       ]}
       name="journalVolume"
       onChange={onChangeHandler}
-      selectedValues={activeFilters.journalVolume || []}
+      selectedValues={activeFilters?.journalVolume || []}
     />
   );
 }

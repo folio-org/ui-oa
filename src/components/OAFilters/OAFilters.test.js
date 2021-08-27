@@ -6,8 +6,12 @@ import OAFilters from './OAFilters';
 describe('OAFilters', () => {
   test('renders expected OAFilters', () => {
     // const { getByText } = renderWithIntl(
+    const activeFilters = {
+     journalVolume:'wibble'
+    };
+
     renderWithIntl(
-      <OAFilters />
+      <OAFilters activeFilters={activeFilters} />
     );
 
     // @sam - please help me fill this out
