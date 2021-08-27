@@ -7,7 +7,7 @@ describe('OAFilters', () => {
   test('renders expected OAFilters', () => {
     // const { getByText } = renderWithIntl(
     const activeFilters = {
-     journalVolume:'wibble'
+     journalVolume:['wibble']
     };
 
     renderWithIntl(
