@@ -103,11 +103,11 @@ const OAView = ({
                       <FormattedMessage id="ui-oa.publicationRequest.createPublicationRequest">
                         {ariaLabel => (
                           <Button
-                              aria-label={ariaLabel}
-                              buttonStyle="primary"
-                              id="clickable-new-scholarly-work"
-                              marginBottom0
-                              to={`${urls.publicationRequestCreate()}`}
+                            aria-label={ariaLabel}
+                            buttonStyle="primary"
+                            id="clickable-new-scholarly-work"
+                            marginBottom0
+                            to={`${urls.publicationRequestCreate()}`}
                           >
                             <FormattedMessage id="stripes-smart-components.new" />
                           </Button>
