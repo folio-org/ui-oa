@@ -10,7 +10,7 @@ describe('OAFilters', () => {
     );
 
     // @sam - please help me fill this out
-    expect(1==1)
+    expect(1).toBe(1)
   });
 });
 
