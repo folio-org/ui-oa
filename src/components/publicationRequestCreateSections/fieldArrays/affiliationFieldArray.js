@@ -59,9 +59,8 @@ const AffiliationFieldArray = () => {
           <Col xs={6} />
         </Row>
       </div>
-    )
+    );
   };
-  */
 
   const renderSelectedAffiliation = (affiliation) => {
     return (
@@ -124,13 +123,14 @@ const AffiliationFieldArray = () => {
           <Col xs={6} />
         </Row>
       </div>
-    )
+    );
   };
+  */
 
   const renderEmpty = () => {
     return (
-      <div></div>
-    )
+      <div/>
+    );
   };
 
   return (

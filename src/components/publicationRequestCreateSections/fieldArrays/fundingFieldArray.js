@@ -38,7 +38,7 @@ const FundingFieldArray = () => {
             <Col xs={6}>
               <IconButton
                 icon="trash"
-                onClick={ () => fields.remove(index) }
+                onClick={() => fields.remove(index)}
               />
             </Col>
           </Row>
@@ -68,8 +68,8 @@ const FundingFieldArray = () => {
           </Button>
         </div>
       )}
-    </FieldArray>);
-}
-
+    </FieldArray>
+  );
+};
 
 export default FundingFieldArray;

@@ -22,7 +22,7 @@ const OtherEmailFieldArray = ({ name }) => {
     return (
       <div>
         {fields.map((otherEmail, index) => (
-          <Row middle="xs" key={otherEmail}>
+          <Row key={otherEmail} middle="xs">
             <Col xs={3}>
               <Field
                 component={TextField}
@@ -39,13 +39,13 @@ const OtherEmailFieldArray = ({ name }) => {
           </Row>
         ))}
       </div>
-    )
+    );
   };
 
   const renderEmpty = () => {
     return (
       <div/>
-    )
+    );
   };
 
   return (

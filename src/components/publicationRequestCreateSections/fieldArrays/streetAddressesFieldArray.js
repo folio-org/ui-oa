@@ -91,9 +91,10 @@ const StreetAddressesFieldArray = ({ name, section }) => {
   };
 
   const renderEmpty = () => {
+    const values = { section: section };
     return (
       <Layout className="padding-bottom-gutter">
-        <FormattedMessage id="ui-oa.streetAddresses.requestHasNone" values={{ section: section }} />
+        <FormattedMessage id="ui-oa.streetAddresses.requestHasNone" values={values} />
       </Layout>);
   };
 
@@ -112,7 +113,7 @@ const StreetAddressesFieldArray = ({ name, section }) => {
         </div>
       )}
     </FieldArray>);
-}
+};
 
 StreetAddressesFieldArray.propTypes = propTypes;
 

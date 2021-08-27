@@ -15,7 +15,7 @@ const ExternalRequestIdFieldArray = () => {
     return (
       <div>
         {fields.map((externalRequestId, index) => (
-          <Row middle="xs" key={externalRequestId}>
+          <Row key={externalRequestId} middle="xs">
             <Col xs={3}>
               <Field
                 component={TextField}
@@ -37,8 +37,8 @@ const ExternalRequestIdFieldArray = () => {
 
   const renderEmpty = () => {
     return (
-      <div></div>
-    )
+      <div/>
+    );
   };
 
   return (
@@ -55,7 +55,7 @@ const ExternalRequestIdFieldArray = () => {
           </Button>
         </div>
       )}
-    </FieldArray>)
+    </FieldArray>);
 };
 
 export default ExternalRequestIdFieldArray;

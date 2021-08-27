@@ -74,6 +74,6 @@ const PublicationStatusFieldArray = () => {
         </div>
       )}
     </FieldArray>);
-}
+};
 
 export default PublicationStatusFieldArray;

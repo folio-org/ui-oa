@@ -8,19 +8,18 @@ import View from '../views/publicationRequestCreate';
 const PublicationRequestCreateRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
+
   // TODO: Change all of the refdatavalues work to use useRefData()
-  const getRefValues = () => {
-    const { data: refdata } = useQuery(
-      ['ui-oa', 'PublicationRequestCreateRoute', 'getRefValues', ''],
-      () => ky('oa/refdata/PublicationRequest/RequestStatus').json()
-    );
-    return refdata || [];
-  };
+
+  const { data: ( requestStatusValues || [] ) } = useQuery(
+    ['ui-oa', 'PublicationRequestCreateRoute', 'getRefValues', ''],
+    () => ky('oa/refdata/PublicationRequest/RequestStatus').json()
+  );
+
   const { mutateAsync: postPublicationRequest } = useMutation(
     ['ui-oa', 'PublicationRequestCreateRoute', 'postPublicationRequest'],
     (data) => ky.post('oa/publicationRequest', { json: data })
   );
-  const requestStatusValues = getRefValues();
   const doTheSubmit = (values) => {
     // console.log(values)
     postPublicationRequest(values);
