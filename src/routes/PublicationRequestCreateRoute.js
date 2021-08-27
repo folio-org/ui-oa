@@ -40,7 +40,7 @@ const PublicationRequestCreateRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit
             }}
-            refValues={requestStatusValues||[]}
+            refValues={requestStatusValues || []}
           />
         </form>
       )}

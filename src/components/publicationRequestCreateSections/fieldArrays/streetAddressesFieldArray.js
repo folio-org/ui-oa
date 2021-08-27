@@ -91,7 +91,8 @@ const StreetAddressesFieldArray = ({ name, section }) => {
   };
 
   const renderEmpty = () => {
-    const values = { section: section };
+    // N.B. object literal shorthand { section } == { section: section}
+    const values = { section };
     return (
       <Layout className="padding-bottom-gutter">
         <FormattedMessage id="ui-oa.streetAddresses.requestHasNone" values={values} />

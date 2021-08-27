@@ -37,7 +37,7 @@ const ExternalRequestIdFieldArray = () => {
 
   const renderEmpty = () => {
     return (
-      <div/>
+      <div />
     );
   };
 

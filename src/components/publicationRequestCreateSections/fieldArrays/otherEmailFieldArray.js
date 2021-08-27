@@ -44,7 +44,7 @@ const OtherEmailFieldArray = ({ name }) => {
 
   const renderEmpty = () => {
     return (
-      <div/>
+      <div />
     );
   };
 

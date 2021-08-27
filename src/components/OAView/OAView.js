@@ -98,23 +98,23 @@ const OAView = ({
               <Pane
                 defaultWidth="fill"
                 lastMenu={(
-                    <IfPermission perm="oa.scholarlyWork.edit">
-                      <PaneMenu>
-                        <FormattedMessage id="ui-oa.publicationRequest.createPublicationRequest">
-                          {ariaLabel => (
-                            <Button
+                  <IfPermission perm="oa.scholarlyWork.edit">
+                    <PaneMenu>
+                      <FormattedMessage id="ui-oa.publicationRequest.createPublicationRequest">
+                        {ariaLabel => (
+                          <Button
                               aria-label={ariaLabel}
                               buttonStyle="primary"
                               id="clickable-new-scholarly-work"
                               marginBottom0
                               to={`${urls.publicationRequestCreate()}`}
-                            >
-                              <FormattedMessage id="stripes-smart-components.new" />
-                            </Button>
-                          )}
-                        </FormattedMessage>
-                      </PaneMenu>
-                    </IfPermission>
+                          >
+                            <FormattedMessage id="stripes-smart-components.new" />
+                          </Button>
+                        )}
+                      </FormattedMessage>
+                    </PaneMenu>
+                  </IfPermission>
                 )}
               >
                 <MultiColumnList

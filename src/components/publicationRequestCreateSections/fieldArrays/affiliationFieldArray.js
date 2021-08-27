@@ -1,14 +1,14 @@
 import { FormattedMessage } from 'react-intl';
-import { Field } from 'react-final-form';
+// import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
 import { EditCard } from '@folio/stripes-erm-components';
 
 import {
   Button,
-  Col,
+  // Col,
   // Headline,
-  Label,
-  Row,
+  // Label,
+  // Row,
 } from '@folio/stripes/components';
 
 const AffiliationFieldArray = () => {
@@ -126,7 +126,7 @@ const AffiliationFieldArray = () => {
 
   const renderEmpty = () => {
     return (
-      <div/>
+      <div />
     );
   };
 
@@ -145,6 +145,6 @@ const AffiliationFieldArray = () => {
         </div>
       )}
     </FieldArray>);
-}
+};
 
 export default AffiliationFieldArray;
