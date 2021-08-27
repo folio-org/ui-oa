@@ -12,9 +12,8 @@
     "start": "stripes serve",
     "build": "stripes build --output ./output",
     "lint": "eslint .",
-    "test": "yarn run test:jest && yarn run test:bigtest",
+    "test": "yarn run test:jest",
     "test:jest": "jest --ci --coverage",
-    "test:bigtest": "stripes test karma --bundle --karma.singleRun --karma.browsers ChromeDocker --karma.reporters mocha junit --coverage",
     "test-all": "yarn run test-bigtest-once; yarn run test-int",
     "test-bigtest-once": "stripes test karma --karma.singleRun"
   },
