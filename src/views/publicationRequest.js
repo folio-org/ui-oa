@@ -22,7 +22,6 @@ const propTypes = {
 };
 
 const publicationRequest = ({ handlers, data: { publicationRequest: request } = {} }) => {
-  console.log(request)
   const paneProps = {
     defaultWidth: '55%',
     dismissible: true,
@@ -82,6 +81,21 @@ const publicationRequest = ({ handlers, data: { publicationRequest: request } = 
                 :
                 <NoValue />
               }
+            </div>
+          </KeyValue>
+        </Col>
+      </Row>
+      <Row start="xs">
+        <Col>
+          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.externalRequestIds" />}>
+            <div>
+              <ul>
+                {request?.externalRequestIds?.length ?
+                  request?.externalRequestIds.map(id => <li>{id}</li>)
+                  :
+                  <NoValue />
+                }
+              </ul>
             </div>
           </KeyValue>
         </Col>

@@ -17,6 +17,7 @@
   "publicationRequest.correspondingAuthor": "Corresponding author",
   "publicationRequest.createPublicationRequest": "New Publication Request",
   "publicationRequest.doi": "DOI",
+  "publicationRequest.externalRequestIds": "External request IDs",
   "publicationRequest.familyName": "Family name",
   "publicationRequest.funder": "Funder",
   "publicationRequest.funding": "Funding",
@@ -55,7 +56,7 @@
   "publicationRequest.title": "Title",
   "publicationRequest.useCorrespondingAuthor": "Use corresponding author",
 
-  "publicactionRequests": "Requests",
+  "publicationRequests": "Requests",
 
   "externalRequestId.externalRequestId": "External request ID", 
 

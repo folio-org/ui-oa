@@ -19,7 +19,7 @@ const PublicationRequestRoute = () => {
     ['ui-oa', 'publicationRequestRoute', 'publicationRequest', id],
     () => ky(`oa/publicationRequest/${id}`).json()
   );
-  console.log(publicationRequest)
+
   const handleClose = () => {
     history.push(`${urls.publicationRequests()}${location.search}`);
   };
