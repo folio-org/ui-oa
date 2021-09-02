@@ -5,6 +5,7 @@ import { Settings } from '@folio/stripes/smart-components';
 import { stripesConnect } from '@folio/stripes/core';
 
 import SettingPage from './SettingPage';
+import { TestComponent } from './settingsComponents';
 
 import snakeToCamel from '../util/snakeToCamel';
 
@@ -40,6 +41,11 @@ class ResourceSharingSettings extends React.Component {
   };
 
   persistentPages = [
+    {
+      component: TestComponent,
+      label: "TESTING",
+      route: 'test',
+    }
   ];
 
   pageList() {
