@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import { useOkapiKy } from '@folio/stripes/core';
-import {
-  useQuery,
-} from 'react-query';
+import { useQuery } from 'react-query';
 import generateKiwtQuery from '../util/generateKiwtQuery';
 import OAView from '../components/OAView';
 import useKiwtSASQuery from '../util/useKiwtSASQuery';
@@ -27,7 +25,7 @@ const OARoute = ({ children, location }) => {
   const ky = useOkapiKy();
 
   const { data: { results: publicationRequests } = { } } = useQuery(
-    ['ui-oa', 'oaRoute', 'publicationRequest', query],
+    ['ui-oa', 'oaRoute', 'publicationRequests', query],
     () => ky(`oa/publicationRequest${generateKiwtQuery(SASQ_MAP, query)}`).json()
   );
 
