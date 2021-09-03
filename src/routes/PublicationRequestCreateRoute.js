@@ -22,7 +22,8 @@ const PublicationRequestCreateRoute = () => {
   );
 
   const doTheSubmit = (values) => {
-    postPublicationRequest(values);
+    // postPublicationRequest(values);
+    console.log(values)
     history.push('/oa/publicationRequests');
   };
 
