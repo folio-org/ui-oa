@@ -20,12 +20,14 @@ const PublicationRequestCreateRoute = () => {
     ['ui-oa', 'PublicationRequestCreateRoute', 'postPublicationRequest'],
     (data) => ky.post('oa/publicationRequest', { json: data })
   );
+
   const doTheSubmit = (values) => {
-    // console.log(values)
     postPublicationRequest(values);
+    history.push('/oa/publicationRequests');
   };
+
   const handleClose = () => {
-    history.push('/oa/publicationRequests/');
+    history.push('/oa/publicationRequests');
   };
 
   return (
