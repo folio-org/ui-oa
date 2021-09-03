@@ -6,7 +6,9 @@ import { FormattedMessage } from 'react-intl';
 import {
   Accordion,
   AccordionSet,
+  Button,
   Col,
+  Icon,
   KeyValue,
   Label,
   MetaSection,
@@ -31,9 +33,21 @@ const publicationRequest = ({ handlers, data: { publicationRequest: request } = 
   return (
     <Pane
       {...paneProps}
+      actionMenu={() => (
+        <Button
+          buttonStyle="dropdownItem"
+          id="clickable-dropdown-edit-publication-request"
+          onClick={handlers.onEdit}
+        >
+          <Icon icon="edit">
+            <FormattedMessage id="ui-oa.publicationRequest.edit" />
+          </Icon>
+        </Button>
+      )}
+      paneTitle={<FormattedMessage id="ui-oa.publicationRequest.requestTitle" values={{ number: request?.requestNumber }} />}
     >
       <MetaSection
-        contentId="agreementInfoRecordMetaContent"
+        contentId="publicationRequestMetaContent"
         // TODO: Update createdDate
         createdDate={request?.dateModified}
         hideSource

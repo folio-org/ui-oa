@@ -1,6 +1,5 @@
 const generateKiwtQuery = (options, nsValues) => {
   const { query, filters, sort } = nsValues;
-  // console.log(nsValues)
   const {
     searchKey = '',
     /* Assumtion made that if no filterKey is provided then the given filterValues for that key are standalaone, ie require no comparator or key */
