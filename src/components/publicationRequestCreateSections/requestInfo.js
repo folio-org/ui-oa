@@ -1,13 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { Field } from 'react-final-form';
+import {
+  Field,
+  useFormState
+} from 'react-final-form';
 import {
   Col,
   Datepicker,
+  KeyValue,
+  NoValue,
   Row,
   Select,
-  TextLink
 } from '@folio/stripes/components';
 
 import ExternalRequestIdFieldArray from './fieldArrays/externalRequestIdFieldArray';
@@ -16,23 +20,24 @@ const propTypes = {
   refValues: PropTypes.object
 };
 
+const RequestInfo = ({ requestStatusValues, rejectionReasonValues }) => {
+  const { values } = useFormState();
 
-const RequestInfo = ({ refValues }) => {
   return (
     <div>
-      <Row end="xs">
+      <Row start="xs">
         <Col xs={3}>
-          <Field
-            component={TextLink}
-            label={<FormattedMessage id="ui-oa.publicationRequest.createPublicationRequest" />}
-            name="requestDate"
-          // required
-          />
+          {/* TODO: Request number value? */}
+          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.requestNumber" />}>
+            <div>
+              <NoValue />
+            </div>
+          </KeyValue>
         </Col>
         <Col xs={3}>
           <Field
             component={Datepicker}
-            label={<FormattedMessage id="ui-oa.publicationRequest.createPublicationRequest" />}
+            label={<FormattedMessage id="ui-oa.publicationRequest.requestDate" />}
             name="requestDate"
             required
           />
@@ -40,7 +45,7 @@ const RequestInfo = ({ refValues }) => {
         <Col xs={3}>
           <Field
             component={Select}
-            dataOptions={['', ...refValues]}
+            dataOptions={[{ value: '', label: '' }, ...requestStatusValues]}
             label={<FormattedMessage id="ui-oa.publicationRequest.status" />}
             name="requestStatus"
             required
@@ -49,9 +54,10 @@ const RequestInfo = ({ refValues }) => {
         <Col xs={3}>
           <Field
             component={Select}
-            dataOptions={['']}
+            dataOptions={[{ value: '', label: '' }, ...rejectionReasonValues]}
+            disabled={values.requestStatus !== 'rejected'}
             label={<FormattedMessage id="ui-oa.publicationRequest.rejectionReason" />}
-            name="asdf"
+            name="rejectionReason"
           />
         </Col>
       </Row>
