@@ -20,7 +20,7 @@ const ExternalRequestIdFieldArray = () => {
               <Field
                 component={TextField}
                 label={<FormattedMessage id="ui-oa.externalRequestId.externalRequestId" />}
-                name={`${externalRequestId}.externalRequestId`}
+                name={`${externalRequestId}.externalId`}
               />
             </Col>
             <Col xs={9}>
@@ -42,7 +42,7 @@ const ExternalRequestIdFieldArray = () => {
   };
 
   return (
-    <FieldArray name="externalRequestId">
+    <FieldArray name="externalRequestIds">
       {({ fields }) => (
         <div>
           <div>
