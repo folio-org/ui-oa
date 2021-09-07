@@ -3,7 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 
 import { useOkapiKy } from '@folio/stripes/core';
-import { EditableList } from '@folio/stripes/smart-components';
+//import { EditableList } from '@folio/stripes/smart-components';
+
+import EditableList from './EditableList';
+
 const EditableRefdataList = () => {
   /* A component that allows for editing of refdata values */
 
@@ -80,7 +83,6 @@ const EditableRefdataList = () => {
   /* This needs replacing with a less shit one */
   return (
     <EditableList
-      columnMapping={{}}
       contentData={contentData}
       onCreate={createRefdataValue}
       onDelete={deleteRefdataValue}
