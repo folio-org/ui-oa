@@ -59,7 +59,7 @@ const publicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, s
   return (
     <Paneset>
       <Pane
-        defaultWidth="fill"
+        centerContent
         footer={renderPaneFooter()}
         renderHeader={renderProps => <PaneHeader {...renderProps} paneTitle="New publication request" />}
       >
