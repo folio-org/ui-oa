@@ -9,28 +9,22 @@ const PublicationRequestCreateRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
 
-  // TODO: Change all of the refdatavalues work to use useRefData()
-
-  const { data: requestStatusValues } = useQuery(
-    ['ui-oa', 'PublicationRequestCreateRoute', 'getRefValues', ''],
-    () => ky('oa/refdata/PublicationRequest/RequestStatus').json()
-  );
-
   const { mutateAsync: postPublicationRequest } = useMutation(
     ['ui-oa', 'PublicationRequestCreateRoute', 'postPublicationRequest'],
     (data) => ky.post('oa/publicationRequest', { json: data })
   );
 
   const doTheSubmit = (values) => {
-    postPublicationRequest(values);
+    postPublicationRequest(values)
     // console.log(values)
-    history.push('/oa/publicationRequests');
+    history.push('/oa/publicationRequests')
   };
 
   const handleClose = () => {
-    history.push('/oa/publicationRequests');
+    history.push('/oa/publicationRequests')
   };
 
+  // TODO: clean up refdatavalues
   return (
     <Form
       mutators={arrayMutators}
@@ -43,7 +37,6 @@ const PublicationRequestCreateRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit
             }}
-            refValues={requestStatusValues || []}
           />
         </form>
       )}

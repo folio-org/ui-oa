@@ -28,7 +28,7 @@ const propTypes = {
 };
 
 
-const publicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, refValues, submitting }) => {
+const publicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, submitting }) => {
   const renderPaneFooter = () => {
     return (
       <PaneFooter
@@ -61,10 +61,10 @@ const publicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, r
       <Pane
         defaultWidth="fill"
         footer={renderPaneFooter()}
-        renderHeader={renderProps => <PaneHeader {...renderProps} paneTitle="New Publication Request" />}
+        renderHeader={renderProps => <PaneHeader {...renderProps} paneTitle="New publication request" />}
       >
         <AccordionSet>
-          <RequestInfo refValues={refValues} />
+          <RequestInfo />
           <CorrespondingAuthor />
           <RequestContact />
           <Publication />
