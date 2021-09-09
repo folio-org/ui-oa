@@ -4,6 +4,7 @@ import get from 'lodash/get';
 
 import { Field, useForm, useFormState } from 'react-final-form';
 import { Button, IconButton, MultiColumnList, TextField } from '@folio/stripes/components';
+import css from './ActionListFieldArray.css';
 
 const EDITING_ACTIONS_WIDTH = 25;
 const NON_EDITING_ACTIONS_WIDTH = 20;
@@ -72,12 +73,12 @@ const ActionListFieldArray = ({
     const staticWidth = (widthNotInUseByActions / (visibleFields.length));
     const widthsObject = {};
     visibleFields.forEach((f) => {
-      if (f !== 'actions') {
+      if (f !== 'actionListActions') {
         widthsObject[f] = `${staticWidth}%`;
       }
     });
 
-    widthsObject.actions = editing ?
+    widthsObject.actionListActions = editing ?
       `${EDITING_ACTIONS_WIDTH}%` :
       `${NON_EDITING_ACTIONS_WIDTH}%`;
 
@@ -93,6 +94,7 @@ const ActionListFieldArray = ({
       return (
         <div>
           <Button
+            buttonStyle="primary"
             disabled={submitting || pristine}
             onClick={() => {
               if (!data.id && editing === 'NEW_ROW') {
@@ -103,6 +105,7 @@ const ActionListFieldArray = ({
               toggleEditing(data.id);
             }}
           >
+            {/* TODO translations */}
             SAVE
           </Button>
           <Button
@@ -112,6 +115,7 @@ const ActionListFieldArray = ({
               toggleEditing(data.id);
             }}
           >
+            {/* TODO translations */}
             CANCEL
           </Button>
         </div>
@@ -122,10 +126,12 @@ const ActionListFieldArray = ({
       <div>
         {actions?.map(action => {
           let actionFunction = () => actionCalls[action.name](rest);
+          // Edit has special action functionality, revealing fields etc.
           if (action.name === 'edit') {
             actionFunction = () => toggleEditing(data.id);
           }
 
+          // If we're handed an icon, use that for the action button
           if (action.icon) {
             return (
               <IconButton
@@ -136,6 +142,7 @@ const ActionListFieldArray = ({
             );
           }
 
+          // Else return a button with the label, or failing that the name of the action
           return (
             <Button
               disabled={editing}
@@ -193,17 +200,20 @@ const ActionListFieldArray = ({
   return (
     <>
       <Button
+        buttonClass={css.buttonRight}
         disabled={!actionCalls.create}
         onClick={() => {
           toggleEditing('NEW_ROW');
           fields.push({});
         }}
       >
+        {/* TODO translations */}
         CREATE NEW
       </Button>
       <MultiColumnList
         columnMapping={{
-          actionListActions: "ACTIONS"
+          /* TODO translations */
+          actionListActions: 'ACTIONS'
         }}
         columnWidths={getColumnWidths()}
         contentData={formatContent()}

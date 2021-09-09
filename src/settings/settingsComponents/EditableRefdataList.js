@@ -103,6 +103,7 @@ const EditableRefdataList = () => {
         value: () => !refdata.internal,
       }}
       visibleFields={['label', 'value']}
+      // TODO add a field validator/fieldType as options?
     />
   );
 };
