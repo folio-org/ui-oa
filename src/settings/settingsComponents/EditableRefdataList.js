@@ -77,13 +77,22 @@ const EditableRefdataList = () => {
     return 'loading';
   }
 
-  /* This needs replacing with a less shit one */
+  // This is the function which will take a row in the table and assign the relevant actions to it
+  // TODO make these 'labels' into ARIA labels
+  const actionAssigner = () => {
+    const actionArray = [
+      { name: 'edit', icon: 'edit' },
+    ];
+
+    if (!refdata.internal) {
+      actionArray.push({ name: 'delete', label: "DELETE", icon: 'trash' });
+    }
+    return actionArray;
+  };
+
   return (
     <ActionList
-      actionAssigner={() => [
-        { name: 'edit' },
-        { name: 'delete', label: "DELETE" }
-      ]}
+      actionAssigner={actionAssigner}
       actionCalls={{
         create: refdata.internal ? null : (data) => editRefdataValue(data),
         edit: (data) => editRefdataValue(data),

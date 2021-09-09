@@ -8,6 +8,7 @@ import arrayMutators from 'final-form-arrays';
 import ActionListFieldArray from './ActionListFieldArray';
 
 const propTypes = {
+  actionAssigner: PropTypes.func,
   actionCalls: PropTypes.object,
   contentData: PropTypes.shape({
     actions: PropTypes.arrayOf(PropTypes.shape({

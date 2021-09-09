@@ -121,33 +121,29 @@ const ActionListFieldArray = ({
     return (
       <div>
         {actions?.map(action => {
-          switch (action.name) {
-            case 'edit':
-              return (
-                <IconButton
-                  disabled={editing}
-                  icon="edit"
-                  onClick={() => toggleEditing(data.id)}
-                />
-              );
-            case 'delete':
-              return (
-                <IconButton
-                  disabled={editing}
-                  icon="trash"
-                  onClick={() => actionCalls.delete(rest)}
-                />
-              );
-            default:
-              return (
-                <Button
-                  disabled={editing}
-                  onClick={() => actionCalls[action.name](data)}
-                >
-                  {action.label ?? action.name}
-                </Button>
-              );
+          let actionFunction = () => actionCalls[action.name](rest);
+          if (action.name === 'edit') {
+            actionFunction = () => toggleEditing(data.id);
           }
+
+          if (action.icon) {
+            return (
+              <IconButton
+                disabled={editing}
+                icon={action.icon}
+                onClick={actionFunction}
+              />
+            );
+          }
+
+          return (
+            <Button
+              disabled={editing}
+              onClick={actionFunction}
+            >
+              {action.label ?? action.name}
+            </Button>
+          );
         })}
       </div>
     );
