@@ -5,7 +5,7 @@ import { useMutation, useQuery } from 'react-query';
 import { useOkapiKy } from '@folio/stripes/core';
 //import { EditableList } from '@folio/stripes/smart-components';
 
-import EditableList from './EditableList';
+import ActionList from './ActionList';
 
 const EditableRefdataList = () => {
   /* A component that allows for editing of refdata values */
@@ -19,7 +19,7 @@ const EditableRefdataList = () => {
   const ky = useOkapiKy();
   const { data: { 0: refdata } = {}, isLoading: isRefdataLoading } = useQuery(
     ['stripes-kint-components', 'editableRefdataList', 'getRefdata'],
-    () => ky('erm/refdata?filters=desc=SubscriptionAgreement.ReasonForClosure').json()
+    () => ky('oa/refdata?filters=desc=PublicationRequest.RequestStatus&sort=value;asc').json()
   );
   const [contentData, setContentData] = useState([]);
 
@@ -29,32 +29,10 @@ const EditableRefdataList = () => {
     }
   }, [isRefdataLoading, refdata]);
 
-  const { mutateAsync: createRefdataValue } = useMutation(
-    ['stripes-kint-components', 'editableRefdataList', 'createValue', refdata],
-    async (data) => ky.put(
-      `erm/refdata/${refdata.id}`,
-      {
-        json: {
-          ...refdata,
-          values: [
-            ...refdata.values,
-            data
-          ]
-        }
-      }
-    )
-      .then(res => res.json())
-      .then(json => setContentData(json?.values ?? [])),
-    {
-      enabled: !!refdata
-    }
-  );
-
-
   const { mutateAsync: deleteRefdataValue } = useMutation(
     ['stripes-kint-components', 'editableRefdataList', 'createValue', refdata],
     async (data) => ky.put(
-      `erm/refdata/${refdata.id}`,
+      `oa/refdata/${refdata.id}`,
       {
         json: {
           ...refdata,
@@ -74,18 +52,47 @@ const EditableRefdataList = () => {
     }
   );
 
+  // In this case both EDIT and CREATE use the same call
+  const { mutateAsync: editRefdataValue } = useMutation(
+    ['stripes-kint-components', 'editableRefdataList', 'editValue', refdata],
+    async (data) => ky.put(
+      `oa/refdata/${refdata.id}`,
+      {
+        json: {
+          ...refdata,
+          values: [
+            data
+          ]
+        }
+      }
+    )
+      .then(res => res.json())
+      .then(json => setContentData(json?.values ?? [])),
+    {
+      enabled: !!refdata
+    }
+  );
+
   if (isRefdataLoading) {
     return 'loading';
   }
 
-  console.log("ContentData: %o", contentData)
-
   /* This needs replacing with a less shit one */
   return (
-    <EditableList
+    <ActionList
+      actionAssigner={() => [
+        { name: 'edit' },
+        { name: 'delete', label: "DELETE" }
+      ]}
+      actionCalls={{
+        create: refdata.internal ? null : (data) => editRefdataValue(data),
+        edit: (data) => editRefdataValue(data),
+        delete: (data) => deleteRefdataValue(data.id)
+      }}
       contentData={contentData}
-      onCreate={createRefdataValue}
-      onDelete={deleteRefdataValue}
+      editableFields={{
+        value: () => !refdata.internal,
+      }}
       visibleFields={['label', 'value']}
     />
   );
