@@ -7,9 +7,7 @@ import useKiwtSASQuery from '../util/useKiwtSASQuery';
 
 const propTypes = {
   children: PropTypes.node,
-  location: PropTypes.object,
-  // history: PropTypes.object,
-  // resources: PropTypes.object,
+  location: PropTypes.object
 };
 
 const OARoute = ({ children, location }) => {

@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useQuery } from 'react-query';
@@ -26,7 +25,7 @@ const PublicationRequestRoute = () => {
 
   return (
     <View
-      data={{publicationRequest}}
+      data={{ publicationRequest }}
       handlers={{
         onClose: handleClose,
       }}

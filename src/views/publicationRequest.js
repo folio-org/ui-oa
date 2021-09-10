@@ -10,7 +10,6 @@ import {
   Col,
   Icon,
   KeyValue,
-  Label,
   MetaSection,
   NoValue,
   Pane,
@@ -18,6 +17,7 @@ import {
 } from '@folio/stripes/components';
 
 const propTypes = {
+  data: PropTypes.object,
   handlers: PropTypes.shape({
     onClose: PropTypes.func.isRequired
   }).isRequired
@@ -37,7 +37,7 @@ const publicationRequest = ({ handlers, data: { publicationRequest: request } = 
         <Button
           buttonStyle="dropdownItem"
           id="clickable-dropdown-edit-publication-request"
-          onClick={handlers.onEdit}
+          // onClick={handlers.onEdit}
         >
           <Icon icon="edit">
             <FormattedMessage id="ui-oa.publicationRequest.edit" />
@@ -79,7 +79,7 @@ const publicationRequest = ({ handlers, data: { publicationRequest: request } = 
         <Col xs={3}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.status" />}>
             <div>
-              {request?.requestStatus?.label ?
+              {request?.requestStatus ?
                 <div>{request?.requestStatus?.label}</div>
                 :
                 <NoValue />
@@ -91,7 +91,7 @@ const publicationRequest = ({ handlers, data: { publicationRequest: request } = 
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.rejectionReason" />}>
             <div>
               {request?.rejectionReason ?
-                <div>{request?.rejectionReason}</div>
+                <div>{request?.rejectionReason.label}</div>
                 :
                 <NoValue />
               }
@@ -100,12 +100,12 @@ const publicationRequest = ({ handlers, data: { publicationRequest: request } = 
         </Col>
       </Row>
       <Row start="xs">
-        <Col>
+        <Col xs={3}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.externalRequestIds" />}>
             <div>
               <ul>
                 {request?.externalRequestIds?.length ?
-                  request?.externalRequestIds.map(id => <li>{id}</li>)
+                  request?.externalRequestIds.map(requestId => <li key={requestId.id}>{requestId.externalId}</li>)
                   :
                   <NoValue />
                 }
@@ -114,6 +114,39 @@ const publicationRequest = ({ handlers, data: { publicationRequest: request } = 
           </KeyValue>
         </Col>
       </Row>
+      <AccordionSet>
+        <Accordion
+          label={<FormattedMessage id="ui-oa.publicationRequest.publication" />}
+        >
+          <Row start="xs">
+            <Col xs={6}>
+              <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.publicationTitle" />}>
+                <div>
+                  {request?.publicationTitle?.length ?
+                    <div>{request?.publicationTitle}</div>
+                    :
+                    <NoValue />
+                  }
+                </div>
+              </KeyValue>
+            </Col>
+          </Row>
+
+          <Row start="xs">
+            <Col xs={3}>
+              <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.publicationType" />}>
+                <div>
+                  {request?.publicationType ?
+                    <div>{request?.publicationType.label}</div>
+                    :
+                    <NoValue />
+                  }
+                </div>
+              </KeyValue>
+            </Col>
+          </Row>
+        </Accordion>
+      </AccordionSet>
     </Pane>
   );
 };

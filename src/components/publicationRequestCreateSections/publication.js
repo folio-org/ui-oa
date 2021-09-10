@@ -12,12 +12,12 @@ import {
   TextArea,
   TextField,
 } from '@folio/stripes/components';
-
-import IdentifiersFieldArray from './fieldArrays/identifiersFieldArray';
 import { useRefdata } from '@k-int/stripes-kint-components';
 
+import IdentifiersFieldArray from './fieldArrays/identifiersFieldArray';
+
 const Publication = () => {
-  const { 0: { values: publicationTypeValues = [] } = {} } = useRefdata({ desc: "PublicationRequest.PublicationType", endpoint: "oa/refdata" })
+  const { 0: { values: publicationTypeValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.PublicationType', endpoint: 'oa/refdata' });
 
   return (
     <Accordion

@@ -2,7 +2,7 @@ import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { useHistory } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 import View from '../views/publicationRequestCreate';
 
 const PublicationRequestCreateRoute = () => {
@@ -15,13 +15,13 @@ const PublicationRequestCreateRoute = () => {
   );
 
   const doTheSubmit = (values) => {
-    postPublicationRequest(values)
+    postPublicationRequest(values);
     // console.log(values)
-    history.push('/oa/publicationRequests')
+    history.push('/oa/publicationRequests');
   };
 
   const handleClose = () => {
-    history.push('/oa/publicationRequests')
+    history.push('/oa/publicationRequests');
   };
 
   return (
