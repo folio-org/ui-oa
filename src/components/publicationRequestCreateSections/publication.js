@@ -14,8 +14,11 @@ import {
 } from '@folio/stripes/components';
 
 import IdentifiersFieldArray from './fieldArrays/identifiersFieldArray';
+import { useRefdata } from '@k-int/stripes-kint-components';
 
 const Publication = () => {
+  const { 0: { values: publicationTypeValues = [] } = {} } = useRefdata({ desc: "PublicationRequest.PublicationType", endpoint: "oa/refdata" })
+
   return (
     <Accordion
       label={<FormattedMessage id="ui-oa.publicationRequest.publication" />}
@@ -42,9 +45,9 @@ const Publication = () => {
         <Col xs={3}>
           <Field
             component={Select}
-            dataOptions={[]}
+            dataOptions={[{ value: '', label: '' }, ...publicationTypeValues]}
             label={<FormattedMessage id="ui-oa.publicationRequest.publicationType" />}
-            name="asdf"
+            name="publicationType"
           />
         </Col>
         <Col xs={3}>
@@ -78,7 +81,7 @@ const Publication = () => {
           <Field
             component={TextArea}
             label={<FormattedMessage id="ui-oa.publicationRequest.publicationTitle" />}
-            name="asdf"
+            name="publicationTitle"
           />
         </Col>
         <Col xs={6}>

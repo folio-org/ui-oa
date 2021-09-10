@@ -24,7 +24,6 @@ const PublicationRequestCreateRoute = () => {
     history.push('/oa/publicationRequests')
   };
 
-  // TODO: clean up refdatavalues
   return (
     <Form
       mutators={arrayMutators}
