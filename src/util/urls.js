@@ -1,6 +1,6 @@
 const urls = {
-  publicationRequests: () => '/oa',
-  publicationRequest: id => `/oa/${id}`,
+  publicationRequests: () => '/oa/publicationRequests',
+  publicationRequest: id => `/oa/publicationRequests/${id}`,
   publicationRequestCreate: () => '/oa/publicationRequests/create'
 };
 

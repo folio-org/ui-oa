@@ -31,8 +31,8 @@ class App extends React.Component {
       <Suspense fallback={null}>
         <Switch>
           <Route component={PublicationRequestCreateRoute} path={`${path}/publicationRequests/create`} />
-          <Route component={OARoute} path={`${path}/:id?`}>
-            <Route component={PublicationRequestRoute} path={`${path}/:id`} />
+          <Route component={OARoute} path={`${path}/publicationRequests/:id?`}>
+            <Route component={PublicationRequestRoute} path={`${path}/publicationRequests/:id`} />
           </Route>
         </Switch>
       </Suspense>
