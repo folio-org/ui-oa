@@ -79,5 +79,8 @@
     "streetAddresses.country": "Country",
     "streetAddresses.addStreetAddress": "Add street address",
     "streetAddresses.requestHasNone": "No street addresses for this { section }",
-    "publicactionRequests": "Requests"
+    "publicationRequest.edit": "Edit",
+    "publicationRequest.externalRequestIds": "External request IDs",
+    "publicationRequest.requestTitle": "Request number - {number}",
+    "publicationRequests": "Requests"
 }

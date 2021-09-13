@@ -32,7 +32,7 @@
     "publicationRequest.mainEmail": "E-Mail-Adresse",
     "publicationRequest.mobile": "Mobiltelefon",
     "publicationRequest.oaStatus": "OA-Status",
-    "publicationRequest.orcidId": "ORCID-ID",
+    "publicationRequest.orcidId": "ORCID",
     "publicationRequest.phone": "Telefon",
     "publicationRequest.publication": "Erscheinungsvermerk",
     "publicationRequest.publicationPlace": "Erscheinungsort",
@@ -49,7 +49,7 @@
     "publicationRequest.status": "Status",
     "publicationRequest.statusDate": "Statusdatum",
     "publicationRequest.statusNote": "Statusnotiz",
-    "publicationRequest.streetAddresses": "Adresse",
+    "publicationRequest.streetAddresses": "Adressen",
     "publicationRequest.subtype": "Subtyp",
     "publicationRequest.title": "Titel",
     "publicationRequest.useCorrespondingAuthor": "Korrespondierenden Autor verwenden",
@@ -79,5 +79,8 @@
     "streetAddresses.country": "Land",
     "streetAddresses.addStreetAddress": "Adresse hinzufügen",
     "streetAddresses.requestHasNone": "Keine Adresse für {section}",
-    "publicactionRequests": "Anfragen"
+    "publicationRequest.edit": "Edit",
+    "publicationRequest.externalRequestIds": "External request IDs",
+    "publicationRequest.requestTitle": "Request number - {number}",
+    "publicationRequests": "Requests"
 }
