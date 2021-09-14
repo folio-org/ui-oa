@@ -28,7 +28,7 @@ const PublicationCreate = () => {
             component={Select}
             dataOptions={[]}
             label={<FormattedMessage id="ui-oa.publicationRequest.doi" />}
-            name="asdf"
+            name="doi"
           />
         </Col>
         <Col xs={3}>
@@ -54,7 +54,7 @@ const PublicationCreate = () => {
             component={Select}
             dataOptions={[]}
             label={<FormattedMessage id="ui-oa.publicationRequest.subtype" />}
-            name="asdf"
+            name="subtype"
           />
         </Col>
         <Col xs={3}>
@@ -62,7 +62,7 @@ const PublicationCreate = () => {
             component={Select}
             dataOptions={[]}
             label={<FormattedMessage id="ui-oa.publicationRequest.publisher" />}
-            name="asdf"
+            name="publisher"
           />
         </Col>
         <Col xs={3}>
@@ -70,7 +70,7 @@ const PublicationCreate = () => {
             component={Select}
             dataOptions={[]}
             label={<FormattedMessage id="ui-oa.publicationRequest.license" />}
-            name="asdf"
+            name="license"
           />
         </Col>
       </Row>
@@ -87,7 +87,7 @@ const PublicationCreate = () => {
           <Field
             component={TextArea}
             label={<FormattedMessage id="ui-oa.publicationRequest.authorNames" />}
-            name="asdf"
+            name="authorNames"
           />
         </Col>
       </Row>
@@ -97,14 +97,14 @@ const PublicationCreate = () => {
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.publicationUrl" />}
-            name="asdf"
+            name="publicationUrl"
           />
         </Col>
         <Col xs={6}>
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.localReference" />}
-            name="asdf"
+            name="localReference"
           />
         </Col>
       </Row>
@@ -128,21 +128,21 @@ const PublicationCreate = () => {
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.journalTitle" />}
-            name="asdf"
+            name="journalTitle"
           />
         </Col>
         <Col xs={3}>
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.issnPrint" />}
-            name="asdf"
+            name="issnPrint"
           />
         </Col>
         <Col xs={3}>
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.issnElectronic" />}
-            name="asdf"
+            name="issnElectronic"
           />
         </Col>
       </Row>
@@ -154,7 +154,7 @@ const PublicationCreate = () => {
             component={Select}
             dataOptions={[]}
             label={<FormattedMessage id="ui-oa.publicationRequest.oaStatus" />}
-            name="asdf"
+            name="oaStatus"
           />
         </Col>
         <Col xs={9} />
@@ -173,14 +173,14 @@ const PublicationCreate = () => {
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.publicationYear" />}
-            name="asdf"
+            name="publicationYear"
           />
         </Col>
         <Col xs={3}>
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.publicationPlace" />}
-            name="asdf"
+            name="publicationPlace"
           />
         </Col>
         <Col xs={6} />

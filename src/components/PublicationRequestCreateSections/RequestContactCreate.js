@@ -36,7 +36,7 @@ const RequestContactCreate = () => {
             component={Select}
             dataOptions={[]}
             label={<FormattedMessage id="ui-oa.publicationRequest.title" />}
-            name="asdf"
+            name="requestContact.title"
           />
         </Col>
         <Col xs={3}>
@@ -45,7 +45,7 @@ const RequestContactCreate = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.familyName" />}
             maxLength={255}
-            name="asdf"
+            name="requestContact.familyName"
           />
         </Col>
         <Col xs={3}>
@@ -54,7 +54,7 @@ const RequestContactCreate = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.givenName" />}
             maxLength={255}
-            name="asdf"
+            name="requestContact.givenName"
           />
         </Col>
         <Col xs={3} />
@@ -67,7 +67,7 @@ const RequestContactCreate = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.mainEmail" />}
             maxLength={255}
-            name="asdf"
+            name="requestContact.mainEmail"
           />
         </Col>
         <Col xs={3}>
@@ -76,7 +76,7 @@ const RequestContactCreate = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.phone" />}
             maxLength={255}
-            name="asdf"
+            name="requestContact.phone"
           />
         </Col>
         <Col xs={3}>
@@ -85,7 +85,7 @@ const RequestContactCreate = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.mobile" />}
             maxLength={255}
-            name="asdf"
+            name="requestContact.mobile"
           />
         </Col>
         <Col xs={3} />
