@@ -23,13 +23,13 @@ const propTypes = {
   }).isRequired
 };
 
-const publicationRequest = ({ handlers, data: { publicationRequest: request } = {} }) => {
+const PublicationRequest = ({ handlers, data: { publicationRequest: request } = {} }) => {
   const paneProps = {
     defaultWidth: '55%',
     dismissible: true,
     onClose: handlers.onClose,
   };
-
+  console.log(request)
   return (
     <Pane
       {...paneProps}
@@ -37,7 +37,7 @@ const publicationRequest = ({ handlers, data: { publicationRequest: request } = 
         <Button
           buttonStyle="dropdownItem"
           id="clickable-dropdown-edit-publication-request"
-          // onClick={handlers.onEdit}
+        // onClick={handlers.onEdit}
         >
           <Icon icon="edit">
             <FormattedMessage id="ui-oa.publicationRequest.edit" />
@@ -116,6 +116,94 @@ const publicationRequest = ({ handlers, data: { publicationRequest: request } = 
       </Row>
       <AccordionSet>
         <Accordion
+          label={<FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />}
+        >
+          <Row start="xs">
+          <Col xs={3}>
+              <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.title" />}>
+                <div>
+                  {request?.correspondingAuthor ?
+                    <div>{request?.title}</div>
+                    :
+                    <NoValue />
+                  }
+                </div>
+              </KeyValue>
+            </Col>
+            <Col xs={3}>
+              <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.familyName" />}>
+                <div>
+                  {request?.correspondingAuthor ?
+                    <div>{request?.familyName}</div>
+                    :
+                    <NoValue />
+                  }
+                </div>
+              </KeyValue>
+            </Col>
+            <Col xs={3}>
+              <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.givenName" />}>
+                <div>
+                  {request?.correspondingAuthor ?
+                    <div>{request?.givenNames}</div>
+                    :
+                    <NoValue />
+                  }
+                </div>
+              </KeyValue>
+            </Col>
+            <Col xs={3}>
+              <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.orcidId" />}>
+                <div>
+                  {request?.correspondingAuthor ?
+                    <div>{request?.orcidId}</div>
+                    :
+                    <NoValue />
+                  }
+                </div>
+              </KeyValue>
+            </Col>
+          </Row>
+
+          <Row start="xs">
+          <Col xs={3}>
+              <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.mainEmail" />}>
+                <div>
+                  {request?.correspondingAuthor ?
+                    <div>{request?.mainEmail}</div>
+                    :
+                    <NoValue />
+                  }
+                </div>
+              </KeyValue>
+            </Col>
+            <Col xs={3}>
+              <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.phone" />}>
+                <div>
+                  {request?.correspondingAuthor ?
+                    <div>{request?.phone}</div>
+                    :
+                    <NoValue />
+                  }
+                </div>
+              </KeyValue>
+            </Col>
+            <Col xs={3}>
+              <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.mobile" />}>
+                <div>
+                  {request?.correspondingAuthor ?
+                    <div>{request?.mobile}</div>
+                    :
+                    <NoValue />
+                  }
+                </div>
+              </KeyValue>
+            </Col>
+            <Col xs={3} />
+          </Row>
+        </Accordion>
+
+        <Accordion
           label={<FormattedMessage id="ui-oa.publicationRequest.publication" />}
         >
           <Row start="xs">
@@ -151,6 +239,6 @@ const publicationRequest = ({ handlers, data: { publicationRequest: request } = 
   );
 };
 
-publicationRequest.propTypes = propTypes;
+PublicationRequest.propTypes = propTypes;
 
-export default publicationRequest;
+export default PublicationRequest;

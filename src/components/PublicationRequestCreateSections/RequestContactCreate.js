@@ -11,10 +11,10 @@ import {
   TextField,
 } from '@folio/stripes/components';
 
-import OtherEmailFieldArray from './fieldArrays/otherEmailFieldArray';
-import StreetAddressesFieldArray from './fieldArrays/streetAddressesFieldArray';
+import OtherEmailFieldArray from './FieldArrays/OtherEmailFieldArray';
+import StreetAddressesFieldArray from './FieldArrays/StreetAddressesFieldArray';
 
-const RequestContact = () => {
+const RequestContactCreate = () => {
   return (
     <Accordion
       label={<FormattedMessage id="ui-oa.publicationRequest.requestContact" />}
@@ -114,4 +114,4 @@ const RequestContact = () => {
   );
 };
 
-export default RequestContact;
+export default RequestContactCreate;

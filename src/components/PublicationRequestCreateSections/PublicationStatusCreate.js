@@ -7,9 +7,9 @@ import {
   Row,
 } from '@folio/stripes/components';
 
-import PublicationStatusFieldArray from './fieldArrays/publicationStatusFieldArray';
+import PublicationStatusFieldArray from './FieldArrays/PublicationStatusFieldArray';
 
-const PublicationStatus = () => {
+const PublicationStatusCreate = () => {
   return (
     <Accordion label={<FormattedMessage id="ui-oa.publicationRequest.publicationStatus" />}>
       <Row>
@@ -21,4 +21,4 @@ const PublicationStatus = () => {
   );
 };
 
-export default PublicationStatus;
+export default PublicationStatusCreate;

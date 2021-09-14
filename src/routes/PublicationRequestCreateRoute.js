@@ -3,7 +3,7 @@ import arrayMutators from 'final-form-arrays';
 import { useHistory } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useMutation } from 'react-query';
-import View from '../views/publicationRequestCreate';
+import View from '../views/PublicationRequestCreate';
 
 const PublicationRequestCreateRoute = () => {
   const history = useHistory();

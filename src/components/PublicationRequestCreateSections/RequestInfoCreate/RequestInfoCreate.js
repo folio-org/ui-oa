@@ -14,9 +14,9 @@ import {
 } from '@folio/stripes/components';
 import { useRefdata } from '@k-int/stripes-kint-components';
 
-import ExternalRequestIdFieldArray from './fieldArrays/externalRequestIdFieldArray';
+import ExternalRequestIdFieldArray from '../FieldArrays/ExternalRequestIdFieldArray';
 
-const RequestInfo = () => {
+const RequestInfoCreate = () => {
   const { values } = useFormState();
   // TODO: Switch to useRefData in stripes-kint-components v2.0.0
   const { 0: { values: requestStatusValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.RequestStatus', endpoint: 'oa/refdata' });
@@ -69,4 +69,4 @@ const RequestInfo = () => {
   );
 };
 
-export default RequestInfo;
+export default RequestInfoCreate;

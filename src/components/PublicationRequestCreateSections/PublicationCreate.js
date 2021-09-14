@@ -13,10 +13,9 @@ import {
   TextField,
 } from '@folio/stripes/components';
 import { useRefdata } from '@k-int/stripes-kint-components';
+import IdentifiersFieldArray from './FieldArrays/IdentifiersFieldArray';
 
-import IdentifiersFieldArray from './fieldArrays/identifiersFieldArray';
-
-const Publication = () => {
+const PublicationCreate = () => {
   const { 0: { values: publicationTypeValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.PublicationType', endpoint: 'oa/refdata' });
 
   return (
@@ -190,4 +189,4 @@ const Publication = () => {
   );
 };
 
-export default Publication;
+export default PublicationCreate;

@@ -10,12 +10,12 @@ import {
   PaneHeader,
   Paneset,
 } from '@folio/stripes/components';
-import RequestInfo from '../components/publicationRequestCreateSections/requestInfo';
-import CorrespondingAuthor from '../components/publicationRequestCreateSections/correspondingAuthor';
-import RequestContact from '../components/publicationRequestCreateSections/requestContact';
-import Publication from '../components/publicationRequestCreateSections/publication';
-import PublicationStatus from '../components/publicationRequestCreateSections/publicationStatus';
-import Funding from '../components/publicationRequestCreateSections/funding';
+import RequestInfo from '../components/PublicationRequestCreateSections/RequestInfoCreate';
+import CorrespondingAuthor from '../components/PublicationRequestCreateSections/CorrespondingAuthorCreate';
+import RequestContactCreate from '../components/PublicationRequestCreateSections/RequestContactCreate';
+import Publication from '../components/PublicationRequestCreateSections/PublicationCreate';
+import PublicationStatusCreate from '../components/PublicationRequestCreateSections/PublicationStatusCreate';
+import Funding from '../components/PublicationRequestCreateSections/FundingCreate';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -28,7 +28,7 @@ const propTypes = {
 };
 
 
-const publicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, submitting }) => {
+const PublicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, submitting }) => {
   const renderPaneFooter = () => {
     return (
       <PaneFooter
@@ -67,9 +67,9 @@ const publicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, s
         <AccordionSet>
           <RequestInfo />
           <CorrespondingAuthor />
-          <RequestContact />
+          <RequestContactCreate />
           <Publication />
-          <PublicationStatus />
+          <PublicationStatusCreate />
           <Funding />
         </AccordionSet>
       </Pane>
@@ -77,6 +77,6 @@ const publicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, s
   );
 };
 
-publicationRequestCreate.propTypes = propTypes;
+PublicationRequestCreate.propTypes = propTypes;
 
-export default publicationRequestCreate;
+export default PublicationRequestCreate;

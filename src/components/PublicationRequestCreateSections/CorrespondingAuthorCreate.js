@@ -10,11 +10,11 @@ import {
   TextField,
 } from '@folio/stripes/components';
 
-import OtherEmailFieldArray from './fieldArrays/otherEmailFieldArray';
-import AffiliationFieldArray from './fieldArrays/affiliationFieldArray';
-import StreetAddressesFieldArray from './fieldArrays/streetAddressesFieldArray';
+import OtherEmailFieldArray from './FieldArrays/OtherEmailFieldArray';
+import AffiliationFieldArray from './FieldArrays/AffiliationFieldArray';
+import StreetAddressesFieldArray from './FieldArrays/StreetAddressesFieldArray';
 
-const CorrespondingAuthor = () => {
+const CorrespondingAuthorCreate = () => {
   return (
     <Accordion
       label={<FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />}
@@ -132,4 +132,4 @@ const CorrespondingAuthor = () => {
   );
 };
 
-export default CorrespondingAuthor;
+export default CorrespondingAuthorCreate;
