@@ -10,12 +10,12 @@ import {
   PaneHeader,
   Paneset,
 } from '@folio/stripes/components';
-import RequestInfo from '../components/PublicationRequestCreateSections/RequestInfoCreate';
-import CorrespondingAuthor from '../components/PublicationRequestCreateSections/CorrespondingAuthorCreate';
+import RequestInfoCreate from '../components/PublicationRequestCreateSections/RequestInfoCreate';
+import CorrespondingAuthorCreate from '../components/PublicationRequestCreateSections/CorrespondingAuthorCreate';
 import RequestContactCreate from '../components/PublicationRequestCreateSections/RequestContactCreate';
-import Publication from '../components/PublicationRequestCreateSections/PublicationCreate';
+import PublicationCreate from '../components/PublicationRequestCreateSections/PublicationCreate';
 import PublicationStatusCreate from '../components/PublicationRequestCreateSections/PublicationStatusCreate';
-import Funding from '../components/PublicationRequestCreateSections/FundingCreate';
+import FundingCreate from '../components/PublicationRequestCreateSections/FundingCreate';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -65,12 +65,12 @@ const PublicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, s
         renderHeader={renderProps => <PaneHeader {...renderProps} paneTitle="New publication request" />}
       >
         <AccordionSet>
-          <RequestInfo />
-          <CorrespondingAuthor />
+          <RequestInfoCreate />
+          <CorrespondingAuthorCreate />
           <RequestContactCreate />
-          <Publication />
+          <PublicationCreate />
           <PublicationStatusCreate />
-          <Funding />
+          <FundingCreate />
         </AccordionSet>
       </Pane>
     </Paneset>
