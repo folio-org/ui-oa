@@ -138,7 +138,7 @@ const OAView = ({
                   formatter={formatter}
                   onHeaderClick={onSort}
                   onRowClick={(_e, rowData) => history.push(`${urls.publicationRequest(rowData.id)}${searchString}`)}
-                  visibleColumns={['requestDate', 'requestStatus']}
+                  visibleColumns={['requestNumber', 'requestDate', 'requestStatus']}
                 />
               </Pane>
               {children}

@@ -14,7 +14,7 @@
     "publicationRequest.authorNames": "Author names",
     "publicationRequest.bookDetails": "Book details",
     "publicationRequest.correspondingAuthor": "Corresponding author",
-    "publicationRequest.createPublicationRequest": "New Publication Request",
+    "publicationRequest.createPublicationRequest": "New publication request",
     "publicationRequest.doi": "DOI",
     "publicationRequest.familyName": "Family name",
     "publicationRequest.funder": "Funder",
@@ -43,7 +43,7 @@
     "publicationRequest.publicationYear": "Year of publication",
     "publicationRequest.publisher": "Publisher",
     "publicationRequest.rejectionReason": "Reason for rejection",
-    "publicationRequest.requestContact": "Request Contact",
+    "publicationRequest.requestContact": "Request contact",
     "publicationRequest.requestNumber": "Request number",
     "publicationRequest.requestDate": "Request date",
     "publicationRequest.status": "Status",
@@ -79,5 +79,8 @@
     "streetAddresses.country": "Country",
     "streetAddresses.addStreetAddress": "Add street address",
     "streetAddresses.requestHasNone": "No street addresses for this { section }",
-    "publicactionRequests": "Requests"
+    "publicationRequest.edit": "Edit",
+    "publicationRequest.externalRequestIds": "External request IDs",
+    "publicationRequest.requestTitle": "Request number - {number}",
+    "publicationRequests": "Requests"
 }

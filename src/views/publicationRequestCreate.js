@@ -2,30 +2,14 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 
-// import { Field } from 'react-final-form';
-// import { FieldArray } from 'react-final-form-arrays';
-
 import {
-  // Accordion,
   AccordionSet,
   Button,
-  // Checkbox,
-  // Col,
-  // Headline,
   Pane,
   PaneFooter,
   PaneHeader,
   Paneset,
-  // Row,
-  // Select,
-  // TextArea,
-  // TextField,
 } from '@folio/stripes/components';
-// import FundingFieldArray from '../components/publicationRequestCreateSections/fieldArrays/fundingFieldArray';
-// import OtherEmailFieldArray from '../components/publicationRequestCreateSections/fieldArrays/otherEmailFieldArray';
-// import IdentifiersFieldArray from '../components/publicationRequestCreateSections/fieldArrays/identifiersFieldArray';
-// import PublicationStatusFieldArray from '../components/publicationRequestCreateSections/fieldArrays/publicationStatusFieldArray';
-// import StreetAddressesFieldArray from '../components/publicationRequestCreateSections/fieldArrays/streetAddressesFieldArray';
 import RequestInfo from '../components/publicationRequestCreateSections/requestInfo';
 import CorrespondingAuthor from '../components/publicationRequestCreateSections/correspondingAuthor';
 import RequestContact from '../components/publicationRequestCreateSections/requestContact';
@@ -44,7 +28,7 @@ const propTypes = {
 };
 
 
-const publicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, refValues, submitting }) => {
+const publicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, submitting }) => {
   const renderPaneFooter = () => {
     return (
       <PaneFooter
@@ -75,12 +59,13 @@ const publicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, r
   return (
     <Paneset>
       <Pane
-        defaultWidth="fill"
+        centerContent
+        defaultWidth="100%"
         footer={renderPaneFooter()}
-        renderHeader={renderProps => <PaneHeader {...renderProps} paneTitle="New Publication Request" />}
+        renderHeader={renderProps => <PaneHeader {...renderProps} paneTitle="New publication request" />}
       >
         <AccordionSet>
-          <RequestInfo refValues={refValues} />
+          <RequestInfo />
           <CorrespondingAuthor />
           <RequestContact />
           <Publication />

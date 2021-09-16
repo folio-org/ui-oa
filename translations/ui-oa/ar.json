@@ -43,7 +43,7 @@
     "publicationRequest.publicationYear": "سنة النشر",
     "publicationRequest.publisher": "الناشر",
     "publicationRequest.rejectionReason": "سبب الرفض",
-    "publicationRequest.requestContact": "Request Contact",
+    "publicationRequest.requestContact": "جهة اتصال الطلب",
     "publicationRequest.requestNumber": "رقم الطلب",
     "publicationRequest.requestDate": "تاريخ الطلب",
     "publicationRequest.status": "الحالة",
@@ -79,5 +79,8 @@
     "streetAddresses.country": "البلد",
     "streetAddresses.addStreetAddress": "إضافة عنوان مادي",
     "streetAddresses.requestHasNone": "لا توجد عناوين مادية لهذا { section }",
-    "publicactionRequests": "الطلبات"
+    "publicationRequest.edit": "تحرير",
+    "publicationRequest.externalRequestIds": "معرّفات الطلبات الخارجية",
+    "publicationRequest.requestTitle": "رقم الطلب - {number}",
+    "publicationRequests": "الطلبات"
 }
