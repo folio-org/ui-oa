@@ -15,6 +15,9 @@ import {
   Pane,
   Row
 } from '@folio/stripes/components';
+import RequestInfo from '../components/PublicationRequestSections/RequestInfo/RequestInfo';
+import CorrespondingAuthor from '../components/PublicationRequestSections/CorrespondingAuthor/CorrespondingAuthor';
+import Publication from '../components/PublicationRequestSections/Publication/Publication';
 
 const propTypes = {
   data: PropTypes.object,
@@ -52,187 +55,10 @@ const PublicationRequest = ({ handlers, data: { publicationRequest: request } = 
         hideSource
         lastUpdatedDate={request?.dateModified}
       />
-      <Row start="xs">
-        <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.requestNumber" />}>
-            <div>
-              {request?.requestNumber ?
-                <div>{request?.requestNumber}</div>
-                :
-                <NoValue />
-              }
-            </div>
-          </KeyValue>
-        </Col>
-        <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.requestDate" />}>
-            <div>
-              {request?.requestDate ?
-                <div>{request?.requestDate}</div>
-                :
-                <NoValue />
-              }
-            </div>
-          </KeyValue>
-        </Col>
-        <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.status" />}>
-            <div>
-              {request?.requestStatus ?
-                <div>{request?.requestStatus?.label}</div>
-                :
-                <NoValue />
-              }
-            </div>
-          </KeyValue>
-        </Col>
-        <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.rejectionReason" />}>
-            <div>
-              {request?.rejectionReason ?
-                <div>{request?.rejectionReason.label}</div>
-                :
-                <NoValue />
-              }
-            </div>
-          </KeyValue>
-        </Col>
-      </Row>
-      <Row start="xs">
-        <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.externalRequestIds" />}>
-            <div>
-              <ul>
-                {request?.externalRequestIds?.length ?
-                  request?.externalRequestIds.map(requestId => <li key={requestId.id}>{requestId.externalId}</li>)
-                  :
-                  <NoValue />
-                }
-              </ul>
-            </div>
-          </KeyValue>
-        </Col>
-      </Row>
+      <RequestInfo request={request}/>
       <AccordionSet>
-        <Accordion
-          label={<FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />}
-        >
-          <Row start="xs">
-          <Col xs={3}>
-              <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.title" />}>
-                <div>
-                  {request?.correspondingAuthor ?
-                    <div>{request.correspondingAuthor.partyOwner.title}</div>
-                    :
-                    <NoValue />
-                  }
-                </div>
-              </KeyValue>
-            </Col>
-            <Col xs={3}>
-              <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.familyName" />}>
-                <div>
-                  {request?.correspondingAuthor ?
-                    <div>{request.correspondingAuthor.partyOwner.familyName}</div>
-                    :
-                    <NoValue />
-                  }
-                </div>
-              </KeyValue>
-            </Col>
-            <Col xs={3}>
-              <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.givenName" />}>
-                <div>
-                  {request?.correspondingAuthor ?
-                    <div>{request.correspondingAuthor.partyOwner.givenNames}</div>
-                    :
-                    <NoValue />
-                  }
-                </div>
-              </KeyValue>
-            </Col>
-            <Col xs={3}>
-              <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.orcidId" />}>
-                <div>
-                  {request?.correspondingAuthor ?
-                    <div>{request.correspondingAuthor.partyOwner.orcidId}</div>
-                    :
-                    <NoValue />
-                  }
-                </div>
-              </KeyValue>
-            </Col>
-          </Row>
-
-          <Row start="xs">
-          <Col xs={3}>
-              <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.mainEmail" />}>
-                <div>
-                  {request?.correspondingAuthor ?
-                    <div>{request.correspondingAuthor.partyOwner.mainEmail}</div>
-                    :
-                    <NoValue />
-                  }
-                </div>
-              </KeyValue>
-            </Col>
-            <Col xs={3}>
-              <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.phone" />}>
-                <div>
-                  {request?.correspondingAuthor ?
-                    <div>{request.correspondingAuthor.partyOwner.phone}</div>
-                    :
-                    <NoValue />
-                  }
-                </div>
-              </KeyValue>
-            </Col>
-            <Col xs={3}>
-              <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.mobile" />}>
-                <div>
-                  {request?.correspondingAuthor ?
-                    <div>{request.correspondingAuthor.partyOwner.mobile}</div>
-                    :
-                    <NoValue />
-                  }
-                </div>
-              </KeyValue>
-            </Col>
-            <Col xs={3} />
-          </Row>
-        </Accordion>
-
-        <Accordion
-          label={<FormattedMessage id="ui-oa.publicationRequest.publication" />}
-        >
-          <Row start="xs">
-            <Col xs={6}>
-              <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.publicationTitle" />}>
-                <div>
-                  {request?.publicationTitle?.length ?
-                    <div>{request?.publicationTitle}</div>
-                    :
-                    <NoValue />
-                  }
-                </div>
-              </KeyValue>
-            </Col>
-          </Row>
-
-          <Row start="xs">
-            <Col xs={3}>
-              <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.publicationType" />}>
-                <div>
-                  {request?.publicationType ?
-                    <div>{request?.publicationType.label}</div>
-                    :
-                    <NoValue />
-                  }
-                </div>
-              </KeyValue>
-            </Col>
-          </Row>
-        </Accordion>
+        <CorrespondingAuthor request={request}/>
+        <Publication request={request}/>
       </AccordionSet>
     </Pane>
   );
