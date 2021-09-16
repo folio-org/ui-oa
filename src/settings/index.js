@@ -10,9 +10,6 @@ const propTypes = {
       records: PropTypes.array
     })
   }),
-  intl: PropTypes.shape({
-    formatMessage: PropTypes.func.isRequired,
-  }).isRequired,
   match: PropTypes.shape({
     path: PropTypes.string.isRequired,
   }).isRequired,
