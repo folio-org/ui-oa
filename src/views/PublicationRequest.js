@@ -48,8 +48,7 @@ const PublicationRequest = ({ handlers, data: { publicationRequest: request } = 
     >
       <MetaSection
         contentId="publicationRequestMetaContent"
-        // TODO: Update createdDate
-        createdDate={request?.dateModified}
+        createdDate={request?.dateCreated}
         hideSource
         lastUpdatedDate={request?.dateModified}
       />
@@ -123,7 +122,7 @@ const PublicationRequest = ({ handlers, data: { publicationRequest: request } = 
               <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.title" />}>
                 <div>
                   {request?.correspondingAuthor ?
-                    <div>{request?.title}</div>
+                    <div>{request.correspondingAuthor.partyOwner.title}</div>
                     :
                     <NoValue />
                   }
@@ -134,7 +133,7 @@ const PublicationRequest = ({ handlers, data: { publicationRequest: request } = 
               <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.familyName" />}>
                 <div>
                   {request?.correspondingAuthor ?
-                    <div>{request?.familyName}</div>
+                    <div>{request.correspondingAuthor.partyOwner.familyName}</div>
                     :
                     <NoValue />
                   }
@@ -145,7 +144,7 @@ const PublicationRequest = ({ handlers, data: { publicationRequest: request } = 
               <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.givenName" />}>
                 <div>
                   {request?.correspondingAuthor ?
-                    <div>{request?.givenNames}</div>
+                    <div>{request.correspondingAuthor.partyOwner.givenNames}</div>
                     :
                     <NoValue />
                   }
@@ -156,7 +155,7 @@ const PublicationRequest = ({ handlers, data: { publicationRequest: request } = 
               <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.orcidId" />}>
                 <div>
                   {request?.correspondingAuthor ?
-                    <div>{request?.orcidId}</div>
+                    <div>{request.correspondingAuthor.partyOwner.orcidId}</div>
                     :
                     <NoValue />
                   }
@@ -170,7 +169,7 @@ const PublicationRequest = ({ handlers, data: { publicationRequest: request } = 
               <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.mainEmail" />}>
                 <div>
                   {request?.correspondingAuthor ?
-                    <div>{request?.mainEmail}</div>
+                    <div>{request.correspondingAuthor.partyOwner.mainEmail}</div>
                     :
                     <NoValue />
                   }
@@ -181,7 +180,7 @@ const PublicationRequest = ({ handlers, data: { publicationRequest: request } = 
               <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.phone" />}>
                 <div>
                   {request?.correspondingAuthor ?
-                    <div>{request?.phone}</div>
+                    <div>{request.correspondingAuthor.partyOwner.phone}</div>
                     :
                     <NoValue />
                   }
@@ -192,7 +191,7 @@ const PublicationRequest = ({ handlers, data: { publicationRequest: request } = 
               <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.mobile" />}>
                 <div>
                   {request?.correspondingAuthor ?
-                    <div>{request?.mobile}</div>
+                    <div>{request.correspondingAuthor.partyOwner.mobile}</div>
                     :
                     <NoValue />
                   }
