@@ -30,7 +30,8 @@
       "oa": "1.0"
     },
     "stripesDeps": [
-      "@folio/stripes-erm-components"
+      "@folio/stripes-erm-components",
+      "@k-int/stripes-kint-components"
     ],
     "icons": [
       {
@@ -93,6 +94,7 @@
   },
   "dependencies": {
     "@folio/react-intl-safe-html": "^2.0.0",
+    "@k-int/stripes-kint-components": "^1.1.0",
     "@folio/stripes-erm-components": "^6.0.0",
     "classnames": "^2.2.6",
     "compose-function": "^3.0.3",
@@ -102,8 +104,7 @@
     "prop-types": "^15.6.0",
     "query-string": "^6.6.0",
     "react-final-form": "^6.3.0",
-    "react-final-form-arrays": "^3.1.1",
-    "@k-int/stripes-kint-components": "^1.0.3"
+    "react-final-form-arrays": "^3.1.1"
   },
   "peerDependencies": {
     "@folio/stripes": "^7.0.0",
