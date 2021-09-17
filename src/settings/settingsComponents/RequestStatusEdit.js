@@ -1,15 +1,16 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import { Pane } from '@folio/stripes/components';
 import { EditableRefdataList } from '@k-int/stripes-kint-components';
 
-const TestComponent = () => {
+const RequestStatusEdit = () => {
   return (
     <Pane
       defaultWidth="fill"
       dismissible
-      id="Testing"
-      paneTitle="TESTING"
+      id="edit-refdata-requestStatus"
+      paneTitle={<FormattedMessage id="ui-oa.settings.refdata.requestStatus" />}
     >
       <EditableRefdataList
         desc="PublicationRequest.RequestStatus"
@@ -19,4 +20,4 @@ const TestComponent = () => {
   );
 };
 
-export default TestComponent;
+export default RequestStatusEdit;

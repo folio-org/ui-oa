@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import { FormattedMessage } from 'react-intl';
+
 import { useSettings } from '@k-int/stripes-kint-components';
 
-import { TestComponent } from './settingsComponents';
+import { RequestStatusEdit } from './settingsComponents';
 
 const propTypes = {
   resources: PropTypes.shape({
@@ -18,9 +21,9 @@ const propTypes = {
 const OASettings = (props) => {
   const persistentPages = [
     {
-      component: TestComponent,
-      label: "TESTING",
-      route: 'test',
+      component: RequestStatusEdit,
+      label: <FormattedMessage id="ui-oa.settings.refdata.editPicklistValues" />,
+      route: 'requestStatus',
     }
   ];
 

@@ -5,6 +5,9 @@
   "settings.no-current-value": "No current value",
   "settingName.settingLoading": "Loading",
 
+  "settings.refdata.requestStatus": "Edit request status",
+  "settings.refdata.editRefdata": "Edit pick list values",
+
   "publicationRequest.addFunding": "Add funding",
   "publicationRequest.addExternalRequestId": "Add external request ID",
   "publicationRequest.addIdentifier": "Add identifier",
