@@ -1,43 +1,42 @@
-import React, { lazy, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { Switch } from 'react-router-dom';
 import { Route } from '@folio/stripes/core';
 import PropTypes from 'prop-types';
+import Settings from './settings';
 
-const Settings = lazy(() => import('./settings'));
-const OARoute = lazy(() => import('./routes/OARoute'));
+import {
+  OARoute,
+  PublicationRequestRoute,
+  PublicationRequestCreateRoute
+} from './routes';
 
-const PublicationRequestRoute = lazy(() => import('./routes/PublicationRequestRoute'));
-const PublicationRequestCreateRoute = lazy(() => import('./routes/PublicationRequestCreateRoute'));
+const App = (props) => {
+  const { actAs, match: { path } } = props;
 
-class App extends React.Component {
-  static propTypes = {
-    actAs: PropTypes.string.isRequired,
-    match: PropTypes.object.isRequired,
-    stripes: PropTypes.object.isRequired,
-  };
-
-  render() {
-    const { actAs, match: { path } } = this.props;
-
-    if (actAs === 'settings') {
-      return (
-        <Suspense fallback={null}>
-          <Settings {...this.props} />
-        </Suspense>
-      );
-    }
-
+  if (actAs === 'settings') {
     return (
       <Suspense fallback={null}>
-        <Switch>
-          <Route component={PublicationRequestCreateRoute} path={`${path}/publicationRequests/create`} />
-          <Route component={OARoute} path={`${path}/publicationRequests/:id?`}>
-            <Route component={PublicationRequestRoute} path={`${path}/publicationRequests/:id`} />
-          </Route>
-        </Switch>
+        <Settings {...props} />
       </Suspense>
     );
   }
-}
+
+  return (
+    <Suspense fallback={null}>
+      <Switch>
+        <Route component={PublicationRequestCreateRoute} path={`${path}/publicationRequests/create`} />
+        <Route component={OARoute} path={`${path}/publicationRequests/:id?`}>
+          <Route component={PublicationRequestRoute} path={`${path}/publicationRequests/:id`} />
+        </Route>
+      </Switch>
+    </Suspense>
+  );
+};
+
+App.propTypes = {
+  actAs: PropTypes.string.isRequired,
+  match: PropTypes.object.isRequired,
+  stripes: PropTypes.object.isRequired,
+};
 
 export default App;
