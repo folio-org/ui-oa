@@ -1,3 +1,2 @@
-export { default as EditableSettingsList } from './EditableSettingsList';
-export { default as EditableSettingsListFieldArray } from './EditableSettingsListFieldArray';
-export { default as SettingField } from './SettingField';
+/* eslint-disable import/prefer-default-export */
+export { default as RequestStatusEdit } from './RequestStatusEdit';

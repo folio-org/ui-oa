@@ -30,7 +30,8 @@
       "oa": "1.0"
     },
     "stripesDeps": [
-      "@folio/stripes-erm-components"
+      "@folio/stripes-erm-components",
+      "@k-int/stripes-kint-components"
     ],
     "icons": [
       {
@@ -62,8 +63,8 @@
     "@bigtest/mocha": "^0.5.2",
     "@bigtest/react": "^0.1.2",
     "@folio/eslint-config-stripes": "^5.2.0",
-    "@folio/stripes": "^6.0.0",
-    "@folio/stripes-cli": "^2.0.0",
+    "@folio/stripes": "^7.0.0",
+    "@folio/stripes-cli": "^2.3.0",
     "@testing-library/dom": "^7.26.6",
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.2",
@@ -84,8 +85,8 @@
     "miragejs": "^0.1.40",
     "mocha": "^8.0.1",
     "moment": "^2.22.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-intl": "^5.8.1",
     "react-query": "^3.9.0",
     "react-router-dom": "^5.2.0",
@@ -93,7 +94,8 @@
   },
   "dependencies": {
     "@folio/react-intl-safe-html": "^2.0.0",
-    "@folio/stripes-erm-components": "^5.0.0",
+    "@k-int/stripes-kint-components": "^1.1.0",
+    "@folio/stripes-erm-components": "^6.0.0",
     "classnames": "^2.2.6",
     "compose-function": "^3.0.3",
     "final-form": "^4.18.5",
@@ -102,14 +104,13 @@
     "prop-types": "^15.6.0",
     "query-string": "^6.6.0",
     "react-final-form": "^6.3.0",
-    "react-final-form-arrays": "^3.1.1",
-    "@k-int/stripes-kint-components": "^1.0.3"
+    "react-final-form-arrays": "^3.1.1"
   },
   "peerDependencies": {
-    "@folio/stripes": ">6.0.0",
+    "@folio/stripes": "^7.0.0",
     "moment": "^2.22.2",
-    "react": "*",
-    "react-dom": "*",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-intl": "^5.8.1",
     "react-query": "^3.9.0",
     "react-router-dom": "^5.2.0"
