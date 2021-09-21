@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -9,6 +10,10 @@ import {
   NoValue,
   Row
 } from '@folio/stripes/components';
+
+const propTypes = {
+  request: PropTypes.object
+};
 
 const CorrespondingAuthor = ({ request }) => {
   return (
@@ -101,5 +106,7 @@ const CorrespondingAuthor = ({ request }) => {
     </Accordion>
   );
 };
+
+CorrespondingAuthor.propTypes = propTypes;
 
 export default CorrespondingAuthor;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -9,7 +10,11 @@ import {
   Row
 } from '@folio/stripes/components';
 
-const RequestInfo = ({request}) => {
+const propTypes = {
+  request: PropTypes.object
+};
+
+const RequestInfo = ({ request }) => {
   return (
     <div>
       <Row start="xs">
@@ -76,5 +81,7 @@ const RequestInfo = ({request}) => {
     </div>
   );
 };
+
+RequestInfo.propTypes = propTypes;
 
 export default RequestInfo;

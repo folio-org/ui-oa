@@ -4,16 +4,11 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 import {
-  Accordion,
   AccordionSet,
   Button,
-  Col,
   Icon,
-  KeyValue,
   MetaSection,
-  NoValue,
   Pane,
-  Row
 } from '@folio/stripes/components';
 import RequestInfo from '../components/PublicationRequestSections/RequestInfo/RequestInfo';
 import CorrespondingAuthor from '../components/PublicationRequestSections/CorrespondingAuthor/CorrespondingAuthor';
@@ -32,7 +27,6 @@ const PublicationRequest = ({ handlers, data: { publicationRequest: request } = 
     dismissible: true,
     onClose: handlers.onClose,
   };
-  console.log(request)
   return (
     <Pane
       {...paneProps}
@@ -55,10 +49,10 @@ const PublicationRequest = ({ handlers, data: { publicationRequest: request } = 
         hideSource
         lastUpdatedDate={request?.dateModified}
       />
-      <RequestInfo request={request}/>
+      <RequestInfo request={request} />
       <AccordionSet>
-        <CorrespondingAuthor request={request}/>
-        <Publication request={request}/>
+        <CorrespondingAuthor request={request} />
+        <Publication request={request} />
       </AccordionSet>
     </Pane>
   );

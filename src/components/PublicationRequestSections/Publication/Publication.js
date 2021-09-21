@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -9,6 +10,10 @@ import {
   NoValue,
   Row
 } from '@folio/stripes/components';
+
+const propTypes = {
+  request: PropTypes.object
+};
 
 const Publication = ({ request }) => {
   return (
@@ -45,5 +50,7 @@ const Publication = ({ request }) => {
     </Accordion>
   );
 };
+
+Publication.propTypes = propTypes;
 
 export default Publication;
