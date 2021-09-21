@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import { useSettings } from '@k-int/stripes-kint-components';
 
@@ -19,10 +19,11 @@ const propTypes = {
 };
 
 const OASettings = (props) => {
+  const intl = useIntl();
   const persistentPages = [
     {
       component: RequestStatusEdit,
-      label: <FormattedMessage id="ui-oa.settings.refdata.editPicklistValues" />,
+      label: intl.formatMessage({ id: 'ui-oa.settings.refdata.editPicklistValues' }),
       route: 'requestStatus',
     }
   ];
