@@ -13,10 +13,9 @@ import {
   TextField,
 } from '@folio/stripes/components';
 import { useRefdata } from '@k-int/stripes-kint-components';
+import IdentifiersFieldArray from './FieldArrays/IdentifiersFieldArray';
 
-import IdentifiersFieldArray from './fieldArrays/identifiersFieldArray';
-
-const Publication = () => {
+const PublicationCreate = () => {
   const { 0: { values: publicationTypeValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.PublicationType', endpoint: 'oa/refdata' });
 
   return (
@@ -29,7 +28,7 @@ const Publication = () => {
             component={Select}
             dataOptions={[]}
             label={<FormattedMessage id="ui-oa.publicationRequest.doi" />}
-            name="asdf"
+            name="doi"
           />
         </Col>
         <Col xs={3}>
@@ -55,7 +54,7 @@ const Publication = () => {
             component={Select}
             dataOptions={[]}
             label={<FormattedMessage id="ui-oa.publicationRequest.subtype" />}
-            name="asdf"
+            name="subtype"
           />
         </Col>
         <Col xs={3}>
@@ -63,7 +62,7 @@ const Publication = () => {
             component={Select}
             dataOptions={[]}
             label={<FormattedMessage id="ui-oa.publicationRequest.publisher" />}
-            name="asdf"
+            name="publisher"
           />
         </Col>
         <Col xs={3}>
@@ -71,7 +70,7 @@ const Publication = () => {
             component={Select}
             dataOptions={[]}
             label={<FormattedMessage id="ui-oa.publicationRequest.license" />}
-            name="asdf"
+            name="license"
           />
         </Col>
       </Row>
@@ -88,7 +87,7 @@ const Publication = () => {
           <Field
             component={TextArea}
             label={<FormattedMessage id="ui-oa.publicationRequest.authorNames" />}
-            name="asdf"
+            name="authorNames"
           />
         </Col>
       </Row>
@@ -98,14 +97,14 @@ const Publication = () => {
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.publicationUrl" />}
-            name="asdf"
+            name="publicationUrl"
           />
         </Col>
         <Col xs={6}>
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.localReference" />}
-            name="asdf"
+            name="localReference"
           />
         </Col>
       </Row>
@@ -129,21 +128,21 @@ const Publication = () => {
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.journalTitle" />}
-            name="asdf"
+            name="journalTitle"
           />
         </Col>
         <Col xs={3}>
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.issnPrint" />}
-            name="asdf"
+            name="issnPrint"
           />
         </Col>
         <Col xs={3}>
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.issnElectronic" />}
-            name="asdf"
+            name="issnElectronic"
           />
         </Col>
       </Row>
@@ -155,7 +154,7 @@ const Publication = () => {
             component={Select}
             dataOptions={[]}
             label={<FormattedMessage id="ui-oa.publicationRequest.oaStatus" />}
-            name="asdf"
+            name="oaStatus"
           />
         </Col>
         <Col xs={9} />
@@ -174,14 +173,14 @@ const Publication = () => {
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.publicationYear" />}
-            name="asdf"
+            name="publicationYear"
           />
         </Col>
         <Col xs={3}>
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.publicationPlace" />}
-            name="asdf"
+            name="publicationPlace"
           />
         </Col>
         <Col xs={6} />
@@ -190,4 +189,4 @@ const Publication = () => {
   );
 };
 
-export default Publication;
+export default PublicationCreate;

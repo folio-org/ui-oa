@@ -11,10 +11,10 @@ import {
   TextField,
 } from '@folio/stripes/components';
 
-import OtherEmailFieldArray from './fieldArrays/otherEmailFieldArray';
-import StreetAddressesFieldArray from './fieldArrays/streetAddressesFieldArray';
+import OtherEmailFieldArray from './FieldArrays/OtherEmailFieldArray';
+import StreetAddressesFieldArray from './FieldArrays/StreetAddressesFieldArray';
 
-const RequestContact = () => {
+const RequestContactCreate = () => {
   return (
     <Accordion
       label={<FormattedMessage id="ui-oa.publicationRequest.requestContact" />}
@@ -36,7 +36,7 @@ const RequestContact = () => {
             component={Select}
             dataOptions={[]}
             label={<FormattedMessage id="ui-oa.publicationRequest.title" />}
-            name="asdf"
+            name="requestContact.title"
           />
         </Col>
         <Col xs={3}>
@@ -45,7 +45,7 @@ const RequestContact = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.familyName" />}
             maxLength={255}
-            name="asdf"
+            name="requestContact.familyName"
           />
         </Col>
         <Col xs={3}>
@@ -54,7 +54,7 @@ const RequestContact = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.givenName" />}
             maxLength={255}
-            name="asdf"
+            name="requestContact.givenName"
           />
         </Col>
         <Col xs={3} />
@@ -67,7 +67,7 @@ const RequestContact = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.mainEmail" />}
             maxLength={255}
-            name="asdf"
+            name="requestContact.mainEmail"
           />
         </Col>
         <Col xs={3}>
@@ -76,7 +76,7 @@ const RequestContact = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.phone" />}
             maxLength={255}
-            name="asdf"
+            name="requestContact.phone"
           />
         </Col>
         <Col xs={3}>
@@ -85,7 +85,7 @@ const RequestContact = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.mobile" />}
             maxLength={255}
-            name="asdf"
+            name="requestContact.mobile"
           />
         </Col>
         <Col xs={3} />
@@ -114,4 +114,4 @@ const RequestContact = () => {
   );
 };
 
-export default RequestContact;
+export default RequestContactCreate;

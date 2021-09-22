@@ -10,11 +10,11 @@ import {
   TextField,
 } from '@folio/stripes/components';
 
-import OtherEmailFieldArray from './fieldArrays/otherEmailFieldArray';
-import AffiliationFieldArray from './fieldArrays/affiliationFieldArray';
-import StreetAddressesFieldArray from './fieldArrays/streetAddressesFieldArray';
+import OtherEmailFieldArray from './FieldArrays/OtherEmailFieldArray';
+import AffiliationFieldArray from './FieldArrays/AffiliationFieldArray';
+import StreetAddressesFieldArray from './FieldArrays/StreetAddressesFieldArray';
 
-const CorrespondingAuthor = () => {
+const CorrespondingAuthorCreate = () => {
   return (
     <Accordion
       label={<FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />}
@@ -25,7 +25,7 @@ const CorrespondingAuthor = () => {
             component={Select}
             dataOptions={[]}
             label={<FormattedMessage id="ui-oa.publicationRequest.title" />}
-            name="asdf"
+            name="correspondingAuthor.title"
           />
         </Col>
         <Col xs={3}>
@@ -34,7 +34,7 @@ const CorrespondingAuthor = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.familyName" />}
             maxLength={255}
-            name="asdf"
+            name="correspondingAuthor.familyName"
           />
         </Col>
         <Col xs={3}>
@@ -43,7 +43,7 @@ const CorrespondingAuthor = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.givenName" />}
             maxLength={255}
-            name="asdf"
+            name="correspondingAuthor.givenNames"
           />
         </Col>
         <Col xs={3}>
@@ -52,7 +52,7 @@ const CorrespondingAuthor = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.orcidId" />}
             maxLength={255}
-            name="asdf"
+            name="correspondingAuthor.orcidId"
           />
         </Col>
       </Row>
@@ -70,7 +70,7 @@ const CorrespondingAuthor = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.mainEmail" />}
             maxLength={255}
-            name="asdf"
+            name="correspondingAuthor.mainEmail"
           />
         </Col>
         <Col xs={3}>
@@ -79,7 +79,7 @@ const CorrespondingAuthor = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.phone" />}
             maxLength={255}
-            name="asdf"
+            name="correspondingAuthor.phone"
           />
         </Col>
         <Col xs={3}>
@@ -88,7 +88,7 @@ const CorrespondingAuthor = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.mobile" />}
             maxLength={255}
-            name="asdf"
+            name="correspondingAuthor.mobile"
           />
         </Col>
         <Col xs={3} />
@@ -132,4 +132,4 @@ const CorrespondingAuthor = () => {
   );
 };
 
-export default CorrespondingAuthor;
+export default CorrespondingAuthorCreate;

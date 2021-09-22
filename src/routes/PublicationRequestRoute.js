@@ -4,7 +4,7 @@ import { useOkapiKy } from '@folio/stripes/core';
 import { useQuery } from 'react-query';
 import urls from '../util/urls';
 
-import View from '../views/publicationRequest';
+import View from '../views/PublicationRequest';
 
 const propTypes = {};
 

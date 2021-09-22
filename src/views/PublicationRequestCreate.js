@@ -10,12 +10,12 @@ import {
   PaneHeader,
   Paneset,
 } from '@folio/stripes/components';
-import RequestInfo from '../components/publicationRequestCreateSections/requestInfo';
-import CorrespondingAuthor from '../components/publicationRequestCreateSections/correspondingAuthor';
-import RequestContact from '../components/publicationRequestCreateSections/requestContact';
-import Publication from '../components/publicationRequestCreateSections/publication';
-import PublicationStatus from '../components/publicationRequestCreateSections/publicationStatus';
-import Funding from '../components/publicationRequestCreateSections/funding';
+import RequestInfoCreate from '../components/PublicationRequestCreateSections/RequestInfoCreate';
+import CorrespondingAuthorCreate from '../components/PublicationRequestCreateSections/CorrespondingAuthorCreate';
+import RequestContactCreate from '../components/PublicationRequestCreateSections/RequestContactCreate';
+import PublicationCreate from '../components/PublicationRequestCreateSections/PublicationCreate';
+import PublicationStatusCreate from '../components/PublicationRequestCreateSections/PublicationStatusCreate';
+import FundingCreate from '../components/PublicationRequestCreateSections/FundingCreate';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -28,7 +28,7 @@ const propTypes = {
 };
 
 
-const publicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, submitting }) => {
+const PublicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, submitting }) => {
   const renderPaneFooter = () => {
     return (
       <PaneFooter
@@ -65,18 +65,18 @@ const publicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, s
         renderHeader={renderProps => <PaneHeader {...renderProps} paneTitle="New publication request" />}
       >
         <AccordionSet>
-          <RequestInfo />
-          <CorrespondingAuthor />
-          <RequestContact />
-          <Publication />
-          <PublicationStatus />
-          <Funding />
+          <RequestInfoCreate />
+          <CorrespondingAuthorCreate />
+          <RequestContactCreate />
+          <PublicationCreate />
+          <PublicationStatusCreate />
+          <FundingCreate />
         </AccordionSet>
       </Pane>
     </Paneset>
   );
 };
 
-publicationRequestCreate.propTypes = propTypes;
+PublicationRequestCreate.propTypes = propTypes;
 
-export default publicationRequestCreate;
+export default PublicationRequestCreate;
