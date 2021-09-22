@@ -51,7 +51,7 @@ const RequestInfo = ({ request }) => {
             </div>
           </KeyValue>
         </Col>
-        <Col xs={3}/>
+        <Col xs={3} />
       </Row>
       <Row start="xs">
         <Col xs={3}>
