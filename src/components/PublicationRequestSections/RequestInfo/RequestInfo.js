@@ -51,17 +51,7 @@ const RequestInfo = ({ request }) => {
             </div>
           </KeyValue>
         </Col>
-        <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.rejectionReason" />}>
-            <div>
-              {request?.rejectionReason ?
-                <div>{request?.rejectionReason.label}</div>
-                :
-                <NoValue />
-              }
-            </div>
-          </KeyValue>
-        </Col>
+        <Col xs={3}/>
       </Row>
       <Row start="xs">
         <Col xs={3}>
