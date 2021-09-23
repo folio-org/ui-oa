@@ -18,6 +18,9 @@ import IdentifiersFieldArray from './FieldArrays/IdentifiersFieldArray';
 const PublicationCreate = () => {
   const { values } = useFormState();
   const { 0: { values: publicationTypeValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.PublicationType', endpoint: 'oa/refdata' });
+  const { 0: { values: subtypeValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.Subtype', endpoint: 'oa/refdata' });
+  const { 0: { values: publisherValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.Publisher', endpoint: 'oa/refdata' });
+  const { 0: { values: licenseValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.License', endpoint: 'oa/refdata' });
   return (
     <Accordion
       label={<FormattedMessage id="ui-oa.publicationRequest.publication" />}
@@ -45,7 +48,7 @@ const PublicationCreate = () => {
         <Col xs={3}>
           <Field
             component={Select}
-            dataOptions={[]}
+            dataOptions={[{ value: '', label: '' }, ...subtypeValues]}
             label={<FormattedMessage id="ui-oa.publicationRequest.subtype" />}
             name="subtype"
           />
@@ -53,7 +56,7 @@ const PublicationCreate = () => {
         <Col xs={3}>
           <Field
             component={Select}
-            dataOptions={[]}
+            dataOptions={[{ value: '', label: '' }, ...publisherValues]}
             label={<FormattedMessage id="ui-oa.publicationRequest.publisher" />}
             name="publisher"
           />
@@ -61,7 +64,7 @@ const PublicationCreate = () => {
         <Col xs={3}>
           <Field
             component={Select}
-            dataOptions={[]}
+            dataOptions={[{ value: '', label: '' }, ...licenseValues]}
             label={<FormattedMessage id="ui-oa.publicationRequest.license" />}
             name="license"
           />
