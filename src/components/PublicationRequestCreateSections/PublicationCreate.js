@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Field } from 'react-final-form';
+import { Field, useFormState } from 'react-final-form';
 
 import {
   Accordion,
@@ -16,8 +16,8 @@ import { useRefdata } from '@k-int/stripes-kint-components';
 import IdentifiersFieldArray from './FieldArrays/IdentifiersFieldArray';
 
 const PublicationCreate = () => {
+  const { values } = useFormState();
   const { 0: { values: publicationTypeValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.PublicationType', endpoint: 'oa/refdata' });
-
   return (
     <Accordion
       label={<FormattedMessage id="ui-oa.publicationRequest.publication" />}
@@ -122,38 +122,41 @@ const PublicationCreate = () => {
         </Col>
       </Row>
 
-      <Row>
-        <Col xs>
-          <Headline margin="small" size="large" tag="h3">
-            <FormattedMessage id="ui-oa.publicationRequest.journalDetails" />
-          </Headline>
-        </Col>
-      </Row>
+      {values.publicationType === 'journal_article' &&
+        <div>
+          <Row>
+            <Col xs>
+              <Headline margin="small" size="large" tag="h3">
+                <FormattedMessage id="ui-oa.publicationRequest.journalDetails" />
+              </Headline>
+            </Col>
+          </Row>
 
-      <Row end="xs">
-        <Col xs={6}>
-          <Field
-            component={TextField}
-            label={<FormattedMessage id="ui-oa.publicationRequest.journalTitle" />}
-            name="journalTitle"
-          />
-        </Col>
-        <Col xs={3}>
-          <Field
-            component={TextField}
-            label={<FormattedMessage id="ui-oa.publicationRequest.issnPrint" />}
-            name="issnPrint"
-          />
-        </Col>
-        <Col xs={3}>
-          <Field
-            component={TextField}
-            label={<FormattedMessage id="ui-oa.publicationRequest.issnElectronic" />}
-            name="issnElectronic"
-          />
-        </Col>
-      </Row>
-
+          <Row end="xs">
+            <Col xs={6}>
+              <Field
+                component={TextField}
+                label={<FormattedMessage id="ui-oa.publicationRequest.journalTitle" />}
+                name="journalTitle"
+              />
+            </Col>
+            <Col xs={3}>
+              <Field
+                component={TextField}
+                label={<FormattedMessage id="ui-oa.publicationRequest.issnPrint" />}
+                name="issnPrint"
+              />
+            </Col>
+            <Col xs={3}>
+              <Field
+                component={TextField}
+                label={<FormattedMessage id="ui-oa.publicationRequest.issnElectronic" />}
+                name="issnElectronic"
+              />
+            </Col>
+          </Row>
+        </div>
+      }
 
       <Row end="xs">
         <Col xs={3}>
@@ -167,31 +170,36 @@ const PublicationCreate = () => {
         <Col xs={9} />
       </Row>
 
-      <Row>
-        <Col xs>
-          <Headline margin="small" size="large" tag="h3">
-            <FormattedMessage id="ui-oa.publicationRequest.bookDetails" />
-          </Headline>
-        </Col>
-      </Row>
+      {values.publicationType === 'book' &&
+        <div>
+          <Row>
+            <Col xs>
+              <Headline margin="small" size="large" tag="h3">
+                <FormattedMessage id="ui-oa.publicationRequest.bookDetails" />
+              </Headline>
+            </Col>
+          </Row>
 
-      <Row end="xs">
-        <Col xs={3}>
-          <Field
-            component={TextField}
-            label={<FormattedMessage id="ui-oa.publicationRequest.publicationYear" />}
-            name="publicationYear"
-          />
-        </Col>
-        <Col xs={3}>
-          <Field
-            component={TextField}
-            label={<FormattedMessage id="ui-oa.publicationRequest.publicationPlace" />}
-            name="publicationPlace"
-          />
-        </Col>
-        <Col xs={6} />
-      </Row>
+          <Row end="xs">
+            <Col xs={3}>
+              <Field
+                component={TextField}
+                label={<FormattedMessage id="ui-oa.publicationRequest.publicationYear" />}
+                name="publicationYear"
+              />
+            </Col>
+            <Col xs={3}>
+              <Field
+                component={TextField}
+                label={<FormattedMessage id="ui-oa.publicationRequest.publicationPlace" />}
+                name="publicationPlace"
+              />
+            </Col>
+            <Col xs={6} />
+          </Row>
+        </div>
+      }
+
     </Accordion>
   );
 };
