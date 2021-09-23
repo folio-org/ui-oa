@@ -21,6 +21,7 @@ const PublicationCreate = () => {
   const { 0: { values: subtypeValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.Subtype', endpoint: 'oa/refdata' });
   const { 0: { values: publisherValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.Publisher', endpoint: 'oa/refdata' });
   const { 0: { values: licenseValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.License', endpoint: 'oa/refdata' });
+  const { 0: { values: oaStatusValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.OaStatus', endpoint: 'oa/refdata' });
   return (
     <Accordion
       label={<FormattedMessage id="ui-oa.publicationRequest.publication" />}
@@ -159,7 +160,7 @@ const PublicationCreate = () => {
         <Col xs={3}>
           <Field
             component={Select}
-            dataOptions={[]}
+            dataOptions={[{ value: '', label: '' }, ...oaStatusValues]}
             label={<FormattedMessage id="ui-oa.publicationRequest.oaStatus" />}
             name="oaStatus"
           />
