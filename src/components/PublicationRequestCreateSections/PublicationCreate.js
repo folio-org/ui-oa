@@ -4,7 +4,6 @@ import { Field, useFormState } from 'react-final-form';
 
 import {
   Accordion,
-  Button,
   Col,
   Headline,
   Row,
@@ -153,20 +152,20 @@ const PublicationCreate = () => {
               />
             </Col>
           </Row>
+
+          <Row end="xs">
+            <Col xs={3}>
+              <Field
+                component={Select}
+                dataOptions={[{ value: '', label: '' }, ...oaStatusValues]}
+                label={<FormattedMessage id="ui-oa.publicationRequest.oaStatus" />}
+                name="oaStatus"
+              />
+            </Col>
+            <Col xs={9} />
+          </Row>
         </div>
       }
-
-      <Row end="xs">
-        <Col xs={3}>
-          <Field
-            component={Select}
-            dataOptions={[{ value: '', label: '' }, ...oaStatusValues]}
-            label={<FormattedMessage id="ui-oa.publicationRequest.oaStatus" />}
-            name="oaStatus"
-          />
-        </Col>
-        <Col xs={9} />
-      </Row>
 
       {values.publicationType === 'book' &&
         <div>
