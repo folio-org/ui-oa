@@ -25,8 +25,7 @@ const PublicationCreate = () => {
       <Row bottom="xs" start="xs">
         <Col xs={3}>
           <Field
-            component={Select}
-            dataOptions={[]}
+            component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.doi" />}
             name="doi"
           />
@@ -120,6 +119,14 @@ const PublicationCreate = () => {
       <Row>
         <Col xs>
           <IdentifiersFieldArray />
+        </Col>
+      </Row>
+
+      <Row>
+        <Col xs>
+          <Headline margin="small" size="large" tag="h3">
+            <FormattedMessage id="ui-oa.publicationRequest.journalDetails" />
+          </Headline>
         </Col>
       </Row>
 
