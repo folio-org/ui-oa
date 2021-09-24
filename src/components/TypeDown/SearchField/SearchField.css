@@ -1,0 +1,11 @@
+@import '@folio/stripes-components/lib/variables.css';
+
+.searchIcon {
+  color: var(--color-icon);
+  display: flex;
+  align-items: center;
+
+  &.isFocused {
+    fill: var(--primary)
+  }
+}

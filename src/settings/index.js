@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 
 import { useSettings } from '@k-int/stripes-kint-components';
 
-import { RequestStatusEdit } from './settingsComponents';
+import { RequestStatusEdit, TestComponent } from './settingsComponents';
 
 const propTypes = {
   resources: PropTypes.shape({
@@ -25,6 +25,11 @@ const OASettings = (props) => {
       component: RequestStatusEdit,
       label: intl.formatMessage({ id: 'ui-oa.settings.refdata.editPicklistValues' }),
       route: 'requestStatus',
+    },
+    {
+      component: TestComponent,
+      label: "TEST",
+      route: 'test',
     }
   ];
 
