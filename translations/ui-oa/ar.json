@@ -82,5 +82,7 @@
     "publicationRequest.edit": "تحرير",
     "publicationRequest.externalRequestIds": "معرّفات الطلبات الخارجية",
     "publicationRequest.requestTitle": "رقم الطلب - {number}",
-    "publicationRequests": "الطلبات"
+    "publicationRequests": "الطلبات",
+    "settings.refdata.requestStatus": "تحرير حالة الطلب",
+    "settings.refdata.editRefdata": "تحرير قيم قائمة الاختيار"
 }

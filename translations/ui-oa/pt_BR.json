@@ -82,5 +82,7 @@
     "publicationRequest.edit": "Editar",
     "publicationRequest.externalRequestIds": "IDs de solicitação externa",
     "publicationRequest.requestTitle": "Número do pedido - {number}",
-    "publicationRequests": "Solicitações"
+    "publicationRequests": "Solicitações",
+    "settings.refdata.requestStatus": "Edit request status",
+    "settings.refdata.editRefdata": "Edit pick list values"
 }
