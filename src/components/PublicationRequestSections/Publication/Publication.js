@@ -126,6 +126,20 @@ const Publication = ({ request }) => {
         </Col>
       </Row>
 
+      <Row start="xs">
+        <Col xs={3}>
+          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.doi" />}>
+            <div>
+              {request?.doi ?
+                <div>{request.doi}</div>
+                :
+                <NoValue />
+              }
+            </div>
+          </KeyValue>
+        </Col>
+      </Row>
+
       <Row>
         <Col>
           <Label>
