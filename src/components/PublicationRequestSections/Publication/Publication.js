@@ -24,11 +24,24 @@ const formatter = {
 };
 
 const Publication = ({ request }) => {
-  console.log(request)
   return (
     <Accordion
       label={<FormattedMessage id="ui-oa.publicationRequest.publication" />}
     >
+      <Row start="xs">
+        <Col xs={3}>
+          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.doi" />}>
+            <div>
+              {request?.doi ?
+                <div>{request.doi}</div>
+                :
+                <NoValue />
+              }
+            </div>
+          </KeyValue>
+        </Col>
+      </Row>
+
       <Row start="xs">
         <Col xs={6}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.publicationTitle" />}>
@@ -118,20 +131,6 @@ const Publication = ({ request }) => {
             <div>
               {request?.publicationUrl ?
                 <div>{request.publicationUrl}</div>
-                :
-                <NoValue />
-              }
-            </div>
-          </KeyValue>
-        </Col>
-      </Row>
-
-      <Row start="xs">
-        <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.doi" />}>
-            <div>
-              {request?.doi ?
-                <div>{request.doi}</div>
                 :
                 <NoValue />
               }
