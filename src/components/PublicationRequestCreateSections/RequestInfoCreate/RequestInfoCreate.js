@@ -16,14 +16,12 @@ import { useRefdata } from '@k-int/stripes-kint-components';
 import ExternalRequestIdFieldArray from '../FieldArrays/ExternalRequestIdFieldArray';
 
 const RequestInfoCreate = () => {
-  // TODO: Switch to useRefData in stripes-kint-components v2.0.0
   const { 0: { values: requestStatusValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.RequestStatus', endpoint: 'oa/refdata' });
 
   return (
     <div>
       <Row start="xs">
         <Col xs={3}>
-          {/* TODO: Request number value? */}
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.requestNumber" />}>
             <div>
               <NoValue />
