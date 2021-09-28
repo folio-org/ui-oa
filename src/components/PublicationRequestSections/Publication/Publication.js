@@ -7,6 +7,8 @@ import {
   Accordion,
   Col,
   KeyValue,
+  Label,
+  MultiColumnList,
   NoValue,
   Row
 } from '@folio/stripes/components';
@@ -15,7 +17,14 @@ const propTypes = {
   request: PropTypes.object
 };
 
+const formatter = {
+  type: e => {
+    return e?.type?.label;
+  },
+};
+
 const Publication = ({ request }) => {
+  console.log(request)
   return (
     <Accordion
       label={<FormattedMessage id="ui-oa.publicationRequest.publication" />}
@@ -115,6 +124,26 @@ const Publication = ({ request }) => {
             </div>
           </KeyValue>
         </Col>
+      </Row>
+
+      <Row>
+        <Col>
+          <Label>
+            <FormattedMessage id="ui-oa.publicationRequest.identifiers" />
+          </Label>
+        </Col>
+      </Row>
+
+      <Row>
+        <MultiColumnList
+          columnMapping={{
+            type: <FormattedMessage id="ui-oa.identifiers.type" />,
+            publicationIdentifier: <FormattedMessage id="ui-oa.identifiers.identifier" />,
+          }}
+          contentData={request?.identifiers}
+          formatter={formatter}
+          visibleColumns={['type', 'publicationIdentifier']}
+        />
       </Row>
 
     </Accordion>
