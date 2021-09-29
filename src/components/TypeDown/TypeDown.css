@@ -11,7 +11,8 @@
 .menuButton {
   width: 100%;
   margin-bottom: 0;
-  border: none;
+  border: none !important;
+  border-radius: 0;
 
   &:nth-child(even) {
     background-color: var(--color-fill-table-row-odd);
@@ -19,5 +20,9 @@
 
   &:nth-child(odd) {
     background-color: var(--color-fill-table-row-even);
+  }
+
+  &::before {
+    border-radius: 0;
   }
 }

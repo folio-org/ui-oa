@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { useQuery } from 'react-query';
 
@@ -10,12 +10,9 @@ import SearchField from './SearchField';
 import css from './TypeDown.css';
 
 const TypeDown = ({ input, meta, path, pathMutator }) => {
-
-
   const ky = useOkapiKy();
 
   const [callPath, setCallPath] = useState(path);
-  const [value, setValue] = useState();
 
   const { data } = useQuery(
     // Ensure when multiple apps are using this function that each one gets memoized individually
@@ -23,49 +20,58 @@ const TypeDown = ({ input, meta, path, pathMutator }) => {
     () => ky(callPath).json()
   );
 
-
   const handleChange = (e) => {
     setCallPath(pathMutator(e.target.value, path));
   };
 
   const [searchWidth, setSearchWidth] = useState('100%');
-  const menu = () => (
-    <DropdownMenu
-      overrideStyle={{ padding: 0 }}
-    >
-      {data?.map(d => {
-        return (
-          <div style={{ width: searchWidth }}>
-            <Button
-              buttonClass={css.menuButton}
-            >
-              Hello
-            </Button>
-          </div>
-        );
-      })}
-    </DropdownMenu>
-  );
+
+  const menu = ({ onToggle }) => {
+    return (
+      <DropdownMenu
+        overrideStyle={{ padding: 0 }}
+      >
+        <div
+          style={{ width: searchWidth }}
+        >
+          {data?.map(d => {
+            return (
+              <Button
+                buttonClass={css.menuButton}
+                fullWidth
+                onClick={() => {
+                  onToggle();
+                  input.onChange(d);
+                }}
+              >
+                Hello
+              </Button>
+            );
+          })}
+        </div>
+      </DropdownMenu>
+    );
+  };
 
   return (
     <>
       <input
         {...input}
         type="hidden"
-        value={value}
       />
       <Dropdown
         key="typedown-menu-toggle"
         className={css.fullWidth}
         hasPadding
         renderMenu={menu}
-        renderTrigger={({ onToggle, triggerRef }) => {
+        renderTrigger={({ onToggle, open, triggerRef }) => {
           setSearchWidth(`${triggerRef.current?.offsetWidth}px`);
           return (
             <div
               ref={triggerRef}
-              onBlur={() => onToggle()}
-              onFocus={() => onToggle()}
+              onFocus={() => {
+                onToggle();
+              }}
             >
               <SearchField
                 onChange={handleChange}
@@ -73,6 +79,7 @@ const TypeDown = ({ input, meta, path, pathMutator }) => {
             </div>
           );
         }}
+        usePortal
       />
     </>
   );
