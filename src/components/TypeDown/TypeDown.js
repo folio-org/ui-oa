@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 import { useQuery } from 'react-query';
 
@@ -8,6 +8,8 @@ import { Button, Dropdown, DropdownMenu } from '@folio/stripes/components';
 
 import SearchField from './SearchField';
 import css from './TypeDown.css';
+
+import useTypedownToggle from './useTypedownToggle';
 
 const TypeDown = ({ input, meta, path, pathMutator }) => {
   const ky = useOkapiKy();
@@ -20,13 +22,16 @@ const TypeDown = ({ input, meta, path, pathMutator }) => {
     () => ky(callPath).json()
   );
 
+  const { open, onToggle } = useTypedownToggle();
+
   const handleChange = (e) => {
     setCallPath(pathMutator(e.target.value, path));
   };
 
   const [searchWidth, setSearchWidth] = useState('100%');
+  const focusRef = useRef();
 
-  const menu = ({ onToggle }) => {
+  const menu = useCallback(() => {
     return (
       <DropdownMenu
         overrideStyle={{ padding: 0 }}
@@ -34,14 +39,16 @@ const TypeDown = ({ input, meta, path, pathMutator }) => {
         <div
           style={{ width: searchWidth }}
         >
-          {data?.map(d => {
+          {data?.map((d, index) => {
             return (
               <Button
+                key={`typedown-button-[${index}]`}
                 buttonClass={css.menuButton}
                 fullWidth
+                id={`typedown-button-[${index}]`}
                 onClick={() => {
-                  onToggle();
                   input.onChange(d);
+                  focusRef.current.focus();
                 }}
               >
                 Hello
@@ -51,7 +58,7 @@ const TypeDown = ({ input, meta, path, pathMutator }) => {
         </div>
       </DropdownMenu>
     );
-  };
+  }, [data, input, searchWidth]);
 
   return (
     <>
@@ -63,23 +70,29 @@ const TypeDown = ({ input, meta, path, pathMutator }) => {
         key="typedown-menu-toggle"
         className={css.fullWidth}
         hasPadding
+        onToggle={onToggle}
+        open={open}
         renderMenu={menu}
-        renderTrigger={({ onToggle, open, triggerRef }) => {
+        renderTrigger={({ triggerRef }) => {
           setSearchWidth(`${triggerRef.current?.offsetWidth}px`);
           return (
             <div
               ref={triggerRef}
-              onFocus={() => {
-                onToggle();
-              }}
             >
               <SearchField
+                id="typedown-searchField"
                 onChange={handleChange}
               />
             </div>
           );
         }}
         usePortal
+      />
+      {/* Hidden div to give focus to on button click and close menu */}
+      <div
+        ref={focusRef}
+        id="typedown-lose-focus"
+        tabIndex={-1}
       />
     </>
   );
