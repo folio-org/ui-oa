@@ -15,6 +15,7 @@ import SearchField from './SearchField';
 import css from './TypeDown.css';
 
 import useTypedownToggle from './useTypedownToggle';
+import { first } from 'lodash';
 
 const TypeDown = ({
   input,
@@ -56,6 +57,9 @@ const TypeDown = ({
     </div>
   ), [renderListItem, uniqueIdentificationPath]);
 
+  const firstItem = useRef();
+  const lastItem = useRef();
+
   const menu = useCallback(() => {
     return (
       <DropdownMenu
@@ -70,9 +74,17 @@ const TypeDown = ({
       >
         {data?.map((d, index) => {
           const isSelected = get(input.value, uniqueIdentificationPath) === get(d, uniqueIdentificationPath)
+          let itemRef = null;
+          if (index === 0) {
+            itemRef = firstItem;
+          } else if (index === data.length - 1) {
+            itemRef = lastItem;
+          }
+
           return (
             <button
               key={`typedown-button-[${index}]`}
+              ref={itemRef}
               className={classnames(
                 interactionStyles,
                 css.fullWidth,
@@ -128,6 +140,17 @@ const TypeDown = ({
                 id="typedown-searchField"
                 marginBottom0
                 onChange={handleChange}
+                onKeyDown={e => {
+                  // Up arrow
+                  if (e.keyCode === 38) {
+                    lastItem.current.focus();
+                  }
+
+                  // Down arrow
+                  if (e.keyCode === 40) {
+                    firstItem.current.focus();
+                  }
+                }}
               />
             </div>
           );
