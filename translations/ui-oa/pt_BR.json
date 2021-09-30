@@ -69,7 +69,7 @@
     "publicationStatus.publicationStatusDate": "Data do status",
     "publicationStatus.publicationStatusNote": "Nota do status",
     "streetAddresses.removeStreetAddress": "Remover  endereço {number}",
-    "streetAddresses.streetAddressTitle": "Endereço {número}",
+    "streetAddresses.streetAddressTitle": "Endereço {number}",
     "streetAddresses.addressType": "Tipo de endereço",
     "streetAddresses.addressLine1": "Linha de endereço 1",
     "streetAddresses.addressLine2": "Linha de endereço 2",
