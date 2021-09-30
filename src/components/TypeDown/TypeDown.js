@@ -1,20 +1,29 @@
 import React, { useCallback, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import { useQuery } from 'react-query';
+import get from 'lodash/get';
 
 import { useOkapiKy } from '@folio/stripes/core';
-
-import { Button, Dropdown, DropdownMenu } from '@folio/stripes/components';
+import { Dropdown, DropdownMenu } from '@folio/stripes/components';
 
 import SearchField from './SearchField';
 import css from './TypeDown.css';
 
 import useTypedownToggle from './useTypedownToggle';
 
-const TypeDown = ({ input, meta, path, pathMutator }) => {
+const TypeDown = ({
+  input,
+  path,
+  pathMutator,
+  renderListItem = null,
+  uniqueIdentificationPath = 'id'
+}) => {
   const ky = useOkapiKy();
+  const selectedUniqueId = get(input.value, uniqueIdentificationPath);
 
-  const [callPath, setCallPath] = useState(path);
+  const [callPath, setCallPath] = useState(pathMutator(null, path));
 
   const { data } = useQuery(
     // Ensure when multiple apps are using this function that each one gets memoized individually
@@ -31,6 +40,17 @@ const TypeDown = ({ input, meta, path, pathMutator }) => {
   const [searchWidth, setSearchWidth] = useState('100%');
   const focusRef = useRef();
 
+  const renderItem = useCallback((option) => (
+    <div
+      className={css.listItem}
+    >
+      {renderListItem ?
+        renderListItem(option) :
+        get(option, uniqueIdentificationPath)
+      }
+    </div>
+  ), [renderListItem, uniqueIdentificationPath]);
+
   const menu = useCallback(() => {
     return (
       <DropdownMenu
@@ -40,25 +60,36 @@ const TypeDown = ({ input, meta, path, pathMutator }) => {
           style={{ width: searchWidth }}
         >
           {data?.map((d, index) => {
+            const isSelected = get(input.value, uniqueIdentificationPath) === get(d, uniqueIdentificationPath)
             return (
-              <Button
+              <button
                 key={`typedown-button-[${index}]`}
-                buttonClass={css.menuButton}
-                fullWidth
+                className={classnames(
+                  css.fullWidth,
+                  css.menuButton,
+                  isSelected ? css.selected : ''
+                )}
                 id={`typedown-button-[${index}]`}
                 onClick={() => {
                   input.onChange(d);
                   focusRef.current.focus();
                 }}
+                type="button"
               >
-                Hello
-              </Button>
+                {renderItem(d)}
+              </button>
             );
           })}
         </div>
       </DropdownMenu>
     );
-  }, [data, input, searchWidth]);
+  }, [
+    data,
+    input,
+    renderItem,
+    searchWidth,
+    uniqueIdentificationPath
+  ]);
 
   return (
     <>
@@ -68,7 +99,10 @@ const TypeDown = ({ input, meta, path, pathMutator }) => {
       />
       <Dropdown
         key="typedown-menu-toggle"
-        className={css.fullWidth}
+        className={classnames(
+          css.dropdown,
+          css.fullWidth
+        )}
         hasPadding
         onToggle={onToggle}
         open={open}
@@ -81,6 +115,7 @@ const TypeDown = ({ input, meta, path, pathMutator }) => {
             >
               <SearchField
                 id="typedown-searchField"
+                marginBottom0
                 onChange={handleChange}
               />
             </div>
@@ -88,6 +123,17 @@ const TypeDown = ({ input, meta, path, pathMutator }) => {
         }}
         usePortal
       />
+      {selectedUniqueId && !open &&
+        <div
+          className={classnames(
+            css.selected,
+            css.selectedDisplay
+          )}
+          style={{ width: searchWidth }}
+        >
+          {renderItem(input.value)}
+        </div>
+      }
       {/* Hidden div to give focus to on button click and close menu */}
       <div
         ref={focusRef}
@@ -96,6 +142,15 @@ const TypeDown = ({ input, meta, path, pathMutator }) => {
       />
     </>
   );
+};
+
+TypeDown.propTypes = {
+  input: PropTypes.object,
+  meta: PropTypes.object,
+  path: PropTypes.string,
+  pathMutator: PropTypes.func,
+  renderListItem: PropTypes.func,
+  uniqueIdentificationPath: PropTypes.string
 };
 
 export default TypeDown;

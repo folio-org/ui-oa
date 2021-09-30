@@ -4,14 +4,22 @@
   width: 100%;
 }
 
+.dropdown {
+  margin-bottom: 0;
+}
+
 .dropdownMenu {
   padding: 0;
 }
 
+.selected {
+  background-color: var(--primary) !important;
+  color: #fff !important;
+}
+
 .menuButton {
-  width: 100%;
   margin-bottom: 0;
-  border: none !important;
+  border: none;
   border-radius: 0;
 
   &:nth-child(even) {
@@ -25,4 +33,12 @@
   &::before {
     border-radius: 0;
   }
+}
+
+.listItem {
+  padding: var(--gutter-static-one-third) var(--gutter-static-two-thirds)
+}
+
+.selectedDisplay {
+  border-radius: 0 0 var(--radius) var(--radius)
 }

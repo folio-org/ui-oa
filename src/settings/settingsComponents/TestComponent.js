@@ -7,8 +7,13 @@ import { Form, Field, useFormState } from 'react-final-form';
 const TestField = () => {
 
   const pathMutator = (input, path) => {
-    const withFilters = `?match=name&match=alternateNames.name&term=${input}`;
-    return `${path}${input ? withFilters : ''}`;
+    const pathParams = [];
+    if (input) {
+      pathParams.push(`match=name&match=alternateNames.name&term=${input}`)
+    }
+    pathParams.push('sort=name;asc');
+
+    return `${path}?${pathParams.join('&')}`;
   };
   console.log("Current values: %o", useFormState()?.values)
   return (
@@ -17,6 +22,13 @@ const TestField = () => {
       name="test"
       path="erm/sas"
       pathMutator={pathMutator}
+      renderListItem={agreement => {
+        return (
+          <div>
+            {agreement.name}
+          </div>
+        );
+      }}
     />
     );
 };
