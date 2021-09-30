@@ -7,11 +7,11 @@ const useTypedownToggle = () => {
     setOpen(!open);
   }, [open, setOpen]);
 
-  const regexp = /typedown-button-\[\d+\]/;
-
   const focusedElement = useActiveElement();
-  const openBool = !open && (focusedElement.id === 'typedown-searchField' || regexp.test(focusedElement.id));
-  const closeBool = open && focusedElement.id !== 'typedown-searchField' && !regexp.test(focusedElement.id);
+
+  // Trawl up element stack and check if a typedown-parent exists, use that to toggle
+  const openBool = !open && focusedElement.closest('[id^=typedown-parent]') !== null;
+  const closeBool = open && focusedElement.closest('[id^=typedown-parent]') === null;
 
   useEffect(() => {
     if (openBool || closeBool) {

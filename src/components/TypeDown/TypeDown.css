@@ -36,7 +36,7 @@
 }
 
 .listItem {
-  padding: var(--gutter-static-one-third) var(--gutter-static-two-thirds)
+  padding: var(--gutter-static-two-thirds) var(--gutter)
 }
 
 .selectedDisplay {

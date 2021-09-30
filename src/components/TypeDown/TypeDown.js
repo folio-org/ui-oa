@@ -4,9 +4,12 @@ import classnames from 'classnames';
 
 import { useQuery } from 'react-query';
 import get from 'lodash/get';
+import { useResizeDetector } from 'react-resize-detector';
 
 import { useOkapiKy } from '@folio/stripes/core';
 import { Dropdown, DropdownMenu } from '@folio/stripes/components';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { interactionStyles } from '@folio/stripes-components/lib/sharedStyles/interactionStyles.css';
 
 import SearchField from './SearchField';
 import css from './TypeDown.css';
@@ -37,7 +40,9 @@ const TypeDown = ({
     setCallPath(pathMutator(e.target.value, path));
   };
 
-  const [searchWidth, setSearchWidth] = useState('100%');
+  // useResizeDetector fires redraw on size change to keep all elements in sync
+  const { width: searchWidth, ref: resizeRef } = useResizeDetector();
+
   const focusRef = useRef();
 
   const renderItem = useCallback((option) => (
@@ -54,33 +59,37 @@ const TypeDown = ({
   const menu = useCallback(() => {
     return (
       <DropdownMenu
-        overrideStyle={{ padding: 0 }}
+        id="typedown-parent-menu"
+        overrideStyle={{
+          padding: 0,
+          'margin-top': 0,
+          'max-width': searchWidth,
+          'min-width': searchWidth,
+          overflow: 'hidden'
+        }}
       >
-        <div
-          style={{ width: searchWidth }}
-        >
-          {data?.map((d, index) => {
-            const isSelected = get(input.value, uniqueIdentificationPath) === get(d, uniqueIdentificationPath)
-            return (
-              <button
-                key={`typedown-button-[${index}]`}
-                className={classnames(
-                  css.fullWidth,
-                  css.menuButton,
-                  isSelected ? css.selected : ''
-                )}
-                id={`typedown-button-[${index}]`}
-                onClick={() => {
-                  input.onChange(d);
-                  focusRef.current.focus();
-                }}
-                type="button"
-              >
-                {renderItem(d)}
-              </button>
-            );
-          })}
-        </div>
+        {data?.map((d, index) => {
+          const isSelected = get(input.value, uniqueIdentificationPath) === get(d, uniqueIdentificationPath)
+          return (
+            <button
+              key={`typedown-button-[${index}]`}
+              className={classnames(
+                interactionStyles,
+                css.fullWidth,
+                css.menuButton,
+                isSelected ? css.selected : ''
+              )}
+              id={`typedown-button-[${index}]`}
+              onClick={() => {
+                input.onChange(d);
+                focusRef.current.focus();
+              }}
+              type="button"
+            >
+              {renderItem(d)}
+            </button>
+          );
+        })}
       </DropdownMenu>
     );
   }, [
@@ -92,7 +101,9 @@ const TypeDown = ({
   ]);
 
   return (
-    <>
+    <div
+      ref={resizeRef}
+    >
       <input
         {...input}
         type="hidden"
@@ -104,11 +115,11 @@ const TypeDown = ({
           css.fullWidth
         )}
         hasPadding
+        id="typedown-parent-dropdown"
         onToggle={onToggle}
         open={open}
         renderMenu={menu}
         renderTrigger={({ triggerRef }) => {
-          setSearchWidth(`${triggerRef.current?.offsetWidth}px`);
           return (
             <div
               ref={triggerRef}
@@ -129,7 +140,6 @@ const TypeDown = ({
             css.selected,
             css.selectedDisplay
           )}
-          style={{ width: searchWidth }}
         >
           {renderItem(input.value)}
         </div>
@@ -140,7 +150,7 @@ const TypeDown = ({
         id="typedown-lose-focus"
         tabIndex={-1}
       />
-    </>
+    </div>
   );
 };
 

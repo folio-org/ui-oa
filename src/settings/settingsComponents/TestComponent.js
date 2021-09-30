@@ -1,11 +1,13 @@
 import React from 'react';
 
 import { Pane } from '@folio/stripes/components';
-import TypeDown from '../../components/TypeDown/TypeDown';
+import { AppIcon } from '@folio/stripes/core';
+
 import { Form, Field, useFormState } from 'react-final-form';
 
-const TestField = () => {
+import TypeDown from '../../components/TypeDown/TypeDown';
 
+const TestField = () => {
   const pathMutator = (input, path) => {
     const pathParams = [];
     if (input) {
@@ -24,9 +26,14 @@ const TestField = () => {
       pathMutator={pathMutator}
       renderListItem={agreement => {
         return (
-          <div>
-            {agreement.name}
-          </div>
+          <>
+            <AppIcon
+              app="agreements"
+              size="small"
+            >
+              {agreement.name}
+            </AppIcon>
+          </>
         );
       }}
     />
