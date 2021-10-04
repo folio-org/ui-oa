@@ -6,8 +6,9 @@ import { FormattedMessage } from 'react-intl';
 import {
   Accordion,
   Badge,
-  Row
 } from '@folio/stripes/components';
+
+import RequestPartyInfo from '../RequestPartyInfo';
 
 const propTypes = {
   request: PropTypes.object
@@ -18,7 +19,6 @@ const renderBadge = (requestContact) => {
 }
 
 const RequestContact = ({ request }) => {
-  console.log(request)
   return (
     <Accordion
       closedByDefault
@@ -26,9 +26,7 @@ const RequestContact = ({ request }) => {
       displayWhenOpen={renderBadge(request?.requestContact)}
       label={<FormattedMessage id="ui-oa.publicationRequest.requestContact" />}
     >
-      <Row>
-        <h5>To be implemented</h5>
-      </Row>
+      <RequestPartyInfo party={request?.requestContact} />
     </Accordion>
   );
 };
