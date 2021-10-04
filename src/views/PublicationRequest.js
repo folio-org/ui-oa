@@ -15,6 +15,8 @@ import RequestInfo from '../components/PublicationRequestSections/RequestInfo/Re
 import CorrespondingAuthor from '../components/PublicationRequestSections/CorrespondingAuthor/CorrespondingAuthor';
 import Publication from '../components/PublicationRequestSections/Publication/Publication';
 import PublicationStatus from '../components/PublicationRequestSections/PublicationStatus/PublicationStatus';
+import RequestContact from '../components/PublicationRequestSections/RequestContact/RequestContact';
+import Funding from '../components/PublicationRequestSections/Funding/Funding';
 
 const propTypes = {
   data: PropTypes.object,
@@ -53,8 +55,10 @@ const PublicationRequest = ({ handlers, data: { publicationRequest: request } = 
       <RequestInfo request={request} />
       <AccordionSet>
         <CorrespondingAuthor request={request} />
+        <RequestContact request={request} />
         <Publication request={request} />
         <PublicationStatus request={request} />
+        <Funding request={request} />
       </AccordionSet>
     </Pane>
   );

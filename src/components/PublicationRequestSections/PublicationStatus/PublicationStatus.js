@@ -5,10 +5,8 @@ import { FormattedMessage } from 'react-intl';
 
 import {
   Accordion,
-  Col,
-  KeyValue,
+  Badge,
   MultiColumnList,
-  NoValue,
   Row
 } from '@folio/stripes/components';
 
@@ -22,10 +20,17 @@ const formatter = {
   },
 };
 
+const renderBadge = (publicationStatuses) => {
+  return <Badge>{publicationStatuses?.length}</Badge>
+}
+
 const PublicationStatus = ({ request }) => {
   console.log(request)
   return (
     <Accordion
+      closedByDefault
+      displayWhenClosed={renderBadge(request?.publicationStatuses)}
+      displayWhenOpen={renderBadge(request?.publicationStatuses)}
       label={<FormattedMessage id="ui-oa.publicationRequest.publicationStatus" />}
     >
       <Row>

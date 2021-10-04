@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 
 import {
   Accordion,
+  Badge,
   Col,
   KeyValue,
   Label,
@@ -23,9 +24,29 @@ const formatter = {
   },
 };
 
+const isPublication = (request) => {
+  return (request?.doi ||
+    request?.publicationTitle ||
+    request?.authorNames ||
+    request?.publicationType ||
+    request?.subtype ||
+    request?.publisher ||
+    request?.license ||
+    request?.localReference ||
+    request?.publicationUrl ||
+    request?.identifiers?.length !== 0) ? true : false
+}
+
+const renderBadge = (request) => {
+  return isPublication(request) ? <Badge>1</Badge> : <Badge>0</Badge>
+}
+
 const Publication = ({ request }) => {
   return (
     <Accordion
+      closedByDefault
+      displayWhenClosed={renderBadge(request)}
+      displayWhenOpen={renderBadge(request)}
       label={<FormattedMessage id="ui-oa.publicationRequest.publication" />}
     >
       <Row start="xs">

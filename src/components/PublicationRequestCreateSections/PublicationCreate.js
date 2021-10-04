@@ -105,7 +105,7 @@ const PublicationCreate = () => {
         </Col>
       </Row>
 
-      <Row>
+      <Row middle="xs">
         <Col xs>
           <Headline margin="small" size="large" tag="h3">
             <FormattedMessage id="ui-oa.publicationRequest.identifiers" />
