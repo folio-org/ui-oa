@@ -83,6 +83,7 @@
   "publicationStatus.requestHasNone": "No publication statuses for this publication request",
   "publicationStatus.publicationStatusDate": "Status Date",
   "publicationStatus.publicationStatusNote": "Status Note",
+  "publicationStatus.status": "Status",
 
   "streetAddresses.removeStreetAddress": "Remove street address {number}",
   "streetAddresses.streetAddressTitle": "Street address {number}",
