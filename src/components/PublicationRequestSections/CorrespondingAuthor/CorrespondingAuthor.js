@@ -111,6 +111,22 @@ const CorrespondingAuthor = ({ request }) => {
         </Col>
         <Col xs={3} />
       </Row>
+
+      <Row start="xs">
+        <Col xs={6}>
+          <KeyValue label={<FormattedMessage id="ui-oa.otherEmail.otherEmailAddresses" />}>
+            <div>
+              {request?.otherEmailAddresses?.length ?
+                <ul>
+                  {request?.otherEmailAddresses?.map(email => <li key={email?.id}>{email?.emailAddress}</li>)}
+                </ul>
+                :
+                <NoValue />
+              }
+            </div>
+          </KeyValue>
+        </Col>
+      </Row>
     </Accordion>
   );
 };
