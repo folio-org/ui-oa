@@ -15,8 +15,8 @@ const propTypes = {
 };
 
 const renderBadge = (requestContact) => {
-  return requestContact ? <Badge>1</Badge> : <Badge>0</Badge>
-}
+  return requestContact ? <Badge>1</Badge> : <Badge>0</Badge>;
+};
 
 const RequestContact = ({ request }) => {
   return (

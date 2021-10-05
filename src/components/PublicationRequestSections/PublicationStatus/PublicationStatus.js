@@ -23,11 +23,10 @@ const formatter = {
 const renderBadge = (publicationStatuses) => {
   return publicationStatuses ?
     <Badge>{publicationStatuses?.length}</Badge> :
-    <Badge>0</Badge>
-}
+    <Badge>0</Badge>;
+};
 
 const PublicationStatus = ({ request }) => {
-  console.log(request)
   return (
     <Accordion
       closedByDefault

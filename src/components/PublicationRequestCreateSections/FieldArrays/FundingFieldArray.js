@@ -53,7 +53,6 @@ const renderEmpty = () => {
 };
 
 const FundingFieldArray = () => {
-
   return (
     <FieldArray name="funding">
       {({ fields }) => (

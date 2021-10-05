@@ -19,8 +19,8 @@ const propTypes = {
 };
 
 const renderBadge = (correspondingAuthor) => {
-  return correspondingAuthor ? <Badge>1</Badge> : <Badge>0</Badge>
-}
+  return correspondingAuthor ? <Badge>1</Badge> : <Badge>0</Badge>;
+};
 
 const CorrespondingAuthor = ({ request }) => {
   return (

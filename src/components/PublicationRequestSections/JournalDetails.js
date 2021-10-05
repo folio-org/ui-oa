@@ -4,11 +4,9 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 import {
-  Card,
   Col,
   Headline,
   KeyValue,
-  Label,
   NoValue,
   Row
 } from '@folio/stripes/components';

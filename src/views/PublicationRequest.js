@@ -41,9 +41,9 @@ const PublicationRequest = ({ handlers, data: { publicationRequest: request } = 
       )}
       appIcon={<AppIcon app="oa" iconKey="app" size="small" />}
       defaultWidth="55%"
-      dismissible={true}
+      dismissible
       onClose={handlers.onClose}
-      paneSub={request?.publicationTitle !== undefined ? request?.publicationTitle : ""}
+      paneSub={request?.publicationTitle !== undefined ? request?.publicationTitle : ''}
       paneTitle={<FormattedMessage id="ui-oa.publicationRequest.requestTitle" values={{ number: request?.requestNumber }} />}
     >
       <MetaSection

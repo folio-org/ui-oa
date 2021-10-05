@@ -18,8 +18,8 @@ const propTypes = {
 const renderBadge = (funders) => {
   return funders ?
     <Badge>{funders?.length}</Badge> :
-    <Badge>0</Badge>
-}
+    <Badge>0</Badge>;
+};
 
 const Funding = ({ request }) => {
   return (

@@ -28,15 +28,15 @@ const formatter = {
 };
 
 const isJournal = (request) => {
-  return request?.publicationType?.value === 'journal_article' ? true : false
-}
+  return request?.publicationType?.value === 'journal_article';
+};
 
 const isBook = (request) => {
-  return request?.publicationType?.value === 'book' ? true : false
-}
+  return request?.publicationType?.value === 'book';
+};
 
 const hasPublication = (request) => {
-  return (request?.doi ||
+  return !!((request?.doi ||
     request?.publicationTitle ||
     request?.authorNames ||
     request?.publicationType ||
@@ -45,12 +45,12 @@ const hasPublication = (request) => {
     request?.license ||
     request?.localReference ||
     request?.publicationUrl ||
-    request?.identifiers?.length !== 0) ? true : false
-}
+    request?.identifiers?.length !== 0));
+};
 
 const renderBadge = (request) => {
-  return hasPublication(request) ? <Badge>1</Badge> : <Badge>0</Badge>
-}
+  return hasPublication(request) ? <Badge>1</Badge> : <Badge>0</Badge>;
+};
 
 const Publication = ({ request }) => {
   return (
@@ -148,7 +148,7 @@ const Publication = ({ request }) => {
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.publicationUrl" />}>
             <div>
               {request?.publicationUrl ?
-                <a href={request.publicationUrl} >
+                <a href={request.publicationUrl}>
                   {request.publicationUrl}
                   <Icon icon="external-link" iconPosition="end" />
                 </a>
@@ -165,7 +165,7 @@ const Publication = ({ request }) => {
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.doi" />}>
             <div>
               {request?.doi ?
-                <a href={"https://dx.doi.org/" + request.doi} >
+                <a href={'https://dx.doi.org/' + request.doi}>
                   {request.doi}
                   <Icon icon="external-link" iconPosition="end" />
                 </a>

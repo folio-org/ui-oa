@@ -115,8 +115,8 @@ const renderStreetAddresses = (streetAddresses) => {
         </Row>
       ))}
     </div>
-  )
-}
+  );
+};
 
 const RequestContact = ({ request }) => {
   return (
