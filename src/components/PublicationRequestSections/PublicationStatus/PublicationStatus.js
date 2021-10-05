@@ -21,7 +21,9 @@ const formatter = {
 };
 
 const renderBadge = (publicationStatuses) => {
-  return <Badge>{publicationStatuses?.length}</Badge>
+  return publicationStatuses ?
+    <Badge>{publicationStatuses?.length}</Badge> :
+    <Badge>0</Badge>
 }
 
 const PublicationStatus = ({ request }) => {
