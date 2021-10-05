@@ -69,7 +69,7 @@
     "publicationStatus.publicationStatusDate": "Data do status",
     "publicationStatus.publicationStatusNote": "Nota do status",
     "streetAddresses.removeStreetAddress": "Remover  endereço {number}",
-    "streetAddresses.streetAddressTitle": "Endereço {número}",
+    "streetAddresses.streetAddressTitle": "Endereço {number}",
     "streetAddresses.addressType": "Tipo de endereço",
     "streetAddresses.addressLine1": "Linha de endereço 1",
     "streetAddresses.addressLine2": "Linha de endereço 2",
@@ -82,5 +82,7 @@
     "publicationRequest.edit": "Editar",
     "publicationRequest.externalRequestIds": "IDs de solicitação externa",
     "publicationRequest.requestTitle": "Número do pedido - {number}",
-    "publicationRequests": "Solicitações"
+    "publicationRequests": "Solicitações",
+    "settings.refdata.requestStatus": "Edit request status",
+    "settings.refdata.editRefdata": "Edit pick list values"
 }
