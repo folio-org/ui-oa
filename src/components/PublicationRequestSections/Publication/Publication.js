@@ -14,6 +14,8 @@ import {
   NoValue,
   Row
 } from '@folio/stripes/components';
+import JournalDetails from '../JournalDetails';
+import BookDetails from '../BookDetails';
 
 const propTypes = {
   request: PropTypes.object
@@ -25,7 +27,15 @@ const formatter = {
   },
 };
 
-const isPublication = (request) => {
+const isJournal = (request) => {
+  return request?.publicationType?.value === 'journal_article' ? true : false
+}
+
+const isBook = (request) => {
+  return request?.publicationType?.value === 'book' ? true : false
+}
+
+const hasPublication = (request) => {
   return (request?.doi ||
     request?.publicationTitle ||
     request?.authorNames ||
@@ -39,7 +49,7 @@ const isPublication = (request) => {
 }
 
 const renderBadge = (request) => {
-  return isPublication(request) ? <Badge>1</Badge> : <Badge>0</Badge>
+  return hasPublication(request) ? <Badge>1</Badge> : <Badge>0</Badge>
 }
 
 const Publication = ({ request }) => {
@@ -50,23 +60,6 @@ const Publication = ({ request }) => {
       displayWhenOpen={renderBadge(request)}
       label={<FormattedMessage id="ui-oa.publicationRequest.publication" />}
     >
-      <Row start="xs">
-        <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.doi" />}>
-            <div>
-              {request?.doi ?
-                <a href={"https://dx.doi.org/" + request.doi} >
-                  {request.doi}
-                  <Icon icon="external-link" iconPosition="end" />
-                </a>
-                :
-                <NoValue />
-              }
-            </div>
-          </KeyValue>
-        </Col>
-      </Row>
-
       <Row start="xs">
         <Col xs={6}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.publicationTitle" />}>
@@ -167,10 +160,27 @@ const Publication = ({ request }) => {
         </Col>
       </Row>
 
+      <Row start="xs">
+        <Col xs={3}>
+          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.doi" />}>
+            <div>
+              {request?.doi ?
+                <a href={"https://dx.doi.org/" + request.doi} >
+                  {request.doi}
+                  <Icon icon="external-link" iconPosition="end" />
+                </a>
+                :
+                <NoValue />
+              }
+            </div>
+          </KeyValue>
+        </Col>
+      </Row>
+
       <Row>
         <Col xs={12}>
           <Label>
-            <FormattedMessage id="ui-oa.publicationRequest.identifiers" />
+            <FormattedMessage id="ui-oa.identifiers.otherIdentifiers" />
           </Label>
           <MultiColumnList
             columnMapping={{
@@ -184,6 +194,14 @@ const Publication = ({ request }) => {
         </Col>
       </Row>
 
+      {isJournal(request) ?
+        <JournalDetails request={request} /> :
+        <div />
+      }
+      {isBook(request) ?
+        <BookDetails request={request} /> :
+        <div />
+      }
     </Accordion>
   );
 };
