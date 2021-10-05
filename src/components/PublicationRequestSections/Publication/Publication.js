@@ -7,6 +7,7 @@ import {
   Accordion,
   Badge,
   Col,
+  Icon,
   KeyValue,
   Label,
   MultiColumnList,
@@ -54,7 +55,10 @@ const Publication = ({ request }) => {
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.doi" />}>
             <div>
               {request?.doi ?
-                <div>{request.doi}</div>
+                <a href={"https://dx.doi.org/" + request.doi} >
+                  {request.doi}
+                  <Icon icon="external-link" iconPosition="end" />
+                </a>
                 :
                 <NoValue />
               }
@@ -151,7 +155,10 @@ const Publication = ({ request }) => {
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.publicationUrl" />}>
             <div>
               {request?.publicationUrl ?
-                <div>{request.publicationUrl}</div>
+                <a href={request.publicationUrl} >
+                  {request.publicationUrl}
+                  <Icon icon="external-link" iconPosition="end" />
+                </a>
                 :
                 <NoValue />
               }
@@ -161,23 +168,20 @@ const Publication = ({ request }) => {
       </Row>
 
       <Row>
-        <Col>
+        <Col xs={12}>
           <Label>
             <FormattedMessage id="ui-oa.publicationRequest.identifiers" />
           </Label>
+          <MultiColumnList
+            columnMapping={{
+              type: <FormattedMessage id="ui-oa.identifiers.type" />,
+              publicationIdentifier: <FormattedMessage id="ui-oa.identifiers.identifier" />,
+            }}
+            contentData={request?.identifiers}
+            formatter={formatter}
+            visibleColumns={['type', 'publicationIdentifier']}
+          />
         </Col>
-      </Row>
-
-      <Row>
-        <MultiColumnList
-          columnMapping={{
-            type: <FormattedMessage id="ui-oa.identifiers.type" />,
-            publicationIdentifier: <FormattedMessage id="ui-oa.identifiers.identifier" />,
-          }}
-          contentData={request?.identifiers}
-          formatter={formatter}
-          visibleColumns={['type', 'publicationIdentifier']}
-        />
       </Row>
 
     </Accordion>
