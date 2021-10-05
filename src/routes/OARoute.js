@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useQuery } from 'react-query';
 import generateKiwtQuery from '../util/generateKiwtQuery';
-import OAView from '../components/OAView';
+import OAView from '../views/OAView/OAView';
 import useKiwtSASQuery from '../util/useKiwtSASQuery';
 
 const propTypes = {

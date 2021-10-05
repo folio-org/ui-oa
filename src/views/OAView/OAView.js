@@ -22,7 +22,7 @@ import urls from '../../util/urls';
 
 import css from './OAView.css';
 
-import OAFilters from '../OAFilters/OAFilters';
+import OAFilters from '../../components/OAFilters';
 
 const propTypes = {
   children: PropTypes.object,
