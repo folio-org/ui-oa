@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import useActiveElement from './useActiveElement';
+import useActiveElement from '../useActiveElement';
 
 const useTypedownToggle = () => {
   const [open, setOpen] = useState(false);

@@ -1,10 +1,10 @@
 import { useRef } from 'react';
-
-import useTypedownToggle from './useTypedownToggle';
-import useTypedownFooter from './useTypedownFooter';
-
-import useTypedownSearchField from './useTypedownSearchField';
-import useTypedownList from './useTypedownList';
+import {
+  useTypedownToggle,
+  useTypedownFooter,
+  useTypedownSearchField,
+  useTypedownList
+} from '.';
 
 const useTypedown = () => {
   // SEARCHFIELD COMPONENT

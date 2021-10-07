@@ -3,8 +3,8 @@ import { useEffect, useRef } from 'react';
 import {
   getNextFocusable,
   getPreviousFocusable,
-} from './getFocusableElements';
-import { TAB } from './constants/eventCodes';
+} from '../getFocusableElements';
+import { TAB } from '../constants/eventCodes';
 
 const useTypedownFooter = (endOfListRef, searchField) => {
   const footerRef = useRef();

@@ -1,9 +1,9 @@
 
-import { UP_ARROW, DOWN_ARROW, TAB } from './constants/eventCodes';
+import { UP_ARROW, DOWN_ARROW, TAB } from '../constants/eventCodes';
 import {
   getNextFocusable,
   getPreviousFocusable,
-} from './getFocusableElements';
+} from '../getFocusableElements';
 
 const useTypedownList = (listRef, footerRef, searchField) => {
   return e => {
@@ -20,7 +20,7 @@ const useTypedownList = (listRef, footerRef, searchField) => {
     if (e.code === TAB) {
       e.preventDefault();
       let elem;
-      if (e.shiftKey) {
+      if (!e.shiftKey) {
         elem = getNextFocusable(footerRef.current, true, true);
       } else {
         elem = searchField;

@@ -15,12 +15,13 @@ import { interactionStyles } from '@folio/stripes-components/lib/sharedStyles/in
 import SearchField from './SearchField';
 import css from './TypeDown.css';
 
-import useTypedown from './useTypedown';
+import { useTypedown } from './typedownHooks';
 
 const TypeDown = ({
   input,
   path,
   pathMutator,
+  renderFooter = null,
   renderListItem = null,
   uniqueIdentificationPath = 'id'
 }) => {
@@ -72,7 +73,7 @@ const TypeDown = ({
     }
   } = useTypedown();
 
-  const menu = useCallback(() => {
+  const dropDown = useCallback(() => {
     return (
       <div
         className={css.dropdownMenu}
@@ -111,31 +112,18 @@ const TypeDown = ({
           ref={footerRef}
           id="typedown-footer"
         >
-          <Button
-            id="footer button 1"
-            onClick={() => {
-              alert('sup')
-            }}
-            type="button"
-          >
-            Hello 1
-          </Button>
-          <Button
-            id="footer button 2"
-            onClick={() => {
-              alert('sup 2')
-            }}
-            type="button"
-          >
-            Hello 2
-          </Button>
+          {renderFooter ? renderFooter() : null}
         </div>
       </div>
     );
   }, [
     data,
+    focusRef,
     footerRef,
     input,
+    listKeyDownHandler,
+    listRef,
+    renderFooter,
     renderItem,
     searchWidth,
     uniqueIdentificationPath
@@ -186,7 +174,7 @@ const TypeDown = ({
         overlayRef={overlayRef}
         portal={portal}
       >
-        {menu()}
+        {dropDown()}
       </Popper>
       {selectedUniqueId && !open &&
         <div

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Pane } from '@folio/stripes/components';
+import { Button, Pane } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 
 import { Form, Field, useFormState } from 'react-final-form';
@@ -24,6 +24,28 @@ const TestField = () => {
       name="test"
       path="erm/sas"
       pathMutator={pathMutator}
+      renderFooter={() => (
+        <>
+          <Button
+            id="footer button 1"
+            onClick={() => {
+              alert('sup')
+            }}
+            type="button"
+          >
+            Hello 1
+          </Button>
+          <Button
+            id="footer button 2"
+            onClick={() => {
+              alert('sup 2')
+            }}
+            type="button"
+          >
+            Hello 2
+          </Button>
+        </>
+      )}
       renderListItem={agreement => {
         return (
           <>

@@ -1,10 +1,10 @@
 
-import { UP_ARROW, DOWN_ARROW, TAB } from './constants/eventCodes';
+import { UP_ARROW, DOWN_ARROW, TAB } from '../constants/eventCodes';
 import {
   getNextFocusable,
   getFirstFocusable,
   getLastFocusable
-} from './getFocusableElements';
+} from '../getFocusableElements';
 
 const useTypedownSearchField = (listRef, footerRef, focusRef) => {
   return e => {
