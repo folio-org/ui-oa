@@ -7,6 +7,9 @@ const useActiveElement = () => {
   const handleFocusIn = () => {
     setActive(document.activeElement);
   };
+  const hasParent = (id) => {
+    return active.closest(`[id^=${id}]`) !== null;
+  };
 
   useEffect(() => {
     document.addEventListener('focusin', handleFocusIn);
@@ -15,7 +18,7 @@ const useActiveElement = () => {
   };
   }, []);
 
-  return active;
+  return { active, hasParent };
 };
 
 export default useActiveElement;

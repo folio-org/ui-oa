@@ -9,7 +9,18 @@
 }
 
 .dropdownMenu {
+  background-color: var(--bg);
   padding: 0;
+  float: left;
+  right: 0;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid #ccc;
+  margin-top: 0;
+  max-width: var(--searchWidth);
+  min-width: var(--searchWidth);
+  pointer-events: all;
+  z-index: 1000;
 }
 
 .selected {
