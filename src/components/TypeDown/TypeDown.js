@@ -7,7 +7,7 @@ import get from 'lodash/get';
 import { useResizeDetector } from 'react-resize-detector';
 
 import { useOkapiKy } from '@folio/stripes/core';
-import { Dropdown, DropdownMenu } from '@folio/stripes/components';
+import { Button, Dropdown, DropdownMenu } from '@folio/stripes/components';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { interactionStyles } from '@folio/stripes-components/lib/sharedStyles/interactionStyles.css';
 
@@ -15,7 +15,6 @@ import SearchField from './SearchField';
 import css from './TypeDown.css';
 
 import useTypedownToggle from './useTypedownToggle';
-import { first } from 'lodash';
 
 const TypeDown = ({
   input,
@@ -62,6 +61,7 @@ const TypeDown = ({
 
   const menu = useCallback(() => {
     return (
+        //TODO custom keyboard handling?
       <DropdownMenu
         id="typedown-parent-menu"
         overrideStyle={{
@@ -102,6 +102,24 @@ const TypeDown = ({
             </button>
           );
         })}
+        <>
+          <Button
+            onClick={() => {
+              alert('sup')
+            }}
+            type="button"
+          >
+            Hello 1
+          </Button>
+          <Button
+            onClick={() => {
+              alert('sup 2')
+            }}
+            type="button"
+          >
+            Hello 2
+          </Button>
+        </>
       </DropdownMenu>
     );
   }, [
@@ -111,6 +129,31 @@ const TypeDown = ({
     searchWidth,
     uniqueIdentificationPath
   ]);
+
+  const trigger = ({ triggerRef }) => {
+    return (
+      <div
+        ref={triggerRef}
+      >
+        <SearchField
+          id="typedown-searchField"
+          marginBottom0
+          onChange={handleChange}
+          onKeyDown={e => {
+            // Up arrow
+            if (e.keyCode === 38) {
+              lastItem.current.focus();
+            }
+
+            // Down arrow
+            if (e.keyCode === 40) {
+              firstItem.current.focus();
+            }
+          }}
+        />
+      </div>
+    );
+  };
 
   return (
     <div
@@ -131,30 +174,7 @@ const TypeDown = ({
         onToggle={onToggle}
         open={open}
         renderMenu={menu}
-        renderTrigger={({ triggerRef }) => {
-          return (
-            <div
-              ref={triggerRef}
-            >
-              <SearchField
-                id="typedown-searchField"
-                marginBottom0
-                onChange={handleChange}
-                onKeyDown={e => {
-                  // Up arrow
-                  if (e.keyCode === 38) {
-                    lastItem.current.focus();
-                  }
-
-                  // Down arrow
-                  if (e.keyCode === 40) {
-                    firstItem.current.focus();
-                  }
-                }}
-              />
-            </div>
-          );
-        }}
+        renderTrigger={trigger}
         usePortal
       />
       {selectedUniqueId && !open &&
