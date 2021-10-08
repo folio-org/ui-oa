@@ -2,12 +2,10 @@ import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { useQuery } from 'react-query';
 import get from 'lodash/get';
 import { useResizeDetector } from 'react-resize-detector';
 
-import { useOkapiKy } from '@folio/stripes/core';
-import { Button, Popper } from '@folio/stripes/components';
+import { EmptyMessage, Popper } from '@folio/stripes/components';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { interactionStyles } from '@folio/stripes-components/lib/sharedStyles/interactionStyles.css';
@@ -15,7 +13,7 @@ import { interactionStyles } from '@folio/stripes-components/lib/sharedStyles/in
 import SearchField from './SearchField';
 import css from './TypeDown.css';
 
-import { useTypedown } from './typedownHooks';
+import { useTypedown, useTypedownData } from './typedownHooks';
 
 const TypeDown = ({
   input,
@@ -25,20 +23,10 @@ const TypeDown = ({
   renderListItem = null,
   uniqueIdentificationPath = 'id'
 }) => {
-  const ky = useOkapiKy();
   const selectedUniqueId = get(input.value, uniqueIdentificationPath);
 
   const [callPath, setCallPath] = useState(pathMutator(null, path));
-
-  const { data } = useQuery(
-    // Ensure when multiple apps are using this function that each one gets memoized individually
-    ['stripes-kint-components', 'typedown', callPath],
-    () => ky(callPath).json()
-  );
-
-  const handleChange = (e) => {
-    setCallPath(pathMutator(e.target.value, path));
-  };
+  const data = useTypedownData(callPath);
 
   // useResizeDetector fires redraw on size change to keep all elements in sync
   const { width: searchWidth, ref: resizeRef } = useResizeDetector();
@@ -84,7 +72,7 @@ const TypeDown = ({
           ref={listRef}
           id="typedown-list"
         >
-          {data?.map((d, index) => {
+          {data?.length ? data?.map((d, index) => {
             const isSelected = get(input.value, uniqueIdentificationPath) === get(d, uniqueIdentificationPath);
             return (
               <button
@@ -106,7 +94,11 @@ const TypeDown = ({
                 {renderItem(d)}
               </button>
             );
-          })}
+          }) :
+          <EmptyMessage>
+            NOWT
+          </EmptyMessage>
+          }
         </div>
         <div
           ref={footerRef}
@@ -129,7 +121,7 @@ const TypeDown = ({
     uniqueIdentificationPath
   ]);
 
-  const trigger = () => {
+  const renderSearchField = () => {
     return (
       <div
         ref={triggerRef}
@@ -138,7 +130,9 @@ const TypeDown = ({
         <SearchField
           id="typedown-searchField"
           marginBottom0
-          onChange={handleChange}
+          onChange={e => {
+            setCallPath(pathMutator(e.target.value, path));
+          }}
           onKeyDown={searchFieldKeyDownHandler}
         />
       </div>
@@ -153,7 +147,7 @@ const TypeDown = ({
         {...input}
         type="hidden"
       />
-      {trigger()}
+      {renderSearchField()}
       <Popper
         key="typedown-menu-toggle"
         anchorRef={triggerRef}
@@ -201,6 +195,7 @@ TypeDown.propTypes = {
   meta: PropTypes.object,
   path: PropTypes.string,
   pathMutator: PropTypes.func,
+  renderFooter: PropTypes.func,
   renderListItem: PropTypes.func,
   uniqueIdentificationPath: PropTypes.string
 };

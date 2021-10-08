@@ -1,22 +1,28 @@
 import React from 'react';
 
-import { Button, Pane } from '@folio/stripes/components';
+import { Button, Col, Pane, Row, TextField } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 
 import { Form, Field, useFormState } from 'react-final-form';
 
+import generateKiwtQuery from '../../util/generateKiwtQuery';
 import TypeDown from '../../components/TypeDown/TypeDown';
 
 const TestField = () => {
   const pathMutator = (input, path) => {
-    const pathParams = [];
-    if (input) {
-      pathParams.push(`match=name&match=alternateNames.name&term=${input}`)
-    }
-    pathParams.push('sort=name;asc');
+    const query = generateKiwtQuery(
+      {
+        searchKey: 'name,alternateNames.name'
+      }, {
+        sort: 'name',
+        query: input,
+        stats: false
+      }
+    );
 
-    return `${path}?${pathParams.join('&')}`;
+    return `${path}${query}`;
   };
+
   console.log("Current values: %o", useFormState()?.values)
   return (
     <Field
@@ -80,7 +86,17 @@ const TestComponent = () => {
         {({ handleSubmit }) => {
           return (
             <form onSubmit={handleSubmit}>
-              <TestField />
+              <Row>
+                <Col xs={6}>
+                  <TestField />
+                </Col>
+                <Col xs={6}>
+                  <Field
+                    component={TextField}
+                    name="test2"
+                  />
+                </Col>
+              </Row>
             </form>
           );
         }}

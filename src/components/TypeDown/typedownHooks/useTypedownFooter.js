@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 
+// TODO Switch to using stripes components proper once available
 import {
   getNextFocusable,
   getPreviousFocusable,

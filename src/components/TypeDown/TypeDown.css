@@ -13,7 +13,7 @@
   padding: 0;
   float: left;
   right: 0;
-  border-radius: var(--radius);
+  border-radius: 0 0 var(--radius) var(--radius);
   box-shadow: var(--shadow);
   border: 1px solid #ccc;
   margin-top: 0;

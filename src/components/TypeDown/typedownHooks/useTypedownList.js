@@ -1,9 +1,10 @@
-
-import { UP_ARROW, DOWN_ARROW, TAB } from '../constants/eventCodes';
+// TODO Switch to using stripes components proper once available
 import {
   getNextFocusable,
   getPreviousFocusable,
 } from '../getFocusableElements';
+
+import { UP_ARROW, DOWN_ARROW, TAB } from '../constants/eventCodes';
 
 const useTypedownList = (listRef, footerRef, searchField) => {
   return e => {
