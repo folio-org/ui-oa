@@ -5,12 +5,13 @@ const generateKiwtQuery = (options, nsValues) => {
     /* Assumtion made that if no filterKey is provided then the given filterValues for that key are standalaone, ie require no comparator or key */
     filterKeys = {},
     sortKeys = {},
+    stats = true,
   } = options;
 
   const paramsArray = [];
 
   if (query) {
-    paramsArray.push(searchKey.split(',')?.map(m => `match=${m}`));
+    paramsArray.push(...searchKey.split(',')?.map(m => `match=${m}`));
     paramsArray.push(`term=${query}`);
   }
 
@@ -51,9 +52,11 @@ const generateKiwtQuery = (options, nsValues) => {
     }));
   }
 
-  paramsArray.push('stats=true');
+  if (stats) {
+    paramsArray.push('stats=true');
+  }
 
-  return '?' + paramsArray.map(p => encodeURI(p)).join('&');
+  return paramsArray.length ? '?' + paramsArray.map(p => encodeURI(p)).join('&') : '';
 };
 
 export default generateKiwtQuery;
