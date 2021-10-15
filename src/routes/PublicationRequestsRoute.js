@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useQuery } from 'react-query';
 import generateKiwtQuery from '../util/generateKiwtQuery';
-import OAView from '../components/OAView';
+import PublicationRequests from '../views/PublicationRequests/PublicationRequests';
 import useKiwtSASQuery from '../util/useKiwtSASQuery';
 
 const propTypes = {
@@ -10,13 +10,13 @@ const propTypes = {
   location: PropTypes.object
 };
 
-const OARoute = ({ children, location }) => {
+const PublicationRequestsRoute = ({ children, location }) => {
   const { query, queryGetter, querySetter } = useKiwtSASQuery();
 
   const SASQ_MAP = {
-    searchKey: 'journalVolume',
+    searchKey: 'requestStatus.value',
     filterKeys: {
-      journalVolume: 'journalVolume'
+      requestStatus: 'requestStatus.value'
     }
   };
 
@@ -28,17 +28,17 @@ const OARoute = ({ children, location }) => {
   );
 
   return (
-    <OAView
+    <PublicationRequests
       data={{ publicationRequests }}
       queryGetter={queryGetter}
       querySetter={querySetter}
       searchString={location.search}
     >
       {children}
-    </OAView>
+    </PublicationRequests>
   );
 };
 
-OARoute.propTypes = propTypes;
+PublicationRequestsRoute.propTypes = propTypes;
 
-export default OARoute;
+export default PublicationRequestsRoute;

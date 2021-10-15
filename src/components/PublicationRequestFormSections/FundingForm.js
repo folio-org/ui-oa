@@ -4,7 +4,7 @@ import { Accordion } from '@folio/stripes/components';
 
 import FundingFieldArray from './FieldArrays/FundingFieldArray';
 
-const FundingCreate = () => {
+const FundingForm = () => {
   return (
     <Accordion label={<FormattedMessage id="ui-oa.publicationRequest.funding" />}>
       <FundingFieldArray />
@@ -12,4 +12,4 @@ const FundingCreate = () => {
   );
 };
 
-export default FundingCreate;
+export default FundingForm;

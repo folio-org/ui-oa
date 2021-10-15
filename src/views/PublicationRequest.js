@@ -2,6 +2,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { AppIcon } from '@folio/stripes/core';
 
 import {
   AccordionSet,
@@ -13,6 +14,9 @@ import {
 import RequestInfo from '../components/PublicationRequestSections/RequestInfo/RequestInfo';
 import CorrespondingAuthor from '../components/PublicationRequestSections/CorrespondingAuthor/CorrespondingAuthor';
 import Publication from '../components/PublicationRequestSections/Publication/Publication';
+import PublicationStatus from '../components/PublicationRequestSections/PublicationStatus/PublicationStatus';
+import RequestContact from '../components/PublicationRequestSections/RequestContact/RequestContact';
+import Funding from '../components/PublicationRequestSections/Funding/Funding';
 
 const propTypes = {
   data: PropTypes.object,
@@ -22,14 +26,8 @@ const propTypes = {
 };
 
 const PublicationRequest = ({ handlers, data: { publicationRequest: request } = {} }) => {
-  const paneProps = {
-    defaultWidth: '55%',
-    dismissible: true,
-    onClose: handlers.onClose,
-  };
   return (
     <Pane
-      {...paneProps}
       actionMenu={() => (
         <Button
           buttonStyle="dropdownItem"
@@ -41,6 +39,11 @@ const PublicationRequest = ({ handlers, data: { publicationRequest: request } = 
           </Icon>
         </Button>
       )}
+      appIcon={<AppIcon app="oa" iconKey="app" size="small" />}
+      defaultWidth="55%"
+      dismissible
+      onClose={handlers.onClose}
+      paneSub={request?.publicationTitle !== undefined ? request?.publicationTitle : ''}
       paneTitle={<FormattedMessage id="ui-oa.publicationRequest.requestTitle" values={{ number: request?.requestNumber }} />}
     >
       <MetaSection
@@ -52,7 +55,10 @@ const PublicationRequest = ({ handlers, data: { publicationRequest: request } = 
       <RequestInfo request={request} />
       <AccordionSet>
         <CorrespondingAuthor request={request} />
+        <RequestContact request={request} />
         <Publication request={request} />
+        <PublicationStatus request={request} />
+        <Funding request={request} />
       </AccordionSet>
     </Pane>
   );

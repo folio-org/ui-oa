@@ -16,13 +16,17 @@ import {
 } from '@folio/stripes/smart-components';
 import { FormattedMessage } from 'react-intl';
 import { useHistory } from 'react-router-dom';
-import { IfPermission } from '@folio/stripes/core';
+import {
+  AppIcon,
+  IfPermission
+} from '@folio/stripes/core';
 
 import urls from '../../util/urls';
 
-import css from './OAView.css';
+import css from './PublicationRequests.css';
 
-import OAFilters from '../OAFilters/OAFilters';
+import OAFilters from '../../components/OAFilters';
+import useHelperApp from '../../util/useHelperApp';
 
 const propTypes = {
   children: PropTypes.object,
@@ -33,7 +37,7 @@ const propTypes = {
   searchString: PropTypes.string
 };
 
-const OAView = ({
+const PublicationRequests = ({
   children,
   data,
   queryGetter,
@@ -41,10 +45,23 @@ const OAView = ({
   searchString,
 }) => {
   const history = useHistory();
+  const { HelperComponent, helperToggleFunctions } = useHelperApp({ test: () => (<Pane>hello world</Pane>) });
 
   const formatter = {
-    requestStatus: e => {
-      return e?.requestStatus?.label;
+    requestNumber: d => {
+      return (
+        <AppIcon
+          app="oa"
+          iconAlignment="baseline"
+          iconKey="app"
+          size="small"
+        >
+          {d?.requestNumber}
+        </AppIcon>
+      );
+    },
+    requestStatus: d => {
+      return d?.requestStatus?.label;
     },
   };
 
@@ -78,13 +95,13 @@ const OAView = ({
                       buttonStyle="primary"
                       id="clickable-nav-oa-publication-requests"
                     >
-                      <FormattedMessage id="ui-oa.publicationRequests" />
+                      <FormattedMessage id="ui-oa.publicationRequests.requests" />
                     </Button>
                     <Button
                       id="clickable-nav-oa-something-else"
                       to={urls.publicationRequests()}
                     >
-                      <FormattedMessage id="ui-oa.publicationRequests" />
+                      <FormattedMessage id="ui-oa.publicationRequests.requests" />
                     </Button>
                   </ButtonGroup>
                   <SearchField
@@ -111,16 +128,17 @@ const OAView = ({
                 </form>
               </Pane>
               <Pane
+                appIcon={<AppIcon app="oa" iconKey="app" size="small" />}
                 defaultWidth="fill"
                 lastMenu={(
-                  <IfPermission perm="oa.scholarlyWork.edit">
+                  <IfPermission perm="oa.publicationRequest.edit">
                     <PaneMenu>
                       <FormattedMessage id="ui-oa.publicationRequest.createPublicationRequest">
                         {ariaLabel => (
                           <Button
                             aria-label={ariaLabel}
                             buttonStyle="primary"
-                            id="clickable-new-scholarly-work"
+                            id="clickable-new-publication-request"
                             marginBottom0
                             to={`${urls.publicationRequestCreate()}`}
                           >
@@ -131,17 +149,29 @@ const OAView = ({
                     </PaneMenu>
                   </IfPermission>
                 )}
+                paneSub={data?.publicationRequests !== undefined ?
+                  <FormattedMessage id="ui-oa.publicationRequests.recordsFound" values={{ number: data?.publicationRequests?.length }} /> : ''}
+                paneTitle={<FormattedMessage id="ui-oa.publicationRequests" />}
               >
+                {/* TODO: CorrespondingAuthorName needs correct mapping in formatter */}
                 <MultiColumnList
                   autosize
+                  columnMapping={{
+                    requestNumber: <FormattedMessage id="ui-oa.publicationRequest.requestNumber" />,
+                    requestDate: <FormattedMessage id="ui-oa.publicationRequest.requestDate" />,
+                    requestStatus: <FormattedMessage id="ui-oa.publicationRequest.status" />,
+                    publicationTitle: <FormattedMessage id="ui-oa.publicationRequest.publicationTitle" />,
+                    correspondingAuthorName: <FormattedMessage id="ui-oa.publicationRequest.correspondingAuthorName" />,
+                  }}
                   contentData={data.publicationRequests}
                   formatter={formatter}
                   onHeaderClick={onSort}
                   onRowClick={(_e, rowData) => history.push(`${urls.publicationRequest(rowData.id)}${searchString}`)}
-                  visibleColumns={['requestNumber', 'requestDate', 'requestStatus', 'publicationTitle']}
+                  visibleColumns={['requestNumber', 'requestDate', 'requestStatus', 'publicationTitle', 'correspondingAuthorName']}
                 />
               </Pane>
               {children}
+              <HelperComponent />
             </PersistedPaneset>
           </div>
         )
@@ -150,6 +180,6 @@ const OAView = ({
   );
 };
 
-OAView.propTypes = propTypes;
+PublicationRequests.propTypes = propTypes;
 
-export default OAView;
+export default PublicationRequests;

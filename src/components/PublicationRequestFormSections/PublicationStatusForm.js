@@ -9,7 +9,7 @@ import {
 
 import PublicationStatusFieldArray from './FieldArrays/PublicationStatusFieldArray';
 
-const PublicationStatusCreate = () => {
+const PublicationStatusForm = () => {
   return (
     <Accordion label={<FormattedMessage id="ui-oa.publicationRequest.publicationStatus" />}>
       <Row>
@@ -21,4 +21,4 @@ const PublicationStatusCreate = () => {
   );
 };
 
-export default PublicationStatusCreate;
+export default PublicationStatusForm;

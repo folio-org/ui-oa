@@ -18,6 +18,7 @@
   "publicationRequest.authorNames": "Author names",
   "publicationRequest.bookDetails": "Book details",
   "publicationRequest.correspondingAuthor": "Corresponding author",
+  "publicationRequest.correspondingAuthorName": "Corresponding author name",
   "publicationRequest.createPublicationRequest": "New publication request",
   "publicationRequest.doi": "DOI",
   "publicationRequest.edit": "Edit",
@@ -61,7 +62,9 @@
   "publicationRequest.title": "Title",
   "publicationRequest.useCorrespondingAuthor": "Use corresponding author",
 
-  "publicationRequests": "Requests",
+  "publicationRequests": "Publication requests",
+  "publicationRequests.requests": "Requests",
+  "publicationRequests.recordsFound": "{number} records found",
 
   "externalRequestId.externalRequestId": "External request ID", 
 
@@ -69,20 +72,28 @@
   "identifiers.identifier": "Identifier",
   "identifiers.type": "Type",
   "identifiers.requestHasNone": "No identifiers for this publication request",
+  "identifiers.otherIdentifiers": "Other identifiers",
 
   "funders.addFunding": "Add funding",
   "funders.requestHasNone": "No funding for this publication request",
 
   "otherEmail.otherEmailAddress": "Other email address",
+  "otherEmail.otherEmailAddresses": "Other email addresses",
 
   "affiliation.addAffiliation": "Add affiliation",
   "affiliation.affiliationTitle": "Affiliation {number}",
   "affiliation.removeAffiliation": "Remove affiliation {number}", 
+  "affiliation.faculty": "Faculty", 
+  "affiliation.school": "School", 
+  "affiliation.department": "Department", 
+  "affiliation.dateFrom": "Date from", 
+  "affiliation.dateTo": "Date to", 
 
   "publicationStatus.addPublicationStatus": "Add publication status",
   "publicationStatus.requestHasNone": "No publication statuses for this publication request",
   "publicationStatus.publicationStatusDate": "Status Date",
   "publicationStatus.publicationStatusNote": "Status Note",
+  "publicationStatus.status": "Status",
 
   "streetAddresses.removeStreetAddress": "Remove street address {number}",
   "streetAddresses.streetAddressTitle": "Street address {number}",

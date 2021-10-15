@@ -11,8 +11,11 @@ import {
   TextField,
   Row,
 } from '@folio/stripes/components';
+import { useRefdata } from '@k-int/stripes-kint-components';
 
 const IdentifiersFieldArray = () => {
+  const { 0: { values: identifierTypeValues = [] } = {} } = useRefdata({ desc: 'PublicationIdentifier.Type', endpoint: 'oa/refdata' });
+
   const renderIdentifiers = (fields) => {
     return (
       <div>
@@ -21,6 +24,7 @@ const IdentifiersFieldArray = () => {
             <Col xs={3}>
               <Field
                 component={Select}
+                dataOptions={[{ value: '', label: '' }, ...identifierTypeValues]}
                 label={<FormattedMessage id="ui-oa.identifiers.type" />}
                 name={`${identifier}.type`}
               />
@@ -29,7 +33,7 @@ const IdentifiersFieldArray = () => {
               <Field
                 component={TextField}
                 label={<FormattedMessage id="ui-oa.identifiers.identifier" />}
-                name={`${identifier}.identifier`}
+                name={`${identifier}.publicationIdentifier`}
               />
             </Col>
             <Col xs={6}>
