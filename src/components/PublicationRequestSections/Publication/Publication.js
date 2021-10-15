@@ -151,8 +151,9 @@ const Publication = ({ request }) => {
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.doi" />}>
             {request?.doi ?
               <ExternalLink
+                content={request.doi}
                 href={'https://dx.doi.org/' + request.doi}
-                content={request.doi} />
+              />
               :
               <NoValue />
             }

@@ -12,8 +12,8 @@ const ExternalLink = ({ content, href }) => {
       {content}
       <Icon icon="external-link" iconPosition="end" />
     </a>
-  )
-}
+  );
+};
 
 ExternalLink.propTypes = propTypes;
 
