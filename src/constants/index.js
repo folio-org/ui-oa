@@ -1,1 +1,1 @@
-export { default as publicationRequestFields } from './publicationRequestFields';
+export { default } from './PublicationRequestFields';

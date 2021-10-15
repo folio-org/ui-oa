@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Settings from './settings';
 
 import {
-  OARoute,
+  PublicationRequestsRoute,
   PublicationRequestRoute,
   PublicationRequestCreateRoute
 } from './routes';
@@ -25,7 +25,7 @@ const App = (props) => {
     <Suspense fallback={null}>
       <Switch>
         <Route component={PublicationRequestCreateRoute} path={`${path}/publicationRequests/create`} />
-        <Route component={OARoute} path={`${path}/publicationRequests/:id?`}>
+        <Route component={PublicationRequestsRoute} path={`${path}/publicationRequests/:id?`}>
           <Route component={PublicationRequestRoute} path={`${path}/publicationRequests/:id`} />
         </Route>
       </Switch>
