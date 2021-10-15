@@ -15,7 +15,7 @@ import { useRefdata } from '@k-int/stripes-kint-components';
 
 import ExternalRequestIdFieldArray from '../FieldArrays/ExternalRequestIdFieldArray';
 
-const RequestInfoCreate = () => {
+const RequestInfoForm = () => {
   const { 0: { values: requestStatusValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.RequestStatus', endpoint: 'oa/refdata' });
 
   return (
@@ -56,4 +56,4 @@ const RequestInfoCreate = () => {
   );
 };
 
-export default RequestInfoCreate;
+export default RequestInfoForm;

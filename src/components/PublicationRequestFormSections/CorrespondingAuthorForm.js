@@ -3,7 +3,6 @@ import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
 import {
   Accordion,
-  Checkbox,
   Col,
   Headline,
   Row,
@@ -12,31 +11,21 @@ import {
 } from '@folio/stripes/components';
 
 import OtherEmailFieldArray from './FieldArrays/OtherEmailFieldArray';
+import AffiliationFieldArray from './FieldArrays/AffiliationFieldArray';
 import StreetAddressesFieldArray from './FieldArrays/StreetAddressesFieldArray';
 
-const RequestContactCreate = () => {
+const CorrespondingAuthorForm = () => {
   return (
     <Accordion
-      label={<FormattedMessage id="ui-oa.publicationRequest.requestContact" />}
+      label={<FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />}
     >
-      <Row end="xs">
-        <Col xs={3}>
-          <Field
-            component={Checkbox}
-            label={<FormattedMessage id="ui-oa.publicationRequest.useCorrespondingAuthor" />}
-            name="useCorrespondingAuthor"
-            type="checkbox"
-          />
-        </Col>
-        <Col xs={9} />
-      </Row>
       <Row end="xs">
         <Col xs={3}>
           <Field
             component={Select}
             dataOptions={[]}
             label={<FormattedMessage id="ui-oa.publicationRequest.title" />}
-            name="requestContact.title"
+            name="correspondingAuthor.title"
           />
         </Col>
         <Col xs={3}>
@@ -45,7 +34,7 @@ const RequestContactCreate = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.familyName" />}
             maxLength={255}
-            name="requestContact.familyName"
+            name="correspondingAuthor.familyName"
           />
         </Col>
         <Col xs={3}>
@@ -54,10 +43,24 @@ const RequestContactCreate = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.givenName" />}
             maxLength={255}
-            name="requestContact.givenName"
+            name="correspondingAuthor.givenNames"
           />
         </Col>
-        <Col xs={3} />
+        <Col xs={3}>
+          <Field
+            autoFocus
+            component={TextField}
+            label={<FormattedMessage id="ui-oa.publicationRequest.orcidId" />}
+            maxLength={255}
+            name="correspondingAuthor.orcidId"
+          />
+        </Col>
+      </Row>
+
+      <Row>
+        <Col xs>
+          {/* TODO: Author Lookup Button */}
+        </Col>
       </Row>
 
       <Row end="xs">
@@ -67,7 +70,7 @@ const RequestContactCreate = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.mainEmail" />}
             maxLength={255}
-            name="requestContact.mainEmail"
+            name="correspondingAuthor.mainEmail"
           />
         </Col>
         <Col xs={3}>
@@ -76,7 +79,7 @@ const RequestContactCreate = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.phone" />}
             maxLength={255}
-            name="requestContact.phone"
+            name="correspondingAuthor.phone"
           />
         </Col>
         <Col xs={3}>
@@ -85,7 +88,7 @@ const RequestContactCreate = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.mobile" />}
             maxLength={255}
-            name="requestContact.mobile"
+            name="correspondingAuthor.mobile"
           />
         </Col>
         <Col xs={3} />
@@ -93,7 +96,7 @@ const RequestContactCreate = () => {
 
       <Row>
         <Col xs>
-          <OtherEmailFieldArray name="requestContactOtherEmail" />
+          <OtherEmailFieldArray name="correspondingAuthorOtherEmail" />
         </Col>
       </Row>
 
@@ -107,11 +110,26 @@ const RequestContactCreate = () => {
 
       <Row>
         <Col xs>
-          <StreetAddressesFieldArray name="requestContactStreetAddresses" section="request contact" />
+          <StreetAddressesFieldArray name="correspondingAuthorStreetAddress" section="corresponding author" />
         </Col>
       </Row>
+
+      <Row>
+        <Col xs>
+          <Headline margin="small" size="large" tag="h3">
+            <FormattedMessage id="ui-oa.publicationRequest.affiliations" />
+          </Headline>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col xs>
+          <AffiliationFieldArray />
+        </Col>
+      </Row>
+
     </Accordion>
   );
 };
 
-export default RequestContactCreate;
+export default CorrespondingAuthorForm;

@@ -14,7 +14,7 @@ import {
 import { useRefdata } from '@k-int/stripes-kint-components';
 import IdentifiersFieldArray from './FieldArrays/IdentifiersFieldArray';
 
-const PublicationCreate = () => {
+const PublicationForm = () => {
   const { values } = useFormState();
   const { 0: { values: publicationTypeValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.PublicationType', endpoint: 'oa/refdata' });
   const { 0: { values: subtypeValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.Subtype', endpoint: 'oa/refdata' });
@@ -201,4 +201,4 @@ const PublicationCreate = () => {
   );
 };
 
-export default PublicationCreate;
+export default PublicationForm;

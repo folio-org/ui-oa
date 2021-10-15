@@ -10,12 +10,12 @@ import {
   PaneHeader,
   Paneset,
 } from '@folio/stripes/components';
-import RequestInfoCreate from '../components/PublicationRequestCreateSections/RequestInfoCreate';
-import CorrespondingAuthorCreate from '../components/PublicationRequestCreateSections/CorrespondingAuthorCreate';
-import RequestContactCreate from '../components/PublicationRequestCreateSections/RequestContactCreate';
-import PublicationCreate from '../components/PublicationRequestCreateSections/PublicationCreate';
-import PublicationStatusCreate from '../components/PublicationRequestCreateSections/PublicationStatusCreate';
-import FundingCreate from '../components/PublicationRequestCreateSections/FundingCreate';
+import RequestInfoForm from '../components/PublicationRequestFormSections/RequestInfoForm';
+import CorrespondingAuthorForm from '../components/PublicationRequestFormSections/CorrespondingAuthorForm';
+import RequestContactForm from '../components/PublicationRequestFormSections/RequestContactForm';
+import PublicationForm from '../components/PublicationRequestFormSections/PublicationForm';
+import PublicationStatusForm from '../components/PublicationRequestFormSections/PublicationStatusForm';
+import FundingForm from '../components/PublicationRequestFormSections/FundingForm';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -65,12 +65,12 @@ const PublicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, s
         renderHeader={renderProps => <PaneHeader {...renderProps} paneTitle="New publication request" />}
       >
         <AccordionSet>
-          <RequestInfoCreate />
-          <CorrespondingAuthorCreate />
-          <RequestContactCreate />
-          <PublicationCreate />
-          <PublicationStatusCreate />
-          <FundingCreate />
+          <RequestInfoForm />
+          <CorrespondingAuthorForm />
+          <RequestContactForm />
+          <PublicationForm />
+          <PublicationStatusForm />
+          <FundingForm />
         </AccordionSet>
       </Pane>
     </Paneset>
