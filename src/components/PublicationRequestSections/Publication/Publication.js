@@ -16,6 +16,7 @@ import {
 } from '@folio/stripes/components';
 import JournalDetails from '../JournalDetails';
 import BookDetails from '../BookDetails';
+import { publicationRequestFields } from '../../../constants';
 
 const propTypes = {
   request: PropTypes.object
@@ -28,11 +29,11 @@ const formatter = {
 };
 
 const isJournal = (request) => {
-  return request?.publicationType?.value === 'journal_article';
+  return request?.publicationType?.value === publicationRequestFields.JOURNAL_DETAILS;
 };
 
 const isBook = (request) => {
-  return request?.publicationType?.value === 'book';
+  return request?.publicationType?.value === publicationRequestFields.BOOK;
 };
 
 const hasPublication = (request) => {
