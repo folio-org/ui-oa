@@ -17,6 +17,7 @@ import {
 import JournalDetails from '../JournalDetails';
 import BookDetails from '../BookDetails';
 import { publicationRequestFields } from '../../../constants';
+import ExternalLink from '../../ExternalLink/ExternalLink';
 
 const propTypes = {
   request: PropTypes.object
@@ -64,24 +65,20 @@ const Publication = ({ request }) => {
       <Row start="xs">
         <Col xs={6}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.publicationTitle" />}>
-            <div>
-              {request?.publicationTitle ?
-                <div>{request.publicationTitle}</div>
-                :
-                <NoValue />
-              }
-            </div>
+            {request?.publicationTitle ?
+              <div>{request.publicationTitle}</div>
+              :
+              <NoValue />
+            }
           </KeyValue>
         </Col>
         <Col xs={6}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.authorNames" />}>
-            <div>
-              {request?.authorNames?.length ?
-                <div>{request.authorNames}</div>
-                :
-                <NoValue />
-              }
-            </div>
+            {request?.authorNames?.length ?
+              <div>{request.authorNames}</div>
+              :
+              <NoValue />
+            }
           </KeyValue>
         </Col>
       </Row>
@@ -89,46 +86,38 @@ const Publication = ({ request }) => {
       <Row start="xs">
         <Col xs={3}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.publicationType" />}>
-            <div>
-              {request?.publicationType ?
-                <div>{request.publicationType.label}</div>
-                :
-                <NoValue />
-              }
-            </div>
+            {request?.publicationType ?
+              <div>{request.publicationType.label}</div>
+              :
+              <NoValue />
+            }
           </KeyValue>
         </Col>
         <Col xs={3}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.subtype" />}>
-            <div>
-              {request?.subtype ?
-                <div>{request.subtype.label}</div>
-                :
-                <NoValue />
-              }
-            </div>
+            {request?.subtype ?
+              <div>{request.subtype.label}</div>
+              :
+              <NoValue />
+            }
           </KeyValue>
         </Col>
         <Col xs={3}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.publisher" />}>
-            <div>
-              {request?.publisher ?
-                <div>{request.publisher.label}</div>
-                :
-                <NoValue />
-              }
-            </div>
+            {request?.publisher ?
+              <div>{request.publisher.label}</div>
+              :
+              <NoValue />
+            }
           </KeyValue>
         </Col>
         <Col xs={3}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.license" />}>
-            <div>
-              {request?.license ?
-                <div>{request.license.label}</div>
-                :
-                <NoValue />
-              }
-            </div>
+            {request?.license ?
+              <div>{request.license.label}</div>
+              :
+              <NoValue />
+            }
           </KeyValue>
         </Col>
       </Row>
@@ -136,27 +125,23 @@ const Publication = ({ request }) => {
       <Row start="xs">
         <Col xs={3}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.localReference" />}>
-            <div>
-              {request?.localReference ?
-                <div>{request.localReference}</div>
-                :
-                <NoValue />
-              }
-            </div>
+            {request?.localReference ?
+              <div>{request.localReference}</div>
+              :
+              <NoValue />
+            }
           </KeyValue>
         </Col>
         <Col xs={9}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.publicationUrl" />}>
-            <div>
-              {request?.publicationUrl ?
-                <a href={request.publicationUrl}>
-                  {request.publicationUrl}
-                  <Icon icon="external-link" iconPosition="end" />
-                </a>
-                :
-                <NoValue />
-              }
-            </div>
+            {request?.publicationUrl ?
+              <a href={request.publicationUrl}>
+                {request.publicationUrl}
+                <Icon icon="external-link" iconPosition="end" />
+              </a>
+              :
+              <NoValue />
+            }
           </KeyValue>
         </Col>
       </Row>
@@ -164,16 +149,13 @@ const Publication = ({ request }) => {
       <Row start="xs">
         <Col xs={3}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.doi" />}>
-            <div>
-              {request?.doi ?
-                <a href={'https://dx.doi.org/' + request.doi}>
-                  {request.doi}
-                  <Icon icon="external-link" iconPosition="end" />
-                </a>
-                :
-                <NoValue />
-              }
-            </div>
+            {request?.doi ?
+              <ExternalLink
+                href={'https://dx.doi.org/' + request.doi}
+                content={request.doi} />
+              :
+              <NoValue />
+            }
           </KeyValue>
         </Col>
       </Row>
