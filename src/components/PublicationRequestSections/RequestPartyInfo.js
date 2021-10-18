@@ -104,7 +104,7 @@ const renderStreetAddresses = (streetAddresses) => {
   );
 };
 
-const RequestContact = ({ request }) => {
+const RequestPartyInfo = ({ request }) => {
   return (
     <div>
       <Row start="xs">
@@ -203,6 +203,6 @@ const RequestContact = ({ request }) => {
   );
 };
 
-RequestContact.propTypes = propTypes;
+RequestPartyInfo.propTypes = propTypes;
 
-export default RequestContact;
+export default RequestPartyInfo;

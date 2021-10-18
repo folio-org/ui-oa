@@ -26,7 +26,6 @@ import urls from '../../util/urls';
 import css from './PublicationRequests.css';
 
 import OAFilters from '../../components/OAFilters';
-import useHelperApp from '../../util/useHelperApp';
 
 const propTypes = {
   children: PropTypes.object,
@@ -45,7 +44,6 @@ const PublicationRequests = ({
   searchString,
 }) => {
   const history = useHistory();
-  const { HelperComponent, helperToggleFunctions } = useHelperApp({ test: () => (<Pane>hello world</Pane>) });
 
   const formatter = {
     requestNumber: d => {
@@ -171,7 +169,6 @@ const PublicationRequests = ({
                 />
               </Pane>
               {children}
-              <HelperComponent />
             </PersistedPaneset>
           </div>
         )
