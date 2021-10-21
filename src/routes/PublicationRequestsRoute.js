@@ -14,9 +14,9 @@ const PublicationRequestsRoute = ({ children, location }) => {
   const { query, queryGetter, querySetter } = useKiwtSASQuery();
 
   const SASQ_MAP = {
-    searchKey: 'requestStatus.value',
+    searchKey: 'publicationTitle',
     filterKeys: {
-      requestStatus: 'requestStatus.value'
+      requestStatus: 'requestStatus.value',
     }
   };
 

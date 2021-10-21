@@ -7,7 +7,6 @@ import {
   MultiColumnList,
   Pane,
   PaneMenu,
-  SearchField,
 } from '@folio/stripes/components';
 
 import {
@@ -22,8 +21,6 @@ import {
 } from '@folio/stripes/core';
 
 import urls from '../../util/urls';
-
-import css from './PublicationRequests.css';
 
 import OAFilters from '../../components/OAFilters';
 
@@ -102,26 +99,11 @@ const PublicationRequests = ({
                       <FormattedMessage id="ui-oa.publicationRequests.requests" />
                     </Button>
                   </ButtonGroup>
-                  <SearchField
-                    autoFocus
-                    className={css.searchField}
-                    marginBottom0
-                    name="query"
-                    onChange={getSearchHandlers().query}
-                    onClear={getSearchHandlers().reset}
-                    value={searchValue.query}
-                  />
-                  <Button
-                    buttonStyle="primary"
-                    disabled={!searchValue.query || searchValue.query === ''}
-                    fullWidth
-                    type="submit"
-                  >
-                    <FormattedMessage id="stripes-smart-components.search" />
-                  </Button>
                   <OAFilters
                     activeFilters={activeFilters.state}
                     filterHandlers={getFilterHandlers()}
+                    getSearchHandlers={getSearchHandlers}
+                    searchValue={searchValue}
                   />
                 </form>
               </Pane>
