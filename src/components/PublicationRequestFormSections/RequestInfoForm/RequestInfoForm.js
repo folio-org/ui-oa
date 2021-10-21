@@ -34,8 +34,8 @@ const RequestInfoForm = () => {
             component={Datepicker}
             label={<FormattedMessage id="ui-oa.publicationRequest.requestDate" />}
             name="requestDate"
-            timeZone="UTC"
             required
+            timeZone="UTC"
           />
         </Col>
         <Col xs={3}>
