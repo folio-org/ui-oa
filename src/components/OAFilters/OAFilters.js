@@ -15,7 +15,7 @@ import css from './OAFilters.css';
 const propTypes = {
   activeFilters: PropTypes.object,
   filterHandlers: PropTypes.object,
-  searchHandlers: PropTypes.object,
+  searchHandlers: PropTypes.func,
   searchValue: PropTypes.object,
 };
 
@@ -43,8 +43,8 @@ function OAFilters({ activeFilters, filterHandlers, searchHandlers, searchValue 
         className={css.searchField}
         marginBottom0
         name="query"
-        onChange={searchHandlers.query}
-        onClear={searchHandlers.reset}
+        onChange={searchHandlers().query}
+        onClear={searchHandlers().reset}
         value={searchValue.query}
       />
       <Button
