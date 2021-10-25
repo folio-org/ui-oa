@@ -82,7 +82,18 @@
     "publicationRequest.edit": "Editar",
     "publicationRequest.externalRequestIds": "IDs de solicitação externa",
     "publicationRequest.requestTitle": "Número do pedido - {number}",
-    "publicationRequests": "Solicitações",
-    "settings.refdata.requestStatus": "Edit request status",
-    "settings.refdata.editRefdata": "Edit pick list values"
+    "publicationRequests": "Solicitações de publicação",
+    "settings.refdata.requestStatus": "Editar status da solicitação",
+    "settings.refdata.editRefdata": "Editar valores da lista de seleção",
+    "publicationRequest.correspondingAuthorName": "Nome do autor correspondente",
+    "publicationRequests.requests": "Solicitações",
+    "publicationRequests.recordsFound": "{number} registros encontrados",
+    "identifiers.otherIdentifiers": "Outros identificadores",
+    "otherEmail.otherEmailAddresses": "Outro endereço de e-mail",
+    "affiliation.faculty": "Faculdade",
+    "affiliation.school": "Escola",
+    "affiliation.department": "Departamento",
+    "affiliation.dateFrom": "Data de",
+    "affiliation.dateTo": "Data até",
+    "publicationStatus.status": "Situação"
 }

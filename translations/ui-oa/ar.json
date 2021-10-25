@@ -82,7 +82,18 @@
     "publicationRequest.edit": "تحرير",
     "publicationRequest.externalRequestIds": "معرّفات الطلبات الخارجية",
     "publicationRequest.requestTitle": "رقم الطلب - {number}",
-    "publicationRequests": "الطلبات",
+    "publicationRequests": "طلبات النشر",
     "settings.refdata.requestStatus": "تحرير حالة الطلب",
-    "settings.refdata.editRefdata": "تحرير قيم قائمة الاختيار"
+    "settings.refdata.editRefdata": "تحرير قيم قائمة الاختيار",
+    "publicationRequest.correspondingAuthorName": "اسم المؤلف المقابل",
+    "publicationRequests.requests": "الطلبات",
+    "publicationRequests.recordsFound": "تم العثور على {number} تسجيلة",
+    "identifiers.otherIdentifiers": "معرفات أخرى",
+    "otherEmail.otherEmailAddresses": "عناوين بريد إلكتروني أخرى",
+    "affiliation.faculty": "الكلية",
+    "affiliation.school": "المدرسة",
+    "affiliation.department": "القسم",
+    "affiliation.dateFrom": "التاريخ من",
+    "affiliation.dateTo": "التاريخ إلى",
+    "publicationStatus.status": "الحالة"
 }
