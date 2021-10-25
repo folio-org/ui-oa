@@ -43,8 +43,8 @@ function OAFilters({ activeFilters, filterHandlers, getSearchHandlers, searchVal
         className={css.searchField}
         marginBottom0
         name="query"
-        onChange={getSearchHandlers().query}
-        onClear={getSearchHandlers().reset}
+        onChange={getSearchHandlers.query}
+        onClear={getSearchHandlers.reset}
         value={searchValue.query}
       />
       <Button
