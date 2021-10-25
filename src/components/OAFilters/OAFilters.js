@@ -15,11 +15,11 @@ import css from './OAFilters.css';
 const propTypes = {
   activeFilters: PropTypes.object,
   filterHandlers: PropTypes.object,
-  getSearchHandlers: PropTypes.func,
+  searchHandlers: PropTypes.object,
   searchValue: PropTypes.object,
 };
 
-function OAFilters({ activeFilters, filterHandlers, getSearchHandlers, searchValue }) {
+function OAFilters({ activeFilters, filterHandlers, searchHandlers, searchValue }) {
   const onChangeHandler = (group) => {
     filterHandlers.state({
       ...activeFilters,
@@ -43,8 +43,8 @@ function OAFilters({ activeFilters, filterHandlers, getSearchHandlers, searchVal
         className={css.searchField}
         marginBottom0
         name="query"
-        onChange={getSearchHandlers.query}
-        onClear={getSearchHandlers.reset}
+        onChange={searchHandlers.query}
+        onClear={searchHandlers.reset}
         value={searchValue.query}
       />
       <Button
