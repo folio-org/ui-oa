@@ -35,14 +35,14 @@ const PublicationStatusFieldArray = () => {
               <Field
                 component={Datepicker}
                 label={<FormattedMessage id="ui-oa.publicationStatus.publicationStatusDate" />}
-                name={`${publicationStatus}.publicationStatusDate`}
+                name={`${publicationStatus}.statusDate`}
               />
             </Col>
             <Col xs={5}>
               <Field
                 component={TextArea}
                 label={<FormattedMessage id="ui-oa.publicationStatus.publicationStatusNote" />}
-                name={`${publicationStatus}.publicationStatusNote`}
+                name={`${publicationStatus}.statusNote`}
               />
             </Col>
             <Col xs={1}>
@@ -65,7 +65,7 @@ const PublicationStatusFieldArray = () => {
   };
 
   return (
-    <FieldArray name="publicationStatus">
+    <FieldArray name="publicationStatuses">
       {({ fields }) => (
         <div>
           <div>
