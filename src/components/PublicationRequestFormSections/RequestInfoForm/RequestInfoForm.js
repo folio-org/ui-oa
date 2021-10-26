@@ -30,10 +30,12 @@ const RequestInfoForm = () => {
         </Col>
         <Col xs={3}>
           <Field
+            backendDateStandard="YYYY-MM-DD"
             component={Datepicker}
             label={<FormattedMessage id="ui-oa.publicationRequest.requestDate" />}
             name="requestDate"
             required
+            timeZone="UTC"
           />
         </Col>
         <Col xs={3}>

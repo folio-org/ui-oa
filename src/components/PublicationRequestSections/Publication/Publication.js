@@ -38,7 +38,7 @@ const isBook = (request) => {
 };
 
 const hasPublication = (request) => {
-  return !!((request?.doi ||
+  return !!(request?.doi ||
     request?.publicationTitle ||
     request?.authorNames ||
     request?.publicationType ||
@@ -47,7 +47,7 @@ const hasPublication = (request) => {
     request?.license ||
     request?.localReference ||
     request?.publicationUrl ||
-    request?.identifiers?.length !== 0));
+    request?.identifiers?.length !== 0);
 };
 
 const renderBadge = (request) => {

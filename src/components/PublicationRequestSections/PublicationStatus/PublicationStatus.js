@@ -15,8 +15,8 @@ const propTypes = {
 };
 
 const formatter = {
-  type: e => {
-    return e?.type?.label;
+  publicationStatus: e => {
+    return e?.publicationStatus?.label;
   },
 };
 

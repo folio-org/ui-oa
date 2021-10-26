@@ -13,10 +13,11 @@ const propTypes = {
 const PublicationRequestsRoute = ({ children, location }) => {
   const { query, queryGetter, querySetter } = useKiwtSASQuery();
 
+  // TODO: Add coresponding author / request contact name to SASQ map search key
   const SASQ_MAP = {
-    searchKey: 'requestStatus.value',
+    searchKey: 'publicationTitle,requestNumber',
     filterKeys: {
-      requestStatus: 'requestStatus.value'
+      requestStatus: 'requestStatus.value',
     }
   };
 
