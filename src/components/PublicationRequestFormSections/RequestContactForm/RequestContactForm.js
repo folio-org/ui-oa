@@ -63,6 +63,12 @@ const RequestContactForm = () => {
         </Col>
         <Col xs={9} />
       </Row>
+      
+      <Field
+        name={"requestContact.role"}
+        render={() => (null)}
+        initialValue={"request_party"}
+      />
 
       {!values.useCorrespondingAuthor &&
         <>
@@ -71,7 +77,7 @@ const RequestContactForm = () => {
           </Label>
           <Field
             component={TypeDown}
-            name="requestContact"
+            name="requestContact.partyOwner"
             path="oa/party"
             pathMutator={pathMutator}
             renderListItem={renderListItem}
@@ -84,7 +90,7 @@ const RequestContactForm = () => {
           className={css.partyCard}
           header={<FormattedMessage id="ui-oa.publicationRequest.requestContact" />}
         >
-          <PartyInfo party={values.requestContact} />
+          <PartyInfo party={values.requestContact.partyOwner} />
         </EditCard>
       }
     </Accordion>

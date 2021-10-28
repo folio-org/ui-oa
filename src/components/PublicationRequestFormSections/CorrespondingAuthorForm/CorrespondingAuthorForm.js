@@ -38,16 +38,17 @@ const CorrespondingAuthorForm = () => {
     <Accordion
       label={<FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />}
     >
+      <Field
+        name={"correspondingAuthor.role"}
+        render={() => (null)}
+        initialValue={"corresponding_author"}
+      />
       <Label className={css.partyFormLabel}>
         <FormattedMessage id="ui-oa.publicationRequest.person" />
       </Label>
       <Field
         component={TypeDown}
-        name="correspondingAuthor"
-        onChange={e => {
-          console.log('onnchange %o', e);
-          if (values.useCorrespondingAuthor) change('requestContact', values.correspondingAuthor);
-        }}
+        name="correspondingAuthor.partyOwner"
         path="oa/party"
         pathMutator={pathMutator}
         renderListItem={renderListItem}
@@ -57,7 +58,7 @@ const CorrespondingAuthorForm = () => {
           className={css.partyCard}
           header={<FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />}
         >
-          <PartyInfo party={values.correspondingAuthor} />
+          <PartyInfo party={values.correspondingAuthor.partyOwner} />
         </EditCard>
       }
     </Accordion>
