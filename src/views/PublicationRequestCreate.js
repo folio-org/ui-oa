@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
+import { useForm, useFormState } from 'react-final-form';
 
 import {
   AccordionSet,
@@ -29,6 +30,18 @@ const propTypes = {
 
 
 const PublicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, submitting }) => {
+  const { values } = useFormState();
+  const { change } = useForm();
+
+  useEffect(() => {
+    if (
+      values.useCorrespondingAuthor &&
+      values.requestContact?.partyOwner !== values.correspondingAuthor?.partyOwner
+    ) {
+      change('requestContact.partyOwner', values.correspondingAuthor?.partyOwner);
+    }
+  }, [change, values.useCorrespondingAuthor, values.correspondingAuthor?.partyOwner, values.requestContact?.partyOwner]);
+
   const renderPaneFooter = () => {
     return (
       <PaneFooter

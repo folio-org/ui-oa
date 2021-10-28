@@ -32,7 +32,7 @@ const CorrespondingAuthor = ({ request }) => {
     >
       <PartyInfo
         otherEmailAddresses={request?.otherEmailAddresses}
-        party={request?.correspondingAuthor}
+        party={request?.correspondingAuthor?.partyOwner}
         streetAddresses={request?.streetAddresses}
       />
       <Row>

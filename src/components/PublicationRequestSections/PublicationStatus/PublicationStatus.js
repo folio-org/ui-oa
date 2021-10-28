@@ -36,8 +36,8 @@ const PublicationStatus = ({ request }) => {
         <MultiColumnList
           columnMapping={{
             publicationStatus: <FormattedMessage id="ui-oa.publicationStatus.status" />,
-            statusDate: <FormattedMessage id="ui-oa.publicationStatus.statusDate" />,
-            statusNote: <FormattedMessage id="ui-oa.publicationStatus.statusNote" />,
+            statusDate: <FormattedMessage id="ui-oa.publicationRequest.statusDate" />,
+            statusNote: <FormattedMessage id="ui-oa.publicationRequest.statusNote" />,
           }}
           contentData={request?.publicationStatuses}
           formatter={formatter}

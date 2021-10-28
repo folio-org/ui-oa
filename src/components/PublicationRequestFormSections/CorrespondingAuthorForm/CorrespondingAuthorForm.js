@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Field, useFormState } from 'react-final-form';
 import {
@@ -16,7 +15,7 @@ const CorrespondingAuthorForm = () => {
   const pathMutator = (input, path) => {
     const query = generateKiwtQuery(
       {
-        searchKey: 'familyName',
+        searchKey: 'fullName',
         stats: false
       }, {
       query: input,
@@ -37,11 +36,6 @@ const CorrespondingAuthorForm = () => {
     <Accordion
       label={<FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />}
     >
-      <Field
-        initialValue="corresponding_author"
-        name="correspondingAuthor.role"
-        render={() => (null)}
-      />
       <Label className={css.partyFormLabel}>
         <FormattedMessage id="ui-oa.publicationRequest.person" />
       </Label>
@@ -52,7 +46,7 @@ const CorrespondingAuthorForm = () => {
         pathMutator={pathMutator}
         renderListItem={renderListItem}
       />
-      {values.correspondingAuthor &&
+      {values.correspondingAuthor?.partyOwner &&
         <EditCard
           className={css.partyCard}
           header={<FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />}

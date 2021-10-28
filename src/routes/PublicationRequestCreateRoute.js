@@ -14,21 +14,31 @@ const PublicationRequestCreateRoute = () => {
     (data) => ky.post('oa/publicationRequest', { json: data })
   );
 
-  const doTheSubmit = (values) => {
-    const { useCorrespondingAuthor, ...submitValues } = { ...values };
-    postPublicationRequest(submitValues);
-    // console.log(submitValues);
+  const handleClose = () => {
     history.push('/oa/publicationRequests');
   };
 
-  const handleClose = () => {
-    history.push('/oa/publicationRequests');
+  const submitRequest = (values) => {
+    const { useCorrespondingAuthor, correspondingAuthor, requestContact, ...submitValues } = { ...values };
+
+    if (requestContact?.partyOwner?.id) {
+      requestContact.role = 'request_contact';
+      submitValues.requestContact = requestContact;
+    }
+
+    if (correspondingAuthor?.partyOwner?.id) {
+      correspondingAuthor.role = 'corresponding_author';
+      submitValues.correspondingAuthor = correspondingAuthor;
+    }
+
+    postPublicationRequest(submitValues);
+    handleClose();
   };
 
   return (
     <Form
       mutators={arrayMutators}
-      onSubmit={doTheSubmit}
+      onSubmit={submitRequest}
     >
       {({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
