@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Field, useFormState, useForm } from 'react-final-form';
+import { Field, useFormState } from 'react-final-form';
 import {
   Accordion,
   Label,
@@ -11,7 +11,6 @@ import PartyInfo from '../../PublicationRequestSections/PartyInfo';
 import css from './CorrespondingAuthorForm.css';
 
 const CorrespondingAuthorForm = () => {
-  const { change } = useForm();
   const { values } = useFormState();
 
   const pathMutator = (input, path) => {
@@ -39,9 +38,9 @@ const CorrespondingAuthorForm = () => {
       label={<FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />}
     >
       <Field
-        name={"correspondingAuthor.role"}
+        initialValue="corresponding_author"
+        name="correspondingAuthor.role"
         render={() => (null)}
-        initialValue={"corresponding_author"}
       />
       <Label className={css.partyFormLabel}>
         <FormattedMessage id="ui-oa.publicationRequest.person" />

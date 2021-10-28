@@ -63,11 +63,11 @@ const RequestContactForm = () => {
         </Col>
         <Col xs={9} />
       </Row>
-      
+
       <Field
-        name={"requestContact.role"}
+        initialValue="request_party"
+        name="requestContact.role"
         render={() => (null)}
-        initialValue={"request_party"}
       />
 
       {!values.useCorrespondingAuthor &&
