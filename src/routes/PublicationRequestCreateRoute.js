@@ -15,8 +15,8 @@ const PublicationRequestCreateRoute = () => {
   );
 
   const doTheSubmit = (values) => {
-    postPublicationRequest(submitValues);
     const { useCorrespondingAuthor, ...submitValues } = { ...values };
+    postPublicationRequest(submitValues);
     // console.log(submitValues);
     history.push('/oa/publicationRequests');
   };
