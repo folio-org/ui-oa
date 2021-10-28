@@ -39,7 +39,7 @@ const CorrespondingAuthorForm = () => {
       label={<FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />}
     >
       <Label className={css.partyFormLabel}>
-        <FormattedMessage id="ui-oa.publicationRequest.party" />
+        <FormattedMessage id="ui-oa.publicationRequest.person" />
       </Label>
       <Field
         component={TypeDown}
@@ -54,6 +54,7 @@ const CorrespondingAuthorForm = () => {
       />
       {values.correspondingAuthor &&
         <EditCard
+          className={css.partyCard}
           header={<FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />}
         >
           <PartyInfo party={values.correspondingAuthor} />

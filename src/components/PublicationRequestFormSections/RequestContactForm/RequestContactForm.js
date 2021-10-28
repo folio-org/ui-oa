@@ -11,7 +11,8 @@ import {
 import { generateKiwtQuery, TypeDown } from '@k-int/stripes-kint-components';
 import { EditCard } from '@folio/stripes-erm-components';
 
-import PartyInfo from '../PublicationRequestSections/PartyInfo';
+import PartyInfo from '../../PublicationRequestSections/PartyInfo';
+import css from './RequestContactForm.css';
 
 const RequestContactForm = () => {
   const { change } = useForm();
@@ -65,8 +66,8 @@ const RequestContactForm = () => {
 
       {!values.useCorrespondingAuthor &&
         <>
-          <Label>
-            <FormattedMessage id="ui-oa.publicationRequest.party" />
+          <Label className={css.partyFormLabel}>
+            <FormattedMessage id="ui-oa.publicationRequest.person" />
           </Label>
           <Field
             component={TypeDown}
@@ -79,7 +80,10 @@ const RequestContactForm = () => {
       }
 
       {values.requestContact &&
-        <EditCard header={<FormattedMessage id="ui-oa.publicationRequest.requestContact" />}>
+        <EditCard
+          className={css.partyCard}
+          header={<FormattedMessage id="ui-oa.publicationRequest.requestContact" />}
+        >
           <PartyInfo party={values.requestContact} />
         </EditCard>
       }
