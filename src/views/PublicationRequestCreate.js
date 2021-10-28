@@ -33,14 +33,17 @@ const PublicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, s
   const { values } = useFormState();
   const { change } = useForm();
 
+  const correspondingAuthor = values.correspondingAuthor?.partyOwner;
+  const requestContact = values.correspondingAuthor?.partyOwner;
+
   useEffect(() => {
     if (
       values.useCorrespondingAuthor &&
-      values.requestContact?.partyOwner !== values.correspondingAuthor?.partyOwner
+      requestContact !== correspondingAuthor
     ) {
-      change('requestContact.partyOwner', values.correspondingAuthor?.partyOwner);
+      change('requestContact.partyOwner', correspondingAuthor);
     }
-  }, [change, values.useCorrespondingAuthor, values.correspondingAuthor?.partyOwner, values.requestContact?.partyOwner]);
+  }, [change, values.useCorrespondingAuthor, correspondingAuthor, requestContact]);
 
   const renderPaneFooter = () => {
     return (
