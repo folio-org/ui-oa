@@ -30,8 +30,8 @@ const RequestContact = ({ request }) => {
         otherEmailAddresses={request?.otherEmailAddresses}
         party={request?.requestContact}
         streetAddresses={request?.streetAddresses}
-      />    
-      </Accordion>
+      />
+    </Accordion>
   );
 };
 

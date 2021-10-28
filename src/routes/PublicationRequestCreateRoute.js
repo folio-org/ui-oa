@@ -15,10 +15,10 @@ const PublicationRequestCreateRoute = () => {
   );
 
   const doTheSubmit = (values) => {
-    // postPublicationRequest(submitValues);
-    const { useCorrespondingAuthor, ...submitValues } = { ...values }
-    console.log(submitValues);
-    // history.push('/oa/publicationRequests');
+    postPublicationRequest(submitValues);
+    const { useCorrespondingAuthor, ...submitValues } = { ...values };
+    // console.log(submitValues);
+    history.push('/oa/publicationRequests');
   };
 
   const handleClose = () => {

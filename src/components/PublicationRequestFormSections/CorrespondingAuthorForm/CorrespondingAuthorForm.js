@@ -3,12 +3,12 @@ import { FormattedMessage } from 'react-intl';
 import { Field, useFormState, useForm } from 'react-final-form';
 import {
   Accordion,
-  Col,
-  Row,
+  Label,
 } from '@folio/stripes/components';
 import { generateKiwtQuery, TypeDown } from '@k-int/stripes-kint-components';
 import { EditCard } from '@folio/stripes-erm-components';
-import PartyInfo from '../PublicationRequestSections/PartyInfo';
+import PartyInfo from '../../PublicationRequestSections/PartyInfo';
+import css from './CorrespondingAuthorForm.css';
 
 const CorrespondingAuthorForm = () => {
   const { change } = useForm();
@@ -38,22 +38,27 @@ const CorrespondingAuthorForm = () => {
     <Accordion
       label={<FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />}
     >
+      <Label className={css.partyFormLabel}>
+        <FormattedMessage id="ui-oa.publicationRequest.party" />
+      </Label>
       <Field
         component={TypeDown}
         name="correspondingAuthor"
         onChange={e => {
-          console.log('onnchange %o' ,e)
-          if (values.useCorrespondingAuthor) change("requestContact", values.correspondingAuthor)
+          console.log('onnchange %o', e);
+          if (values.useCorrespondingAuthor) change('requestContact', values.correspondingAuthor);
         }}
         path="oa/party"
         pathMutator={pathMutator}
         renderListItem={renderListItem}
       />
-      {values.correspondingAuthor && <EditCard
-        header={<FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />}
-      >
-        <PartyInfo party={values.correspondingAuthor} />
-      </EditCard>}
+      {values.correspondingAuthor &&
+        <EditCard
+          header={<FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />}
+        >
+          <PartyInfo party={values.correspondingAuthor} />
+        </EditCard>
+      }
     </Accordion>
   );
 };

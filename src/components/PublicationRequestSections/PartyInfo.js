@@ -13,7 +13,7 @@ import {
 } from '@folio/stripes/components';
 
 const propTypes = {
-  otherStreetAddresses: PropTypes.object,
+  otherEmailAddresses: PropTypes.object,
   party: PropTypes.object,
   streetAddresses: PropTypes.object
 };
@@ -107,7 +107,7 @@ const renderStreetAddresses = (streetAddresses) => {
 };
 
 const PartyInfo = ({ party, streetAddresses, otherEmailAddresses }) => {
-  console.log(party)
+  console.log(party);
   return (
     <div>
       <Row start="xs">
@@ -180,28 +180,32 @@ const PartyInfo = ({ party, streetAddresses, otherEmailAddresses }) => {
         <Col xs={3} />
       </Row>
 
-      {otherEmailAddresses && <Row start="xs">
-        <Col xs={6}>
-          <KeyValue label={<FormattedMessage id="ui-oa.otherEmail.otherEmailAddresses" />}>
-            {otherEmailAddresses ?
-              <ul>
-                {otherEmailAddresses.map(email => <li key={email?.id}>{email?.emailAddress}</li>)}
-              </ul>
-              :
-              <NoValue />
-            }
-          </KeyValue>
-        </Col>
-      </Row>}
+      {otherEmailAddresses &&
+        <Row start="xs">
+          <Col xs={6}>
+            <KeyValue label={<FormattedMessage id="ui-oa.otherEmail.otherEmailAddresses" />}>
+              {otherEmailAddresses ?
+                <ul>
+                  {otherEmailAddresses.map(email => <li key={email?.id}>{email?.emailAddress}</li>)}
+                </ul>
+                :
+                <NoValue />
+              }
+            </KeyValue>
+          </Col>
+        </Row>
+      }
 
-      {streetAddresses && <Row>
-        <Col xs={12}>
-          <Label>
-            <FormattedMessage id="ui-oa.publicationRequest.streetAddresses" />
-          </Label>
-          {streetAddresses ? renderStreetAddresses(streetAddresses) : <NoValue />}
-        </Col>
-      </Row>}
+      {streetAddresses &&
+        <Row>
+          <Col xs={12}>
+            <Label>
+              <FormattedMessage id="ui-oa.publicationRequest.streetAddresses" />
+            </Label>
+            {streetAddresses ? renderStreetAddresses(streetAddresses) : <NoValue />}
+          </Col>
+        </Row>
+      }
 
     </div>
   );

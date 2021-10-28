@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Field, useFormState, useForm } from 'react-final-form';
 import {
   Accordion,
   Checkbox,
   Col,
+  Label,
   Row,
 } from '@folio/stripes/components';
 import { generateKiwtQuery, TypeDown } from '@k-int/stripes-kint-components';
@@ -15,6 +16,11 @@ import PartyInfo from '../PublicationRequestSections/PartyInfo';
 const RequestContactForm = () => {
   const { change } = useForm();
   const { values } = useFormState();
+
+  useEffect(() => {
+    if (values.useCorrespondingAuthor) change('requestContact', values.correspondingAuthor);
+  }, [change, values.useCorrespondingAuthor, values.correspondingAuthor]);
+
 
   const pathMutator = (input, path) => {
     const query = generateKiwtQuery(
@@ -36,13 +42,6 @@ const RequestContactForm = () => {
     );
   };
 
-  const renderPartyInfo = (party) => {
-    if (party)
-      return <EditCard header={<FormattedMessage id="ui-oa.publicationRequest.requestContact" />}>
-        <PartyInfo party={party} />
-      </EditCard>
-  };
-
   return (
     <Accordion
       label={<FormattedMessage id="ui-oa.publicationRequest.requestContact" />}
@@ -52,31 +51,38 @@ const RequestContactForm = () => {
           <Field
             component={Checkbox}
             label={<FormattedMessage id="ui-oa.publicationRequest.useCorrespondingAuthor" />}
-            onChange={e => {
-              if (e.target.checked) change("requestContact", values.correspondingAuthor)
-              else change("requestContact", undefined)
-              change("useCorrespondingAuthor", e.target.checked)
-            }}
             name="useCorrespondingAuthor"
+            onChange={e => {
+              if (e.target.checked) change('requestContact', values.correspondingAuthor);
+              else change('requestContact', undefined);
+              change('useCorrespondingAuthor', e.target.checked);
+            }}
             type="checkbox"
           />
         </Col>
         <Col xs={9} />
       </Row>
 
-      {values.useCorrespondingAuthor ?
-        renderPartyInfo(values.correspondingAuthor)
-        :
-        <Field
-          component={TypeDown}
-          name="requestContact"
-          path="oa/party"
-          pathMutator={pathMutator}
-          renderListItem={renderListItem}
-        />
+      {!values.useCorrespondingAuthor &&
+        <>
+          <Label>
+            <FormattedMessage id="ui-oa.publicationRequest.party" />
+          </Label>
+          <Field
+            component={TypeDown}
+            name="requestContact"
+            path="oa/party"
+            pathMutator={pathMutator}
+            renderListItem={renderListItem}
+          />
+        </>
       }
-      {values.requestContact ? renderPartyInfo(values.requestContact) : <></>}
 
+      {values.requestContact &&
+        <EditCard header={<FormattedMessage id="ui-oa.publicationRequest.requestContact" />}>
+          <PartyInfo party={values.requestContact} />
+        </EditCard>
+      }
     </Accordion>
   );
 };
