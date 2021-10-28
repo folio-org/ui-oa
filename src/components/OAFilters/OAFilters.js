@@ -15,7 +15,7 @@ import css from './OAFilters.css';
 const propTypes = {
   activeFilters: PropTypes.object,
   filterHandlers: PropTypes.object,
-  searchHandlers: PropTypes.func,
+  searchHandlers: PropTypes.object,
   searchValue: PropTypes.object,
 };
 
@@ -29,6 +29,7 @@ function OAFilters({ activeFilters, filterHandlers, searchHandlers, searchValue 
 
   const renderRequestDateFilter = () => {
     return <DateFilter
+      accordionLabel={<FormattedMessage id="ui-oa.publicationRequest.requestDate" />}
       activeFilters={activeFilters}
       filterHandlers={filterHandlers}
       hideNoDateSetCheckbox
@@ -43,8 +44,8 @@ function OAFilters({ activeFilters, filterHandlers, searchHandlers, searchValue 
         className={css.searchField}
         marginBottom0
         name="query"
-        onChange={searchHandlers().query}
-        onClear={searchHandlers().reset}
+        onChange={searchHandlers.query}
+        onClear={searchHandlers.reset}
         value={searchValue.query}
       />
       <Button

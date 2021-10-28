@@ -8,7 +8,7 @@ import {
   Badge,
 } from '@folio/stripes/components';
 
-import RequestPartyInfo from '../RequestPartyInfo';
+import PartyInfo from '../PartyInfo';
 
 const propTypes = {
   request: PropTypes.object
@@ -26,8 +26,12 @@ const RequestContact = ({ request }) => {
       displayWhenOpen={renderBadge(request?.requestContact)}
       label={<FormattedMessage id="ui-oa.publicationRequest.requestContact" />}
     >
-      <RequestPartyInfo party={request?.requestContact} />
-    </Accordion>
+      <PartyInfo
+        otherEmailAddresses={request?.otherEmailAddresses}
+        party={request?.requestContact}
+        streetAddresses={request?.streetAddresses}
+      />    
+      </Accordion>
   );
 };
 

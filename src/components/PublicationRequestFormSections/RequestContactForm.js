@@ -1,20 +1,48 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Field } from 'react-final-form';
+import { Field, useFormState, useForm } from 'react-final-form';
 import {
   Accordion,
   Checkbox,
   Col,
-  Headline,
   Row,
-  Select,
-  TextField,
 } from '@folio/stripes/components';
+import { generateKiwtQuery, TypeDown } from '@k-int/stripes-kint-components';
+import { EditCard } from '@folio/stripes-erm-components';
 
-import OtherEmailFieldArray from './FieldArrays/OtherEmailFieldArray';
-import StreetAddressesFieldArray from './FieldArrays/StreetAddressesFieldArray';
+import PartyInfo from '../PublicationRequestSections/PartyInfo';
 
 const RequestContactForm = () => {
+  const { change } = useForm();
+  const { values } = useFormState();
+
+  const pathMutator = (input, path) => {
+    const query = generateKiwtQuery(
+      {
+        searchKey: 'familyName',
+        stats: false
+      }, {
+      query: input,
+    }
+    );
+    return `${path}${query}`;
+  };
+
+  const renderListItem = (party) => {
+    return (
+      <>
+        {party.title} {party.familyName}, {party.givenNames} - {party.orcidId} - {party.mainEmail}
+      </>
+    );
+  };
+
+  const renderPartyInfo = (party) => {
+    if (party)
+      return <EditCard header={<FormattedMessage id="ui-oa.publicationRequest.requestContact" />}>
+        <PartyInfo party={party} />
+      </EditCard>
+  };
+
   return (
     <Accordion
       label={<FormattedMessage id="ui-oa.publicationRequest.requestContact" />}
@@ -24,92 +52,31 @@ const RequestContactForm = () => {
           <Field
             component={Checkbox}
             label={<FormattedMessage id="ui-oa.publicationRequest.useCorrespondingAuthor" />}
+            onChange={e => {
+              if (e.target.checked) change("requestContact", values.correspondingAuthor)
+              else change("requestContact", undefined)
+              change("useCorrespondingAuthor", e.target.checked)
+            }}
             name="useCorrespondingAuthor"
             type="checkbox"
           />
         </Col>
         <Col xs={9} />
       </Row>
-      <Row end="xs">
-        <Col xs={3}>
-          <Field
-            component={Select}
-            dataOptions={[]}
-            label={<FormattedMessage id="ui-oa.publicationRequest.title" />}
-            name="requestContact.title"
-          />
-        </Col>
-        <Col xs={3}>
-          <Field
-            autoFocus
-            component={TextField}
-            label={<FormattedMessage id="ui-oa.publicationRequest.familyName" />}
-            maxLength={255}
-            name="requestContact.familyName"
-          />
-        </Col>
-        <Col xs={3}>
-          <Field
-            autoFocus
-            component={TextField}
-            label={<FormattedMessage id="ui-oa.publicationRequest.givenName" />}
-            maxLength={255}
-            name="requestContact.givenName"
-          />
-        </Col>
-        <Col xs={3} />
-      </Row>
 
-      <Row end="xs">
-        <Col xs={3}>
-          <Field
-            autoFocus
-            component={TextField}
-            label={<FormattedMessage id="ui-oa.publicationRequest.mainEmail" />}
-            maxLength={255}
-            name="requestContact.mainEmail"
-          />
-        </Col>
-        <Col xs={3}>
-          <Field
-            autoFocus
-            component={TextField}
-            label={<FormattedMessage id="ui-oa.publicationRequest.phone" />}
-            maxLength={255}
-            name="requestContact.phone"
-          />
-        </Col>
-        <Col xs={3}>
-          <Field
-            autoFocus
-            component={TextField}
-            label={<FormattedMessage id="ui-oa.publicationRequest.mobile" />}
-            maxLength={255}
-            name="requestContact.mobile"
-          />
-        </Col>
-        <Col xs={3} />
-      </Row>
+      {values.useCorrespondingAuthor ?
+        renderPartyInfo(values.correspondingAuthor)
+        :
+        <Field
+          component={TypeDown}
+          name="requestContact"
+          path="oa/party"
+          pathMutator={pathMutator}
+          renderListItem={renderListItem}
+        />
+      }
+      {values.requestContact ? renderPartyInfo(values.requestContact) : <></>}
 
-      <Row>
-        <Col xs>
-          <OtherEmailFieldArray name="requestContactOtherEmail" />
-        </Col>
-      </Row>
-
-      <Row>
-        <Col xs>
-          <Headline margin="small" size="large" tag="h3">
-            <FormattedMessage id="ui-oa.publicationRequest.streetAddresses" />
-          </Headline>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col xs>
-          <StreetAddressesFieldArray name="requestContactStreetAddresses" section="request contact" />
-        </Col>
-      </Row>
     </Accordion>
   );
 };
