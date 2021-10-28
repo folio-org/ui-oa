@@ -1,0 +1,9 @@
+@import '@folio/stripes-components/lib/variables.css';
+
+.partyFormLabel {
+  margin-top: var(--gutter-static-one-third)
+}
+
+.partyCard {
+  margin-top: var(--gutter-static-two-thirds)
+}

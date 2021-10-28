@@ -11,8 +11,8 @@ import {
   Paneset,
 } from '@folio/stripes/components';
 import RequestInfoForm from '../components/PublicationRequestFormSections/RequestInfoForm';
-import CorrespondingAuthorForm from '../components/PublicationRequestFormSections/CorrespondingAuthorForm';
-import RequestContactForm from '../components/PublicationRequestFormSections/RequestContactForm';
+import CorrespondingAuthorForm from '../components/PublicationRequestFormSections/CorrespondingAuthorForm/CorrespondingAuthorForm';
+import RequestContactForm from '../components/PublicationRequestFormSections/RequestContactForm/RequestContactForm';
 import PublicationForm from '../components/PublicationRequestFormSections/PublicationForm';
 import PublicationStatusForm from '../components/PublicationRequestFormSections/PublicationStatusForm';
 import FundingForm from '../components/PublicationRequestFormSections/FundingForm';

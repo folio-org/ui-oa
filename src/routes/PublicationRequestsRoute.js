@@ -23,7 +23,7 @@ const PublicationRequestsRoute = ({ children, location }) => {
 
   const ky = useOkapiKy();
 
-  const { data: { results: publicationRequests } = { } } = useQuery(
+  const { data: { results: publicationRequests } = {} } = useQuery(
     ['ui-oa', 'oaRoute', 'publicationRequests', query],
     () => ky(`oa/publicationRequest${generateKiwtQuery(SASQ_MAP, query)}`).json()
   );

@@ -12,7 +12,7 @@ import {
   Row
 } from '@folio/stripes/components';
 
-import RequestPartyInfo from '../RequestPartyInfo';
+import PartyInfo from '../PartyInfo';
 
 const propTypes = {
   request: PropTypes.object
@@ -30,8 +30,11 @@ const CorrespondingAuthor = ({ request }) => {
       displayWhenOpen={renderBadge(request?.correspondingAuthor)}
       label={<FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />}
     >
-      <RequestPartyInfo party={request?.correspondingAuthor} />
-
+      <PartyInfo
+        otherEmailAddresses={request?.otherEmailAddresses}
+        party={request?.correspondingAuthor}
+        streetAddresses={request?.streetAddresses}
+      />
       <Row>
         <Col xs={12}>
           <Label>

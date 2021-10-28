@@ -13,7 +13,9 @@ import {
 } from '@folio/stripes/components';
 
 const propTypes = {
-  request: PropTypes.object
+  otherEmailAddresses: PropTypes.object,
+  party: PropTypes.object,
+  streetAddresses: PropTypes.object
 };
 
 const renderStreetAddresses = (streetAddresses) => {
@@ -104,14 +106,15 @@ const renderStreetAddresses = (streetAddresses) => {
   );
 };
 
-const RequestPartyInfo = ({ request }) => {
+const PartyInfo = ({ party, streetAddresses, otherEmailAddresses }) => {
+  console.log(party);
   return (
     <div>
       <Row start="xs">
         <Col xs={3}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.title" />}>
-            {request?.correspondingAuthor ?
-              <div>{request.correspondingAuthor.partyOwner.title}</div>
+            {party ?
+              <div>{party.title}</div>
               :
               <NoValue />
             }
@@ -119,8 +122,8 @@ const RequestPartyInfo = ({ request }) => {
         </Col>
         <Col xs={3}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.familyName" />}>
-            {request?.correspondingAuthor ?
-              <div>{request.correspondingAuthor.partyOwner.familyName}</div>
+            {party ?
+              <div>{party.familyName}</div>
               :
               <NoValue />
             }
@@ -128,8 +131,8 @@ const RequestPartyInfo = ({ request }) => {
         </Col>
         <Col xs={3}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.givenName" />}>
-            {request?.correspondingAuthor ?
-              <div>{request.correspondingAuthor.partyOwner.givenNames}</div>
+            {party ?
+              <div>{party.givenNames}</div>
               :
               <NoValue />
             }
@@ -137,8 +140,8 @@ const RequestPartyInfo = ({ request }) => {
         </Col>
         <Col xs={3}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.orcidId" />}>
-            {request?.correspondingAuthor ?
-              <div>{request.correspondingAuthor.partyOwner.orcidId}</div>
+            {party ?
+              <div>{party.orcidId}</div>
               :
               <NoValue />
             }
@@ -149,8 +152,8 @@ const RequestPartyInfo = ({ request }) => {
       <Row start="xs">
         <Col xs={3}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.mainEmail" />}>
-            {request?.correspondingAuthor ?
-              <div>{request.correspondingAuthor.partyOwner.mainEmail}</div>
+            {party ?
+              <div>{party.mainEmail}</div>
               :
               <NoValue />
             }
@@ -158,8 +161,8 @@ const RequestPartyInfo = ({ request }) => {
         </Col>
         <Col xs={3}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.phone" />}>
-            {request?.correspondingAuthor ?
-              <div>{request.correspondingAuthor.partyOwner.phone}</div>
+            {party ?
+              <div>{party.phone}</div>
               :
               <NoValue />
             }
@@ -167,8 +170,8 @@ const RequestPartyInfo = ({ request }) => {
         </Col>
         <Col xs={3}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.mobile" />}>
-            {request?.correspondingAuthor ?
-              <div>{request.correspondingAuthor.partyOwner.mobile}</div>
+            {party ?
+              <div>{party.mobile}</div>
               :
               <NoValue />
             }
@@ -177,32 +180,37 @@ const RequestPartyInfo = ({ request }) => {
         <Col xs={3} />
       </Row>
 
-      <Row start="xs">
-        <Col xs={6}>
-          <KeyValue label={<FormattedMessage id="ui-oa.otherEmail.otherEmailAddresses" />}>
-            {request?.otherEmailAddresses?.length ?
-              <ul>
-                {request?.otherEmailAddresses?.map(email => <li key={email?.id}>{email?.emailAddress}</li>)}
-              </ul>
-              :
-              <NoValue />
-            }
-          </KeyValue>
-        </Col>
-      </Row>
+      {otherEmailAddresses &&
+        <Row start="xs">
+          <Col xs={6}>
+            <KeyValue label={<FormattedMessage id="ui-oa.otherEmail.otherEmailAddresses" />}>
+              {otherEmailAddresses ?
+                <ul>
+                  {otherEmailAddresses.map(email => <li key={email?.id}>{email?.emailAddress}</li>)}
+                </ul>
+                :
+                <NoValue />
+              }
+            </KeyValue>
+          </Col>
+        </Row>
+      }
 
-      <Row>
-        <Col xs={12}>
-          <Label>
-            <FormattedMessage id="ui-oa.publicationRequest.streetAddresses" />
-          </Label>
-          {request?.streetAddresses ? renderStreetAddresses(request.streetAddresses) : <NoValue />}
-        </Col>
-      </Row>
+      {streetAddresses &&
+        <Row>
+          <Col xs={12}>
+            <Label>
+              <FormattedMessage id="ui-oa.publicationRequest.streetAddresses" />
+            </Label>
+            {streetAddresses ? renderStreetAddresses(streetAddresses) : <NoValue />}
+          </Col>
+        </Row>
+      }
+
     </div>
   );
 };
 
-RequestPartyInfo.propTypes = propTypes;
+PartyInfo.propTypes = propTypes;
 
-export default RequestPartyInfo;
+export default PartyInfo;

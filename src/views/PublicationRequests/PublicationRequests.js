@@ -102,7 +102,7 @@ const PublicationRequests = ({
                   <OAFilters
                     activeFilters={activeFilters.state}
                     filterHandlers={getFilterHandlers()}
-                    searchHandlers={getSearchHandlers}
+                    searchHandlers={getSearchHandlers()}
                     searchValue={searchValue}
                   />
                 </form>
