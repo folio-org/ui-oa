@@ -33,17 +33,17 @@ const PublicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, s
   const { values } = useFormState();
   const { change } = useForm();
 
-  const correspondingAuthor = values.correspondingAuthor?.partyOwner;
-  const requestContact = values.correspondingAuthor?.partyOwner;
 
+  // TODO: create hook to store values in state to remove linting error (Ask Ethan)
   useEffect(() => {
     if (
       values.useCorrespondingAuthor &&
-      requestContact !== correspondingAuthor
+      values.requestContact?.partyOwner !== values.correspondingAuthor?.partyOwner
     ) {
-      change('requestContact.partyOwner', correspondingAuthor);
+      change('requestContact.partyOwner', values.correspondingAuthor?.partyOwner);
     }
-  }, [change, values.useCorrespondingAuthor, correspondingAuthor, requestContact]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [change, values.useCorrespondingAuthor, values.correspondingAuthor?.partyOwner, values.requestContact?.partyOwner]);
 
   const renderPaneFooter = () => {
     return (
