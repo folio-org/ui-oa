@@ -95,5 +95,7 @@
     "affiliation.department": "القسم",
     "affiliation.dateFrom": "التاريخ من",
     "affiliation.dateTo": "التاريخ إلى",
-    "publicationStatus.status": "الحالة"
+    "publicationStatus.status": "الحالة",
+    "publicationRequest.party": "طرف",
+    "publicationRequest.person": "شخص"
 }
