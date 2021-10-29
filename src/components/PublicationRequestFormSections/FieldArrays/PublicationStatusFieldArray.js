@@ -34,14 +34,14 @@ const PublicationStatusFieldArray = () => {
             <Col xs={3}>
               <Field
                 component={Datepicker}
-                label={<FormattedMessage id="ui-oa.publicationStatus.publicationStatusDate" />}
+                label={<FormattedMessage id="ui-oa.publicationRequest.publicationStatusDate" />}
                 name={`${publicationStatus}.statusDate`}
               />
             </Col>
             <Col xs={5}>
               <Field
                 component={TextArea}
-                label={<FormattedMessage id="ui-oa.publicationStatus.publicationStatusNote" />}
+                label={<FormattedMessage id="ui-oa.publicationRequest.publicationStatusNote" />}
                 name={`${publicationStatus}.statusNote`}
               />
             </Col>

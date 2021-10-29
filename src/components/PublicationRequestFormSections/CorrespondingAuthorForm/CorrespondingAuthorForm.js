@@ -1,6 +1,5 @@
-import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Field, useFormState, useForm } from 'react-final-form';
+import { Field, useFormState } from 'react-final-form';
 import {
   Accordion,
   Label,
@@ -11,13 +10,12 @@ import PartyInfo from '../../PublicationRequestSections/PartyInfo';
 import css from './CorrespondingAuthorForm.css';
 
 const CorrespondingAuthorForm = () => {
-  const { change } = useForm();
   const { values } = useFormState();
 
   const pathMutator = (input, path) => {
     const query = generateKiwtQuery(
       {
-        searchKey: 'familyName',
+        searchKey: 'fullName',
         stats: false
       }, {
       query: input,
@@ -43,21 +41,17 @@ const CorrespondingAuthorForm = () => {
       </Label>
       <Field
         component={TypeDown}
-        name="correspondingAuthor"
-        onChange={e => {
-          console.log('onnchange %o', e);
-          if (values.useCorrespondingAuthor) change('requestContact', values.correspondingAuthor);
-        }}
+        name="correspondingAuthor.partyOwner"
         path="oa/party"
         pathMutator={pathMutator}
         renderListItem={renderListItem}
       />
-      {values.correspondingAuthor &&
+      {values.correspondingAuthor?.partyOwner &&
         <EditCard
           className={css.partyCard}
           header={<FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />}
         >
-          <PartyInfo party={values.correspondingAuthor} />
+          <PartyInfo party={values.correspondingAuthor.partyOwner} />
         </EditCard>
       }
     </Accordion>

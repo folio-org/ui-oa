@@ -107,7 +107,6 @@ const renderStreetAddresses = (streetAddresses) => {
 };
 
 const PartyInfo = ({ party, streetAddresses, otherEmailAddresses }) => {
-  console.log(party);
   return (
     <div>
       <Row start="xs">

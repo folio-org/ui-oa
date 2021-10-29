@@ -28,7 +28,7 @@ const RequestContact = ({ request }) => {
     >
       <PartyInfo
         otherEmailAddresses={request?.otherEmailAddresses}
-        party={request?.requestContact}
+        party={request?.requestContact?.partyOwner}
         streetAddresses={request?.streetAddresses}
       />
     </Accordion>
