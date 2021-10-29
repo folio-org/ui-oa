@@ -95,5 +95,7 @@
     "affiliation.department": "Departamento",
     "affiliation.dateFrom": "Data de",
     "affiliation.dateTo": "Data até",
-    "publicationStatus.status": "Situação"
+    "publicationStatus.status": "Situação",
+    "publicationRequest.party": "Party",
+    "publicationRequest.person": "Person"
 }
