@@ -1,13 +1,19 @@
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
-import { useMutation } from 'react-query';
+import { useQuery, useMutation } from 'react-query';
 import View from '../views/PublicationRequestCreate/PublicationRequestCreate';
 
-const PublicationRequestCreateRoute = () => {
+const PublicationRequestEditRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
+  const { id } = useParams();
+
+  const { data: publicationRequest } = useQuery(
+    ['ui-oa', 'publicationEditRoute', 'publicationRequest', id],
+    () => ky(`oa/publicationRequest/${id}`).json()
+  );
 
   const { mutateAsync: postPublicationRequest } = useMutation(
     ['ui-oa', 'PublicationRequestCreateRoute', 'postPublicationRequest'],
@@ -19,22 +25,8 @@ const PublicationRequestCreateRoute = () => {
   };
 
   const submitRequest = (values) => {
-    const { useCorrespondingAuthor, correspondingAuthor, requestContact, ...submitValues } = { ...values };
-
-    if (requestContact?.partyOwner?.id) {
-      requestContact.role = 'request_contact';
-      submitValues.requestContact = requestContact;
-    }
-
-    if (correspondingAuthor?.partyOwner?.id) {
-      correspondingAuthor.role = 'corresponding_author';
-      submitValues.correspondingAuthor = correspondingAuthor;
-    }
-
-    postPublicationRequest(submitValues);
     handleClose();
   };
-
   return (
     <Form
       mutators={arrayMutators}
@@ -47,6 +39,7 @@ const PublicationRequestCreateRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit
             }}
+            publicationRequest={publicationRequest}
           />
         </form>
       )}
@@ -54,4 +47,4 @@ const PublicationRequestCreateRoute = () => {
   );
 };
 
-export default PublicationRequestCreateRoute;
+export default PublicationRequestEditRoute;

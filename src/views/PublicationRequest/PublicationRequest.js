@@ -11,17 +11,18 @@ import {
   MetaSection,
   Pane,
 } from '@folio/stripes/components';
-import RequestInfo from '../components/PublicationRequestSections/RequestInfo/RequestInfo';
-import CorrespondingAuthor from '../components/PublicationRequestSections/CorrespondingAuthor/CorrespondingAuthor';
-import Publication from '../components/PublicationRequestSections/Publication/Publication';
-import PublicationStatus from '../components/PublicationRequestSections/PublicationStatus/PublicationStatus';
-import RequestContact from '../components/PublicationRequestSections/RequestContact/RequestContact';
-import Funding from '../components/PublicationRequestSections/Funding/Funding';
+import RequestInfo from '../../components/PublicationRequestSections/RequestInfo/RequestInfo';
+import CorrespondingAuthor from '../../components/PublicationRequestSections/CorrespondingAuthor/CorrespondingAuthor';
+import Publication from '../../components/PublicationRequestSections/Publication/Publication';
+import PublicationStatus from '../../components/PublicationRequestSections/PublicationStatus/PublicationStatus';
+import RequestContact from '../../components/PublicationRequestSections/RequestContact/RequestContact';
+import Funding from '../../components/PublicationRequestSections/Funding/Funding';
 
 const propTypes = {
   data: PropTypes.object,
   handlers: PropTypes.shape({
-    onClose: PropTypes.func.isRequired
+    onClose: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired,
   }).isRequired
 };
 
@@ -32,7 +33,7 @@ const PublicationRequest = ({ handlers, data: { publicationRequest: request } = 
         <Button
           buttonStyle="dropdownItem"
           id="clickable-dropdown-edit-publication-request"
-        // onClick={handlers.onEdit}
+          onClick={handlers.onEdit}
         >
           <Icon icon="edit">
             <FormattedMessage id="ui-oa.publicationRequest.edit" />

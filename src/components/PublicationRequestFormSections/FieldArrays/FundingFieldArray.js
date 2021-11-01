@@ -15,7 +15,6 @@ import { useRefdata } from '@k-int/stripes-kint-components';
 const renderFunders = (fields, fundersValues, aspectFundedValues) => {
   return (
     <div>
-      {/* TODO: Insert dataOptions */}
       {fields.map((name, index) => (
         <Row key={name} middle="xs">
           <Col xs={3}>
