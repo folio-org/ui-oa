@@ -15,11 +15,6 @@ const PublicationRequestEditRoute = () => {
     () => ky(`oa/publicationRequest/${id}`).json()
   );
 
-  const { mutateAsync: postPublicationRequest } = useMutation(
-    ['ui-oa', 'PublicationRequestCreateRoute', 'postPublicationRequest'],
-    (data) => ky.post('oa/publicationRequest', { json: data })
-  );
-
   const handleClose = () => {
     history.push('/oa/publicationRequests');
   };
