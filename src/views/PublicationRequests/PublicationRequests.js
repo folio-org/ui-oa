@@ -58,8 +58,10 @@ const PublicationRequests = ({
     requestStatus: d => {
       return d?.requestStatus?.label;
     },
+    correspondingAuthorName: d => {
+      return d?.correspondingAuthor?.partyOwner?.fullName;
+    }
   };
-
   return (
     <SearchAndSortQuery
       initialSearchState={{ query: '' }}
@@ -68,92 +70,99 @@ const PublicationRequests = ({
     >
       {
         ({
-          searchValue,
-          getSearchHandlers,
-          onSubmitSearch,
           activeFilters,
+          filterChanged,
           getFilterHandlers,
-          onSort
-        }) => (
-          <div>
-            <PersistedPaneset
-              appId="@folio/oa"
-              id="oa-paneset"
-            >
-              <Pane
-                defaultWidth="20%"
-                paneTitle={<FormattedMessage id="stripes-smart-components.searchAndFilter" />}
+          getSearchHandlers,
+          onSort,
+          onSubmitSearch,
+          resetAll,
+          searchChanged,
+          searchValue
+        }) => {
+          const disableReset = () => (!filterChanged && !searchChanged);
+          return (
+            <div>
+              <PersistedPaneset
+                appId="@folio/oa"
+                id="oa-paneset"
               >
-                <form onSubmit={onSubmitSearch}>
-                  <ButtonGroup fullWidth>
-                    <Button
-                      buttonStyle="primary"
-                      id="clickable-nav-oa-publication-requests"
-                    >
-                      <FormattedMessage id="ui-oa.publicationRequests.requests" />
-                    </Button>
-                    <Button
-                      id="clickable-nav-oa-something-else"
-                      to={urls.publicationRequests()}
-                    >
-                      <FormattedMessage id="ui-oa.publicationRequests.requests" />
-                    </Button>
-                  </ButtonGroup>
-                  <OAFilters
-                    activeFilters={activeFilters.state}
-                    filterHandlers={getFilterHandlers()}
-                    searchHandlers={getSearchHandlers()}
-                    searchValue={searchValue}
+                <Pane
+                  defaultWidth="20%"
+                  paneTitle={<FormattedMessage id="stripes-smart-components.searchAndFilter" />}
+                >
+                  <form onSubmit={onSubmitSearch}>
+                    <ButtonGroup fullWidth>
+                      <Button
+                        buttonStyle="primary"
+                        id="clickable-nav-oa-publication-requests"
+                      >
+                        <FormattedMessage id="ui-oa.publicationRequests.requests" />
+                      </Button>
+                      <Button
+                        id="clickable-nav-oa-something-else"
+                        to={urls.publicationRequests()}
+                      >
+                        <FormattedMessage id="ui-oa.publicationRequests.requests" />
+                      </Button>
+                    </ButtonGroup>
+                    <OAFilters
+                      activeFilters={activeFilters.state}
+                      disableReset={disableReset}
+                      filterHandlers={getFilterHandlers()}
+                      resetAll={resetAll}
+                      searchHandlers={getSearchHandlers()}
+                      searchValue={searchValue}
+                    />
+                  </form>
+                </Pane>
+                <Pane
+                  appIcon={<AppIcon app="oa" iconKey="app" size="small" />}
+                  defaultWidth="fill"
+                  lastMenu={(
+                    <IfPermission perm="oa.publicationRequest.edit">
+                      <PaneMenu>
+                        <FormattedMessage id="ui-oa.publicationRequest.createPublicationRequest">
+                          {ariaLabel => (
+                            <Button
+                              aria-label={ariaLabel}
+                              buttonStyle="primary"
+                              id="clickable-new-publication-request"
+                              marginBottom0
+                              to={`${urls.publicationRequestCreate()}`}
+                            >
+                              <FormattedMessage id="stripes-smart-components.new" />
+                            </Button>
+                          )}
+                        </FormattedMessage>
+                      </PaneMenu>
+                    </IfPermission>
+                  )}
+                  paneSub={data?.publicationRequests !== undefined ?
+                    <FormattedMessage id="ui-oa.publicationRequests.recordsFound" values={{ number: data?.publicationRequests?.length }} /> : ''}
+                  paneTitle={<FormattedMessage id="ui-oa.publicationRequests" />}
+                >
+                  <MultiColumnList
+                    autosize
+                    columnMapping={{
+                      requestNumber: <FormattedMessage id="ui-oa.publicationRequest.requestNumber" />,
+                      requestDate: <FormattedMessage id="ui-oa.publicationRequest.requestDate" />,
+                      requestStatus: <FormattedMessage id="ui-oa.publicationRequest.status" />,
+                      publicationTitle: <FormattedMessage id="ui-oa.publicationRequest.publicationTitle" />,
+                      correspondingAuthorName: <FormattedMessage id="ui-oa.publicationRequest.correspondingAuthorName" />,
+                    }}
+                    contentData={data.publicationRequests}
+                    formatter={formatter}
+                    onHeaderClick={onSort}
+                    onRowClick={(_e, rowData) => history.push(`${urls.publicationRequest(rowData.id)}${searchString}`)}
+                    visibleColumns={['requestNumber', 'requestDate', 'requestStatus', 'publicationTitle', 'correspondingAuthorName']}
                   />
-                </form>
-              </Pane>
-              <Pane
-                appIcon={<AppIcon app="oa" iconKey="app" size="small" />}
-                defaultWidth="fill"
-                lastMenu={(
-                  <IfPermission perm="oa.publicationRequest.edit">
-                    <PaneMenu>
-                      <FormattedMessage id="ui-oa.publicationRequest.createPublicationRequest">
-                        {ariaLabel => (
-                          <Button
-                            aria-label={ariaLabel}
-                            buttonStyle="primary"
-                            id="clickable-new-publication-request"
-                            marginBottom0
-                            to={`${urls.publicationRequestCreate()}`}
-                          >
-                            <FormattedMessage id="stripes-smart-components.new" />
-                          </Button>
-                        )}
-                      </FormattedMessage>
-                    </PaneMenu>
-                  </IfPermission>
-                )}
-                paneSub={data?.publicationRequests !== undefined ?
-                  <FormattedMessage id="ui-oa.publicationRequests.recordsFound" values={{ number: data?.publicationRequests?.length }} /> : ''}
-                paneTitle={<FormattedMessage id="ui-oa.publicationRequests" />}
-              >
-                {/* TODO: CorrespondingAuthorName needs correct mapping in formatter */}
-                <MultiColumnList
-                  autosize
-                  columnMapping={{
-                    requestNumber: <FormattedMessage id="ui-oa.publicationRequest.requestNumber" />,
-                    requestDate: <FormattedMessage id="ui-oa.publicationRequest.requestDate" />,
-                    requestStatus: <FormattedMessage id="ui-oa.publicationRequest.status" />,
-                    publicationTitle: <FormattedMessage id="ui-oa.publicationRequest.publicationTitle" />,
-                    correspondingAuthorName: <FormattedMessage id="ui-oa.publicationRequest.correspondingAuthorName" />,
-                  }}
-                  contentData={data.publicationRequests}
-                  formatter={formatter}
-                  onHeaderClick={onSort}
-                  onRowClick={(_e, rowData) => history.push(`${urls.publicationRequest(rowData.id)}${searchString}`)}
-                  visibleColumns={['requestNumber', 'requestDate', 'requestStatus', 'publicationTitle', 'correspondingAuthorName']}
-                />
-              </Pane>
-              {children}
-            </PersistedPaneset>
-          </div>
-        )
+                </Pane>
+                {children}
+              </PersistedPaneset>
+            </div>
+          );
+        }
       }
     </SearchAndSortQuery>
   );

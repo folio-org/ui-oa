@@ -5,6 +5,7 @@ import {
   AccordionSet,
   Button,
   FilterAccordionHeader,
+  Icon,
   SearchField,
 } from '@folio/stripes/components';
 import { FormattedMessage } from 'react-intl';
@@ -14,12 +15,14 @@ import css from './OAFilters.css';
 
 const propTypes = {
   activeFilters: PropTypes.object,
+  disableReset: PropTypes.func,
   filterHandlers: PropTypes.object,
+  resetAll: PropTypes.func,
   searchHandlers: PropTypes.object,
   searchValue: PropTypes.object,
 };
 
-function OAFilters({ activeFilters, filterHandlers, searchHandlers, searchValue }) {
+function OAFilters({ activeFilters, disableReset, filterHandlers, resetAll, searchHandlers, searchValue }) {
   const onChangeHandler = (group) => {
     filterHandlers.state({
       ...activeFilters,
@@ -55,6 +58,16 @@ function OAFilters({ activeFilters, filterHandlers, searchHandlers, searchValue 
         type="submit"
       >
         <FormattedMessage id="stripes-smart-components.search" />
+      </Button>
+      <Button
+        buttonStyle="none"
+        disabled={disableReset()}
+        id="clickable-reset-all"
+        onClick={resetAll}
+      >
+        <Icon icon="times-circle-solid">
+          <FormattedMessage id="stripes-smart-components.resetAll" />
+        </Icon>
       </Button>
       <AccordionSet>
         <Accordion
