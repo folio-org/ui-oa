@@ -66,7 +66,7 @@ const FundingFieldArray = () => {
           <Button
             onClick={() => fields.push({})}
           >
-            Add
+            <FormattedMessage id="ui-oa.funders.addFunding" />
           </Button>
         </div>
       )}
