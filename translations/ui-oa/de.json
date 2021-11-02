@@ -9,7 +9,7 @@
     "publicationRequest.addIdentifier": "Identifier hinzufügen",
     "publicationRequest.addOtherEmail": "Weitere E-Mail-Adresse hinzufügen",
     "publicationRequest.affiliations": "Zugehörigkeiten",
-    "publicationRequest.aspectFunded": "Aspect funded",
+    "publicationRequest.aspectFunded": "geförderter Aspekt",
     "publicationRequest.authorLookup": "Autorensuche",
     "publicationRequest.authorNames": "Autorennamen",
     "publicationRequest.bookDetails": "Buchdetails",
@@ -95,5 +95,7 @@
     "affiliation.department": "Abteilung",
     "affiliation.dateFrom": "Datum von",
     "affiliation.dateTo": "Datum bis",
-    "publicationStatus.status": "Status"
+    "publicationStatus.status": "Status",
+    "publicationRequest.party": "Party",
+    "publicationRequest.person": "Person"
 }
