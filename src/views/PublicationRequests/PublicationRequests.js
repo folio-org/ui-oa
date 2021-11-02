@@ -65,8 +65,10 @@ const PublicationRequests = ({
   return (
     <SearchAndSortQuery
       initialSearchState={{ query: '' }}
+      initialSortState={{ sort: '-requestDate' }}
       queryGetter={queryGetter}
       querySetter={querySetter}
+      sortableColumns={['requestNumber', 'requestDate', 'requestStatus', 'publicationTitle']}
     >
       {
         ({
