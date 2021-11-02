@@ -85,7 +85,7 @@ const PublicationRequests = ({
           searchChanged,
           searchValue
         }) => {
-          const disableReset = () => (!filterChanged && !searchChanged);
+          const disableReset = !filterChanged && !searchChanged;
           return (
             <div>
               <PersistedPaneset

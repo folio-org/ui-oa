@@ -10,12 +10,13 @@ import {
 } from '@folio/stripes/components';
 import { FormattedMessage } from 'react-intl';
 import { DateFilter } from '@folio/stripes-erm-components';
+import { useRefdata } from '@k-int/stripes-kint-components';
 
 import css from './OAFilters.css';
 
 const propTypes = {
   activeFilters: PropTypes.object,
-  disableReset: PropTypes.func,
+  disableReset: PropTypes.bool,
   filterHandlers: PropTypes.object,
   resetAll: PropTypes.func,
   searchHandlers: PropTypes.object,
@@ -23,6 +24,8 @@ const propTypes = {
 };
 
 function OAFilters({ activeFilters, disableReset, filterHandlers, resetAll, searchHandlers, searchValue }) {
+  const { 0: { values: requestStatusValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.RequestStatus', endpoint: 'oa/refdata' });
+
   const onChangeHandler = (group) => {
     filterHandlers.state({
       ...activeFilters,
@@ -61,7 +64,7 @@ function OAFilters({ activeFilters, disableReset, filterHandlers, resetAll, sear
       </Button>
       <Button
         buttonStyle="none"
-        disabled={disableReset()}
+        disabled={disableReset}
         id="clickable-reset-all"
         onClick={resetAll}
       >
@@ -79,11 +82,7 @@ function OAFilters({ activeFilters, disableReset, filterHandlers, resetAll, sear
           separator={false}
         >
           <CheckboxFilter
-            dataOptions={[
-              { id: 'new', label: 'New', value: 'new' },
-              { id: 'inProgress', label: 'In progress', value: 'inProgress' },
-              { id: 'rejected', label: 'Rejected', value: 'rejected' }
-            ]}
+            dataOptions={requestStatusValues}
             name="requestStatus"
             onChange={onChangeHandler}
             selectedValues={activeFilters?.requestStatus || []}

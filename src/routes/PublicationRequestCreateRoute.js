@@ -3,7 +3,7 @@ import arrayMutators from 'final-form-arrays';
 import { useHistory } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useMutation } from 'react-query';
-import View from '../views/PublicationRequestCreate/PublicationRequestCreate';
+import View from '../views/PublicationRequestCreate';
 
 const PublicationRequestCreateRoute = () => {
   const history = useHistory();
@@ -23,7 +23,12 @@ const PublicationRequestCreateRoute = () => {
   );
 
   const submitRequest = (values) => {
-    const { useCorrespondingAuthor, correspondingAuthor, requestContact, ...submitValues } = { ...values };
+    const {
+      useCorrespondingAuthor,
+      correspondingAuthor,
+      requestContact,
+      ...submitValues
+    } = { ...values };
 
     if (requestContact?.partyOwner?.id) {
       requestContact.role = 'request_contact';
