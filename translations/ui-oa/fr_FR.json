@@ -87,13 +87,15 @@
     "settings.refdata.editRefdata": "Edit pick list values",
     "publicationRequest.correspondingAuthorName": "Corresponding author name",
     "publicationRequests.requests": "Requests",
-    "publicationRequests.recordsFound": "{number} records found",
+    "publicationRequests.recordsFound": "{number} enregistrements trouvés",
     "identifiers.otherIdentifiers": "Other identifiers",
-    "otherEmail.otherEmailAddresses": "Other email addresses",
-    "affiliation.faculty": "Faculty",
-    "affiliation.school": "School",
-    "affiliation.department": "Department",
-    "affiliation.dateFrom": "Date from",
-    "affiliation.dateTo": "Date to",
-    "publicationStatus.status": "Status"
+    "otherEmail.otherEmailAddresses": "Autres adresses e-mail",
+    "affiliation.faculty": "Faculté",
+    "affiliation.school": "École",
+    "affiliation.department": "Département / Service",
+    "affiliation.dateFrom": "Date du",
+    "affiliation.dateTo": "Date jusqu'au",
+    "publicationStatus.status": "Statut",
+    "publicationRequest.party": "Party",
+    "publicationRequest.person": "Person"
 }
