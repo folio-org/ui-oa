@@ -42,7 +42,7 @@ const PublicationForm = () => {
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...publicationTypeValues]}
             label={<FormattedMessage id="ui-oa.publicationRequest.publicationType" />}
-            name="publicationType"
+            name="publicationType.value"
           />
         </Col>
         <Col xs={3}>
@@ -50,7 +50,7 @@ const PublicationForm = () => {
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...subtypeValues]}
             label={<FormattedMessage id="ui-oa.publicationRequest.subtype" />}
-            name="subtype"
+            name="subtype.value"
           />
         </Col>
         <Col xs={3}>
@@ -58,7 +58,7 @@ const PublicationForm = () => {
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...publisherValues]}
             label={<FormattedMessage id="ui-oa.publicationRequest.publisher" />}
-            name="publisher"
+            name="publisher.value"
           />
         </Col>
         <Col xs={3}>
@@ -66,7 +66,7 @@ const PublicationForm = () => {
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...licenseValues]}
             label={<FormattedMessage id="ui-oa.publicationRequest.license" />}
-            name="license"
+            name="license.value"
           />
         </Col>
       </Row>
@@ -159,7 +159,7 @@ const PublicationForm = () => {
                 component={Select}
                 dataOptions={[{ value: '', label: '' }, ...oaStatusValues]}
                 label={<FormattedMessage id="ui-oa.publicationRequest.oaStatus" />}
-                name="oaStatus"
+                name="oaStatus.value"
               />
             </Col>
             <Col xs={9} />

@@ -28,7 +28,7 @@ const PublicationStatusFieldArray = () => {
                 component={Select}
                 dataOptions={[{ value: '', label: '' }, ...statusValues]}
                 label={<FormattedMessage id="ui-oa.publicationRequest.publicationStatus" />}
-                name={`${publicationStatus}.publicationStatus`}
+                name={`${publicationStatus}.publicationStatus.value`}
               />
             </Col>
             <Col xs={3}>

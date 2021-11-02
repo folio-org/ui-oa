@@ -15,15 +15,23 @@ const PublicationRequestEditRoute = () => {
     () => ky(`oa/publicationRequest/${id}`).json()
   );
 
+  const { mutateAsync: putPublicationRequest } = useMutation(
+    ['ui-oa', 'PublicationRequestEditRoute', 'putPublicationRequest'],
+    (data) => ky.put('oa/publicationRequest', { json: data })
+  );
+
   const handleClose = () => {
     history.push('/oa/publicationRequests');
   };
 
   const submitRequest = (values) => {
+    putPublicationRequest(values);
     handleClose();
   };
+
   return (
     <Form
+      initialValues={publicationRequest}
       mutators={arrayMutators}
       onSubmit={submitRequest}
     >

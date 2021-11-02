@@ -43,7 +43,7 @@ const RequestInfoForm = () => {
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...requestStatusValues]}
             label={<FormattedMessage id="ui-oa.publicationRequest.status" />}
-            name="requestStatus"
+            name="requestStatus.value"
             required
           />
         </Col>

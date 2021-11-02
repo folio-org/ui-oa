@@ -22,7 +22,7 @@ const renderFunders = (fields, fundersValues, aspectFundedValues) => {
               component={Select}
               dataOptions={[{ value: '', label: '' }, ...aspectFundedValues]}
               label={<FormattedMessage id="ui-oa.publicationRequest.aspectFunded" />}
-              name={`${name}.aspectFunded`}
+              name={`${name}.aspectFunded.value`}
             />
           </Col>
           <Col xs={3}>
@@ -30,7 +30,7 @@ const renderFunders = (fields, fundersValues, aspectFundedValues) => {
               component={Select}
               dataOptions={[{ value: '', label: '' }, ...fundersValues]}
               label={<FormattedMessage id="ui-oa.publicationRequest.funder" />}
-              name={`${name}.funder`}
+              name={`${name}.funder.value`}
             />
           </Col>
           <Col xs={6}>

@@ -42,6 +42,9 @@ const PublicationRequests = ({
 }) => {
   const history = useHistory();
 
+  const query = queryGetter() ?? {};
+  const sortOrder = query.sort ?? '';
+
   const formatter = {
     requestNumber: d => (
       <AppIcon
@@ -157,6 +160,8 @@ const PublicationRequests = ({
                     formatter={formatter}
                     onHeaderClick={onSort}
                     onRowClick={(_e, rowData) => history.push(`${urls.publicationRequest(rowData.id)}${searchString}`)}
+                    sortDirection={sortOrder.startsWith('-') ? 'descending' : 'ascending'}
+                    sortOrder={sortOrder.replace(/^-/, '').replace(/,.*/, '')}
                     visibleColumns={['requestNumber', 'requestDate', 'requestStatus', 'publicationTitle', 'correspondingAuthorName']}
                   />
                 </Pane>
