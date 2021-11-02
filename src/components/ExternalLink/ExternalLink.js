@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import { Icon } from '@folio/stripes/components';
 
 const propTypes = {
-  content: PropTypes.object,
-  href: PropTypes.object
+  content: PropTypes.string,
+  href: PropTypes.string
 };
 
 const ExternalLink = ({ content, href }) => {

@@ -26,7 +26,7 @@ const IdentifiersFieldArray = () => {
                 component={Select}
                 dataOptions={[{ value: '', label: '' }, ...identifierTypeValues]}
                 label={<FormattedMessage id="ui-oa.identifiers.type" />}
-                name={`${identifier}.type`}
+                name={`${identifier}.type.value`}
               />
             </Col>
             <Col xs={3}>

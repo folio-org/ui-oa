@@ -23,11 +23,16 @@ const PublicationRequestRoute = () => {
     history.push(`${urls.publicationRequests()}${location.search}`);
   };
 
+  const handleEdit = () => {
+    history.push(`${urls.publicationRequestEdit(id)}`);
+  };
+
   return (
     <View
       data={{ publicationRequest }}
       handlers={{
         onClose: handleClose,
+        onEdit: handleEdit
       }}
     />
   );

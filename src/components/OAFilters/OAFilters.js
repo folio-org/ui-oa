@@ -5,21 +5,27 @@ import {
   AccordionSet,
   Button,
   FilterAccordionHeader,
+  Icon,
   SearchField,
 } from '@folio/stripes/components';
 import { FormattedMessage } from 'react-intl';
 import { DateFilter } from '@folio/stripes-erm-components';
+import { useRefdata } from '@k-int/stripes-kint-components';
 
 import css from './OAFilters.css';
 
 const propTypes = {
   activeFilters: PropTypes.object,
+  disableReset: PropTypes.bool,
   filterHandlers: PropTypes.object,
+  resetAll: PropTypes.func,
   searchHandlers: PropTypes.object,
   searchValue: PropTypes.object,
 };
 
-function OAFilters({ activeFilters, filterHandlers, searchHandlers, searchValue }) {
+function OAFilters({ activeFilters, disableReset, filterHandlers, resetAll, searchHandlers, searchValue }) {
+  const { 0: { values: requestStatusValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.RequestStatus', endpoint: 'oa/refdata' });
+
   const onChangeHandler = (group) => {
     filterHandlers.state({
       ...activeFilters,
@@ -56,6 +62,16 @@ function OAFilters({ activeFilters, filterHandlers, searchHandlers, searchValue 
       >
         <FormattedMessage id="stripes-smart-components.search" />
       </Button>
+      <Button
+        buttonStyle="none"
+        disabled={disableReset}
+        id="clickable-reset-all"
+        onClick={resetAll}
+      >
+        <Icon icon="times-circle-solid">
+          <FormattedMessage id="stripes-smart-components.resetAll" />
+        </Icon>
+      </Button>
       <AccordionSet>
         <Accordion
           displayClearButton={activeFilters?.requestStatus?.length > 0}
@@ -66,11 +82,7 @@ function OAFilters({ activeFilters, filterHandlers, searchHandlers, searchValue 
           separator={false}
         >
           <CheckboxFilter
-            dataOptions={[
-              { id: 'new', label: 'New', value: 'new' },
-              { id: 'inProgress', label: 'In progress', value: 'inProgress' },
-              { id: 'rejected', label: 'Rejected', value: 'rejected' }
-            ]}
+            dataOptions={requestStatusValues}
             name="requestStatus"
             onChange={onChangeHandler}
             selectedValues={activeFilters?.requestStatus || []}

@@ -7,7 +7,8 @@ import Settings from './settings';
 import {
   PublicationRequestsRoute,
   PublicationRequestRoute,
-  PublicationRequestCreateRoute
+  PublicationRequestCreateRoute,
+  PublicationRequestEditRoute
 } from './routes';
 
 const App = (props) => {
@@ -25,6 +26,7 @@ const App = (props) => {
     <Suspense fallback={null}>
       <Switch>
         <Route component={PublicationRequestCreateRoute} path={`${path}/publicationRequests/create`} />
+        <Route component={PublicationRequestEditRoute} path={`${path}/publicationRequests/:id/edit`} />
         <Route component={PublicationRequestsRoute} path={`${path}/publicationRequests/:id?`}>
           <Route component={PublicationRequestRoute} path={`${path}/publicationRequests/:id`} />
         </Route>

@@ -9,17 +9,26 @@ const PublicationRequestCreateRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
 
-  const { mutateAsync: postPublicationRequest } = useMutation(
-    ['ui-oa', 'PublicationRequestCreateRoute', 'postPublicationRequest'],
-    (data) => ky.post('oa/publicationRequest', { json: data })
-  );
-
-  const handleClose = () => {
-    history.push('/oa/publicationRequests');
+  const handleClose = (id) => {
+    let path = '/oa/publicationRequests';
+    if (id) path += `/${id}`;
+    history.push(path);
   };
 
+  const { mutateAsync: postPublicationRequest } = useMutation(
+    ['ui-oa', 'PublicationRequestCreateRoute', 'postPublicationRequest'],
+    (data) => ky.post('oa/publicationRequest', { json: data }).json().then(res => {
+      handleClose(res.id);
+    })
+  );
+
   const submitRequest = (values) => {
-    const { useCorrespondingAuthor, correspondingAuthor, requestContact, ...submitValues } = { ...values };
+    const {
+      useCorrespondingAuthor,
+      correspondingAuthor,
+      requestContact,
+      ...submitValues
+    } = { ...values };
 
     if (requestContact?.partyOwner?.id) {
       requestContact.role = 'request_contact';

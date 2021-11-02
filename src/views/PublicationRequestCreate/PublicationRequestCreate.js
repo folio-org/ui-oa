@@ -11,12 +11,12 @@ import {
   PaneHeader,
   Paneset,
 } from '@folio/stripes/components';
-import RequestInfoForm from '../components/PublicationRequestFormSections/RequestInfoForm';
-import CorrespondingAuthorForm from '../components/PublicationRequestFormSections/CorrespondingAuthorForm/CorrespondingAuthorForm';
-import RequestContactForm from '../components/PublicationRequestFormSections/RequestContactForm/RequestContactForm';
-import PublicationForm from '../components/PublicationRequestFormSections/PublicationForm';
-import PublicationStatusForm from '../components/PublicationRequestFormSections/PublicationStatusForm';
-import FundingForm from '../components/PublicationRequestFormSections/FundingForm';
+import RequestInfoForm from '../../components/PublicationRequestFormSections/RequestInfoForm';
+import CorrespondingAuthorForm from '../../components/PublicationRequestFormSections/CorrespondingAuthorForm';
+import RequestContactForm from '../../components/PublicationRequestFormSections/RequestContactForm';
+import PublicationForm from '../../components/PublicationRequestFormSections/PublicationForm';
+import PublicationStatusForm from '../../components/PublicationRequestFormSections/PublicationStatusForm';
+import FundingForm from '../../components/PublicationRequestFormSections/FundingForm';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -24,17 +24,15 @@ const propTypes = {
     onSubmit: PropTypes.func.isRequired
   }).isRequired,
   pristine: PropTypes.bool,
-  refValues: PropTypes.object,
+  publicationRequest: PropTypes.object,
   submitting: PropTypes.bool,
 };
 
 
-const PublicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, submitting }) => {
+const PublicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, publicationRequest, submitting }) => {
   const { values } = useFormState();
   const { change } = useForm();
 
-
-  // TODO: create hook to store values in state to remove linting error (Ask Ethan)
   useEffect(() => {
     if (
       values.useCorrespondingAuthor &&
@@ -42,8 +40,7 @@ const PublicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, s
     ) {
       change('requestContact.partyOwner', values.correspondingAuthor?.partyOwner);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [change, values.useCorrespondingAuthor, values.correspondingAuthor?.partyOwner, values.requestContact?.partyOwner]);
+  }, [change, values]);
 
   const renderPaneFooter = () => {
     return (
@@ -72,13 +69,19 @@ const PublicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, s
     );
   };
 
+  const renderPaneTitle = () => (
+    publicationRequest ?
+      <FormattedMessage id="ui-oa.publicationRequest.editPublicationRequest" values={{ id: publicationRequest.requestNumber }} /> :
+      <FormattedMessage id="ui-oa.publicationRequest.createPublicationRequest" />
+  );
+
   return (
     <Paneset>
       <Pane
         centerContent
         defaultWidth="100%"
         footer={renderPaneFooter()}
-        renderHeader={renderProps => <PaneHeader {...renderProps} paneTitle="New publication request" />}
+        renderHeader={renderProps => <PaneHeader {...renderProps} paneTitle={renderPaneTitle()} />}
       >
         <AccordionSet>
           <RequestInfoForm />

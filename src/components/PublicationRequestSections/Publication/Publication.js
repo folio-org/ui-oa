@@ -17,7 +17,7 @@ import {
 import JournalDetails from '../JournalDetails';
 import BookDetails from '../BookDetails';
 import PublicationRequestFields from '../../../constants';
-import ExternalLink from '../../ExternalLink/ExternalLink';
+import ExternalLink from '../../ExternalLink';
 
 const propTypes = {
   request: PropTypes.object

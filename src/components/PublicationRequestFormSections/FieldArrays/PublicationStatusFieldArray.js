@@ -28,20 +28,20 @@ const PublicationStatusFieldArray = () => {
                 component={Select}
                 dataOptions={[{ value: '', label: '' }, ...statusValues]}
                 label={<FormattedMessage id="ui-oa.publicationRequest.publicationStatus" />}
-                name={`${publicationStatus}.publicationStatus`}
+                name={`${publicationStatus}.publicationStatus.value`}
               />
             </Col>
             <Col xs={3}>
               <Field
                 component={Datepicker}
-                label={<FormattedMessage id="ui-oa.publicationRequest.publicationStatusDate" />}
+                label={<FormattedMessage id="ui-oa.publicationStatus.publicationStatusDate" />}
                 name={`${publicationStatus}.statusDate`}
               />
             </Col>
             <Col xs={5}>
               <Field
                 component={TextArea}
-                label={<FormattedMessage id="ui-oa.publicationRequest.publicationStatusNote" />}
+                label={<FormattedMessage id="ui-oa.publicationStatus.publicationStatusNote" />}
                 name={`${publicationStatus}.statusNote`}
               />
             </Col>

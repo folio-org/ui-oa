@@ -22,6 +22,7 @@
   "publicationRequest.createPublicationRequest": "New publication request",
   "publicationRequest.doi": "DOI",
   "publicationRequest.edit": "Edit",
+  "publicationRequest.editPublicationRequest": "Edit publication request - {id}",
   "publicationRequest.externalRequestIds": "External request IDs",
   "publicationRequest.familyName": "Family name",
   "publicationRequest.funder": "Funder",
