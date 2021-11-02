@@ -43,24 +43,24 @@ const PublicationRequests = ({
   const history = useHistory();
 
   const formatter = {
-    requestNumber: d => {
-      return (
-        <AppIcon
-          app="oa"
-          iconAlignment="baseline"
-          iconKey="app"
-          size="small"
-        >
-          {d?.requestNumber}
-        </AppIcon>
-      );
-    },
-    requestStatus: d => {
-      return d?.requestStatus?.label;
-    },
-    correspondingAuthorName: d => {
-      return d?.correspondingAuthor?.partyOwner?.fullName;
-    }
+    requestNumber: d => (
+      <AppIcon
+        app="oa"
+        iconAlignment="baseline"
+        iconKey="app"
+        size="small"
+      >
+        {d?.requestNumber}
+      </AppIcon>
+    ),
+    requestStatus: d => (
+      d?.requestStatus?.label
+    ),
+    correspondingAuthorName: d => (
+      d.correspondingAuthor?.partyOwner ?
+        d.correspondingAuthor.partyOwner.familyName + ', ' + d.correspondingAuthor.partyOwner.givenNames :
+        ''
+    )
   };
   return (
     <SearchAndSortQuery
