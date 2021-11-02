@@ -33,7 +33,6 @@ const PublicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, p
   const { values } = useFormState();
   const { change } = useForm();
 
-  // TODO: create hook to store values in state to remove linting error (Ask Ethan)
   useEffect(() => {
     if (
       values.useCorrespondingAuthor &&
@@ -41,8 +40,7 @@ const PublicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, p
     ) {
       change('requestContact.partyOwner', values.correspondingAuthor?.partyOwner);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [change, values.useCorrespondingAuthor, values.correspondingAuthor?.partyOwner, values.requestContact?.partyOwner]);
+  }, [change, values]);
 
   const renderPaneFooter = () => {
     return (
