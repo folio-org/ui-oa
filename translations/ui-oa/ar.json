@@ -97,5 +97,6 @@
     "affiliation.dateTo": "التاريخ إلى",
     "publicationStatus.status": "الحالة",
     "publicationRequest.party": "طرف",
-    "publicationRequest.person": "شخص"
+    "publicationRequest.person": "شخص",
+    "publicationRequest.editPublicationRequest": "تحرير طلب النشر - {id}"
 }
