@@ -1,45 +1,115 @@
+import React from 'react';
 import PropTypes from 'prop-types';
-import { useOkapiKy } from '@folio/stripes/core';
-import { useQuery } from 'react-query';
-import generateKiwtQuery from '../util/generateKiwtQuery';
-import PublicationRequests from '../views/PublicationRequests/PublicationRequests';
-import useKiwtSASQuery from '../util/useKiwtSASQuery';
 
-const propTypes = {
-  children: PropTypes.node,
-  location: PropTypes.object
-};
+import { FormattedMessage } from 'react-intl';
 
-const PublicationRequestsRoute = ({ children, location }) => {
-  const { query, queryGetter, querySetter } = useKiwtSASQuery();
+import {
+  AppIcon,
+  IfPermission
+} from '@folio/stripes/core';
 
+import {
+  Button,
+  PaneMenu,
+} from '@folio/stripes/components';
+
+import { SASQRoute } from '@k-int/stripes-kint-components';
+import View from '../views/PublicationRequest';
+import urls from '../util/urls';
+import OAFilters from '../components/OAFilters';
+
+const PublicationRequestsRoute = ({ path }) => {
   // TODO: Add coresponding author / request contact name to SASQ map search key
-  const SASQ_MAP = {
-    searchKey: 'publicationTitle,requestNumber',
-    filterKeys: {
-      requestStatus: 'requestStatus.value',
+  const fetchParameters = {
+    endpoint: 'oa/publicationRequest',
+    SASQ_MAP: {
+      searchKey: 'publicationTitle,requestNumber',
+      filterKeys: {
+        requestStatus: 'requestStatus.value',
+      }
     }
   };
 
-  const ky = useOkapiKy();
+  const resultColumns = [
+    {
+      propertyPath:'requestNumber',
+      label: <FormattedMessage id="ui-oa.publicationRequest.requestNumber" />
+    },
+    {
+      propertyPath:'requestDate',
+      label: <FormattedMessage id="ui-oa.publicationRequest.requestDate" />
+    },
+    {
+      propertyPath:'requestStatus',
+      label: <FormattedMessage id="ui-oa.publicationRequest.status" />
+    },
+    {
+      propertyPath:'publicationTitle',
+      label: <FormattedMessage id="ui-oa.publicationRequest.publicationTitle" />
+    },
+    {
+      propertyPath:'correspondingAuthorName',
+      label: <FormattedMessage id="ui-oa.publicationRequest.correspondingAuthorName" />
+    }
+  ];
 
-  const { data: { results: publicationRequests } = {} } = useQuery(
-    ['ui-oa', 'oaRoute', 'publicationRequests', query, location],
-    () => ky(`oa/publicationRequest${generateKiwtQuery(SASQ_MAP, query)}`).json()
-  );
+  const formatter = {
+    requestNumber: d => {
+      return (
+        <AppIcon
+          app="oa"
+          iconAlignment="baseline"
+          iconKey="app"
+          size="small"
+        >
+          {d?.requestNumber}
+        </AppIcon>
+      );
+    },
+    requestStatus: d => {
+      return d?.requestStatus?.label;
+    },
+  };
+
+  const lastpaneMenu =
+    <IfPermission perm="oa.publicationRequest.edit">
+      <PaneMenu>
+        <FormattedMessage id="ui-oa.publicationRequest.createPublicationRequest">
+          {ariaLabel => (
+            <Button
+              aria-label={ariaLabel}
+              buttonStyle="primary"
+              id="clickable-new-publication-request"
+              marginBottom0
+              to={`${urls.publicationRequestCreate()}`}
+            >
+              <FormattedMessage id="stripes-smart-components.new" />
+            </Button>
+          )}
+        </FormattedMessage>
+      </PaneMenu>
+    </IfPermission>;
 
   return (
-    <PublicationRequests
-      data={{ publicationRequests }}
-      queryGetter={queryGetter}
-      querySetter={querySetter}
-      searchString={location.search}
-    >
-      {children}
-    </PublicationRequests>
+    <SASQRoute
+      fetchParameters={fetchParameters}
+      FilterComponent={OAFilters}
+      id="publication-requests"
+      mainPaneProps={{
+        appIcon: <AppIcon app="oa" iconKey="app" size="small" />,
+        lastMenu: lastpaneMenu,
+        paneTitle: <FormattedMessage id="ui-oa.publicationRequests" />
+      }}
+      mclProps={{ formatter }}
+      path={path}
+      resultColumns={resultColumns}
+      ViewComponent={View}
+    />
   );
 };
 
-PublicationRequestsRoute.propTypes = propTypes;
+PublicationRequestsRoute.propTypes = {
+  path: PropTypes.string.isRequired
+};
 
 export default PublicationRequestsRoute;

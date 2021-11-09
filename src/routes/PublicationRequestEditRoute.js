@@ -10,6 +10,10 @@ const PublicationRequestEditRoute = () => {
   const ky = useOkapiKy();
   const { id } = useParams();
 
+  const handleClose = () => {
+    history.push(`/oa/publicationRequests/${id}`);
+  };
+
   const { data: publicationRequest } = useQuery(
     ['ui-oa', 'publicationEditRoute', 'publicationRequest', id],
     () => ky(`oa/publicationRequest/${id}`).json()
@@ -17,16 +21,14 @@ const PublicationRequestEditRoute = () => {
 
   const { mutateAsync: putPublicationRequest } = useMutation(
     ['ui-oa', 'PublicationRequestEditRoute', 'putPublicationRequest'],
-    (data) => ky.put('oa/publicationRequest', { json: data })
+    (data) => ky.put(`oa/publicationRequest/${data.id}`, { json: data })
+      .then(() => {
+        handleClose();
+      })
   );
-
-  const handleClose = () => {
-    history.push('/oa/publicationRequests');
-  };
 
   const submitRequest = (values) => {
     putPublicationRequest(values);
-    handleClose();
   };
 
   return (

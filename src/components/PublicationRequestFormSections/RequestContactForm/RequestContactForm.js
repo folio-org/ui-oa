@@ -7,7 +7,8 @@ import {
   Label,
   Row,
 } from '@folio/stripes/components';
-import { generateKiwtQuery, TypeDown } from '@k-int/stripes-kint-components';
+import { generateKiwtQuery, QueryTypedown } from '@k-int/stripes-kint-components';
+
 import { EditCard } from '@folio/stripes-erm-components';
 
 import PartyInfo from '../../PublicationRequestSections/PartyInfo';
@@ -63,7 +64,7 @@ const RequestContactForm = () => {
             <FormattedMessage id="ui-oa.publicationRequest.person" />
           </Label>
           <Field
-            component={TypeDown}
+            component={QueryTypedown}
             name="requestContact.partyOwner"
             path="oa/party"
             pathMutator={pathMutator}

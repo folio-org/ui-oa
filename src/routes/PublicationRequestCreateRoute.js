@@ -24,7 +24,7 @@ const PublicationRequestCreateRoute = () => {
 
   const submitRequest = (values) => {
     const {
-      useCorrespondingAuthor,
+      useCorrespondingAuthor: _useCorrespondingAuthor,
       correspondingAuthor,
       requestContact,
       ...submitValues
@@ -41,7 +41,6 @@ const PublicationRequestCreateRoute = () => {
     }
 
     postPublicationRequest(submitValues);
-    handleClose();
   };
 
   return (

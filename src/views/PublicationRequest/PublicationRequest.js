@@ -2,6 +2,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { useHistory, useParams } from 'react-router-dom';
 import { AppIcon } from '@folio/stripes/core';
 
 import {
@@ -18,22 +19,28 @@ import PublicationStatus from '../../components/PublicationRequestSections/Publi
 import RequestContact from '../../components/PublicationRequestSections/RequestContact/RequestContact';
 import Funding from '../../components/PublicationRequestSections/Funding/Funding';
 
+import urls from '../../util/urls';
+
 const propTypes = {
-  data: PropTypes.object,
-  handlers: PropTypes.shape({
-    onClose: PropTypes.func.isRequired,
-    onEdit: PropTypes.func.isRequired,
-  }).isRequired
+  onClose: PropTypes.func.isRequired,
+  resource: PropTypes.object
 };
 
-const PublicationRequest = ({ handlers, data: { publicationRequest: request } = {} }) => {
+const PublicationRequest = ({ resource: request, onClose }) => {
+  const history = useHistory();
+  const params = useParams();
+
+  const handleEdit = () => {
+    history.push(`${urls.publicationRequestEdit(params?.id)}`);
+  };
+
   return (
     <Pane
       actionMenu={() => (
         <Button
           buttonStyle="dropdownItem"
           id="clickable-dropdown-edit-publication-request"
-          onClick={handlers.onEdit}
+          onClick={handleEdit}
         >
           <Icon icon="edit">
             <FormattedMessage id="ui-oa.publicationRequest.edit" />
@@ -43,7 +50,7 @@ const PublicationRequest = ({ handlers, data: { publicationRequest: request } = 
       appIcon={<AppIcon app="oa" iconKey="app" size="small" />}
       defaultWidth="55%"
       dismissible
-      onClose={handlers.onClose}
+      onClose={onClose}
       paneSub={request?.publicationTitle !== undefined ? request?.publicationTitle : ''}
       paneTitle={<FormattedMessage id="ui-oa.publicationRequest.requestTitle" values={{ number: request?.requestNumber }} />}
     >

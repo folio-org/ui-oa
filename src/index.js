@@ -1,12 +1,10 @@
 import React, { Suspense } from 'react';
-import { Switch } from 'react-router-dom';
-import { Route } from '@folio/stripes/core';
+import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Settings from './settings';
 
 import {
   PublicationRequestsRoute,
-  PublicationRequestRoute,
   PublicationRequestCreateRoute,
   PublicationRequestEditRoute
 } from './routes';
@@ -25,11 +23,17 @@ const App = (props) => {
   return (
     <Suspense fallback={null}>
       <Switch>
-        <Route component={PublicationRequestCreateRoute} path={`${path}/publicationRequests/create`} />
-        <Route component={PublicationRequestEditRoute} path={`${path}/publicationRequests/:id/edit`} />
-        <Route component={PublicationRequestsRoute} path={`${path}/publicationRequests/:id?`}>
-          <Route component={PublicationRequestRoute} path={`${path}/publicationRequests/:id`} />
-        </Route>
+        <Route
+          component={PublicationRequestCreateRoute}
+          path={`${path}/publicationRequests/create`}
+        />
+        <Route
+          component={PublicationRequestEditRoute}
+          path={`${path}/publicationRequests/:id/edit`}
+        />
+        <PublicationRequestsRoute
+          path={`${path}/publicationRequests`}
+        />
       </Switch>
     </Suspense>
   );
