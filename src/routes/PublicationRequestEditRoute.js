@@ -5,7 +5,7 @@ import { useOkapiKy } from '@folio/stripes/core';
 import { useQuery, useMutation } from 'react-query';
 import View from '../views/PublicationRequestCreate';
 
-const PublicationRequestEditRoute = ({ forceListUpdate, forceViewUpdate }) => {
+const PublicationRequestEditRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
   const { id } = useParams();
@@ -24,8 +24,6 @@ const PublicationRequestEditRoute = ({ forceListUpdate, forceViewUpdate }) => {
   );
 
   const handleClose = () => {
-    forceListUpdate();
-    forceViewUpdate();
     history.push(`/oa/publicationRequests/${id}`);
   };
 

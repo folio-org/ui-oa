@@ -11,13 +11,12 @@ import {
   PaneMenu,
 } from '@folio/stripes/components';
 
-//import { SASQRoute } from '@k-int/stripes-kint-components';
-import { SASQRoute } from '../../../stripes-kint-components/src';
+import { SASQRoute } from '@k-int/stripes-kint-components';
 import View from '../views/PublicationRequest';
 import urls from '../util/urls';
 import OAFilters from '../components/OAFilters';
 
-const PublicationRequestsRoute = ({ data, path }) => {
+const PublicationRequestsRoute = ({ path }) => {
   // TODO: Add coresponding author / request contact name to SASQ map search key
   const fetchParameters = {
     endpoint: 'oa/publicationRequest',
@@ -92,8 +91,6 @@ const PublicationRequestsRoute = ({ data, path }) => {
   return (
     <SASQRoute
       fetchParameters={fetchParameters}
-      forceLookupRefetch={data.listUpdateCount}
-      forceViewRefetch={data.viewUpdateCount}
       FilterComponent={OAFilters}
       id="publication-requests"
       mainPaneProps={{

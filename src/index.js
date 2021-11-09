@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Settings from './settings';
@@ -8,18 +8,9 @@ import {
   PublicationRequestCreateRoute,
   PublicationRequestEditRoute
 } from './routes';
-import { useSASQRouteUpdate } from '../../stripes-kint-components/src';
 
 const App = (props) => {
   const { actAs, match: { path } } = props;
-
-
-  const {
-    forceListUpdate,
-    forceViewUpdate,
-    listUpdateCount,
-    viewUpdateCount
-  } = useSASQRouteUpdate();
 
   if (actAs === 'settings') {
     return (
@@ -29,34 +20,18 @@ const App = (props) => {
     );
   }
 
-
   return (
     <Suspense fallback={null}>
       <Switch>
         <Route
+          component={PublicationRequestCreateRoute}
           path={`${path}/publicationRequests/create`}
-          render={routeProps => (
-            <PublicationRequestCreateRoute
-              forceListUpdate={forceListUpdate}
-              {...routeProps}
-            />
-          )}
         />
         <Route
+          component={PublicationRequestEditRoute}
           path={`${path}/publicationRequests/:id/edit`}
-          render={routeProps => (
-            <PublicationRequestEditRoute
-              forceListUpdate={forceListUpdate}
-              forceViewUpdate={forceViewUpdate}
-              {...routeProps}
-            />
-          )}
         />
         <PublicationRequestsRoute
-          data={{
-            listUpdateCount,
-            viewUpdateCount
-          }}
           path={`${path}/publicationRequests`}
         />
       </Switch>
