@@ -3,16 +3,11 @@ import { CheckboxFilter } from '@folio/stripes/smart-components';
 import {
   Accordion,
   AccordionSet,
-  Button,
   FilterAccordionHeader,
-  Icon,
-  SearchField,
 } from '@folio/stripes/components';
 import { FormattedMessage } from 'react-intl';
 import { DateFilter } from '@folio/stripes-erm-components';
 import { useRefdata } from '@k-int/stripes-kint-components';
-
-import css from './OAFilters.css';
 
 const propTypes = {
   activeFilters: PropTypes.object,

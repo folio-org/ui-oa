@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { FormattedMessage } from 'react-intl';
 
 import {
@@ -99,11 +101,15 @@ const PublicationRequestsRoute = ({ path }) => {
         paneTitle: <FormattedMessage id="ui-oa.publicationRequests" />
       }}
       mclProps={{ formatter }}
-      resultColumns={resultColumns}
       path={path}
+      resultColumns={resultColumns}
       ViewComponent={View}
     />
   );
+};
+
+PublicationRequestsRoute.propTypes = {
+  path: PropTypes.string.isRequired
 };
 
 export default PublicationRequestsRoute;

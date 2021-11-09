@@ -10,6 +10,10 @@ const PublicationRequestEditRoute = () => {
   const ky = useOkapiKy();
   const { id } = useParams();
 
+  const handleClose = () => {
+    history.push(`/oa/publicationRequests/${id}`);
+  };
+
   const { data: publicationRequest } = useQuery(
     ['ui-oa', 'publicationEditRoute', 'publicationRequest', id],
     () => ky(`oa/publicationRequest/${id}`).json()
@@ -22,10 +26,6 @@ const PublicationRequestEditRoute = () => {
         handleClose();
       })
   );
-
-  const handleClose = () => {
-    history.push(`/oa/publicationRequests/${id}`);
-  };
 
   const submitRequest = (values) => {
     putPublicationRequest(values);

@@ -1,14 +1,14 @@
 import React from 'react';
 import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
-import OAFilters from './OAFilters';
+// import OAFilters from './OAFilters';
 
 describe('OAFilters', () => {
   test('renders expected OAFilters', () => {
-    // const { getByText } = renderWithIntl(
+/*     const { getByText } = renderWithIntl();
     const activeFilters = {
      journalVolume:['wibble']
-    };
+    }; */
 
     // <OAFilters activeFilters={activeFilters} />
     renderWithIntl(
