@@ -97,5 +97,6 @@
     "affiliation.dateTo": "Datum bis",
     "publicationStatus.status": "Status",
     "publicationRequest.party": "Party",
-    "publicationRequest.person": "Person"
+    "publicationRequest.person": "Person",
+    "publicationRequest.editPublicationRequest": "Edit publication request - {id}"
 }

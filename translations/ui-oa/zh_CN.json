@@ -97,5 +97,6 @@
     "affiliation.dateTo": "日期到",
     "publicationStatus.status": "状态",
     "publicationRequest.party": "团队",
-    "publicationRequest.person": "个人"
+    "publicationRequest.person": "个人",
+    "publicationRequest.editPublicationRequest": "Edit publication request - {id}"
 }
