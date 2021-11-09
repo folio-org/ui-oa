@@ -4,8 +4,7 @@ import {
   Accordion,
   Label,
 } from '@folio/stripes/components';
-import { generateKiwtQuery } from '@k-int/stripes-kint-components';
-import QueryTypedown from '@k-int/stripes-kint-components/src/lib/QueryTypedown';
+import { generateKiwtQuery, QueryTypedown } from '@k-int/stripes-kint-components';
 import { EditCard } from '@folio/stripes-erm-components';
 import PartyInfo from '../../PublicationRequestSections/PartyInfo';
 import css from './CorrespondingAuthorForm.css';

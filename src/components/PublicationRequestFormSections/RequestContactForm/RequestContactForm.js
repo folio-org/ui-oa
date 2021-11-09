@@ -7,8 +7,7 @@ import {
   Label,
   Row,
 } from '@folio/stripes/components';
-import { generateKiwtQuery } from '@k-int/stripes-kint-components';
-import QueryTypedown from '@k-int/stripes-kint-components/src/lib/QueryTypedown';
+import { generateKiwtQuery, QueryTypedown } from '@k-int/stripes-kint-components';
 
 import { EditCard } from '@folio/stripes-erm-components';
 

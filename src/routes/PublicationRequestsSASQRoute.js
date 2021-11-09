@@ -11,7 +11,7 @@ import {
   PaneMenu,
 } from '@folio/stripes/components';
 
-import SASQRoute from '@k-int/stripes-kint-components/src/lib/SASQRoute/SASQRoute';
+import { SASQRoute } from '@k-int/stripes-kint-components';
 import View from '../views/PublicationRequest';
 import urls from '../util/urls';
 import OAFilters from '../components/OAFilters';
