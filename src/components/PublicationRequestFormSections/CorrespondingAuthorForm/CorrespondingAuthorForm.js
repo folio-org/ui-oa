@@ -4,7 +4,8 @@ import {
   Accordion,
   Label,
 } from '@folio/stripes/components';
-import { generateKiwtQuery, TypeDown } from '@k-int/stripes-kint-components';
+import { generateKiwtQuery } from '@k-int/stripes-kint-components';
+import QueryTypedown from '@k-int/stripes-kint-components/src/lib/QueryTypedown';
 import { EditCard } from '@folio/stripes-erm-components';
 import PartyInfo from '../../PublicationRequestSections/PartyInfo';
 import css from './CorrespondingAuthorForm.css';
@@ -40,7 +41,7 @@ const CorrespondingAuthorForm = () => {
         <FormattedMessage id="ui-oa.publicationRequest.person" />
       </Label>
       <Field
-        component={TypeDown}
+        component={QueryTypedown}
         name="correspondingAuthor.partyOwner"
         path="oa/party"
         pathMutator={pathMutator}

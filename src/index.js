@@ -6,6 +6,7 @@ import Settings from './settings';
 
 import {
   PublicationRequestsRoute,
+  PublicationRequestsSASQRoute,
   PublicationRequestRoute,
   PublicationRequestCreateRoute,
   PublicationRequestEditRoute
@@ -27,9 +28,10 @@ const App = (props) => {
       <Switch>
         <Route component={PublicationRequestCreateRoute} path={`${path}/publicationRequests/create`} />
         <Route component={PublicationRequestEditRoute} path={`${path}/publicationRequests/:id/edit`} />
-        <Route component={PublicationRequestsRoute} path={`${path}/publicationRequests/:id?`}>
+        <PublicationRequestsSASQRoute path={`${path}/publicationRequests`} />
+        {/* <Route component={PublicationRequestsRoute} path={`${path}/publicationRequests/:id?`}>
           <Route component={PublicationRequestRoute} path={`${path}/publicationRequests/:id`} />
-        </Route>
+        </Route> */}
       </Switch>
     </Suspense>
   );
