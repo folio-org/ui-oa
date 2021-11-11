@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 
 import {
   Col,
+  FormattedUTCDate,
   KeyValue,
   NoValue,
   Row
@@ -20,35 +21,26 @@ const RequestInfo = ({ request }) => {
       <Row start="xs">
         <Col xs={3}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.requestNumber" />}>
-            <div>
-              {request?.requestNumber ?
-                <div>{request?.requestNumber}</div>
-                :
-                <NoValue />
-              }
-            </div>
+            {request?.requestNumber ?
+              request.requestNumber :
+              <NoValue />
+            }
           </KeyValue>
         </Col>
         <Col xs={3}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.requestDate" />}>
-            <div>
-              {request?.requestDate ?
-                <div>{request?.requestDate}</div>
-                :
-                <NoValue />
-              }
-            </div>
+            {request?.requestDate ?
+              <FormattedUTCDate value={request.requestDate} /> :
+              <NoValue />
+            }
           </KeyValue>
         </Col>
         <Col xs={3}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.status" />}>
-            <div>
-              {request?.requestStatus ?
-                <div>{request?.requestStatus?.label}</div>
-                :
-                <NoValue />
-              }
-            </div>
+            {request?.requestStatus ?
+              request.requestStatus.label :
+              <NoValue />
+            }
           </KeyValue>
         </Col>
         <Col xs={3} />
@@ -56,15 +48,16 @@ const RequestInfo = ({ request }) => {
       <Row start="xs">
         <Col xs={3}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.externalRequestIds" />}>
-            <div>
-              {request?.externalRequestIds?.length ?
-                <ul>
-                  {request?.externalRequestIds?.map(requestId => <li key={requestId?.id}>{requestId?.externalId}</li>)}
-                </ul>
-                :
-                <NoValue />
-              }
-            </div>
+            {request?.externalRequestIds?.length ?
+              <ul>
+                {request?.externalRequestIds?.map(requestId => (
+                  <li key={requestId?.id}>
+                    {requestId?.externalId}
+                  </li>
+                ))}
+              </ul> :
+              <NoValue />
+            }
           </KeyValue>
         </Col>
       </Row>

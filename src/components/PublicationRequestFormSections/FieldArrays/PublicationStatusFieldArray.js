@@ -33,9 +33,11 @@ const PublicationStatusFieldArray = () => {
             </Col>
             <Col xs={3}>
               <Field
+                backendDateStandard="YYYY-MM-DD"
                 component={Datepicker}
                 label={<FormattedMessage id="ui-oa.publicationStatus.publicationStatusDate" />}
                 name={`${publicationStatus}.statusDate`}
+                timeZone="UTC"
               />
             </Col>
             <Col xs={5}>

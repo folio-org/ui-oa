@@ -60,7 +60,7 @@ const PublicationRequest = ({ resource: request, onClose }) => {
         contentId="publicationRequestMetaContent"
         createdDate={request?.dateCreated}
         hideSource
-        lastUpdatedDate={request?.dateModified}
+        lastUpdatedDate={request?.lastUpdated}
       />
       <RequestInfo request={request} />
       <AccordionSet>
