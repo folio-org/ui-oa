@@ -5,6 +5,8 @@ import { useOkapiKy } from '@folio/stripes/core';
 import { useMutation } from 'react-query';
 import PublicationRequestForm from '../components/views/PublicationRequestForm';
 
+import publicationRequestSubmitHandler from '../util/publicationRequestSubmitHandler';
+
 const PublicationRequestCreateRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
@@ -23,23 +25,7 @@ const PublicationRequestCreateRoute = () => {
   );
 
   const submitRequest = (values) => {
-    const {
-      useCorrespondingAuthor: _useCorrespondingAuthor,
-      correspondingAuthor,
-      requestContact,
-      ...submitValues
-    } = { ...values };
-
-    if (requestContact?.partyOwner?.id) {
-      requestContact.role = 'request_contact';
-      submitValues.requestContact = requestContact;
-    }
-
-    if (correspondingAuthor?.partyOwner?.id) {
-      correspondingAuthor.role = 'corresponding_author';
-      submitValues.correspondingAuthor = correspondingAuthor;
-    }
-
+    const submitValues = publicationRequestSubmitHandler(values);
     postPublicationRequest(submitValues);
   };
 

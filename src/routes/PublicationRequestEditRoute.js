@@ -5,6 +5,8 @@ import { useOkapiKy } from '@folio/stripes/core';
 import { useQuery, useMutation } from 'react-query';
 import PublicationRequestForm from '../components/views/PublicationRequestForm';
 
+import publicationRequestSubmitHandler from '../util/publicationRequestSubmitHandler';
+
 const PublicationRequestEditRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
@@ -28,7 +30,8 @@ const PublicationRequestEditRoute = () => {
   );
 
   const submitRequest = (values) => {
-    putPublicationRequest(values);
+    const submitValues = publicationRequestSubmitHandler(values);
+    putPublicationRequest(submitValues);
   };
 
   return (

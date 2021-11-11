@@ -36,7 +36,7 @@ const PublicationRequest = ({ resource: request, onClose }) => {
     history.push(`${urls.publicationRequestEdit(params?.id)}`);
   };
 
-  const getSectionInfo = (name) => {
+  const getSectionProps = (name) => {
     return {
       id: `publication-request-section-${name}`,
       request
@@ -69,13 +69,29 @@ const PublicationRequest = ({ resource: request, onClose }) => {
         hideSource
         lastUpdatedDate={request?.lastUpdated}
       />
-      <RequestInfo request={request} />
+
+      <RequestInfo {...getSectionProps('info')} />
       <AccordionSet>
-        <CorrespondingAuthor {...getSectionInfo('correspondingAuthor')} />
-        <RequestContact {...getSectionInfo('requestContact')} />
-        <Publication {...getSectionInfo('publication')} />
-        <PublicationStatus {...getSectionInfo('publicationStatus')} />
-        <Funding {...getSectionInfo('funding')} />
+        {request?.correspondingAuthor?.id &&
+          <CorrespondingAuthor {...getSectionProps('correspondingAuthor')} />
+        }
+        {request?.requestContact?.id &&
+          <RequestContact {...getSectionProps('requestContact')} />
+        }
+        {
+          /* TODO Notice this is likely not the correct shape
+           * Pending decisions made on the backend about Publication
+           * Just displaying it for now
+           */
+          // request.publication &&
+          <>
+            <Publication {...getSectionProps('publication')} />
+            <PublicationStatus {...getSectionProps('publicationStatus')} />
+          </>
+        }
+        {request?.funding &&
+          <Funding {...getSectionProps('funding')} />
+        }
       </AccordionSet>
     </Pane>
   );

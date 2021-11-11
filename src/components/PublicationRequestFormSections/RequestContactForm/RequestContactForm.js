@@ -49,8 +49,12 @@ const RequestContactForm = () => {
             label={<FormattedMessage id="ui-oa.publicationRequest.useCorrespondingAuthor" />}
             name="useCorrespondingAuthor"
             onChange={e => {
-              if (e.target.checked) change('requestContact.partyOwner', values.correspondingAuthor?.partyOwner);
-              else change('requestContact.partyOwner', undefined);
+              if (e.target.checked) {
+                change('requestContact.partyOwner', values.correspondingAuthor?.partyOwner);
+              } else {
+                change('requestContact.partyOwner', undefined);
+              }
+
               change('useCorrespondingAuthor', e.target.checked);
             }}
             type="checkbox"
