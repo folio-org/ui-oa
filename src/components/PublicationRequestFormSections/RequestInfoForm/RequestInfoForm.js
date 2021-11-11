@@ -11,14 +11,13 @@ import {
   Row,
   Select,
 } from '@folio/stripes/components';
-import { useRefdata } from '@k-int/stripes-kint-components';
-
+import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdataValues';
 
 import { ExternalRequestIdFieldArray } from '../FieldArrays';
 
 const RequestInfoForm = () => {
-  const { 0: { values: requestStatusValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.RequestStatus', endpoint: 'oa/refdata' });
+  const requestStatusValues = useOARefdata('PublicationRequest.RequestStatus');
 
   return (
     <div>

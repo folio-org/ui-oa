@@ -11,16 +11,19 @@ import {
   TextArea,
   TextField,
 } from '@folio/stripes/components';
-import { useRefdata } from '@k-int/stripes-kint-components';
 import { IdentifiersFieldArray } from './FieldArrays';
+import useOARefdata from '../../util/useOARefdata';
+import selectifyRefdata from '../../util/selectifyRefdataValues';
 
 const PublicationForm = () => {
   const { values } = useFormState();
-  const { 0: { values: publicationTypeValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.PublicationType', endpoint: 'oa/refdata' });
-  const { 0: { values: subtypeValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.Subtype', endpoint: 'oa/refdata' });
-  const { 0: { values: publisherValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.Publisher', endpoint: 'oa/refdata' });
-  const { 0: { values: licenseValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.License', endpoint: 'oa/refdata' });
-  const { 0: { values: oaStatusValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.OaStatus', endpoint: 'oa/refdata' });
+
+  const publicationTypeValues = selectifyRefdata(useOARefdata('PublicationRequest.PublicationType'));
+  const publisherValues = selectifyRefdata(useOARefdata('PublicationRequest.Publisher'));
+  const subtypeValues = selectifyRefdata(useOARefdata('PublicationRequest.Subtype'));
+  const licenseValues = selectifyRefdata(useOARefdata('PublicationRequest.License'));
+  const oaStatusValues = selectifyRefdata(useOARefdata('PublicationRequest.OaStatus'));
+
   return (
     <Accordion
       label={<FormattedMessage id="ui-oa.publicationRequest.publication" />}
@@ -42,7 +45,7 @@ const PublicationForm = () => {
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...publicationTypeValues]}
             label={<FormattedMessage id="ui-oa.publicationRequest.publicationType" />}
-            name="publicationType.value"
+            name="publicationType.id"
           />
         </Col>
         <Col xs={3}>
@@ -50,7 +53,7 @@ const PublicationForm = () => {
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...subtypeValues]}
             label={<FormattedMessage id="ui-oa.publicationRequest.subtype" />}
-            name="subtype.value"
+            name="subtype.id"
           />
         </Col>
         <Col xs={3}>
@@ -58,7 +61,7 @@ const PublicationForm = () => {
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...publisherValues]}
             label={<FormattedMessage id="ui-oa.publicationRequest.publisher" />}
-            name="publisher.value"
+            name="publisher.id"
           />
         </Col>
         <Col xs={3}>
@@ -66,7 +69,7 @@ const PublicationForm = () => {
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...licenseValues]}
             label={<FormattedMessage id="ui-oa.publicationRequest.license" />}
-            name="license.value"
+            name="license.id"
           />
         </Col>
       </Row>
@@ -159,7 +162,7 @@ const PublicationForm = () => {
                 component={Select}
                 dataOptions={[{ value: '', label: '' }, ...oaStatusValues]}
                 label={<FormattedMessage id="ui-oa.publicationRequest.oaStatus" />}
-                name="oaStatus.value"
+                name="oaStatus.id"
               />
             </Col>
             <Col xs={9} />

@@ -36,6 +36,13 @@ const PublicationRequest = ({ resource: request, onClose }) => {
     history.push(`${urls.publicationRequestEdit(params?.id)}`);
   };
 
+  const getSectionInfo = (name) => {
+    return {
+      id: `publication-request-section-${name}`,
+      request
+    };
+  };
+
   return (
     <Pane
       actionMenu={() => (
@@ -64,11 +71,11 @@ const PublicationRequest = ({ resource: request, onClose }) => {
       />
       <RequestInfo request={request} />
       <AccordionSet>
-        <CorrespondingAuthor request={request} />
-        <RequestContact request={request} />
-        <Publication request={request} />
-        <PublicationStatus request={request} />
-        <Funding request={request} />
+        <CorrespondingAuthor {...getSectionInfo('correspondingAuthor')} />
+        <RequestContact {...getSectionInfo('requestContact')} />
+        <Publication {...getSectionInfo('publication')} />
+        <PublicationStatus {...getSectionInfo('publicationStatus')} />
+        <Funding {...getSectionInfo('funding')} />
       </AccordionSet>
     </Pane>
   );
