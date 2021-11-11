@@ -13,10 +13,11 @@ import {
   TextArea,
 } from '@folio/stripes/components';
 
-import { useRefdata } from '@k-int/stripes-kint-components';
+import useOARefdata from '../../../util/useOARefdata';
+import selectifyRefdata from '../../../util/selectifyRefdata';
 
 const PublicationStatusFieldArray = () => {
-  const { 0: { values: statusValues = [] } = {} } = useRefdata({ desc: 'PublicationStatus.PublicationStatus', endpoint: 'oa/refdata' });
+  const statusValues = selectifyRefdata(useOARefdata('PublicationStatus.PublicationStatus'));
 
   const renderPublicationStatus = (fields) => {
     return (
@@ -28,14 +29,16 @@ const PublicationStatusFieldArray = () => {
                 component={Select}
                 dataOptions={[{ value: '', label: '' }, ...statusValues]}
                 label={<FormattedMessage id="ui-oa.publicationRequest.publicationStatus" />}
-                name={`${publicationStatus}.publicationStatus.value`}
+                name={`${publicationStatus}.publicationStatus.id`}
               />
             </Col>
             <Col xs={3}>
               <Field
+                backendDateStandard="YYYY-MM-DD"
                 component={Datepicker}
                 label={<FormattedMessage id="ui-oa.publicationStatus.publicationStatusDate" />}
                 name={`${publicationStatus}.statusDate`}
+                timeZone="UTC"
               />
             </Col>
             <Col xs={5}>

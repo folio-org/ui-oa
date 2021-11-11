@@ -11,12 +11,13 @@ import {
   Row,
   Select,
 } from '@folio/stripes/components';
-import { useRefdata } from '@k-int/stripes-kint-components';
+import useOARefdata from '../../../util/useOARefdata';
+import selectifyRefdata from '../../../util/selectifyRefdata';
 
-import ExternalRequestIdFieldArray from '../FieldArrays/ExternalRequestIdFieldArray';
+import { ExternalRequestIdFieldArray } from '../FieldArrays';
 
 const RequestInfoForm = () => {
-  const { 0: { values: requestStatusValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.RequestStatus', endpoint: 'oa/refdata' });
+  const requestStatusValues = useOARefdata('PublicationRequest.RequestStatus');
 
   return (
     <div>
@@ -41,9 +42,9 @@ const RequestInfoForm = () => {
         <Col xs={3}>
           <Field
             component={Select}
-            dataOptions={[{ value: '', label: '' }, ...requestStatusValues]}
+            dataOptions={[{ value: '', label: '' }, ...selectifyRefdata(requestStatusValues)]}
             label={<FormattedMessage id="ui-oa.publicationRequest.status" />}
-            name="requestStatus.value"
+            name="requestStatus.id"
             required
           />
         </Col>

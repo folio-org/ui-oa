@@ -3,7 +3,9 @@ import arrayMutators from 'final-form-arrays';
 import { useHistory } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useMutation } from 'react-query';
-import View from '../views/PublicationRequestCreate';
+import PublicationRequestForm from '../components/views/PublicationRequestForm';
+
+import publicationRequestSubmitHandler from '../util/publicationRequestSubmitHandler';
 
 const PublicationRequestCreateRoute = () => {
   const history = useHistory();
@@ -23,23 +25,7 @@ const PublicationRequestCreateRoute = () => {
   );
 
   const submitRequest = (values) => {
-    const {
-      useCorrespondingAuthor: _useCorrespondingAuthor,
-      correspondingAuthor,
-      requestContact,
-      ...submitValues
-    } = { ...values };
-
-    if (requestContact?.partyOwner?.id) {
-      requestContact.role = 'request_contact';
-      submitValues.requestContact = requestContact;
-    }
-
-    if (correspondingAuthor?.partyOwner?.id) {
-      correspondingAuthor.role = 'corresponding_author';
-      submitValues.correspondingAuthor = correspondingAuthor;
-    }
-
+    const submitValues = publicationRequestSubmitHandler(values);
     postPublicationRequest(submitValues);
   };
 
@@ -50,7 +36,7 @@ const PublicationRequestCreateRoute = () => {
     >
       {({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
-          <View
+          <PublicationRequestForm
             handlers={{
               onClose: handleClose,
               onSubmit: handleSubmit

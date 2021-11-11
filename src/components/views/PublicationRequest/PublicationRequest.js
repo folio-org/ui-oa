@@ -12,14 +12,16 @@ import {
   MetaSection,
   Pane,
 } from '@folio/stripes/components';
-import RequestInfo from '../../components/PublicationRequestSections/RequestInfo/RequestInfo';
-import CorrespondingAuthor from '../../components/PublicationRequestSections/CorrespondingAuthor/CorrespondingAuthor';
-import Publication from '../../components/PublicationRequestSections/Publication/Publication';
-import PublicationStatus from '../../components/PublicationRequestSections/PublicationStatus/PublicationStatus';
-import RequestContact from '../../components/PublicationRequestSections/RequestContact/RequestContact';
-import Funding from '../../components/PublicationRequestSections/Funding/Funding';
+import {
+  CorrespondingAuthor,
+  Funding,
+  Publication,
+  PublicationStatus,
+  RequestContact,
+  RequestInfo
+} from '../../PublicationRequestSections';
 
-import urls from '../../util/urls';
+import urls from '../../../util/urls';
 
 const propTypes = {
   onClose: PropTypes.func.isRequired,
@@ -32,6 +34,13 @@ const PublicationRequest = ({ resource: request, onClose }) => {
 
   const handleEdit = () => {
     history.push(`${urls.publicationRequestEdit(params?.id)}`);
+  };
+
+  const getSectionProps = (name) => {
+    return {
+      id: `publication-request-section-${name}`,
+      request
+    };
   };
 
   return (
@@ -58,15 +67,31 @@ const PublicationRequest = ({ resource: request, onClose }) => {
         contentId="publicationRequestMetaContent"
         createdDate={request?.dateCreated}
         hideSource
-        lastUpdatedDate={request?.dateModified}
+        lastUpdatedDate={request?.lastUpdated}
       />
-      <RequestInfo request={request} />
+
+      <RequestInfo {...getSectionProps('info')} />
       <AccordionSet>
-        <CorrespondingAuthor request={request} />
-        <RequestContact request={request} />
-        <Publication request={request} />
-        <PublicationStatus request={request} />
-        <Funding request={request} />
+        {request?.correspondingAuthor?.id &&
+          <CorrespondingAuthor {...getSectionProps('correspondingAuthor')} />
+        }
+        {request?.requestContact?.id &&
+          <RequestContact {...getSectionProps('requestContact')} />
+        }
+        {
+          /* TODO Notice this is likely not the correct shape
+           * Pending decisions made on the backend about Publication
+           * Just displaying it for now
+           */
+          // request.publication &&
+          <>
+            <Publication {...getSectionProps('publication')} />
+            <PublicationStatus {...getSectionProps('publicationStatus')} />
+          </>
+        }
+        {request?.funding &&
+          <Funding {...getSectionProps('funding')} />
+        }
       </AccordionSet>
     </Pane>
   );

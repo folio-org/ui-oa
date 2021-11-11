@@ -10,7 +10,8 @@ import {
   Row,
   Select
 } from '@folio/stripes/components';
-import { useRefdata } from '@k-int/stripes-kint-components';
+import useOARefdata from '../../../util/useOARefdata';
+import selectifyRefdata from '../../../util/selectifyRefdata';
 
 const renderFunders = (fields, fundersValues, aspectFundedValues) => {
   return (
@@ -22,7 +23,7 @@ const renderFunders = (fields, fundersValues, aspectFundedValues) => {
               component={Select}
               dataOptions={[{ value: '', label: '' }, ...aspectFundedValues]}
               label={<FormattedMessage id="ui-oa.publicationRequest.aspectFunded" />}
-              name={`${name}.aspectFunded.value`}
+              name={`${name}.aspectFunded.id`}
             />
           </Col>
           <Col xs={3}>
@@ -30,7 +31,7 @@ const renderFunders = (fields, fundersValues, aspectFundedValues) => {
               component={Select}
               dataOptions={[{ value: '', label: '' }, ...fundersValues]}
               label={<FormattedMessage id="ui-oa.publicationRequest.funder" />}
-              name={`${name}.funder.value`}
+              name={`${name}.funder.id`}
             />
           </Col>
           <Col xs={6}>
@@ -52,9 +53,19 @@ const renderEmpty = () => {
     </Layout>);
 };
 
+const [
+  NAME,
+  ASPECT_FUNDED
+] = [
+  'Funder.Name',
+  'Funder.AspectFunded'
+];
+
 const FundingFieldArray = () => {
-  const { 0: { values: fundersValues = [] } = {} } = useRefdata({ desc: 'Funder.Name', endpoint: 'oa/refdata' });
-  const { 0: { values: aspectFundedValues = [] } = {} } = useRefdata({ desc: 'Funder.AspectFunded', endpoint: 'oa/refdata' });
+  const funderRefdataValues = useOARefdata([NAME, ASPECT_FUNDED]);
+
+  const fundersValues = selectifyRefdata(funderRefdataValues, NAME);
+  const aspectFundedValues = selectifyRefdata(funderRefdataValues, ASPECT_FUNDED);
 
   return (
     <FieldArray name="funding">

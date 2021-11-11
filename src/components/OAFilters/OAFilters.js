@@ -7,7 +7,8 @@ import {
 } from '@folio/stripes/components';
 import { FormattedMessage } from 'react-intl';
 import { DateFilter } from '@folio/stripes-erm-components';
-import { useRefdata } from '@k-int/stripes-kint-components';
+
+import useOARefdata from '../../util/useOARefdata';
 
 const propTypes = {
   activeFilters: PropTypes.object,
@@ -15,7 +16,7 @@ const propTypes = {
 };
 
 function OAFilters({ activeFilters, filterHandlers }) {
-  const { 0: { values: requestStatusValues = [] } = {} } = useRefdata({ desc: 'PublicationRequest.RequestStatus', endpoint: 'oa/refdata' });
+  const requestStatusValues = useOARefdata('PublicationRequest.RequestStatus');
 
   const onChangeHandler = (group) => {
     filterHandlers.state({

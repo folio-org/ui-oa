@@ -10,11 +10,12 @@ import {
 
 import {
   Button,
+  FormattedUTCDate,
   PaneMenu,
 } from '@folio/stripes/components';
 
 import { SASQRoute } from '@k-int/stripes-kint-components';
-import View from '../views/PublicationRequest';
+import PublicationRequest from '../components/views/PublicationRequest';
 import urls from '../util/urls';
 import OAFilters from '../components/OAFilters';
 
@@ -54,21 +55,22 @@ const PublicationRequestsRoute = ({ path }) => {
   ];
 
   const formatter = {
-    requestNumber: d => {
-      return (
-        <AppIcon
-          app="oa"
-          iconAlignment="baseline"
-          iconKey="app"
-          size="small"
-        >
-          {d?.requestNumber}
-        </AppIcon>
-      );
-    },
-    requestStatus: d => {
-      return d?.requestStatus?.label;
-    },
+    requestNumber: d => (
+      <AppIcon
+        app="oa"
+        iconAlignment="baseline"
+        iconKey="app"
+        size="small"
+      >
+        {d?.requestNumber}
+      </AppIcon>
+    ),
+    requestStatus: d => (
+      d?.requestStatus?.label
+    ),
+    requestDate: d => (
+      d.requestDate ? <FormattedUTCDate value={d.requestDate} /> : ''
+    )
   };
 
   const lastpaneMenu =
@@ -103,7 +105,7 @@ const PublicationRequestsRoute = ({ path }) => {
       mclProps={{ formatter }}
       path={path}
       resultColumns={resultColumns}
-      ViewComponent={View}
+      ViewComponent={PublicationRequest}
     />
   );
 };

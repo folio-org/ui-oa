@@ -3,7 +3,9 @@ import arrayMutators from 'final-form-arrays';
 import { useHistory, useParams } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useQuery, useMutation } from 'react-query';
-import View from '../views/PublicationRequestCreate';
+import PublicationRequestForm from '../components/views/PublicationRequestForm';
+
+import publicationRequestSubmitHandler from '../util/publicationRequestSubmitHandler';
 
 const PublicationRequestEditRoute = () => {
   const history = useHistory();
@@ -28,7 +30,8 @@ const PublicationRequestEditRoute = () => {
   );
 
   const submitRequest = (values) => {
-    putPublicationRequest(values);
+    const submitValues = publicationRequestSubmitHandler(values);
+    putPublicationRequest(submitValues);
   };
 
   return (
@@ -39,7 +42,7 @@ const PublicationRequestEditRoute = () => {
     >
       {({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
-          <View
+          <PublicationRequestForm
             handlers={{
               onClose: handleClose,
               onSubmit: handleSubmit
