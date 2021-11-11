@@ -62,7 +62,7 @@ const PublicationRequestForm = ({ handlers: { onClose, onSubmit }, pristine, pub
           <Button
             buttonStyle="default mega"
             marginBottom0
-            onClick={onClose}
+            onClick={() => onClose()}
           >
             <FormattedMessage id="stripes-components.cancel" />
           </Button>
