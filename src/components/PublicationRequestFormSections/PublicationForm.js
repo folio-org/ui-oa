@@ -13,7 +13,7 @@ import {
 } from '@folio/stripes/components';
 import { IdentifiersFieldArray } from './FieldArrays';
 import useOARefdata from '../../util/useOARefdata';
-import selectifyRefdata from '../../util/selectifyRefdataValues';
+import selectifyRefdata from '../../util/selectifyRefdata';
 
 const [
   PUBLICATION_TYPE,

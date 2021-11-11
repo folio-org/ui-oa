@@ -12,7 +12,7 @@ import {
   Select,
 } from '@folio/stripes/components';
 import useOARefdata from '../../../util/useOARefdata';
-import selectifyRefdata from '../../../util/selectifyRefdataValues';
+import selectifyRefdata from '../../../util/selectifyRefdata';
 
 import { ExternalRequestIdFieldArray } from '../FieldArrays';
 

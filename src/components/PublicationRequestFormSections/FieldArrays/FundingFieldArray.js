@@ -11,7 +11,7 @@ import {
   Select
 } from '@folio/stripes/components';
 import useOARefdata from '../../../util/useOARefdata';
-import selectifyRefdata from '../../../util/selectifyRefdataValues';
+import selectifyRefdata from '../../../util/selectifyRefdata';
 
 const renderFunders = (fields, fundersValues, aspectFundedValues) => {
   return (

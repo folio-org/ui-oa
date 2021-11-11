@@ -12,7 +12,7 @@ import {
   Row,
 } from '@folio/stripes/components';
 import useOARefdata from '../../../util/useOARefdata';
-import selectifyRefdata from '../../../util/selectifyRefdataValues';
+import selectifyRefdata from '../../../util/selectifyRefdata';
 
 const IdentifiersFieldArray = () => {
   const identifierTypeValues = selectifyRefdata(useOARefdata('PublicationIdentifier.Type'));
