@@ -53,9 +53,19 @@ const renderEmpty = () => {
     </Layout>);
 };
 
+const [
+  NAME,
+  ASPECT_FUNDED
+] = [
+  'Funder.Name',
+  'Funder.AspectFunded'
+];
+
 const FundingFieldArray = () => {
-  const fundersValues = selectifyRefdata(useOARefdata('Funder.Name'));
-  const aspectFundedValues = selectifyRefdata(useOARefdata('Funder.AspectFunded'));
+  const funderRefdataValues = useOARefdata([NAME, ASPECT_FUNDED]);
+
+  const fundersValues = selectifyRefdata(funderRefdataValues, NAME);
+  const aspectFundedValues = selectifyRefdata(funderRefdataValues, ASPECT_FUNDED);
 
   return (
     <FieldArray name="funding">

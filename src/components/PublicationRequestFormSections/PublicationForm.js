@@ -15,14 +15,36 @@ import { IdentifiersFieldArray } from './FieldArrays';
 import useOARefdata from '../../util/useOARefdata';
 import selectifyRefdata from '../../util/selectifyRefdataValues';
 
+const [
+  PUBLICATION_TYPE,
+  PUBLISHER,
+  SUBTYPE,
+  LICENSE,
+  OA_STATUS
+ ] = [
+  'PublicationRequest.PublicationType',
+  'PublicationRequest.Publisher',
+  'PublicationRequest.Subtype',
+  'PublicationRequest.License',
+  'PublicationRequest.OaStatus'
+];
+
 const PublicationForm = () => {
   const { values } = useFormState();
 
-  const publicationTypeValues = selectifyRefdata(useOARefdata('PublicationRequest.PublicationType'));
-  const publisherValues = selectifyRefdata(useOARefdata('PublicationRequest.Publisher'));
-  const subtypeValues = selectifyRefdata(useOARefdata('PublicationRequest.Subtype'));
-  const licenseValues = selectifyRefdata(useOARefdata('PublicationRequest.License'));
-  const oaStatusValues = selectifyRefdata(useOARefdata('PublicationRequest.OaStatus'));
+  const refdataValues = useOARefdata([
+    PUBLICATION_TYPE,
+    PUBLISHER,
+    SUBTYPE,
+    LICENSE,
+    OA_STATUS
+   ]);
+
+  const publicationTypeValues = selectifyRefdata(refdataValues, PUBLICATION_TYPE);
+  const publisherValues = selectifyRefdata(refdataValues, PUBLISHER);
+  const subtypeValues = selectifyRefdata(refdataValues, SUBTYPE);
+  const licenseValues = selectifyRefdata(refdataValues, LICENSE);
+  const oaStatusValues = selectifyRefdata(refdataValues, OA_STATUS);
 
   return (
     <Accordion
