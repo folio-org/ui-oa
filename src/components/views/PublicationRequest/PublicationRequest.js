@@ -12,14 +12,16 @@ import {
   MetaSection,
   Pane,
 } from '@folio/stripes/components';
-import RequestInfo from '../../components/PublicationRequestSections/RequestInfo/RequestInfo';
-import CorrespondingAuthor from '../../components/PublicationRequestSections/CorrespondingAuthor/CorrespondingAuthor';
-import Publication from '../../components/PublicationRequestSections/Publication/Publication';
-import PublicationStatus from '../../components/PublicationRequestSections/PublicationStatus/PublicationStatus';
-import RequestContact from '../../components/PublicationRequestSections/RequestContact/RequestContact';
-import Funding from '../../components/PublicationRequestSections/Funding/Funding';
+import {
+  CorrespondingAuthor,
+  Funding,
+  Publication,
+  PublicationStatus,
+  RequestContact,
+  RequestInfo
+} from '../../PublicationRequestSections';
 
-import urls from '../../util/urls';
+import urls from '../../../util/urls';
 
 const propTypes = {
   onClose: PropTypes.func.isRequired,

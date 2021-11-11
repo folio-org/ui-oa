@@ -2,7 +2,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Accordion } from '@folio/stripes/components';
 
-import FundingFieldArray from './FieldArrays/FundingFieldArray';
+import { FundingFieldArray } from './FieldArrays';
 
 const FundingForm = () => {
   return (

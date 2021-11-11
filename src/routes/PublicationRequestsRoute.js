@@ -14,7 +14,7 @@ import {
 } from '@folio/stripes/components';
 
 import { SASQRoute } from '@k-int/stripes-kint-components';
-import View from '../views/PublicationRequest';
+import PublicationRequest from '../components/views/PublicationRequest';
 import urls from '../util/urls';
 import OAFilters from '../components/OAFilters';
 
@@ -103,7 +103,7 @@ const PublicationRequestsRoute = ({ path }) => {
       mclProps={{ formatter }}
       path={path}
       resultColumns={resultColumns}
-      ViewComponent={View}
+      ViewComponent={PublicationRequest}
     />
   );
 };

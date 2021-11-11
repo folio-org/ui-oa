@@ -20,9 +20,9 @@ import {
   IfPermission
 } from '@folio/stripes/core';
 
-import urls from '../../util/urls';
+import urls from '../../../util/urls';
 
-import OAFilters from '../../components/OAFilters';
+import OAFilters from '../../OAFilters';
 
 const propTypes = {
   children: PropTypes.object,

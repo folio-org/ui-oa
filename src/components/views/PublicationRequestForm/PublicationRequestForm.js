@@ -11,12 +11,14 @@ import {
   PaneHeader,
   Paneset,
 } from '@folio/stripes/components';
-import RequestInfoForm from '../../components/PublicationRequestFormSections/RequestInfoForm';
-import CorrespondingAuthorForm from '../../components/PublicationRequestFormSections/CorrespondingAuthorForm';
-import RequestContactForm from '../../components/PublicationRequestFormSections/RequestContactForm';
-import PublicationForm from '../../components/PublicationRequestFormSections/PublicationForm';
-import PublicationStatusForm from '../../components/PublicationRequestFormSections/PublicationStatusForm';
-import FundingForm from '../../components/PublicationRequestFormSections/FundingForm';
+import {
+  CorrespondingAuthorForm,
+  FundingForm,
+  PublicationForm,
+  PublicationStatusForm,
+  RequestContactForm,
+  RequestInfoForm
+} from '../../PublicationRequestFormSections';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -29,7 +31,7 @@ const propTypes = {
 };
 
 
-const PublicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, publicationRequest, submitting }) => {
+const PublicationRequestForm = ({ handlers: { onClose, onSubmit }, pristine, publicationRequest, submitting }) => {
   const { values } = useFormState();
   const { change } = useForm();
 
@@ -96,6 +98,6 @@ const PublicationRequestCreate = ({ handlers: { onClose, onSubmit }, pristine, p
   );
 };
 
-PublicationRequestCreate.propTypes = propTypes;
+PublicationRequestForm.propTypes = propTypes;
 
-export default PublicationRequestCreate;
+export default PublicationRequestForm;

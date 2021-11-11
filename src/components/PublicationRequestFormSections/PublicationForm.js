@@ -12,7 +12,7 @@ import {
   TextField,
 } from '@folio/stripes/components';
 import { useRefdata } from '@k-int/stripes-kint-components';
-import IdentifiersFieldArray from './FieldArrays/IdentifiersFieldArray';
+import { IdentifiersFieldArray } from './FieldArrays';
 
 const PublicationForm = () => {
   const { values } = useFormState();
