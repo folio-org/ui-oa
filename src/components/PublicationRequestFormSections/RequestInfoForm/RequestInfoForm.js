@@ -13,6 +13,8 @@ import {
 } from '@folio/stripes/components';
 import { useRefdata } from '@k-int/stripes-kint-components';
 
+import selectifyRefdata from '../../../util/selectifyRefdataValues';
+
 import { ExternalRequestIdFieldArray } from '../FieldArrays';
 
 const RequestInfoForm = () => {
@@ -41,9 +43,9 @@ const RequestInfoForm = () => {
         <Col xs={3}>
           <Field
             component={Select}
-            dataOptions={[{ value: '', label: '' }, ...requestStatusValues]}
+            dataOptions={[{ value: '', label: '' }, ...selectifyRefdata(requestStatusValues)]}
             label={<FormattedMessage id="ui-oa.publicationRequest.status" />}
-            name="requestStatus.value"
+            name="requestStatus.id"
             required
           />
         </Col>
