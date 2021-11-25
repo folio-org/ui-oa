@@ -15,7 +15,7 @@ const PickListValues = () => {
       defaultWidth="fill"
       dismissible
       id="edit-refdata-requestStatus"
-      paneTitle={<FormattedMessage id="ui-oa.settings.refdata.requestStatus" />}
+      paneTitle={<FormattedMessage id="ui-oa.settings.refdata.picklistValues" />}
     >
       <Select
         dataOptions={[{ value: '', label: '' }, ...rdcOptions]}

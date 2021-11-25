@@ -29,7 +29,7 @@ const OASettings = (props) => {
   if (stripes.hasPerm('settings.oa.picklists.manage')) {
     persistentPages.push({
       component: PickListValues,
-      label: intl.formatMessage({ id: 'ui-oa.settings.refdata.editPicklistValues' }),
+      label: intl.formatMessage({ id: 'ui-oa.settings.refdata.picklistValues' }),
       route: 'requestStatus',
     });
   }
