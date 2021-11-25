@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 
 import { useSettings } from '@k-int/stripes-kint-components';
 
-import { RequestStatusEdit } from './settingsComponents';
+import { PickListValues } from './settingsComponents';
 import { REFDATA_ENDPOINT, SETTINGS_ENDPOINT } from '../constants';
 
 const propTypes = {
@@ -23,7 +23,7 @@ const OASettings = (props) => {
   const intl = useIntl();
   const persistentPages = [
     {
-      component: RequestStatusEdit,
+      component: PickListValues,
       label: intl.formatMessage({ id: 'ui-oa.settings.refdata.editPicklistValues' }),
       route: 'requestStatus',
     }

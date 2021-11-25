@@ -6,7 +6,7 @@ import { EditableRefdataList } from '@k-int/stripes-kint-components';
 import useOARefdata from '../../util/useOARefdata';
 import { REFDATA_ENDPOINT } from '../../constants';
 
-const RequestStatusEdit = () => {
+const PickListValues = () => {
  const rdcOptions = useOARefdata()?.map(rdv => ({ value: rdv.desc, label: rdv.desc }));
  const [selectedPickList, setSelectedPickList] = useState('');
 
@@ -32,4 +32,4 @@ const RequestStatusEdit = () => {
   );
 };
 
-export default RequestStatusEdit;
+export default PickListValues;
