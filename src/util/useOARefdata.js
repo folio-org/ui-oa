@@ -9,14 +9,17 @@ const useOARefdata = (desc) => {
     return refdata;
   }
 
-  // Otherwise we're fetching a single set of values, so return just the values;
-  const {
-    0: {
-      values = []
-    } = {}
-  } = refdata;
-
-  return values;
+  if (desc) {
+    // Otherwise we're fetching a single set of values, so return just the values;
+    const {
+      0: {
+        values = []
+      } = {}
+    } = refdata;
+    return values;
+  } else {
+    return refdata;
+  }
 };
 
 export default useOARefdata;

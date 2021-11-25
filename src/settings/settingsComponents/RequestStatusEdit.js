@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { Pane } from '@folio/stripes/components';
+import { Pane, Select } from '@folio/stripes/components';
 import { EditableRefdataList } from '@k-int/stripes-kint-components';
+import useOARefdata from '../../util/useOARefdata';
 
 const RequestStatusEdit = () => {
+ const rdcOptions = useOARefdata()?.map(rdv => ({ value: rdv.desc, label: rdv.desc }));
+ const [selectedPickList, setSelectedPickList] = useState('');
+
   return (
     <Pane
       defaultWidth="fill"
@@ -12,10 +16,17 @@ const RequestStatusEdit = () => {
       id="edit-refdata-requestStatus"
       paneTitle={<FormattedMessage id="ui-oa.settings.refdata.requestStatus" />}
     >
-      <EditableRefdataList
-        desc="PublicationRequest.RequestStatus"
-        refdataEndpoint="oa/refdata"
+      <Select
+        dataOptions={[{ value: '', label: '' }, ...rdcOptions]}
+        onChange={e => setSelectedPickList(e.target.value)}
+        value={selectedPickList}
       />
+      {selectedPickList &&
+        <EditableRefdataList
+          desc={selectedPickList}
+          refdataEndpoint={"oa/refdata"}
+        />
+      }
     </Pane>
   );
 };
