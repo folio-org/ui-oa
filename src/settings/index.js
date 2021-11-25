@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import { useIntl } from 'react-intl';
 
+import { useStripes } from '@folio/stripes/core';
+
 import { useSettings } from '@k-int/stripes-kint-components';
 
 import { PickListValues } from './settingsComponents';
@@ -20,14 +22,17 @@ const propTypes = {
 };
 
 const OASettings = (props) => {
+  const stripes = useStripes();
   const intl = useIntl();
-  const persistentPages = [
-    {
+  const persistentPages = [];
+
+  if (stripes.hasPerm('settings.oa.picklists.manage')) {
+    persistentPages.push({
       component: PickListValues,
       label: intl.formatMessage({ id: 'ui-oa.settings.refdata.editPicklistValues' }),
       route: 'requestStatus',
-    }
-  ];
+    });
+  }
 
   const { isLoading, SettingsComponent } = useSettings({
     dynamicPageExclusions: [],
