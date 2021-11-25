@@ -52,6 +52,13 @@
         "subPermissions": [
           "settings.enabled"
         ]
+      },
+      {
+        "permissionName": "settings.oa.picklists.manage",
+        "displayName": "Settings (Open Access): Manage pick lists and values",
+        "subPermissions": [
+          "settings.oa.enabled"
+        ]
       }
     ]
   },

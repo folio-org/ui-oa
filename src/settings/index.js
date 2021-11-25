@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 
 import { useIntl } from 'react-intl';
 
+import { useStripes } from '@folio/stripes/core';
+
 import { useSettings } from '@k-int/stripes-kint-components';
 
-import { RequestStatusEdit } from './settingsComponents';
+import { PickListValues } from './settingsComponents';
+import { REFDATA_ENDPOINT, SETTINGS_ENDPOINT } from '../constants';
 
 const propTypes = {
   resources: PropTypes.shape({
@@ -19,21 +22,24 @@ const propTypes = {
 };
 
 const OASettings = (props) => {
+  const stripes = useStripes();
   const intl = useIntl();
-  const persistentPages = [
-    {
-      component: RequestStatusEdit,
-      label: intl.formatMessage({ id: 'ui-oa.settings.refdata.editPicklistValues' }),
+  const persistentPages = [];
+
+  if (stripes.hasPerm('settings.oa.picklists.manage')) {
+    persistentPages.push({
+      component: PickListValues,
+      label: intl.formatMessage({ id: 'ui-oa.settings.refdata.picklistValues' }),
       route: 'requestStatus',
-    }
-  ];
+    });
+  }
 
   const { isLoading, SettingsComponent } = useSettings({
     dynamicPageExclusions: [],
     intlKey: 'ui-oa',
     persistentPages,
-    refdataEndpoint: 'oa/refdata',
-    settingEndpoint: 'oa/settings/appSettings'
+    refdataEndpoint: REFDATA_ENDPOINT,
+    settingEndpoint: SETTINGS_ENDPOINT
   });
 
   if (isLoading) {
