@@ -11,22 +11,23 @@ import {
   TextArea,
   TextField,
 } from '@folio/stripes/components';
-import { IdentifiersFieldArray } from './FieldArrays';
-import useOARefdata from '../../util/useOARefdata';
-import selectifyRefdata from '../../util/selectifyRefdata';
+import { IdentifiersFieldArray } from '../FieldArrays';
+import useOARefdata from '../../../util/useOARefdata';
+import selectifyRefdata from '../../../util/selectifyRefdata';
+
+import PublicationJournal from './PublicationJournal';
+import PublicationBook from './PublicationBook';
 
 const [
   PUBLICATION_TYPE,
   PUBLISHER,
   SUBTYPE,
   LICENSE,
-  OA_STATUS
  ] = [
   'PublicationRequest.PublicationType',
   'PublicationRequest.Publisher',
   'PublicationRequest.Subtype',
   'PublicationRequest.License',
-  'PublicationRequest.OaStatus'
 ];
 
 const PublicationForm = () => {
@@ -36,15 +37,13 @@ const PublicationForm = () => {
     PUBLICATION_TYPE,
     PUBLISHER,
     SUBTYPE,
-    LICENSE,
-    OA_STATUS
+    LICENSE
    ]);
 
   const publicationTypeValues = selectifyRefdata(refdataValues, PUBLICATION_TYPE);
   const publisherValues = selectifyRefdata(refdataValues, PUBLISHER);
   const subtypeValues = selectifyRefdata(refdataValues, SUBTYPE);
   const licenseValues = selectifyRefdata(refdataValues, LICENSE);
-  const oaStatusValues = selectifyRefdata(refdataValues, OA_STATUS);
 
   const getRDVId = (desc, value) => {
     // First filter by desc
@@ -158,81 +157,11 @@ const PublicationForm = () => {
       </Row>
 
       {values.publicationType?.id === journalArticleId &&
-        <div>
-          <Row>
-            <Col xs>
-              <Headline margin="small" size="large" tag="h3">
-                <FormattedMessage id="ui-oa.publicationRequest.journalDetails" />
-              </Headline>
-            </Col>
-          </Row>
-
-          <Row end="xs">
-            <Col xs={6}>
-              <Field
-                component={TextField}
-                label={<FormattedMessage id="ui-oa.publicationRequest.journalTitle" />}
-                name="journalTitle"
-              />
-            </Col>
-            <Col xs={3}>
-              <Field
-                component={TextField}
-                label={<FormattedMessage id="ui-oa.publicationRequest.issnPrint" />}
-                name="issnPrint"
-              />
-            </Col>
-            <Col xs={3}>
-              <Field
-                component={TextField}
-                label={<FormattedMessage id="ui-oa.publicationRequest.issnElectronic" />}
-                name="issnElectronic"
-              />
-            </Col>
-          </Row>
-
-          <Row end="xs">
-            <Col xs={3}>
-              <Field
-                component={Select}
-                dataOptions={[{ value: '', label: '' }, ...oaStatusValues]}
-                label={<FormattedMessage id="ui-oa.publicationRequest.oaStatus" />}
-                name="oaStatus.id"
-              />
-            </Col>
-            <Col xs={9} />
-          </Row>
-        </div>
+        <PublicationJournal />
       }
 
       {values.publicationType?.id === bookId &&
-        <div>
-          <Row>
-            <Col xs>
-              <Headline margin="small" size="large" tag="h3">
-                <FormattedMessage id="ui-oa.publicationRequest.bookDetails" />
-              </Headline>
-            </Col>
-          </Row>
-
-          <Row end="xs">
-            <Col xs={3}>
-              <Field
-                component={TextField}
-                label={<FormattedMessage id="ui-oa.publicationRequest.publicationYear" />}
-                name="publicationYear"
-              />
-            </Col>
-            <Col xs={3}>
-              <Field
-                component={TextField}
-                label={<FormattedMessage id="ui-oa.publicationRequest.publicationPlace" />}
-                name="publicationPlace"
-              />
-            </Col>
-            <Col xs={6} />
-          </Row>
-        </div>
+        <PublicationBook />
       }
 
     </Accordion>
