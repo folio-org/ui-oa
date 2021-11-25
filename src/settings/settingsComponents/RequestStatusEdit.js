@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import { Pane, Select } from '@folio/stripes/components';
 import { EditableRefdataList } from '@k-int/stripes-kint-components';
 import useOARefdata from '../../util/useOARefdata';
+import { REFDATA_ENDPOINT } from '../../constants';
 
 const RequestStatusEdit = () => {
  const rdcOptions = useOARefdata()?.map(rdv => ({ value: rdv.desc, label: rdv.desc }));
@@ -24,7 +25,7 @@ const RequestStatusEdit = () => {
       {selectedPickList &&
         <EditableRefdataList
           desc={selectedPickList}
-          refdataEndpoint={"oa/refdata"}
+          refdataEndpoint={REFDATA_ENDPOINT}
         />
       }
     </Pane>

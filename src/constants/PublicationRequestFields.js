@@ -1,6 +1,6 @@
-const PublicationRequestFields = {
+const publicationRequestFields = {
   JOURNAL_ARTICLE: 'journal_article',
   BOOK: 'book'
 };
 
-export default PublicationRequestFields;
+export default publicationRequestFields;

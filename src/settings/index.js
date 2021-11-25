@@ -6,6 +6,7 @@ import { useIntl } from 'react-intl';
 import { useSettings } from '@k-int/stripes-kint-components';
 
 import { RequestStatusEdit } from './settingsComponents';
+import { REFDATA_ENDPOINT, SETTINGS_ENDPOINT } from '../constants';
 
 const propTypes = {
   resources: PropTypes.shape({
@@ -32,8 +33,8 @@ const OASettings = (props) => {
     dynamicPageExclusions: [],
     intlKey: 'ui-oa',
     persistentPages,
-    refdataEndpoint: 'oa/refdata',
-    settingEndpoint: 'oa/settings/appSettings'
+    refdataEndpoint: REFDATA_ENDPOINT,
+    settingEndpoint: SETTINGS_ENDPOINT
   });
 
   if (isLoading) {
