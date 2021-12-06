@@ -83,8 +83,6 @@
     "publicationRequest.externalRequestIds": "معرّفات الطلبات الخارجية",
     "publicationRequest.requestTitle": "رقم الطلب - {number}",
     "publicationRequests": "طلبات النشر",
-    "settings.refdata.requestStatus": "تحرير حالة الطلب",
-    "settings.refdata.editRefdata": "تحرير قيم قائمة الاختيار",
     "publicationRequest.correspondingAuthorName": "اسم المؤلف المقابل",
     "publicationRequests.requests": "الطلبات",
     "publicationRequests.recordsFound": "تم العثور على {number} تسجيلة",
@@ -98,5 +96,6 @@
     "publicationStatus.status": "الحالة",
     "publicationRequest.party": "طرف",
     "publicationRequest.person": "شخص",
-    "publicationRequest.editPublicationRequest": "تحرير طلب النشر - {id}"
+    "publicationRequest.editPublicationRequest": "تحرير طلب النشر - {id}",
+    "settings.refdata.picklistValues": "قيم قائمة الاختيار"
 }
