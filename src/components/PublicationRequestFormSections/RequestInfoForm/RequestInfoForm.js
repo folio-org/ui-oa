@@ -1,8 +1,10 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import {
-  Field,
+  Field
 } from 'react-final-form';
+
 import {
   Col,
   Datepicker,
@@ -11,6 +13,11 @@ import {
   Row,
   Select,
 } from '@folio/stripes/components';
+
+import {
+  requiredValidator,
+} from '@folio/stripes-erm-components';
+
 import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
 
@@ -37,6 +44,7 @@ const RequestInfoForm = () => {
             name="requestDate"
             required
             timeZone="UTC"
+            validate={requiredValidator}
           />
         </Col>
         <Col xs={3}>
@@ -46,6 +54,7 @@ const RequestInfoForm = () => {
             label={<FormattedMessage id="ui-oa.publicationRequest.status" />}
             name="requestStatus.id"
             required
+            validate={requiredValidator}
           />
         </Col>
         <Col xs={3} />

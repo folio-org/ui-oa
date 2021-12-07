@@ -7,7 +7,8 @@ import {
   Accordion,
   Badge,
   MultiColumnList,
-  Row
+  Row,
+  FormattedUTCDate
 } from '@folio/stripes/components';
 
 const propTypes = {
@@ -17,6 +18,9 @@ const propTypes = {
 const formatter = {
   publicationStatus: e => {
     return e?.publicationStatus?.label;
+  },
+  statusDate: e => {
+    return <FormattedUTCDate value={e?.statusDate} />;
   },
 };
 
