@@ -36,6 +36,7 @@
     "publicationRequest.phone": "Phone",
     "publicationRequest.publication": "Publication",
     "publicationRequest.publicationPlace": "Place of publication",
+    "publicationRequest.success.callout": "<strong>Publication Requested:</strong> {requestNumber}",
     "publicationRequest.publicationStatus": "Publication status",
     "publicationRequest.publicationTitle": "Publication title",
     "publicationRequest.publicationType": "Publication type",
