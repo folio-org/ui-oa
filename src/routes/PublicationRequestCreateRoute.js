@@ -1,15 +1,20 @@
+import { useContext } from 'react';
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { useHistory } from 'react-router-dom';
-import { useOkapiKy } from '@folio/stripes/core';
 import { useMutation } from 'react-query';
-import PublicationRequestForm from '../components/views/PublicationRequestForm';
 
+import { useOkapiKy, CalloutContext } from '@folio/stripes/core';
+import SafeHTMLMessage from '@folio/react-intl-safe-html';
+
+import PublicationRequestForm from '../components/views/PublicationRequestForm';
 import publicationRequestSubmitHandler from '../util/publicationRequestSubmitHandler';
 
 const PublicationRequestCreateRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
+  const callout = useContext(CalloutContext);
+
 
   const handleClose = (id) => {
     let path = '/oa/publicationRequests';
@@ -20,6 +25,8 @@ const PublicationRequestCreateRoute = () => {
   const { mutateAsync: postPublicationRequest } = useMutation(
     ['ui-oa', 'PublicationRequestCreateRoute', 'postPublicationRequest'],
     (data) => ky.post('oa/publicationRequest', { json: data }).json().then(res => {
+      const requestNumber = res.requestNumber;
+      callout.sendCallout({ message: <SafeHTMLMessage id="ui-oa.publicationRequest.success.callout" values={{ requestNumber }} /> });
       handleClose(res.id);
     })
   );
