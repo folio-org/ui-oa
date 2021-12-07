@@ -23,10 +23,10 @@ const PublicationStatusFieldArray = () => {
     return (
       <div>
         {fields.map((publicationStatus, index) => (
-          <Row key={publicationStatus} start="xs">
+          <Row key={`publicationStatus[${index}]`} start="xs">
             <Col xs={3}>
               <Field
-                autoFocus
+                autoFocus={`${publicationStatus}.publicationStatus.id`}
                 component={Select}
                 dataOptions={[{ value: '', label: '' }, ...statusValues]}
                 label={<FormattedMessage id="ui-oa.publicationRequest.publicationStatus" />}
