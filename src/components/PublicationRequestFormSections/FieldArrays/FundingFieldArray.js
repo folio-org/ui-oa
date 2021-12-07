@@ -20,6 +20,7 @@ const renderFunders = (fields, fundersValues, aspectFundedValues) => {
         <Row key={name} middle="xs">
           <Col xs={3}>
             <Field
+              autoFocus
               component={Select}
               dataOptions={[{ value: '', label: '' }, ...aspectFundedValues]}
               label={<FormattedMessage id="ui-oa.publicationRequest.aspectFunded" />}

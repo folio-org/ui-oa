@@ -18,6 +18,7 @@ const ExternalRequestIdFieldArray = () => {
           <Row key={externalRequestId} middle="xs">
             <Col xs={3}>
               <Field
+                autoFocus
                 component={TextField}
                 label={<FormattedMessage id="ui-oa.externalRequestId.externalRequestId" />}
                 name={`${externalRequestId}.externalId`}

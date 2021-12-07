@@ -26,6 +26,7 @@ const PublicationStatusFieldArray = () => {
           <Row key={publicationStatus} start="xs">
             <Col xs={3}>
               <Field
+                autoFocus
                 component={Select}
                 dataOptions={[{ value: '', label: '' }, ...statusValues]}
                 label={<FormattedMessage id="ui-oa.publicationRequest.publicationStatus" />}
