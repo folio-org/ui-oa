@@ -19,13 +19,9 @@ import JournalDetails from '../../PublicationRequestSections/JournalDetails';
 import { findIdentifierByNamespace } from '../../../util/journalUtils';
 
 
-// @TODO
-//Use correct path/endpoint to retrieve title,issn etc.
-
 const PublicationJournal = () => {
-  
   const { values } = useFormState();
-  
+
   const pathMutator = (input, path) => {
     const query = generateKiwtQuery(
       { searchKey: 'journalTitle', stats: false },
@@ -38,10 +34,10 @@ const PublicationJournal = () => {
     const issn = findIdentifierByNamespace(journal, 'issn');
 
     return (
-        <FormattedMessage
-          id="ui-oa.publicationJournal.typedown"
-          values={{title: journal?.title, issn: issn?.value}}
-        />
+      <FormattedMessage
+        id="ui-oa.publicationJournal.typedown"
+        values={{title: journal?.title, issn: issn?.value }}
+      />
     );
   };
 

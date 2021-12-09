@@ -14,7 +14,7 @@ import {
 import { findIdentifierByNamespace } from '../../util/journalUtils';
 
 const propTypes = {
-  request: PropTypes.object
+  journal: PropTypes.object
 };
 
 const JournalDetails = ({ journal }) => {
@@ -40,7 +40,7 @@ const JournalDetails = ({ journal }) => {
         </Col> */}
         <Col xs={3}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationJournal.issn" />}>
-          {issn?.value ?? <NoValue />}
+            {issn?.value ?? <NoValue />}
           </KeyValue>
         </Col>
       </Row>
