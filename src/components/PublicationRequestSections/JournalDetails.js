@@ -11,11 +11,15 @@ import {
   Row
 } from '@folio/stripes/components';
 
+import { findIdentifierByNamespace } from '../../util/journalUtils';
+
 const propTypes = {
-  request: PropTypes.object
+  journal: PropTypes.object
 };
 
-const JournalDetails = ({ request }) => {
+const JournalDetails = ({ journal }) => {
+  const issn = findIdentifierByNamespace(journal, 'issn');
+
   return (
     <div>
       <Row start="xs">
@@ -23,52 +27,22 @@ const JournalDetails = ({ request }) => {
           <Headline margin="small" size="large" tag="h5">
             <FormattedMessage id="ui-oa.publicationRequest.journalDetails" />
           </Headline>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.journalTitle" />}>
-            <div>
-              {request?.journalTitle ?
-                <div>{request.journalTitle}</div>
-                :
-                <NoValue />
-              }
-            </div>
+          <KeyValue label={<FormattedMessage id="ui-oa.publicationJournal.title" />}>
+            {journal?.title ?? <NoValue />}
           </KeyValue>
         </Col>
       </Row>
       <Row start="xs">
-        <Col xs={3}>
+        {/* <Col xs={3}>
           <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.issnPrint" />}>
-            <div>
-              {request?.issnPrint ?
-                <div>{request.issnPrint}</div>
-                :
-                <NoValue />
-              }
-            </div>
+          {journal?.issn?? <NoValue />}
           </KeyValue>
-        </Col>
+        </Col> */}
         <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.issnElectronic" />}>
-            <div>
-              {request?.issnElectronic ?
-                <div>{request.issnElectronic}</div>
-                :
-                <NoValue />
-              }
-            </div>
+          <KeyValue label={<FormattedMessage id="ui-oa.publicationJournal.issn" />}>
+            {issn?.value ?? <NoValue />}
           </KeyValue>
         </Col>
-        <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.oaStatus" />}>
-            <div>
-              {request?.oaStatus ?
-                <div>{request.oaStatus}</div>
-                :
-                <NoValue />
-              }
-            </div>
-          </KeyValue>
-        </Col>
-        <Col xs={3} />
       </Row>
     </div>
   );
