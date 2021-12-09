@@ -36,6 +36,7 @@
     "publicationRequest.phone": "Phone",
     "publicationRequest.publication": "Publication",
     "publicationRequest.publicationPlace": "Place of publication",
+    "publicationRequest.success.callout": "<strong>Publication Requested:</strong> {requestNumber}",
     "publicationRequest.publicationStatus": "Publication status",
     "publicationRequest.publicationTitle": "Publication title",
     "publicationRequest.publicationType": "Publication type",
@@ -85,8 +86,6 @@
     "publicationRequest.externalRequestIds": "External request IDs",
     "publicationRequest.requestTitle": "Request number - {number}",
     "publicationRequests": "Publication requests",
-    "settings.refdata.requestStatus": "Edit request status",
-    "settings.refdata.editRefdata": "Edit pick list values",
     "publicationRequest.correspondingAuthorName": "Corresponding author name",
     "publicationRequests.requests": "Requests",
     "publicationRequests.recordsFound": "{number} records found",
@@ -100,5 +99,6 @@
     "publicationStatus.status": "Status",
     "publicationRequest.party": "Party",
     "publicationRequest.person": "Person",
-    "publicationRequest.editPublicationRequest": "Edit publication request - {id}"
+    "publicationRequest.editPublicationRequest": "Edit publication request - {id}",
+    "settings.refdata.picklistValues": "Pick list values"
 }

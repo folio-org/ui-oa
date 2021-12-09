@@ -83,8 +83,6 @@
     "publicationRequest.externalRequestIds": "外部请求ID",
     "publicationRequest.requestTitle": "请求号 - {number}",
     "publicationRequests": "出版物请求",
-    "settings.refdata.requestStatus": "编辑请求状态",
-    "settings.refdata.editRefdata": "编辑选取清单值",
     "publicationRequest.correspondingAuthorName": "通讯作者名",
     "publicationRequests.requests": "请求",
     "publicationRequests.recordsFound": "发现{number}条记录",
@@ -98,5 +96,6 @@
     "publicationStatus.status": "状态",
     "publicationRequest.party": "团队",
     "publicationRequest.person": "个人",
-    "publicationRequest.editPublicationRequest": "Edit publication request - {id}"
+    "publicationRequest.editPublicationRequest": "编辑出版物请求 - {id}",
+    "settings.refdata.picklistValues": "选取清单值"
 }
