@@ -6,7 +6,6 @@ import { Field, useFormState } from 'react-final-form';
 import {
   Col,
   Headline,
-  KeyValue,
   Row,
 } from '@folio/stripes/components';
 import {
