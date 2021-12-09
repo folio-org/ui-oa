@@ -16,13 +16,13 @@ import {
 import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
 
-const PublicationStatusFieldArray = () => {
+const PublicationStatusField = ({ fields }) => {
   const statusValues = selectifyRefdata(useOARefdata('PublicationStatus.PublicationStatus'));
 
-  const renderPublicationStatus = (fields) => {
-    return (
-      <div>
-        {fields.map((publicationStatus, index) => (
+  return (
+    <>
+      {fields.length ?
+        fields.map((publicationStatus, index) => (
           <Row key={publicationStatus} start="xs">
             <Col xs={3}>
               <Field
@@ -55,33 +55,27 @@ const PublicationStatusFieldArray = () => {
               />
             </Col>
           </Row>
-        ))}
-      </div>
-    );
-  };
+          )) :
+        <Layout className="padding-bottom-gutter">
+          <FormattedMessage id="ui-oa.publicationStatus.requestHasNone" />
+        </Layout>
+      }
+      <Button
+        onClick={() => fields.push({})}
+      >
+        <FormattedMessage id="ui-oa.publicationStatus.addPublicationStatus" />
+      </Button>
+    </>
+  );
+};
 
-  const renderEmpty = () => {
-    return (
-      <Layout className="padding-bottom-gutter">
-        <FormattedMessage id="ui-oa.publicationStatus.requestHasNone" />
-      </Layout>);
-  };
-
+const PublicationStatusFieldArray = () => {
   return (
-    <FieldArray name="publicationStatuses">
-      {({ fields }) => (
-        <div>
-          <div>
-            {fields.length ? renderPublicationStatus(fields) : renderEmpty()}
-          </div>
-          <Button
-            onClick={() => fields.push({})}
-          >
-            <FormattedMessage id="ui-oa.publicationStatus.addPublicationStatus" />
-          </Button>
-        </div>
-      )}
-    </FieldArray>);
+    <FieldArray
+      component={PublicationStatusField}
+      name="publicationStatuses"
+    />
+  );
 };
 
 export default PublicationStatusFieldArray;
