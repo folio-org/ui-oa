@@ -7,7 +7,7 @@ import {
   Row,
 } from '@folio/stripes/components';
 
-import { PublicationStatusFieldArray } from './FieldArrays';
+import PublicationStatusFieldArray from './PublicationStatusFieldArray';
 
 const PublicationStatusForm = () => {
   return (
