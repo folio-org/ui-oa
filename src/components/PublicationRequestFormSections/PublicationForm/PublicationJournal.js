@@ -6,6 +6,7 @@ import { Field, useFormState } from 'react-final-form';
 import {
   Col,
   Headline,
+  KeyValue,
   Row,
 } from '@folio/stripes/components';
 import {
@@ -16,6 +17,7 @@ import {
 import { EditCard } from '@folio/stripes-erm-components';
 
 import JournalDetails from '../../PublicationRequestSections/JournalDetails';
+import { findIdentifierByNamespace } from '../../../util/journalUtils';
 
 
 // @TODO
@@ -34,13 +36,13 @@ const PublicationJournal = () => {
   };
 
   const renderListItem = (journal) => {
+    const issn = findIdentifierByNamespace(journal, 'issn');
+
     return (
-      <>
-        Title: {journal.journalTitle} - 
-        ISSN (Print): {journal.issnPrint} - 
-        ISSN (Electronic): {journal.issnElectronic} - 
-        OA Status: {journal.oaStatus}
-      </>
+        <FormattedMessage
+          id="ui-oa.publicationJournal.typedown"
+          values={{title: journal?.title, issn: issn?.value}}
+        />
     );
   };
 
@@ -59,7 +61,7 @@ const PublicationJournal = () => {
           <Field
             component={QueryTypedown}
             label={<FormattedMessage id="ui-oa.publicationRequest.journalTitle" />}
-            name="selectJournal.journal"
+            name="journal"
             path="oa/titleInstances"
             pathMutator={pathMutator}
             renderListItem={renderListItem}
@@ -67,9 +69,9 @@ const PublicationJournal = () => {
         </Col>
       </Row>
 
-      {values.selectJournal?.journal &&
+      {values.journal &&
         <EditCard header={<FormattedMessage id="ui-oa.publicationRequest.selectedJournal" />}>
-          <JournalDetails request={values.selectJournal.journal} />
+          <JournalDetails journal={values.journal} />
         </EditCard>
       }
     </>
