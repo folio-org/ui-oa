@@ -1,8 +1,5 @@
-<<<<<<< HEAD:src/components/PublicationRequestFormSections/FieldArrays/PublicationStatusFieldArray.js
 import React from 'react';
-=======
 import PropTypes from 'prop-types';
->>>>>>> master:src/components/PublicationRequestFormSections/PublicationStatusFieldArray/PublicationStatusFieldArray.js
 import { FormattedMessage } from 'react-intl';
 
 import { Field } from 'react-final-form';
@@ -32,19 +29,11 @@ const PublicationStatusField = ({ fields: { name } }) => {
   } = useKiwtFieldArray(name);
   const statusValues = selectifyRefdata(useOARefdata('PublicationStatus.PublicationStatus'));
 
-<<<<<<< HEAD:src/components/PublicationRequestFormSections/FieldArrays/PublicationStatusFieldArray.js
-  const renderPublicationStatus = (fields) => {
-    return (
-      <div>
-        {fields.map((publicationStatus, index) => (
-          <Row key={`publicationStatus[${index}]`} start="xs">
-=======
   return (
     <>
       {items.map((publicationStatus, index) => {
         return (
           <Row key={publicationStatus} start="xs">
->>>>>>> master:src/components/PublicationRequestFormSections/PublicationStatusFieldArray/PublicationStatusFieldArray.js
             <Col xs={3}>
               <Field
                 autoFocus
