@@ -22,6 +22,7 @@ import selectifyRefdata from '../../../util/selectifyRefdata';
 
 
 const PublicationStatusField = ({ fields: { name } }) => {
+
   const {
     items,
     onAddField,
@@ -36,7 +37,7 @@ const PublicationStatusField = ({ fields: { name } }) => {
           <Row key={publicationStatus} start="xs">
             <Col xs={3}>
               <Field
-                autoFocus
+                autoFocus={!publicationStatus.id}
                 component={Select}
                 dataOptions={[{ value: '', label: '' }, ...statusValues]}
                 label={<FormattedMessage id="ui-oa.publicationRequest.publicationStatus" />}

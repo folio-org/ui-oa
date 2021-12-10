@@ -19,13 +19,14 @@ const IdentifiersFieldArray = () => {
   const identifierTypeValues = selectifyRefdata(useOARefdata('PublicationIdentifier.Type'));
 
   const renderIdentifiers = (fields) => {
+    const finalElement = fields?.value[fields?.value.length - 1];
     return (
       <div>
         {fields.map((identifier, index) => (
           <Row key={identifier} middle="xs">
             <Col xs={3}>
               <Field
-                autoFocus
+                autoFocus={!finalElement.type}
                 component={Select}
                 dataOptions={[{ value: '', label: '' }, ...identifierTypeValues]}
                 label={<FormattedMessage id="ui-oa.identifiers.type" />}
