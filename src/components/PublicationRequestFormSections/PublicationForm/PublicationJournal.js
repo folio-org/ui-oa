@@ -24,7 +24,7 @@ const PublicationJournal = () => {
 
   const pathMutator = (input, path) => {
     const query = generateKiwtQuery(
-      { searchKey: 'journalTitle', stats: false },
+      { searchKey: 'journal.title', stats: false },
       { query: input }
     );
     return `${path}${query}`;

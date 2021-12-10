@@ -17,9 +17,12 @@ const propTypes = {
   journal: PropTypes.object
 };
 
-const JournalDetails = ({ journal }) => {
-  const issn = findIdentifierByNamespace(journal, 'issn');
+const JournalDetails = ({ journal }) =>{
 
+  let issn = null;
+  if (journal) {
+  issn = findIdentifierByNamespace(journal, 'issn');
+}
   return (
     <div>
       <Row start="xs">
