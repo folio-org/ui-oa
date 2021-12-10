@@ -1,3 +1,4 @@
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
@@ -26,7 +27,7 @@ const PublicationStatusFieldArray = () => {
           <Row key={`publicationStatus[${index}]`} start="xs">
             <Col xs={3}>
               <Field
-                autoFocus={`${publicationStatus}.publicationStatus.id`}
+                autoFocus
                 component={Select}
                 dataOptions={[{ value: '', label: '' }, ...statusValues]}
                 label={<FormattedMessage id="ui-oa.publicationRequest.publicationStatus" />}
