@@ -13,16 +13,16 @@ import {
 } from '@folio/stripes/components';
 import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
+import getLastField from '../../../util/repeatableFieldsUtils';
 
 const renderFunders = (fields, fundersValues, aspectFundedValues) => {
-  const finalElement = fields?.value[fields?.value.length - 1];
   return (
     <div>
       {fields.map((name, index) => (
         <Row key={name} middle="xs">
           <Col xs={3}>
             <Field
-              autoFocus={!finalElement.aspectFunded}
+              autoFocus={!getLastField(fields).aspectFunded}
               component={Select}
               dataOptions={[{ value: '', label: '' }, ...aspectFundedValues]}
               label={<FormattedMessage id="ui-oa.publicationRequest.aspectFunded" />}

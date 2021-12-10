@@ -11,16 +11,17 @@ import {
   Row,
 } from '@folio/stripes/components';
 
+import getLastField from '../../../util/repeatableFieldsUtils';
+
 const ExternalRequestIdFieldArray = () => {
   const renderExternalRequestId = (fields) => {
-    const finalElement = fields?.value[fields?.value.length - 1];
     return (
       <div>
         {fields.map((externalRequestId, index) => (
           <Row key={externalRequestId} middle="xs">
             <Col xs={3}>
               <Field
-                autoFocus={!finalElement.externalId}
+                autoFocus={!getLastField(fields).externalId}
                 component={TextField}
                 label={<FormattedMessage id="ui-oa.externalRequestId.externalRequestId" />}
                 name={`${externalRequestId}.externalId`}
@@ -36,6 +37,7 @@ const ExternalRequestIdFieldArray = () => {
         ))}
       </div>
     );
+    
   };
 
   const renderEmpty = () => {

@@ -14,19 +14,19 @@ import {
 } from '@folio/stripes/components';
 import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
+import getLastField from '../../../util/repeatableFieldsUtils';
 
 const IdentifiersFieldArray = () => {
   const identifierTypeValues = selectifyRefdata(useOARefdata('PublicationIdentifier.Type'));
 
   const renderIdentifiers = (fields) => {
-    const finalElement = fields?.value[fields?.value.length - 1];
     return (
       <div>
         {fields.map((identifier, index) => (
           <Row key={identifier} middle="xs">
             <Col xs={3}>
               <Field
-                autoFocus={!finalElement.type}
+                autoFocus={!getLastField(fields).type}
                 component={Select}
                 dataOptions={[{ value: '', label: '' }, ...identifierTypeValues]}
                 label={<FormattedMessage id="ui-oa.identifiers.type" />}
