@@ -13,7 +13,7 @@ import {
 } from '@folio/stripes/components';
 import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
-import getLastField from '../../../util/repeatableFieldsUtils';
+import getLastField from '../../../util/getLastField';
 
 const renderFunders = (fields, fundersValues, aspectFundedValues) => {
   return (

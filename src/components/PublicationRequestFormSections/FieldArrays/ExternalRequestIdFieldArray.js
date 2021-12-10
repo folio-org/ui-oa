@@ -11,7 +11,7 @@ import {
   Row,
 } from '@folio/stripes/components';
 
-import getLastField from '../../../util/repeatableFieldsUtils';
+import getLastField from '../../../util/getLastField';
 
 const ExternalRequestIdFieldArray = () => {
   const renderExternalRequestId = (fields) => {

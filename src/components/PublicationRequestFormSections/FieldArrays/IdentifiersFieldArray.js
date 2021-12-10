@@ -14,7 +14,7 @@ import {
 } from '@folio/stripes/components';
 import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
-import getLastField from '../../../util/repeatableFieldsUtils';
+import getLastField from '../../../util/getLastField';
 
 const IdentifiersFieldArray = () => {
   const identifierTypeValues = selectifyRefdata(useOARefdata('PublicationIdentifier.Type'));
