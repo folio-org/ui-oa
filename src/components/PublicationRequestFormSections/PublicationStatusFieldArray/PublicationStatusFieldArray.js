@@ -22,7 +22,6 @@ import selectifyRefdata from '../../../util/selectifyRefdata';
 
 
 const PublicationStatusField = ({ fields: { name } }) => {
-
   const {
     items,
     onAddField,
