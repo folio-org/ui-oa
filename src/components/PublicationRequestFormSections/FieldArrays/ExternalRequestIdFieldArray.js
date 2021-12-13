@@ -11,8 +11,6 @@ import {
   Row,
 } from '@folio/stripes/components';
 
-import getLastField from '../../../util/getLastField';
-
 const ExternalRequestIdFieldArray = () => {
   const renderExternalRequestId = (fields) => {
     return (
@@ -21,7 +19,7 @@ const ExternalRequestIdFieldArray = () => {
           <Row key={externalRequestId} middle="xs">
             <Col xs={3}>
               <Field
-                autoFocus={!getLastField(fields).externalId}
+                autoFocus={!fields.value[index].id}
                 component={TextField}
                 label={<FormattedMessage id="ui-oa.externalRequestId.externalRequestId" />}
                 name={`${externalRequestId}.externalId`}

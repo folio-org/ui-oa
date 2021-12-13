@@ -14,7 +14,6 @@ import {
 } from '@folio/stripes/components';
 import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
-import getLastField from '../../../util/getLastField';
 
 const IdentifiersFieldArray = () => {
   const identifierTypeValues = selectifyRefdata(useOARefdata('PublicationIdentifier.Type'));
@@ -26,7 +25,7 @@ const IdentifiersFieldArray = () => {
           <Row key={identifier} middle="xs">
             <Col xs={3}>
               <Field
-                autoFocus={!getLastField(fields).type}
+                autoFocus={!fields.value[index].type}
                 component={Select}
                 dataOptions={[{ value: '', label: '' }, ...identifierTypeValues]}
                 label={<FormattedMessage id="ui-oa.identifiers.type" />}
