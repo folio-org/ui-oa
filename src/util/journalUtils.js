@@ -3,7 +3,10 @@ const getIdentifiers = (journal) => {
 };
 
 const findIdentifierByNamespace = (journal, namespace) => {
-    return getIdentifiers(journal).find(element => element?.ns?.value === namespace);
+    if (journal) {
+        return getIdentifiers(journal).find(element => element?.ns?.value === namespace);
+      }
+      return null;
 };
 
 export { findIdentifierByNamespace, getIdentifiers };
