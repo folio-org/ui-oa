@@ -19,7 +19,6 @@ const propTypes = {
 
 const JournalDetails = ({ journal }) => {
   const issn = findIdentifierByNamespace(journal, 'issn');
-
   return (
     <div>
       <Row start="xs">
