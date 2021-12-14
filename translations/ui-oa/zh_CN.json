@@ -21,11 +21,9 @@
     "publicationRequest.funding": "经费",
     "publicationRequest.givenName": "名",
     "publicationRequest.identifiers": "标识符",
-    "publicationRequest.issnElectronic": "ISSN（电子）",
     "publicationRequest.issnPrint": "ISSN（印本）",
     "publicationRequest.journalDetails": "期刊详情",
     "publicationRequest.journalLookup": "期刊查找",
-    "publicationRequest.journalTitle": "期刊题名",
     "publicationRequest.license": "许可证",
     "publicationRequest.localReference": "本地参考",
     "publicationRequest.lookupPublication": "查找出版物",
@@ -97,5 +95,8 @@
     "publicationRequest.party": "团队",
     "publicationRequest.person": "个人",
     "publicationRequest.editPublicationRequest": "编辑出版物请求 - {id}",
-    "settings.refdata.picklistValues": "选取清单值"
+    "settings.refdata.picklistValues": "选取清单值",
+    "publicationJournal.title": "Title",
+    "publicationJournal.issn": "ISSN",
+    "publicationJournal.typedown": "Title: {title} · ISSN: {issn}"
 }
