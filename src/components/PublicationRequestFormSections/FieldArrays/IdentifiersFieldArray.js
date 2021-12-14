@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
@@ -25,7 +24,7 @@ const IdentifiersFieldArray = () => {
           <Row key={identifier} middle="xs">
             <Col xs={3}>
               <Field
-                autoFocus={!fields.value[index].type}
+                autoFocus={!fields.value[index].type?.id}
                 component={Select}
                 dataOptions={[{ value: '', label: '' }, ...identifierTypeValues]}
                 label={<FormattedMessage id="ui-oa.identifiers.type" />}
