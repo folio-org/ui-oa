@@ -21,11 +21,9 @@
     "publicationRequest.funding": "Finanzierung",
     "publicationRequest.givenName": "Vorname(n)",
     "publicationRequest.identifiers": "Identifier",
-    "publicationRequest.issnElectronic": "ISSN (elektronisch)",
     "publicationRequest.issnPrint": "ISSN (Druckausgabe)",
     "publicationRequest.journalDetails": "Zeitschriftendetails",
     "publicationRequest.journalLookup": "Zeitschriftsuche",
-    "publicationRequest.journalTitle": "Zeitschriftentitel",
     "publicationRequest.license": "Lizenzvertrag",
     "publicationRequest.localReference": "Lokale Referenz",
     "publicationRequest.lookupPublication": "Publikationssuche",
@@ -97,5 +95,8 @@
     "publicationRequest.party": "Party",
     "publicationRequest.person": "Person",
     "publicationRequest.editPublicationRequest": "Edit publication request - {id}",
-    "settings.refdata.picklistValues": "Pick list values"
+    "settings.refdata.picklistValues": "Pick list values",
+    "publicationJournal.title": "Title",
+    "publicationJournal.issn": "ISSN",
+    "publicationJournal.typedown": "Title: {title} · ISSN: {issn}"
 }

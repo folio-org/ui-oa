@@ -21,11 +21,9 @@
     "publicationRequest.funding": "التمويل",
     "publicationRequest.givenName": "الاسم المعطى",
     "publicationRequest.identifiers": "معرفات",
-    "publicationRequest.issnElectronic": "ردمد (إلكتروني)",
     "publicationRequest.issnPrint": "ردمد (ورقي)",
     "publicationRequest.journalDetails": "تفاصيل الدورية",
     "publicationRequest.journalLookup": "بحث الدورية",
-    "publicationRequest.journalTitle": "عنوان الدورية",
     "publicationRequest.license": "الرخصة",
     "publicationRequest.localReference": "المرجع المحلي",
     "publicationRequest.lookupPublication": "بحث النشر",
@@ -97,5 +95,8 @@
     "publicationRequest.party": "طرف",
     "publicationRequest.person": "شخص",
     "publicationRequest.editPublicationRequest": "تحرير طلب النشر - {id}",
-    "settings.refdata.picklistValues": "قيم قائمة الاختيار"
+    "settings.refdata.picklistValues": "قيم قائمة الاختيار",
+    "publicationJournal.title": "العنوان",
+    "publicationJournal.issn": "- ردمد",
+    "publicationJournal.typedown": "العنوان: {title} · ردمد: {issn}"
 }
