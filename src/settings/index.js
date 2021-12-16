@@ -30,7 +30,7 @@ const OASettings = (props) => {
     persistentPages.push({
       component: PickListValues,
       label: intl.formatMessage({ id: 'ui-oa.settings.refdata.picklistValues' }),
-      route: 'requestStatus',
+      route: 'pick-list-values',
     });
   }
 
