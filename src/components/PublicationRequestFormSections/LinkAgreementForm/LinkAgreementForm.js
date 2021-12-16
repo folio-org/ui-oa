@@ -1,10 +1,21 @@
-import { Accordion, Row, Col, Checkbox } from "@folio/stripes/components";
+import {
+  Accordion,
+  Row,
+  Col,
+  Checkbox,
+  TextField
+} from "@folio/stripes/components";
 import { FormattedMessage } from "react-intl";
 import { Field, useForm } from 'react-final-form';
-import React from "react";
+import { Registry } from '@folio/handler-stripes-registry';
+
 
 const LinkAgreementForm = () => {
-    const { change } = useForm();
+  const { change } = useForm();
+  const resourceReg = Registry.getResource('agreement');
+  const LookupComponent = resourceReg?.getLookupComponent() ?? TextField;
+
+
   return (
     <Accordion
       label={<FormattedMessage id="ui-oa.publicationRequest.agreement" />}
@@ -22,6 +33,11 @@ const LinkAgreementForm = () => {
           />
         </Col>
       </Row>
+      <Field
+        component={LookupComponent}
+        id="selectedAgreement"
+        name="selectedAgreement"
+      />
     </Accordion>
   );
 };
