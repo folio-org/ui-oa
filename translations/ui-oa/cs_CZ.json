@@ -21,11 +21,9 @@
     "publicationRequest.funding": "Financování",
     "publicationRequest.givenName": "Křestní jméno",
     "publicationRequest.identifiers": "Identifiers",
-    "publicationRequest.issnElectronic": "ISSN (elektronický)",
     "publicationRequest.issnPrint": "ISSN (tištěný)",
     "publicationRequest.journalDetails": "Journal details",
     "publicationRequest.journalLookup": "Journal lookup",
-    "publicationRequest.journalTitle": "Název časopisu",
     "publicationRequest.license": "Licence",
     "publicationRequest.localReference": "Local reference",
     "publicationRequest.lookupPublication": "Lookup publication",
@@ -97,5 +95,8 @@
     "publicationRequest.party": "Party",
     "publicationRequest.person": "Person",
     "publicationRequest.editPublicationRequest": "Edit publication request - {id}",
-    "settings.refdata.picklistValues": "Pick list values"
+    "settings.refdata.picklistValues": "Pick list values",
+    "publicationJournal.title": "Title",
+    "publicationJournal.issn": "ISSN",
+    "publicationJournal.typedown": "Title: {title} · ISSN: {issn}"
 }
