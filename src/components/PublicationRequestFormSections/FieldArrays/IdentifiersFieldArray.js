@@ -24,6 +24,7 @@ const IdentifiersFieldArray = () => {
           <Row key={identifier} middle="xs">
             <Col xs={3}>
               <Field
+                autoFocus={!fields.value[index].type?.id}
                 component={Select}
                 dataOptions={[{ value: '', label: '' }, ...identifierTypeValues]}
                 label={<FormattedMessage id="ui-oa.identifiers.type" />}
