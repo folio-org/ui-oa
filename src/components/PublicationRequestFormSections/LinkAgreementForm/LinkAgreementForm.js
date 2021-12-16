@@ -3,13 +3,12 @@ import {
   Row,
   Col,
   Checkbox,
-  TextField
+  TextField,
 } from '@folio/stripes/components';
 import { FormattedMessage } from 'react-intl';
 import { Field, useForm, useFormState } from 'react-final-form';
 import { Registry } from '@folio/handler-stripes-registry';
-import React, { useState } from 'react';
-
+import { useState } from 'react';
 
 const LinkAgreementForm = () => {
   const { values } = useFormState();
@@ -19,11 +18,10 @@ const LinkAgreementForm = () => {
 
   const resourceReg = Registry.getResource('agreement');
   const LookupComponent = resourceReg?.getLookupComponent() ?? TextField;
-  const handleAgreementSelected = a => {
+  const handleAgreementSelected = (a) => {
     setAgreement(a);
     change('agreement.name', a.id);
   };
-
 
   return (
     <Accordion
@@ -46,14 +44,14 @@ const LinkAgreementForm = () => {
           />
         </Col>
       </Row>
-      {!values.noAgreement &&
-      <Field
-        component={LookupComponent}
-        name="agreement.name"
-        onResourceSelected={handleAgreementSelected}
-        resource={agreement}
-        value={agreement}
-      />}
+      {!values.noAgreement && (
+        <Field
+          component={LookupComponent}
+          name="agreement.name"
+          onResourceSelected={handleAgreementSelected}
+          resource={agreement}
+        />
+      )}
     </Accordion>
   );
 };
