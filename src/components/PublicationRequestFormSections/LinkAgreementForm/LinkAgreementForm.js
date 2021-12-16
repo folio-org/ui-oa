@@ -8,12 +8,20 @@ import {
 import { FormattedMessage } from "react-intl";
 import { Field, useForm } from 'react-final-form';
 import { Registry } from '@folio/handler-stripes-registry';
+import React, { useState } from 'react';
 
 
 const LinkAgreementForm = () => {
   const { change } = useForm();
   const resourceReg = Registry.getResource('agreement');
   const LookupComponent = resourceReg?.getLookupComponent() ?? TextField;
+  const [agreement, setAgreement] = useState({});
+
+
+  const handleAgreementSelected = a => {
+    setAgreement(a);
+    change('agreement.name', a.id);
+  };
 
 
   return (
@@ -35,8 +43,9 @@ const LinkAgreementForm = () => {
       </Row>
       <Field
         component={LookupComponent}
-        id="selectedAgreement"
-        name="selectedAgreement"
+        name="agreement.name"
+        onResourceSelected={handleAgreementSelected}
+        resource={agreement}
       />
     </Accordion>
   );
