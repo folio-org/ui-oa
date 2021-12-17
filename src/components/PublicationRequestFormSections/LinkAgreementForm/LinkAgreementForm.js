@@ -14,10 +14,10 @@ const LinkAgreementForm = () => {
   const { values } = useFormState();
   const { change } = useForm();
   const [agreement, setAgreement] = useState({});
-  console.log(agreement);
 
   const resourceReg = Registry.getResource('agreement');
   const LookupComponent = resourceReg?.getLookupComponent() ?? TextField;
+
   const handleAgreementSelected = (a) => {
     setAgreement(a);
     change('agreement.name', a.id);
@@ -38,6 +38,7 @@ const LinkAgreementForm = () => {
             onChange={(e) => {
               if (agreement) {
                 setAgreement({});
+                change('agreement.name', undefined);
               }
               change('noAgreement', e.target.checked);
             }}
