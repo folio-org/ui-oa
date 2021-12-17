@@ -1,3 +1,7 @@
+import { useState } from 'react';
+import { FormattedMessage } from 'react-intl';
+import { Field, useForm, useFormState } from 'react-final-form';
+
 import {
   Accordion,
   Row,
@@ -5,10 +9,9 @@ import {
   Checkbox,
   TextField,
 } from '@folio/stripes/components';
-import { FormattedMessage } from 'react-intl';
-import { Field, useForm, useFormState } from 'react-final-form';
+
 import { Registry } from '@folio/handler-stripes-registry';
-import { useState } from 'react';
+
 
 const LinkAgreementForm = () => {
   const { values } = useFormState();
