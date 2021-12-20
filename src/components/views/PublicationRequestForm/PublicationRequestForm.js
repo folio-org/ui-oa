@@ -17,7 +17,8 @@ import {
   PublicationForm,
   PublicationStatusForm,
   RequestContactForm,
-  RequestInfoForm
+  RequestInfoForm,
+  LinkAgreementForm
 } from '../../PublicationRequestFormSections';
 
 const propTypes = {
@@ -92,6 +93,7 @@ const PublicationRequestForm = ({ handlers: { onClose, onSubmit }, pristine, pub
           <PublicationForm />
           <PublicationStatusForm />
           <FundingForm />
+          <LinkAgreementForm />
         </AccordionSet>
       </Pane>
     </Paneset>
