@@ -89,7 +89,7 @@ const PublicationRequest = ({ resource: request, onClose }) => {
             <PublicationStatus {...getSectionProps('publicationStatus')} />
           </>
         }
-        {request?.funding &&
+        {request?.fundings &&
           <Funding {...getSectionProps('funding')} />
         }
       </AccordionSet>
