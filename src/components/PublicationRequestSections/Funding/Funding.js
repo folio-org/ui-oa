@@ -21,12 +21,22 @@ const renderBadge = (funders) => {
     <Badge>0</Badge>;
 };
 
+const formatter = {
+  funder: e => {
+    return e?.funder?.label;
+  },
+  aspectFunded: e => {
+    return e?.aspectFunded?.label;
+  },
+};
+
+
 const Funding = ({ request }) => {
   return (
     <Accordion
       closedByDefault
-      displayWhenClosed={renderBadge(request?.funders)}
-      displayWhenOpen={renderBadge(request?.funders)}
+      displayWhenClosed={renderBadge(request?.fundings)}
+      displayWhenOpen={renderBadge(request?.fundings)}
       label={<FormattedMessage id="ui-oa.publicationRequest.funding" />}
     >
       <Row>
@@ -36,7 +46,8 @@ const Funding = ({ request }) => {
               funder: <FormattedMessage id="ui-oa.publicationRequest.funder" />,
               aspectFunded: <FormattedMessage id="ui-oa.publicationRequest.aspectFunded" />,
             }}
-            contentData={request?.funders}
+            contentData={request?.fundings}
+            formatter={formatter}
             visibleColumns={['funder', 'aspectFunded']}
           />
         </Col>
