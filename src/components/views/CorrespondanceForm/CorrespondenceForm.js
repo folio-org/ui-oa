@@ -50,17 +50,15 @@ const CorrespondenceForm = ({ handlers: { onClose, onSubmit }, pristine, submitt
         defaultWidth="100%"
         footer={renderPaneFooter()}
         id="pane-oa-correspondance-form"
-        paneTitle={<FormattedMessage id="ui-oa.correspondance.new" />}
+        paneTitle={<FormattedMessage id="ui-oa.correspondence.new" />}
       >
         <Row>
           <Col md={6} xs={12}>
             <Field
               component={TextArea}
-              id="agreement-line-description"
+              id="correspondence-description"
               label={<FormattedMessage id="ui-oa.correspondence.description" />}
-              maxLength={255}
               name="description"
-              parse={v => v} // Lets us send an empty string instead of `undefined`
             />
           </Col>
         </Row>

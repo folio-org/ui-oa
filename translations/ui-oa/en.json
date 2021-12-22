@@ -115,6 +115,9 @@
   "streetAddresses.postalCode": "Zip/Postal code",
   "streetAddresses.country": "Country",
   "streetAddresses.addStreetAddress": "Add street address",
-  "streetAddresses.requestHasNone": "No street addresses for this { section }"
+  "streetAddresses.requestHasNone": "No street addresses for this { section }",
+
+  "correspondence.new": "New correspondence",
+  "correspondence.description": "Description"
   
 }
