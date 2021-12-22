@@ -8,6 +8,7 @@
   "settings.refdata.picklistValues": "Pick list values",
 
   "publicationRequest.addFunding": "Add funding",
+  "publicationRequest.addCorrespondence": "Add correspondence",
   "publicationRequest.addExternalRequestId": "Add external request ID",
   "publicationRequest.addIdentifier": "Add identifier",
   "publicationRequest.addOtherEmail": "Add other email address",
@@ -18,6 +19,7 @@
   "publicationRequest.authorLookup": "Author lookup",
   "publicationRequest.authorNames": "Author names",
   "publicationRequest.bookDetails": "Book details",
+  "publicationRequest.correspondence": "Correspondence",
   "publicationRequest.correspondingAuthor": "Corresponding author",
   "publicationRequest.correspondingAuthorName": "Corresponding author name",
   "publicationRequest.createPublicationRequest": "New publication request",

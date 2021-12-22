@@ -4,9 +4,9 @@ const urls = {
   publicationRequestCreate: () => '/oa/publicationRequests/create',
   publicationRequestEdit: id => `/oa/publicationRequests/${id}/edit`,
 
-  publicationRequestCorrespondanceView: (prId, cId) => `/oa/publicationRequests/${prId}/correspondance/${cId}`,
-  publicationRequestCorrespondanceCreate: prId => `/oa/publicationRequests/${prId}/correspondance/create`,
-  publicationRequestCorrespondanceEdit: (prId, cId) => `/oa/publicationRequests/${prId}/correspondance/${cId}/edit`
+  publicationRequestCorrespondenceView: (prId, cId) => `/oa/publicationRequests/${prId}/correspondence/${cId}`,
+  publicationRequestCorrespondenceCreate: prId => `/oa/publicationRequests/${prId}/correspondence/create`,
+  publicationRequestCorrespondenceEdit: (prId, cId) => `/oa/publicationRequests/${prId}/correspondence/${cId}/edit`
 };
 
 export default urls;
