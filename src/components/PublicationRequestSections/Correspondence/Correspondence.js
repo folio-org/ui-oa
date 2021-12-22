@@ -25,7 +25,10 @@ const renderAddCorrespondenceButton = (request) => {
     return (
       <>
         <IfPermission perm="oa.publicationRequest.edit">
-          <Button id="add-correspondence-button" to={urls.publicationRequestCorrespondenceCreate(request.id)}>
+          <Button
+            id="add-correspondence-button"
+            to={`${urls.publicationRequestCorrespondenceCreate(request.id)}`}
+          >
             <FormattedMessage id="ui-oa.publicationRequest.addCorrespondence" />
           </Button>
         </IfPermission>
