@@ -7,7 +7,10 @@ import { IfPermission } from '@folio/stripes/core';
 import {
   Accordion,
   Badge,
-  Button
+  Button,
+  Row,
+  Col,
+  MultiColumnList
 } from '@folio/stripes/components';
 import urls from '../../../util/urls';
 
@@ -43,7 +46,24 @@ const Correspondence = ({ request }) => {
       displayWhenClosed={renderBadge(request?.correspondences)}
       displayWhenOpen={renderAddCorrespondenceButton(request)}
       label={<FormattedMessage id="ui-oa.publicationRequest.correspondence" />}
-    />
+    >
+      <Row>
+        <Col xs={12}>
+          <MultiColumnList
+            columnMapping={{
+              correspondent: <FormattedMessage id="ui-oa.correspondence.correspondent" />,
+              dateOfCorrespondence: <FormattedMessage id="ui-oa.correspondence.dateOfCorrespondence" />,
+              status: <FormattedMessage id="ui-oa.correspondence.status" />,
+              mode: <FormattedMessage id="ui-oa.correspondence.mode" />,
+              category: <FormattedMessage id="ui-oa.correspondence.category" />,
+              description: <FormattedMessage id="ui-oa.correspondence.description" />
+            }}
+            contentData={request?.correspondences}
+            visibleColumns={['correspondent', 'dateOfCorrespondence', 'status', 'mode', 'category', 'description']}
+          />
+        </Col>
+      </Row>
+    </Accordion>
   );
 };
 
