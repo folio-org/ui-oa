@@ -118,6 +118,11 @@
   "streetAddresses.requestHasNone": "No street addresses for this { section }",
 
   "correspondence.new": "New correspondence",
-  "correspondence.description": "Description"
+  "correspondence.description": "Description",
+  "correspondence.correspondent": "Correspondent",
+  "correspondence.dateOfCorrespondence": "Date of correspondence",
+  "correspondence.mode": "Mode",
+  "correspondence.category": "Category",
+  "correspondence.status": "Status"
   
 }

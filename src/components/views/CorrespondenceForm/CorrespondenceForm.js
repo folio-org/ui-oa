@@ -1,9 +1,11 @@
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage } from 'react-intl';
 
-import { Button, Pane, PaneFooter, Paneset, Field, Row, Col, TextArea } from "@folio/stripes/components";
+import { Button, Pane, PaneFooter, Paneset } from '@folio/stripes/components';
 
 import { AppIcon } from '@folio/stripes/core';
 import PropTypes from 'prop-types';
+import { CorrespondenceInfoForm } from '../../CorrespondenceFormSections';
+
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -41,7 +43,6 @@ const CorrespondenceForm = ({ handlers: { onClose, onSubmit }, pristine, submitt
       />
     );
   };
-
   return (
     <Paneset>
       <Pane
@@ -49,19 +50,10 @@ const CorrespondenceForm = ({ handlers: { onClose, onSubmit }, pristine, submitt
         centerContent
         defaultWidth="100%"
         footer={renderPaneFooter()}
-        id="pane-oa-correspondance-form"
+        id="pane.oa.correspondance.form"
         paneTitle={<FormattedMessage id="ui-oa.correspondence.new" />}
       >
-        <Row>
-          <Col md={6} xs={12}>
-            <Field
-              component={TextArea}
-              id="correspondence-description"
-              label={<FormattedMessage id="ui-oa.correspondence.description" />}
-              name="description"
-            />
-          </Col>
-        </Row>
+        <CorrespondenceInfoForm />
       </Pane>
     </Paneset>
   );
