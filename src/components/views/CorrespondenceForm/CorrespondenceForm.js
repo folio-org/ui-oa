@@ -13,8 +13,9 @@ const propTypes = {
     onSubmit: PropTypes.func.isRequired,
   }).isRequired,
   pristine: PropTypes.bool,
-  submitting: PropTypes.bool,
+  submitting: PropTypes.bool
 };
+
 
 const CorrespondenceForm = ({ handlers: { onClose, onSubmit }, pristine, submitting }) => {
   const renderPaneFooter = () => {
