@@ -98,5 +98,8 @@
     "settings.refdata.picklistValues": "选取清单值",
     "publicationJournal.title": "Title",
     "publicationJournal.issn": "ISSN",
-    "publicationJournal.typedown": "Title: {title} · ISSN: {issn}"
+    "publicationJournal.typedown": "Title: {title} · ISSN: {issn}",
+    "publicationRequest.selectedJournal": "Journal",
+    "publicationRequest.agreement": "Agreement",
+    "publicationRequest.noAgreement": "Request has no agreement"
 }
