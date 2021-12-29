@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import { useForm, useFormState } from 'react-final-form';
+import { AppIcon } from '@folio/stripes/core';
 
 import {
   AccordionSet,
@@ -10,6 +11,8 @@ import {
   PaneFooter,
   PaneHeader,
   Paneset,
+  PaneMenu,
+  IconButton
 } from '@folio/stripes/components';
 import {
   CorrespondingAuthorForm,
@@ -78,11 +81,30 @@ const PublicationRequestForm = ({ handlers: { onClose, onSubmit }, pristine, pub
       <FormattedMessage id="ui-oa.publicationRequest.createPublicationRequest" />
   );
 
+  const renderFirstMenu = () => {
+    return (
+      <PaneMenu>
+        <FormattedMessage id="ui-oa.publicationRequest.closeForm">
+          {([ariaLabel]) => (
+            <IconButton
+              aria-label={ariaLabel}
+              icon="times"
+              id="close-publicationRequest-form-button"
+              onClick={() => onClose()}
+            />
+          )}
+        </FormattedMessage>
+      </PaneMenu>
+    );
+  };
+
   return (
     <Paneset>
       <Pane
+        appIcon={<AppIcon app="oa" />}
         centerContent
         defaultWidth="100%"
+        firstMenu={renderFirstMenu()}
         footer={renderPaneFooter()}
         renderHeader={renderProps => <PaneHeader {...renderProps} paneTitle={renderPaneTitle()} />}
       >
