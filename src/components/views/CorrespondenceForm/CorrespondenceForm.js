@@ -1,6 +1,6 @@
 import { FormattedMessage } from 'react-intl';
 
-import { Button, Pane, PaneFooter, Paneset } from '@folio/stripes/components';
+import { Button, Pane, PaneFooter, Paneset, PaneMenu, IconButton } from '@folio/stripes/components';
 
 import { AppIcon } from '@folio/stripes/core';
 import PropTypes from 'prop-types';
@@ -18,6 +18,23 @@ const propTypes = {
 
 
 const CorrespondenceForm = ({ handlers: { onClose, onSubmit }, pristine, submitting }) => {
+  const renderFirstMenu = () => {
+    return (
+      <PaneMenu>
+        <FormattedMessage id="ui-oa.publicationRequest.closeForm">
+          {([ariaLabel]) => (
+            <IconButton
+              aria-label={ariaLabel}
+              icon="times"
+              id="close-publicationRequest-form-button"
+              onClick={() => onClose()}
+            />
+          )}
+        </FormattedMessage>
+      </PaneMenu>
+    );
+  };
+
   const renderPaneFooter = () => {
     return (
       <PaneFooter
@@ -50,6 +67,7 @@ const CorrespondenceForm = ({ handlers: { onClose, onSubmit }, pristine, submitt
         appIcon={<AppIcon app="oa" />}
         centerContent
         defaultWidth="100%"
+        firstMenu={renderFirstMenu()}
         footer={renderPaneFooter()}
         id="pane.oa.correspondance.form"
         paneTitle={<FormattedMessage id="ui-oa.correspondence.new" />}
