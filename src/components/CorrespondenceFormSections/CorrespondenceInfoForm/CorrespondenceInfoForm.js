@@ -87,7 +87,7 @@ const CorrespondenceInfoForm = () => {
             component={TextArea}
             fullWidth
             label={<FormattedMessage id="ui-oa.correspondence.description" />}
-            name="description"
+            name="content"
             required
             validate={requiredValidator}
           />
