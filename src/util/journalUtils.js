@@ -2,8 +2,9 @@ const getIdentifiers = (journal) => {
   return journal?.identifiers?.map((id) => id.identifier);
 };
 
-const findIdentifierByNamespace = (journal, namespace) => {
-  return getIdentifiers(journal)?.find((element) => element?.ns?.value === namespace);
+const findAssociatedIssn = (journal, namespace) => {
+  const instance = findSubtypeByNamespace(journal, namespace)
+  return getIdentifiers(instance)?.find((element) => element?.ns?.value === 'issn');
 };
 
 const findSubtypeByNamespace = (journal, namespace) => {
@@ -11,4 +12,4 @@ const findSubtypeByNamespace = (journal, namespace) => {
 };
 
 
-export { findIdentifierByNamespace, getIdentifiers, findSubtypeByNamespace };
+export { findAssociatedIssn, getIdentifiers, findSubtypeByNamespace };

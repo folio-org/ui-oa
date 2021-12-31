@@ -16,7 +16,7 @@ import {
 import { EditCard } from '@folio/stripes-erm-components';
 
 import JournalDetails from '../../PublicationRequestSections/JournalDetails';
-import { findIdentifierByNamespace, findSubtypeByNamespace } from '../../../util/journalUtils';
+import { findAssociatedIssn } from '../../../util/journalUtils';
 
 
 const PublicationJournal = () => {
@@ -31,14 +31,8 @@ const PublicationJournal = () => {
   };
 
   const renderListItem = (journal) => {
-    console.log("Original Journal: %o" , journal);
-   
-    const printInstance = findSubtypeByNamespace(journal, 'print');
-    const printIssn = findIdentifierByNamespace(printInstance, 'issn');
-
-    const electronicInstance = findSubtypeByNamespace(journal, 'electronic');
-    const electronicIssn = findIdentifierByNamespace(electronicInstance, 'issn');
-    console.log("Found Instance: %o" ,printIssn);
+    const printIssn = findAssociatedIssn(journal, 'print');
+    const electronicIssn = findAssociatedIssn(journal, 'electronic');
 
     return (
       <FormattedMessage
