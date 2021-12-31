@@ -40,6 +40,17 @@ const renderAddCorrespondenceButton = (request) => {
   };
 
 const Correspondence = ({ request }) => {
+  const formatter = {
+    mode: e => {
+      return e?.mode?.label;
+    },
+    category: e => {
+      return e?.category?.label;
+    },
+    status: e => {
+      return e?.status?.label;
+    }
+  };
   return (
     <Accordion
       closedByDefault
@@ -56,10 +67,11 @@ const Correspondence = ({ request }) => {
               status: <FormattedMessage id="ui-oa.correspondence.status" />,
               mode: <FormattedMessage id="ui-oa.correspondence.mode" />,
               category: <FormattedMessage id="ui-oa.correspondence.category" />,
-              description: <FormattedMessage id="ui-oa.correspondence.description" />
+              content: <FormattedMessage id="ui-oa.correspondence.description" />
             }}
             contentData={request?.correspondences}
-            visibleColumns={['correspondent', 'dateOfCorrespondence', 'status', 'mode', 'category', 'description']}
+            formatter={formatter}
+            visibleColumns={['correspondent', 'dateOfCorrespondence', 'status', 'mode', 'category', 'content']}
           />
         </Col>
       </Row>

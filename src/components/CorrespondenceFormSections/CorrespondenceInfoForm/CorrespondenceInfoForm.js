@@ -1,5 +1,5 @@
 import { FormattedMessage } from 'react-intl';
-import { Field, Form } from 'react-final-form';
+import { Field } from 'react-final-form';
 import {
   Row,
   Col,
@@ -42,9 +42,9 @@ const CorrespondenceInfoForm = () => {
             component={Select}
             dataOptions={[
               { value: '', label: '' },
-              { value: 'Awaiting Reply', label: 'Awaiting Reply' },
-              { value: 'Response Needed', label: 'Response Needed' },
-              { value: 'Closed', label: 'Closed' },
+              { value: 'awaiting_reply', label: 'Awaiting Reply' },
+              { value: 'response_needed', label: 'Response Needed' },
+              { value: 'closed', label: 'Closed' },
             ]}
             label={<FormattedMessage id="ui-oa.correspondence.status" />}
             name="status"
@@ -59,8 +59,8 @@ const CorrespondenceInfoForm = () => {
             component={Select}
             dataOptions={[
               { value: '', label: '' },
-              { value: 'Email', label: 'Email' },
-              { value: 'Telephone', label: 'Telephone' },
+              { value: 'email', label: 'Email' },
+              { value: 'telephone', label: 'Telephone' },
             ]}
             label={<FormattedMessage id="ui-oa.correspondence.mode" />}
             name="mode"
@@ -73,8 +73,8 @@ const CorrespondenceInfoForm = () => {
             component={Select}
             dataOptions={[
               { value: '', label: '' },
-              { value: 'Invoice', label: 'Invoice' },
-              { value: 'Funding', label: 'Funding' }
+              { value: 'invoice', label: 'Invoice' },
+              { value: 'funding', label: 'Funding' }
             ]}
             label={<FormattedMessage id="ui-oa.correspondence.category" />}
             name="category"
