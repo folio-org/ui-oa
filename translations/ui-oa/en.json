@@ -69,7 +69,7 @@
   "publicationJournal.title": "Title",
   "publicationJournal.issn": "ISSN",
 
-  "publicationJournal.typedown": "Title: {title} · ISSN: {issn}",
+  "publicationJournal.typedown": "Title: {title} · Print ISSN: {printIssn} · Electronic ISSN: {electronicIssn} ",
 
   "publicationRequests": "Publication requests",
   "publicationRequests.requests": "Requests",
