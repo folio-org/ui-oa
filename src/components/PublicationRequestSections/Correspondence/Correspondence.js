@@ -12,6 +12,7 @@ import {
   Col,
   MultiColumnList
 } from '@folio/stripes/components';
+
 import urls from '../../../util/urls';
 
 const propTypes = {
