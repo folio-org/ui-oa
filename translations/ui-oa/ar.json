@@ -98,5 +98,8 @@
     "settings.refdata.picklistValues": "قيم قائمة الاختيار",
     "publicationJournal.title": "العنوان",
     "publicationJournal.issn": "- ردمد",
-    "publicationJournal.typedown": "العنوان: {title} · ردمد: {issn}"
+    "publicationJournal.typedown": "العنوان: {title} · ردمد: {issn}",
+    "publicationRequest.selectedJournal": "دورية",
+    "publicationRequest.agreement": "الاتفاقية",
+    "publicationRequest.noAgreement": "لا توجد أي اتفاقيات بالطلب"
 }
