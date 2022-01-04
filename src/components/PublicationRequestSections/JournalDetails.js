@@ -11,14 +11,16 @@ import {
   Row
 } from '@folio/stripes/components';
 
-import { findIdentifierByNamespace } from '../../util/journalUtils';
+import { findIssnByNamespace } from '../../util/journalUtils';
 
 const propTypes = {
   journal: PropTypes.object
 };
 
 const JournalDetails = ({ journal }) => {
-  const issn = findIdentifierByNamespace(journal, 'issn');
+  const printIssn = findIssnByNamespace(journal, 'print');
+  const electronicIssn = findIssnByNamespace(journal, 'electronic');
+
   return (
     <div>
       <Row start="xs">
@@ -32,14 +34,14 @@ const JournalDetails = ({ journal }) => {
         </Col>
       </Row>
       <Row start="xs">
-        {/* <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.issnPrint" />}>
-          {journal?.issn?? <NoValue />}
-          </KeyValue>
-        </Col> */}
         <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationJournal.issn" />}>
-            {issn?.value ?? <NoValue />}
+          <KeyValue label={<FormattedMessage id="ui-oa.publicationJournal.issnPrint" />}>
+            {printIssn?.value ?? <NoValue />}
+          </KeyValue>
+        </Col>
+        <Col xs={3}>
+          <KeyValue label={<FormattedMessage id="ui-oa.publicationJournal.issnElectronic" />}>
+            {electronicIssn?.value ?? <NoValue />}
           </KeyValue>
         </Col>
       </Row>

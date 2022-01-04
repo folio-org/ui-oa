@@ -16,7 +16,7 @@ import {
 import { EditCard } from '@folio/stripes-erm-components';
 
 import JournalDetails from '../../PublicationRequestSections/JournalDetails';
-import { findIdentifierByNamespace } from '../../../util/journalUtils';
+import { findIssnByNamespace } from '../../../util/journalUtils';
 
 
 const PublicationJournal = () => {
@@ -31,12 +31,13 @@ const PublicationJournal = () => {
   };
 
   const renderListItem = (journal) => {
-    const issn = findIdentifierByNamespace(journal, 'issn');
+    const printIssn = findIssnByNamespace(journal, 'print');
+    const electronicIssn = findIssnByNamespace(journal, 'electronic');
 
     return (
       <FormattedMessage
         id="ui-oa.publicationJournal.typedown"
-        values={{ title: journal?.title, issn: issn?.value }}
+        values={{ title: journal.title, printIssn: printIssn?.value || "", electronicIssn: electronicIssn?.value || "" }}
       />
     );
   };
@@ -57,7 +58,7 @@ const PublicationJournal = () => {
             component={QueryTypedown}
             label={<FormattedMessage id="ui-oa.publicationRequest.journalTitle" />}
             name="journal"
-            path="oa/titleInstances"
+            path="oa/works"
             pathMutator={pathMutator}
             renderListItem={renderListItem}
           />
