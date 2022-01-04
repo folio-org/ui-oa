@@ -8,6 +8,7 @@
   "settings.refdata.picklistValues": "Pick list values",
 
   "publicationRequest.addFunding": "Add funding",
+  "publicationRequest.addCorrespondence": "Add correspondence",
   "publicationRequest.addExternalRequestId": "Add external request ID",
   "publicationRequest.addIdentifier": "Add identifier",
   "publicationRequest.addOtherEmail": "Add other email address",
@@ -19,6 +20,7 @@
   "publicationRequest.authorNames": "Author names",
   "publicationRequest.bookDetails": "Book details",
   "publicationRequest.closeForm": "Close form",
+  "publicationRequest.correspondence": "Correspondence",
   "publicationRequest.correspondingAuthor": "Corresponding author",
   "publicationRequest.correspondingAuthorName": "Corresponding author name",
   "publicationRequest.createPublicationRequest": "New publication request",
@@ -113,6 +115,14 @@
   "streetAddresses.postalCode": "Zip/Postal code",
   "streetAddresses.country": "Country",
   "streetAddresses.addStreetAddress": "Add street address",
-  "streetAddresses.requestHasNone": "No street addresses for this { section }"
+  "streetAddresses.requestHasNone": "No street addresses for this { section }",
+
+  "correspondence.new": "New correspondence",
+  "correspondence.description": "Description",
+  "correspondence.correspondent": "Correspondent",
+  "correspondence.dateOfCorrespondence": "Date of correspondence",
+  "correspondence.mode": "Mode",
+  "correspondence.category": "Category",
+  "correspondence.status": "Status"
   
 }
