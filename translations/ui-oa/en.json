@@ -31,7 +31,6 @@
   "publicationRequest.funding": "Funding",
   "publicationRequest.givenName": "Given name(s)",
   "publicationRequest.identifiers": "Identifiers",
-  "publicationRequest.issnPrint": "ISSN (print)",
   "publicationRequest.journalDetails": "Journal details",
   "publicationRequest.journalLookup": "Journal lookup",
   "publicationRequest.license": "License",
@@ -67,8 +66,8 @@
   "publicationRequest.useCorrespondingAuthor": "Use corresponding author",
 
   "publicationJournal.title": "Title",
-  "publicationJournal.issn": "ISSN",
-
+  "publicationJournal.issnPrint": "ISSN (print)",
+  "publicationJournal.issnElectronic": "ISSN (electronic)",
   "publicationJournal.typedown": "Title: {title} · Print ISSN: {printIssn} · Electronic ISSN: {electronicIssn} ",
 
   "publicationRequests": "Publication requests",

@@ -16,7 +16,7 @@ import {
 import { EditCard } from '@folio/stripes-erm-components';
 
 import JournalDetails from '../../PublicationRequestSections/JournalDetails';
-import { findAssociatedIssn } from '../../../util/journalUtils';
+import { findIssnByNamespace } from '../../../util/journalUtils';
 
 
 const PublicationJournal = () => {
@@ -31,8 +31,8 @@ const PublicationJournal = () => {
   };
 
   const renderListItem = (journal) => {
-    const printIssn = findAssociatedIssn(journal, 'print');
-    const electronicIssn = findAssociatedIssn(journal, 'electronic');
+    const printIssn = findIssnByNamespace(journal, 'print');
+    const electronicIssn = findIssnByNamespace(journal, 'electronic');
 
     return (
       <FormattedMessage
