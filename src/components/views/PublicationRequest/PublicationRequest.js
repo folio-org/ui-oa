@@ -18,7 +18,8 @@ import {
   Publication,
   PublicationStatus,
   RequestContact,
-  RequestInfo
+  RequestInfo,
+  Correspondence
 } from '../../PublicationRequestSections';
 
 import urls from '../../../util/urls';
@@ -31,7 +32,6 @@ const propTypes = {
 const PublicationRequest = ({ resource: request, onClose }) => {
   const history = useHistory();
   const params = useParams();
-
   const handleEdit = () => {
     history.push(`${urls.publicationRequestEdit(params?.id)}`);
   };
@@ -92,6 +92,7 @@ const PublicationRequest = ({ resource: request, onClose }) => {
         {request?.fundings &&
           <Funding {...getSectionProps('funding')} />
         }
+        <Correspondence {...getSectionProps('correspondences')} />
       </AccordionSet>
     </Pane>
   );

@@ -6,7 +6,8 @@ import Settings from './settings';
 import {
   PublicationRequestsRoute,
   PublicationRequestCreateRoute,
-  PublicationRequestEditRoute
+  PublicationRequestEditRoute,
+  CorrespondenceCreateRoute
 } from './routes';
 
 const App = (props) => {
@@ -30,6 +31,10 @@ const App = (props) => {
         <Route
           component={PublicationRequestEditRoute}
           path={`${path}/publicationRequests/:id/edit`}
+        />
+        <Route
+          component={CorrespondenceCreateRoute}
+          path={`${path}/publicationRequests/:id/correspondence/create`}
         />
         <PublicationRequestsRoute
           path={`${path}/publicationRequests`}
