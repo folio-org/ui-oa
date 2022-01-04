@@ -9,9 +9,11 @@ import {
   Col,
   KeyValue,
   NoValue,
+  Button,
+  Icon
 } from '@folio/stripes/components';
 
-import { AppIcon } from '@folio/stripes/core';
+import { AppIcon, IfPermission } from '@folio/stripes/core';
 import PropTypes from 'prop-types';
 
 
@@ -24,6 +26,26 @@ const propTypes = {
 
 
 const CorrespondenceView = ({ handlers: { onClose }, correspondence }) => {
+  const getActionMenu = () => {
+    return (
+      <>
+        <IfPermission perm="oa.correspondence.edit">
+          <Button buttonStyle="dropdownItem" id="correspondence-edit-button">
+            <Icon icon="edit">
+              <FormattedMessage id="stripes-smart-components.notes.edit" />
+            </Icon>
+          </Button>
+        </IfPermission>
+        <IfPermission perm="oa.correspondence.manage">
+          <Button buttonStyle="dropdownItem" id="correspondence-delete-button">
+            <Icon icon="trash">
+              <FormattedMessage id="stripes-smart-components.notes.delete" />
+            </Icon>
+          </Button>
+        </IfPermission>
+      </>
+    );
+  };
   const renderFirstMenu = () => {
     return (
       <PaneMenu>
@@ -44,6 +66,7 @@ const CorrespondenceView = ({ handlers: { onClose }, correspondence }) => {
   return (
     <Paneset>
       <Pane
+        actionMenu={getActionMenu}
         appIcon={<AppIcon app="oa" />}
         centerContent
         defaultWidth="100%"
