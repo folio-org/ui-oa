@@ -5,6 +5,10 @@ import {
   Paneset,
   PaneMenu,
   IconButton,
+  Row,
+  Col,
+  KeyValue,
+  NoValue,
 } from '@folio/stripes/components';
 
 import { AppIcon } from '@folio/stripes/core';
@@ -15,10 +19,11 @@ const propTypes = {
   handlers: PropTypes.shape({
     onClose: PropTypes.func.isRequired
   }).isRequired,
+  correspondence: PropTypes.object,
 };
 
 
-const CorrespondenceView = ({ handlers: { onClose } }) => {
+const CorrespondenceView = ({ handlers: { onClose }, correspondence }) => {
   const renderFirstMenu = () => {
     return (
       <PaneMenu>
@@ -45,7 +50,44 @@ const CorrespondenceView = ({ handlers: { onClose } }) => {
         firstMenu={renderFirstMenu()}
         id="pane.oa.correspondence.view"
         paneTitle={<FormattedMessage id="ui-oa.correspondence.view" />}
-      />
+      >
+        <Row>
+          <Col xs={3}>
+            <KeyValue label={<FormattedMessage id="ui-oa.correspondence.correspondent" />}>
+              {correspondence?.correspondent ?? <NoValue />}
+            </KeyValue>
+          </Col>
+          <Col xs={3}>
+            <KeyValue label={<FormattedMessage id="ui-oa.correspondence.dateOfCorrespondence" />}>
+              {correspondence?.dateOfCorrespondence ?? <NoValue />}
+            </KeyValue>
+          </Col>
+          <Col xs={3}>
+            <KeyValue label={<FormattedMessage id="ui-oa.correspondence.status" />}>
+              {correspondence?.status?.label ?? <NoValue />}
+            </KeyValue>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={3}>
+            <KeyValue label={<FormattedMessage id="ui-oa.correspondence.mode" />}>
+              {correspondence?.mode?.label ?? <NoValue />}
+            </KeyValue>
+          </Col>
+          <Col xs={3}>
+            <KeyValue label={<FormattedMessage id="ui-oa.correspondence.category" />}>
+              {correspondence?.category?.label ?? <NoValue />}
+            </KeyValue>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12}>
+            <KeyValue label={<FormattedMessage id="ui-oa.correspondence.description" />}>
+              {correspondence?.content ?? <NoValue />}
+            </KeyValue>
+          </Col>
+        </Row>
+      </Pane>
     </Paneset>
   );
 };
