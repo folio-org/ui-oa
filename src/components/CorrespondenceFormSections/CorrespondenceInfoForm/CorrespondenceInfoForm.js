@@ -14,7 +14,7 @@ import { requiredValidator } from '@folio/stripes-erm-components';
 const CorrespondenceInfoForm = () => {
   return (
     <>
-      <Row>
+      <Row start="xs">
         <Col xs={3}>
           <Field
             component={TextField}

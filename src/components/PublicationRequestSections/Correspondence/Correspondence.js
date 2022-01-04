@@ -10,7 +10,8 @@ import {
   Button,
   Row,
   Col,
-  MultiColumnList
+  MultiColumnList,
+  FormattedUTCDate
 } from '@folio/stripes/components';
 
 import urls from '../../../util/urls';
@@ -50,6 +51,9 @@ const Correspondence = ({ request }) => {
     },
     status: e => {
       return e?.status?.label;
+    },
+    dateOfCorrespondence: e => {
+      return <FormattedUTCDate value={e?.dateOfCorrespondence} />;
     }
   };
   return (
