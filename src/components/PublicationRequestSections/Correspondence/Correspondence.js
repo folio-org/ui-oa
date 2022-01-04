@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
+import { useHistory } from 'react-router-dom';
 
 import { IfPermission } from '@folio/stripes/core';
 import {
@@ -41,7 +42,10 @@ const renderAddCorrespondenceButton = (request) => {
     );
   };
 
+
 const Correspondence = ({ request }) => {
+  const history = useHistory();
+
   const formatter = {
     mode: e => {
       return e?.mode?.label;
@@ -56,6 +60,11 @@ const Correspondence = ({ request }) => {
       return <FormattedUTCDate value={e?.dateOfCorrespondence} />;
     }
   };
+
+  const handleRowClick = (e, correspondence) => {
+    history.push(`${urls.publicationRequestCorrespondenceView(request?.id, correspondence?.id)}`);
+  };
+
   return (
     <Accordion
       closedByDefault
@@ -76,6 +85,7 @@ const Correspondence = ({ request }) => {
             }}
             contentData={request?.correspondences}
             formatter={formatter}
+            onRowClick={handleRowClick}
             visibleColumns={['correspondent', 'dateOfCorrespondence', 'status', 'mode', 'category', 'content']}
           />
         </Col>
