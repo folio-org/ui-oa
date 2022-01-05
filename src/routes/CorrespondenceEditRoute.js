@@ -5,28 +5,30 @@ import { useOkapiKy } from '@folio/stripes/core';
 import { useMutation, useQuery } from 'react-query';
 import CorrespondenceForm from '../components/views/CorrespondenceForm';
 
+// Todo: editing correspondence works correctly, but intials values arent showing
+
 const CorrespondenceEditRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
-  const { id } = useParams();
+  const { prId, cId } = useParams();
 
   const handleClose = () => {
-    history.push(`/oa/publicationRequests/${id}`);
+    history.push(`/oa/publicationRequests/${prId}`);
   };
 
   const { data: correspondence } = useQuery(
-    ['ui-oa', 'CorrespondenceEditRoute', 'correspondence', id],
-    () => ky(`oa/correspondence/${id}`).json()
+    ['ui-oa', 'CorrespondenceEditRoute', 'correspondence', cId],
+    () => ky(`oa/correspondence/${cId}`).json()
   );
 
   const { mutateAsync: putCorrespondence } = useMutation(
     ['ui-oa', 'CorrespondenceEditRoute', 'putCorrespondence'],
-    (data) => ky.put('oa/correspondence', { json: data }).json().then(() => {
+    (data) => ky.put(`oa/correspondence/${cId}`, { json: data }).json().then(() => {
         handleClose();
       })
   );
   const submitCorrespondence = (values) => {
-    const submitValues = { ...values, 'owner':{ id } };
+    const submitValues = { ...values };
     putCorrespondence(submitValues);
   };
 

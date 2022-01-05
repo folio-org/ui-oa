@@ -22,11 +22,12 @@ import { useState } from 'react';
 const propTypes = {
   onClose: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
   correspondence: PropTypes.object,
 };
 
 
-const CorrespondenceView = ({ onClose, onDelete, correspondence }) => {
+const CorrespondenceView = ({ onClose, onDelete, onEdit, correspondence }) => {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
   const openDeleteConfirmationModal = () => {
@@ -44,6 +45,7 @@ const CorrespondenceView = ({ onClose, onDelete, correspondence }) => {
           <Button
             buttonStyle="dropdownItem"
             id="correspondence-edit-button"
+            onClick={onEdit}
           >
             <Icon icon="edit">
               <FormattedMessage id="ui-oa.correspondence.edit" />

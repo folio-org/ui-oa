@@ -1,6 +1,7 @@
 import { useHistory, useParams } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useQuery, useMutation } from 'react-query';
+import urls from '../util/urls';
 
 import CorrespondenceView from '../components/views/CorrespondenceView';
 
@@ -31,11 +32,16 @@ const CorrespondenceViewRoute = () => {
   history.push(`/oa/publicationRequests/${prId}`);
   };
 
+  const handleEdit = () => {
+    history.push(`${urls.publicationRequestCorrespondenceEdit(prId, cId)}`);
+  };
+
   return (
     <CorrespondenceView
       correspondence={correspondence}
       onClose={handleClose}
       onDelete={handleDelete}
+      onEdit={handleEdit}
     />
   );
 };

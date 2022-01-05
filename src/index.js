@@ -39,12 +39,12 @@ const App = (props) => {
           path={`${path}/publicationRequests/:id/correspondence/create`}
         />
         <Route
-          component={CorrespondenceViewRoute}
-          path={`${path}/publicationRequests/:prId/correspondence/:cId`}
-        />
-        <Route
           component={CorrespondenceEditRoute}
           path={`${path}/publicationRequests/:prId/correspondence/:cId/edit`}
+        />
+        <Route
+          component={CorrespondenceViewRoute}
+          path={`${path}/publicationRequests/:prId/correspondence/:cId`}
         />
         <PublicationRequestsRoute
           path={`${path}/publicationRequests`}
