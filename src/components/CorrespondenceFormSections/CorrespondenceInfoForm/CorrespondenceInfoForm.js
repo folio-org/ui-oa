@@ -47,7 +47,7 @@ const CorrespondenceInfoForm = () => {
               { value: 'closed', label: 'Closed' },
             ]}
             label={<FormattedMessage id="ui-oa.correspondence.status" />}
-            name="status"
+            name="status.value"
             required
             validate={requiredValidator}
           />
@@ -63,7 +63,7 @@ const CorrespondenceInfoForm = () => {
               { value: 'telephone', label: 'Telephone' },
             ]}
             label={<FormattedMessage id="ui-oa.correspondence.mode" />}
-            name="mode"
+            name="mode.value"
             required
             validate={requiredValidator}
           />
@@ -77,7 +77,7 @@ const CorrespondenceInfoForm = () => {
               { value: 'funding', label: 'Funding' }
             ]}
             label={<FormattedMessage id="ui-oa.correspondence.category" />}
-            name="category"
+            name="category.value"
           />
         </Col>
       </Row>
