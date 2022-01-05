@@ -20,11 +20,17 @@ const propTypes = {
     onSubmit: PropTypes.func.isRequired,
   }).isRequired,
   pristine: PropTypes.bool,
-  submitting: PropTypes.bool
+  submitting: PropTypes.bool,
+  correspondence: PropTypes.object,
 };
 
 
-const CorrespondenceForm = ({ handlers: { onClose, onSubmit }, pristine, submitting }) => {
+const CorrespondenceForm = ({ handlers: { onClose, onSubmit }, pristine, submitting, correspondence }) => {
+  const renderPaneTitle = () => (
+    correspondence ?
+      <FormattedMessage id="ui-oa.correspondence.editCorrespondence" /> :
+      <FormattedMessage id="ui-oa.correspondence.createCorrespondence" />
+  );
   const renderFirstMenu = () => {
     return (
       <PaneMenu>
@@ -77,7 +83,7 @@ const CorrespondenceForm = ({ handlers: { onClose, onSubmit }, pristine, submitt
         firstMenu={renderFirstMenu()}
         footer={renderPaneFooter()}
         id="pane.oa.correspondence.form"
-        paneTitle={<FormattedMessage id="ui-oa.correspondence.newCorrespondence" />}
+        paneTitle={renderPaneTitle()}
       >
         <CorrespondenceInfoForm />
       </Pane>

@@ -3,4 +3,4 @@ export { default as PublicationRequestCreateRoute } from './PublicationRequestCr
 export { default as PublicationRequestEditRoute } from './PublicationRequestEditRoute';
 export { default as CorrespondenceCreateRoute } from './CorrespondenceCreateRoute';
 export { default as CorrespondenceViewRoute } from './CorrespondenceViewRoute';
-
+export { default as CorrespondenceEditRoute } from './CorrespondenceEditRoute';
