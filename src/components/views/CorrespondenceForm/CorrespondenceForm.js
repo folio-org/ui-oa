@@ -77,7 +77,7 @@ const CorrespondenceForm = ({ handlers: { onClose, onSubmit }, pristine, submitt
         firstMenu={renderFirstMenu()}
         footer={renderPaneFooter()}
         id="pane.oa.correspondence.form"
-        paneTitle={<FormattedMessage id="ui-oa.correspondence.new" />}
+        paneTitle={<FormattedMessage id="ui-oa.correspondence.newCorrespondence" />}
       >
         <CorrespondenceInfoForm />
       </Pane>
