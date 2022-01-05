@@ -11,10 +11,12 @@ import {
   NoValue,
   Button,
   Icon,
+  ConfirmationModal
 } from '@folio/stripes/components';
 
 import { AppIcon, IfPermission } from '@folio/stripes/core';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 
 const propTypes = {
@@ -25,6 +27,16 @@ const propTypes = {
 
 
 const CorrespondenceView = ({ onClose, onDelete, correspondence }) => {
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+
+  const openDeleteConfirmationModal = () => {
+    setShowConfirmationModal(true);
+  };
+
+  const closeDeleteConfirmationModal = () => {
+    setShowConfirmationModal(false);
+  };
+
   const getActionMenu = () => {
     return (
       <>
@@ -34,14 +46,14 @@ const CorrespondenceView = ({ onClose, onDelete, correspondence }) => {
             id="correspondence-edit-button"
           >
             <Icon icon="edit">
-              <FormattedMessage id="stripes-smart-components.notes.edit" />
+              <FormattedMessage id="ui-oa.correspondence.edit" />
             </Icon>
           </Button>
         </IfPermission>
         <IfPermission perm="oa.correspondence.manage">
-          <Button buttonStyle="dropdownItem" id="correspondence-delete-button" onClick={() => onDelete()}>
+          <Button buttonStyle="dropdownItem" id="correspondence-delete-button" onClick={openDeleteConfirmationModal}>
             <Icon icon="trash">
-              <FormattedMessage id="stripes-smart-components.notes.delete" />
+              <FormattedMessage id="ui-oa.correspondence.delete" />
             </Icon>
           </Button>
         </IfPermission>
@@ -74,9 +86,16 @@ const CorrespondenceView = ({ onClose, onDelete, correspondence }) => {
         defaultWidth="100%"
         firstMenu={renderFirstMenu()}
         id="pane.oa.correspondence.view"
-        paneTitle={<FormattedMessage id="ui-oa.correspondence.view" />}
+        paneTitle={<FormattedMessage id="ui-oa.correspondence.viewCorrespondence" />}
       >
-        {/* <ConfirmationModal /> */}
+        <ConfirmationModal
+          confirmLabel={<FormattedMessage id="ui-oa.correspondence.delete" />}
+          heading={<FormattedMessage id="ui-oa.correspondence.deleteCorrespondence" />}
+          message={<FormattedMessage id="ui-oa.correspondence.deleteCorrespondenceMessage" />}
+          onCancel={closeDeleteConfirmationModal}
+          onConfirm={() => onDelete()}
+          open={showConfirmationModal}
+        />
         <Row>
           <Col xs={3}>
             <KeyValue label={<FormattedMessage id="ui-oa.correspondence.correspondent" />}>
