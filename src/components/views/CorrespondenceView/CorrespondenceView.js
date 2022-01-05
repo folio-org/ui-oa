@@ -10,7 +10,7 @@ import {
   KeyValue,
   NoValue,
   Button,
-  Icon
+  Icon,
 } from '@folio/stripes/components';
 
 import { AppIcon, IfPermission } from '@folio/stripes/core';
@@ -18,26 +18,28 @@ import PropTypes from 'prop-types';
 
 
 const propTypes = {
-  handlers: PropTypes.shape({
-    onClose: PropTypes.func.isRequired
-  }).isRequired,
+  onClose: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
   correspondence: PropTypes.object,
 };
 
 
-const CorrespondenceView = ({ handlers: { onClose }, correspondence }) => {
+const CorrespondenceView = ({ onClose, onDelete, correspondence }) => {
   const getActionMenu = () => {
     return (
       <>
         <IfPermission perm="oa.correspondence.edit">
-          <Button buttonStyle="dropdownItem" id="correspondence-edit-button">
+          <Button
+            buttonStyle="dropdownItem"
+            id="correspondence-edit-button"
+          >
             <Icon icon="edit">
               <FormattedMessage id="stripes-smart-components.notes.edit" />
             </Icon>
           </Button>
         </IfPermission>
         <IfPermission perm="oa.correspondence.manage">
-          <Button buttonStyle="dropdownItem" id="correspondence-delete-button">
+          <Button buttonStyle="dropdownItem" id="correspondence-delete-button" onClick={() => onDelete()}>
             <Icon icon="trash">
               <FormattedMessage id="stripes-smart-components.notes.delete" />
             </Icon>
@@ -74,6 +76,7 @@ const CorrespondenceView = ({ handlers: { onClose }, correspondence }) => {
         id="pane.oa.correspondence.view"
         paneTitle={<FormattedMessage id="ui-oa.correspondence.view" />}
       >
+        {/* <ConfirmationModal /> */}
         <Row>
           <Col xs={3}>
             <KeyValue label={<FormattedMessage id="ui-oa.correspondence.correspondent" />}>
