@@ -29,7 +29,7 @@ const CorrespondenceForm = ({ handlers: { onClose, onSubmit }, pristine, submitt
   const renderPaneTitle = () => (
     correspondence ?
       <FormattedMessage id="ui-oa.correspondence.editCorrespondence" /> :
-      <FormattedMessage id="ui-oa.correspondence.createCorrespondence" />
+      <FormattedMessage id="ui-oa.correspondence.newCorrespondence" />
   );
   const renderFirstMenu = () => {
     return (

@@ -23,17 +23,20 @@ const CorrespondenceEditRoute = () => {
 
   const { mutateAsync: putCorrespondence } = useMutation(
     ['ui-oa', 'CorrespondenceEditRoute', 'putCorrespondence'],
-    (data) => ky.put(`oa/correspondence/${cId}`, { json: data }).json().then(() => {
+    (data) => ky.put(`oa/correspondence/${cId}`, { json: data }).then(() => {
         handleClose();
       })
   );
   const submitCorrespondence = (values) => {
-    const submitValues = { ...values };
-    putCorrespondence(submitValues);
+    putCorrespondence(values);
   };
 
   return (
-    <Form mutators={arrayMutators} onSubmit={submitCorrespondence}>
+    <Form
+      initialValues={correspondence}
+      mutators={arrayMutators}
+      onSubmit={submitCorrespondence}
+    >
       {({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           <CorrespondenceForm
