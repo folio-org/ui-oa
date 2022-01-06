@@ -1,4 +1,5 @@
 import { FormattedMessage } from 'react-intl';
+import PropTypes from 'prop-types';
 
 import {
   Button,
@@ -8,9 +9,8 @@ import {
   PaneMenu,
   IconButton,
 } from '@folio/stripes/components';
-
 import { AppIcon } from '@folio/stripes/core';
-import PropTypes from 'prop-types';
+
 import { CorrespondenceInfoForm } from '../../CorrespondenceFormSections';
 
 

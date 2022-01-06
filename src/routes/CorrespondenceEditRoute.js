@@ -1,8 +1,10 @@
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { useHistory, useParams } from 'react-router-dom';
-import { useOkapiKy } from '@folio/stripes/core';
 import { useMutation, useQuery } from 'react-query';
+
+import { useOkapiKy } from '@folio/stripes/core';
+
 import CorrespondenceForm from '../components/views/CorrespondenceForm';
 import correspondenceSubmitHandler from '../util/correspondenceSubmitHandler';
 

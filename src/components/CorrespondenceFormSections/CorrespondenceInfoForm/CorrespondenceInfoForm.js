@@ -1,5 +1,6 @@
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
+
 import {
   Row,
   Col,
@@ -8,7 +9,6 @@ import {
   Select,
   TextArea
 } from '@folio/stripes/components';
-
 import { requiredValidator } from '@folio/stripes-erm-components';
 
 const CorrespondenceInfoForm = () => {

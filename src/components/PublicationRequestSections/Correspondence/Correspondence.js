@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { FormattedMessage } from 'react-intl';
 import { useHistory } from 'react-router-dom';
 
@@ -83,9 +82,6 @@ const Correspondence = ({ request }) => {
               mode: <FormattedMessage id="ui-oa.correspondence.mode" />,
               category: <FormattedMessage id="ui-oa.correspondence.category" />,
               content: <FormattedMessage id="ui-oa.correspondence.description" />
-            }}
-            columWidths={{
-              mode: 100
             }}
             contentData={request?.correspondences}
             formatter={formatter}

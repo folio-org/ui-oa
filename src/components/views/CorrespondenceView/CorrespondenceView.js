@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+import PropTypes from 'prop-types';
 
 import {
   Pane,
@@ -13,11 +15,7 @@ import {
   Icon,
   ConfirmationModal
 } from '@folio/stripes/components';
-
 import { AppIcon, IfPermission } from '@folio/stripes/core';
-import PropTypes from 'prop-types';
-import { useState } from 'react';
-
 
 const propTypes = {
   onClose: PropTypes.func.isRequired,
@@ -25,7 +23,6 @@ const propTypes = {
   onEdit: PropTypes.func.isRequired,
   correspondence: PropTypes.object,
 };
-
 
 const CorrespondenceView = ({ onClose, onDelete, onEdit, correspondence }) => {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);

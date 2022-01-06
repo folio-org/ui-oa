@@ -1,8 +1,8 @@
 import { useHistory, useParams } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useQuery, useMutation } from 'react-query';
-import urls from '../util/urls';
 
+import urls from '../util/urls';
 import CorrespondenceView from '../components/views/CorrespondenceView';
 
 // TODO: handle delete functions correctly, but will need to refetch data
