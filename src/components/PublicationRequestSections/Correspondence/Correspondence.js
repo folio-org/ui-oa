@@ -84,6 +84,9 @@ const Correspondence = ({ request }) => {
               category: <FormattedMessage id="ui-oa.correspondence.category" />,
               content: <FormattedMessage id="ui-oa.correspondence.description" />
             }}
+            columWidths={{
+              mode: 100
+            }}
             contentData={request?.correspondences}
             formatter={formatter}
             onRowClick={handleRowClick}
