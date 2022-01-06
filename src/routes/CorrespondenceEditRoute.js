@@ -4,8 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useMutation, useQuery } from 'react-query';
 import CorrespondenceForm from '../components/views/CorrespondenceForm';
-
-// Todo: editing correspondence works correctly, but intials values arent showing
+import correspondenceSubmitHandler from '../util/correspondenceSubmitHandler';
 
 const CorrespondenceEditRoute = () => {
   const history = useHistory();
@@ -28,7 +27,8 @@ const CorrespondenceEditRoute = () => {
       })
   );
   const submitCorrespondence = (values) => {
-    putCorrespondence(values);
+    const submitValues = correspondenceSubmitHandler(values);
+    putCorrespondence(submitValues);
   };
 
   return (
