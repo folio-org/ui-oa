@@ -29,7 +29,7 @@ const CorrespondenceViewRoute = () => {
 
   const handleDelete = () => {
   deleteCorrespondence(cId);
-  history.push(`/oa/publicationRequests/${prId}`);
+  history.push('/oa/publicationRequests/');
   };
 
   const handleEdit = () => {
