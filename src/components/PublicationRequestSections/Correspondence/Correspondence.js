@@ -75,6 +75,7 @@ const Correspondence = ({ request }) => {
       <Row>
         <Col xs={12}>
           <MultiColumnList
+            autoSize
             columnMapping={{
               correspondent: <FormattedMessage id="ui-oa.correspondence.correspondent" />,
               dateOfCorrespondence: <FormattedMessage id="ui-oa.correspondence.dateOfCorrespondence" />,
