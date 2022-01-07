@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { useHistory } from 'react-router-dom';
+import classnames from 'classnames';
 
 import { IfPermission } from '@folio/stripes/core';
 import {
@@ -121,6 +122,10 @@ const Correspondence = ({ request }) => {
     }
   };
 
+  const getCellClass = (mclCellStyle) => {
+    return classnames([css.CorrespondenceMCLCell, mclCellStyle]);
+  };
+
   return (
     <Accordion
       closedByDefault
@@ -142,6 +147,7 @@ const Correspondence = ({ request }) => {
             columnWidths={columnWidths}
             contentData={request?.correspondences}
             formatter={formatter}
+            getCellClass={getCellClass}
             interactive
             onRowClick={handleRowClick}
             visibleColumns={['correspondent', 'dateOfCorrespondence', 'status', 'category', 'content']}
