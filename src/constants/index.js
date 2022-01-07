@@ -3,5 +3,5 @@ export {
   REFDATA_ENDPOINT,
   SETTINGS_ENDPOINT
 } from './config';
-export { columnWidths, MAX_CONTENT_LENGTH, MAX_CORRESPONDENT_LENGTH } from './correspondence';
+export { columnWidths, MAX_CONTENT_LENGTH } from './correspondenceList';
 

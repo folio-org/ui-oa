@@ -1,5 +1,3 @@
-const MAX_CORRESPONDENT_LENGTH = 255;
-
 const MAX_CONTENT_LENGTH = 255;
 
 const columnWidths = {
@@ -11,5 +9,5 @@ const columnWidths = {
 
 };
 
-export { columnWidths, MAX_CONTENT_LENGTH, MAX_CORRESPONDENT_LENGTH };
+export { columnWidths, MAX_CONTENT_LENGTH };
 

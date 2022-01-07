@@ -110,7 +110,7 @@ const Correspondence = ({ request }) => {
           </div>
           <strong><FormattedMessage id="ui-oa.correspondence.description" />: </strong>
           <div>
-            {contentExpanded[e?.id] ? e?.content : e?.content.substring(0, 255)}
+            {contentExpanded[e?.id] ? e?.content : e?.content.substring(0, MAX_CONTENT_LENGTH)}
           </div>
           <div>
             {e?.content.length > MAX_CONTENT_LENGTH && renderShowMoreButton(e?.id)}
