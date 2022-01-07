@@ -15,7 +15,7 @@ import {
 } from '@folio/stripes/components';
 
 import urls from '../../../util/urls';
-import { MAX_CONTENT_LENGTH } from '../../../constants';
+import { MAX_CONTENT_LENGTH, columnWidths } from '../../../constants';
 
 import css from './Correspondence.css';
 
@@ -92,9 +92,6 @@ const Correspondence = ({ request }) => {
   };
 
   const formatter = {
-    mode: e => {
-      return e?.mode?.label;
-    },
     category: e => {
       return e?.category?.label;
     },
@@ -107,7 +104,14 @@ const Correspondence = ({ request }) => {
     content: e => {
       return (
         <div>
-          {contentExpanded[e?.id] ? e?.content : e?.content.substring(0, 255)}
+          <div>
+            <strong><FormattedMessage id="ui-oa.correspondence.mode" />: </strong>
+            {e?.mode?.label}
+          </div>
+          <strong><FormattedMessage id="ui-oa.correspondence.description" />: </strong>
+          <div>
+            {contentExpanded[e?.id] ? e?.content : e?.content.substring(0, 255)}
+          </div>
           <div>
             {e?.content.length > MAX_CONTENT_LENGTH && renderShowMoreButton(e?.id)}
             {renderEditButton(e)}
@@ -132,15 +136,15 @@ const Correspondence = ({ request }) => {
               correspondent: <FormattedMessage id="ui-oa.correspondence.correspondent" />,
               dateOfCorrespondence: <FormattedMessage id="ui-oa.correspondence.dateOfCorrespondence" />,
               status: <FormattedMessage id="ui-oa.correspondence.status" />,
-              mode: <FormattedMessage id="ui-oa.correspondence.mode" />,
               category: <FormattedMessage id="ui-oa.correspondence.category" />,
-              content: <FormattedMessage id="ui-oa.correspondence.description" />
+              content: <FormattedMessage id="ui-oa.correspondence.modeAndDescription" />
             }}
+            columnWidths={columnWidths}
             contentData={request?.correspondences}
             formatter={formatter}
             interactive
             onRowClick={handleRowClick}
-            visibleColumns={['correspondent', 'dateOfCorrespondence', 'status', 'mode', 'category', 'content']}
+            visibleColumns={['correspondent', 'dateOfCorrespondence', 'status', 'category', 'content']}
           />
         </Col>
       </Row>
