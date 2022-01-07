@@ -1,1 +1,1 @@
-export { default as CorrespondenceInfoForm } from './CorrespondenceInfoForm';
+export { default } from './CorrespondenceInfoForm';

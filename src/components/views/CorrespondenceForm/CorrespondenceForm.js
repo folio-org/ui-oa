@@ -11,7 +11,7 @@ import {
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 
-import { CorrespondenceInfoForm } from '../../CorrespondenceFormSections';
+import CorrespondenceInfoForm from '../../CorrespondenceFormSections';
 
 
 const propTypes = {
