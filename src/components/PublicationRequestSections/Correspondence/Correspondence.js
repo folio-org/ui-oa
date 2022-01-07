@@ -107,7 +107,7 @@ const Correspondence = ({ request }) => {
     content: e => {
       return (
         <div>
-          {e?.content}
+          {contentExpanded[e?.id] ? e?.content : e?.content.substring(0, 255)}
           <div>
             {e?.content.length > MAX_CONTENT_LENGTH && renderShowMoreButton(e?.id)}
             {renderEditButton(e)}
