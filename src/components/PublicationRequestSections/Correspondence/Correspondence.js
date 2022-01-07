@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { useHistory } from 'react-router-dom';
@@ -24,6 +24,7 @@ const propTypes = {
 
 const Correspondence = ({ request }) => {
   const history = useHistory();
+  const [contentExpanded, setContentExpanded] = useState({});
 
   const handleRowClick = (e, correspondence) => {
     history.push(`${urls.publicationRequestCorrespondenceView(request?.id, correspondence?.id)}`);
@@ -69,6 +70,20 @@ const Correspondence = ({ request }) => {
     );
   };
 
+  const renderShowMoreButton = (id) => {
+    return (
+      <button
+        className={css.CorrespondenceExpandButton}
+        type="button"
+      >
+        {contentExpanded[id]
+        ? <FormattedMessage id="ui-oa.correspondence.showLess" />
+        : <FormattedMessage id="ui-oa.correspondence.showMore" />
+        }
+      </button>
+    );
+  };
+
   const formatter = {
     mode: e => {
       return e?.mode?.label;
@@ -87,6 +102,7 @@ const Correspondence = ({ request }) => {
         <div>
           {e?.content}
           <div>
+            {renderShowMoreButton(e?.id)}
             {renderEditButton(e)}
           </div>
         </div>

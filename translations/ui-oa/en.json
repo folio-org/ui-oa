@@ -129,6 +129,8 @@
   "correspondence.dateOfCorrespondence": "Date of correspondence",
   "correspondence.mode": "Mode",
   "correspondence.category": "Category",
-  "correspondence.status": "Status"
+  "correspondence.status": "Status",
+  "correspondence.showMore": "Show more",
+  "correspondence.showLess": "Show less"
   
 }

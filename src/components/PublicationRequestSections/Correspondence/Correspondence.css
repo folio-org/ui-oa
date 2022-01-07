@@ -1,4 +1,10 @@
 .CorrespondenceEditButton {
-    color: #024c90; /* blue colour that has good contrast with background for tritanopia */
-    /* padding: 0 10px; */
+    color: #024c90;
+    padding: 0 10px;
+}
+
+.CorrespondenceExpandButton {
+    color: #024c90;
+    padding-right: 10px;
+    border-right: 1px solid var(--secondary);
 }
