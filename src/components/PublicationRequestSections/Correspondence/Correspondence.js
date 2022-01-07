@@ -16,6 +16,8 @@ import {
 
 import urls from '../../../util/urls';
 
+import css from './Correspondence.css';
+
 const propTypes = {
   request: PropTypes.object
 };
@@ -57,6 +59,7 @@ const Correspondence = ({ request }) => {
     return (
       <IfPermission perm="oa.publicationRequest.edit">
         <button
+          className={css.CorrespondenceEditButton}
           onClick={(e) => handleEditClick(e, correspondence)}
           type="button"
         >
