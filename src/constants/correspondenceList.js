@@ -1,0 +1,3 @@
+const MAX_CONTENT_LENGTH = 255;
+export { MAX_CONTENT_LENGTH };
+

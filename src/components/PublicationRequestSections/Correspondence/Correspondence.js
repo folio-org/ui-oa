@@ -15,6 +15,7 @@ import {
 } from '@folio/stripes/components';
 
 import urls from '../../../util/urls';
+import { MAX_CONTENT_LENGTH } from '../../../constants';
 
 import css from './Correspondence.css';
 
@@ -102,7 +103,7 @@ const Correspondence = ({ request }) => {
         <div>
           {e?.content}
           <div>
-            {renderShowMoreButton(e?.id)}
+            {e?.content.length > MAX_CONTENT_LENGTH && renderShowMoreButton(e?.id)}
             {renderEditButton(e)}
           </div>
         </div>
