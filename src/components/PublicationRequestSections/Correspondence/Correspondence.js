@@ -95,7 +95,7 @@ const Correspondence = ({ request }) => {
     <Accordion
       closedByDefault
       displayWhenClosed={renderBadge(request?.correspondences)}
-      displayWhenOpen={renderAddCorrespondenceButton(request)}
+      displayWhenOpen={renderAddCorrespondenceButton()}
       label={<FormattedMessage id="ui-oa.publicationRequest.correspondence" />}
     >
       <Row>
