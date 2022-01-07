@@ -19,6 +19,7 @@ const CorrespondenceInfoForm = () => {
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.correspondence.correspondent" />}
+            maxLength={255}
             name="correspondent"
             required
             validate={requiredValidator}

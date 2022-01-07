@@ -37,7 +37,9 @@ const PublicationJournal = () => {
     return (
       <FormattedMessage
         id="ui-oa.publicationJournal.typedown"
-        values={{ title: journal.title, printIssn: printIssn?.value || "", electronicIssn: electronicIssn?.value || "" }}
+        values={{ title: journal.title,
+           printIssn: printIssn?.value || '',
+           electronicIssn: electronicIssn?.value || '' }}
       />
     );
   };
