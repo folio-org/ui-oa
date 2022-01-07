@@ -36,6 +36,11 @@ const Correspondence = ({ request }) => {
     history.push(`${urls.publicationRequestCorrespondenceEdit(request?.id, correspondence?.id)}`);
   };
 
+  const handleShowMoreClick = (e, id) => {
+    e.stopPropagation();
+    setContentExpanded({ ...contentExpanded, [id]: !contentExpanded[id] });
+  };
+
   const renderBadge = (correspondences) => {
     return correspondences ?
       <Badge>{correspondences?.length}</Badge> :
@@ -75,6 +80,7 @@ const Correspondence = ({ request }) => {
     return (
       <button
         className={css.CorrespondenceExpandButton}
+        onClick={(e) => handleShowMoreClick(e, id)}
         type="button"
       >
         {contentExpanded[id]
