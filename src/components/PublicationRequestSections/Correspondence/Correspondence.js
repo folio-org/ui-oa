@@ -20,30 +20,51 @@ const propTypes = {
   request: PropTypes.object
 };
 
-const renderBadge = (correspondences) => {
-  return correspondences ?
-    <Badge>{correspondences?.length}</Badge> :
-    <Badge>0</Badge>;
-};
-
-const renderAddCorrespondenceButton = (request) => {
-    return (
-      <>
-        <IfPermission perm="oa.publicationRequest.edit">
-          <Button
-            id="add-correspondence-button"
-            to={`${urls.publicationRequestCorrespondenceCreate(request.id)}`}
-          >
-            <FormattedMessage id="ui-oa.publicationRequest.addCorrespondence" />
-          </Button>
-        </IfPermission>
-      </>
-    );
-  };
-
-
 const Correspondence = ({ request }) => {
   const history = useHistory();
+
+  const handleRowClick = (e, correspondence) => {
+    history.push(`${urls.publicationRequestCorrespondenceView(request?.id, correspondence?.id)}`);
+  };
+
+  const handleEditClick = (e, correspondence) => {
+    e.stopPropagation();
+    history.push(`${urls.publicationRequestCorrespondenceEdit(request?.id, correspondence?.id)}`);
+  };
+
+  const renderBadge = (correspondences) => {
+    return correspondences ?
+      <Badge>{correspondences?.length}</Badge> :
+      <Badge>0</Badge>;
+  };
+
+  const renderAddCorrespondenceButton = () => {
+      return (
+        <>
+          <IfPermission perm="oa.publicationRequest.edit">
+            <Button
+              id="add-correspondence-button"
+              to={`${urls.publicationRequestCorrespondenceCreate(request.id)}`}
+            >
+              <FormattedMessage id="ui-oa.publicationRequest.addCorrespondence" />
+            </Button>
+          </IfPermission>
+        </>
+      );
+    };
+
+  const renderEditButton = (correspondence) => {
+    return (
+      <IfPermission perm="oa.publicationRequest.edit">
+        <button
+          onClick={(e) => handleEditClick(e, correspondence)}
+          type="button"
+        >
+          <FormattedMessage id="ui-oa.correspondence.edit" />
+        </button>
+      </IfPermission>
+    );
+  };
 
   const formatter = {
     mode: e => {
@@ -57,11 +78,17 @@ const Correspondence = ({ request }) => {
     },
     dateOfCorrespondence: e => {
       return <FormattedUTCDate value={e?.dateOfCorrespondence} />;
+    },
+    content: e => {
+      return (
+        <div>
+          {e?.content}
+          <div>
+            {renderEditButton(e)}
+          </div>
+        </div>
+      );
     }
-  };
-
-  const handleRowClick = (e, correspondence) => {
-    history.push(`${urls.publicationRequestCorrespondenceView(request?.id, correspondence?.id)}`);
   };
 
   return (
@@ -85,6 +112,7 @@ const Correspondence = ({ request }) => {
             }}
             contentData={request?.correspondences}
             formatter={formatter}
+            interactive
             onRowClick={handleRowClick}
             visibleColumns={['correspondent', 'dateOfCorrespondence', 'status', 'mode', 'category', 'content']}
           />
