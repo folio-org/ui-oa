@@ -23,7 +23,7 @@ const LinkAgreementForm = () => {
 
   const handleAgreementSelected = (a) => {
     setAgreement(a);
-    change('agreement.name', a.id);
+    change('agreement.remoteId', a.id);
   };
 
   return (
@@ -41,7 +41,7 @@ const LinkAgreementForm = () => {
             onChange={(e) => {
               if (agreement) {
                 setAgreement({});
-                change('agreement.name', undefined);
+                change('agreement.remoteId', undefined);
               }
               change('noAgreement', e.target.checked);
             }}
@@ -51,7 +51,7 @@ const LinkAgreementForm = () => {
       {!values.noAgreement && (
         <Field
           component={LookupComponent}
-          name="agreement.name"
+          name="agreement.remoteId"
           onResourceSelected={handleAgreementSelected}
           resource={agreement}
         />
