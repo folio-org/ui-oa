@@ -111,13 +111,13 @@ const CorrespondenceView = ({ onClose, onDelete, onEdit, correspondence }) => {
               {correspondence?.status?.label ?? <NoValue />}
             </KeyValue>
           </Col>
-        </Row>
-        <Row>
           <Col xs={3}>
             <KeyValue label={<FormattedMessage id="ui-oa.correspondence.mode" />}>
               {correspondence?.mode?.label ?? <NoValue />}
             </KeyValue>
           </Col>
+        </Row>
+        <Row>
           <Col xs={3}>
             <KeyValue label={<FormattedMessage id="ui-oa.correspondence.category" />}>
               {correspondence?.category?.label ?? <NoValue />}

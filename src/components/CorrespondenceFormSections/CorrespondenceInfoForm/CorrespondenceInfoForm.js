@@ -53,8 +53,6 @@ const CorrespondenceInfoForm = () => {
             validate={requiredValidator}
           />
         </Col>
-      </Row>
-      <Row>
         <Col xs={3}>
           <Field
             component={Select}
@@ -69,13 +67,15 @@ const CorrespondenceInfoForm = () => {
             validate={requiredValidator}
           />
         </Col>
+      </Row>
+      <Row>
         <Col xs={3}>
           <Field
             component={Select}
             dataOptions={[
               { value: '', label: '' },
               { value: 'invoice', label: 'Invoice' },
-              { value: 'funding', label: 'Funding' }
+              { value: 'funding', label: 'Funding' },
             ]}
             label={<FormattedMessage id="ui-oa.correspondence.category" />}
             name="category.value"
@@ -83,7 +83,7 @@ const CorrespondenceInfoForm = () => {
         </Col>
       </Row>
       <Row>
-        <Col xs={9}>
+        <Col xs={12}>
           <Field
             component={TextArea}
             fullWidth
