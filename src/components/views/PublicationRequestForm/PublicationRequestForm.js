@@ -8,20 +8,21 @@ import {
   AccordionSet,
   AccordionStatus,
   Button,
+  checkScope,
+  collapseAllSections,
+  Col,
+  expandAllSections,
+  ExpandAllButton,
+  HasCommand,
+  IconButton,
   Pane,
   PaneFooter,
   PaneHeader,
   Paneset,
   PaneMenu,
-  IconButton,
-  HasCommand,
-  checkScope,
-  collapseAllSections,
-  expandAllSections,
-  ExpandAllButton,
-  Row,
-  Col
+  Row
 } from '@folio/stripes/components';
+
 import {
   CorrespondingAuthorForm,
   FundingForm,

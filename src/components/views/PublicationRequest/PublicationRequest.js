@@ -9,16 +9,16 @@ import {
   AccordionSet,
   AccordionStatus,
   Button,
+  checkScope,
+  collapseAllSections,
+  Col,
+  ExpandAllButton,
+  expandAllSections,
+  HasCommand,
   Icon,
   MetaSection,
   Pane,
-  HasCommand,
-  checkScope,
-  collapseAllSections,
-  expandAllSections,
-  ExpandAllButton,
-  Row,
-  Col
+  Row
 } from '@folio/stripes/components';
 
 import {
@@ -41,6 +41,8 @@ const propTypes = {
 const PublicationRequest = ({ resource: request, onClose }) => {
   const history = useHistory();
   const params = useParams();
+  const accordionStatusRef = React.createRef();
+
   const handleEdit = () => {
     history.push(`${urls.publicationRequestEdit(params?.id)}`);
   };
@@ -51,8 +53,6 @@ const PublicationRequest = ({ resource: request, onClose }) => {
       request,
     };
   };
-
-  const accordionStatusRef = React.createRef();
 
   const shortcuts = [
     {
