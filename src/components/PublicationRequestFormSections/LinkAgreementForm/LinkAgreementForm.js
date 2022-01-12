@@ -10,7 +10,7 @@ import {
   TextField,
 } from '@folio/stripes/components';
 
-import { get, set } from 'lodash';
+import { get } from 'lodash';
 import { Registry } from '@folio/handler-stripes-registry';
 
 
