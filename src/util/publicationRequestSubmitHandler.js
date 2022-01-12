@@ -1,6 +1,7 @@
 const publicationRequestSubmitHandler = (values) => {
   const {
-    useCorrespondingAuthor: agreement,
+    agreement,
+    useCorrespondingAuthor:
     correspondingAuthor,
     requestContact,
     ...submitValues
@@ -21,7 +22,9 @@ const publicationRequestSubmitHandler = (values) => {
     submitValues.correspondingAuthor = null;
   }
 
-  if (!agreement?.remoteId) {
+  if (agreement?.remoteId) {
+    submitValues.agreement = agreement;
+  } else {
     submitValues.agreement = null;
   }
 
