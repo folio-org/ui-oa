@@ -7,11 +7,20 @@ import { AppIcon } from '@folio/stripes/core';
 
 import {
   AccordionSet,
+  AccordionStatus,
   Button,
   Icon,
   MetaSection,
   Pane,
+  HasCommand,
+  checkScope,
+  collapseAllSections,
+  expandAllSections,
+  ExpandAllButton,
+  Row,
+  Col
 } from '@folio/stripes/components';
+
 import {
   CorrespondingAuthor,
   Funding,
@@ -39,62 +48,90 @@ const PublicationRequest = ({ resource: request, onClose }) => {
   const getSectionProps = (name) => {
     return {
       id: `publication-request-section-${name}`,
-      request
+      request,
     };
   };
 
-  return (
-    <Pane
-      actionMenu={() => (
-        <Button
-          buttonStyle="dropdownItem"
-          id="clickable-dropdown-edit-publication-request"
-          onClick={handleEdit}
-        >
-          <Icon icon="edit">
-            <FormattedMessage id="ui-oa.publicationRequest.edit" />
-          </Icon>
-        </Button>
-      )}
-      appIcon={<AppIcon app="oa" iconKey="app" size="small" />}
-      defaultWidth="55%"
-      dismissible
-      onClose={onClose}
-      paneSub={request?.publicationTitle !== undefined ? request?.publicationTitle : ''}
-      paneTitle={<FormattedMessage id="ui-oa.publicationRequest.requestTitle" values={{ number: request?.requestNumber }} />}
-    >
-      <MetaSection
-        contentId="publicationRequestMetaContent"
-        createdDate={request?.dateCreated}
-        hideSource
-        lastUpdatedDate={request?.lastUpdated}
-      />
+  const accordionStatusRef = React.createRef();
 
-      <RequestInfo {...getSectionProps('info')} />
-      <AccordionSet>
-        {request?.correspondingAuthor?.id &&
-          <CorrespondingAuthor {...getSectionProps('correspondingAuthor')} />
+  const shortcuts = [
+    {
+      name: 'expandAllSections',
+      handler: (e) => expandAllSections(e, accordionStatusRef),
+    },
+    {
+      name: 'collapseAllSections',
+      handler: (e) => collapseAllSections(e, accordionStatusRef),
+    },
+  ];
+
+  return (
+    <HasCommand
+      commands={shortcuts}
+      isWithinScope={checkScope}
+      scope={document.body}
+    >
+      <Pane
+        actionMenu={() => (
+          <Button
+            buttonStyle="dropdownItem"
+            id="clickable-dropdown-edit-publication-request"
+            onClick={handleEdit}
+          >
+            <Icon icon="edit">
+              <FormattedMessage id="ui-oa.publicationRequest.edit" />
+            </Icon>
+          </Button>
+        )}
+        appIcon={<AppIcon app="oa" iconKey="app" size="small" />}
+        defaultWidth="55%"
+        dismissible
+        onClose={onClose}
+        paneSub={request?.publicationTitle !== undefined ? request?.publicationTitle : ''}
+        paneTitle={
+          <FormattedMessage
+            id="ui-oa.publicationRequest.requestTitle"
+            values={{ number: request?.requestNumber }}
+          />
         }
-        {request?.requestContact?.id &&
-          <RequestContact {...getSectionProps('requestContact')} />
-        }
-        {
-          /* TODO Notice this is likely not the correct shape
-           * Pending decisions made on the backend about Publication
-           * Just displaying it for now
-           */
-          // request.publication &&
-          <>
-            <Publication {...getSectionProps('publication')} />
-            <PublicationStatus {...getSectionProps('publicationStatus')} />
-          </>
-        }
-        {request?.fundings &&
-          <Funding {...getSectionProps('funding')} />
-        }
-        <Correspondence {...getSectionProps('correspondences')} />
-      </AccordionSet>
-    </Pane>
+      >
+        <MetaSection
+          contentId="publicationRequestMetaContent"
+          createdDate={request?.dateCreated}
+          hideSource
+          lastUpdatedDate={request?.lastUpdated}
+        />
+
+        <RequestInfo {...getSectionProps('info')} />
+        <AccordionStatus ref={accordionStatusRef}>
+          <Row end="xs">
+            <Col xs>
+              <ExpandAllButton />
+            </Col>
+          </Row>
+          <AccordionSet>
+            {request?.correspondingAuthor?.id && (
+              <CorrespondingAuthor {...getSectionProps('correspondingAuthor')} />
+            )}
+            {request?.requestContact?.id && (
+              <RequestContact {...getSectionProps('requestContact')} />)}
+            {
+              /* TODO Notice this is likely not the correct shape
+               * Pending decisions made on the backend about Publication
+               * Just displaying it for now
+               */
+              // request.publication &&
+              <>
+                <Publication {...getSectionProps('publication')} />
+                <PublicationStatus {...getSectionProps('publicationStatus')} />
+              </>
+            }
+            {request?.fundings && <Funding {...getSectionProps('funding')} />}
+            <Correspondence {...getSectionProps('correspondences')} />
+          </AccordionSet>
+        </AccordionStatus>
+      </Pane>
+    </HasCommand>
   );
 };
 
