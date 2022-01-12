@@ -106,12 +106,11 @@ const Correspondence = ({ request }) => {
       return (
         <div>
           <div>
+            <div>
+              {contentExpanded[e?.id] ? e?.content : e?.content.substring(0, MAX_CONTENT_LENGTH)}
+            </div>
             <strong><FormattedMessage id="ui-oa.correspondence.mode" />: </strong>
             {e?.mode?.label}
-          </div>
-          <strong><FormattedMessage id="ui-oa.correspondence.description" />: </strong>
-          <div>
-            {contentExpanded[e?.id] ? e?.content : e?.content.substring(0, MAX_CONTENT_LENGTH)}
           </div>
           <div>
             {e?.content.length > MAX_CONTENT_LENGTH && renderShowMoreButton(e?.id)}
@@ -138,11 +137,11 @@ const Correspondence = ({ request }) => {
           <MultiColumnList
             autoSize
             columnMapping={{
-              correspondent: <FormattedMessage id="ui-oa.correspondence.correspondent" />,
               dateOfCorrespondence: <FormattedMessage id="ui-oa.correspondence.dateOfCorrespondence" />,
+              content: <FormattedMessage id="ui-oa.correspondence.descriptionAndMode" />,
+              correspondent: <FormattedMessage id="ui-oa.correspondence.correspondent" />,
               status: <FormattedMessage id="ui-oa.correspondence.status" />,
-              category: <FormattedMessage id="ui-oa.correspondence.category" />,
-              content: <FormattedMessage id="ui-oa.correspondence.modeAndDescription" />
+              category: <FormattedMessage id="ui-oa.correspondence.category" />
             }}
             columnWidths={columnWidths}
             contentData={request?.correspondences}
@@ -150,7 +149,7 @@ const Correspondence = ({ request }) => {
             getCellClass={getCellClass}
             interactive
             onRowClick={handleRowClick}
-            visibleColumns={['correspondent', 'dateOfCorrespondence', 'status', 'category', 'content']}
+            visibleColumns={['dateOfCorrespondence', 'content', 'correspondent', 'status', 'category']}
           />
         </Col>
       </Row>
