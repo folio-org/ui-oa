@@ -1,7 +1,7 @@
 const publicationRequestSubmitHandler = (values) => {
   const {
     agreement,
-    useCorrespondingAuthor:
+    useCorrespondingAuthor: _useCorrespondingAuthor,
     correspondingAuthor,
     requestContact,
     ...submitValues
