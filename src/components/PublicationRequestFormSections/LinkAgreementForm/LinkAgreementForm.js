@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Field, useForm, useFormState } from 'react-final-form';
 
@@ -10,16 +10,25 @@ import {
   TextField,
 } from '@folio/stripes/components';
 
+import { get, set } from 'lodash';
 import { Registry } from '@folio/handler-stripes-registry';
 
 
 const LinkAgreementForm = () => {
-  const { values } = useFormState();
+  const { initialValues, values } = useFormState();
   const { change } = useForm();
-  const [agreement, setAgreement] = useState({});
 
   const resourceReg = Registry.getResource('agreement');
   const LookupComponent = resourceReg?.getLookupComponent() ?? TextField;
+
+  const initialAgreement = (get(initialValues, 'agreement.remoteId_object'));
+  const [agreement, setAgreement] = useState(initialAgreement ?? {});
+
+  useEffect(() => {
+    if (initialAgreement) {
+      setAgreement(initialAgreement);
+    }
+  }, [initialAgreement]);
 
   const handleAgreementSelected = (a) => {
     setAgreement(a);
