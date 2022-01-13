@@ -36,5 +36,13 @@ describe('CorrespondenceInfoForm', () => {
     test('renders Mode select', async () => {
       await Select({ id : 'correspondence.mode' }).exists();
     });
+
+    test('renders Status select', async () => {
+      await Select({ id : 'correspondence.status' }).exists();
+    });
+
+    test('renders Category select', async () => {
+      await Select({ id : 'correspondence.category' }).exists();
+    });
   });
 });
