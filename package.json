@@ -73,6 +73,7 @@
     "@folio/eslint-config-stripes": "^6.0.0",
     "@folio/stripes": "^7.0.0",
     "@folio/stripes-cli": "^2.3.0",
+    "@folio/stripes-testing": "^4.0.0",
     "@testing-library/dom": "^7.26.6",
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.2",
