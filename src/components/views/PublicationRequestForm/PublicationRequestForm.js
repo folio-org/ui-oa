@@ -6,14 +6,23 @@ import { AppIcon } from '@folio/stripes/core';
 
 import {
   AccordionSet,
+  AccordionStatus,
   Button,
+  checkScope,
+  collapseAllSections,
+  Col,
+  expandAllSections,
+  ExpandAllButton,
+  HasCommand,
+  IconButton,
   Pane,
   PaneFooter,
   PaneHeader,
   Paneset,
   PaneMenu,
-  IconButton
+  Row
 } from '@folio/stripes/components';
+
 import {
   CorrespondingAuthorForm,
   FundingForm,
@@ -38,6 +47,7 @@ const propTypes = {
 const PublicationRequestForm = ({ handlers: { onClose, onSubmit }, pristine, publicationRequest, submitting }) => {
   const { values } = useFormState();
   const { change } = useForm();
+  const accordionStatusRef = React.createRef();
 
   useEffect(() => {
     if (
@@ -47,6 +57,17 @@ const PublicationRequestForm = ({ handlers: { onClose, onSubmit }, pristine, pub
       change('requestContact.partyOwner', values.correspondingAuthor?.partyOwner);
     }
   }, [change, values]);
+
+  const shortcuts = [
+    {
+      name: 'expandAllSections',
+      handler: (e) => expandAllSections(e, accordionStatusRef),
+    },
+    {
+      name: 'collapseAllSections',
+      handler: (e) => collapseAllSections(e, accordionStatusRef),
+    },
+  ];
 
   const renderPaneFooter = () => {
     return (
@@ -99,26 +120,41 @@ const PublicationRequestForm = ({ handlers: { onClose, onSubmit }, pristine, pub
   };
 
   return (
-    <Paneset>
-      <Pane
-        appIcon={<AppIcon app="oa" />}
-        centerContent
-        defaultWidth="100%"
-        firstMenu={renderFirstMenu()}
-        footer={renderPaneFooter()}
-        renderHeader={renderProps => <PaneHeader {...renderProps} paneTitle={renderPaneTitle()} />}
-      >
-        <AccordionSet>
-          <RequestInfoForm />
-          <CorrespondingAuthorForm />
-          <RequestContactForm />
-          <PublicationForm />
-          <PublicationStatusForm />
-          <FundingForm />
-          <LinkAgreementForm />
-        </AccordionSet>
-      </Pane>
-    </Paneset>
+    <HasCommand
+      commands={shortcuts}
+      isWithinScope={checkScope}
+      scope={document.body}
+    >
+      <Paneset>
+        <Pane
+          appIcon={<AppIcon app="oa" />}
+          centerContent
+          defaultWidth="100%"
+          firstMenu={renderFirstMenu()}
+          footer={renderPaneFooter()}
+          renderHeader={(renderProps) => (
+            <PaneHeader {...renderProps} paneTitle={renderPaneTitle()} />
+          )}
+        >
+          <AccordionStatus ref={accordionStatusRef}>
+            <Row end="xs">
+              <Col xs>
+                <ExpandAllButton />
+              </Col>
+            </Row>
+            <AccordionSet>
+              <RequestInfoForm />
+              <CorrespondingAuthorForm />
+              <RequestContactForm />
+              <PublicationForm />
+              <PublicationStatusForm />
+              <FundingForm />
+              <LinkAgreementForm />
+            </AccordionSet>
+          </AccordionStatus>
+        </Pane>
+      </Paneset>
+    </HasCommand>
   );
 };
 
