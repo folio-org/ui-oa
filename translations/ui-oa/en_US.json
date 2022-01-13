@@ -103,7 +103,6 @@
     "publicationRequest.closeForm": "Close form",
     "publicationRequest.addCorrespondence": "Add correspondence",
     "publicationRequest.correspondence": "Correspondence",
-    "correspondence.new": "New correspondence",
     "correspondence.description": "Description",
     "correspondence.correspondent": "Correspondent",
     "correspondence.dateOfCorrespondence": "Date",
@@ -111,5 +110,15 @@
     "correspondence.category": "Category",
     "correspondence.status": "Status",
     "publicationJournal.issnPrint": "ISSN (print)",
-    "publicationJournal.issnElectronic": "ISSN (electronic)"
+    "publicationJournal.issnElectronic": "ISSN (electronic)",
+    "correspondence.newCorrespondence": "New correspondence",
+    "correspondence.editCorrespondence": "Edit correspondence",
+    "correspondence.viewCorrespondence": "View correspondence",
+    "correspondence.deleteCorrespondence": "Delete correspondence",
+    "correspondence.deleteCorrespondenceMessage": "This correspondence will be permanently deleted.",
+    "correspondence.edit": "Edit",
+    "correspondence.delete": "Delete",
+    "correspondence.modeAndDescription": "Mode and description",
+    "correspondence.showMore": "Show more",
+    "correspondence.showLess": "Show less"
 }
