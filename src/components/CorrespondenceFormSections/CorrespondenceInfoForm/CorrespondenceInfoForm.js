@@ -47,6 +47,7 @@ const CorrespondenceInfoForm = () => {
               { value: 'response_needed', label: 'Response Needed' },
               { value: 'closed', label: 'Closed' },
             ]}
+            id="correspondence.mode"
             label={<FormattedMessage id="ui-oa.correspondence.status" />}
             name="status.value"
             required

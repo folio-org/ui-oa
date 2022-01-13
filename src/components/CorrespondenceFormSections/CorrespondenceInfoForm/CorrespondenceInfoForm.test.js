@@ -1,5 +1,6 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl, TestForm } from '@folio/stripes-erm-components/test/jest/helpers';
+import { Datepicker, Select } from '@folio/stripes-testing';
 import translationsProperties from '../../../../test/helpers';
 import CorrespondenceInfoForm from './CorrespondenceInfoForm';
 import { data } from './testResources';
@@ -13,7 +14,8 @@ describe('CorrespondenceInfoForm', () => {
       renderComponent = renderWithIntl(
         <TestForm data={data} onSubmit={onSubmit}>
           <CorrespondenceInfoForm />
-        </TestForm>, translationsProperties
+        </TestForm>,
+        translationsProperties
       );
     });
 
@@ -21,6 +23,18 @@ describe('CorrespondenceInfoForm', () => {
       const { getByRole } = renderComponent;
       expect(getByRole('textbox', { name: 'Correspondent' }));
     });
+
+    test('renders Description field', () => {
+      const { getByRole } = renderComponent;
+      expect(getByRole('textbox', { name: 'Description' }));
+    });
+
+    test('renders Date of correspondence DatePicker', async () => {
+      await Datepicker('Date*').exists();
+    });
+
+    test('renders Mode select', async () => {
+      await Select({ id : 'correspondence.mode' }).exists();
+    });
   });
 });
-
