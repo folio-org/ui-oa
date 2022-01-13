@@ -125,7 +125,7 @@
   "correspondence.edit": "Edit",
   "correspondence.delete": "Delete",
   "correspondence.description": "Description",
-  "correspondence.modeAndDescription": "Mode and description",
+  "correspondence.descriptionAndMode": "Description and mode",
   "correspondence.correspondent": "Correspondent",
   "correspondence.dateOfCorrespondence": "Date",
   "correspondence.mode": "Mode",
