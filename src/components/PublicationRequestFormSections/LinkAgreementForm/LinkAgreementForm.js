@@ -42,22 +42,23 @@ const LinkAgreementForm = () => {
       <Row>
         <Col xs={3}>
           <Field
+            checked={values.withoutAgreement}
             component={Checkbox}
             label={
               <FormattedMessage id="ui-oa.publicationRequest.noAgreement" />
             }
-            name="noAgreement"
+            name="withoutAgreement"
             onChange={(e) => {
               if (agreement) {
                 setAgreement({});
                 change('agreement.remoteId', undefined);
               }
-              change('noAgreement', e.target.checked);
+              change('withoutAgreement', e.target.checked);
             }}
           />
         </Col>
       </Row>
-      {!values.noAgreement && (
+      {!values.withoutAgreement && (
         <Field
           component={LookupComponent}
           name="agreement.remoteId"
