@@ -49,7 +49,7 @@ describe('CorrespondenceInfoForm', () => {
   describe('with initial values', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <TestForm initialValues={data} onSubmit={onSubmit}>
+        <TestForm initialValues={initialValues} onSubmit={onSubmit}>
           <CorrespondenceInfoForm data={data} />
         </TestForm>,
         translationsProperties
@@ -59,6 +59,31 @@ describe('CorrespondenceInfoForm', () => {
     test('renders the expected value in the Description field', () => {
       const { getByRole } = renderComponent;
       expect(getByRole('textbox', { name: 'Description' })).toHaveDisplayValue('Test Invoice');
+    });
+
+    test('renders the expected value in the Correspondent field', () => {
+      const { getByRole } = renderComponent;
+      expect(getByRole('textbox', { name: 'Correspondent' })).toHaveDisplayValue('Test');
+    });
+
+    test('renders the expected value in the Date of correspondence field', () => {
+      const { getByRole } = renderComponent;
+      expect(getByRole('textbox', { name: 'Date' })).toHaveDisplayValue('12/30/2021');
+    });
+
+    test('renders the expected value in the Mode field', () => {
+      const { getByRole } = renderComponent;
+      expect(getByRole('combobox', { name: 'Mode' })).toHaveDisplayValue('Email');
+    });
+
+    test('renders the expected value in the Status field', () => {
+      const { getByRole } = renderComponent;
+      expect(getByRole('combobox', { name: 'Status' })).toHaveDisplayValue('Awaiting Reply');
+    });
+
+    test('renders the expected value in the Category field', () => {
+      const { getByRole } = renderComponent;
+      expect(getByRole('combobox', { name: 'Category' })).toHaveDisplayValue('Invoice');
     });
   });
 });
