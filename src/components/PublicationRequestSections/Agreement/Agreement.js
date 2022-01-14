@@ -14,8 +14,8 @@ import {
   Layout,
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
+import { Registry } from '@folio/handler-stripes-registry';
 
-import urls from '../../../util/urls';
 import css from './Agreement.css';
 
 const propTypes = {
@@ -23,6 +23,9 @@ const propTypes = {
 };
 
 const Agreement = ({ request }) => {
+  const resourceReg = Registry?.getResource('agreement');
+  const agreementLinkFunction = resourceReg?.getViewResource();
+
   const renderBadge = (agreement) => {
     return agreement ? <Badge>1</Badge> : <Badge>0</Badge>;
   };
@@ -91,7 +94,7 @@ const Agreement = ({ request }) => {
           cardStyle="positive"
           headerStart={
             <AppIcon app="agreements" size="small">
-              <Link to={urls.agreementView(request?.agreement?.remoteId)}>
+              <Link to={agreementLinkFunction(request?.agreement?.remoteId_object)}>
                 <strong>{request?.agreement?.remoteId_object?.name}</strong>
               </Link>
             </AppIcon>

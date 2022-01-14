@@ -1,6 +1,4 @@
 const urls = {
-  agreementView: id => `/erm/agreements/${id}`,
-
   publicationRequests: () => '/oa/publicationRequests',
   publicationRequest: id => `/oa/publicationRequests/${id}`,
   publicationRequestCreate: () => '/oa/publicationRequests/create',
