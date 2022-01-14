@@ -1,10 +1,23 @@
 import PropTypes from 'prop-types';
-import { Accordion, Badge, Card } from '@folio/stripes/components';
-import { FormattedMessage } from 'react-intl';
-import { Link } from 'react-router-dom';
-import { AppIcon } from '@folio/stripes/core';
-import urls from '../../../util/urls';
 
+import { FormattedMessage } from 'react-intl';
+
+import { Link } from 'react-router-dom';
+
+import {
+  Accordion,
+  Badge,
+  Card,
+  Row,
+  Col,
+  KeyValue,
+  NoValue,
+  FormattedUTCDate,
+} from '@folio/stripes/components';
+
+import { AppIcon } from '@folio/stripes/core';
+
+import urls from '../../../util/urls';
 
 const propTypes = {
   request: PropTypes.object,
@@ -18,9 +31,44 @@ const Agreement = ({ request }) => {
   const renderAgreement = (agreement) => {
     return (
       <>
-        <Link to={urls.agreementView(agreement?.remoteId)}>
-          {agreement?.id}
-        </Link>
+        <Row>
+          <Col md={4} xs={6}>
+            <KeyValue
+              label={
+                <FormattedMessage id="ui-oa.publicationRequest.agreementStartDate" />
+              }
+              value={
+                agreement?.startDate ? (
+                  <FormattedUTCDate value={agreement.startDate} />
+                ) : (
+                  <NoValue />
+                )
+              }
+            />
+          </Col>
+          <Col md={4} xs={6}>
+            <KeyValue
+              label={
+                <FormattedMessage id="ui-oa.publicationRequest.agreementEndDate" />
+              }
+              value={
+                agreement?.endDate ? (
+                  <FormattedUTCDate value={agreement.endDate} />
+                ) : (
+                  <NoValue />
+                )
+              }
+            />
+          </Col>
+          <Col md={4} xs={12}>
+            <KeyValue
+              label={
+                <FormattedMessage id="ui-oa.publicationRequest.agreementStatus" />
+              }
+              value={agreement?.agreementStatus?.label ?? <NoValue />}
+            />
+          </Col>
+        </Row>
       </>
     );
   };
@@ -35,13 +83,15 @@ const Agreement = ({ request }) => {
         cardStyle="positive"
         headerStart={
           <AppIcon app="agreements" size="small">
-            <strong>
-              <FormattedMessage id="ui-oa.publicationRequest.agreement" />
-            </strong>
+            <Link to={urls.agreementView(request?.agreement?.remoteId)}>
+              <strong>
+                <FormattedMessage id="ui-oa.publicationRequest.agreement" />
+              </strong>
+            </Link>
           </AppIcon>
         }
       >
-        {renderAgreement(request?.agreement)}
+        {renderAgreement(request?.agreement?.remoteId_object)}
       </Card>
     </Accordion>
   );
