@@ -94,9 +94,13 @@ const Agreement = ({ request }) => {
           cardStyle="positive"
           headerStart={
             <AppIcon app="agreements" size="small">
-              <Link to={agreementLinkFunction(request?.agreement?.remoteId_object)}>
+              {agreementLinkFunction ? (
+                <Link to={agreementLinkFunction(request?.agreement?.remoteId_object)}>
+                  <strong>{request?.agreement?.remoteId_object?.name}</strong>
+                </Link>
+              ) : (
                 <strong>{request?.agreement?.remoteId_object?.name}</strong>
-              </Link>
+              )}
             </AppIcon>
           }
         >
