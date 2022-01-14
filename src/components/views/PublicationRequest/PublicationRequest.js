@@ -40,6 +40,7 @@ const propTypes = {
 };
 
 const PublicationRequest = ({ resource: request, onClose }) => {
+  console.log('Request: %o', request);
   const history = useHistory();
   const params = useParams();
   const accordionStatusRef = React.createRef();
@@ -128,7 +129,7 @@ const PublicationRequest = ({ resource: request, onClose }) => {
               </>
             }
             {request?.fundings && (
-            <Funding {...getSectionProps('funding')} />)}
+              <Funding {...getSectionProps('funding')} />)}
             {request?.agreement && (
               <Agreement {...getSectionProps('agreement')} />
             )}
