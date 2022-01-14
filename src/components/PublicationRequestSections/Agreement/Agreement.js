@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types';
-
 import { FormattedMessage } from 'react-intl';
-
 import { Link } from 'react-router-dom';
 
 import {
@@ -13,11 +11,12 @@ import {
   KeyValue,
   NoValue,
   FormattedUTCDate,
+  Layout,
 } from '@folio/stripes/components';
-
 import { AppIcon } from '@folio/stripes/core';
 
 import urls from '../../../util/urls';
+import css from './Agreement.css';
 
 const propTypes = {
   request: PropTypes.object,
@@ -26,6 +25,14 @@ const propTypes = {
 const Agreement = ({ request }) => {
   const renderBadge = (agreement) => {
     return agreement ? <Badge>1</Badge> : <Badge>0</Badge>;
+  };
+
+  const renderEmpty = () => {
+    return (
+      <Layout className={css.agreementEmptyMessage}>
+        <FormattedMessage id="ui-oa.publicationRequest.agreementNotLinked" />
+      </Layout>
+    );
   };
 
   const renderAgreement = (agreement) => {
@@ -79,20 +86,22 @@ const Agreement = ({ request }) => {
       displayWhenOpen={renderBadge(request?.agreement)}
       label={<FormattedMessage id="ui-oa.publicationRequest.agreement" />}
     >
-      <Card
-        cardStyle="positive"
-        headerStart={
-          <AppIcon app="agreements" size="small">
-            <Link to={urls.agreementView(request?.agreement?.remoteId)}>
-              <strong>
-                {request?.agreement?.remoteId_object?.name}
-              </strong>
-            </Link>
-          </AppIcon>
-        }
-      >
-        {renderAgreement(request?.agreement?.remoteId_object)}
-      </Card>
+      {request?.agreement ? (
+        <Card
+          cardStyle="positive"
+          headerStart={
+            <AppIcon app="agreements" size="small">
+              <Link to={urls.agreementView(request?.agreement?.remoteId)}>
+                <strong>{request?.agreement?.remoteId_object?.name}</strong>
+              </Link>
+            </AppIcon>
+          }
+        >
+          {renderAgreement(request?.agreement?.remoteId_object)}
+        </Card>
+      ) : (
+        renderEmpty()
+      )}
     </Accordion>
   );
 };
