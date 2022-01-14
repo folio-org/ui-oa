@@ -85,7 +85,7 @@ const Agreement = ({ request }) => {
           <AppIcon app="agreements" size="small">
             <Link to={urls.agreementView(request?.agreement?.remoteId)}>
               <strong>
-                <FormattedMessage id="ui-oa.publicationRequest.agreement" />
+                {request?.agreement?.remoteId_object?.name}
               </strong>
             </Link>
           </AppIcon>

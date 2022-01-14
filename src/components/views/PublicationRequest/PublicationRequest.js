@@ -130,7 +130,8 @@ const PublicationRequest = ({ resource: request, onClose }) => {
             }
             {request?.fundings && (
               <Funding {...getSectionProps('funding')} />)}
-            {request?.agreement && (
+
+            {(request?.agreement || request?.withoutAgreement) && (
               <Agreement {...getSectionProps('agreement')} />
             )}
             <Correspondence {...getSectionProps('correspondences')} />
