@@ -1,7 +1,7 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
 import { MemoryRouter } from 'react-router-dom';
-import { KeyValue, Button, Modal, IconButton } from '@folio/stripes-testing';
+import { KeyValue, Button, Modal } from '@folio/stripes-testing';
 import translationsProperties from '../../../../test/helpers';
 import CorrespondenceView from './CorrespondenceView';
 import { initialValues, handlers } from './testResources';
