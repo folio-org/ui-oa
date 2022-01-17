@@ -28,7 +28,8 @@ import {
   PublicationStatus,
   RequestContact,
   RequestInfo,
-  Correspondence
+  Correspondence,
+  Agreement
 } from '../../PublicationRequestSections';
 
 import urls from '../../../util/urls';
@@ -126,7 +127,12 @@ const PublicationRequest = ({ resource: request, onClose }) => {
                 <PublicationStatus {...getSectionProps('publicationStatus')} />
               </>
             }
-            {request?.fundings && <Funding {...getSectionProps('funding')} />}
+            {request?.fundings && (
+              <Funding {...getSectionProps('funding')} />)}
+
+            {(request?.agreement || request?.withoutAgreement) && (
+              <Agreement {...getSectionProps('agreement')} />
+            )}
             <Correspondence {...getSectionProps('correspondences')} />
           </AccordionSet>
         </AccordionStatus>

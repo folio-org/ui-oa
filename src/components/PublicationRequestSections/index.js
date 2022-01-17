@@ -8,4 +8,5 @@ export { default as BookDetails } from './BookDetails';
 export { default as JournalDetails } from './JournalDetails';
 export { default as PartyInfo } from './PartyInfo';
 export { default as Correspondence } from './Correspondence';
+export { default as Agreement } from './Agreement';
 
