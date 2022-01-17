@@ -3,7 +3,7 @@ import { renderWithIntl, TestForm } from '@folio/stripes-erm-components/test/jes
 import { Datepicker, Select } from '@folio/stripes-testing';
 import translationsProperties from '../../../../test/helpers';
 import CorrespondenceInfoForm from './CorrespondenceInfoForm';
-import initialValues from './testResources';
+import { initialValues } from '../../../../test/resources/correspondenceResources';
 
 const onSubmit = jest.fn();
 let renderComponent;
@@ -58,7 +58,7 @@ describe('CorrespondenceInfoForm', () => {
 
     test('renders the expected value in the Description field', () => {
       const { getByRole } = renderComponent;
-      expect(getByRole('textbox', { name: 'Description' })).toHaveDisplayValue('Test Invoice');
+      expect(getByRole('textbox', { name: 'Description' })).toHaveDisplayValue('Test Description');
     });
 
     test('renders the expected value in the Correspondent field', () => {

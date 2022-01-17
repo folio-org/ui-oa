@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { Button } from '@folio/stripes-testing';
 import translationsProperties from '../../../../test/helpers';
 import CorrespondenceForm from './CorrespondenceForm';
-import handlers from './testResources';
+import { handlers } from '../../../../test/resources/correspondenceResources';
 
 jest.mock(
   '../../CorrespondenceFormSections/CorrespondenceInfoForm/',

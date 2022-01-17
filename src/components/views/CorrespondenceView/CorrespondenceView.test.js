@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { KeyValue, Button, Modal } from '@folio/stripes-testing';
 import translationsProperties from '../../../../test/helpers';
 import CorrespondenceView from './CorrespondenceView';
-import { initialValues, handlers } from './testResources';
+import { initialValues, handlers } from '../../../../test/resources/correspondenceResources';
 
 describe('CorrespondenceForm', () => {
   describe('renders components', () => {
@@ -60,15 +60,15 @@ describe('CorrespondenceForm', () => {
       );
     });
     test('renders Correspondent with initial value', async () => {
-      await KeyValue('Correspondent').has({ value: 'Test 2' });
+      await KeyValue('Correspondent').has({ value: 'Test' });
     });
 
     test('renders Date with initial value', async () => {
-      await KeyValue('Date').has({ value: '2021-12-01' });
+      await KeyValue('Date').has({ value: '2021-12-30' });
     });
 
     test('renders Status with initial value', async () => {
-      await KeyValue('Status').has({ value: 'Closed' });
+      await KeyValue('Status').has({ value: 'Awaiting Reply' });
     });
 
     test('renders Mode with initial value', async () => {
@@ -80,7 +80,7 @@ describe('CorrespondenceForm', () => {
     });
 
     test('renders Description with initial value', async () => {
-      await KeyValue('Description').has({ value: 'Test 2' });
+      await KeyValue('Description').has({ value: 'Test Description' });
     });
 
     test('renders Confirmation modal and triggers expected callbacks', async () => {
