@@ -60,15 +60,15 @@ describe('CorrespondenceForm', () => {
       );
     });
     test('renders Correspondent with initial value', async () => {
-      await KeyValue('Correspondent').has({ value: 'Test' });
+      await KeyValue('Correspondent').has({ value: 'Test 2' });
     });
 
     test('renders Date with initial value', async () => {
-      await KeyValue('Date').has({ value: '2021-12-30' });
+      await KeyValue('Date').has({ value: '2021-12-01' });
     });
 
     test('renders Status with initial value', async () => {
-      await KeyValue('Status').has({ value: 'Awaiting Reply' });
+      await KeyValue('Status').has({ value: 'Closed' });
     });
 
     test('renders Mode with initial value', async () => {
@@ -80,7 +80,7 @@ describe('CorrespondenceForm', () => {
     });
 
     test('renders Description with initial value', async () => {
-      await KeyValue('Description').has({ value: 'Test Invoice' });
+      await KeyValue('Description').has({ value: 'Test 2' });
     });
 
     test('renders Confirmation modal and triggers expected callbacks', async () => {

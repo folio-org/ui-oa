@@ -1,10 +1,10 @@
 const initialValues = {
-    'id': 'ae2a5736-048d-4cfd-b448-2f27631db31a',
-    'correspondent': 'Test',
-    'dateOfCorrespondence': '2021-12-30',
-    'lastUpdated': '2021-12-30T16:51:34Z',
+    'id': '3d698c78-892b-434e-bfb2-734aceaa5554',
+    'correspondent': 'Test 2',
+    'dateOfCorrespondence': '2021-12-01',
+    'lastUpdated': '2021-12-31T10:15:14Z',
     'owner': {
-        'id': 'db468f10-ab68-48ee-9cae-1acad0e89da7'
+        'id': '0caf5569-9b41-4875-87dd-73c1c5841c71'
     },
     'mode': {
         'id': '8a8189847dc879fa017dc87a88500001',
@@ -26,11 +26,11 @@ const initialValues = {
             'internal': true
         }
     },
-    'content': 'Test Invoice',
+    'content': 'Test 2',
     'status': {
-        'id': '8a8189847dc879fa017dc87a88d00007',
-        'value': 'awaiting_reply',
-        'label': 'Awaiting Reply',
+        'id': '8a8189847dc879fa017dc87a88ee0009',
+        'value': 'closed',
+        'label': 'Closed',
         'owner': {
             'id': '8a8189847dc879fa017dc87a88cc0006',
             'desc': 'Correspondence.Status',
