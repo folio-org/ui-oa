@@ -3,7 +3,7 @@ import { renderWithIntl, TestForm } from '@folio/stripes-erm-components/test/jes
 import { Datepicker, Select } from '@folio/stripes-testing';
 import translationsProperties from '../../../../test/helpers';
 import CorrespondenceInfoForm from './CorrespondenceInfoForm';
-import { data, initialValues } from './testResources';
+import initialValues from './testResources';
 
 const onSubmit = jest.fn();
 let renderComponent;
@@ -12,7 +12,7 @@ describe('CorrespondenceInfoForm', () => {
   describe('with no initial values', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <TestForm data={data} onSubmit={onSubmit}>
+        <TestForm onSubmit={onSubmit}>
           <CorrespondenceInfoForm />
         </TestForm>,
         translationsProperties
@@ -50,7 +50,7 @@ describe('CorrespondenceInfoForm', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
         <TestForm initialValues={initialValues} onSubmit={onSubmit}>
-          <CorrespondenceInfoForm data={data} />
+          <CorrespondenceInfoForm />
         </TestForm>,
         translationsProperties
       );
