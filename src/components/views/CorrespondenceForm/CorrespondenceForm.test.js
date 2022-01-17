@@ -30,12 +30,12 @@ describe('CorrespondenceForm', () => {
     });
 
     test('renders and triggers Cancel Button', async () => {
-      await Button('stripes-components.cancel').click();
+      await Button('Cancel').click();
       expect(handlers.onClose).toHaveBeenCalled();
     });
 
     test('renders and triggers Save and Close Button', async () => {
-      await Button('stripes-components.saveAndClose').click();
+      await Button('Save and close').click();
       expect(handlers.onSubmit).toHaveBeenCalled();
     });
   });
