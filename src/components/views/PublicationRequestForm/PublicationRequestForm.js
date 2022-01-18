@@ -143,7 +143,7 @@ const PublicationRequestForm = ({ handlers: { onClose, onSubmit }, pristine, pub
               </Col>
             </Row>
             <AccordionSet>
-              <RequestInfoForm />
+              <RequestInfoForm request={publicationRequest} />
               <CorrespondingAuthorForm />
               <RequestContactForm />
               <PublicationForm />
