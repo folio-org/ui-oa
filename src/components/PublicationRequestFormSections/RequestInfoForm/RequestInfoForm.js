@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import PropTypes from 'prop-types';
 
 import {
   Field
@@ -9,7 +10,6 @@ import {
   Col,
   Datepicker,
   KeyValue,
-  NoValue,
   Row,
   Select,
 } from '@folio/stripes/components';
@@ -23,18 +23,20 @@ import selectifyRefdata from '../../../util/selectifyRefdata';
 
 import { ExternalRequestIdFieldArray } from '../FieldArrays';
 
-const RequestInfoForm = () => {
-  const requestStatusValues = useOARefdata('PublicationRequest.RequestStatus');
+const propTypes = {
+  request: PropTypes.object,
+};
 
+const RequestInfoForm = ({ request }) => {
+  const requestStatusValues = useOARefdata('PublicationRequest.RequestStatus');
   return (
     <div>
       <Row start="xs">
         <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.requestNumber" />}>
-            <div>
-              <NoValue />
-            </div>
-          </KeyValue>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.publicationRequest.requestNumber" />}
+            value={request?.requestNumber}
+          />
         </Col>
         <Col xs={3}>
           <Field
@@ -67,5 +69,7 @@ const RequestInfoForm = () => {
     </div>
   );
 };
+
+RequestInfoForm.propTypes = propTypes;
 
 export default RequestInfoForm;
