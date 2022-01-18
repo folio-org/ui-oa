@@ -118,7 +118,11 @@
     "correspondence.deleteCorrespondenceMessage": "This correspondence will be permanently deleted.",
     "correspondence.edit": "Edit",
     "correspondence.delete": "Delete",
-    "correspondence.modeAndDescription": "Mode and description",
     "correspondence.showMore": "Show more",
-    "correspondence.showLess": "Show less"
+    "correspondence.showLess": "Show less",
+    "correspondence.descriptionAndMode": "Description and mode",
+    "publicationRequest.agreementStartDate": "Start date",
+    "publicationRequest.agreementEndDate": "End date",
+    "publicationRequest.agreementStatus": "Status",
+    "publicationRequest.agreementNotLinked": "This request is not covered by an agreement"
 }
