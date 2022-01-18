@@ -7,7 +7,7 @@ import { Datepicker, Select, KeyValue } from '@folio/stripes-testing';
 import translationsProperties from '../../../../test/helpers';
 import RequestInfoForm from './RequestInfoForm';
 import {
-  initialValues,
+  publicationRequest,
   handlers,
 } from '../../../../test/resources/publicationRequestsResources';
 
@@ -55,16 +55,16 @@ describe('RequestInfoForm', () => {
   describe('renders components with initial values', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <TestForm initialValues={initialValues} onSubmit={handlers.onSubmit}>
-          <RequestInfoForm />
+        <TestForm initialValues={publicationRequest} onSubmit={handlers.onSubmit}>
+          <RequestInfoForm request={publicationRequest} />
         </TestForm>,
         translationsProperties
       );
     });
 
-    // test('renders "Request number Component', async () => {
-    //   await KeyValue('Request number').has
-    // });
+    test('renders "Request number Component', async () => {
+      await KeyValue('Request number').has({ value: '1' });
+    });
 
     test('renders the expected value in the Request date field', () => {
       const { getByRole } = renderComponent;

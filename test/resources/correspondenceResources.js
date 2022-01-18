@@ -1,4 +1,4 @@
-const initialValues = {
+const correspondence = {
     'id': 'ae2a5736-048d-4cfd-b448-2f27631db31a',
     'correspondent': 'Test',
     'dateOfCorrespondence': '2021-12-30',
@@ -45,4 +45,4 @@ const initialValues = {
     onEdit: jest.fn(),
     onSubmit: jest.fn(),
 };
-  export { initialValues, handlers };
+  export { correspondence, handlers };

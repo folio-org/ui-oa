@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { KeyValue, Button, Modal } from '@folio/stripes-testing';
 import translationsProperties from '../../../../test/helpers';
 import CorrespondenceView from './CorrespondenceView';
-import { initialValues, handlers } from '../../../../test/resources/correspondenceResources';
+import { correspondence, handlers } from '../../../../test/resources/correspondenceResources';
 
 describe('CorrespondenceForm', () => {
   describe('renders components', () => {
@@ -50,7 +50,7 @@ describe('CorrespondenceForm', () => {
       renderWithIntl(
         <MemoryRouter>
           <CorrespondenceView
-            correspondence={initialValues}
+            correspondence={correspondence}
             onClose={handlers.onClose}
             onDelete={handlers.onDelete}
             onEdit={handlers.onEdit}

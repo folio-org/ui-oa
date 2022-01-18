@@ -1,4 +1,4 @@
-const initialValues = {
+const publicationRequest = {
 
     'id': '709ac8b2-3730-49ec-9332-06c28d82e0fd',
     'correspondences': [],
@@ -222,4 +222,4 @@ const handlers = {
     onSubmit: jest.fn(),
 };
 
-export { initialValues, handlers };
+export { publicationRequest, handlers };
