@@ -62,7 +62,7 @@ describe('RequestInfoForm', () => {
       );
     });
 
-    test('renders "Request number Component', async () => {
+    test('renders the expected value in the Request number KeyValue component', async () => {
       await KeyValue('Request number').has({ value: '1' });
     });
 
