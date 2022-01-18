@@ -10,7 +10,6 @@ import {
   Col,
   Datepicker,
   KeyValue,
-  NoValue,
   Row,
   Select,
 } from '@folio/stripes/components';
@@ -36,7 +35,7 @@ const RequestInfoForm = ({ request }) => {
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.publicationRequest.requestNumber" />}
-            value={request?.requestNumber ?? <NoValue />}
+            value={request?.requestNumber}
           />
         </Col>
         <Col xs={3}>
