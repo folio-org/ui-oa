@@ -1,15 +1,9 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
-import {
-  renderWithIntl,
-  TestForm,
-} from '@folio/stripes-erm-components/test/jest/helpers';
+import { renderWithIntl, TestForm } from '@folio/stripes-erm-components/test/jest/helpers';
 import { Datepicker, Select, KeyValue } from '@folio/stripes-testing';
 import translationsProperties from '../../../../test/helpers';
 import RequestInfoForm from './RequestInfoForm';
-import {
-  publicationRequest,
-  handlers,
-} from '../../../../test/resources/publicationRequestsResources';
+import { publicationRequest, handlers } from '../../../../test/resources/publicationRequestsResources';
 
 jest.mock(
   '../../PublicationRequestFormSections/FieldArrays/ExternalRequestIdFieldArray',
