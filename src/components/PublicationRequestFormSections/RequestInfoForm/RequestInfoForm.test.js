@@ -14,9 +14,13 @@ import {
 jest.mock(
   '../../PublicationRequestFormSections/FieldArrays/ExternalRequestIdFieldArray',
   () => () => <div>ExternalRequestIdFieldArray</div>
-);//
-jest.mock('../../../util/useOARefdata', () => () => []);
+);
 
+jest.mock('../../../util/useOARefdata', () => () => [
+  { id: '2c9180b07e6ade90017e6ae3bd520023', value: 'in_progress', label: 'In progress' },
+  { id: '2c9180b07e6ade90017e6ae3bd4b0022', value: 'closed', label: 'Closed' },
+  { id: '2c9180b07e6ade90017e6ae3bd450021', value: 'new', label: 'New' },
+]);
 
 describe('RequestInfoForm', () => {
   let renderComponent;
@@ -31,15 +35,15 @@ describe('RequestInfoForm', () => {
       );
     });
 
-    test('renders "Request number Component', async () => {
+    test('renders Request number KeyValue Component', async () => {
       await KeyValue('Request number').exists();
     });
 
-    test('renders "Request date" datepicker Component', async () => {
+    test('renders Request date Datepicker Component', async () => {
       await Datepicker('Request date*').exists();
     });
 
-    test('renders "Status" select Component', async () => {
+    test('renders Status Select Component', async () => {
       await Select().exists();
     });
 
@@ -48,28 +52,30 @@ describe('RequestInfoForm', () => {
       expect(getByText('ExternalRequestIdFieldArray')).toBeInTheDocument();
     });
   });
-    describe('renders components with initial values', () => {
-      beforeEach(() => {
-        renderComponent = renderWithIntl(
-          <TestForm initialValues={initialValues} onSubmit={handlers.onSubmit}>
-            <RequestInfoForm />
-          </TestForm>,
-          translationsProperties
-        );
-      });
-
-      // test('renders "Request number Component', async () => {
-      //   await KeyValue('Request number').has
-      // });
-
-      test('renders the expected value in the Request date field', () => {
-        const { getByRole } = renderComponent;
-        expect(getByRole('textbox', { name: 'Request date' })).toHaveDisplayValue('01/01/2022');
-      });
-
-      // test('renders the expected value in the Request date field', () => {
-      //   const { getByRole } = renderComponent;
-      //   expect(getByRole('textbox', { name: 'Status' })).toHaveDisplayValue('Submitted');
-      // });
+  describe('renders components with initial values', () => {
+    beforeEach(() => {
+      renderComponent = renderWithIntl(
+        <TestForm initialValues={initialValues} onSubmit={handlers.onSubmit}>
+          <RequestInfoForm />
+        </TestForm>,
+        translationsProperties
+      );
     });
+
+    // test('renders "Request number Component', async () => {
+    //   await KeyValue('Request number').has
+    // });
+
+    test('renders the expected value in the Request date field', () => {
+      const { getByRole } = renderComponent;
+      expect(getByRole('textbox', { name: 'Request date' })).toHaveDisplayValue(
+        '01/01/2022'
+      );
+    });
+
+    test('renders the expected value in the Status field', () => {
+      const { getByRole } = renderComponent;
+      expect(getByRole('combobox', { name: 'Status' })).toHaveDisplayValue('New');
+    });
+  });
 });
