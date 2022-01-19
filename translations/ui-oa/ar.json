@@ -96,7 +96,7 @@
     "publicationRequest.editPublicationRequest": "تحرير طلب النشر - {id}",
     "settings.refdata.picklistValues": "قيم قائمة الاختيار",
     "publicationJournal.title": "العنوان",
-    "publicationJournal.typedown": "العنوان: {title} · ردمد: {issn}",
+    "publicationJournal.typedown": "العنوان: {title} · ردمد ورقي: {printIssn} · ردمد إلكتروني: {electronicIssn}",
     "publicationRequest.selectedJournal": "دورية",
     "publicationRequest.agreement": "الاتفاقية",
     "publicationRequest.noAgreement": "لا توجد أي اتفاقيات بالطلب",
@@ -118,7 +118,11 @@
     "correspondence.deleteCorrespondenceMessage": "سيتم حذف هذه المراسلات نهائياً.",
     "correspondence.edit": "تحرير",
     "correspondence.delete": "حذف",
-    "correspondence.modeAndDescription": "الوضع والوصف",
     "correspondence.showMore": "عرض المزيد",
-    "correspondence.showLess": "عرض أقل"
+    "correspondence.showLess": "عرض أقل",
+    "correspondence.descriptionAndMode": "الوصف والوضع",
+    "publicationRequest.agreementStartDate": "تاريخ البدء",
+    "publicationRequest.agreementEndDate": "تاريخ الانتهاء",
+    "publicationRequest.agreementStatus": "الحالة",
+    "publicationRequest.agreementNotLinked": "هذا الطلب غير مشمول باتفاقية"
 }
