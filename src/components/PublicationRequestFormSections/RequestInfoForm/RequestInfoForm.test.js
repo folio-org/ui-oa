@@ -34,11 +34,11 @@ describe('RequestInfoForm', () => {
     });
 
     test('renders Request date Datepicker Component', async () => {
-      await Datepicker('Request date*').exists();
+      await Datepicker({ id: 'request.date' }).exists();
     });
 
     test('renders Status Select Component', async () => {
-      await Select().exists();
+      await Select({ id: 'request.status' }).exists();
     });
 
     test('renders ExternalRequestIdFieldArray Component', () => {

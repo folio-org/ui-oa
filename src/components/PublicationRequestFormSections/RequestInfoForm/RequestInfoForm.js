@@ -42,6 +42,7 @@ const RequestInfoForm = ({ request }) => {
           <Field
             backendDateStandard="YYYY-MM-DD"
             component={Datepicker}
+            id="request.date"
             label={<FormattedMessage id="ui-oa.publicationRequest.requestDate" />}
             name="requestDate"
             required
@@ -53,6 +54,7 @@ const RequestInfoForm = ({ request }) => {
           <Field
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...selectifyRefdata(requestStatusValues)]}
+            id="request.status"
             label={<FormattedMessage id="ui-oa.publicationRequest.status" />}
             name="requestStatus.id"
             required
