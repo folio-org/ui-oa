@@ -3,7 +3,7 @@ import { renderWithIntl, TestForm } from '@folio/stripes-erm-components/test/jes
 import { Datepicker, Select } from '@folio/stripes-testing';
 import translationsProperties from '../../../../test/helpers';
 import CorrespondenceInfoForm from './CorrespondenceInfoForm';
-import { initialValues } from '../../../../test/resources/correspondenceResources';
+import { correspondence } from '../../../../test/resources/correspondenceResources';
 
 const onSubmit = jest.fn();
 let renderComponent;
@@ -34,22 +34,22 @@ describe('CorrespondenceInfoForm', () => {
     });
 
     test('renders Mode select', async () => {
-      await Select({ id : 'correspondence.mode' }).exists();
+      await Select({ id : 'correspondence-mode' }).exists();
     });
 
     test('renders Status select', async () => {
-      await Select({ id : 'correspondence.status' }).exists();
+      await Select({ id : 'correspondence-status' }).exists();
     });
 
     test('renders Category select', async () => {
-      await Select({ id : 'correspondence.category' }).exists();
+      await Select({ id : 'correspondence-category' }).exists();
     });
   });
 
   describe('with initial values', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <TestForm initialValues={initialValues} onSubmit={onSubmit}>
+        <TestForm initialValues={correspondence} onSubmit={onSubmit}>
           <CorrespondenceInfoForm />
         </TestForm>,
         translationsProperties
