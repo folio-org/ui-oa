@@ -47,7 +47,7 @@ const CorrespondenceInfoForm = () => {
               { value: 'response_needed', label: 'Response Needed' },
               { value: 'closed', label: 'Closed' },
             ]}
-            id="correspondence.status"
+            id="correspondence-status"
             label={<FormattedMessage id="ui-oa.correspondence.status" />}
             name="status.value"
             required
@@ -62,7 +62,7 @@ const CorrespondenceInfoForm = () => {
               { value: 'email', label: 'Email' },
               { value: 'telephone', label: 'Telephone' },
             ]}
-            id="correspondence.mode"
+            id="correspondence-mode"
             label={<FormattedMessage id="ui-oa.correspondence.mode" />}
             name="mode.value"
             required
@@ -79,7 +79,7 @@ const CorrespondenceInfoForm = () => {
               { value: 'invoice', label: 'Invoice' },
               { value: 'funding', label: 'Funding' },
             ]}
-            id="correspondence.category"
+            id="correspondence-category"
             label={<FormattedMessage id="ui-oa.correspondence.category" />}
             name="category.value"
           />
