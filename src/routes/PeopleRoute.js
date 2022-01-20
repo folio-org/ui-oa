@@ -45,7 +45,9 @@ const PeopleRoute = ({ path }) => {
   const fetchParameters = {
     endpoint: 'oa/party',
     SASQ_MAP: {
-      searchKey: 'mainEmail, givenNames, familyName'
+      searchKey: 'mainEmail, givenNames, familyName',
+      filterKeys: {
+      }
     }
   };
 
