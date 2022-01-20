@@ -30,19 +30,19 @@ const PublicationRequestsRoute = ({ path }) => {
           buttonStyle="primary"
           id="clickable-nav-oa-publication-requests"
         >
-          <FormattedMessage id="ui-oa.publicationRequests.requests" />
+          <FormattedMessage id="ui-oa.searchAndFilter.requests" />
         </Button>
         <Button
           id="clickable-nav-oa-people"
           to={urls.people()}
         >
-          <FormattedMessage id="ui-oa.publicationRequests.people" />
+          <FormattedMessage id="ui-oa.searchAndFilter.people" />
         </Button>
         <Button
           id="clickable-nav-oa-journals"
           to={urls.journals()}
         >
-          <FormattedMessage id="ui-oa.publicationRequests.journals" />
+          <FormattedMessage id="ui-oa.searchAndFilter.journals" />
         </Button>
       </ButtonGroup>
     );

@@ -7,6 +7,15 @@
 
   "settings.refdata.picklistValues": "Pick list values",
 
+  "searchAndFilter.journals": "Journals",
+  "searchAndFilter.people": "People",
+  "searchAndFilter.requests": "Requests",
+
+  "people": "People",
+  "people.givenNames": "Given names",
+  "people.familyName": "Family name",
+  "people.mainEmail": "Main Email",
+
   "publicationRequest.addFunding": "Add funding",
   "publicationRequest.addCorrespondence": "Add correspondence",
   "publicationRequest.addExternalRequestId": "Add external request ID",
@@ -71,16 +80,12 @@
   "publicationRequest.title": "Title",
   "publicationRequest.useCorrespondingAuthor": "Use corresponding author",
   
-
   "publicationJournal.title": "Title",
   "publicationJournal.issnPrint": "ISSN (print)",
   "publicationJournal.issnElectronic": "ISSN (electronic)",
   "publicationJournal.typedown": "Title: {title} · Print ISSN: {printIssn} · Electronic ISSN: {electronicIssn} ",
 
   "publicationRequests": "Publication requests",
-  "publicationRequests.journals": "Journals",
-  "publicationRequests.people": "People",
-  "publicationRequests.requests": "Requests",
   "publicationRequests.recordsFound": "{number} records found",
 
   "externalRequestId.externalRequestId": "External request ID", 
