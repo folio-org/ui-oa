@@ -15,6 +15,7 @@
   "people.givenNames": "Given names",
   "people.familyName": "Family name",
   "people.mainEmail": "Main Email",
+  "people.createPersonRecord": "New person record",
 
   "publicationRequest.addFunding": "Add funding",
   "publicationRequest.addCorrespondence": "Add correspondence",

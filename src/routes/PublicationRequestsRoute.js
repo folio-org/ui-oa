@@ -21,7 +21,7 @@ import urls from '../util/urls';
 import OAFilters from '../components/OAFilters';
 
 const PublicationRequestsRoute = ({ path }) => {
-  // TODO: Add coresponding author / request contact name to SASQ map search key
+  // TODO: OA App icon needs replacing with associated people Icon
 
   const renderFirstComponent = () => {
     return (
@@ -38,12 +38,13 @@ const PublicationRequestsRoute = ({ path }) => {
         >
           <FormattedMessage id="ui-oa.searchAndFilter.people" />
         </Button>
+        {/* Can be used when Journals search and filter component has been finished
         <Button
           id="clickable-nav-oa-journals"
           to={urls.journals()}
         >
           <FormattedMessage id="ui-oa.searchAndFilter.journals" />
-        </Button>
+        </Button> */}
       </ButtonGroup>
     );
   };

@@ -2,6 +2,7 @@ const urls = {
   journals: () => '/oa/journals',
 
   people: () => '/oa/people',
+  peopleCreate: () => '/oa/people/create',
 
   publicationRequests: () => '/oa/publicationRequests',
   publicationRequest: id => `/oa/publicationRequests/${id}`,
