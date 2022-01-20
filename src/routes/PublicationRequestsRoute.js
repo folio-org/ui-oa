@@ -21,7 +21,7 @@ import urls from '../util/urls';
 import OAFilters from '../components/OAFilters';
 
 const PublicationRequestsRoute = ({ path }) => {
-  // TODO: OA App icon needs replacing with associated people Icon
+  // TODO: Add coresponding author / request contact name to SASQ map search key
 
   const renderFirstComponent = () => {
     return (
