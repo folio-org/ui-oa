@@ -68,6 +68,7 @@ const PeopleRoute = ({ path }) => {
   const formatter = {
     givenNames: d => (
       <AppIcon
+        app="users"
         iconAlignment="baseline"
         iconKey="app"
         size="small"
@@ -104,7 +105,7 @@ const PeopleRoute = ({ path }) => {
       FirstRenderComponent={renderFirstComponent}
       id="publication-requests"
       mainPaneProps={{
-        appIcon: <AppIcon iconKey="app" size="small" />,
+        appIcon: <AppIcon app="users" iconKey="app" size="small" />,
         // lastMenu: lastpaneMenu,
         paneTitle: <FormattedMessage id="ui-oa.people" />
       }}
