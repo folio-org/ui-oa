@@ -17,7 +17,6 @@ import urls from '../util/urls';
 
 const PeopleRoute = ({ path }) => {
   // TODO: Need to order MCL by given names and family names
-  //       Replace AppIcons placeholders
 
   const renderFirstComponent = () => {
     return (

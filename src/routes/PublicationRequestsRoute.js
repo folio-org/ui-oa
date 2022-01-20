@@ -18,7 +18,7 @@ import {
 import { SASQRoute } from '@k-int/stripes-kint-components';
 import PublicationRequest from '../components/views/PublicationRequest';
 import urls from '../util/urls';
-import OAFilters from '../components/OAFilters';
+import PublicationRequestsFilters from '../components/Filters/PublicationRequestsFilters';
 
 const PublicationRequestsRoute = ({ path }) => {
   // TODO: Add coresponding author / request contact name to SASQ map search key
@@ -121,7 +121,7 @@ const PublicationRequestsRoute = ({ path }) => {
   return (
     <SASQRoute
       fetchParameters={fetchParameters}
-      FilterComponent={OAFilters}
+      FilterComponent={PublicationRequestsFilters}
       FirstRenderComponent={renderFirstComponent}
       id="publication-requests"
       mainPaneProps={{

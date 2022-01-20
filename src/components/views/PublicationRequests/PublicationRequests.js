@@ -22,7 +22,7 @@ import {
 
 import urls from '../../../util/urls';
 
-import OAFilters from '../../OAFilters';
+import PublicationRequestsFilters from '../../Filters/PublicationRequestsFilters';
 
 const propTypes = {
   children: PropTypes.object,
@@ -111,7 +111,7 @@ const PublicationRequests = ({
                         <FormattedMessage id="ui-oa.publicationRequests.requests" />
                       </Button>
                     </ButtonGroup>
-                    <OAFilters
+                    <PublicationRequestsFilters
                       activeFilters={activeFilters.state}
                       disableReset={disableReset}
                       filterHandlers={getFilterHandlers()}
