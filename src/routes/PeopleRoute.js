@@ -17,6 +17,7 @@ import urls from '../util/urls';
 
 const PeopleRoute = ({ path }) => {
   // TODO: Need to order MCL by given names and family names
+  //       Replace AppIcons placeholders
 
   const renderFirstComponent = () => {
     return (
@@ -67,7 +68,6 @@ const PeopleRoute = ({ path }) => {
   const formatter = {
     givenNames: d => (
       <AppIcon
-        app="oa"
         iconAlignment="baseline"
         iconKey="app"
         size="small"
@@ -104,7 +104,7 @@ const PeopleRoute = ({ path }) => {
       FirstRenderComponent={renderFirstComponent}
       id="publication-requests"
       mainPaneProps={{
-        appIcon: <AppIcon app="oa" iconKey="app" size="small" />,
+        appIcon: <AppIcon iconKey="app" size="small" />,
         // lastMenu: lastpaneMenu,
         paneTitle: <FormattedMessage id="ui-oa.people" />
       }}
