@@ -18,7 +18,7 @@ import urls from '../util/urls';
 const PeopleRoute = ({ path }) => {
   // TODO: Need to order MCL by given names and family names
 
-  const renderFirstComponent = () => {
+  const renderHeaderComponent = () => {
     return (
       <ButtonGroup fullWidth>
         <Button
@@ -103,7 +103,7 @@ const PeopleRoute = ({ path }) => {
   return (
     <SASQRoute
       fetchParameters={fetchParameters}
-      FirstRenderComponent={renderFirstComponent}
+      FilterPaneHeaderComponent={renderHeaderComponent}
       id="publication-requests"
       mainPaneProps={{
         appIcon: <AppIcon app="users" iconKey="app" size="small" />,

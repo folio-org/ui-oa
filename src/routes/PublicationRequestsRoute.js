@@ -23,7 +23,7 @@ import PublicationRequestsFilters from '../components/Filters/PublicationRequest
 const PublicationRequestsRoute = ({ path }) => {
   // TODO: Add coresponding author / request contact name to SASQ map search key
 
-  const renderFirstComponent = () => {
+  const renderHeaderComponent = () => {
     return (
       <ButtonGroup fullWidth>
         <Button
@@ -122,7 +122,7 @@ const PublicationRequestsRoute = ({ path }) => {
     <SASQRoute
       fetchParameters={fetchParameters}
       FilterComponent={PublicationRequestsFilters}
-      FirstRenderComponent={renderFirstComponent}
+      FilterPaneHeaderComponent={renderHeaderComponent}
       id="publication-requests"
       mainPaneProps={{
         appIcon: <AppIcon app="oa" iconKey="app" size="small" />,
