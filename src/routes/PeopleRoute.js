@@ -12,7 +12,7 @@ import {
 } from '@folio/stripes/components';
 
 import { SASQRoute } from '@k-int/stripes-kint-components';
-import PublicationRequest from '../components/views/PublicationRequest';
+import People from '../components/views/People';
 import urls from '../util/urls';
 
 const PeopleRoute = ({ path }) => {
@@ -111,7 +111,7 @@ const PeopleRoute = ({ path }) => {
       mclProps={{ formatter }}
       path={path}
       resultColumns={resultColumns}
-      ViewComponent={PublicationRequest}
+      ViewComponent={People}
     />
   );
 };
