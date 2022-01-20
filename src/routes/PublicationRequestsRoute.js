@@ -38,13 +38,12 @@ const PublicationRequestsRoute = ({ path }) => {
         >
           <FormattedMessage id="ui-oa.searchAndFilter.people" />
         </Button>
-        {/* Can be used when Journals search and filter component has been finished
         <Button
           id="clickable-nav-oa-journals"
-          to={urls.journals()}
+          // to={urls.journals()}
         >
           <FormattedMessage id="ui-oa.searchAndFilter.journals" />
-        </Button> */}
+        </Button>
       </ButtonGroup>
     );
   };

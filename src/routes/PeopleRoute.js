@@ -33,14 +33,12 @@ const PeopleRoute = ({ path }) => {
         >
           <FormattedMessage id="ui-oa.searchAndFilter.people" />
         </Button>
-        {/*
-        TODO: Can be used when Journals search and filter component has been implemented
         <Button
           id="clickable-nav-oa-journals"
-          to={urls.journals()}
+          // to={urls.journals()}
         >
           <FormattedMessage id="ui-oa.searchAndFilter.journals" />
-        </Button> */}
+        </Button>
       </ButtonGroup>
     );
   };
