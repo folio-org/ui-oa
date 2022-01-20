@@ -1,4 +1,8 @@
 const urls = {
+  journals: () => '/oa/journals',
+
+  people: () => '/oa/people',
+
   publicationRequests: () => '/oa/publicationRequests',
   publicationRequest: id => `/oa/publicationRequests/${id}`,
   publicationRequestCreate: () => '/oa/publicationRequests/create',

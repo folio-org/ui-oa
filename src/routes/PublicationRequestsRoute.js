@@ -10,6 +10,7 @@ import {
 
 import {
   Button,
+  ButtonGroup,
   FormattedUTCDate,
   PaneMenu,
 } from '@folio/stripes/components';
@@ -21,6 +22,31 @@ import OAFilters from '../components/OAFilters';
 
 const PublicationRequestsRoute = ({ path }) => {
   // TODO: Add coresponding author / request contact name to SASQ map search key
+
+  const renderFirstComponent = () => {
+    return (
+      <ButtonGroup fullWidth>
+        <Button
+          buttonStyle="primary"
+          id="clickable-nav-oa-publication-requests"
+        >
+          <FormattedMessage id="ui-oa.publicationRequests.requests" />
+        </Button>
+        <Button
+          id="clickable-nav-oa-people"
+          to={urls.people()}
+        >
+          <FormattedMessage id="ui-oa.publicationRequests.people" />
+        </Button>
+        <Button
+          id="clickable-nav-oa-journals"
+          to={urls.journals()}
+        >
+          <FormattedMessage id="ui-oa.publicationRequests.journals" />
+        </Button>
+      </ButtonGroup>
+    );
+  };
   const fetchParameters = {
     endpoint: 'oa/publicationRequest',
     SASQ_MAP: {
@@ -96,6 +122,7 @@ const PublicationRequestsRoute = ({ path }) => {
     <SASQRoute
       fetchParameters={fetchParameters}
       FilterComponent={OAFilters}
+      FirstRenderComponent={renderFirstComponent}
       id="publication-requests"
       mainPaneProps={{
         appIcon: <AppIcon app="oa" iconKey="app" size="small" />,

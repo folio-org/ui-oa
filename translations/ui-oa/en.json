@@ -37,7 +37,6 @@
   "publicationRequest.funding": "Funding",
   "publicationRequest.givenName": "Given name(s)",
   "publicationRequest.identifiers": "Identifiers",
-  "publicationRequest.journals": "Journals",
   "publicationRequest.journalDetails": "Journal details",
   "publicationRequest.journalLookup": "Journal lookup",
   "publicationRequest.license": "License",
@@ -48,7 +47,6 @@
   "publicationRequest.oaStatus": "OA status",
   "publicationRequest.orcidId": "ORCID iD",
   "publicationRequest.party": "Party",
-  "publicationRequest.people": "People",
   "publicationRequest.person": "Person",
   "publicationRequest.phone": "Phone",
   "publicationRequest.publication": "Publication",
@@ -72,6 +70,7 @@
   "publicationRequest.subtype": "Subtype",
   "publicationRequest.title": "Title",
   "publicationRequest.useCorrespondingAuthor": "Use corresponding author",
+  
 
   "publicationJournal.title": "Title",
   "publicationJournal.issnPrint": "ISSN (print)",
@@ -79,6 +78,8 @@
   "publicationJournal.typedown": "Title: {title} · Print ISSN: {printIssn} · Electronic ISSN: {electronicIssn} ",
 
   "publicationRequests": "Publication requests",
+  "publicationRequests.journals": "Journals",
+  "publicationRequests.people": "People",
   "publicationRequests.requests": "Requests",
   "publicationRequests.recordsFound": "{number} records found",
 
