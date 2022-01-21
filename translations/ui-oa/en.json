@@ -17,6 +17,8 @@
   "parties.mainEmail": "Main email",
   "parties.createPersonRecord": "New person record",
 
+  "party.familyNameOrdered": "{familyName}, {givenNames}",
+
   "publicationRequest.addFunding": "Add funding",
   "publicationRequest.addCorrespondence": "Add correspondence",
   "publicationRequest.addExternalRequestId": "Add external request ID",
