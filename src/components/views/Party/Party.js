@@ -6,12 +6,21 @@ import { AppIcon } from '@folio/stripes/core';
 
 import { Pane } from '@folio/stripes/components';
 
+import { PartyInfo } from '../../PartySections';
+
 const propTypes = {
   onClose: PropTypes.func.isRequired,
   resource: PropTypes.object,
 };
 
 const Party = ({ resource: party, onClose }) => {
+  const getSectionProps = (name) => {
+    return {
+      id: `publication-request-section-${name}`,
+      party,
+    };
+  };
+
   return (
     <Pane
       appIcon={<AppIcon app="users" iconKey="app" size="small" />}
@@ -27,7 +36,9 @@ const Party = ({ resource: party, onClose }) => {
           }}
         />
       }
-    />
+    >
+      <PartyInfo {...getSectionProps('partyInfo')} />
+    </Pane>
   );
 };
 
