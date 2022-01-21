@@ -18,6 +18,13 @@
   "parties.createPersonRecord": "New person record",
 
   "party.familyNameOrdered": "{familyName}, {givenNames}",
+  "party.title": "Title",
+  "party.familyName": "Family name",
+  "party.givenNames": "Given name(s)",
+  "party.orcidId": "ORCID iD",
+  "party.mainEmailAddress": "Main email address",
+  "party.phone": "Phone",
+  "party.mobilePhone": "Mobile phone",
 
   "publicationRequest.addFunding": "Add funding",
   "publicationRequest.addCorrespondence": "Add correspondence",
