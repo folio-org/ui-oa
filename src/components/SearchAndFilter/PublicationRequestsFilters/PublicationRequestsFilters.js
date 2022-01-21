@@ -8,14 +8,14 @@ import {
 import { FormattedMessage } from 'react-intl';
 import { DateFilter } from '@folio/stripes-erm-components';
 
-import useOARefdata from '../../util/useOARefdata';
+import useOARefdata from '../../../util/useOARefdata';
 
 const propTypes = {
   activeFilters: PropTypes.object,
   filterHandlers: PropTypes.object,
 };
 
-function OAFilters({ activeFilters, filterHandlers }) {
+function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
   const requestStatusValues = useOARefdata('PublicationRequest.RequestStatus');
 
   const onChangeHandler = (group) => {
@@ -59,6 +59,6 @@ function OAFilters({ activeFilters, filterHandlers }) {
   );
 }
 
-OAFilters.propTypes = propTypes;
+PublicationRequestsFilters.propTypes = propTypes;
 
-export default OAFilters;
+export default PublicationRequestsFilters;
