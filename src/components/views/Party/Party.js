@@ -35,7 +35,6 @@ const propTypes = {
 };
 
 const Party = ({ onClose }) => {
-
   return (
     <Pane
       appIcon={<AppIcon app="users" iconKey="app" size="small" />}
@@ -54,8 +53,6 @@ const Party = ({ onClose }) => {
     >
       <PartyInfo {...getSectionProps('partyInfo')} />
     </Pane>
-    />
-
   );
 };
 
