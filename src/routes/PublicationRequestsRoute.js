@@ -34,7 +34,7 @@ const PublicationRequestsRoute = ({ path }) => {
         </Button>
         <Button
           id="clickable-nav-oa-people"
-          to={urls.people()}
+          to={urls.parties()}
         >
           <FormattedMessage id="ui-oa.searchAndFilter.people" />
         </Button>

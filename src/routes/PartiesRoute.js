@@ -12,10 +12,10 @@ import {
 } from '@folio/stripes/components';
 
 import { SASQRoute } from '@k-int/stripes-kint-components';
-import People from '../components/views/People';
+import Party from '../components/views/Party';
 import urls from '../util/urls';
 
-const PeopleRoute = ({ path }) => {
+const PartiesRoute = ({ path }) => {
   const renderHeaderComponent = () => {
     return (
       <ButtonGroup fullWidth>
@@ -52,15 +52,15 @@ const PeopleRoute = ({ path }) => {
   const resultColumns = [
     {
       propertyPath:'givenNames',
-      label: <FormattedMessage id="ui-oa.people.givenNames" />
+      label: <FormattedMessage id="ui-oa.parties.givenNames" />
     },
     {
       propertyPath:'familyName',
-      label: <FormattedMessage id="ui-oa.people.familyName" />
+      label: <FormattedMessage id="ui-oa.parties.familyName" />
     },
     {
       propertyPath:'mainEmail',
-      label: <FormattedMessage id="ui-oa.people.mainEmail" />
+      label: <FormattedMessage id="ui-oa.parties.mainEmail" />
     },
   ];
 
@@ -93,7 +93,7 @@ const PeopleRoute = ({ path }) => {
 //               buttonStyle="primary"
 //               id="clickable-new-person"
 //               marginBottom0
-//               to={`${urls.peopleCreate()}`}
+//               to={`${urls.partyCreate()}`}
 //             >
 //               <FormattedMessage id="stripes-smart-components.new" />
 //             </Button>
@@ -110,19 +110,19 @@ const PeopleRoute = ({ path }) => {
       mainPaneProps={{
         appIcon: <AppIcon app="users" iconKey="app" size="small" />,
         // lastMenu: lastpaneMenu,
-        paneTitle: <FormattedMessage id="ui-oa.people" />,
+        paneTitle: <FormattedMessage id="ui-oa.parties.people" />,
       }}
       mclProps={{ formatter }}
       path={path}
       resultColumns={resultColumns}
       sasqProps={{ initialSortState }}
-      ViewComponent={People}
+      ViewComponent={Party}
     />
   );
 };
 
-PeopleRoute.propTypes = {
+PartiesRoute.propTypes = {
   path: PropTypes.string.isRequired
 };
 
-export default PeopleRoute;
+export default PartiesRoute;

@@ -11,11 +11,11 @@
   "searchAndFilter.people": "People",
   "searchAndFilter.requests": "Requests",
 
-  "people": "People",
-  "people.givenNames": "Given names",
-  "people.familyName": "Family name",
-  "people.mainEmail": "Main email",
-  "people.createPersonRecord": "New person record",
+  "parties.people": "People",
+  "parties.givenNames": "Given names",
+  "parties.familyName": "Family name",
+  "parties.mainEmail": "Main email",
+  "parties.createPersonRecord": "New person record",
 
   "publicationRequest.addFunding": "Add funding",
   "publicationRequest.addCorrespondence": "Add correspondence",

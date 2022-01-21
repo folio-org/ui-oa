@@ -4,4 +4,4 @@ export { default as PublicationRequestEditRoute } from './PublicationRequestEdit
 export { default as CorrespondenceCreateRoute } from './CorrespondenceCreateRoute';
 export { default as CorrespondenceViewRoute } from './CorrespondenceViewRoute';
 export { default as CorrespondenceEditRoute } from './CorrespondenceEditRoute';
-export { default as PeopleRoute } from './PeopleRoute';
+export { default as PartiesRoute } from './PartiesRoute';

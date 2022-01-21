@@ -12,7 +12,7 @@ const propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-const People = ({ onClose }) => {
+const Party = ({ onClose }) => {
   return (
     <Pane
       appIcon={<AppIcon app="users" iconKey="app" size="small" />}
@@ -23,6 +23,6 @@ const People = ({ onClose }) => {
   );
 };
 
-People.propTypes = propTypes;
+Party.propTypes = propTypes;
 
-export default People;
+export default Party;

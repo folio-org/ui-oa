@@ -10,7 +10,7 @@ import {
   CorrespondenceCreateRoute,
   CorrespondenceViewRoute,
   CorrespondenceEditRoute,
-  PeopleRoute,
+  PartiesRoute,
 } from './routes';
 
 const App = (props) => {
@@ -47,7 +47,7 @@ const App = (props) => {
           component={CorrespondenceViewRoute}
           path={`${path}/publicationRequests/:prId/correspondence/:cId`}
         />
-        <PeopleRoute
+        <PartiesRoute
           path={`${path}/people`}
         />
         <PublicationRequestsRoute
