@@ -21,20 +21,6 @@ const Party = ({ resource: party, onClose }) => {
     };
   };
 
-
-import PropTypes from 'prop-types';
-import { AppIcon } from '@folio/stripes/core';
-
-import {
-  Pane,
-} from '@folio/stripes/components';
-
-
-const propTypes = {
-  onClose: PropTypes.func.isRequired,
-};
-
-const Party = ({ onClose }) => {
   return (
     <Pane
       appIcon={<AppIcon app="users" iconKey="app" size="small" />}
