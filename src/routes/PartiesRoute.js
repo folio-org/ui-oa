@@ -11,6 +11,7 @@ import { OAFilterHeaderComponent } from '../components/SearchAndFilter';
 import Party from '../components/views/Party';
 
 const PartiesRoute = ({ path }) => {
+// TODO: Uncomment lastPaneMenu when peopleCreate view is implemented
   const renderHeaderComponent = () => {
     return <OAFilterHeaderComponent primary="people" />;
   };
@@ -54,8 +55,6 @@ const PartiesRoute = ({ path }) => {
   const initialSortState = {
     sort: 'givenNames'
   };
-
-//   TODO: Can be used when peopleCreate view is implemented
 //
 //   const lastpaneMenu =
 //     <IfPermission perm="oa.party.edit">
