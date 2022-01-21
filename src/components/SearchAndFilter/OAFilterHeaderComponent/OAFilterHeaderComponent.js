@@ -10,7 +10,7 @@ const propTypes = {
   primary: PropTypes.string
 };
 
-function OAFilterHeaderComponent({ primary }) {
+const OAFilterHeaderComponent = ({ primary }) => {
   return (
     <ButtonGroup fullWidth>
       <Button
@@ -35,7 +35,7 @@ function OAFilterHeaderComponent({ primary }) {
       </Button>
     </ButtonGroup>
   );
-}
+};
 
 OAFilterHeaderComponent.propTypes = propTypes;
 
