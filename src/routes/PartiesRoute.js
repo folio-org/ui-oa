@@ -6,39 +6,13 @@ import {
   AppIcon,
 } from '@folio/stripes/core';
 
-import {
-  Button,
-  ButtonGroup,
-} from '@folio/stripes/components';
-
 import { SASQRoute } from '@k-int/stripes-kint-components';
+import { OAFilterHeaderComponent } from '../components/SearchAndFilter';
 import Party from '../components/views/Party';
-import urls from '../util/urls';
 
 const PartiesRoute = ({ path }) => {
   const renderHeaderComponent = () => {
-    return (
-      <ButtonGroup fullWidth>
-        <Button
-          id="clickable-nav-oa-publication-requests"
-          to={urls.publicationRequests()}
-        >
-          <FormattedMessage id="ui-oa.searchAndFilter.requests" />
-        </Button>
-        <Button
-          buttonStyle="primary"
-          id="clickable-nav-oa-people"
-        >
-          <FormattedMessage id="ui-oa.searchAndFilter.people" />
-        </Button>
-        <Button
-          id="clickable-nav-oa-journals"
-          // to={urls.journals()}
-        >
-          <FormattedMessage id="ui-oa.searchAndFilter.journals" />
-        </Button>
-      </ButtonGroup>
-    );
+    return <OAFilterHeaderComponent primary="people" />;
   };
   const fetchParameters = {
     endpoint: 'oa/party',
