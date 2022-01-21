@@ -16,7 +16,7 @@
   "parties.familyName": "Family name",
   "parties.mainEmail": "Main email",
   "parties.createPersonRecord": "New person record",
-
+  
   "party.familyNameOrdered": "{familyName}, {givenNames}",
   "party.title": "Title",
   "party.familyName": "Family name",
