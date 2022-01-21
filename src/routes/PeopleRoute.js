@@ -16,8 +16,6 @@ import People from '../components/views/People';
 import urls from '../util/urls';
 
 const PeopleRoute = ({ path }) => {
-  // TODO: Need to order MCL by given names and family names
-
   const renderHeaderComponent = () => {
     return (
       <ButtonGroup fullWidth>
@@ -79,6 +77,10 @@ const PeopleRoute = ({ path }) => {
     ),
   };
 
+  const initialSortState = {
+    sort: 'givenNames'
+  };
+
 //   TODO: Can be used when peopleCreate view is implemented
 //
 //   const lastpaneMenu =
@@ -108,11 +110,12 @@ const PeopleRoute = ({ path }) => {
       mainPaneProps={{
         appIcon: <AppIcon app="users" iconKey="app" size="small" />,
         // lastMenu: lastpaneMenu,
-        paneTitle: <FormattedMessage id="ui-oa.people" />
+        paneTitle: <FormattedMessage id="ui-oa.people" />,
       }}
       mclProps={{ formatter }}
       path={path}
       resultColumns={resultColumns}
+      sasqProps={{ initialSortState }}
       ViewComponent={People}
     />
   );
