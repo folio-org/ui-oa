@@ -14,7 +14,7 @@ describe('RequestContact', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
         <MemoryRouter>
-          <RequestContact request={null} />
+          <RequestContact />
         </MemoryRouter>,
         translationsProperties
       );
