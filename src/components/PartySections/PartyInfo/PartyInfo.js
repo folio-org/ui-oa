@@ -51,7 +51,14 @@ const PartyInfo = ({ party }) => {
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.party.mainEmailAddress" />}
-            value={party?.mainEmail}
+            value={
+              party?.mainEmail ? (
+                <ExternalLink
+                  content={party.mainEmail}
+                  href={'mailto:' + party.mainEmail}
+                />
+              ) : null
+            }
           />
         </Col>
         <Col xs={3}>
