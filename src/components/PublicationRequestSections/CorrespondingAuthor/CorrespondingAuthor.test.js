@@ -24,7 +24,7 @@ describe('CorrespondingAuthor', () => {
       await Accordion('Corresponding author').exists();
     });
 
-    test('renders Empty list', () => {
+    test('renders PartyInfo component', () => {
       const { getByText } = renderComponent;
       expect(getByText('PartyInfo')).toBeInTheDocument();
     });
