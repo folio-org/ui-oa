@@ -19,7 +19,7 @@ const PartiesRoute = ({ path }) => {
   const fetchParameters = {
     endpoint: 'oa/party',
     SASQ_MAP: {
-      searchKey: 'mainEmail, givenNames, familyName',
+      searchKey: 'mainEmail, givenNames, orcidId, familyName',
       filterKeys: {
       }
     }
@@ -33,6 +33,10 @@ const PartiesRoute = ({ path }) => {
     {
       propertyPath:'familyName',
       label: <FormattedMessage id="ui-oa.parties.familyName" />
+    },
+    {
+      propertyPath:'orcidId',
+      label: <FormattedMessage id="ui-oa.parties.orcidId" />
     },
     {
       propertyPath:'mainEmail',

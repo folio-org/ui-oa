@@ -14,6 +14,7 @@
   "parties.people": "People",
   "parties.givenNames": "Given names",
   "parties.familyName": "Family name",
+  "parties.orcidId": "ORCID iD",
   "parties.mainEmail": "Main email",
   "parties.createPersonRecord": "New person record",
   
