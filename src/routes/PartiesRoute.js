@@ -15,6 +15,7 @@ const PartiesRoute = ({ path }) => {
   const renderHeaderComponent = () => {
     return <OAFilterHeaderComponent primary="people" />;
   };
+
   const fetchParameters = {
     endpoint: 'oa/party',
     SASQ_MAP: {

@@ -54,7 +54,7 @@ const PartyInfo = ({ party }) => {
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.party.mobilePhone" />}
-            value={party?.mobilePhone}
+            value={party?.mobile}
           />
         </Col>
       </Row>
