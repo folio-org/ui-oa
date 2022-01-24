@@ -4,12 +4,14 @@ import { FormattedMessage } from 'react-intl';
 
 import { Col, KeyValue, Row } from '@folio/stripes/components';
 
+import ExternalLink from '../../ExternalLink';
+
 const propTypes = {
   party: PropTypes.object,
 };
 
 const PartyInfo = ({ party }) => {
-//  TODO: ORCID iD, Phone and Mobile Phone still need to be implemented on backend
+  //  TODO: ORCID iD, Phone and Mobile Phone still need to be implemented on backend
   return (
     <>
       <Row>
@@ -34,7 +36,14 @@ const PartyInfo = ({ party }) => {
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.party.orcidId" />}
-            value={party?.orcidId}
+            value={
+              party?.orcidId ? (
+                <ExternalLink
+                  content={party.orcidId}
+                  href={'https://orcid.org/' + party.orcidId}
+                />
+              ) : null
+            }
           />
         </Col>
       </Row>
