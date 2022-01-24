@@ -12,7 +12,7 @@ const PartyInfo = ({ party }) => {
 //  TODO: ORCID iD, Phone and Mobile Phone still need to be implemented on backend
   return (
     <>
-      <Row start="xs">
+      <Row>
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.party.title" />}
@@ -38,7 +38,7 @@ const PartyInfo = ({ party }) => {
           />
         </Col>
       </Row>
-      <Row start="xs">
+      <Row>
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.party.mainEmailAddress" />}
