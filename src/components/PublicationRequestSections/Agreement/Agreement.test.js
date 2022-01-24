@@ -9,7 +9,7 @@ import { publicationRequest } from '../../../../test/resources/publicationReques
 let renderComponent;
 
 describe('Agreement', () => {
-  describe('renders components with no initial values', () => {
+  describe('renders components with no values', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
         <MemoryRouter>
@@ -23,12 +23,12 @@ describe('Agreement', () => {
       await Accordion('Agreement').exists();
     });
 
-    test('renders Agreement card field', () => {
+    test('renders Agreement Accordion badge', () => {
       const { getByText } = renderComponent;
       expect(getByText('0')).toBeInTheDocument();
     });
 
-    test('renders Agreement card field', () => {
+    test('renders Empty agreement component', () => {
       const { getByText } = renderComponent;
       expect(
         getByText('This request is not covered by an agreement')
@@ -36,7 +36,7 @@ describe('Agreement', () => {
     });
   });
 
-  describe('renders components with initial values', () => {
+  describe('renders components with values', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
         <MemoryRouter>
@@ -48,11 +48,6 @@ describe('Agreement', () => {
 
     test('renders Agreement Accordion component', async () => {
       await Accordion('Agreement').exists();
-    });
-
-    test('renders Agreement card field', () => {
-      const { getByText } = renderComponent;
-      expect(getByText('1')).toBeInTheDocument();
     });
 
     test('renders Agreement "Start date" KeyValue component', async () => {
