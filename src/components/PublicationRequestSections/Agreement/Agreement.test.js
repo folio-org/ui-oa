@@ -1,10 +1,10 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
 import { MemoryRouter } from 'react-router-dom';
-import { Accordion, KeyValue } from '@folio/stripes-testing';
+import { Accordion, KeyValue, Badge } from '@folio/stripes-testing';
 import translationsProperties from '../../../../test/helpers';
 import Agreement from './Agreement';
-import pbrAgreement from '../../../../test/resources/agreementResources';
+import { publicationRequest } from '../../../../test/resources/publicationRequestsResources';
 
 let renderComponent;
 
@@ -25,6 +25,11 @@ describe('Agreement', () => {
 
     test('renders Agreement card field', () => {
       const { getByText } = renderComponent;
+      expect(getByText('0')).toBeInTheDocument();
+    });
+
+    test('renders Agreement card field', () => {
+      const { getByText } = renderComponent;
       expect(
         getByText('This request is not covered by an agreement')
       ).toBeInTheDocument();
@@ -35,7 +40,7 @@ describe('Agreement', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
         <MemoryRouter>
-          <Agreement request={pbrAgreement} />
+          <Agreement request={publicationRequest} />
         </MemoryRouter>,
         translationsProperties
       );
@@ -43,6 +48,11 @@ describe('Agreement', () => {
 
     test('renders Agreement Accordion component', async () => {
       await Accordion('Agreement').exists();
+    });
+
+    test('renders Agreement card field', () => {
+      const { getByText } = renderComponent;
+      expect(getByText('1')).toBeInTheDocument();
     });
 
     test('renders Agreement "Start date" KeyValue component', async () => {
