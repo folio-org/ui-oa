@@ -7,12 +7,11 @@ import {
   IconButton,
   Pane,
   PaneFooter,
-  PaneHeader,
   Paneset,
   PaneMenu,
 } from '@folio/stripes/components';
 
-import { PartyInfoForm } from '../../PartyFormSections/PartyInfoForm/PartyInfoForm';
+import PartyInfoForm from '../../PartyFormSections/PartyInfoForm/PartyInfoForm';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -30,6 +29,12 @@ const PartyForm = ({
   party,
   submitting,
 }) => {
+  const renderPaneTitle = () => (
+    party ?
+      <FormattedMessage id="ui-oa.party.editPerson" /> :
+      <FormattedMessage id="ui-oa.party.createPerson" />
+  );
+
   const renderPaneFooter = () => {
     return (
       <PaneFooter
@@ -57,12 +62,6 @@ const PartyForm = ({
     );
   };
 
-  const renderPaneTitle = () => (
-    party ?
-      <FormattedMessage id="ui-oa.party.editParty" /> :
-      <FormattedMessage id="ui-oa.party.createPerson" />
-  );
-
   const renderFirstMenu = () => {
     return (
       <PaneMenu>
@@ -88,9 +87,8 @@ const PartyForm = ({
         defaultWidth="100%"
         firstMenu={renderFirstMenu()}
         footer={renderPaneFooter()}
-        renderHeader={(renderProps) => (
-          <PaneHeader {...renderProps} paneTitle={renderPaneTitle()} />
-        )}
+        id="pane-oa-party-form"
+        paneTitle={renderPaneTitle()}
       >
         <PartyInfoForm />
       </Pane>

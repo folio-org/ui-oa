@@ -11,6 +11,7 @@ import {
   CorrespondenceViewRoute,
   CorrespondenceEditRoute,
   PartiesRoute,
+  PartiesEditRoute,
 } from './routes';
 
 const App = (props) => {
@@ -46,6 +47,10 @@ const App = (props) => {
         <Route
           component={CorrespondenceViewRoute}
           path={`${path}/publicationRequests/:prId/correspondence/:cId`}
+        />
+        <Route
+          component={PartiesEditRoute}
+          path={`${path}/people/:id/edit`}
         />
         <PartiesRoute
           path={`${path}/people`}

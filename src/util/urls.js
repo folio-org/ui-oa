@@ -3,6 +3,7 @@ const urls = {
 
   parties: () => '/oa/people',
   partyCreate: () => '/oa/people/create',
+  partyEdit: id => `/oa/people/${id}/edit`,
 
   publicationRequests: () => '/oa/publicationRequests',
   publicationRequest: id => `/oa/publicationRequests/${id}`,

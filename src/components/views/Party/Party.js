@@ -1,12 +1,13 @@
-import React from 'react';
-
-import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+import { useHistory, useParams } from 'react-router-dom';
+
 import { AppIcon } from '@folio/stripes/core';
 
-import { Pane } from '@folio/stripes/components';
+import { Pane, Button, Icon } from '@folio/stripes/components';
 
 import { PartyInfo } from '../../PartySections';
+import urls from '../../../util/urls';
 
 const propTypes = {
   onClose: PropTypes.func.isRequired,
@@ -14,6 +15,9 @@ const propTypes = {
 };
 
 const Party = ({ resource: party, onClose }) => {
+  const history = useHistory();
+  const params = useParams();
+
   const getSectionProps = (name) => {
     return {
       id: `publication-request-section-${name}`,
@@ -21,8 +25,23 @@ const Party = ({ resource: party, onClose }) => {
     };
   };
 
+  const handleEdit = () => {
+    history.push(`${urls.partyEdit(params?.id)}`);
+  };
+
   return (
     <Pane
+      actionMenu={() => (
+        <Button
+          buttonStyle="dropdownItem"
+          id="clickable-dropdown-edit-party"
+          onClick={handleEdit}
+        >
+          <Icon icon="edit">
+            <FormattedMessage id="ui-oa.party.edit" />
+          </Icon>
+        </Button>
+      )}
       appIcon={<AppIcon app="users" iconKey="app" size="small" />}
       defaultWidth="55%"
       dismissible

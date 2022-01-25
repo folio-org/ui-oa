@@ -5,3 +5,5 @@ export { default as CorrespondenceCreateRoute } from './CorrespondenceCreateRout
 export { default as CorrespondenceViewRoute } from './CorrespondenceViewRoute';
 export { default as CorrespondenceEditRoute } from './CorrespondenceEditRoute';
 export { default as PartiesRoute } from './PartiesRoute';
+export { default as PartiesEditRoute } from './PartyEditRoute';
+
