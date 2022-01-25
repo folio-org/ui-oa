@@ -12,6 +12,7 @@ import {
   PaneMenu,
 } from '@folio/stripes/components';
 
+import { PartyInfoForm } from '../../PartyFormSections/PartyInfoForm/PartyInfoForm';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -90,7 +91,9 @@ const PartyForm = ({
         renderHeader={(renderProps) => (
           <PaneHeader {...renderProps} paneTitle={renderPaneTitle()} />
         )}
-      />
+      >
+        <PartyInfoForm />
+      </Pane>
     </Paneset>
   );
 };
