@@ -18,6 +18,9 @@
   "parties.mainEmail": "Main email",
   "parties.createPersonRecord": "New person record",
   
+  "party.editPerson": "Edit person",
+  "party.createPerson": "Create person",
+  "party.closeForm": "Close form",
   "party.familyNameOrdered": "{familyName}, {givenNames}",
   "party.title": "Title",
   "party.familyName": "Family name",
