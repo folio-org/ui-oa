@@ -12,10 +12,10 @@ const PartyInfoForm = () => {
             component={Select}
             dataOptions={[
               { value: '', label: '' },
-              { value: 'mr', label: 'Mr' },
-              { value: 'ms', label: 'Ms' },
-              { value: 'prof', label: 'Prof' },
-              { value: 'dr', label: 'Dr' },
+              { value: 'Mr', label: 'Mr' },
+              { value: 'Ms', label: 'Ms' },
+              { value: 'Prof', label: 'Prof' },
+              { value: 'Dr', label: 'Dr' },
             ]}
             id="party-title"
             label={<FormattedMessage id="ui-oa.party.title" />}

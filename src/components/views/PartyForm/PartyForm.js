@@ -82,7 +82,7 @@ const PartyForm = ({
   return (
     <Paneset>
       <Pane
-        appIcon={<AppIcon app="user" />}
+        appIcon={<AppIcon app="users" />}
         centerContent
         defaultWidth="100%"
         firstMenu={renderFirstMenu()}
