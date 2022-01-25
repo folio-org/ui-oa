@@ -7,7 +7,7 @@ import Publication from './Publication';
 import { publicationRequest } from '../../../../test/resources/publicationRequestsResources';
 
 let renderComponent;
-jest.mock('../PublicationType', () => () => <div>JournalDetails</div>);
+jest.mock('../PublicationType/JournalDetails', () => () => <div>JournalDetails</div>);
 
 describe('Publication', () => {
   describe('renders components with no values', () => {
