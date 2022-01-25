@@ -10,10 +10,9 @@ import {
   Row,
   Col,
   KeyValue,
-  NoValue,
   Button,
   Icon,
-  ConfirmationModal
+  ConfirmationModal,
 } from '@folio/stripes/components';
 import { AppIcon, IfPermission } from '@folio/stripes/core';
 
@@ -50,7 +49,11 @@ const CorrespondenceView = ({ onClose, onDelete, onEdit, correspondence }) => {
           </Button>
         </IfPermission>
         <IfPermission perm="oa.correspondence.manage">
-          <Button buttonStyle="dropdownItem" id="correspondence-delete-button" onClick={openDeleteConfirmationModal}>
+          <Button
+            buttonStyle="dropdownItem"
+            id="correspondence-delete-button"
+            onClick={openDeleteConfirmationModal}
+          >
             <Icon icon="trash">
               <FormattedMessage id="ui-oa.correspondence.delete" />
             </Icon>
@@ -85,50 +88,66 @@ const CorrespondenceView = ({ onClose, onDelete, onEdit, correspondence }) => {
         defaultWidth="100%"
         firstMenu={renderFirstMenu()}
         id="pane.oa.correspondence.view"
-        paneTitle={<FormattedMessage id="ui-oa.correspondence.viewCorrespondence" />}
+        paneTitle={
+          <FormattedMessage id="ui-oa.correspondence.viewCorrespondence" />
+        }
       >
         <ConfirmationModal
           confirmLabel={<FormattedMessage id="ui-oa.correspondence.delete" />}
-          heading={<FormattedMessage id="ui-oa.correspondence.deleteCorrespondence" />}
-          message={<FormattedMessage id="ui-oa.correspondence.deleteCorrespondenceMessage" />}
+          heading={
+            <FormattedMessage id="ui-oa.correspondence.deleteCorrespondence" />
+          }
+          message={
+            <FormattedMessage id="ui-oa.correspondence.deleteCorrespondenceMessage" />
+          }
           onCancel={closeDeleteConfirmationModal}
           onConfirm={() => onDelete()}
           open={showConfirmationModal}
         />
         <Row>
           <Col xs={3}>
-            <KeyValue label={<FormattedMessage id="ui-oa.correspondence.correspondent" />}>
-              {correspondence?.correspondent ?? <NoValue />}
-            </KeyValue>
+            <KeyValue
+              label={
+                <FormattedMessage id="ui-oa.correspondence.correspondent" />
+              }
+              value={correspondence?.correspondent}
+            />
           </Col>
           <Col xs={3}>
-            <KeyValue label={<FormattedMessage id="ui-oa.correspondence.dateOfCorrespondence" />}>
-              {correspondence?.dateOfCorrespondence ?? <NoValue />}
-            </KeyValue>
+            <KeyValue
+              label={
+                <FormattedMessage id="ui-oa.correspondence.dateOfCorrespondence" />
+              }
+              value={correspondence?.dateOfCorrespondence}
+            />
           </Col>
           <Col xs={3}>
-            <KeyValue label={<FormattedMessage id="ui-oa.correspondence.status" />}>
-              {correspondence?.status?.label ?? <NoValue />}
-            </KeyValue>
+            <KeyValue
+              label={<FormattedMessage id="ui-oa.correspondence.status" />}
+              value={correspondence?.status?.label}
+            />
           </Col>
           <Col xs={3}>
-            <KeyValue label={<FormattedMessage id="ui-oa.correspondence.mode" />}>
-              {correspondence?.mode?.label ?? <NoValue />}
-            </KeyValue>
+            <KeyValue
+              label={<FormattedMessage id="ui-oa.correspondence.mode" />}
+              value={correspondence?.mode?.label}
+            />
           </Col>
         </Row>
         <Row>
           <Col xs={3}>
-            <KeyValue label={<FormattedMessage id="ui-oa.correspondence.category" />}>
-              {correspondence?.category?.label ?? <NoValue />}
-            </KeyValue>
+            <KeyValue
+              label={<FormattedMessage id="ui-oa.correspondence.category" />}
+              value={correspondence?.category?.label}
+            />
           </Col>
         </Row>
         <Row>
           <Col xs={12}>
-            <KeyValue label={<FormattedMessage id="ui-oa.correspondence.description" />}>
-              {correspondence?.content ?? <NoValue />}
-            </KeyValue>
+            <KeyValue
+              label={<FormattedMessage id="ui-oa.correspondence.description" />}
+              value={correspondence?.content}
+            />
           </Col>
         </Row>
       </Pane>

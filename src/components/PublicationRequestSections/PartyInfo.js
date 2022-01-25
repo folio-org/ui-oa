@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
@@ -8,14 +7,15 @@ import {
   Col,
   KeyValue,
   Label,
-  NoValue,
-  Row
+  Row,
 } from '@folio/stripes/components';
+
+import ExternalLink from '../ExternalLink';
 
 const propTypes = {
   otherEmailAddresses: PropTypes.object,
   party: PropTypes.object,
-  streetAddresses: PropTypes.object
+  streetAddresses: PropTypes.object,
 };
 
 const renderStreetAddresses = (streetAddresses) => {
@@ -26,76 +26,70 @@ const renderStreetAddresses = (streetAddresses) => {
           <Card
             headerStart={
               <Label>
-                <FormattedMessage id="ui-oa.streetAddresses.streetAddressTitle" values={{ number: index }} />
+                <FormattedMessage
+                  id="ui-oa.streetAddresses.streetAddressTitle"
+                  values={{ number: index }}
+                />
               </Label>
             }
           >
             <Row start="xs">
               <Col xs={3}>
-                <KeyValue label={<FormattedMessage id="ui-oa.streetAddresses.addressType" />}>
-                  {address?.addressType ?
-                    <div>{address.addressType}</div>
-                    :
-                    <NoValue />
+                <KeyValue
+                  label={
+                    <FormattedMessage id="ui-oa.streetAddresses.addressType" />
                   }
-                </KeyValue>
+                  value={address?.addressType}
+                />
               </Col>
               <Col xs={3}>
-                <KeyValue label={<FormattedMessage id="ui-oa.streetAddresses.addressLine1" />}>
-                  {address?.addressLine1 ?
-                    <div>{address.addressLine1}</div>
-                    :
-                    <NoValue />
+                <KeyValue
+                  label={
+                    <FormattedMessage id="ui-oa.streetAddresses.addressLine1" />
                   }
-                </KeyValue>
+                  value={address?.addressLine1}
+                />
               </Col>
               <Col xs={3}>
-                <KeyValue label={<FormattedMessage id="ui-oa.streetAddresses.addressLine1" />}>
-                  {address?.addressLine2 ?
-                    <div>{address.addressLine2}</div>
-                    :
-                    <NoValue />
+                <KeyValue
+                  label={
+                    <FormattedMessage id="ui-oa.streetAddresses.addressLine1" />
                   }
-                </KeyValue>
+                  value={address?.addressLine2}
+                />
               </Col>
               <Col xs={3}>
-                <KeyValue label={<FormattedMessage id="ui-oa.streetAddresses.city" />}>
-                  {address?.city ?
-                    <div>{address.city}</div>
-                    :
-                    <NoValue />
-                  }
-                </KeyValue>
+                <KeyValue
+                  label={<FormattedMessage id="ui-oa.streetAddresses.city" />}
+                  value={address?.city}
+                />
               </Col>
             </Row>
 
             <Row start="xs">
               <Col xs={3}>
-                <KeyValue label={<FormattedMessage id="ui-oa.streetAddresses.stateRegion" />}>
-                  {address?.stateRegion ?
-                    <div>{address.stateRegion}</div>
-                    :
-                    <NoValue />
+                <KeyValue
+                  label={
+                    <FormattedMessage id="ui-oa.streetAddresses.stateRegion" />
                   }
-                </KeyValue>
+                  value={address?.stateRegion}
+                />
               </Col>
               <Col xs={3}>
-                <KeyValue label={<FormattedMessage id="ui-oa.streetAddresses.postalCode" />}>
-                  {address?.postalCode ?
-                    <div>{address.postalCode}</div>
-                    :
-                    <NoValue />
+                <KeyValue
+                  label={
+                    <FormattedMessage id="ui-oa.streetAddresses.postalCode" />
                   }
-                </KeyValue>
+                  value={address?.postalCode}
+                />
               </Col>
               <Col xs={3}>
-                <KeyValue label={<FormattedMessage id="ui-oa.streetAddresses.country" />}>
-                  {address?.country ?
-                    <div>{address.country}</div>
-                    :
-                    <NoValue />
+                <KeyValue
+                  label={
+                    <FormattedMessage id="ui-oa.streetAddresses.country" />
                   }
-                </KeyValue>
+                  value={address?.country}
+                />
               </Col>
               <Col xs={3} />
             </Row>
@@ -108,105 +102,99 @@ const renderStreetAddresses = (streetAddresses) => {
 
 const PartyInfo = ({ party, streetAddresses, otherEmailAddresses }) => {
   return (
-    <div>
-      <Row start="xs">
+    <>
+      <Row>
         <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.title" />}>
-            {party ?
-              <div>{party.title}</div>
-              :
-              <NoValue />
-            }
-          </KeyValue>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.party.title" />}
+            value={party?.title}
+          />
         </Col>
         <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.familyName" />}>
-            {party ?
-              <div>{party.familyName}</div>
-              :
-              <NoValue />
-            }
-          </KeyValue>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.party.familyName" />}
+            value={party?.familyName}
+          />
         </Col>
         <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.givenName" />}>
-            {party ?
-              <div>{party.givenNames}</div>
-              :
-              <NoValue />
-            }
-          </KeyValue>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.party.givenNames" />}
+            value={party?.givenNames}
+          />
         </Col>
         <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.orcidId" />}>
-            {party ?
-              <div>{party.orcidId}</div>
-              :
-              <NoValue />
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.party.orcidId" />}
+            value={
+              party?.orcidId ? (
+                <ExternalLink
+                  content={party.orcidId}
+                  href={'https://orcid.org/' + party.orcidId}
+                />
+              ) : null
             }
-          </KeyValue>
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={3}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.party.mainEmailAddress" />}
+            value={
+              party?.mainEmail ? (
+                <ExternalLink
+                  content={party.mainEmail}
+                  href={'mailto:' + party.mainEmail}
+                />
+              ) : null
+            }
+          />
+        </Col>
+        <Col xs={3}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.party.phone" />}
+            value={party?.phone}
+          />
+        </Col>
+        <Col xs={3}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.party.mobilePhone" />}
+            value={party?.mobile}
+          />
         </Col>
       </Row>
 
-      <Row start="xs">
-        <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.mainEmail" />}>
-            {party ?
-              <div>{party.mainEmail}</div>
-              :
-              <NoValue />
-            }
-          </KeyValue>
-        </Col>
-        <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.phone" />}>
-            {party ?
-              <div>{party.phone}</div>
-              :
-              <NoValue />
-            }
-          </KeyValue>
-        </Col>
-        <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.mobile" />}>
-            {party ?
-              <div>{party.mobile}</div>
-              :
-              <NoValue />
-            }
-          </KeyValue>
-        </Col>
-        <Col xs={3} />
-      </Row>
-
-      {otherEmailAddresses &&
+      {otherEmailAddresses && (
         <Row start="xs">
           <Col xs={6}>
-            <KeyValue label={<FormattedMessage id="ui-oa.otherEmail.otherEmailAddresses" />}>
-              {otherEmailAddresses ?
-                <ul>
-                  {otherEmailAddresses.map(email => <li key={email?.id}>{email?.emailAddress}</li>)}
-                </ul>
-                :
-                <NoValue />
+            <KeyValue
+              label={
+                <FormattedMessage id="ui-oa.otherEmail.otherEmailAddresses" />
               }
+            >
+              {otherEmailAddresses ? (
+                <ul>
+                  {otherEmailAddresses.map((email) => (
+                    <li key={email?.id}>{email?.emailAddress}</li>
+                  ))}
+                </ul>
+              ) : null}
             </KeyValue>
           </Col>
         </Row>
-      }
+      )}
 
-      {streetAddresses &&
+      {streetAddresses && (
         <Row>
           <Col xs={12}>
             <Label>
               <FormattedMessage id="ui-oa.publicationRequest.streetAddresses" />
             </Label>
-            {streetAddresses ? renderStreetAddresses(streetAddresses) : <NoValue />}
+            {streetAddresses ? renderStreetAddresses(streetAddresses) : null}
           </Col>
         </Row>
-      }
-
-    </div>
+      )}
+    </>
   );
 };
 
