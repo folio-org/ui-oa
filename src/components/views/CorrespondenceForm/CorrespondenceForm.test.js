@@ -4,7 +4,10 @@ import { MemoryRouter } from 'react-router-dom';
 import { Button } from '@folio/stripes-testing';
 import translationsProperties from '../../../../test/helpers';
 import CorrespondenceForm from './CorrespondenceForm';
-import { handlers } from '../../../../test/resources/correspondenceResources';
+import {
+  handlers,
+  correspondence,
+} from '../../../../test/resources/correspondenceResources';
 
 jest.mock(
   '../../CorrespondenceFormSections/CorrespondenceInfoForm/',
@@ -24,6 +27,11 @@ describe('CorrespondenceForm', () => {
       );
     });
 
+    test('renders "New Correspondent condtional', () => {
+      const { getByText } = renderComponent;
+      expect(getByText('New correspondence')).toBeInTheDocument();
+    });
+
     test('renders CorrespondenceInfo Component', () => {
       const { getByText } = renderComponent;
       expect(getByText('CorrespondenceInfoForm')).toBeInTheDocument();
@@ -37,6 +45,25 @@ describe('CorrespondenceForm', () => {
     test('renders and triggers Save and Close Button', async () => {
       await Button('Save and close').click();
       expect(handlers.onSubmit).toHaveBeenCalled();
+    });
+  });
+
+  describe('renders conditionals with initial values', () => {
+    beforeEach(() => {
+      renderComponent = renderWithIntl(
+        <MemoryRouter>
+          <CorrespondenceForm
+            correspondence={correspondence}
+            handlers={handlers}
+          />
+        </MemoryRouter>,
+        translationsProperties
+      );
+    });
+
+    test('renders "Edit Correspondent condtional', () => {
+      const { getByText } = renderComponent;
+      expect(getByText('Edit correspondence')).toBeInTheDocument();
     });
   });
 });

@@ -19,7 +19,8 @@ const translationsProperties = [
         'cancel': 'Cancel',
         'paneMenuActionsToggleLabel': 'Actions',
         'collapseAll': 'Collapse all',
-        'button.edit': 'Edit'
+        'button.edit': 'Edit',
+        'tableEmpty': 'The list contains no items'
       },
     }
   ];

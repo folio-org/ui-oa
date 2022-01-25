@@ -1,7 +1,47 @@
 const publicationRequest = {
 
     'id': '709ac8b2-3730-49ec-9332-06c28d82e0fd',
-    'correspondences': [],
+    'correspondences': [{
+        'id': 'ae2a5736-048d-4cfd-b448-2f27631db31a',
+        'correspondent': 'Test',
+        'dateOfCorrespondence': '2021-12-30',
+        'lastUpdated': '2021-12-30T16:51:34Z',
+        'owner': {
+            'id': 'db468f10-ab68-48ee-9cae-1acad0e89da7'
+        },
+        'mode': {
+            'id': '8a8189847dc879fa017dc87a88500001',
+            'value': 'email',
+            'label': 'Email',
+            'owner': {
+                'id': '8a8189847dc879fa017dc87a88250000',
+                'desc': 'Correspondence.Mode',
+                'internal': true
+            }
+        },
+        'category': {
+            'id': '8a8189847dc879fa017dc87a88a40004',
+            'value': 'invoice',
+            'label': 'Invoice',
+            'owner': {
+                'id': '8a8189847dc879fa017dc87a88a10003',
+                'desc': 'Correspondence.Category',
+                'internal': true
+            }
+        },
+        'content': 'Test Description',
+        'status': {
+            'id': '8a8189847dc879fa017dc87a88d00007',
+            'value': 'awaiting_reply',
+            'label': 'Awaiting Reply',
+            'owner': {
+                'id': '8a8189847dc879fa017dc87a88cc0006',
+                'desc': 'Correspondence.Status',
+                'internal': true
+            }
+        }
+    },
+    ],
     'publisher': {
         'id': '2c9180b07e6ade90017e6ae3bd130018',
         'value': 'publisher_1',
@@ -123,6 +163,26 @@ const publicationRequest = {
         }
     ],
     'withoutAgreement': false,
+    'agreement': {
+        'id': '8a8189b27e7315ee017e7739d6c60000',
+        'owner': { id: '51d6bce3-6237-419c-8440-877f8cfd3c59' },
+        'remoteId': '45c6cf86-363b-4ee4-8b99-d3082daf2f97',
+        'remoteId_object': {
+            'agreementStatus': { id: '8a81853f791989b00179198b17e00021', value: 'draft', label: 'Draft' },
+            'cancellationDeadline': null,
+            'dateCreated': '2021-11-16T11:40:35Z',
+            'description': 'Imported from LAS:eR on Tue Nov 16 11:40:35 UTC 2021',
+            'endDate': '2021-12-31',
+            'id': '45c6cf86-363b-4ee4-8b99-d3082daf2f97',
+            'lastUpdated': '2021-12-16T16:33:51Z',
+            'localReference': 'subscription:fb3cfff1-a83b-4f54-8eb8-5a19bb07c8a8',
+            'name': 'Bibliography of Asian Studies / BAS 2021',
+            'startDate': '2021-01-01',
+
+            'version': 3
+        },
+        'externalRequestIds': [],
+    },
     'subtype': {
         'id': '2c9180b07e6ade90017e6ae3bd3b001f',
         'value': 'subtype_1',

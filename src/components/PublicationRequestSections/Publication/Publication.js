@@ -14,8 +14,7 @@ import {
   NoValue,
   Row
 } from '@folio/stripes/components';
-import JournalDetails from '../JournalDetails';
-import BookDetails from '../BookDetails';
+import { JournalDetails, BookDetails } from '../PublicationType';
 import { publicationRequestFields } from '../../../constants';
 import ExternalLink from '../../ExternalLink';
 

@@ -54,7 +54,7 @@ const Correspondence = ({ request }) => {
           <IfPermission perm="oa.publicationRequest.edit">
             <Button
               id="add-correspondence-button"
-              to={`${urls.publicationRequestCorrespondenceCreate(request.id)}`}
+              to={`${urls.publicationRequestCorrespondenceCreate(request?.id)}`}
             >
               <FormattedMessage id="ui-oa.publicationRequest.addCorrespondence" />
             </Button>

@@ -11,7 +11,7 @@ import {
   Row
 } from '@folio/stripes/components';
 
-import { findIssnByNamespace } from '../../util/journalUtils';
+import { findIssnByNamespace } from '../../../util/journalUtils';
 
 const propTypes = {
   journal: PropTypes.object
