@@ -20,7 +20,7 @@ const propTypes = {
 
 const renderStreetAddresses = (streetAddresses) => {
   return (
-    <div>
+    <>
       {streetAddresses.map((address, index) => (
         <Row>
           <Card
@@ -96,7 +96,7 @@ const renderStreetAddresses = (streetAddresses) => {
           </Card>
         </Row>
       ))}
-    </div>
+    </>
   );
 };
 

@@ -13,7 +13,7 @@ import {
 const ExternalRequestIdFieldArray = () => {
   const renderExternalRequestId = (fields) => {
     return (
-      <div>
+      <>
         {fields.map((externalRequestId, index) => (
           <Row key={externalRequestId} middle="xs">
             <Col xs={3}>
@@ -32,7 +32,7 @@ const ExternalRequestIdFieldArray = () => {
             </Col>
           </Row>
         ))}
-      </div>
+      </>
     );
   };
 
@@ -45,16 +45,16 @@ const ExternalRequestIdFieldArray = () => {
   return (
     <FieldArray name="externalRequestIds">
       {({ fields }) => (
-        <div>
-          <div>
+        <>
+          <>
             {fields.length ? renderExternalRequestId(fields) : renderEmpty()}
-          </div>
+          </>
           <Button
             onClick={() => fields.push({})}
           >
             <FormattedMessage id="ui-oa.publicationRequest.addExternalRequestId" />
           </Button>
-        </div>
+        </>
       )}
     </FieldArray>);
 };

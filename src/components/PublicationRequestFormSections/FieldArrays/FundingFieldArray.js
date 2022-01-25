@@ -15,7 +15,7 @@ import selectifyRefdata from '../../../util/selectifyRefdata';
 
 const renderFunders = (fields, fundersValues, aspectFundedValues) => {
   return (
-    <div>
+    <>
       {fields.map((name, index) => (
         <Row key={name} middle="xs">
           <Col xs={3}>
@@ -43,7 +43,7 @@ const renderFunders = (fields, fundersValues, aspectFundedValues) => {
           </Col>
         </Row>
       ))}
-    </div>
+    </>
   );
 };
 
@@ -71,16 +71,16 @@ const FundingFieldArray = () => {
   return (
     <FieldArray name="fundings">
       {({ fields }) => (
-        <div>
-          <div>
+        <>
+          <>
             {fields.length ? renderFunders(fields, fundersValues, aspectFundedValues) : renderEmpty()}
-          </div>
+          </>
           <Button
             onClick={() => fields.push({})}
           >
             <FormattedMessage id="ui-oa.funders.addFunding" />
           </Button>
-        </div>
+        </>
       )}
     </FieldArray>
   );

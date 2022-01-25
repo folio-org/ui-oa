@@ -6,7 +6,6 @@ import {
   Button,
   Col,
   IconButton,
-  Layout,
   Select,
   TextField,
   Row,
@@ -15,18 +14,23 @@ import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
 
 const IdentifiersFieldArray = () => {
-  const identifierTypeValues = selectifyRefdata(useOARefdata('PublicationIdentifier.Type'));
+  const identifierTypeValues = selectifyRefdata(
+    useOARefdata('PublicationIdentifier.Type')
+  );
 
   const renderIdentifiers = (fields) => {
     return (
-      <div>
+      <>
         {fields.map((identifier, index) => (
           <Row key={identifier} middle="xs">
             <Col xs={3}>
               <Field
                 autoFocus={!fields.value[index].type?.id}
                 component={Select}
-                dataOptions={[{ value: '', label: '' }, ...identifierTypeValues]}
+                dataOptions={[
+                  { value: '', label: '' },
+                  ...identifierTypeValues,
+                ]}
                 label={<FormattedMessage id="ui-oa.identifiers.type" />}
                 name={`${identifier}.type.id`}
               />
@@ -39,39 +43,32 @@ const IdentifiersFieldArray = () => {
               />
             </Col>
             <Col xs={6}>
-              <IconButton
-                icon="trash"
-                onClick={() => fields.remove(index)}
-              />
+              <IconButton icon="trash" onClick={() => fields.remove(index)} />
             </Col>
           </Row>
         ))}
-      </div>
+      </>
     );
   };
 
   const renderEmpty = () => {
     return (
-      <Layout className="padding-bottom-gutter">
-        <FormattedMessage id="ui-oa.identifiers.requestHasNone" />
-      </Layout>);
+      <div />
+    );
   };
 
   return (
     <FieldArray name="identifiers">
       {({ fields }) => (
-        <div>
-          <div>
-            {fields.length ? renderIdentifiers(fields) : renderEmpty()}
-          </div>
-          <Button
-            onClick={() => fields.push({})}
-          >
+        <>
+          <>{fields.length ? renderIdentifiers(fields) : renderEmpty()}</>
+          <Button onClick={() => fields.push({})}>
             <FormattedMessage id="ui-oa.identifiers.addIdentifier" />
           </Button>
-        </div>
+        </>
       )}
-    </FieldArray>);
+    </FieldArray>
+  );
 };
 
 export default IdentifiersFieldArray;
