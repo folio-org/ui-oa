@@ -15,7 +15,7 @@ import {
 
 import { EditCard } from '@folio/stripes-erm-components';
 
-import JournalDetails from '../../PublicationRequestSections';
+import JournalDetails from '../../PublicationRequestSections/PublicationType/JournalDetails';
 import { findIssnByNamespace } from '../../../util/journalUtils';
 
 
