@@ -3,7 +3,7 @@ import { Form, arrayMutators } from 'react-final-form';
 import { useMutation } from 'react-query';
 import { FormattedMessage } from 'react-intl';
 
-import { Button, Modal } from '@folio/stripes/components';
+import { Button, Modal, ModalFooter } from '@folio/stripes/components';
 import { useOkapiKy } from '@folio/stripes/core';
 
 import PartyInfoForm from '../PartyFormSections/PartyInfoForm/PartyInfoForm';
@@ -33,7 +33,7 @@ const PartyModal = ({ showModal, setShowModal }) => {
 
   const renderModalFooter = (handleSubmit) => {
     return (
-      <>
+      <ModalFooter>
         <Button
           buttonStyle="primary"
           id="duplicate-modal-save-button"
@@ -49,7 +49,7 @@ const PartyModal = ({ showModal, setShowModal }) => {
         >
           <FormattedMessage id="stripes-components.cancel" />
         </Button>
-      </>
+      </ModalFooter>
     );
   };
 

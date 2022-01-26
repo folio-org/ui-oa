@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Field, useFormState } from 'react-final-form';
-import { Accordion, Button, Label } from '@folio/stripes/components';
+import { Accordion, Button, Label, Layout } from '@folio/stripes/components';
 import {
   generateKiwtQuery,
   QueryTypedown,
@@ -30,9 +30,11 @@ const CorrespondingAuthorForm = () => {
 
   const renderFooter = () => {
     return (
-      <Button onClick={() => setShowPartyModal(true)}>
-        <FormattedMessage id="ui-oa.publicationRequest.createPerson" />
-      </Button>
+      <Layout className="textCentered">
+        <Button marginBottom0 onClick={() => setShowPartyModal(true)}>
+          <FormattedMessage id="ui-oa.publicationRequest.createPerson" />
+        </Button>
+      </Layout>
     );
   };
 
