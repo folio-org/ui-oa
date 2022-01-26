@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Field, useFormState } from 'react-final-form';
+import { Field, useFormState, useForm } from 'react-final-form';
 import { Accordion, Button, Label, Layout } from '@folio/stripes/components';
 import {
   generateKiwtQuery,
@@ -13,6 +13,7 @@ import PartyModal from '../../PartyModal';
 
 const CorrespondingAuthorForm = () => {
   const { values } = useFormState();
+  const { change } = useForm();
   const [showPartyModal, setShowPartyModal] = useState(false);
 
   const pathMutator = (input, path) => {
@@ -28,10 +29,18 @@ const CorrespondingAuthorForm = () => {
     return `${path}${query}`;
   };
 
+  const handlePartyChange = (party) => {
+    change('correspondingAuthor.partyOwner', party);
+  };
+
   const renderFooter = () => {
     return (
       <Layout className="textCentered">
-        <Button marginBottom0 onClick={() => setShowPartyModal(true)}>
+        <Button
+          buttonStyle="primary"
+          marginBottom0
+          onClick={() => setShowPartyModal(true)}
+        >
           <FormattedMessage id="ui-oa.publicationRequest.createPerson" />
         </Button>
       </Layout>
@@ -76,7 +85,11 @@ const CorrespondingAuthorForm = () => {
           </EditCard>
         )}
       </Accordion>
-      <PartyModal setShowModal={setShowPartyModal} showModal={showPartyModal} />
+      <PartyModal
+        handlePartyChange={handlePartyChange}
+        setShowModal={setShowPartyModal}
+        showModal={showPartyModal}
+      />
     </>
   );
 };

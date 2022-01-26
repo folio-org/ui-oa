@@ -11,9 +11,10 @@ import PartyInfoForm from '../PartyFormSections/PartyInfoForm/PartyInfoForm';
 const propTypes = {
   showModal: PropTypes.bool,
   setShowModal: PropTypes.func,
+  handlePartyChange: PropTypes.func,
 };
 
-const PartyModal = ({ showModal, setShowModal }) => {
+const PartyModal = ({ showModal, setShowModal, handlePartyChange }) => {
   const ky = useOkapiKy();
 
   const handleClose = () => {
@@ -22,14 +23,11 @@ const PartyModal = ({ showModal, setShowModal }) => {
 
   const { mutateAsync: postParty } = useMutation(
     ['ui-oa', 'PartyModal', 'postParty'],
-    (data) => ky.post('oa/party', { json: data }).json().then(() => {
+    (data) => ky.post('oa/party', { json: data }).json().then((res) => {
+        handlePartyChange(res);
         handleClose();
       })
   );
-
-  const submitParty = (values) => {
-    postParty(values);
-  };
 
   const renderModalFooter = (handleSubmit) => {
     return (
@@ -54,7 +52,7 @@ const PartyModal = ({ showModal, setShowModal }) => {
   };
 
   return (
-    <Form mutators={arrayMutators} onSubmit={submitParty}>
+    <Form mutators={arrayMutators} onSubmit={postParty}>
       {({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           <Modal
