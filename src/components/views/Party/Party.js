@@ -6,7 +6,7 @@ import { AppIcon } from '@folio/stripes/core';
 
 import { Pane, Button, Icon } from '@folio/stripes/components';
 
-import { PartyInfo } from '../../PartySections';
+import PartyInfo from '../../PartySections';
 import urls from '../../../util/urls';
 
 const propTypes = {
