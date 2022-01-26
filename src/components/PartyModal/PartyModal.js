@@ -60,7 +60,7 @@ const PartyModal = ({ showModal, setShowModal }) => {
           <Modal
             dismissible
             footer={renderModalFooter(handleSubmit)}
-            label="ui-oa.publicationRequest.createPerson"
+            label={<FormattedMessage id="ui-oa.publicationRequest.createPerson" />}
             onClose={() => setShowModal(false)}
             open={showModal}
           >
