@@ -1,11 +1,7 @@
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Field, useFormState } from 'react-final-form';
-import {
-  Accordion,
-  Button,
-  Label,
-} from '@folio/stripes/components';
+import { Accordion, Button, Label } from '@folio/stripes/components';
 import {
   generateKiwtQuery,
   QueryTypedown,
@@ -78,10 +74,7 @@ const CorrespondingAuthorForm = () => {
           </EditCard>
         )}
       </Accordion>
-      <PartyModal
-        setShowModal={setShowPartyModal}
-        showModal={showPartyModal}
-      />
+      <PartyModal setShowModal={setShowPartyModal} showModal={showPartyModal} />
     </>
   );
 };
