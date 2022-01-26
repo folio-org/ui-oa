@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Form } from 'react-final-form';
+import { Form, arrayMutators } from 'react-final-form';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useMutation } from 'react-query';
 
@@ -23,48 +23,47 @@ const PartyModal = ({ showModal, setShowModal }) => {
   const { mutateAsync: postParty } = useMutation(
     ['ui-oa', 'PartyModal', 'postParty'],
     (data) => ky.post('oa/party', { json: data }).json().then(() => {
-        handleClose();
-      })
+    handleClose();
+    })
   );
-  const submitParty = () => {
-    postParty();
+  const submitParty = (values) => {
+    postParty(values);
   };
-  const renderModalFooter = (
-    <>
-      <Button
-        buttonStyle="primary"
-        id="duplicate-modal-save-button"
-        onClick={submitParty}
-        type="submit"
-      >
-        <FormattedMessage id="stripes-components.saveAndClose" />
-      </Button>
-      <Button
-        buttonStyle="default"
-        id="duplicate-modal-cancel-button"
-        onClick={() => setShowModal(false)}
-      >
-        <FormattedMessage id="stripes-components.cancel" />
-      </Button>
-    </>
-  );
 
   return (
-    <Modal
-      dismissible
-      footer={renderModalFooter}
-      label="ui-oa.publicationRequest.createPerson"
-      onClose={() => setShowModal(false)}
-      open={showModal}
-    >
-      <Form onSubmit={submitParty}>
-        {({ handleSubmit }) => (
-          <form onSubmit={handleSubmit}>
+    <Form mutators={arrayMutators} onSubmit={submitParty}>
+      {({ handleSubmit }) => (
+        <form onSubmit={handleSubmit}>
+          <Modal
+            dismissible
+            footer={
+              <>
+                <Button
+                  buttonStyle="primary"
+                  id="duplicate-modal-save-button"
+                  onClick={handleSubmit}
+                  type="submit"
+                >
+                  <FormattedMessage id="stripes-components.saveAndClose" />
+                </Button>
+                <Button
+                  buttonStyle="default"
+                  id="duplicate-modal-cancel-button"
+                  onClick={() => setShowModal(false)}
+                >
+                  <FormattedMessage id="stripes-components.cancel" />
+                </Button>
+              </>
+            }
+            label="ui-oa.publicationRequest.createPerson"
+            onClose={() => setShowModal(false)}
+            open={showModal}
+          >
             <PartyInfoForm />
-          </form>
-        )}
-      </Form>
-    </Modal>
+          </Modal>
+        </form>
+      )}
+    </Form>
   );
 };
 
