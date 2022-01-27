@@ -7,6 +7,7 @@ import { AppIcon } from '@folio/stripes/core';
 import { SASQRoute } from '@k-int/stripes-kint-components';
 import { OAFilterHeaderComponent } from '../components/SearchAndFilter';
 import { findIssnByNamespace } from '../util/journalUtils';
+import Journal from '../components/views/Journal';
 
 const JournalsRoute = ({ path }) => {
   const renderISSN = (d, namespace) => {
@@ -69,7 +70,7 @@ const JournalsRoute = ({ path }) => {
       path={path}
       resultColumns={resultColumns}
       sasqProps={{ initialSortState }}
-      // ViewComponent={}
+      ViewComponent={Journal}
     />
   );
 };
