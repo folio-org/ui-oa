@@ -13,7 +13,7 @@ import { REFDATA_ENDPOINT, SETTINGS_ENDPOINT } from '../constants';
 const propTypes = {
   resources: PropTypes.shape({
     settings: PropTypes.shape({
-      records: PropTypes.array
+      records: PropTypes.arrayOf(PropTypes.object)
     })
   }),
   match: PropTypes.shape({
