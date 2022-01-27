@@ -12,6 +12,7 @@ import {
   CorrespondenceEditRoute,
   PartiesRoute,
   PartiesEditRoute,
+  JournalsRoute,
 } from './routes';
 
 const App = (props) => {
@@ -54,6 +55,9 @@ const App = (props) => {
         />
         <PartiesRoute
           path={`${path}/people`}
+        />
+        <JournalsRoute
+          path={`${path}/journals`}
         />
         <PublicationRequestsRoute
           path={`${path}/publicationRequests`}

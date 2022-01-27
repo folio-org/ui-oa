@@ -42,7 +42,7 @@ const Party = ({ resource: party, onClose }) => {
           </Icon>
         </Button>
       )}
-      appIcon={<AppIcon app="users" iconKey="app" size="small" />}
+      appIcon={<AppIcon iconKey="app" size="small" />}
       defaultWidth="55%"
       dismissible
       onClose={onClose}
