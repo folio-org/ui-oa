@@ -20,6 +20,8 @@
 
   "journals": "Journals",
   "journals.title": "Title",
+  "journals.printIssn": "ISSN (Print)",
+  "journals.electronicIssn": "ISSN (Electronic)",
   
   "party.edit": "Edit",
   "party.title.mr": "Mr",

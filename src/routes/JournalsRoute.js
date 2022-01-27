@@ -2,14 +2,18 @@ import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 
-import {
-  AppIcon,
-} from '@folio/stripes/core';
+import { AppIcon } from '@folio/stripes/core';
 
 import { SASQRoute } from '@k-int/stripes-kint-components';
 import { OAFilterHeaderComponent } from '../components/SearchAndFilter';
+import { findIssnByNamespace } from '../util/journalUtils';
 
 const JournalsRoute = ({ path }) => {
+  const renderISSN = (d, namespace) => {
+    const issn = findIssnByNamespace(d, namespace);
+    return issn?.value;
+  };
+
   const renderHeaderComponent = () => {
     return <OAFilterHeaderComponent primary="journals" />;
   };
@@ -19,31 +23,37 @@ const JournalsRoute = ({ path }) => {
     SASQ_MAP: {
       searchKey: 'title',
       filterKeys: {
-      }
-    }
+      },
+    },
   };
 
   const resultColumns = [
     {
-      propertyPath:'title',
-      label: <FormattedMessage id="ui-oa.journals.title" />
+      propertyPath: 'title',
+      label: <FormattedMessage id="ui-oa.journals.title" />,
+    },
+    {
+      propertyPath: 'printIssn',
+      label: <FormattedMessage id="ui-oa.journals.printIssn" />,
+    },
+    {
+      propertyPath: 'electronicIssn',
+      label: <FormattedMessage id="ui-oa.journals.electronicIssn" />,
     },
   ];
 
   const formatter = {
-    title: d => (
-      <AppIcon
-        iconAlignment="baseline"
-        iconKey="app"
-        size="small"
-      >
+    title: (d) => (
+      <AppIcon iconAlignment="baseline" iconKey="app" size="small">
         {d?.title}
       </AppIcon>
     ),
+    printIssn: (d) => renderISSN(d, 'print'),
+    electronicIssn: (d) => renderISSN(d, 'electronic'),
   };
 
   const initialSortState = {
-    sort: 'title'
+    sort: 'title',
   };
 
   return (
@@ -65,7 +75,7 @@ const JournalsRoute = ({ path }) => {
 };
 
 JournalsRoute.propTypes = {
-  path: PropTypes.string.isRequired
+  path: PropTypes.string.isRequired,
 };
 
 export default JournalsRoute;
