@@ -40,6 +40,12 @@
   "party.phone": "Phone",
   "party.mobilePhone": "Mobile phone",
 
+  "journal.title": "Title",
+  "journal.materialType": "Material type",
+  "journal.ezb": "EZB",
+  "journal.zdb": "ZDB",
+  "journal.issn": "ISSN",
+
   "publicationRequest.addFunding": "Add funding",
   "publicationRequest.addPerson": "Add person",
   "publicationRequest.addCorrespondence": "Add correspondence",

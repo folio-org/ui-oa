@@ -20,7 +20,7 @@ const Party = ({ resource: party, onClose }) => {
 
   const getSectionProps = (name) => {
     return {
-      id: `publication-request-section-${name}`,
+      id: `party-section-${name}`,
       party,
     };
   };
