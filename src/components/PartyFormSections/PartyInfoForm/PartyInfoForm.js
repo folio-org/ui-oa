@@ -1,9 +1,11 @@
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Field } from 'react-final-form';
 
 import { Col, Row, Select, TextField } from '@folio/stripes/components';
 
 const PartyInfoForm = () => {
+  const intl = useIntl();
+
   return (
     <>
       <Row>
@@ -12,10 +14,10 @@ const PartyInfoForm = () => {
             component={Select}
             dataOptions={[
               { value: '', label: '' },
-              { value: 'Mr', label: 'Mr' },
-              { value: 'Ms', label: 'Ms' },
-              { value: 'Prof', label: 'Prof' },
-              { value: 'Dr', label: 'Dr' },
+              { value: 'Mr', label: intl.formatMessage({ id : 'ui-oa.party.title.mr' }) },
+              { value: 'Ms', label: intl.formatMessage({ id : 'ui-oa.party.title.ms' }) },
+              { value: 'Prof', label: intl.formatMessage({ id : 'ui-oa.party.title.prof' }) },
+              { value: 'Dr', label: intl.formatMessage({ id : 'ui-oa.party.title.dr' }) },
             ]}
             id="party-title"
             label={<FormattedMessage id="ui-oa.party.title" />}

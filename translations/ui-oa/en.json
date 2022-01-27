@@ -19,6 +19,10 @@
   "parties.createPersonRecord": "New person record",
   
   "party.edit": "Edit",
+  "party.title.mr": "Mr",
+  "party.title.ms": "Ms",
+  "party.title.prof": "Prof",
+  "party.title.dr": "Dr",
   "party.editPerson": "Edit person",
   "party.createPerson": "Create person",
   "party.closeForm": "Close form",
@@ -158,8 +162,22 @@
   "correspondence.correspondent": "Correspondent",
   "correspondence.dateOfCorrespondence": "Date",
   "correspondence.mode": "Mode",
+  "correspondence.mode.email": "Email",
+  "correspondence.mode.telephone": "Telephone",
+
+
   "correspondence.category": "Category",
+  "correspondence.category.invoice": "Invoice",
+  "correspondence.category.funding": "Funding",
+
+
   "correspondence.status": "Status",
+  "correspondence.status.awaitingReply": "Awaiting Reply",
+  "correspondence.status.responseNeeded": "Response Needed",
+  "correspondence.status.closed": "Closed",
+
+
+
   "correspondence.showMore": "Show more",
   "correspondence.showLess": "Show less"
   
