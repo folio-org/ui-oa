@@ -47,7 +47,6 @@ const PartiesRoute = ({ path }) => {
   const formatter = {
     givenNames: d => (
       <AppIcon
-        app="users"
         iconAlignment="baseline"
         iconKey="app"
         size="small"
@@ -84,9 +83,9 @@ const PartiesRoute = ({ path }) => {
     <SASQRoute
       fetchParameters={fetchParameters}
       FilterPaneHeaderComponent={renderHeaderComponent}
-      id="publication-requests"
+      id="parties-sasq"
       mainPaneProps={{
-        appIcon: <AppIcon app="users" iconKey="app" size="small" />,
+        appIcon: <AppIcon iconKey="app" size="small" />,
         // lastMenu: lastpaneMenu,
         paneTitle: <FormattedMessage id="ui-oa.parties.people" />,
       }}
