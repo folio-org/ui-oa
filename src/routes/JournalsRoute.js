@@ -21,7 +21,7 @@ const JournalsRoute = ({ path }) => {
   const fetchParameters = {
     endpoint: 'oa/works',
     SASQ_MAP: {
-      searchKey: 'title',
+      searchKey: 'instances.identifiers.identifier.value,title',
       filterKeys: {
       },
     },

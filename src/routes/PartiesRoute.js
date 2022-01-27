@@ -19,7 +19,7 @@ const PartiesRoute = ({ path }) => {
   const fetchParameters = {
     endpoint: 'oa/party',
     SASQ_MAP: {
-      searchKey: 'mainEmail, givenNames, orcidId, familyName',
+      searchKey: 'mainEmail,givenNames,familyName,orcidId',
       filterKeys: {
       }
     }
