@@ -17,6 +17,9 @@
   "parties.orcidId": "ORCID iD",
   "parties.mainEmail": "Main email",
   "parties.createPersonRecord": "New person record",
+
+  "journals": "Journals",
+  "journals.title": "Title",
   
   "party.edit": "Edit",
   "party.title.mr": "Mr",
