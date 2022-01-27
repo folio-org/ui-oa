@@ -1,4 +1,4 @@
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Field } from 'react-final-form';
 
 import {
@@ -7,11 +7,13 @@ import {
   TextField,
   Datepicker,
   Select,
-  TextArea
+  TextArea,
 } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
 
 const CorrespondenceInfoForm = () => {
+  const intl = useIntl();
+
   return (
     <>
       <Row start="xs">
@@ -43,9 +45,24 @@ const CorrespondenceInfoForm = () => {
             component={Select}
             dataOptions={[
               { value: '', label: '' },
-              { value: 'awaiting_reply', label: 'Awaiting Reply' },
-              { value: 'response_needed', label: 'Response Needed' },
-              { value: 'closed', label: 'Closed' },
+              {
+                value: 'awaiting_reply',
+                label: intl.formatMessage({
+                  id: 'ui-oa.correspondence.status.awaitingReply',
+                }),
+              },
+              {
+                value: 'response_needed',
+                label: intl.formatMessage({
+                  id: 'ui-oa.correspondence.status.responseNeeded',
+                }),
+              },
+              {
+                value: 'closed',
+                label: intl.formatMessage({
+                  id: 'ui-oa.correspondence.status.responseNeeded',
+                }),
+              },
             ]}
             id="correspondence-status"
             label={<FormattedMessage id="ui-oa.correspondence.status" />}
@@ -59,8 +76,18 @@ const CorrespondenceInfoForm = () => {
             component={Select}
             dataOptions={[
               { value: '', label: '' },
-              { value: 'email', label: 'Email' },
-              { value: 'telephone', label: 'Telephone' },
+              {
+                value: 'email',
+                label: intl.formatMessage({
+                  id: 'ui-oa.correspondence.mode.email',
+                }),
+              },
+              {
+                value: 'telephone',
+                label: intl.formatMessage({
+                  id: 'ui-oa.correspondence.mode.telephone',
+                }),
+              },
             ]}
             id="correspondence-mode"
             label={<FormattedMessage id="ui-oa.correspondence.mode" />}
@@ -76,8 +103,18 @@ const CorrespondenceInfoForm = () => {
             component={Select}
             dataOptions={[
               { value: '', label: '' },
-              { value: 'invoice', label: 'Invoice' },
-              { value: 'funding', label: 'Funding' },
+              {
+                value: 'invoice',
+                label: intl.formatMessage({
+                  id: 'ui-oa.correspondence.category.invoice',
+                }),
+              },
+              {
+                value: 'funding',
+                label: intl.formatMessage({
+                  id: 'ui-oa.correspondence.category.funding',
+                }),
+              },
             ]}
             id="correspondence-category"
             label={<FormattedMessage id="ui-oa.correspondence.category" />}
