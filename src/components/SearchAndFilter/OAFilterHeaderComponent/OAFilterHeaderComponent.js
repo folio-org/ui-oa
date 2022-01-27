@@ -30,6 +30,7 @@ const OAFilterHeaderComponent = ({ primary }) => {
       <Button
         buttonStyle={primary === 'journals' ? 'primary' : 'default'}
         id="clickable-nav-oa-journals"
+        to={primary === 'journals' ? null : urls.journals()}
       >
         <FormattedMessage id="ui-oa.searchAndFilter.journals" />
       </Button>
