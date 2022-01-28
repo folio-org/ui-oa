@@ -19,59 +19,57 @@ const JournalInstances = ({ journal }) => {
     );
   };
 
-  const renderInstances = () => {
-    return (
-      <>
-        {journal.instances.map((instance) => (
-          <>
-            <Row>
+  return journal?.instances ? (
+    <>
+      {journal.instances.map((instance) => (
+        <>
+          <Row>
+            <Col xs={3}>
+              <KeyValue
+                label={<FormattedMessage id="ui-oa.journal.title" />}
+                value={instance?.title}
+              />
+            </Col>
+            <Col xs={3}>
+              <KeyValue
+                label={<FormattedMessage id="ui-oa.journal.materialType" />}
+                value={instance?.subType?.label}
+              />
+            </Col>
+          </Row>
+          <Row>
+            {findIdentifierByNamespace(instance, 'ezb') && (
               <Col xs={3}>
                 <KeyValue
-                  label={<FormattedMessage id="ui-oa.journal.title" />}
-                  value={instance?.title}
+                  label={<FormattedMessage id="ui-oa.journal.ezb" />}
+                  value={findIdentifierByNamespace(instance, 'ezb')?.value}
                 />
               </Col>
+            )}
+            {findIdentifierByNamespace(instance, 'zdb') && (
               <Col xs={3}>
                 <KeyValue
-                  label={<FormattedMessage id="ui-oa.journal.materialType" />}
-                  value={instance?.subType?.label}
+                  label={<FormattedMessage id="ui-oa.journal.zdb" />}
+                  value={findIdentifierByNamespace(instance, 'zdb')?.value}
                 />
               </Col>
-            </Row>
-            <Row>
-              {findIdentifierByNamespace(instance, 'ezb') && (
-                <Col xs={3}>
-                  <KeyValue
-                    label={<FormattedMessage id="ui-oa.journal.ezb" />}
-                    value={findIdentifierByNamespace(instance, 'ezb')?.value}
-                  />
-                </Col>
-              )}
-              {findIdentifierByNamespace(instance, 'zdb') && (
-                <Col xs={3}>
-                  <KeyValue
-                    label={<FormattedMessage id="ui-oa.journal.zdb" />}
-                    value={findIdentifierByNamespace(instance, 'zdb')?.value}
-                  />
-                </Col>
-              )}
-              {findIdentifierByNamespace(instance, 'issn') && (
-                <Col xs={3}>
-                  <KeyValue
-                    label={<FormattedMessage id="ui-oa.journal.issn" />}
-                    value={findIdentifierByNamespace(instance, 'issn')?.value}
-                  />
-                </Col>
-              )}
-            </Row>
-            <hr />
-          </>
-        ))}
-      </>
-    );
-  };
-
-  return <>{journal.instances ? renderInstances() : renderEmpty()}</>;
+            )}
+            {findIdentifierByNamespace(instance, 'issn') && (
+              <Col xs={3}>
+                <KeyValue
+                  label={<FormattedMessage id="ui-oa.journal.issn" />}
+                  value={findIdentifierByNamespace(instance, 'issn')?.value}
+                />
+              </Col>
+            )}
+          </Row>
+          <hr />
+        </>
+      ))}
+    </>
+  ) : (
+    renderEmpty()
+  );
 };
 
 JournalInstances.propTypes = propTypes;

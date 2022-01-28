@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
@@ -7,61 +6,64 @@ import {
   Col,
   FormattedUTCDate,
   KeyValue,
-  NoValue,
-  Row
+  Row,
 } from '@folio/stripes/components';
 
 const propTypes = {
-  request: PropTypes.object
+  request: PropTypes.object,
 };
 
 const RequestInfo = ({ request }) => {
   return (
-    <div>
+    <>
       <Row start="xs">
         <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.requestNumber" />}>
-            {request?.requestNumber ?
-              request.requestNumber :
-              <NoValue />
+          <KeyValue
+            label={
+              <FormattedMessage id="ui-oa.publicationRequest.requestNumber" />
             }
-          </KeyValue>
+            value={request?.requestNumber}
+          />
         </Col>
         <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.requestDate" />}>
-            {request?.requestDate ?
-              <FormattedUTCDate value={request.requestDate} /> :
-              <NoValue />
+          <KeyValue
+            label={
+              <FormattedMessage id="ui-oa.publicationRequest.requestDate" />
             }
-          </KeyValue>
+            value={
+              request?.requestDate && (
+                <FormattedUTCDate value={request.requestDate} />
+              )
+            }
+          />
         </Col>
         <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.status" />}>
-            {request?.requestStatus ?
-              request.requestStatus.label :
-              <NoValue />
-            }
-          </KeyValue>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.publicationRequest.status" />}
+            value={request?.requestStatus?.label}
+          />
         </Col>
         <Col xs={3} />
       </Row>
       <Row start="xs">
         <Col xs={3}>
-          <KeyValue label={<FormattedMessage id="ui-oa.publicationRequest.externalRequestIds" />}>
-            {request?.externalRequestIds?.length ?
-              <ul>
-                {request?.externalRequestIds?.map(requestId => (
-                  <li key={requestId?.id}>
-                    {requestId?.externalId}
-                  </li>
-                ))}
-              </ul> :
-              <NoValue />
+          <KeyValue
+            label={
+              <FormattedMessage id="ui-oa.publicationRequest.externalRequestIds" />
             }
-          </KeyValue>
+            value={
+              request?.externalRequestIds?.length ? (
+                <ul>
+                  {request?.externalRequestIds?.map((requestId) => (
+                    <li key={requestId?.id}>{requestId?.externalId}</li>
+                  ))}
+                </ul>
+              ) : null
+            }
+          />
         </Col>
       </Row>
-    </div>
+    </>
   );
 };
 

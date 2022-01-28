@@ -30,7 +30,7 @@ const propTypes = {
 const RequestInfoForm = ({ request }) => {
   const requestStatusValues = useOARefdata('PublicationRequest.RequestStatus');
   return (
-    <div>
+    <>
       <Row start="xs">
         <Col xs={3}>
           <KeyValue
@@ -68,7 +68,7 @@ const RequestInfoForm = ({ request }) => {
           <ExternalRequestIdFieldArray />
         </Col>
       </Row>
-    </div>
+    </>
   );
 };
 

@@ -9,7 +9,7 @@ import {
 const AffiliationFieldArray = () => {
   const renderAffiliations = (fields) => {
     return (
-      <div>
+      <>
         { fields.map((affiliation, index) => (
           <EditCard
             key={affiliation}
@@ -20,7 +20,7 @@ const AffiliationFieldArray = () => {
             {/* TODO: Detect if affiliation is selected / new and render correct func */}
           </EditCard>
         )) }
-      </div>
+      </>
     );
   };
 
@@ -33,16 +33,16 @@ const AffiliationFieldArray = () => {
   return (
     <FieldArray name="affiliation">
       {({ fields }) => (
-        <div>
-          <div>
+        <>
+          <>
             {fields.length ? renderAffiliations(fields) : renderEmpty()}
-          </div>
+          </>
           <Button
             onClick={() => fields.push({})}
           >
             <FormattedMessage id="ui-oa.affiliation.addAffiliation" />
           </Button>
-        </div>
+        </>
       )}
     </FieldArray>);
 };
