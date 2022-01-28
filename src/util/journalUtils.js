@@ -11,5 +11,9 @@ const findIssnByNamespace = (journal, namespace) => {
   return getIdentifiers(instance)?.find((element) => element?.ns?.value === 'issn');
 };
 
+const findIdentifierByNamespace = (instance, namespace) => {
+  return getIdentifiers(instance)?.find((element) => element?.ns?.value === namespace);
+};
 
-export { findIssnByNamespace, getIdentifiers, findSubtypeByNamespace };
+
+export { findIssnByNamespace, getIdentifiers, findSubtypeByNamespace, findIdentifierByNamespace };
