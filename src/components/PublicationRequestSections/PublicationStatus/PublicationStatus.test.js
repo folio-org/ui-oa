@@ -1,7 +1,10 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
-import { MemoryRouter } from 'react-router-dom';
-import { Accordion, MultiColumnList, MultiColumnListCell } from '@folio/stripes-testing';
+import {
+  Accordion,
+  MultiColumnList,
+  MultiColumnListCell,
+} from '@folio/stripes-testing';
 import translationsProperties from '../../../../test/helpers';
 import PublicationStatus from './PublicationStatus';
 import { publicationRequest } from '../../../../test/resources/publicationRequestsResources';
@@ -12,9 +15,7 @@ describe('PublicationStatus', () => {
   describe('renders components with no values', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <MemoryRouter>
-          <PublicationStatus request={null} />
-        </MemoryRouter>,
+        <PublicationStatus request={null} />,
         translationsProperties
       );
     });
@@ -32,9 +33,7 @@ describe('PublicationStatus', () => {
   describe('renders components with values', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <MemoryRouter>
-          <PublicationStatus request={publicationRequest} />
-        </MemoryRouter>,
+        <PublicationStatus request={publicationRequest} />,
         translationsProperties
       );
     });
@@ -45,15 +44,11 @@ describe('PublicationStatus', () => {
 
     test('renders PublicationStatus MCL component with values', async () => {
       await MultiColumnList({
-        columns: [
-          'Status',
-          'Status date',
-          'Status note'
-        ],
+        columns: ['Status', 'Status date', 'Status note'],
       }).exists();
-      await MultiColumnListCell({ content:'Test Note' }).exists();
-      await MultiColumnListCell({ content:'1/1/2022' }).exists();
-      await MultiColumnListCell({ content:'Submitted' }).exists();
+      await MultiColumnListCell({ content: 'Test Note' }).exists();
+      await MultiColumnListCell({ content: '1/1/2022' }).exists();
+      await MultiColumnListCell({ content: 'Submitted' }).exists();
     });
   });
 });

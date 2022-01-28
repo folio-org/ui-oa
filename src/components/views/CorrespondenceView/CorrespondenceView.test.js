@@ -1,22 +1,22 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
-import { MemoryRouter } from 'react-router-dom';
 import { KeyValue, Button, Modal } from '@folio/stripes-testing';
 import translationsProperties from '../../../../test/helpers';
 import CorrespondenceView from './CorrespondenceView';
-import { correspondence, handlers } from '../../../../test/resources/correspondenceResources';
+import {
+  correspondence,
+  handlers,
+} from '../../../../test/resources/correspondenceResources';
 
 describe('CorrespondenceForm', () => {
   describe('renders components', () => {
     beforeEach(() => {
       renderWithIntl(
-        <MemoryRouter>
-          <CorrespondenceView
-            onClose={handlers.onClose}
-            onDelete={handlers.onDelete}
-            onEdit={handlers.onEdit}
-          />
-        </MemoryRouter>,
+        <CorrespondenceView
+          onClose={handlers.onClose}
+          onDelete={handlers.onDelete}
+          onEdit={handlers.onEdit}
+        />,
         translationsProperties
       );
     });
@@ -48,14 +48,12 @@ describe('CorrespondenceForm', () => {
   describe('renders Initial Values and Buttons/Modals', () => {
     beforeEach(() => {
       renderWithIntl(
-        <MemoryRouter>
-          <CorrespondenceView
-            correspondence={correspondence}
-            onClose={handlers.onClose}
-            onDelete={handlers.onDelete}
-            onEdit={handlers.onEdit}
-          />
-        </MemoryRouter>,
+        <CorrespondenceView
+          correspondence={correspondence}
+          onClose={handlers.onClose}
+          onDelete={handlers.onDelete}
+          onEdit={handlers.onEdit}
+        />,
         translationsProperties
       );
     });
@@ -84,21 +82,21 @@ describe('CorrespondenceForm', () => {
     });
 
     test('renders Confirmation modal and triggers expected callbacks', async () => {
-        await Button('Actions').click();
-        await Button('Delete').click();
-        await Modal('Delete correspondence').exists();
-        await Button('Cancel').click();
-        await Button('Actions').click();
-        await Button('Delete').click();
-        await Modal('Delete correspondence').exists();
-        await Button('Delete').click();
-        expect(handlers.onDelete).toHaveBeenCalled();
+      await Button('Actions').click();
+      await Button('Delete').click();
+      await Modal('Delete correspondence').exists();
+      await Button('Cancel').click();
+      await Button('Actions').click();
+      await Button('Delete').click();
+      await Modal('Delete correspondence').exists();
+      await Button('Delete').click();
+      expect(handlers.onDelete).toHaveBeenCalled();
     });
 
     test('renders Edit button and triggers expected callback', async () => {
-        await Button('Actions').click();
-        await Button('Edit').click();
-        expect(handlers.onEdit).toHaveBeenCalled();
+      await Button('Actions').click();
+      await Button('Edit').click();
+      expect(handlers.onEdit).toHaveBeenCalled();
     });
   });
 });

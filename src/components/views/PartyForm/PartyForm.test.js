@@ -2,36 +2,36 @@ import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
 import { Button } from '@folio/stripes-testing';
 import translationsProperties from '../../../../test/helpers';
-import CorrespondenceForm from './CorrespondenceForm';
+import PartyForm from './PartyForm';
 import {
   handlers,
-  correspondence,
-} from '../../../../test/resources/correspondenceResources';
+  party,
+} from '../../../../test/resources/partyResources';
 
 jest.mock(
-  '../../CorrespondenceFormSections/CorrespondenceInfoForm/',
-  () => () => <div>CorrespondenceInfoForm</div>
+  '../../PartyFormSections/PartyInfoForm/PartyInfoForm',
+  () => () => <div>PartyInfoForm</div>
 );
 
-describe('CorrespondenceForm', () => {
+describe('PartyForm', () => {
   let renderComponent;
 
   describe('renders components', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <CorrespondenceForm handlers={handlers} />,
+        <PartyForm handlers={handlers} />,
         translationsProperties
       );
     });
 
-    test('renders "New Correspondent condtional', () => {
+    test('renders "Create person" condtional', () => {
       const { getByText } = renderComponent;
-      expect(getByText('New correspondence')).toBeInTheDocument();
+      expect(getByText('Create person')).toBeInTheDocument();
     });
 
-    test('renders CorrespondenceInfo Component', () => {
+    test('renders PartyInfoForm Component', () => {
       const { getByText } = renderComponent;
-      expect(getByText('CorrespondenceInfoForm')).toBeInTheDocument();
+      expect(getByText('PartyInfoForm')).toBeInTheDocument();
     });
 
     test('renders and triggers Cancel Button', async () => {
@@ -48,17 +48,17 @@ describe('CorrespondenceForm', () => {
   describe('renders conditionals with initial values', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <CorrespondenceForm
-          correspondence={correspondence}
+        <PartyForm
           handlers={handlers}
+          party={party}
         />,
         translationsProperties
       );
     });
 
-    test('renders "Edit Correspondent condtional', () => {
+    test('renders "Edit person" condtional', () => {
       const { getByText } = renderComponent;
-      expect(getByText('Edit correspondence')).toBeInTheDocument();
+      expect(getByText('Edit person')).toBeInTheDocument();
     });
   });
 });
