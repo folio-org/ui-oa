@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { AppIcon } from '@folio/stripes/core';
 
 import { Pane } from '@folio/stripes/components';
-import JournalInfo from '../../JournalSections/JournalInfo';
+import JournalInstances from '../../JournalSections';
 
 const propTypes = {
   onClose: PropTypes.func.isRequired,
@@ -26,7 +26,7 @@ const Journal = ({ resource: journal, onClose }) => {
       onClose={onClose}
       paneTitle={journal?.title}
     >
-      <JournalInfo {...getSectionProps('journalInfo')} />
+      <JournalInstances {...getSectionProps('journalInfo')} />
     </Pane>
   );
 };
