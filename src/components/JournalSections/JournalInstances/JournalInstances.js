@@ -2,17 +2,23 @@ import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 
-import { Col, KeyValue, Row } from '@folio/stripes/components';
+import { Col, KeyValue, Row, Layout } from '@folio/stripes/components';
 
-import {
-  findIdentifierByNamespace,
-} from '../../../util/journalUtils';
+import { findIdentifierByNamespace } from '../../../util/journalUtils';
 
 const propTypes = {
   journal: PropTypes.object,
 };
 
 const JournalInstances = ({ journal }) => {
+  const renderEmpty = () => {
+    return (
+      <Layout className="padding-bottom-gutter">
+        <FormattedMessage id="ui-oa.journal.noTitleInstances" />
+      </Layout>
+    );
+  };
+
   const renderInstances = () => {
     return (
       <>
@@ -65,7 +71,7 @@ const JournalInstances = ({ journal }) => {
     );
   };
 
-  return <>{journal.instances ? renderInstances() : null}</>;
+  return <>{journal.instances ? renderInstances() : renderEmpty()}</>;
 };
 
 JournalInstances.propTypes = propTypes;

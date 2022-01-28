@@ -41,6 +41,7 @@
   "party.mobilePhone": "Mobile phone",
 
   "journal.title": "Title",
+  "journal.noTitleInstances": "No title instances for this journal",
   "journal.materialType": "Material type",
   "journal.ezb": "EZB",
   "journal.zdb": "ZDB",
