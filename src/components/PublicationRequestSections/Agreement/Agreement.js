@@ -30,6 +30,16 @@ const Agreement = ({ request }) => {
     return agreement ? <Badge>1</Badge> : <Badge>0</Badge>;
   };
 
+  const renderAgreementLink = () => {
+    return agreementLinkFunction ? (
+      <Link to={agreementLinkFunction(request?.agreement?.remoteId_object)}>
+        <strong>{request?.agreement?.remoteId_object?.name}</strong>
+      </Link>
+    ) : (
+      <strong>{request?.agreement?.remoteId_object?.name}</strong>
+    );
+  };
+
   const renderEmpty = () => {
     return (
       <Layout className={css.agreementEmptyMessage}>
@@ -94,13 +104,7 @@ const Agreement = ({ request }) => {
           cardStyle="positive"
           headerStart={
             <AppIcon app="agreements" size="small">
-              {agreementLinkFunction ? (
-                <Link to={agreementLinkFunction(request?.agreement?.remoteId_object)}>
-                  <strong>{request?.agreement?.remoteId_object?.name}</strong>
-                </Link>
-              ) : (
-                <strong>{request?.agreement?.remoteId_object?.name}</strong>
-              )}
+              {renderAgreementLink()}
             </AppIcon>
           }
         >

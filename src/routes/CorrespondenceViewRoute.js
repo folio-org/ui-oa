@@ -5,9 +5,6 @@ import { useQuery, useMutation } from 'react-query';
 import urls from '../util/urls';
 import CorrespondenceView from '../components/views/CorrespondenceView';
 
-// TODO: handle delete functions correctly, but will need to refetch data
-// to be able to return to PublicationRequest on delete
-
 const CorrespondenceViewRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();

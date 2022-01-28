@@ -11,7 +11,6 @@ const propTypes = {
 };
 
 const PartyInfo = ({ party }) => {
-  //  TODO: ORCID iD, Phone and Mobile Phone still need to be implemented on backend
   return (
     <>
       <Row>
