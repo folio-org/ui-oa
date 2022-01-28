@@ -1,6 +1,5 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
-import { MemoryRouter } from 'react-router-dom';
 import { Accordion, KeyValue } from '@folio/stripes-testing';
 import translationsProperties from '../../../../test/helpers';
 import Agreement from './Agreement';
@@ -11,12 +10,7 @@ let renderComponent;
 describe('Agreement', () => {
   describe('renders components with no values', () => {
     beforeEach(() => {
-      renderComponent = renderWithIntl(
-        <MemoryRouter>
-          <Agreement />
-        </MemoryRouter>,
-        translationsProperties
-      );
+      renderComponent = renderWithIntl(<Agreement />, translationsProperties);
     });
 
     test('renders Agreement Accordion component', async () => {
@@ -39,9 +33,7 @@ describe('Agreement', () => {
   describe('renders components with values', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <MemoryRouter>
-          <Agreement request={publicationRequest} />
-        </MemoryRouter>,
+        <Agreement request={publicationRequest} />,
         translationsProperties
       );
     });

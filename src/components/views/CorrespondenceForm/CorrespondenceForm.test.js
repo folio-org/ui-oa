@@ -1,6 +1,5 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
-import { MemoryRouter } from 'react-router-dom';
 import { Button } from '@folio/stripes-testing';
 import translationsProperties from '../../../../test/helpers';
 import CorrespondenceForm from './CorrespondenceForm';
@@ -20,9 +19,7 @@ describe('CorrespondenceForm', () => {
   describe('renders components', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <MemoryRouter>
-          <CorrespondenceForm handlers={handlers} />
-        </MemoryRouter>,
+        <CorrespondenceForm handlers={handlers} />,
         translationsProperties
       );
     });
@@ -51,12 +48,10 @@ describe('CorrespondenceForm', () => {
   describe('renders conditionals with initial values', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <MemoryRouter>
-          <CorrespondenceForm
-            correspondence={correspondence}
-            handlers={handlers}
-          />
-        </MemoryRouter>,
+        <CorrespondenceForm
+          correspondence={correspondence}
+          handlers={handlers}
+        />,
         translationsProperties
       );
     });

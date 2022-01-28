@@ -1,6 +1,5 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
-import { MemoryRouter } from 'react-router-dom';
 import { Accordion } from '@folio/stripes-testing';
 import translationsProperties from '../../../../test/helpers';
 import CorrespondingAuthor from './CorrespondingAuthor';
@@ -13,9 +12,7 @@ describe('CorrespondingAuthor', () => {
   describe('renders components with no values', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <MemoryRouter>
-          <CorrespondingAuthor request={null} />
-        </MemoryRouter>,
+        <CorrespondingAuthor request={null} />,
         translationsProperties
       );
     });

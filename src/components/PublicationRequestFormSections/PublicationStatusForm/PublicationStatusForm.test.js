@@ -1,6 +1,5 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
-import { MemoryRouter } from 'react-router-dom';
 import { Accordion } from '@folio/stripes-testing';
 import translationsProperties from '../../../../test/helpers';
 import PublicationStatusForm from './PublicationStatusForm';
@@ -15,9 +14,7 @@ describe('PublicationStatusForm', () => {
   describe('renders components', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <MemoryRouter>
-          <PublicationStatusForm />
-        </MemoryRouter>,
+        <PublicationStatusForm />,
         translationsProperties
       );
     });

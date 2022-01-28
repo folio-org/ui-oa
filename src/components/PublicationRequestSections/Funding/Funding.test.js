@@ -1,7 +1,10 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
-import { MemoryRouter } from 'react-router-dom';
-import { Accordion, MultiColumnList, MultiColumnListCell } from '@folio/stripes-testing';
+import {
+  Accordion,
+  MultiColumnList,
+  MultiColumnListCell,
+} from '@folio/stripes-testing';
 import translationsProperties from '../../../../test/helpers';
 import Funding from './Funding';
 import { publicationRequest } from '../../../../test/resources/publicationRequestsResources';
@@ -12,9 +15,7 @@ describe('Funding', () => {
   describe('renders components with no values', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <MemoryRouter>
-          <Funding request={null} />
-        </MemoryRouter>,
+        <Funding request={null} />,
         translationsProperties
       );
     });
@@ -32,9 +33,7 @@ describe('Funding', () => {
   describe('renders components with values', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <MemoryRouter>
-          <Funding request={publicationRequest} />
-        </MemoryRouter>,
+        <Funding request={publicationRequest} />,
         translationsProperties
       );
     });
@@ -45,13 +44,10 @@ describe('Funding', () => {
 
     test('renders Funding MCL component with values', async () => {
       await MultiColumnList({
-        columns: [
-          'Funder',
-          'Aspect funded'
-        ],
+        columns: ['Funder', 'Aspect funded'],
       }).exists();
-      await MultiColumnListCell({ content:'Funder 1' }).exists();
-      await MultiColumnListCell({ content:'Research' }).exists();
+      await MultiColumnListCell({ content: 'Funder 1' }).exists();
+      await MultiColumnListCell({ content: 'Research' }).exists();
     });
   });
 });
