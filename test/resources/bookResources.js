@@ -3,4 +3,11 @@ const book = {
     'publicationYear' : 'Test Year'
 };
 
-export default book;
+const handlers = {
+    onClose: jest.fn(),
+    onDelete: jest.fn(),
+    onEdit: jest.fn(),
+    onSubmit: jest.fn(),
+};
+
+export { book, handlers };
