@@ -16,8 +16,8 @@ import {
 
 import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
 
-import useOARefdata from '../../../util/useOARefdata';
-import selectifyRefdata from '../../../util/selectifyRefdata';
+import useOARefdata from '../../../../util/useOARefdata';
+import selectifyRefdata from '../../../../util/selectifyRefdata';
 
 
 const PublicationStatusField = ({ fields: { name } }) => {

@@ -10,8 +10,8 @@ import {
   Row,
   Select
 } from '@folio/stripes/components';
-import useOARefdata from '../../../util/useOARefdata';
-import selectifyRefdata from '../../../util/selectifyRefdata';
+import useOARefdata from '../../../../util/useOARefdata';
+import selectifyRefdata from '../../../../util/selectifyRefdata';
 
 const renderFunders = (fields, fundersValues, aspectFundedValues) => {
   return (

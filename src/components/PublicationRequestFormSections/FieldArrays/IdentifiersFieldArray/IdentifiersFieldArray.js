@@ -10,8 +10,8 @@ import {
   TextField,
   Row,
 } from '@folio/stripes/components';
-import useOARefdata from '../../../util/useOARefdata';
-import selectifyRefdata from '../../../util/selectifyRefdata';
+import useOARefdata from '../../../../util/useOARefdata';
+import selectifyRefdata from '../../../../util/selectifyRefdata';
 
 const IdentifiersFieldArray = () => {
   const identifierTypeValues = selectifyRefdata(
