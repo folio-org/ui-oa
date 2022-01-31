@@ -4,7 +4,10 @@ const party = {
     'mainEmail': 'Elijah_Dempsey6074@brety.org',
     'fullName': 'Elijah Dempsey',
     'givenNames': 'Elijah',
-    'familyName': 'Dempsey'
+    'familyName': 'Dempsey',
+    'orcidId': '0000-1111',
+    'phone': '012345678',
+    'mobile': '012345678'
 };
 
 const handlers = {
