@@ -44,7 +44,7 @@ const LinkAgreementForm = () => {
       label={<FormattedMessage id="ui-oa.publicationRequest.agreement" />}
     >
       <Row between="xs">
-        <Col>
+        <Col xs={3}>
           <Field
             checked={values.withoutAgreement}
             component={Checkbox}
