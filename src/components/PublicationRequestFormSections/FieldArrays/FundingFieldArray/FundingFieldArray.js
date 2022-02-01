@@ -17,8 +17,8 @@ const renderFunders = (fields, fundersValues, aspectFundedValues) => {
   return (
     <>
       {fields.map((name, index) => (
-        <div data-testid={`fundingFieldArray[${index}]`}>
-          <Row key={name} middle="xs">
+        <div key={name} data-testid={`fundingFieldArray[${index}]`}>
+          <Row middle="xs">
             <Col xs={3}>
               <Field
                 autoFocus={!fields.value[index].aspectFunded?.id}
