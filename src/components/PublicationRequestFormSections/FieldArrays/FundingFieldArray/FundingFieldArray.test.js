@@ -99,6 +99,7 @@ describe('FundingFieldArray', () => {
       expect(queryAllByTestId(/fundingFieldArray\[.*\]/).length).toEqual(2);
     });
 
+    // Not working
     test('renders expected value within fields fields', () => {
       const { queryByTestId } = renderComponent;
       expect(within(queryByTestId('fundingFieldArray[0]')).getByRole('combobox', { name: 'Funder' })).toHaveDisplayValue('Funder 1');
