@@ -102,6 +102,10 @@ describe('FundingFieldArray', () => {
     test('renders expected value within fields fields', () => {
       const { queryByTestId } = renderComponent;
       expect(within(queryByTestId('fundingFieldArray[0]')).getByRole('combobox', { name: 'Funder' })).toHaveDisplayValue('Funder 1');
+      expect(within(queryByTestId('fundingFieldArray[0]')).getByRole('combobox', { name: 'Aspect funded' })).toHaveDisplayValue('Funder 1');
+
+      expect(within(queryByTestId('fundingFieldArray[1]')).getByRole('combobox', { name: 'Funder' })).toHaveDisplayValue('Funder 1');
+      expect(within(queryByTestId('fundingFieldArray[1]')).getByRole('combobox', { name: 'Aspect funded' })).toHaveDisplayValue('Funder 1');
     });
   });
 });
