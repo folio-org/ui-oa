@@ -23,7 +23,6 @@ const LinkAgreementForm = () => {
 
   const initialAgreement = get(initialValues, 'agreement.remoteId_object');
   const [agreement, setAgreement] = useState(initialAgreement ?? {});
-  console.log(agreement);
 
   useEffect(() => {
     if (initialAgreement) {
