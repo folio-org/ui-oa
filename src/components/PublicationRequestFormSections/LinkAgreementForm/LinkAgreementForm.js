@@ -23,6 +23,7 @@ const LinkAgreementForm = () => {
 
   const initialAgreement = get(initialValues, 'agreement.remoteId_object');
   const [agreement, setAgreement] = useState(initialAgreement ?? {});
+  console.log(agreement);
 
   useEffect(() => {
     if (initialAgreement) {
@@ -54,10 +55,7 @@ const LinkAgreementForm = () => {
             }
             name="withoutAgreement"
             onChange={(e) => {
-              if (agreement) {
-                setAgreement({});
-                change('agreement.remoteId', undefined);
-              }
+              handleAgreementRemoved();
               change('withoutAgreement', e.target.checked);
             }}
           />
