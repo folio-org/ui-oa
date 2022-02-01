@@ -11,7 +11,6 @@ import {
   IconButton,
 } from '@folio/stripes/components';
 
-import { get } from 'lodash';
 import { Registry } from '@folio/handler-stripes-registry';
 
 const LinkAgreementForm = () => {
@@ -21,7 +20,7 @@ const LinkAgreementForm = () => {
   const resourceReg = Registry.getResource('agreement');
   const LookupComponent = resourceReg?.getLookupComponent() ?? TextField;
 
-  const initialAgreement = get(initialValues, 'agreement.remoteId_object');
+  const initialAgreement = initialValues?.agreement?.remoteId_object;
   const [agreement, setAgreement] = useState(initialAgreement ?? {});
 
   useEffect(() => {
