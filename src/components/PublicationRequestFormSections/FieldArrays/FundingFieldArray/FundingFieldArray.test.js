@@ -6,7 +6,6 @@ import {
 } from '@folio/stripes-erm-components/test/jest/helpers';
 import { within } from '@testing-library/react';
 import { Button } from '@folio/stripes-testing';
-import { FieldArray } from 'react-final-form-arrays';
 import {
   publicationRequest,
   handlers,
@@ -77,7 +76,7 @@ describe('FundingFieldArray', () => {
 
     test('adding/removing fields using the add/remove works as expected', () => {
       const { getByRole } = renderComponent;
-      expect(getByRole('button', { name: /Add funding/i })).toBeInTheDocument();
+      expect(getByRole('button', { name: 'Add funding' })).toBeInTheDocument();
     });
   });
 
@@ -100,13 +99,9 @@ describe('FundingFieldArray', () => {
       expect(queryAllByTestId(/fundingFieldArray\[.*\]/).length).toEqual(2);
     });
 
-    // test('renders correct number of fields', () => {
-    //   const { getByTestId } = renderComponent;
-    //   expect(
-    //     within(getByTestId('fundingFieldArray[1]')).getByRole('combobox', {
-    //       name: 'Funder',
-    //     })
-    //   ).toHaveDisplayValue('Funder 1');
-    // });
+    test('renders expected value within fields fields', () => {
+      const { queryByTestId } = renderComponent;
+      expect(within(queryByTestId('fundingFieldArray[0]')).getByRole('combobox', { name: 'Funder' })).toHaveDisplayValue('Funder 1');
+    });
   });
 });
