@@ -11,12 +11,12 @@ import {
   TextArea,
   TextField,
 } from '@folio/stripes/components';
-import { IdentifiersFieldArray } from '../FieldArrays';
-import useOARefdata from '../../../util/useOARefdata';
-import selectifyRefdata from '../../../util/selectifyRefdata';
+import { IdentifiersFieldArray } from '../../FieldArrays';
+import useOARefdata from '../../../../util/useOARefdata';
+import selectifyRefdata from '../../../../util/selectifyRefdata';
 
-import PublicationJournal from './PublicationJournal';
-import PublicationBook from './PublicationBook';
+import PublicationJournal from '../PublicationJournal';
+import PublicationBook from '../PublicationBook';
 
 const [
   PUBLICATION_TYPE,

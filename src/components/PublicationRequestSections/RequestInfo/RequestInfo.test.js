@@ -52,7 +52,7 @@ describe('RequestInfo', () => {
     });
 
     test('renders External request IDs KeyValue with initial value', async () => {
-      await KeyValue('External request IDs').has({ value: 'Test 1' });
+      await KeyValue('External request IDs').has({ value: 'Test 1Test 2' });
     });
   });
 });
