@@ -8,11 +8,11 @@ import {
   Col,
   Checkbox,
   TextField,
+  IconButton,
 } from '@folio/stripes/components';
 
 import { get } from 'lodash';
 import { Registry } from '@folio/handler-stripes-registry';
-
 
 const LinkAgreementForm = () => {
   const { initialValues, values } = useFormState();
@@ -21,7 +21,7 @@ const LinkAgreementForm = () => {
   const resourceReg = Registry.getResource('agreement');
   const LookupComponent = resourceReg?.getLookupComponent() ?? TextField;
 
-  const initialAgreement = (get(initialValues, 'agreement.remoteId_object'));
+  const initialAgreement = get(initialValues, 'agreement.remoteId_object');
   const [agreement, setAgreement] = useState(initialAgreement ?? {});
 
   useEffect(() => {
@@ -35,12 +35,17 @@ const LinkAgreementForm = () => {
     change('agreement.remoteId', a.id);
   };
 
+  const handleAgreementRemoved = () => {
+    setAgreement({});
+    change('agreement.remoteId', undefined);
+  };
+
   return (
     <Accordion
       label={<FormattedMessage id="ui-oa.publicationRequest.agreement" />}
     >
-      <Row>
-        <Col xs={3}>
+      <Row between="xs">
+        <Col>
           <Field
             checked={values.withoutAgreement}
             component={Checkbox}
@@ -56,6 +61,11 @@ const LinkAgreementForm = () => {
               change('withoutAgreement', e.target.checked);
             }}
           />
+        </Col>
+        <Col>
+          {values.agreement && (
+            <IconButton icon="trash" onClick={() => handleAgreementRemoved()} />
+          )}
         </Col>
       </Row>
       {!values.withoutAgreement && (
