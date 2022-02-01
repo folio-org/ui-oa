@@ -15,48 +15,47 @@ const ExternalRequestIdFieldArray = () => {
     return (
       <>
         {fields.map((externalRequestId, index) => (
-          <Row key={externalRequestId} middle="xs">
-            <Col xs={3}>
-              <Field
-                autoFocus={!fields.value[index].id}
-                component={TextField}
-                label={<FormattedMessage id="ui-oa.externalRequestId.externalRequestId" />}
-                name={`${externalRequestId}.externalId`}
-              />
-            </Col>
-            <Col xs={9}>
-              <IconButton
-                icon="trash"
-                onClick={() => fields.remove(index)}
-              />
-            </Col>
-          </Row>
+          <div
+            key={externalRequestId}
+            data-testid={`externalRequestIdFieldArray[${index}]`}
+          >
+            <Row middle="xs">
+              <Col xs={3}>
+                <Field
+                  autoFocus={!fields.value[index].id}
+                  component={TextField}
+                  label={
+                    <FormattedMessage id="ui-oa.externalRequestId.externalRequestId" />
+                  }
+                  name={`${externalRequestId}.externalId`}
+                />
+              </Col>
+              <Col xs={9}>
+                <IconButton icon="trash" onClick={() => fields.remove(index)} />
+              </Col>
+            </Row>
+          </div>
         ))}
       </>
     );
   };
 
   const renderEmpty = () => {
-    return (
-      <div />
-    );
+    return <div />;
   };
 
   return (
     <FieldArray name="externalRequestIds">
       {({ fields }) => (
         <>
-          <>
-            {fields.length ? renderExternalRequestId(fields) : renderEmpty()}
-          </>
-          <Button
-            onClick={() => fields.push({})}
-          >
+          <>{fields.length ? renderExternalRequestId(fields) : renderEmpty()}</>
+          <Button onClick={() => fields.push({})}>
             <FormattedMessage id="ui-oa.publicationRequest.addExternalRequestId" />
           </Button>
         </>
       )}
-    </FieldArray>);
+    </FieldArray>
+  );
 };
 
 export default ExternalRequestIdFieldArray;

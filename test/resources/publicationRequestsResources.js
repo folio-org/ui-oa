@@ -274,16 +274,23 @@ const publicationRequest = {
       },
       externalId: 'Test 1',
     },
+    {
+      id: '66843b71-c179-4260-a90b-b3f126974f60',
+      owner: {
+        id: '51d6bce3-6237-419c-8440-877f8cfd3c59',
+      },
+      externalId: 'Test 2',
+    },
   ],
   localReference: 'Test Reference',
   publicationUrl: 'Test Url',
 };
 
 const handlers = {
-    onClose: jest.fn(),
-    onDelete: jest.fn(),
-    onEdit: jest.fn(),
-    onSubmit: jest.fn(),
+  onClose: jest.fn(),
+  onDelete: jest.fn(),
+  onEdit: jest.fn(),
+  onSubmit: jest.fn(),
 };
 
 export { publicationRequest, handlers };
