@@ -107,4 +107,11 @@ const journal = {
   ],
 };
 
-export default journal;
+const handlers = {
+  onClose: jest.fn(),
+  onDelete: jest.fn(),
+  onEdit: jest.fn(),
+  onSubmit: jest.fn(),
+};
+
+export { journal, handlers };
