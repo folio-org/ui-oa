@@ -3,7 +3,7 @@ import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers'
 import { within } from '@testing-library/react';
 import translationsProperties from '../../../../test/helpers';
 import JournalInstances from './JournalInstances';
-import journal from '../../../../test/resources/journalResources';
+import { journal } from '../../../../test/resources/journalResources';
 
 describe('JournalInstances', () => {
   let renderComponent;
