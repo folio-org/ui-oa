@@ -1,5 +1,6 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
+import { Button } from '@folio/stripes-testing';
 import { MemoryRouter } from 'react-router-dom';
 import translationsProperties from '../../../../test/helpers';
 import PublicationRequest from './PublicationRequest';
@@ -32,6 +33,7 @@ jest.mock('../../PublicationRequestSections/Agreement', () => () => (
 jest.mock('../../PublicationRequestSections/Correspondence', () => () => (
   <div>Correspondence</div>
 ));
+
 
 describe('PublicationRequest', () => {
   let renderComponent;
@@ -124,6 +126,11 @@ describe('PublicationRequest', () => {
       const { getByText } = renderComponent;
       expect(getByText('Funding')).toBeInTheDocument();
     });
+
+    test('renders Agreement Component', () => {
+        const { getByText } = renderComponent;
+        expect(getByText('Agreement')).toBeInTheDocument();
+      });
 
     test('renders Correspondence Component', () => {
       const { getByText } = renderComponent;
