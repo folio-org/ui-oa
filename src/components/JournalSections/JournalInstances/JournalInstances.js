@@ -21,8 +21,8 @@ const JournalInstances = ({ journal }) => {
 
   return journal?.instances ? (
     <>
-      {journal.instances.map((instance) => (
-        <>
+      {journal.instances.map((instance, index) => (
+        <div key={index} data-testid={`journalInstances[${index}]`}>
           <Row>
             <Col xs={3}>
               <KeyValue
@@ -64,7 +64,7 @@ const JournalInstances = ({ journal }) => {
             )}
           </Row>
           <hr />
-        </>
+        </div>
       ))}
     </>
   ) : (
