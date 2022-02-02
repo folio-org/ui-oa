@@ -5,7 +5,7 @@ import translationsProperties from '../../../../test/helpers';
 import PartyInfo from './PartyInfo';
 import { party } from '../../../../test/resources/partyResources';
 
-describe('RequestInfo', () => {
+describe('PartyInfo', () => {
   describe('renders components', () => {
     beforeEach(() => {
       renderWithIntl(<PartyInfo />, translationsProperties);
