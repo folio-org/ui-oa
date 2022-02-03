@@ -20,31 +20,34 @@ import {
   PaneHeader,
   Paneset,
   PaneMenu,
-  Row
+  Row,
 } from '@folio/stripes/components';
 
 import {
-  CorrespondingAuthorForm,
   FundingForm,
   PublicationForm,
   PublicationStatusForm,
-  RequestContactForm,
   RequestInfoForm,
-  LinkAgreementForm
+  LinkAgreementForm,
+  PartyTypedownForm,
 } from '../../PublicationRequestFormSections';
 
 const propTypes = {
   handlers: PropTypes.shape({
     onClose: PropTypes.func.isRequired,
-    onSubmit: PropTypes.func.isRequired
+    onSubmit: PropTypes.func.isRequired,
   }).isRequired,
   pristine: PropTypes.bool,
   publicationRequest: PropTypes.object,
   submitting: PropTypes.bool,
 };
 
-
-const PublicationRequestForm = ({ handlers: { onClose, onSubmit }, pristine, publicationRequest, submitting }) => {
+const PublicationRequestForm = ({
+  handlers: { onClose, onSubmit },
+  pristine,
+  publicationRequest,
+  submitting,
+}) => {
   const { values } = useFormState();
   const { change } = useForm();
   const accordionStatusRef = React.createRef();
@@ -52,9 +55,13 @@ const PublicationRequestForm = ({ handlers: { onClose, onSubmit }, pristine, pub
   useEffect(() => {
     if (
       values.useCorrespondingAuthor &&
-      values.requestContact?.partyOwner !== values.correspondingAuthor?.partyOwner
+      values.requestContact?.partyOwner !==
+        values.correspondingAuthor?.partyOwner
     ) {
-      change('requestContact.partyOwner', values.correspondingAuthor?.partyOwner);
+      change(
+        'requestContact.partyOwner',
+        values.correspondingAuthor?.partyOwner
+      );
     }
   }, [change, values]);
 
@@ -72,7 +79,7 @@ const PublicationRequestForm = ({ handlers: { onClose, onSubmit }, pristine, pub
   const renderPaneFooter = () => {
     return (
       <PaneFooter
-        renderEnd={(
+        renderEnd={
           <Button
             buttonStyle="primary mega"
             disabled={pristine || submitting}
@@ -82,8 +89,8 @@ const PublicationRequestForm = ({ handlers: { onClose, onSubmit }, pristine, pub
           >
             <FormattedMessage id="stripes-components.saveAndClose" />
           </Button>
-        )}
-        renderStart={(
+        }
+        renderStart={
           <Button
             buttonStyle="default mega"
             marginBottom0
@@ -91,16 +98,19 @@ const PublicationRequestForm = ({ handlers: { onClose, onSubmit }, pristine, pub
           >
             <FormattedMessage id="stripes-components.cancel" />
           </Button>
-        )}
+        }
       />
     );
   };
 
-  const renderPaneTitle = () => (
-    publicationRequest ?
-      <FormattedMessage id="ui-oa.publicationRequest.editPublicationRequest" values={{ id: publicationRequest.requestNumber }} /> :
+  const renderPaneTitle = () => (publicationRequest ? (
+    <FormattedMessage
+      id="ui-oa.publicationRequest.editPublicationRequest"
+      values={{ id: publicationRequest.requestNumber }}
+    />
+    ) : (
       <FormattedMessage id="ui-oa.publicationRequest.createPublicationRequest" />
-  );
+    ));
 
   const renderFirstMenu = () => {
     return (
@@ -144,8 +154,8 @@ const PublicationRequestForm = ({ handlers: { onClose, onSubmit }, pristine, pub
             </Row>
             <AccordionSet>
               <RequestInfoForm request={publicationRequest} />
-              <CorrespondingAuthorForm />
-              <RequestContactForm />
+              <PartyTypedownForm formName="correspondingAuthor" />
+              <PartyTypedownForm formName="requestContact" />
               <PublicationForm />
               <PublicationStatusForm />
               <FundingForm />

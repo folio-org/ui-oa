@@ -1,33 +1,37 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Field, useFormState, useForm } from 'react-final-form';
 import { Link } from 'react-router-dom';
 
 import {
   Accordion,
-  Checkbox,
-  Col,
-  Label,
-  Row,
-  Layout,
   Button,
+  Label,
+  Layout,
   Card,
   IconButton,
+  Row,
+  Col,
+  Checkbox,
 } from '@folio/stripes/components';
 import {
   generateKiwtQuery,
   QueryTypedown,
 } from '@k-int/stripes-kint-components';
 import { AppIcon } from '@folio/stripes/core';
-
 import PartyInfo from '../../PartySections/PartyInfo';
-import PartyModal from '../../PartyModal';
-import css from './RequestContactForm.css';
 import urls from '../../../util/urls';
+import css from './PartyTypedownForm.css';
+import PartyModal from '../../PartyModal';
 
-const RequestContactForm = () => {
-  const { change } = useForm();
+const propTypes = {
+  formName: PropTypes.string.isRequired,
+};
+
+const TypedownForm = ({ formName }) => {
   const { values } = useFormState();
+  const { change } = useForm();
   const [showPartyModal, setShowPartyModal] = useState(false);
 
   const pathMutator = (input, path) => {
@@ -44,7 +48,7 @@ const RequestContactForm = () => {
   };
 
   const handlePartyChange = (party) => {
-    change('requestContact.partyOwner', party);
+    change(`${formName}.partyOwner`, party);
   };
 
   const renderFooter = () => {
@@ -71,55 +75,55 @@ const RequestContactForm = () => {
   };
 
   const renderPartyLink = () => {
-    return values.requestContact?.partyOwner?.id ? (
-      <Link to={urls.party(values.requestContact.partyOwner.id)}>
-        <strong>{values.requestContact?.partyOwner?.fullName}</strong>
+    return values[formName]?.partyOwner?.id ? (
+      <Link to={urls.party(values[formName].partyOwner.id)}>
+        <strong>{values[formName]?.partyOwner?.fullName}</strong>
       </Link>
     ) : (
-      <strong>{values.requestContact?.partyOwner?.fullName}</strong>
+      <strong>{values[formName]?.partyOwner?.fullName}</strong>
     );
   };
 
   return (
     <>
       <Accordion
-        label={
-          <FormattedMessage id="ui-oa.publicationRequest.requestContact" />
-        }
+        label={<FormattedMessage id={`ui-oa.publicationRequest.${formName}`} />}
       >
         <Row end="xs">
           <Col xs={3}>
-            <Field
-              component={Checkbox}
-              label={
-                <FormattedMessage id="ui-oa.publicationRequest.useCorrespondingAuthor" />
-              }
-              name="useCorrespondingAuthor"
-              onChange={(e) => {
-                if (e.target.checked) {
-                  change(
-                    'requestContact.partyOwner',
-                    values.correspondingAuthor?.partyOwner
-                  );
-                } else {
-                  change('requestContact.partyOwner', undefined);
+            {formName === 'requestContact' && (
+              <Field
+                component={Checkbox}
+                label={
+                  <FormattedMessage id="ui-oa.publicationRequest.useCorrespondingAuthor" />
                 }
+                name="useCorrespondingAuthor"
+                onChange={(e) => {
+                  if (e.target.checked) {
+                    change(
+                      'requestContact.partyOwner',
+                      values[formName]?.partyOwner
+                    );
+                  } else {
+                    change('requestContact.partyOwner', undefined);
+                  }
 
-                change('useCorrespondingAuthor', e.target.checked);
-              }}
-              type="checkbox"
-            />
+                  change('useCorrespondingAuthor', e.target.checked);
+                }}
+                type="checkbox"
+              />
+            )}
           </Col>
           <Col xs={9} />
         </Row>
-        {!values.useCorrespondingAuthor && (
+        {(!values.useCorrespondingAuthor || formName === 'correspondingAuthor') && (
           <>
             <Label className={css.partyFormLabel}>
               <FormattedMessage id="ui-oa.publicationRequest.addPerson" />
             </Label>
             <Field
               component={QueryTypedown}
-              name="requestContact.partyOwner"
+              name={`${formName}.partyOwner`}
               path="oa/party"
               pathMutator={pathMutator}
               renderFooter={renderFooter}
@@ -128,17 +132,17 @@ const RequestContactForm = () => {
           </>
         )}
 
-        {values.requestContact?.partyOwner && (
+        {values[formName]?.partyOwner && (
           <Card
             cardStyle="positive"
             headerEnd={
-              !values.useCorrespondingAuthor && (
+              (!values.useCorrespondingAuthor || formName === 'correspondingAuthor') && (
                 <IconButton icon="trash" onClick={() => handlePartyChange()} />
               )
             }
             headerStart={<AppIcon size="small">{renderPartyLink()}</AppIcon>}
           >
-            <PartyInfo compact party={values.requestContact.partyOwner} />
+            <PartyInfo compact party={values[formName].partyOwner} />
           </Card>
         )}
       </Accordion>
@@ -151,4 +155,6 @@ const RequestContactForm = () => {
   );
 };
 
-export default RequestContactForm;
+TypedownForm.propTypes = propTypes;
+
+export default TypedownForm;
