@@ -6,7 +6,7 @@ import CorrespondingAuthor from './CorrespondingAuthor';
 
 let renderComponent;
 
-jest.mock('../PartyInfo', () => () => <div>PartyInfo</div>);
+jest.mock('../../PartySections/PartyInfo', () => () => <div>PartyInfo</div>);
 
 describe('CorrespondingAuthor', () => {
   describe('renders components with no values', () => {

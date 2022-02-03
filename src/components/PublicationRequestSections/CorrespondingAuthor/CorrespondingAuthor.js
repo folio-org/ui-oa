@@ -12,7 +12,7 @@ import {
   Row
 } from '@folio/stripes/components';
 
-import PartyInfo from '../PartyInfo';
+import PartyInfo from '../../PartySections/PartyInfo';
 
 const propTypes = {
   request: PropTypes.object

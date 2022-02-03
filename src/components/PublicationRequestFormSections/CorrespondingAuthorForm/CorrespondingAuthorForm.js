@@ -7,7 +7,7 @@ import {
   QueryTypedown,
 } from '@k-int/stripes-kint-components';
 import { EditCard } from '@folio/stripes-erm-components';
-import PartyInfo from '../../PublicationRequestSections/PartyInfo';
+import PartyInfo from '../../PartySections/PartyInfo';
 import css from './CorrespondingAuthorForm.css';
 import PartyModal from '../../PartyModal';
 
