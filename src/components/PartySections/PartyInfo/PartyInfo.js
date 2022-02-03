@@ -2,13 +2,7 @@ import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 
-import {
-  Card,
-  Col,
-  KeyValue,
-  Label,
-  Row,
-} from '@folio/stripes/components';
+import { Card, Col, KeyValue, Label, Row } from '@folio/stripes/components';
 
 import ExternalLink from '../../ExternalLink';
 
@@ -16,6 +10,75 @@ const propTypes = {
   otherEmailAddresses: PropTypes.object,
   party: PropTypes.object,
   streetAddresses: PropTypes.object,
+  compact: PropTypes.bool,
+};
+const renderCompactInfo = (party, otherEmailAddresses) => {
+  return (
+    <>
+      <Row>
+        <Col xs={3}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.party.mainEmailAddress" />}
+            value={
+              party?.mainEmail ? (
+                <ExternalLink
+                  content={party.mainEmail}
+                  href={'mailto:' + party.mainEmail}
+                />
+              ) : null
+            }
+          />
+        </Col>
+        <Col xs={3}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.party.phone" />}
+            value={party?.phone}
+          />
+        </Col>
+        <Col xs={3}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.party.mobilePhone" />}
+            value={party?.mobile}
+          />
+        </Col>
+        <Col xs={3}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.party.orcidId" />}
+            value={
+              party?.orcidId ? (
+                <ExternalLink
+                  content={party.orcidId}
+                  href={'https://orcid.org/' + party.orcidId}
+                  icon
+                />
+              ) : null
+            }
+          />
+        </Col>
+      </Row>
+      <>
+        {otherEmailAddresses && (
+          <Row start="xs">
+            <Col xs={6}>
+              <KeyValue
+                label={
+                  <FormattedMessage id="ui-oa.otherEmail.otherEmailAddresses" />
+                }
+              >
+                {otherEmailAddresses ? (
+                  <ul>
+                    {otherEmailAddresses.map((email) => (
+                      <li key={email?.id}>{email?.emailAddress}</li>
+                    ))}
+                  </ul>
+                ) : null}
+              </KeyValue>
+            </Col>
+          </Row>
+        )}
+      </>
+    </>
+  );
 };
 
 const renderStreetAddresses = (streetAddresses) => {
@@ -100,8 +163,13 @@ const renderStreetAddresses = (streetAddresses) => {
   );
 };
 
-const PartyInfo = ({ party, streetAddresses, otherEmailAddresses }) => {
-  return (
+const PartyInfo = ({
+  party,
+  streetAddresses,
+  otherEmailAddresses,
+  compact,
+}) => {
+  return !compact ? (
     <>
       <Row>
         <Col xs={3}>
@@ -196,6 +264,8 @@ const PartyInfo = ({ party, streetAddresses, otherEmailAddresses }) => {
         </Row>
       )}
     </>
+  ) : (
+    renderCompactInfo(party, otherEmailAddresses)
   );
 };
 

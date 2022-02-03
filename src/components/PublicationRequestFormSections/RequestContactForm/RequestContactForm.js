@@ -138,7 +138,7 @@ const RequestContactForm = () => {
             }
             headerStart={<AppIcon size="small">{renderPartyLink()}</AppIcon>}
           >
-            <PartyInfo party={values.requestContact.partyOwner} />
+            <PartyInfo compact party={values.requestContact.partyOwner} />
           </Card>
         )}
       </Accordion>

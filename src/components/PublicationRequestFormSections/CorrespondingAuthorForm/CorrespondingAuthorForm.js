@@ -102,7 +102,7 @@ const CorrespondingAuthorForm = () => {
             }
             headerStart={<AppIcon size="small">{renderPartyLink()}</AppIcon>}
           >
-            <PartyInfo party={values.correspondingAuthor.partyOwner} />
+            <PartyInfo compact party={values.correspondingAuthor.partyOwner} />
           </Card>
         )}
       </Accordion>
