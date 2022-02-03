@@ -130,6 +130,7 @@ const PartyInfo = ({ party, streetAddresses, otherEmailAddresses }) => {
                 <ExternalLink
                   content={party.orcidId}
                   href={'https://orcid.org/' + party.orcidId}
+                  icon
                 />
               ) : null
             }
