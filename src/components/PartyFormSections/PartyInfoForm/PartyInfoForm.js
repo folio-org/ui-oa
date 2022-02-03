@@ -1,5 +1,5 @@
 import { FormattedMessage, useIntl } from 'react-intl';
-import { Field, useFormState, useForm } from 'react-final-form';
+import { Field, useForm } from 'react-final-form';
 
 import { Col, Row, Select, TextField } from '@folio/stripes/components';
 
