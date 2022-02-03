@@ -3,6 +3,9 @@ import { Field } from 'react-final-form';
 
 import { Col, Row, Select, TextField } from '@folio/stripes/components';
 
+import { requiredValidator } from '@folio/stripes-erm-components';
+
+
 const PartyInfoForm = () => {
   const intl = useIntl();
 
@@ -29,6 +32,8 @@ const PartyInfoForm = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.party.familyName" />}
             name="familyName"
+            required
+            validate={requiredValidator}
           />
         </Col>
         <Col xs={3}>
@@ -36,6 +41,8 @@ const PartyInfoForm = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.party.givenNames" />}
             name="givenNames"
+            required
+            validate={requiredValidator}
           />
         </Col>
         <Col xs={3}>
