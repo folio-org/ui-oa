@@ -55,7 +55,7 @@ const RequestContactForm = () => {
           marginBottom0
           onClick={() => setShowPartyModal(true)}
         >
-          <FormattedMessage id="ui-oa.publicationRequest.createPerson" />
+          <FormattedMessage id="ui-oa.publicationRequest.newPerson" />
         </Button>
       </Layout>
     );

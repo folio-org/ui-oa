@@ -69,7 +69,7 @@
   "publicationRequest.correspondingAuthor": "Corresponding author",
   "publicationRequest.correspondingAuthorName": "Corresponding author name",
   "publicationRequest.createPublicationRequest": "New publication request",
-  "publicationRequest.createPerson": "Create person",
+  "publicationRequest.newPerson": "New person",
   "publicationRequest.doi": "DOI",
   "publicationRequest.edit": "Edit",
   "publicationRequest.editPublicationRequest": "Edit publication request - {id}",

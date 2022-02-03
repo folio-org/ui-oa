@@ -150,7 +150,7 @@
     "party.createPerson": "Create person",
     "party.closeForm": "Close form",
     "publicationRequest.addPerson": "Add person",
-    "publicationRequest.createPerson": "Create person",
+    "publicationRequest.newPerson": "New person",
     "correspondence.mode.email": "Email",
     "correspondence.mode.telephone": "Telephone",
     "correspondence.category.invoice": "Invoice",
