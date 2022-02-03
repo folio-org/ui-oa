@@ -1,13 +1,23 @@
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Field, useFormState, useForm } from 'react-final-form';
-import { Accordion, Button, Label, Layout } from '@folio/stripes/components';
+import { Link } from 'react-router-dom';
+
+import {
+  Accordion,
+  Button,
+  Label,
+  Layout,
+  Card,
+  IconButton,
+} from '@folio/stripes/components';
 import {
   generateKiwtQuery,
   QueryTypedown,
 } from '@k-int/stripes-kint-components';
-import { EditCard } from '@folio/stripes-erm-components';
+import { AppIcon } from '@folio/stripes/core';
 import PartyInfo from '../../PartySections/PartyInfo';
+import urls from '../../../util/urls';
 import css from './CorrespondingAuthorForm.css';
 import PartyModal from '../../PartyModal';
 
@@ -56,6 +66,16 @@ const CorrespondingAuthorForm = () => {
     );
   };
 
+  const renderPartyLink = () => {
+    return values.correspondingAuthor?.partyOwner?.id ? (
+      <Link to={urls.party(values.correspondingAuthor.partyOwner.id)}>
+        <strong>{values.correspondingAuthor?.partyOwner?.fullName}</strong>
+      </Link>
+    ) : (
+      <strong>{values.correspondingAuthor?.partyOwner?.fullName}</strong>
+    );
+  };
+
   return (
     <>
       <Accordion
@@ -75,14 +95,15 @@ const CorrespondingAuthorForm = () => {
           renderListItem={renderListItem}
         />
         {values.correspondingAuthor?.partyOwner && (
-          <EditCard
-            className={css.partyCard}
-            header={
-              <FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />
+          <Card
+            cardStyle="positive"
+            headerEnd={
+              <IconButton icon="trash" onClick={() => handlePartyChange()} />
             }
+            headerStart={<AppIcon size="small">{renderPartyLink()}</AppIcon>}
           >
             <PartyInfo party={values.correspondingAuthor.partyOwner} />
-          </EditCard>
+          </Card>
         )}
       </Accordion>
       <PartyModal

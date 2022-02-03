@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Field, useFormState, useForm } from 'react-final-form';
+import { Link } from 'react-router-dom';
+
 import {
   Accordion,
   Checkbox,
@@ -9,17 +11,19 @@ import {
   Row,
   Layout,
   Button,
+  Card,
+  IconButton,
 } from '@folio/stripes/components';
 import {
   generateKiwtQuery,
   QueryTypedown,
 } from '@k-int/stripes-kint-components';
-
-import { EditCard } from '@folio/stripes-erm-components';
+import { AppIcon } from '@folio/stripes/core';
 
 import PartyInfo from '../../PartySections/PartyInfo';
 import PartyModal from '../../PartyModal';
 import css from './RequestContactForm.css';
+import urls from '../../../util/urls';
 
 const RequestContactForm = () => {
   const { change } = useForm();
@@ -29,7 +33,7 @@ const RequestContactForm = () => {
   const pathMutator = (input, path) => {
     const query = generateKiwtQuery(
       {
-        searchKey: 'familyName',
+        searchKey: 'fullName',
         stats: false,
       },
       {
@@ -63,6 +67,16 @@ const RequestContactForm = () => {
         {party.title} {party.familyName}, {party.givenNames} - {party.orcidId} -{' '}
         {party.mainEmail}
       </>
+    );
+  };
+
+  const renderPartyLink = () => {
+    return values.requestContact?.partyOwner?.id ? (
+      <Link to={urls.party(values.requestContact.partyOwner.id)}>
+        <strong>{values.requestContact?.partyOwner?.fullName}</strong>
+      </Link>
+    ) : (
+      <strong>{values.requestContact?.partyOwner?.fullName}</strong>
     );
   };
 
@@ -101,7 +115,7 @@ const RequestContactForm = () => {
         {!values.useCorrespondingAuthor && (
           <>
             <Label className={css.partyFormLabel}>
-              <FormattedMessage id="ui-oa.publicationRequest.person" />
+              <FormattedMessage id="ui-oa.publicationRequest.addPerson" />
             </Label>
             <Field
               component={QueryTypedown}
@@ -115,14 +129,17 @@ const RequestContactForm = () => {
         )}
 
         {values.requestContact?.partyOwner && (
-          <EditCard
-            className={css.partyCard}
-            header={
-              <FormattedMessage id="ui-oa.publicationRequest.requestContact" />
+          <Card
+            cardStyle="positive"
+            headerEnd={
+              !values.useCorrespondingAuthor && (
+                <IconButton icon="trash" onClick={() => handlePartyChange()} />
+              )
             }
+            headerStart={<AppIcon size="small">{renderPartyLink()}</AppIcon>}
           >
             <PartyInfo party={values.requestContact.partyOwner} />
-          </EditCard>
+          </Card>
         )}
       </Accordion>
       <PartyModal
