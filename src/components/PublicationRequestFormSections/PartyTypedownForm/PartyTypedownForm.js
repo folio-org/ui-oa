@@ -68,8 +68,9 @@ const PartyTypedownForm = ({ formName }) => {
   const renderListItem = (party) => {
     return (
       <>
-        {party.title} {party.familyName}, {party.givenNames} - {party.orcidId} -{' '}
-        {party.mainEmail}
+        {party?.title} {party?.familyName + ','} {party?.givenNames}
+        {party?.orcidId && ' - ' + party.orcidId}
+        {party?.mainEmail && ' - ' + party.mainEmail}
       </>
     );
   };
@@ -116,7 +117,8 @@ const PartyTypedownForm = ({ formName }) => {
           </Col>
           <Col xs={9} />
         </Row>
-        {(!values.useCorrespondingAuthor || formName === 'correspondingAuthor') && (
+        {(!values.useCorrespondingAuthor ||
+          formName === 'correspondingAuthor') && (
           <>
             <Label className={css.partyFormLabel}>
               <FormattedMessage id="ui-oa.publicationRequest.addPerson" />
@@ -136,7 +138,8 @@ const PartyTypedownForm = ({ formName }) => {
           <Card
             cardStyle="positive"
             headerEnd={
-              (!values.useCorrespondingAuthor || formName === 'correspondingAuthor') && (
+              (!values.useCorrespondingAuthor ||
+                formName === 'correspondingAuthor') && (
                 <IconButton icon="trash" onClick={() => handlePartyChange()} />
               )
             }
