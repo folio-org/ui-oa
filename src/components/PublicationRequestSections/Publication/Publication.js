@@ -129,6 +129,7 @@ const Publication = ({ request }) => {
                 <ExternalLink
                   content={request.publicationUrl}
                   href={request.publicationUrl}
+                  icon
                 />
               ) : null
             }
@@ -145,6 +146,7 @@ const Publication = ({ request }) => {
                 <ExternalLink
                   content={request.doi}
                   href={'https://dx.doi.org/' + request.doi}
+                  icon
                 />
               ) : null
             }

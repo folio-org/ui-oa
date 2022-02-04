@@ -6,7 +6,7 @@ import RequestContact from './RequestContact';
 
 let renderComponent;
 
-jest.mock('../PartyInfo', () => () => <div>PartyInfo</div>);
+jest.mock('../../PartySections/PartyInfo', () => () => <div>PartyInfo</div>);
 
 describe('RequestContact', () => {
   describe('renders components', () => {

@@ -3,6 +3,8 @@ import { Field } from 'react-final-form';
 
 import { Col, Row, Select, TextField } from '@folio/stripes/components';
 
+import { requiredValidator } from '@folio/stripes-erm-components';
+
 const PartyInfoForm = () => {
   const intl = useIntl();
 
@@ -14,10 +16,22 @@ const PartyInfoForm = () => {
             component={Select}
             dataOptions={[
               { value: '', label: '' },
-              { value: 'Mr', label: intl.formatMessage({ id : 'ui-oa.party.title.mr' }) },
-              { value: 'Ms', label: intl.formatMessage({ id : 'ui-oa.party.title.ms' }) },
-              { value: 'Prof', label: intl.formatMessage({ id : 'ui-oa.party.title.prof' }) },
-              { value: 'Dr', label: intl.formatMessage({ id : 'ui-oa.party.title.dr' }) },
+              {
+                value: 'Mr',
+                label: intl.formatMessage({ id: 'ui-oa.party.title.mr' }),
+              },
+              {
+                value: 'Ms',
+                label: intl.formatMessage({ id: 'ui-oa.party.title.ms' }),
+              },
+              {
+                value: 'Prof',
+                label: intl.formatMessage({ id: 'ui-oa.party.title.prof' }),
+              },
+              {
+                value: 'Dr',
+                label: intl.formatMessage({ id: 'ui-oa.party.title.dr' }),
+              },
             ]}
             id="party-title"
             label={<FormattedMessage id="ui-oa.party.title" />}
@@ -29,6 +43,8 @@ const PartyInfoForm = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.party.familyName" />}
             name="familyName"
+            required
+            validate={requiredValidator}
           />
         </Col>
         <Col xs={3}>
@@ -36,6 +52,8 @@ const PartyInfoForm = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.party.givenNames" />}
             name="givenNames"
+            required
+            validate={requiredValidator}
           />
         </Col>
         <Col xs={3}>
