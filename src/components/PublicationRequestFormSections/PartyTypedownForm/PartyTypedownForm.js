@@ -29,7 +29,7 @@ const propTypes = {
   formName: PropTypes.string.isRequired,
 };
 
-const TypedownForm = ({ formName }) => {
+const PartyTypedownForm = ({ formName }) => {
   const { values } = useFormState();
   const { change } = useForm();
   const [showPartyModal, setShowPartyModal] = useState(false);
@@ -155,6 +155,6 @@ const TypedownForm = ({ formName }) => {
   );
 };
 
-TypedownForm.propTypes = propTypes;
+PartyTypedownForm.propTypes = propTypes;
 
-export default TypedownForm;
+export default PartyTypedownForm;
