@@ -29,14 +29,14 @@ const PartyModal = ({ showModal, setShowModal, handlePartyChange }) => {
       })
   );
 
-  const renderModalFooter = (handleSubmit, form) => {
+  const renderModalFooter = (handleSubmit, formRestart) => {
     return (
       <ModalFooter>
         <Button
           buttonStyle="primary"
           id="duplicate-modal-save-button"
           onClick={() => {
-            handleSubmit().then(form.restart);
+            handleSubmit().then(formRestart);
           }}
           type="submit"
         >
@@ -61,7 +61,7 @@ const PartyModal = ({ showModal, setShowModal, handlePartyChange }) => {
         <form onSubmit={handleSubmit}>
           <Modal
             dismissible
-            footer={renderModalFooter(handleSubmit, form)}
+            footer={renderModalFooter(handleSubmit, form.restart)}
             label={<FormattedMessage id="ui-oa.party.newPerson" />}
             onClose={() => setShowModal(false)}
             open={showModal}
