@@ -3,7 +3,7 @@ import arrayMutators from 'final-form-arrays';
 import { useHistory, useParams } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useMutation } from 'react-query';
-import CorrespondenceForm from '../components/views/CorrespondenceForm';
+import CorrespondenceForm from '../../components/views/CorrespondenceForm';
 
 const CorrespondenceCreateRoute = () => {
   const history = useHistory();

@@ -12,9 +12,9 @@ import {
 } from '@folio/stripes/components';
 
 import { SASQRoute } from '@k-int/stripes-kint-components';
-import PublicationRequest from '../components/views/PublicationRequest';
-import urls from '../util/urls';
-import { PublicationRequestsFilters, OAFilterHeaderComponent } from '../components/SearchAndFilter';
+import PublicationRequest from '../../components/views/PublicationRequest';
+import urls from '../../util/urls';
+import { PublicationRequestsFilters, OAFilterHeaderComponent } from '../../components/SearchAndFilter';
 
 const PublicationRequestsRoute = ({ path }) => {
   // TODO: Add coresponding author / request contact name to SASQ map search key
