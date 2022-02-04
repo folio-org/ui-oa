@@ -1,5 +1,5 @@
 import { FormattedMessage, useIntl } from 'react-intl';
-import { Field, useForm } from 'react-final-form';
+import { Field } from 'react-final-form';
 
 import { Col, Row, Select, TextField } from '@folio/stripes/components';
 
@@ -7,14 +7,12 @@ import { requiredValidator } from '@folio/stripes-erm-components';
 
 const PartyInfoForm = () => {
   const intl = useIntl();
-  const { reset } = useForm();
 
   return (
     <>
       <Row>
         <Col xs={3}>
           <Field
-            afterSubmit={() => reset()}
             component={Select}
             dataOptions={[
               { value: '', label: '' },
@@ -42,7 +40,6 @@ const PartyInfoForm = () => {
         </Col>
         <Col xs={3}>
           <Field
-            afterSubmit={() => reset()}
             component={TextField}
             label={<FormattedMessage id="ui-oa.party.familyName" />}
             name="familyName"
@@ -52,7 +49,6 @@ const PartyInfoForm = () => {
         </Col>
         <Col xs={3}>
           <Field
-            afterSubmit={() => reset()}
             component={TextField}
             label={<FormattedMessage id="ui-oa.party.givenNames" />}
             name="givenNames"
@@ -62,7 +58,6 @@ const PartyInfoForm = () => {
         </Col>
         <Col xs={3}>
           <Field
-            afterSubmit={() => reset()}
             component={TextField}
             label={<FormattedMessage id="ui-oa.party.orcidId" />}
             name="orcidId"
@@ -72,7 +67,6 @@ const PartyInfoForm = () => {
       <Row>
         <Col xs={3}>
           <Field
-            afterSubmit={() => reset()}
             component={TextField}
             label={<FormattedMessage id="ui-oa.party.mainEmailAddress" />}
             name="mainEmail"
@@ -80,7 +74,6 @@ const PartyInfoForm = () => {
         </Col>
         <Col xs={3}>
           <Field
-            afterSubmit={() => reset()}
             component={TextField}
             label={<FormattedMessage id="ui-oa.party.phone" />}
             name="phone"
@@ -88,7 +81,6 @@ const PartyInfoForm = () => {
         </Col>
         <Col xs={3}>
           <Field
-            afterSubmit={() => reset()}
             component={TextField}
             label={<FormattedMessage id="ui-oa.party.mobilePhone" />}
             name="mobile"

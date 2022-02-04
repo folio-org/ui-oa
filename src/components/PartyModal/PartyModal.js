@@ -29,13 +29,15 @@ const PartyModal = ({ showModal, setShowModal, handlePartyChange }) => {
       })
   );
 
-  const renderModalFooter = (handleSubmit) => {
+  const renderModalFooter = (handleSubmit, form) => {
     return (
       <ModalFooter>
         <Button
           buttonStyle="primary"
           id="duplicate-modal-save-button"
-          onClick={handleSubmit}
+          onClick={() => {
+            handleSubmit().then(form.restart);
+          }}
           type="submit"
         >
           <FormattedMessage id="stripes-components.saveAndClose" />
@@ -52,12 +54,14 @@ const PartyModal = ({ showModal, setShowModal, handlePartyChange }) => {
   };
 
   return (
-    <Form mutators={arrayMutators} onSubmit={postParty}>
-      {({ handleSubmit }) => (
+    <Form
+      mutators={arrayMutators}
+      onSubmit={postParty}
+      render={({ handleSubmit, form }) => (
         <form onSubmit={handleSubmit}>
           <Modal
             dismissible
-            footer={renderModalFooter(handleSubmit)}
+            footer={renderModalFooter(handleSubmit, form)}
             label={<FormattedMessage id="ui-oa.party.newPerson" />}
             onClose={() => setShowModal(false)}
             open={showModal}
@@ -66,7 +70,7 @@ const PartyModal = ({ showModal, setShowModal, handlePartyChange }) => {
           </Modal>
         </form>
       )}
-    </Form>
+    />
   );
 };
 
