@@ -20,13 +20,13 @@ const propTypes = {
   }).isRequired,
   pristine: PropTypes.bool,
   submitting: PropTypes.bool,
-  correspondence: PropTypes.object,
+  charge: PropTypes.object,
 };
 
 
-const ChargeForm = ({ handlers: { onClose, onSubmit }, pristine, submitting, correspondence }) => {
+const ChargeForm = ({ handlers: { onClose, onSubmit }, pristine, submitting, charge }) => {
   const renderPaneTitle = () => (
-    correspondence ?
+    charge ?
       <FormattedMessage id="ui-oa.charge.editCharge" /> :
       <FormattedMessage id="ui-oa.charge.newCharge" />
   );
