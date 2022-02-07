@@ -11,6 +11,8 @@ import {
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 
+import ChargeInfoForm from '../../ChargeFormSections/ChargeInfoForm';
+
 const propTypes = {
   handlers: PropTypes.shape({
     onClose: PropTypes.func.isRequired,
@@ -81,7 +83,9 @@ const ChargeForm = ({ handlers: { onClose, onSubmit }, pristine, submitting, cor
         footer={renderPaneFooter()}
         id="pane.oa.charge.form"
         paneTitle={renderPaneTitle()}
-      />
+      >
+        <ChargeInfoForm />
+      </Pane>
     </Paneset>
   );
 };

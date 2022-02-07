@@ -167,6 +167,15 @@
 
   "charge.newCharge": "New charge",
   "charge.editCharge": "Edit charge",
+  "charge.amount": "Amount",
+  "charge.currency": "Currency",
+  "charge.exchangeRate": "Exchange rate",
+  "charge.coefficient": "Coefficient",
+  "charge.discount": "Discount",
+  "charge.description": "Description",
+  "charge.currency.gbp": "GBP",
+  "charge.currency.usd": "USD",
+
 
   "correspondence.newCorrespondence": "New correspondence",
   "correspondence.editCorrespondence": "Edit correspondence",
