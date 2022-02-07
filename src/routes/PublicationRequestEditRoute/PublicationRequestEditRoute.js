@@ -3,9 +3,9 @@ import arrayMutators from 'final-form-arrays';
 import { useHistory, useParams } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useQuery, useMutation } from 'react-query';
-import PublicationRequestForm from '../components/views/PublicationRequestForm';
+import PublicationRequestForm from '../../components/views/PublicationRequestForm';
 
-import publicationRequestSubmitHandler from '../util/publicationRequestSubmitHandler';
+import publicationRequestSubmitHandler from '../../util/publicationRequestSubmitHandler';
 
 const PublicationRequestEditRoute = () => {
   const history = useHistory();

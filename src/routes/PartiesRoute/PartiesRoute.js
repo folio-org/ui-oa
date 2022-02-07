@@ -7,8 +7,8 @@ import {
 } from '@folio/stripes/core';
 
 import { SASQRoute } from '@k-int/stripes-kint-components';
-import { OAFilterHeaderComponent } from '../components/SearchAndFilter';
-import Party from '../components/views/Party';
+import { OAFilterHeaderComponent } from '../../components/SearchAndFilter';
+import Party from '../../components/views/Party';
 
 const PartiesRoute = ({ path }) => {
 // TODO: Uncomment lastPaneMenu when peopleCreate view is implemented

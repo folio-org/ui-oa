@@ -2,8 +2,8 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useQuery, useMutation } from 'react-query';
 
-import urls from '../util/urls';
-import CorrespondenceView from '../components/views/CorrespondenceView';
+import urls from '../../util/urls';
+import CorrespondenceView from '../../components/views/CorrespondenceView';
 
 const CorrespondenceViewRoute = () => {
   const history = useHistory();

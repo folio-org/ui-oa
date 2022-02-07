@@ -5,8 +5,8 @@ import { useMutation, useQuery } from 'react-query';
 
 import { useOkapiKy } from '@folio/stripes/core';
 
-import CorrespondenceForm from '../components/views/CorrespondenceForm';
-import correspondenceSubmitHandler from '../util/correspondenceSubmitHandler';
+import CorrespondenceForm from '../../components/views/CorrespondenceForm';
+import correspondenceSubmitHandler from '../../util/correspondenceSubmitHandler';
 
 const CorrespondenceEditRoute = () => {
   const history = useHistory();

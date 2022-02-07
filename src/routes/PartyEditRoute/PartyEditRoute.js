@@ -3,7 +3,7 @@ import arrayMutators from 'final-form-arrays';
 import { useHistory, useParams } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useQuery, useMutation } from 'react-query';
-import PartyForm from '../components/views/PartyForm';
+import PartyForm from '../../components/views/PartyForm';
 
 const PartyEditRoute = () => {
   const history = useHistory();

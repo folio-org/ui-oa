@@ -7,8 +7,8 @@ import { useMutation } from 'react-query';
 import { useOkapiKy, CalloutContext } from '@folio/stripes/core';
 import SafeHTMLMessage from '@folio/react-intl-safe-html';
 
-import PublicationRequestForm from '../components/views/PublicationRequestForm';
-import publicationRequestSubmitHandler from '../util/publicationRequestSubmitHandler';
+import PublicationRequestForm from '../../components/views/PublicationRequestForm';
+import publicationRequestSubmitHandler from '../../util/publicationRequestSubmitHandler';
 
 const PublicationRequestCreateRoute = () => {
   const history = useHistory();
