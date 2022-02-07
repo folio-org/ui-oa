@@ -165,6 +165,9 @@
   "streetAddresses.addStreetAddress": "Add street address",
   "streetAddresses.requestHasNone": "No street addresses for this { section }",
 
+  "charge.newCharge": "New charge",
+  "charge.editCharge": "Edit charge",
+
   "correspondence.newCorrespondence": "New correspondence",
   "correspondence.editCorrespondence": "Edit correspondence",
   "correspondence.viewCorrespondence": "View correspondence",
