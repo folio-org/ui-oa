@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import { Form, arrayMutators } from 'react-final-form';
+import { Form } from 'react-final-form';
+import arrayMutators from 'final-form-arrays';
 import { useMutation } from 'react-query';
 import { FormattedMessage } from 'react-intl';
 
