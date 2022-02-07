@@ -21,7 +21,8 @@ const ChargeCreateRoute = () => {
       })
   );
   const submitCharge = (values) => {
-    postCharge(values);
+    const submitValues = { 'charges': [values] };
+    postCharge(submitValues);
   };
 
   return (
