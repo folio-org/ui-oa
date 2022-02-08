@@ -12,6 +12,15 @@ const propTypes = {
   streetAddresses: PropTypes.object,
   compact: PropTypes.bool,
 };
+
+const renderEmailLink = (email) => {
+  return email ? (<ExternalLink content={email} href={'mailto:' + email} />) : null;
+};
+
+const renderOrcidLink = (orcidId) => {
+  return orcidId ? (<ExternalLink content={orcidId} href={'https://orcid.org/' + orcidId} icon />) : null;
+};
+
 const renderCompactInfo = (party, otherEmailAddresses) => {
   return (
     <>
@@ -19,14 +28,7 @@ const renderCompactInfo = (party, otherEmailAddresses) => {
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.party.mainEmailAddress" />}
-            value={
-              party?.mainEmail ? (
-                <ExternalLink
-                  content={party.mainEmail}
-                  href={'mailto:' + party.mainEmail}
-                />
-              ) : null
-            }
+            value={renderEmailLink(party?.mainEmail)}
           />
         </Col>
         <Col xs={3}>
@@ -44,15 +46,7 @@ const renderCompactInfo = (party, otherEmailAddresses) => {
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.party.orcidId" />}
-            value={
-              party?.orcidId ? (
-                <ExternalLink
-                  content={party.orcidId}
-                  href={'https://orcid.org/' + party.orcidId}
-                  icon
-                />
-              ) : null
-            }
+            value={renderOrcidLink(party?.orcidId)}
           />
         </Col>
       </Row>
@@ -64,15 +58,14 @@ const renderCompactInfo = (party, otherEmailAddresses) => {
                 label={
                   <FormattedMessage id="ui-oa.otherEmail.otherEmailAddresses" />
                 }
-              >
-                {otherEmailAddresses ? (
+                value={
                   <ul>
                     {otherEmailAddresses.map((email) => (
                       <li key={email?.id}>{email?.emailAddress}</li>
                     ))}
                   </ul>
-                ) : null}
-              </KeyValue>
+                }
+              />
             </Col>
           </Row>
         )}
@@ -193,15 +186,7 @@ const PartyInfo = ({
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.party.orcidId" />}
-            value={
-              party?.orcidId ? (
-                <ExternalLink
-                  content={party.orcidId}
-                  href={'https://orcid.org/' + party.orcidId}
-                  icon
-                />
-              ) : null
-            }
+            value={renderOrcidLink(party?.orcidId)}
           />
         </Col>
       </Row>
@@ -209,14 +194,7 @@ const PartyInfo = ({
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.party.mainEmailAddress" />}
-            value={
-              party?.mainEmail ? (
-                <ExternalLink
-                  content={party.mainEmail}
-                  href={'mailto:' + party.mainEmail}
-                />
-              ) : null
-            }
+            value={renderEmailLink(party?.mainEmail)}
           />
         </Col>
         <Col xs={3}>
@@ -240,15 +218,14 @@ const PartyInfo = ({
               label={
                 <FormattedMessage id="ui-oa.otherEmail.otherEmailAddresses" />
               }
-            >
-              {otherEmailAddresses ? (
+              value={
                 <ul>
                   {otherEmailAddresses.map((email) => (
                     <li key={email?.id}>{email?.emailAddress}</li>
                   ))}
                 </ul>
-              ) : null}
-            </KeyValue>
+              }
+            />
           </Col>
         </Row>
       )}
@@ -259,7 +236,7 @@ const PartyInfo = ({
             <Label>
               <FormattedMessage id="ui-oa.publicationRequest.streetAddresses" />
             </Label>
-            {streetAddresses ? renderStreetAddresses(streetAddresses) : null}
+            {renderStreetAddresses(streetAddresses)}
           </Col>
         </Row>
       )}
