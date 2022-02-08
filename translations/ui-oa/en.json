@@ -175,6 +175,8 @@
   "charge.description": "Description",
   "charge.currency.gbp": "GBP",
   "charge.currency.usd": "USD",
+  "charge.validate.notNegative": "Cannot be negative",
+  "charge.validate.maxDigits": "Maximum 10 digits either side",
 
 
   "correspondence.newCorrespondence": "New correspondence",

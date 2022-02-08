@@ -8,7 +8,14 @@ import {
   Select,
   TextArea,
 } from '@folio/stripes/components';
-import { requiredValidator } from '@folio/stripes-erm-components';
+import {
+  requiredValidator,
+  composeValidators,
+} from '@folio/stripes-erm-components';
+import {
+  validateNotNegative,
+  validateAsDecimal,
+} from '../../../util/validators';
 
 const ChargeInfoForm = () => {
   const intl = useIntl();
@@ -22,7 +29,12 @@ const ChargeInfoForm = () => {
             label={<FormattedMessage id="ui-oa.charge.amount" />}
             name="amount.value"
             required
-            validate={requiredValidator}
+            type="number"
+            validate={composeValidators(
+              requiredValidator,
+              validateNotNegative,
+              validateAsDecimal
+            )}
           />
         </Col>
         <Col xs={3}>
@@ -69,7 +81,12 @@ const ChargeInfoForm = () => {
             label={<FormattedMessage id="ui-oa.charge.coefficient" />}
             name="exchangeRate.coefficient"
             required
-            validate={requiredValidator}
+            type="number"
+            validate={composeValidators(
+              requiredValidator,
+              validateNotNegative,
+              validateAsDecimal
+            )}
           />
         </Col>
       </Row>
@@ -79,6 +96,8 @@ const ChargeInfoForm = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.charge.discount" />}
             name="discount"
+            type="number"
+            validate={composeValidators(validateNotNegative, validateAsDecimal)}
           />
         </Col>
       </Row>
