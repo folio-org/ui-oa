@@ -194,8 +194,9 @@ const PartyInfo = ({
         </Col>
         {renderOrcidId(party?.orcidId)}
       </Row>
-      <Row>{renderContactInformation(party)}</Row>
-
+      <Row>
+        {renderContactInformation(party)}
+      </Row>
       <Row>
         {otherEmailAddresses && renderOtherEmailAddresses(otherEmailAddresses)}
       </Row>
