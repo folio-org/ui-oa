@@ -41,7 +41,6 @@ const propTypes = {
 };
 
 const PublicationRequest = ({ resource: request, onClose }) => {
-  console.log(request);
   const history = useHistory();
   const params = useParams();
   const accordionStatusRef = React.createRef();
