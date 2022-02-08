@@ -49,7 +49,7 @@ const ChargeInfoForm = () => {
                 }),
               },
             ]}
-            id="charge-exchange-rate"
+            id="charge-currency"
             label={<FormattedMessage id="ui-oa.charge.currency" />}
             name="amount.baseCurrency"
             required
