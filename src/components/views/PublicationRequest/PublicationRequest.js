@@ -41,6 +41,7 @@ const propTypes = {
 };
 
 const PublicationRequest = ({ resource: request, onClose }) => {
+  console.log(request);
   const history = useHistory();
   const params = useParams();
   const accordionStatusRef = React.createRef();
@@ -117,17 +118,8 @@ const PublicationRequest = ({ resource: request, onClose }) => {
             )}
             {request?.requestContact?.id && (
               <RequestContact {...getSectionProps('requestContact')} />)}
-            {
-              /* TODO Notice this is likely not the correct shape
-               * Pending decisions made on the backend about Publication
-               * Just displaying it for now
-               */
-              // request.publication &&
-              <>
-                <Publication {...getSectionProps('publication')} />
-                <PublicationStatus {...getSectionProps('publicationStatus')} />
-              </>
-            }
+            <Publication {...getSectionProps('publication')} />
+            <PublicationStatus {...getSectionProps('publicationStatus')} />
             {request?.fundings && (
               <Funding {...getSectionProps('funding')} />)}
 
