@@ -13,6 +13,7 @@ import {
   PartiesRoute,
   PartiesEditRoute,
   JournalsRoute,
+  ChargeCreateRoute
 } from './routes';
 
 const App = (props) => {
@@ -48,6 +49,10 @@ const App = (props) => {
         <Route
           component={CorrespondenceViewRoute}
           path={`${path}/publicationRequests/:prId/correspondence/:cId`}
+        />
+        <Route
+          component={ChargeCreateRoute}
+          path={`${path}/publicationRequests/:id/charge/create`}
         />
         <Route
           component={PartiesEditRoute}

@@ -29,7 +29,8 @@ import {
   RequestContact,
   RequestInfo,
   Correspondence,
-  Agreement
+  Agreement,
+  Charges
 } from '../../PublicationRequestSections';
 
 import urls from '../../../util/urls';
@@ -134,6 +135,7 @@ const PublicationRequest = ({ resource: request, onClose }) => {
               <Agreement {...getSectionProps('agreement')} />
             )}
             <Correspondence {...getSectionProps('correspondences')} />
+            <Charges {...getSectionProps('correspondences')} />
           </AccordionSet>
         </AccordionStatus>
       </Pane>
