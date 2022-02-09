@@ -1,4 +1,5 @@
 const urls = {
+
   journals: () => '/oa/journals',
 
   parties: () => '/oa/people',
@@ -15,6 +16,7 @@ const urls = {
   publicationRequestCorrespondenceCreate: prId => `/oa/publicationRequests/${prId}/correspondence/create`,
   publicationRequestCorrespondenceEdit: (prId, cId) => `/oa/publicationRequests/${prId}/correspondence/${cId}/edit`,
 
+  publicationRequestChargeView: (prId, chId) => `/oa/publicationRequests/${prId}/charge/${chId}`,
   publicationRequestChargeCreate: prId => `/oa/publicationRequests/${prId}/charge/create`
 };
 
