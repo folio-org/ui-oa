@@ -5,7 +5,7 @@ import ChargeView from '../../components/views/ChargeView';
 
 const ChargeViewRoute = () => {
   const history = useHistory();
-  const { prId, chId } = useParams();
+  const { prId } = useParams();
 
   const handleClose = () => {
     history.push(`${urls.publicationRequest(prId)}`);

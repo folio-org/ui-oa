@@ -14,10 +14,8 @@ import {
   PartiesEditRoute,
   JournalsRoute,
   ChargeCreateRoute,
-  ChargeViewRoute
 } from './routes';
 
-import ChargeView from './components/views/ChargeView/ChargeView';
 
 const App = (props) => {
   const { actAs, match: { path } } = props;
