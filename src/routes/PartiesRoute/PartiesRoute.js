@@ -11,7 +11,6 @@ import { OAFilterHeaderComponent } from '../../components/SearchAndFilter';
 import Party from '../../components/views/Party';
 
 const PartiesRoute = ({ path }) => {
-// TODO: Uncomment lastPaneMenu when peopleCreate view is implemented
   const renderHeaderComponent = () => {
     return <OAFilterHeaderComponent primary="people" />;
   };
@@ -59,25 +58,6 @@ const PartiesRoute = ({ path }) => {
   const initialSortState = {
     sort: 'givenNames'
   };
-//
-//   const lastpaneMenu =
-//     <IfPermission perm="oa.party.edit">
-//       <PaneMenu>
-//         <FormattedMessage id="ui-oa.publicationRequest.createPersonRecord">
-//           {ariaLabel => (
-//             <Button
-//               aria-label={ariaLabel}
-//               buttonStyle="primary"
-//               id="clickable-new-person"
-//               marginBottom0
-//               to={`${urls.partyCreate()}`}
-//             >
-//               <FormattedMessage id="stripes-smart-components.new" />
-//             </Button>
-//           )}
-//         </FormattedMessage>
-//       </PaneMenu>
-//     </IfPermission>;
 
   return (
     <SASQRoute

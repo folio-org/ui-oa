@@ -12,71 +12,73 @@ const propTypes = {
   streetAddresses: PropTypes.object,
   compact: PropTypes.bool,
 };
-const renderCompactInfo = (party, otherEmailAddresses) => {
+
+const renderOrcidId = (orcidId) => {
+  return (
+    <Col xs={3}>
+      <KeyValue
+        label={<FormattedMessage id="ui-oa.party.orcidId" />}
+        value={
+          orcidId && (
+            <ExternalLink
+              content={orcidId}
+              href={'https://orcid.org/' + orcidId}
+              icon
+            />
+          )
+        }
+      />
+    </Col>
+  );
+};
+
+const renderOtherEmailAddresses = (otherEmailAddresses) => {
+  return (
+    <Col xs={6}>
+      <KeyValue
+        label={<FormattedMessage id="ui-oa.otherEmail.otherEmailAddresses" />}
+        value={
+          otherEmailAddresses && (
+            <ul>
+              {otherEmailAddresses.map((email) => (
+                <li key={email?.id}>{email?.emailAddress}</li>
+              ))}
+            </ul>
+          )
+        }
+      />
+    </Col>
+  );
+};
+
+const renderContactInformation = (party) => {
   return (
     <>
-      <Row>
-        <Col xs={3}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.party.mainEmailAddress" />}
-            value={
-              party?.mainEmail ? (
-                <ExternalLink
-                  content={party.mainEmail}
-                  href={'mailto:' + party.mainEmail}
-                />
-              ) : null
-            }
-          />
-        </Col>
-        <Col xs={3}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.party.phone" />}
-            value={party?.phone}
-          />
-        </Col>
-        <Col xs={3}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.party.mobilePhone" />}
-            value={party?.mobile}
-          />
-        </Col>
-        <Col xs={3}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.party.orcidId" />}
-            value={
-              party?.orcidId ? (
-                <ExternalLink
-                  content={party.orcidId}
-                  href={'https://orcid.org/' + party.orcidId}
-                  icon
-                />
-              ) : null
-            }
-          />
-        </Col>
-      </Row>
-      <>
-        {otherEmailAddresses && (
-          <Row start="xs">
-            <Col xs={6}>
-              <KeyValue
-                label={
-                  <FormattedMessage id="ui-oa.otherEmail.otherEmailAddresses" />
-                }
-              >
-                {otherEmailAddresses ? (
-                  <ul>
-                    {otherEmailAddresses.map((email) => (
-                      <li key={email?.id}>{email?.emailAddress}</li>
-                    ))}
-                  </ul>
-                ) : null}
-              </KeyValue>
-            </Col>
-          </Row>
-        )}
-      </>
+      <Col xs={3}>
+        <KeyValue
+          label={<FormattedMessage id="ui-oa.party.mainEmailAddress" />}
+          value={
+            party?.mainEmail && (
+              <ExternalLink
+                content={party.mainEmail}
+                href={'mailto:' + party.mainEmail}
+              />
+            )
+          }
+        />
+      </Col>
+      <Col xs={3}>
+        <KeyValue
+          label={<FormattedMessage id="ui-oa.party.phone" />}
+          value={party?.phone}
+        />
+      </Col>
+      <Col xs={3}>
+        <KeyValue
+          label={<FormattedMessage id="ui-oa.party.mobilePhone" />}
+          value={party?.mobile}
+        />
+      </Col>
     </>
   );
 };
@@ -190,68 +192,14 @@ const PartyInfo = ({
             value={party?.givenNames}
           />
         </Col>
-        <Col xs={3}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.party.orcidId" />}
-            value={
-              party?.orcidId ? (
-                <ExternalLink
-                  content={party.orcidId}
-                  href={'https://orcid.org/' + party.orcidId}
-                  icon
-                />
-              ) : null
-            }
-          />
-        </Col>
+        {renderOrcidId(party?.orcidId)}
       </Row>
       <Row>
-        <Col xs={3}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.party.mainEmailAddress" />}
-            value={
-              party?.mainEmail ? (
-                <ExternalLink
-                  content={party.mainEmail}
-                  href={'mailto:' + party.mainEmail}
-                />
-              ) : null
-            }
-          />
-        </Col>
-        <Col xs={3}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.party.phone" />}
-            value={party?.phone}
-          />
-        </Col>
-        <Col xs={3}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.party.mobilePhone" />}
-            value={party?.mobile}
-          />
-        </Col>
+        {renderContactInformation(party)}
       </Row>
-
-      {otherEmailAddresses && (
-        <Row start="xs">
-          <Col xs={6}>
-            <KeyValue
-              label={
-                <FormattedMessage id="ui-oa.otherEmail.otherEmailAddresses" />
-              }
-            >
-              {otherEmailAddresses ? (
-                <ul>
-                  {otherEmailAddresses.map((email) => (
-                    <li key={email?.id}>{email?.emailAddress}</li>
-                  ))}
-                </ul>
-              ) : null}
-            </KeyValue>
-          </Col>
-        </Row>
-      )}
+      <Row>
+        {otherEmailAddresses && renderOtherEmailAddresses(otherEmailAddresses)}
+      </Row>
 
       {streetAddresses && (
         <Row>
@@ -259,13 +207,21 @@ const PartyInfo = ({
             <Label>
               <FormattedMessage id="ui-oa.publicationRequest.streetAddresses" />
             </Label>
-            {streetAddresses ? renderStreetAddresses(streetAddresses) : null}
+            {renderStreetAddresses(streetAddresses)}
           </Col>
         </Row>
       )}
     </>
   ) : (
-    renderCompactInfo(party, otherEmailAddresses)
+    <>
+      <Row>
+        {renderContactInformation(party)}
+        {renderOrcidId(party?.orcidId)}
+      </Row>
+      <Row>
+        {otherEmailAddresses && renderOtherEmailAddresses(otherEmailAddresses)}
+      </Row>
+    </>
   );
 };
 
