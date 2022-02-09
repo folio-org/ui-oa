@@ -2,16 +2,12 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { useParams } from 'react-router-dom';
 import { AppIcon } from '@folio/stripes/core';
 
-import {
-  Pane,
-} from '@folio/stripes/components';
-
+import { Pane } from '@folio/stripes/components';
 
 const propTypes = {
-  onClose: PropTypes.func
+  onClose: PropTypes.func,
 };
 
 const ChargeView = ({ onClose }) => {

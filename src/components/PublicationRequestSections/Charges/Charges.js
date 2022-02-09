@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { useHistory } from 'react-router-dom';
 
 import { IfPermission } from '@folio/stripes/core';
 import {
@@ -18,8 +19,14 @@ const propTypes = {
 };
 
 const Charges = ({ request }) => {
+  const history = useHistory();
+
   const renderBadge = (charges) => {
     return charges ? <Badge>{charges?.length}</Badge> : <Badge>0</Badge>;
+  };
+
+  const handleRowClick = (e, charge) => {
+    history.push(`${urls.publicationRequestChargeView(request?.id, charge?.id)}`);
   };
 
   const renderAddChargesButton = () => {
@@ -73,6 +80,7 @@ const Charges = ({ request }) => {
             }}
             contentData={request?.charges}
             formatter={formatter}
+            onRowClick={handleRowClick}
             visibleColumns={[
               'description',
               'amount',
