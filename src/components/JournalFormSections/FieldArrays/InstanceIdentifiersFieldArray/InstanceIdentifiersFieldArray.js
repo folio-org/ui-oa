@@ -1,4 +1,4 @@
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 
 import { Field } from 'react-final-form';
@@ -10,13 +10,15 @@ import {
   IconButton,
   TextField,
   Row,
+  Select,
 } from '@folio/stripes/components';
 
 const propTypes = {
-    instanceId: PropTypes.string.isRequired,
-  };
+  instanceId: PropTypes.string.isRequired,
+};
 
 const InstanceIdentifiersFieldArray = ({ instanceId }) => {
+  const intl = useIntl();
   const renderIdentifier = (fields) => {
     return (
       <>
@@ -28,7 +30,28 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
             <Row middle="xs">
               <Col xs={3}>
                 <Field
-                  component={TextField}
+                  component={Select}
+                  dataOptions={[
+                    { value: '', label: '' },
+                    {
+                      value: 'issn',
+                      label: intl.formatMessage({
+                        id: 'ui-oa.journal.instance.identifier.ns.issn',
+                      }),
+                    },
+                    {
+                      value: 'ezb',
+                      label: intl.formatMessage({
+                        id: 'ui-oa.journal.instance.identifier.ns.ezb',
+                      }),
+                    },
+                    {
+                      value: 'zdb',
+                      label: intl.formatMessage({
+                        id: 'ui-oa.journal.instance.identifier.ns.zdb',
+                      }),
+                    },
+                  ]}
                   label={
                     <FormattedMessage id="ui-oa.journal.instance.identifier.nameSpace" />
                   }

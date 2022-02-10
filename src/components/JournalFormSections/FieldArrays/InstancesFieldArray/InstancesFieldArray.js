@@ -1,4 +1,4 @@
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
 
@@ -6,14 +6,16 @@ import {
   Button,
   Col,
   IconButton,
-  TextField,
   Row,
   Card,
+  Select
 } from '@folio/stripes/components';
 
 import { InstanceIdentifiersFieldArray } from '..';
 
 const InstancesFieldArray = () => {
+  const intl = useIntl();
+
   const renderInstance = (fields) => {
     return (
       <>
@@ -23,7 +25,19 @@ const InstancesFieldArray = () => {
               <Row middle="xs">
                 <Col xs={3}>
                   <Field
-                    component={TextField}
+                    component={Select}
+                    dataOptions={[
+                      { value: '', label: '' },
+                      {
+                        value: 'electronic',
+                        label: intl.formatMessage({ id: 'ui-oa.journal.instance.subType.electronic' }),
+                      },
+                      {
+                        value: 'print',
+                        label: intl.formatMessage({ id: 'ui-oa.journal.instance.subType.print' }),
+                      },
+                    ]}
+                    id="journal-instance-subType"
                     label={
                       <FormattedMessage id="ui-oa.journal.instance.subtype" />
                     }
