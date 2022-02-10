@@ -1,5 +1,6 @@
 const urls = {
   journals: () => '/oa/journals',
+  journal: id => `/oa/journals/${id}`,
 
   parties: () => '/oa/people',
   party: id => `/oa/people/${id}`,
