@@ -48,6 +48,13 @@
   "journal.zdb": "ZDB",
   "journal.issn": "ISSN",
   "journal.newJournal": "New journal",
+  "journal.type": "Type",
+  "journal.type.serial": "Serial",
+  "journal.addInstance": "Add instance",
+  "journal.instance.subtype": "Subtype",
+  "journal.instance.identifier.addIdentifier": "Add identifier",
+  "journal.instance.identifier.nameSpace": "Namespace",
+  "journal.instance.identifier.id": "ID",
 
   "publicationRequest.addFunding": "Add funding",
   "publicationRequest.addPerson": "Add person",

@@ -5,6 +5,8 @@ import { FormattedMessage } from 'react-intl';
 
 import { Button, Modal, ModalFooter } from '@folio/stripes/components';
 
+import JournalInfoForm from '../JournalFormSections/JournalInfoForm';
+
 const propTypes = {
   showModal: PropTypes.bool,
   setShowModal: PropTypes.func,
@@ -56,7 +58,9 @@ const JournalModal = ({ showModal, setShowModal }) => {
             label={<FormattedMessage id="ui-oa.journal.newJournal" />}
             onClose={() => setShowModal(false)}
             open={showModal}
-          />
+          >
+            <JournalInfoForm />
+          </Modal>
         </form>
       )}
     />
