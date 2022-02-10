@@ -35,7 +35,7 @@ const PartyModal = ({ showModal, setShowModal, handlePartyChange }) => {
       <ModalFooter>
         <Button
           buttonStyle="primary"
-          id="duplicate-modal-save-button"
+          id="party-modal-save-button"
           onClick={() => {
             handleSubmit().then(formRestart);
           }}
@@ -45,7 +45,7 @@ const PartyModal = ({ showModal, setShowModal, handlePartyChange }) => {
         </Button>
         <Button
           buttonStyle="default"
-          id="duplicate-modal-cancel-button"
+          id="party-modal-cancel-button"
           onClick={() => setShowModal(false)}
         >
           <FormattedMessage id="stripes-components.cancel" />

@@ -27,7 +27,7 @@ const JournalModal = ({ showModal, setShowModal }) => {
       <ModalFooter>
         <Button
           buttonStyle="primary"
-          id="duplicate-modal-save-button"
+          id="journal-modal-save-button"
           onClick={() => {
             handleSubmit().then(formRestart);
           }}
@@ -37,7 +37,7 @@ const JournalModal = ({ showModal, setShowModal }) => {
         </Button>
         <Button
           buttonStyle="default"
-          id="duplicate-modal-cancel-button"
+          id="journal-modal-cancel-button"
           onClick={() => setShowModal(false)}
         >
           <FormattedMessage id="stripes-components.cancel" />
