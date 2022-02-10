@@ -1,5 +1,4 @@
-/* eslint-disable import/no-unresolved */
-import React from 'react';
+import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Field, useFormState, useForm } from 'react-final-form';
 import { Link } from 'react-router-dom';
@@ -10,6 +9,8 @@ import {
   Row,
   Card,
   IconButton,
+  Layout,
+  Button,
 } from '@folio/stripes/components';
 import {
   generateKiwtQuery,
@@ -17,6 +18,7 @@ import {
 } from '@k-int/stripes-kint-components';
 import { AppIcon } from '@folio/stripes/core';
 
+import JournalModal from '../../../JournalModal';
 import { JournalDetails } from '../../../PublicationRequestSections/PublicationType';
 import { findIssnByNamespace } from '../../../../util/journalUtils';
 import urls from '../../../../util/urls';
@@ -24,6 +26,7 @@ import urls from '../../../../util/urls';
 const PublicationJournal = () => {
   const { values } = useFormState();
   const { change } = useForm();
+  const [showJournalModal, setShowJournalModal] = useState(false);
 
   const pathMutator = (input, path) => {
     const query = generateKiwtQuery(
@@ -35,6 +38,20 @@ const PublicationJournal = () => {
 
   const handleJournalChange = (journal) => {
     change('journal', journal);
+  };
+
+  const renderFooter = () => {
+    return (
+      <Layout className="textCentered">
+        <Button
+          buttonStyle="primary"
+          marginBottom0
+          onClick={() => setShowJournalModal(true)}
+        >
+          <FormattedMessage id="ui-oa.journal.newJournal" />
+        </Button>
+      </Layout>
+    );
   };
 
   const renderListItem = (journal) => {
@@ -83,6 +100,7 @@ const PublicationJournal = () => {
             name="journal"
             path="oa/works"
             pathMutator={pathMutator}
+            renderFooter={renderFooter}
             renderListItem={renderListItem}
           />
         </Col>
@@ -99,6 +117,10 @@ const PublicationJournal = () => {
           <JournalDetails journal={values?.journal} />
         </Card>
       )}
+      <JournalModal
+        setShowModal={setShowJournalModal}
+        showModal={showJournalModal}
+      />
     </>
   );
 };

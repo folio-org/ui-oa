@@ -47,6 +47,7 @@
   "journal.ezb": "EZB",
   "journal.zdb": "ZDB",
   "journal.issn": "ISSN",
+  "journal.newJournal": "New journal",
 
   "publicationRequest.addFunding": "Add funding",
   "publicationRequest.addPerson": "Add person",
