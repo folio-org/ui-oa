@@ -8,8 +8,9 @@ import {
   IconButton,
   Row,
   Card,
-  Select
+  Select,
 } from '@folio/stripes/components';
+import { requiredValidator } from '@folio/stripes-erm-components';
 
 import { InstanceIdentifiersFieldArray } from '..';
 
@@ -21,7 +22,16 @@ const InstancesFieldArray = () => {
       <>
         {fields.map((instanceId, index) => (
           <div key={instanceId} data-testid={`instancesFieldArray[${index}]`}>
-            <Card>
+            <Card
+              headerEnd={
+                <Col xs={9}>
+                  <IconButton
+                    icon="trash"
+                    onClick={() => fields.remove(index)}
+                  />
+                </Col>
+              }
+            >
               <Row middle="xs">
                 <Col xs={3}>
                   <Field
@@ -30,11 +40,15 @@ const InstancesFieldArray = () => {
                       { value: '', label: '' },
                       {
                         value: 'electronic',
-                        label: intl.formatMessage({ id: 'ui-oa.journal.instance.subType.electronic' }),
+                        label: intl.formatMessage({
+                          id: 'ui-oa.journal.instance.subType.electronic',
+                        }),
                       },
                       {
                         value: 'print',
-                        label: intl.formatMessage({ id: 'ui-oa.journal.instance.subType.print' }),
+                        label: intl.formatMessage({
+                          id: 'ui-oa.journal.instance.subType.print',
+                        }),
                       },
                     ]}
                     id="journal-instance-subType"
@@ -42,12 +56,8 @@ const InstancesFieldArray = () => {
                       <FormattedMessage id="ui-oa.journal.instance.subtype" />
                     }
                     name={`${instanceId}.subType`}
-                  />
-                </Col>
-                <Col xs={9}>
-                  <IconButton
-                    icon="trash"
-                    onClick={() => fields.remove(index)}
+                    required
+                    validate={requiredValidator}
                   />
                 </Col>
               </Row>

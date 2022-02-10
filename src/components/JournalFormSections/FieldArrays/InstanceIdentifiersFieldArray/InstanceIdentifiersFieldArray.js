@@ -12,6 +12,7 @@ import {
   Row,
   Select,
 } from '@folio/stripes/components';
+import { requiredValidator } from '@folio/stripes-erm-components';
 
 const propTypes = {
   instanceId: PropTypes.string.isRequired,
@@ -56,6 +57,8 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
                     <FormattedMessage id="ui-oa.journal.instance.identifier.nameSpace" />
                   }
                   name={`${identifierId}.nameSpace`}
+                  required
+                  validate={requiredValidator}
                 />
               </Col>
               <Col xs={3}>
@@ -65,6 +68,8 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
                     <FormattedMessage id="ui-oa.journal.instance.identifier.id" />
                   }
                   name={`${identifierId}.id`}
+                  required
+                  validate={requiredValidator}
                 />
               </Col>
               <Col xs={6}>
