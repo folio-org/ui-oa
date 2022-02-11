@@ -44,7 +44,7 @@ const InstancesFieldArray = () => {
                 </strong>
               }
             >
-              <Row middle="xs">
+              <Row>
                 <Col xs={4}>
                   <Field
                     component={Select}

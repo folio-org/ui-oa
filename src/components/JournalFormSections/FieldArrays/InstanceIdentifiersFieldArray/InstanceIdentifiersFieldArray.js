@@ -28,7 +28,7 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
             key={identifierId}
             data-testid={`InstanceIdentifiersFieldArray[${index}]`}
           >
-            <Row middle="xs">
+            <Row>
               <Col xs={4}>
                 <Field
                   component={Select}

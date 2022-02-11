@@ -1,5 +1,5 @@
 import { FormattedMessage, useIntl } from 'react-intl';
-import { Field, useFormState } from 'react-final-form';
+import { Field } from 'react-final-form';
 
 import { Col, Row, Select, TextField } from '@folio/stripes/components';
 
@@ -8,8 +8,6 @@ import { InstancesFieldArray } from '../FieldArrays';
 
 
 const JournalInfoForm = () => {
-  const { values } = useFormState();
-  console.log(values);
   const intl = useIntl();
 
   return (
