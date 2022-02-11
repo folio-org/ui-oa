@@ -56,7 +56,7 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
                   label={
                     <FormattedMessage id="ui-oa.journal.instance.identifier.nameSpace" />
                   }
-                  name={`${identifierId}.nameSpace`}
+                  name={`${identifierId}.ns`}
                   required
                   validate={requiredValidator}
                 />
