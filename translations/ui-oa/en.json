@@ -179,6 +179,7 @@
   "streetAddresses.addStreetAddress": "Add street address",
   "streetAddresses.requestHasNone": "No street addresses for this { section }",
 
+  "charge.title": "Charge",
   "charge.newCharge": "New charge",
   "charge.editCharge": "Edit charge",
   "charge.amount": "Amount",
@@ -191,6 +192,7 @@
   "charge.currency.usd": "USD",
   "charge.validate.notNegative": "Cannot be negative",
   "charge.validate.maxDigits": "Maximum 10 digits either side",
+  
 
 
   "correspondence.newCorrespondence": "New correspondence",
