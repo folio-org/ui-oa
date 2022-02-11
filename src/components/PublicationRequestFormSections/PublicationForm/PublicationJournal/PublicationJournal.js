@@ -118,6 +118,7 @@ const PublicationJournal = () => {
         </Card>
       )}
       <JournalModal
+        handleJournalChange={handleJournalChange}
         setShowModal={setShowJournalModal}
         showModal={showJournalModal}
       />

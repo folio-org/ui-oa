@@ -58,11 +58,11 @@ const PartyModal = ({ showModal, setShowModal, handlePartyChange }) => {
     <Form
       mutators={arrayMutators}
       onSubmit={postParty}
-      render={({ handleSubmit, form }) => (
+      render={({ handleSubmit, form: { restart: formRestart } }) => (
         <form onSubmit={handleSubmit}>
           <Modal
             dismissible
-            footer={renderModalFooter(handleSubmit, form.restart)}
+            footer={renderModalFooter(handleSubmit, formRestart)}
             label={<FormattedMessage id="ui-oa.party.newPerson" />}
             onClose={() => setShowModal(false)}
             open={showModal}

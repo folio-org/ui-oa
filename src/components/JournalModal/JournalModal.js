@@ -2,7 +2,9 @@ import PropTypes from 'prop-types';
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { FormattedMessage } from 'react-intl';
+import { useMutation } from 'react-query';
 
+import { useOkapiKy } from '@folio/stripes/core';
 import { Button, Modal, ModalFooter } from '@folio/stripes/components';
 
 import JournalInfoForm from '../JournalFormSections/JournalInfoForm';
@@ -10,17 +12,24 @@ import JournalInfoForm from '../JournalFormSections/JournalInfoForm';
 const propTypes = {
   showModal: PropTypes.bool,
   setShowModal: PropTypes.func,
+  handleJournalChange: PropTypes.func,
+
 };
 
-const JournalModal = ({ showModal, setShowModal }) => {
+const JournalModal = ({ showModal, setShowModal, handleJournalChange }) => {
+  const ky = useOkapiKy();
+
   const handleClose = () => {
     setShowModal(false);
   };
 
-  const postJournal = () => {
-    // TODO Can be changed to post when controller is implemented
-    handleClose();
-  };
+  const { mutateAsync: postJournal } = useMutation(
+    ['ui-oa', 'JournalModal', 'postJournal'],
+    (data) => ky.post('oa/works/citation', { json: data }).json().then((res) => {
+      handleJournalChange(res);
+      handleClose();
+    })
+  );
 
   const renderModalFooter = (handleSubmit, formRestart) => {
     return (
@@ -53,11 +62,11 @@ const JournalModal = ({ showModal, setShowModal }) => {
       }}
       mutators={arrayMutators}
       onSubmit={postJournal}
-      render={({ handleSubmit, form }) => (
+      render={({ handleSubmit, form: { restart: formRestart } }) => (
         <form onSubmit={handleSubmit}>
           <Modal
             dismissible
-            footer={renderModalFooter(handleSubmit, form.restart)}
+            footer={renderModalFooter(handleSubmit, formRestart)}
             label={<FormattedMessage id="ui-oa.journal.newJournal" />}
             onClose={() => setShowModal(false)}
             open={showModal}
