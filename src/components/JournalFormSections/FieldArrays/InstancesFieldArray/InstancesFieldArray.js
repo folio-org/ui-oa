@@ -23,13 +23,25 @@ const InstancesFieldArray = () => {
         {fields.map((instanceId, index) => (
           <div key={instanceId} data-testid={`instancesFieldArray[${index}]`}>
             <Card
-              headerEnd={fields.length !== 1 &&
-                <Col xs={9}>
-                  <IconButton
-                    icon="trash"
-                    onClick={() => fields.remove(index)}
+              headerEnd={
+                fields.length !== 1 && (
+                  <Col xs={9}>
+                    <IconButton
+                      icon="trash"
+                      onClick={() => fields.remove(index)}
+                    />
+                  </Col>
+                )
+              }
+              headerStart={
+                <strong>
+                  <FormattedMessage
+                    id="ui-oa.journal.instanceIndex"
+                    values={{
+                      index: (index + 1),
+                    }}
                   />
-                </Col>
+                </strong>
               }
             >
               <Row middle="xs">

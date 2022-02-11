@@ -51,6 +51,7 @@
   "journal.type": "Type",
   "journal.type.serial": "Serial",
   "journal.addInstance": "Add instance",
+  "journal.instanceIndex": "Instance {index}",
   "journal.instance.subtype": "Subtype",
   "journal.instance.subType.electronic": "Electronic",
   "journal.instance.subType.print": "Print",
