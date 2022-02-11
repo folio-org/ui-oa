@@ -13,8 +13,9 @@ import {
   PartiesRoute,
   PartiesEditRoute,
   JournalsRoute,
-  ChargeCreateRoute
+  ChargeCreateRoute,
 } from './routes';
+
 
 const App = (props) => {
   const { actAs, match: { path } } = props;

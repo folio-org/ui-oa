@@ -8,4 +8,3 @@ export { default as PartiesRoute } from './PartiesRoute';
 export { default as PartiesEditRoute } from './PartyEditRoute';
 export { default as JournalsRoute } from './JournalsRoute';
 export { default as ChargeCreateRoute } from './ChargeCreateRoute';
-
