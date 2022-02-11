@@ -48,6 +48,9 @@ const JournalModal = ({ showModal, setShowModal }) => {
 
   return (
     <Form
+      initialValues={{
+        instances: [{ ids: [{ nameSpace: '', id: '' }], subType: '' }],
+      }}
       mutators={arrayMutators}
       onSubmit={postJournal}
       render={({ handleSubmit, form }) => (

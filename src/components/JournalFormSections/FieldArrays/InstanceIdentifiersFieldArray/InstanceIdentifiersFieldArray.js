@@ -29,7 +29,7 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
             data-testid={`InstanceIdentifiersFieldArray[${index}]`}
           >
             <Row middle="xs">
-              <Col xs={3}>
+              <Col xs={4}>
                 <Field
                   component={Select}
                   dataOptions={[
@@ -61,7 +61,7 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
                   validate={requiredValidator}
                 />
               </Col>
-              <Col xs={3}>
+              <Col xs={4}>
                 <Field
                   component={TextField}
                   label={
@@ -72,9 +72,14 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
                   validate={requiredValidator}
                 />
               </Col>
-              <Col xs={6}>
-                <IconButton icon="trash" onClick={() => fields.remove(index)} />
-              </Col>
+              {fields.length !== 1 && (
+                <Col xs={4}>
+                  <IconButton
+                    icon="trash"
+                    onClick={() => fields.remove(index)}
+                  />
+                </Col>
+              )}
             </Row>
           </div>
         ))}

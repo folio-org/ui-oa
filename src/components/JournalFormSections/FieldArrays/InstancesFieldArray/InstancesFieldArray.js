@@ -23,7 +23,7 @@ const InstancesFieldArray = () => {
         {fields.map((instanceId, index) => (
           <div key={instanceId} data-testid={`instancesFieldArray[${index}]`}>
             <Card
-              headerEnd={
+              headerEnd={fields.length !== 1 &&
                 <Col xs={9}>
                   <IconButton
                     icon="trash"
@@ -33,7 +33,7 @@ const InstancesFieldArray = () => {
               }
             >
               <Row middle="xs">
-                <Col xs={3}>
+                <Col xs={4}>
                   <Field
                     component={Select}
                     dataOptions={[
