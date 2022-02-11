@@ -4,18 +4,26 @@
   "rules": {
     "react/jsx-sort-props": "error",
 
-     // TODO: Remove when https://issues.folio.org/browse/STRIPES-742 to reinstate these rules.
-     "template-curly-spacing" : "off",
-     "indent" : "off",
-     "no-unused-vars": ["warn", {
-      "argsIgnorePattern": "^_",
-      "varsIgnorePattern": "(React|^_)"
-    }]
-
+    // TODO: Remove when https://issues.folio.org/browse/STRIPES-742 to reinstate these rules.
+    "template-curly-spacing": "off",
+    "indent": "off",
+    "no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "(React|^_)"
+      }
+    ]
   },
   "env": {
     "jest/globals": true
   },
-  "plugins": ["jest"]
+  "plugins": ["jest"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx"]
+      }
+    }
+  }
 }
-
