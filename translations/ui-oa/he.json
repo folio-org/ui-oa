@@ -182,5 +182,6 @@
     "charge.currency.gbp": "GBP",
     "charge.currency.usd": "USD",
     "charge.validate.notNegative": "לא יכול להיות שלילי",
-    "charge.validate.maxDigits": "מקסימום 10 ספרות בכל צד"
+    "charge.validate.maxDigits": "מקסימום 10 ספרות בכל צד",
+    "charge.title": "Charge"
 }
