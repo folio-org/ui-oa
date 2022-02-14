@@ -18,10 +18,10 @@
   "env": {
     "jest/globals": true
   },
-  "plugins": ["jest"]
-  // "settings": {
-  //   "import/resolver": {
-  //     "node": "extensions"
-  //   }
-  // }
+  "plugins": ["jest"],
+  "settings": {
+    "import/resolver": {
+      "node": "extensions"
+    }
+  }
 }
