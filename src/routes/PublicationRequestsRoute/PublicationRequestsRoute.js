@@ -2,22 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
-
+import { matchPath, useLocation } from 'react-router-dom';
 import { AppIcon, IfPermission } from '@folio/stripes/core';
 
-import {
-  Button,
-  FormattedUTCDate,
-  PaneMenu,
-} from '@folio/stripes/components';
+import { Button, FormattedUTCDate, PaneMenu } from '@folio/stripes/components';
 
 import { SASQRoute } from '@k-int/stripes-kint-components';
 import PublicationRequest from '../../components/views/PublicationRequest';
+import ChargeView from '../../components/views/ChargeView/ChargeView';
 import urls from '../../util/urls';
-import { PublicationRequestsFilters, OAFilterHeaderComponent } from '../../components/SearchAndFilter';
+import {
+  PublicationRequestsFilters,
+  OAFilterHeaderComponent,
+} from '../../components/SearchAndFilter';
 
 const PublicationRequestsRoute = ({ path }) => {
-  // TODO: Add coresponding author / request contact name to SASQ map search key
+  const location = useLocation();
+  const chargePath = matchPath(`${location.pathname}`, {
+    path: `${path}/:prId/charge/:chId`,
+  });
+
   const fetchParameters = {
     endpoint: 'oa/publicationRequest',
     SASQ_MAP: {
@@ -26,6 +30,13 @@ const PublicationRequestsRoute = ({ path }) => {
         requestStatus: 'requestStatus.value',
       },
     },
+  };
+  const getViewComponent = () => {
+    if (chargePath) {
+      return ChargeView;
+    } else {
+      return PublicationRequest;
+    }
   };
 
   const renderHeaderComponent = () => {
@@ -103,7 +114,7 @@ const PublicationRequestsRoute = ({ path }) => {
       mclProps={{ formatter }}
       path={path}
       resultColumns={resultColumns}
-      ViewComponent={PublicationRequest}
+      ViewComponent={getViewComponent()}
     />
   );
 };
