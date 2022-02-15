@@ -13,7 +13,6 @@ const propTypes = {
   showModal: PropTypes.bool,
   setShowModal: PropTypes.func,
   handleJournalChange: PropTypes.func,
-
 };
 
 const JournalModal = ({ showModal, setShowModal, handleJournalChange }) => {
@@ -57,7 +56,10 @@ const JournalModal = ({ showModal, setShowModal, handleJournalChange }) => {
 
   return (
     <Form
+      // Setting initial values of type to serial instead of select field
       initialValues={{
+        title: '',
+        type: 'serial',
         instances: [{ ids: [{ ns: '', id: '' }], subType: '' }],
       }}
       mutators={arrayMutators}
