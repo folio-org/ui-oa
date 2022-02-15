@@ -1,4 +1,4 @@
-import { FormattedMessage, useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
 
@@ -13,9 +13,12 @@ import {
 import { requiredValidator } from '@folio/stripes-erm-components';
 
 import { InstanceIdentifiersFieldArray } from '..';
+import useOARefdata from '../../../../util/useOARefdata';
+import selectifyRefdata from '../../../../util/selectifyRefdata';
 
 const InstancesFieldArray = () => {
-  const intl = useIntl();
+  const subTypeRefdataValues = useOARefdata('TitleInstance.SubType');
+  const subTypeValues = selectifyRefdata(subTypeRefdataValues);
 
   const renderInstance = (fields) => {
     return (
@@ -48,21 +51,7 @@ const InstancesFieldArray = () => {
                 <Col xs={4}>
                   <Field
                     component={Select}
-                    dataOptions={[
-                      { value: '', label: '' },
-                      {
-                        value: 'electronic',
-                        label: intl.formatMessage({
-                          id: 'ui-oa.journal.instance.subType.electronic',
-                        }),
-                      },
-                      {
-                        value: 'print',
-                        label: intl.formatMessage({
-                          id: 'ui-oa.journal.instance.subType.print',
-                        }),
-                      },
-                    ]}
+                    dataOptions={[{ value: '', label: '' }, ...subTypeValues]}
                     id="journal-instance-subType"
                     label={
                       <FormattedMessage id="ui-oa.journal.instance.subtype" />
