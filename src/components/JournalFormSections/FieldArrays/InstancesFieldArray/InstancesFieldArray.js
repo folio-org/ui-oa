@@ -18,7 +18,6 @@ import selectifyRefdata from '../../../../util/selectifyRefdata';
 
 const InstancesFieldArray = () => {
   const subTypeRefdataValues = useOARefdata('TitleInstance.SubType');
-  const subTypeValues = selectifyRefdata(subTypeRefdataValues);
 
   const renderInstance = (fields) => {
     return (
@@ -51,7 +50,7 @@ const InstancesFieldArray = () => {
                 <Col xs={4}>
                   <Field
                     component={Select}
-                    dataOptions={[{ value: '', label: '' }, ...subTypeValues]}
+                    dataOptions={[{ value: '', label: '' }, ...subTypeRefdataValues]}
                     id="journal-instance-subType"
                     label={
                       <FormattedMessage id="ui-oa.journal.instance.subtype" />
