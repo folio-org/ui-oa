@@ -14,7 +14,6 @@ import { requiredValidator } from '@folio/stripes-erm-components';
 
 import { InstanceIdentifiersFieldArray } from '..';
 import useOARefdata from '../../../../util/useOARefdata';
-import selectifyRefdata from '../../../../util/selectifyRefdata';
 
 const InstancesFieldArray = () => {
   const subTypeRefdataValues = useOARefdata('TitleInstance.SubType');
