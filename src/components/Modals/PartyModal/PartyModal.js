@@ -1,33 +1,33 @@
 import PropTypes from 'prop-types';
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
-import { FormattedMessage } from 'react-intl';
 import { useMutation } from 'react-query';
+import { FormattedMessage } from 'react-intl';
 
-import { useOkapiKy } from '@folio/stripes/core';
 import { Button, Modal, ModalFooter } from '@folio/stripes/components';
+import { useOkapiKy } from '@folio/stripes/core';
 
-import JournalInfoForm from '../JournalFormSections/JournalInfoForm';
+import PartyInfoForm from '../../PartyFormSections/PartyInfoForm/PartyInfoForm';
 
 const propTypes = {
   showModal: PropTypes.bool,
   setShowModal: PropTypes.func,
-  handleJournalChange: PropTypes.func,
+  handlePartyChange: PropTypes.func,
 };
 
-const JournalModal = ({ showModal, setShowModal, handleJournalChange }) => {
+const PartyModal = ({ showModal, setShowModal, handlePartyChange }) => {
   const ky = useOkapiKy();
 
   const handleClose = () => {
     setShowModal(false);
   };
 
-  const { mutateAsync: postJournal } = useMutation(
-    ['ui-oa', 'JournalModal', 'postJournal'],
-    (data) => ky.post('oa/works/citation', { json: data }).json().then((res) => {
-      handleJournalChange(res);
-      handleClose();
-    })
+  const { mutateAsync: postParty } = useMutation(
+    ['ui-oa', 'PartyModal', 'postParty'],
+    (data) => ky.post('oa/party', { json: data }).json().then((res) => {
+        handlePartyChange(res);
+        handleClose();
+      })
   );
 
   const renderModalFooter = (handleSubmit, formRestart) => {
@@ -35,7 +35,7 @@ const JournalModal = ({ showModal, setShowModal, handleJournalChange }) => {
       <ModalFooter>
         <Button
           buttonStyle="primary"
-          id="journal-modal-save-button"
+          id="party-modal-save-button"
           onClick={() => {
             handleSubmit().then(formRestart);
           }}
@@ -45,7 +45,7 @@ const JournalModal = ({ showModal, setShowModal, handleJournalChange }) => {
         </Button>
         <Button
           buttonStyle="default"
-          id="journal-modal-cancel-button"
+          id="party-modal-cancel-button"
           onClick={() => setShowModal(false)}
         >
           <FormattedMessage id="stripes-components.cancel" />
@@ -56,24 +56,18 @@ const JournalModal = ({ showModal, setShowModal, handleJournalChange }) => {
 
   return (
     <Form
-      // Setting initial values of type to serial instead of select field
-      initialValues={{
-        title: '',
-        type: 'serial',
-        instances: [{ ids: [{ ns: '', id: '' }], subType: '' }],
-      }}
       mutators={arrayMutators}
-      onSubmit={postJournal}
+      onSubmit={postParty}
       render={({ handleSubmit, form: { restart: formRestart } }) => (
         <form onSubmit={handleSubmit}>
           <Modal
             dismissible
             footer={renderModalFooter(handleSubmit, formRestart)}
-            label={<FormattedMessage id="ui-oa.journal.newJournal" />}
+            label={<FormattedMessage id="ui-oa.party.newPerson" />}
             onClose={() => setShowModal(false)}
             open={showModal}
           >
-            <JournalInfoForm />
+            <PartyInfoForm />
           </Modal>
         </form>
       )}
@@ -81,6 +75,6 @@ const JournalModal = ({ showModal, setShowModal, handleJournalChange }) => {
   );
 };
 
-JournalModal.propTypes = propTypes;
+PartyModal.propTypes = propTypes;
 
-export default JournalModal;
+export default PartyModal;
