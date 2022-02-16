@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { Button, Modal, ModalFooter } from '@folio/stripes/components';
 import { useOkapiKy } from '@folio/stripes/core';
 
-import PartyInfoForm from '../PartyFormSections/PartyInfoForm/PartyInfoForm';
+import PartyInfoForm from '../../PartyFormSections/PartyInfoForm/PartyInfoForm';
 
 const propTypes = {
   showModal: PropTypes.bool,
@@ -35,7 +35,7 @@ const PartyModal = ({ showModal, setShowModal, handlePartyChange }) => {
       <ModalFooter>
         <Button
           buttonStyle="primary"
-          id="duplicate-modal-save-button"
+          id="party-modal-save-button"
           onClick={() => {
             handleSubmit().then(formRestart);
           }}
@@ -45,7 +45,7 @@ const PartyModal = ({ showModal, setShowModal, handlePartyChange }) => {
         </Button>
         <Button
           buttonStyle="default"
-          id="duplicate-modal-cancel-button"
+          id="party-modal-cancel-button"
           onClick={() => setShowModal(false)}
         >
           <FormattedMessage id="stripes-components.cancel" />
@@ -58,11 +58,11 @@ const PartyModal = ({ showModal, setShowModal, handlePartyChange }) => {
     <Form
       mutators={arrayMutators}
       onSubmit={postParty}
-      render={({ handleSubmit, form }) => (
+      render={({ handleSubmit, form: { restart: formRestart } }) => (
         <form onSubmit={handleSubmit}>
           <Modal
             dismissible
-            footer={renderModalFooter(handleSubmit, form.restart)}
+            footer={renderModalFooter(handleSubmit, formRestart)}
             label={<FormattedMessage id="ui-oa.party.newPerson" />}
             onClose={() => setShowModal(false)}
             open={showModal}
