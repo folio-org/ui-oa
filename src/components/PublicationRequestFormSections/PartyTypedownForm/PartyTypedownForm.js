@@ -23,7 +23,7 @@ import { AppIcon } from '@folio/stripes/core';
 import PartyInfo from '../../PartySections/PartyInfo';
 import urls from '../../../util/urls';
 import css from './PartyTypedownForm.css';
-import PartyModal from '../../PartyModal';
+import { PartyModal } from '../../Modals';
 
 const propTypes = {
   formName: PropTypes.string.isRequired,

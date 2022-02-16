@@ -18,7 +18,7 @@ import {
 } from '@k-int/stripes-kint-components';
 import { AppIcon } from '@folio/stripes/core';
 
-import JournalModal from '../../../JournalModal';
+import { JournalModal } from '../../../Modals';
 import { JournalDetails } from '../../../PublicationRequestSections/PublicationType';
 import { findIssnByNamespace } from '../../../../util/journalUtils';
 import urls from '../../../../util/urls';
