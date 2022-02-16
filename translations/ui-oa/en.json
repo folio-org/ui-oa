@@ -192,6 +192,13 @@
   "charge.currency.usd": "USD",
   "charge.validate.notNegative": "Cannot be negative",
   "charge.validate.maxDigits": "Maximum 10 digits either side",
+  "charge.invoice.newInvoice": "New Invoice",
+  "charge.invoice.invoiceDate": "Invoice date",
+  "charge.invoice.invoiceNumber": "Invoice number",
+  "charge.invoice.vendorOrganisation": "Vendor organisation",
+  "charge.invoice.paymentMethod": "Payment method",
+  "charge.invoice.batchGroup": "Batch group",
+
   
 
 
