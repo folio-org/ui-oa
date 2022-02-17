@@ -1,0 +1,52 @@
+/* eslint-disable react/prop-types */
+import { Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
+import { Provider } from 'react-redux';
+import {
+  createStore,
+  combineReducers,
+} from 'redux';
+
+import { StripesContext } from '@folio/stripes-core/src/StripesContext';
+
+import buildStripes from '../__mock__/stripesCore.mock';
+import IntlProvider from './intl';
+
+const STRIPES = buildStripes();
+
+const defaultHistory = createMemoryHistory();
+
+const defaultInitialState = {};
+
+const defaultReducers = {};
+
+const StripesHarness = ({
+  stripes,
+  children,
+  history = defaultHistory,
+  storeInitialState = defaultInitialState,
+  storeReducers = defaultReducers,
+}) => {
+  const reducers = {
+    eholdings: () => storeInitialState,
+    ...storeReducers,
+  };
+
+  const reducer = combineReducers(reducers);
+
+  const store = createStore(reducer);
+
+  return (
+    <StripesContext.Provider value={stripes || STRIPES}>
+      <Router history={history}>
+        <Provider store={store}>
+          <IntlProvider>
+            {children}
+          </IntlProvider>
+        </Provider>
+      </Router>
+    </StripesContext.Provider>
+  );
+};
+
+export default StripesHarness;
