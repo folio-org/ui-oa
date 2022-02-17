@@ -1,14 +1,14 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { render } from '@testing-library/react';
-import ChargeCreateRoute from './ChargeCreateRoute';
+import PublicationRequestEditRoute from './PublicationRequestEditRoute';
 import translationsProperties from '../../../test/helpers';
 import StripesHarness from '../../../test/helpers/stripesHarness';
 
 const queryClient = new QueryClient();
 
-jest.mock('../../components/views/ChargeForm', () => () => (
-  <div>ChargeForm</div>
+jest.mock('../../components/views/PublicationRequestForm', () => () => (
+  <div>PublicationRequestForm</div>
 ));
 
 // eslint-disable-next-line react/prop-types
@@ -18,19 +18,19 @@ const wrapper = ({ children }) => (
   </QueryClientProvider>
 );
 
-describe('ChargeCreateRoute', () => {
+describe('PublicationRequestEditRoute', () => {
   let renderComponent;
 
   beforeEach(() => {
     renderComponent = render(
-      <ChargeCreateRoute />,
+      <PublicationRequestEditRoute />,
       { wrapper },
       translationsProperties
     );
   });
 
-  test('renders ChargeForm Component', () => {
+  test('renders PublicationRequestForm Component', () => {
     const { getByText } = renderComponent;
-    expect(getByText('ChargeForm')).toBeInTheDocument();
+    expect(getByText('PublicationRequestForm')).toBeInTheDocument();
   });
 });
