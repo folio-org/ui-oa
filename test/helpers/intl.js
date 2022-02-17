@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { IntlProvider } from 'react-intl';
 
-import oaTranslations from '../../translations/ui-oa/en';
+import OATranslations from '../../translations/ui-oa/en';
 
 const prefixKeys = (translations, prefix) => {
   return Object
@@ -15,7 +15,7 @@ const prefixKeys = (translations, prefix) => {
 };
 
 const translations = {
-  ...prefixKeys(oaTranslations, 'ui-oa'),
+  ...prefixKeys(OATranslations, 'ui-oa'),
 };
 
 const Intl = ({ children }) => (

@@ -22,7 +22,7 @@ const IdentifiersFieldArray = () => {
     return (
       <>
         {fields.map((identifier, index) => (
-          <Row key={identifier} middle="xs">
+          <Row key={identifier} data-testid={`IdentifiersFieldArray[${index}]`} middle="xs">
             <Col xs={3}>
               <Field
                 autoFocus={!fields.value[index].type?.id}
