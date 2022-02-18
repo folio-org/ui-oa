@@ -183,5 +183,19 @@
     "charge.currency.usd": "USD",
     "charge.validate.notNegative": "לא יכול להיות שלילי",
     "charge.validate.maxDigits": "מקסימום 10 ספרות בכל צד",
-    "charge.title": "Charge"
+    "charge.title": "Charge",
+    "journal.newJournal": "New journal",
+    "journal.type": "Type",
+    "journal.type.serial": "Serial",
+    "journal.addInstance": "Add instance",
+    "journal.instanceIndex": "Instance {index}",
+    "journal.instance.subtype": "Subtype",
+    "journal.instance.subType.electronic": "Electronic",
+    "journal.instance.subType.print": "Print",
+    "journal.instance.identifier.addIdentifier": "Add identifier",
+    "journal.instance.identifier.nameSpace": "Namespace",
+    "journal.instance.identifier.id": "ID",
+    "journal.instance.identifier.ns.issn": "ISSN",
+    "journal.instance.identifier.ns.ezb": "EZB",
+    "journal.instance.identifier.ns.zdb": "ZDB"
 }
