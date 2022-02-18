@@ -23,6 +23,8 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
   const renderIdentifier = (fields) => {
     return (
       <>
+        {/* This correctly renders the initial values of a new journal form */}
+        {fields.length < 1 && fields.update()}
         {fields.map((identifierId, index) => (
           <div
             key={identifierId}
@@ -92,9 +94,7 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
   };
 
   return (
-    <FieldArray
-      name={`${instanceId}.ids`}
-    >
+    <FieldArray name={`${instanceId}.ids`}>
       {({ fields }) => (
         <>
           <>{fields.length ? renderIdentifier(fields) : renderEmpty()}</>
