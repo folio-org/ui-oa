@@ -23,6 +23,8 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
   const renderIdentifier = (fields) => {
     return (
       <>
+        {/* This correctly renders the initial values of a new journal form */}
+        {fields.length < 1 && fields.update()}
         {fields.map((identifierId, index) => (
           <div
             key={identifierId}
@@ -87,11 +89,15 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
     );
   };
 
+  const renderEmpty = () => {
+    return <div />;
+  };
+
   return (
     <FieldArray name={`${instanceId}.ids`}>
       {({ fields }) => (
         <>
-          <>{fields.length ? renderIdentifier(fields) : renderIdentifier([{}])}</>
+          <>{fields.length ? renderIdentifier(fields) : renderEmpty()}</>
           <Button onClick={() => fields.push({})}>
             <FormattedMessage id="ui-oa.journal.instance.identifier.addIdentifier" />
           </Button>
