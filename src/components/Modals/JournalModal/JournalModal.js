@@ -30,6 +30,11 @@ const JournalModal = ({ showModal, setShowModal, handleJournalChange }) => {
     })
   );
 
+  const submitJournal = (values) => {
+    const submitValues = { ...values, 'type':'serial' };
+    postJournal(submitValues);
+  };
+
   const renderModalFooter = (handleSubmit, formRestart) => {
     return (
       <ModalFooter>
@@ -59,11 +64,10 @@ const JournalModal = ({ showModal, setShowModal, handleJournalChange }) => {
       // Setting initial values of type to serial instead of select field
       initialValues={{
         title: '',
-        type: 'serial',
         instances: [{ ids: [{ ns: '', id: '' }], subType: '' }],
       }}
       mutators={arrayMutators}
-      onSubmit={postJournal}
+      onSubmit={submitJournal}
       render={({ handleSubmit, form: { restart: formRestart } }) => (
         <form onSubmit={handleSubmit}>
           <Modal
