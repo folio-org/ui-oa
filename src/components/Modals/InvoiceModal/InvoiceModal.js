@@ -9,9 +9,11 @@ import { CreateInvoiceForm } from '../../InvoiceFormSections';
 const propTypes = {
   showModal: PropTypes.bool,
   setShowModal: PropTypes.func,
+  handleInvoiceChange: PropTypes.func,
+
 };
 
-const InvoiceModal = ({ showModal, setShowModal }) => {
+const InvoiceModal = ({ showModal, setShowModal, handleInvoiceChange }) => {
   const handleClose = () => {
     setShowModal(false);
   };

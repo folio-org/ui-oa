@@ -198,7 +198,9 @@
   "charge.invoice.vendorOrganisation": "Vendor organisation",
   "charge.invoice.paymentMethod": "Payment method",
   "charge.invoice.batchGroup": "Batch group",
-  "charge.invoice.linkInvoice": "Link Invoice",
+  "charge.invoice.linkInvoice": "Link invoice",
+  "charge.invoice.addInvoice": "Add invoice",
+
 
   "correspondence.newCorrespondence": "New correspondence",
   "correspondence.editCorrespondence": "Edit correspondence",

@@ -10,6 +10,7 @@ import {
   IconButton,
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
+import { InvoiceTypedownForm } from '../../InvoiceFormSections';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -21,7 +22,7 @@ const propTypes = {
   charge: PropTypes.object,
 };
 
-const InvoiceForm = ({
+const LinkInvoiceForm = ({
   handlers: { onClose, onSubmit },
   pristine,
   submitting,
@@ -83,11 +84,13 @@ const InvoiceForm = ({
         footer={renderPaneFooter()}
         id="pane.oa.invoice.form"
         paneTitle={renderPaneTitle()}
-      />
+      >
+        <InvoiceTypedownForm />
+      </Pane>
     </Paneset>
   );
 };
 
-InvoiceForm.propTypes = propTypes;
+LinkInvoiceForm.propTypes = propTypes;
 
-export default InvoiceForm;
+export default LinkInvoiceForm;
