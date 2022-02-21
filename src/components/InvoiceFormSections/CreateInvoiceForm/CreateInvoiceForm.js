@@ -22,7 +22,7 @@ const CreateInvoiceForm = () => {
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.charge.invoice.invoiceNumber" />}
-            name="invoice.number"
+            name="number"
             required
           />
         </Col>
@@ -31,7 +31,7 @@ const CreateInvoiceForm = () => {
             backendDateStandard="YYYY-MM-DD"
             component={Datepicker}
             label={<FormattedMessage id="ui-oa.charge.invoice.invoiceDate" />}
-            name="invoice.date"
+            name="date"
             timeZone="UTC"
           />
         </Col>
@@ -44,7 +44,7 @@ const CreateInvoiceForm = () => {
             label={
               <FormattedMessage id="ui-oa.charge.invoice.vendorOrganisation" />
             }
-            name="invoice.vendorOrganisation"
+            name="vendorOrganisation"
             required
           />
         </Col>
@@ -52,7 +52,7 @@ const CreateInvoiceForm = () => {
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.charge.invoice.paymentMethod" />}
-            name="invoice.paymentMethod"
+            name="paymentMethod"
             required
           />
         </Col>
@@ -60,7 +60,7 @@ const CreateInvoiceForm = () => {
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.charge.invoice.batchGroup" />}
-            name="invoice.batchGroup"
+            name="batchGroup"
             required
           />
         </Col>
@@ -81,7 +81,7 @@ const CreateInvoiceForm = () => {
             ]}
             id="invoice-currency"
             label={<FormattedMessage id="ui-oa.charge.currency" />}
-            name="exchangeRate.fromCurrency"
+            name="currency"
             required
             validate={requiredValidator}
           />
@@ -100,7 +100,7 @@ const CreateInvoiceForm = () => {
             ]}
             id="invoice-exchangeRate"
             label={<FormattedMessage id="ui-oa.charge.exchangeRate" />}
-            name="exchangeRate.toCurrency"
+            name="exchangeRate"
             required
             validate={requiredValidator}
           />

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Form } from 'react-final-form';
+import { Form, useFormState } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { FormattedMessage } from 'react-intl';
 import { Button, Modal, ModalFooter } from '@folio/stripes/components';
@@ -11,13 +11,21 @@ const propTypes = {
   setShowModal: PropTypes.func,
   handleInvoiceChange: PropTypes.func,
   charge: PropTypes.object,
-
-
 };
 
-const InvoiceModal = ({ showModal, setShowModal, handleInvoiceChange, charge }) => {
+const InvoiceModal = ({
+  showModal,
+  setShowModal,
+  handleInvoiceChange,
+  charge,
+}) => {
+  const { values } = useFormState();
   const handleClose = () => {
     setShowModal(false);
+  };
+
+  const postInvoice = () => {
+    handleClose();
   };
 
   const renderModalFooter = (handleSubmit, formRestart) => {
@@ -27,7 +35,7 @@ const InvoiceModal = ({ showModal, setShowModal, handleInvoiceChange, charge }) 
           buttonStyle="primary"
           id="invoice-modal-save-button"
           onClick={() => {
-            handleSubmit().then(formRestart);
+            handleSubmit();
           }}
           type="submit"
         >
@@ -46,10 +54,13 @@ const InvoiceModal = ({ showModal, setShowModal, handleInvoiceChange, charge }) 
 
   return (
     <Form
-      initialValues={charge}
+      initialValues={{
+        currency: charge?.exchangeRate?.fromCurrency,
+        exchangeRate: charge?.exchangeRate?.toCurrency,
+      }}
       // Setting initial values of type to serial instead of select field
       mutators={arrayMutators}
-      onSubmit={handleClose}
+      onSubmit={postInvoice}
       render={({ handleSubmit, form: { restart: formRestart } }) => (
         <form onSubmit={handleSubmit}>
           <Modal

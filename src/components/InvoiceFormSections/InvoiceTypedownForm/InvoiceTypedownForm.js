@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 
-import { Field } from 'react-final-form';
+import { Field, useForm, useFormState } from 'react-final-form';
 
 import { Button, Layout, Label } from '@folio/stripes/components';
 import { Typedown } from '@k-int/stripes-kint-components';
@@ -13,7 +13,13 @@ const propTypes = {
 };
 
 const InvoiceTypedownForm = ({ charge }) => {
+  const { values } = useFormState();
+  const { change } = useForm();
   const [showInvoiceModal, setShowInvoiceModal] = useState(false);
+
+  const handleInvoiceChange = (invoice) => {
+    change('invoice', invoice);
+  };
 
   const renderFooter = () => {
     return (
@@ -42,6 +48,7 @@ const InvoiceTypedownForm = ({ charge }) => {
       </>
       <InvoiceModal
         charge={charge}
+        handleInvoiceChange={handleInvoiceChange}
         setShowModal={setShowInvoiceModal}
         showModal={showInvoiceModal}
       />
