@@ -1,2 +1,2 @@
 export { default as CreateInvoiceForm } from './CreateInvoiceForm';
-export { default as LinkInvoiceForm } from './LinkInvoiceForm';
+export { default as InvoiceTypedownForm } from './InvoiceTypedownForm';

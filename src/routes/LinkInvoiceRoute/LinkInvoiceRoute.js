@@ -3,7 +3,7 @@ import arrayMutators from 'final-form-arrays';
 import { useHistory, useParams } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useQuery } from 'react-query';
-import InvoiceForm from '../../components/views/InvoiceForm';
+import LinkInvoiceForm from '../../components/views/LinkInvoiceForm';
 import urls from '../../util/urls';
 
 const LinkInvoiceRoute = () => {
@@ -28,7 +28,7 @@ const LinkInvoiceRoute = () => {
     <Form mutators={arrayMutators} onSubmit={submitInvoice}>
       {({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
-          <InvoiceForm
+          <LinkInvoiceForm
             charge={charge}
             handlers={{
               onClose: handleClose,
