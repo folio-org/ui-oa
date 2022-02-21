@@ -85,7 +85,7 @@ const LinkInvoiceForm = ({
         id="pane.oa.invoice.form"
         paneTitle={renderPaneTitle()}
       >
-        <InvoiceTypedownForm />
+        <InvoiceTypedownForm charge={charge} />
       </Pane>
     </Paneset>
   );

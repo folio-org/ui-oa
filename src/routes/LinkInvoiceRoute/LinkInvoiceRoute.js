@@ -15,15 +15,16 @@ const LinkInvoiceRoute = () => {
     history.push(urls.publicationRequestChargeView(prId, chId));
   };
 
-  const { data: charge } = useQuery(
-    ['ui-oa', 'LinkInvoiceRoute', 'charge'],
+  const { data: request } = useQuery(
+    ['ui-oa', 'LinkInvoiceRoute', 'request'],
     () => ky(`oa/publicationRequest/${prId}`).json()
   );
+
+  const charge = request?.charges?.find(e => e.id === chId);
 
   const submitInvoice = (values) => {
     console.log(values);
   };
-
   return (
     <Form mutators={arrayMutators} onSubmit={submitInvoice}>
       {({ handleSubmit }) => (

@@ -81,17 +81,28 @@ const CreateInvoiceForm = () => {
             ]}
             id="invoice-currency"
             label={<FormattedMessage id="ui-oa.charge.currency" />}
-            name="invoice.currency"
+            name="exchangeRate.fromCurrency"
             required
             validate={requiredValidator}
           />
         </Col>
         <Col xs={3}>
           <Field
-            component={TextField}
+            component={Select}
+            dataOptions={[
+              { value: '', label: '' },
+              {
+                value: 'GBP',
+                label: intl.formatMessage({
+                  id: 'ui-oa.charge.currency.gbp',
+                }),
+              },
+            ]}
+            id="invoice-exchangeRate"
             label={<FormattedMessage id="ui-oa.charge.exchangeRate" />}
-            name="invoice.exchangeRate"
-            type="number"
+            name="exchangeRate.toCurrency"
+            required
+            validate={requiredValidator}
           />
         </Col>
       </Row>

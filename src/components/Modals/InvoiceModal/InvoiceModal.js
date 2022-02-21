@@ -10,10 +10,12 @@ const propTypes = {
   showModal: PropTypes.bool,
   setShowModal: PropTypes.func,
   handleInvoiceChange: PropTypes.func,
+  charge: PropTypes.object,
+
 
 };
 
-const InvoiceModal = ({ showModal, setShowModal, handleInvoiceChange }) => {
+const InvoiceModal = ({ showModal, setShowModal, handleInvoiceChange, charge }) => {
   const handleClose = () => {
     setShowModal(false);
   };
@@ -44,6 +46,7 @@ const InvoiceModal = ({ showModal, setShowModal, handleInvoiceChange }) => {
 
   return (
     <Form
+      initialValues={charge}
       // Setting initial values of type to serial instead of select field
       mutators={arrayMutators}
       onSubmit={handleClose}
