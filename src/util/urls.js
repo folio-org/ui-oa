@@ -18,6 +18,7 @@ const urls = {
   publicationRequestCorrespondenceEdit: (prId, cId) => `/oa/publicationRequests/${prId}/correspondence/${cId}/edit`,
 
   publicationRequestChargeView: (prId, chId) => `/oa/publicationRequests/${prId}/charge/${chId}`,
+  publicationRequestChargeLinkInvoice: (prId, chId) => `/oa/publicationRequests/${prId}/charge/${chId}/linkInvoice`,
   publicationRequestChargeCreate: prId => `/oa/publicationRequests/${prId}/charge/create`
 };
 

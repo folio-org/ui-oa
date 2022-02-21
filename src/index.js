@@ -14,11 +14,14 @@ import {
   PartiesEditRoute,
   JournalsRoute,
   ChargeCreateRoute,
+  LinkInvoiceRoute,
 } from './routes';
 
-
 const App = (props) => {
-  const { actAs, match: { path } } = props;
+  const {
+    actAs,
+    match: { path },
+  } = props;
 
   if (actAs === 'settings') {
     return (
@@ -52,22 +55,17 @@ const App = (props) => {
           path={`${path}/publicationRequests/:prId/correspondence/:cId`}
         />
         <Route
+          component={LinkInvoiceRoute}
+          path={`${path}/publicationRequests/:prId/charge/:chId/linkInvoice`}
+        />
+        <Route
           component={ChargeCreateRoute}
           path={`${path}/publicationRequests/:id/charge/create`}
         />
-        <Route
-          component={PartiesEditRoute}
-          path={`${path}/people/:id/edit`}
-        />
-        <PartiesRoute
-          path={`${path}/people`}
-        />
-        <JournalsRoute
-          path={`${path}/journals`}
-        />
-        <PublicationRequestsRoute
-          path={`${path}/publicationRequests`}
-        />
+        <Route component={PartiesEditRoute} path={`${path}/people/:id/edit`} />
+        <PartiesRoute path={`${path}/people`} />
+        <JournalsRoute path={`${path}/journals`} />
+        <PublicationRequestsRoute path={`${path}/publicationRequests`} />
       </Switch>
     </Suspense>
   );

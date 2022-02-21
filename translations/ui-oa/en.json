@@ -198,9 +198,7 @@
   "charge.invoice.vendorOrganisation": "Vendor organisation",
   "charge.invoice.paymentMethod": "Payment method",
   "charge.invoice.batchGroup": "Batch group",
-
-  
-
+  "charge.invoice.linkInvoice": "Link Invoice",
 
   "correspondence.newCorrespondence": "New correspondence",
   "correspondence.editCorrespondence": "Edit correspondence",
@@ -217,18 +215,14 @@
   "correspondence.mode.email": "Email",
   "correspondence.mode.telephone": "Telephone",
 
-
   "correspondence.category": "Category",
   "correspondence.category.invoice": "Invoice",
   "correspondence.category.funding": "Funding",
-
 
   "correspondence.status": "Status",
   "correspondence.status.awaitingReply": "Awaiting Reply",
   "correspondence.status.responseNeeded": "Response Needed",
   "correspondence.status.closed": "Closed",
-
-
 
   "correspondence.showMore": "Show more",
   "correspondence.showLess": "Show less"

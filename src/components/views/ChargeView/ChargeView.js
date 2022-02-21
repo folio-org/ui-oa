@@ -4,7 +4,15 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { AppIcon } from '@folio/stripes/core';
 import { useHistory, useLocation } from 'react-router-dom';
-import { Pane, Row, Col, KeyValue } from '@folio/stripes/components';
+import {
+  Pane,
+  Row,
+  Col,
+  KeyValue,
+  Button,
+  Icon,
+} from '@folio/stripes/components';
+import urls from '../../../util/urls';
 
 const propTypes = {
   resource: PropTypes.object,
@@ -21,8 +29,29 @@ const ChargeView = ({ resource: request }) => {
     history.push(`/oa/publicationRequests/${request.id}`);
   };
 
+  const handleLink = () => {
+    history.push(`${urls.publicationRequestChargeLinkInvoice(request.id, chargeId)}`);
+  };
+
+  const getActionMenu = () => {
+    return (
+      <>
+        <Button
+          buttonStyle="dropdownItem"
+          id="link-invoice-button"
+          onClick={handleLink}
+        >
+          <Icon icon="link">
+            <FormattedMessage id="ui-oa.charge.invoice.linkInvoice" />
+          </Icon>
+        </Button>
+      </>
+    );
+  };
+
   return (
     <Pane
+      actionMenu={getActionMenu}
       appIcon={<AppIcon app="oa" iconKey="app" size="small" />}
       defaultWidth="55%"
       dismissible
