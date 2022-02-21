@@ -6,7 +6,6 @@ import {
   Col,
   TextField,
   Select,
-  TextArea,
   Datepicker,
 } from '@folio/stripes/components';
 import {

@@ -4,7 +4,7 @@ import arrayMutators from 'final-form-arrays';
 import { FormattedMessage } from 'react-intl';
 import { Button, Modal, ModalFooter } from '@folio/stripes/components';
 
-import { CreateInvoiceForm } from '../ChargeFormSections';
+import { CreateInvoiceForm } from '../../InvoiceFormSections';
 
 const propTypes = {
   showModal: PropTypes.bool,
