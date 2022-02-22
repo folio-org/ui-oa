@@ -6,6 +6,8 @@ import {
   Col,
   Row,
   MultiColumnList,
+  Badge,
+  Button,
 } from '@folio/stripes/components';
 
 const propTypes = {
@@ -13,8 +15,23 @@ const propTypes = {
 };
 
 const InvoiceLinesForm = ({ charge }) => {
+  const renderBadge = (lines) => {
+    return lines ? <Badge>{lines?.length}</Badge> : <Badge>0</Badge>;
+  };
+
+  const renderAddInvoiceLineButton = () => {
+    return (
+      <>
+        <Button id="add-invoice-line-button">
+          <FormattedMessage id="ui-oa.charge.invoice.invoiceLine.addLine" />
+        </Button>
+      </>
+    );
+  };
   return (
     <Accordion
+      displayWhenClosed={renderBadge(charge?.lines)}
+      displayWhenOpen={renderAddInvoiceLineButton()}
       label={<FormattedMessage id="ui-oa.charge.invoice.invoiceLines" />}
     >
       <Row>

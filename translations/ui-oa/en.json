@@ -208,6 +208,8 @@
   "charge.invoice.invoiceLine.receiptStatus": "Receipt status",
   "charge.invoice.invoiceLine.paymentStatus": "Payment status",
   "charge.invoice.invoiceLine.vendorReferenceNumber": "Vendor reference number",
+  "charge.invoice.invoiceLine.addLine": "Add line",
+
 
   "correspondence.newCorrespondence": "New correspondence",
   "correspondence.editCorrespondence": "Edit correspondence",
