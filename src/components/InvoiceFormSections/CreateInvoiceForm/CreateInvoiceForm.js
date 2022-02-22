@@ -16,7 +16,6 @@ const CreateInvoiceForm = () => {
   const { change } = useForm();
 
   const handleOrganizationSelected = (org) => {
-    console.log(org);
     change('vendorOrganisation', org.name);
     change('paymentMethod', org.paymentMethod);
   };
