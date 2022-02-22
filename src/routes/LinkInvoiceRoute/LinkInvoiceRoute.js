@@ -22,9 +22,9 @@ const LinkInvoiceRoute = () => {
 
   const charge = request?.charges?.find(e => e.id === chId);
 
-  const submitInvoice = (values) => {
-    console.log(values);
+  const submitInvoice = () => {
   };
+
   return (
     <Form mutators={arrayMutators} onSubmit={submitInvoice}>
       {({ handleSubmit }) => (
