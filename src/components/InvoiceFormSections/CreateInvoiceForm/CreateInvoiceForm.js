@@ -52,7 +52,7 @@ const CreateInvoiceForm = () => {
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.charge.invoice.paymentMethod" />}
-            name="invoice.paymentMethod"
+            name="paymentMethod"
             required
           />
         </Col>

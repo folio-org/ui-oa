@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
-
 import { Field, useForm, useFormState } from 'react-final-form';
 
 import {
@@ -12,9 +11,10 @@ import {
   Card,
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
-
 import { Typedown } from '@k-int/stripes-kint-components';
+
 import { InvoiceModal } from '../../Modals';
+import InvoiceInfo from '../../InvoiceSections';
 
 const propTypes = {
   charge: PropTypes.object,
@@ -66,7 +66,9 @@ const InvoiceTypedownForm = ({ charge }) => {
                 <strong>{values?.invoice?.number}</strong>
               </AppIcon>
             }
-          />
+          >
+            <InvoiceInfo invoice={values?.invoice} />
+          </Card>
         )}
       </>
       <InvoiceModal
