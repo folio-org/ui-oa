@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
-import { Form, useFormState } from 'react-final-form';
+import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
+import { useMutation } from 'react-query';
 import { FormattedMessage } from 'react-intl';
 import { Button, Modal, ModalFooter } from '@folio/stripes/components';
 
@@ -19,14 +20,14 @@ const InvoiceModal = ({
   handleInvoiceChange,
   charge,
 }) => {
-  const { values } = useFormState();
-  const handleClose = () => {
-    setShowModal(false);
-  };
+  // const handleClose = () => {
+  //   setShowModal(false);
+  // };
 
-  const postInvoice = () => {
-    handleClose();
-  };
+  const { mutateAsync: postInvoice } = useMutation(
+    ['ui-oa', 'InvoiceModal', 'postInvoice'],
+    (data) => handleInvoiceChange(data)
+  );
 
   const renderModalFooter = (handleSubmit, formRestart) => {
     return (
@@ -35,7 +36,7 @@ const InvoiceModal = ({
           buttonStyle="primary"
           id="invoice-modal-save-button"
           onClick={() => {
-            handleSubmit();
+            handleSubmit().then(formRestart);
           }}
           type="submit"
         >

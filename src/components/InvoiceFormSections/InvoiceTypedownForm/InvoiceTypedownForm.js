@@ -4,7 +4,15 @@ import PropTypes from 'prop-types';
 
 import { Field, useForm, useFormState } from 'react-final-form';
 
-import { Button, Layout, Label } from '@folio/stripes/components';
+import {
+  Button,
+  Layout,
+  Label,
+  IconButton,
+  Card,
+} from '@folio/stripes/components';
+import { AppIcon } from '@folio/stripes/core';
+
 import { Typedown } from '@k-int/stripes-kint-components';
 import { InvoiceModal } from '../../Modals';
 
@@ -19,6 +27,7 @@ const InvoiceTypedownForm = ({ charge }) => {
 
   const handleInvoiceChange = (invoice) => {
     change('invoice', invoice);
+    setShowInvoiceModal(false);
   };
 
   const renderFooter = () => {
@@ -45,6 +54,20 @@ const InvoiceTypedownForm = ({ charge }) => {
           name="invoice"
           renderFooter={renderFooter}
         />
+        {values.invoice && JSON.stringify(values.invoice)}
+        {values.invoice && (
+          <Card
+            cardStyle="positive"
+            headerEnd={
+              <IconButton icon="trash" onClick={() => handleInvoiceChange()} />
+            }
+            headerStart={
+              <AppIcon size="small">
+                <strong>{values?.invoice?.number}</strong>
+              </AppIcon>
+            }
+          />
+        )}
       </>
       <InvoiceModal
         charge={charge}
