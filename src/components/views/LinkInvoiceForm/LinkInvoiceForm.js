@@ -33,7 +33,6 @@ const LinkInvoiceForm = ({
   charge,
 }) => {
   const { values } = useFormState();
-  console.log(values);
 
   const getSectionProps = (name) => {
     return {
@@ -100,7 +99,9 @@ const LinkInvoiceForm = ({
         paneTitle={renderPaneTitle()}
       >
         <InvoiceTypedownForm {...getSectionProps('invoiceTypedown')} />
-        <InvoiceLinesForm {...getSectionProps('invoiceLines')} />
+        {values?.invoice && (
+          <InvoiceLinesForm {...getSectionProps('invoiceLines')} />
+        )}
       </Pane>
     </Paneset>
   );

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { useFormState, useForm } from 'react-final-form';
 
 import {
   Accordion,
@@ -15,22 +16,45 @@ const propTypes = {
 };
 
 const InvoiceLinesForm = ({ charge }) => {
+  const { values } = useFormState();
+  const { change } = useForm();
+
   const renderBadge = (lines) => {
     return lines ? <Badge>{lines?.length}</Badge> : <Badge>0</Badge>;
+  };
+
+  const handleLineCreate = () => {
+    const addLine = {
+      ...values.invoice,
+      lines: [
+        {
+          description: charge?.description,
+          subTotal: charge?.amount?.value,
+          status: 'Open',
+        },
+      ],
+    };
+    change('invoice', addLine);
   };
 
   const renderAddInvoiceLineButton = () => {
     return (
       <>
-        <Button id="add-invoice-line-button">
+        <Button id="add-invoice-line-button" onClick={() => handleLineCreate()}>
           <FormattedMessage id="ui-oa.charge.invoice.invoiceLine.addLine" />
         </Button>
       </>
     );
   };
+
+  const formatter = {
+    lineNumber: (e) => {
+      return e?.rowIndex + 1;
+    },
+  };
   return (
     <Accordion
-      displayWhenClosed={renderBadge(charge?.lines)}
+      displayWhenClosed={renderBadge(values?.invoice?.lines)}
       displayWhenOpen={renderAddInvoiceLineButton()}
       label={<FormattedMessage id="ui-oa.charge.invoice.invoiceLines" />}
     >
@@ -47,28 +71,25 @@ const InvoiceLinesForm = ({ charge }) => {
               fundCode: (
                 <FormattedMessage id="ui-oa.charge.invoice.invoiceLine.fundCode" />
               ),
-              poStatus: (
-                <FormattedMessage id="ui-oa.charge.invoice.invoiceLine.poStatus" />
+              status: (
+                <FormattedMessage id="ui-oa.charge.invoice.invoiceLine.status" />
               ),
-              receiptStatus: (
-                <FormattedMessage id="ui-oa.charge.invoice.invoiceLine.receiptStatus" />
+              vendorInvoiceNumber: (
+                <FormattedMessage id="ui-oa.charge.invoice.invoiceLine.vendorInvoiceNumber" />
               ),
-              paymentStatus: (
-                <FormattedMessage id="ui-oa.charge.invoice.invoiceLine.paymentStatus" />
-              ),
-              vendorReferenceNumber: (
-                <FormattedMessage id="ui-oa.charge.invoice.invoiceLine.vendorReferenceNumber" />
+              subTotal: (
+                <FormattedMessage id="ui-oa.charge.invoice.invoiceLine.subTotal" />
               ),
             }}
-            contentData={charge?.lines}
+            contentData={values?.invoice?.lines}
+            formatter={formatter}
             visibleColumns={[
               'lineNumber',
               'description',
               'fundCode',
-              'poStatus',
-              'receiptStatus',
-              'paymentStatus',
-              'vendorReferenceNumber',
+              'status',
+              'vendorInvoiceNumber',
+              'subTotal',
             ]}
           />
         </Col>

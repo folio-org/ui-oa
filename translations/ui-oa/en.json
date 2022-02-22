@@ -204,11 +204,10 @@
   "charge.invoice.invoiceLine.lineNumber": "#",
   "charge.invoice.invoiceLine.description": "Description",
   "charge.invoice.invoiceLine.fundCode": "Fund code",
-  "charge.invoice.invoiceLine.poStatus": "PO status",
-  "charge.invoice.invoiceLine.receiptStatus": "Receipt status",
-  "charge.invoice.invoiceLine.paymentStatus": "Payment status",
-  "charge.invoice.invoiceLine.vendorReferenceNumber": "Vendor reference number",
+  "charge.invoice.invoiceLine.status": "Status",
+  "charge.invoice.invoiceLine.vendorInvoiceNumber": "Vendor invoice number",
   "charge.invoice.invoiceLine.addLine": "Add line",
+  "charge.invoice.invoiceLine.subTotal": "Sub-total",
 
 
   "correspondence.newCorrespondence": "New correspondence",
