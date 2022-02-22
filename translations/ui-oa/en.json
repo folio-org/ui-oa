@@ -208,6 +208,8 @@
   "charge.invoice.invoiceLine.vendorInvoiceNumber": "Vendor invoice number",
   "charge.invoice.invoiceLine.addLine": "Add line",
   "charge.invoice.invoiceLine.subTotal": "Sub-total",
+  "charge.invoice.invoiceLine.confirmNewLine": "Confirm new line",
+  "charge.invoice.invoiceLine.confirmNewLineMessage": "You are about to create a new order line based on the current charge",
 
 
   "correspondence.newCorrespondence": "New correspondence",
