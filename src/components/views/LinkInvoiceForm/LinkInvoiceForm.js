@@ -1,5 +1,6 @@
-import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+import { useFormState } from 'react-final-form';
 
 import {
   Button,
@@ -10,7 +11,10 @@ import {
   IconButton,
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
-import { InvoiceTypedownForm } from '../../InvoiceFormSections';
+import {
+  InvoiceTypedownForm,
+  InvoiceLinesForm,
+} from '../../InvoiceFormSections';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -28,6 +32,16 @@ const LinkInvoiceForm = ({
   submitting,
   charge,
 }) => {
+  const { values } = useFormState();
+  console.log(values);
+
+  const getSectionProps = (name) => {
+    return {
+      id: `link-invoice-section-${name}`,
+      charge,
+    };
+  };
+
   const renderPaneTitle = () => (
     <FormattedMessage id="ui-oa.charge.invoice.linkInvoice" />
   );
@@ -85,7 +99,8 @@ const LinkInvoiceForm = ({
         id="pane.oa.invoice.form"
         paneTitle={renderPaneTitle()}
       >
-        <InvoiceTypedownForm charge={charge} />
+        <InvoiceTypedownForm {...getSectionProps('invoiceTypedown')} />
+        <InvoiceLinesForm {...getSectionProps('invoiceLines')} />
       </Pane>
     </Paneset>
   );
