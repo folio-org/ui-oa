@@ -179,7 +179,16 @@
   "streetAddresses.addStreetAddress": "Add street address",
   "streetAddresses.requestHasNone": "No street addresses for this { section }",
 
+  "charge.chargeInformation": "Charge information",
+  "charge.publicationRequestCharge": "Publication Request Charge",
+  "charge.publicationRequest": "Publication request",
   "charge.title": "Charge",
+  "charge.discountNote": "Discount note",
+  "charge.tax": "Tax",
+  "charge.category": "Category",
+  "charge.status": "Status",
+  "charge.payer": "Payer",
+  "charge.payerNote": "Payer note",
   "charge.newCharge": "New charge",
   "charge.editCharge": "Edit charge",
   "charge.amount": "Amount",
@@ -193,8 +202,6 @@
   "charge.validate.notNegative": "Cannot be negative",
   "charge.validate.maxDigits": "Maximum 10 digits either side",
   
-
-
   "correspondence.newCorrespondence": "New correspondence",
   "correspondence.editCorrespondence": "Edit correspondence",
   "correspondence.viewCorrespondence": "View correspondence",
@@ -210,18 +217,14 @@
   "correspondence.mode.email": "Email",
   "correspondence.mode.telephone": "Telephone",
 
-
   "correspondence.category": "Category",
   "correspondence.category.invoice": "Invoice",
   "correspondence.category.funding": "Funding",
-
 
   "correspondence.status": "Status",
   "correspondence.status.awaitingReply": "Awaiting Reply",
   "correspondence.status.responseNeeded": "Response Needed",
   "correspondence.status.closed": "Closed",
-
-
 
   "correspondence.showMore": "Show more",
   "correspondence.showLess": "Show less"
