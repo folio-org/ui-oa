@@ -51,7 +51,11 @@ const ChargeView = ({ resource: request }) => {
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.publicationRequest" />}
-            value={request?.requestNumber + ' : ' + request?.publicationTitle}
+            value={
+              request?.publicationTitle
+                ? request?.requestNumber + ' : ' + request?.publicationTitle
+                : request.requestNumber
+            }
           />
         </Col>
       </Row>
@@ -59,19 +63,28 @@ const ChargeView = ({ resource: request }) => {
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.category" />}
-            value={findRefdataLabel(useOARefdata(CHARGE_CATEGORY), charge?.category?.id)}
+            value={findRefdataLabel(
+              useOARefdata(CHARGE_CATEGORY),
+              charge?.category?.id
+            )}
           />
         </Col>
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.status" />}
-            value={findRefdataLabel(useOARefdata(CHARGE_STATUS), charge?.chargeStatus?.id)}
+            value={findRefdataLabel(
+              useOARefdata(CHARGE_STATUS),
+              charge?.chargeStatus?.id
+            )}
           />
         </Col>
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.payer" />}
-            value={findRefdataLabel(useOARefdata(CHARGE_PAYER), charge?.payer?.id)}
+            value={findRefdataLabel(
+              useOARefdata(CHARGE_PAYER),
+              charge?.payer?.id
+            )}
           />
         </Col>
         <Col xs={3}>
