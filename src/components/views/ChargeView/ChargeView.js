@@ -6,11 +6,17 @@ import { AppIcon } from '@folio/stripes/core';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Pane, Row, Col, KeyValue, Headline } from '@folio/stripes/components';
 
-import findRefdataValue from '../../../util/findRefdataValues';
+import useOARefdata from '../../../util/useOARefdata';
 
 const propTypes = {
   resource: PropTypes.object,
 };
+
+const [CHARGE_CATEGORY, CHARGE_STATUS, CHARGE_PAYER] = [
+  'Charge.Category',
+  'Charge.ChargeStatus',
+  'Charge.Payer',
+];
 
 const ChargeView = ({ resource: request }) => {
   const location = useLocation();
@@ -18,7 +24,11 @@ const ChargeView = ({ resource: request }) => {
 
   const chargeId = location.pathname.split('/').pop();
   const charge = request?.charges?.find((e) => e?.id === chargeId);
-  // console.log(refdata);
+
+  const findRefdataLabel = (refdata, id) => {
+    const refdataValue = refdata?.find((rdc) => rdc.id === id);
+    return refdataValue?.label;
+  };
 
   const handleClose = () => {
     history.push(`/oa/publicationRequests/${request.id}`);
@@ -49,19 +59,19 @@ const ChargeView = ({ resource: request }) => {
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.category" />}
-            value={findRefdataValue('Charge.Category', charge?.category?.id)}
+            value={findRefdataLabel(useOARefdata(CHARGE_CATEGORY), charge?.category?.id)}
           />
         </Col>
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.status" />}
-            value={findRefdataValue('Charge.ChargeStatus', charge?.chargeStatus?.id)}
+            value={findRefdataLabel(useOARefdata(CHARGE_STATUS), charge?.chargeStatus?.id)}
           />
         </Col>
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.payer" />}
-            value={findRefdataValue('Charge.Payer', charge?.payer?.id)}
+            value={findRefdataLabel(useOARefdata(CHARGE_PAYER), charge?.payer?.id)}
           />
         </Col>
         <Col xs={3}>
