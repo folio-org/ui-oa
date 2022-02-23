@@ -127,6 +127,7 @@
   "publicationRequest.statusNote": "Status note",
   "publicationRequest.streetAddresses": "Street addresses",
   "publicationRequest.subtype": "Subtype",
+  "publicationRequest.success.callout": "Publication request {requestNumber} successfully created",
   "publicationRequest.title": "Title",
   "publicationRequest.useCorrespondingAuthor": "Use corresponding author",
   
