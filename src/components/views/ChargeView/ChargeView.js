@@ -12,10 +12,11 @@ const propTypes = {
   resource: PropTypes.object,
 };
 
-const [CHARGE_CATEGORY, CHARGE_STATUS, CHARGE_PAYER] = [
+const [CHARGE_CATEGORY, CHARGE_STATUS, CHARGE_PAYER, CHARGE_DISCOUNT_TYPE] = [
   'Charge.Category',
   'Charge.ChargeStatus',
   'Charge.Payer',
+  'Charge.DiscountType',
 ];
 
 const ChargeView = ({ resource: request }) => {
@@ -24,6 +25,7 @@ const ChargeView = ({ resource: request }) => {
 
   const chargeId = location.pathname.split('/').pop();
   const charge = request?.charges?.find((e) => e?.id === chargeId);
+  console.log(charge);
 
   const findRefdataLabel = (refdata, id) => {
     const refdataValue = refdata?.find((rdc) => rdc.id === id);
@@ -118,7 +120,14 @@ const ChargeView = ({ resource: request }) => {
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.discount" />}
-            value={charge?.discount}
+            value={
+              findRefdataLabel(
+                useOARefdata(CHARGE_DISCOUNT_TYPE),
+                charge?.discountType?.id
+              ) === 'percentage'
+                ? charge?.discount + '%'
+                : charge?.discount
+            }
           />
         </Col>
         <Col xs={9}>
@@ -132,7 +141,7 @@ const ChargeView = ({ resource: request }) => {
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.tax" />}
-            value={charge?.tax}
+            value={charge?.tax ? charge?.tax + '%' : null}
           />
         </Col>
       </Row>
