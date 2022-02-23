@@ -16,9 +16,28 @@ import {
   validateNotNegative,
   validateAsDecimal,
 } from '../../../util/validators';
+import useOARefdata from '../../../util/useOARefdata';
+import selectifyRefdata from '../../../util/selectifyRefdata';
+
+
+const [CHARGE_CATEGORY, CHARGE_STATUS, CHARGE_PAYER] = [
+  'Charge.Category',
+  'Charge.ChargeStatus',
+  'Charge.Payer',
+];
 
 const ChargeInfoForm = () => {
   const intl = useIntl();
+
+  const refdataValues = useOARefdata([
+    CHARGE_CATEGORY,
+    CHARGE_STATUS,
+    CHARGE_PAYER,
+  ]);
+
+  const categoryValues = selectifyRefdata(refdataValues, CHARGE_CATEGORY, 'value');
+  const statusValues = selectifyRefdata(refdataValues, CHARGE_STATUS, 'value');
+  const payerValues = selectifyRefdata(refdataValues, CHARGE_PAYER, 'value');
 
   return (
     <>
@@ -98,6 +117,62 @@ const ChargeInfoForm = () => {
             name="discount"
             type="number"
             validate={composeValidators(validateNotNegative, validateAsDecimal)}
+          />
+        </Col>
+        <Col xs={9}>
+          <Field
+            component={TextArea}
+            label={<FormattedMessage id="ui-oa.charge.discountNote" />}
+            name="discountNote"
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={3}>
+          <Field
+            component={TextField}
+            label={<FormattedMessage id="ui-oa.charge.tax" />}
+            name="tax"
+            required
+            type="number"
+            validate={composeValidators(
+              requiredValidator,
+              validateNotNegative,
+              validateAsDecimal
+            )}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={3}>
+          <Field
+            component={Select}
+            dataOptions={[{ value: '', label: '' }, ...categoryValues]}
+            label={<FormattedMessage id="ui-oa.charge.category" />}
+            name="category"
+          />
+        </Col>
+        <Col xs={3}>
+          <Field
+            component={Select}
+            dataOptions={[{ value: '', label: '' }, ...statusValues]}
+            label={<FormattedMessage id="ui-oa.charge.status" />}
+            name="chargeStatus"
+          />
+        </Col>
+        <Col xs={3}>
+          <Field
+            component={Select}
+            dataOptions={[{ value: '', label: '' }, ...payerValues]}
+            label={<FormattedMessage id="ui-oa.charge.payer" />}
+            name="payer"
+          />
+        </Col>
+        <Col xs={3}>
+          <Field
+            component={TextArea}
+            label={<FormattedMessage id="ui-oa.charge.payerNote" />}
+            name="payerNote"
           />
         </Col>
       </Row>
