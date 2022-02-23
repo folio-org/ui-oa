@@ -1,5 +1,5 @@
 import { FormattedMessage, useIntl } from 'react-intl';
-import { Field } from 'react-final-form';
+import { Field, useFormState, useForm } from 'react-final-form';
 
 import {
   Row,
@@ -7,6 +7,9 @@ import {
   TextField,
   Select,
   TextArea,
+  ButtonGroup,
+  Button,
+  KeyValue,
 } from '@folio/stripes/components';
 import {
   requiredValidator,
@@ -19,7 +22,6 @@ import {
 import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
 
-
 const [CHARGE_CATEGORY, CHARGE_STATUS, CHARGE_PAYER] = [
   'Charge.Category',
   'Charge.ChargeStatus',
@@ -28,6 +30,9 @@ const [CHARGE_CATEGORY, CHARGE_STATUS, CHARGE_PAYER] = [
 
 const ChargeInfoForm = () => {
   const intl = useIntl();
+  const { values } = useFormState();
+  const { change } = useForm();
+  console.log(values);
 
   const refdataValues = useOARefdata([
     CHARGE_CATEGORY,
@@ -35,9 +40,38 @@ const ChargeInfoForm = () => {
     CHARGE_PAYER,
   ]);
 
-  const categoryValues = selectifyRefdata(refdataValues, CHARGE_CATEGORY, 'value');
+  const categoryValues = selectifyRefdata(
+    refdataValues,
+    CHARGE_CATEGORY,
+    'value'
+  );
   const statusValues = selectifyRefdata(refdataValues, CHARGE_STATUS, 'value');
   const payerValues = selectifyRefdata(refdataValues, CHARGE_PAYER, 'value');
+
+  const renderButtonGroup = () => {
+    return (
+      <KeyValue label={<FormattedMessage id="ui-oa.charge.type" />}>
+        <ButtonGroup>
+          <Button
+            buttonStyle={
+              values.discountType === 'percentage' ? 'primary' : 'default'
+            }
+            onClick={() => change('discountType', 'percentage')}
+          >
+            <FormattedMessage id="ui-oa.charge.type.percentage" />
+          </Button>
+          <Button
+            buttonStyle={
+              values.discountType === 'subtracted' ? 'primary' : 'default'
+            }
+            onClick={() => change('discountType', 'subtracted')}
+          >
+            <FormattedMessage id="ui-oa.charge.type.pound" />
+          </Button>
+        </ButtonGroup>
+      </KeyValue>
+    );
+  };
 
   return (
     <>
@@ -119,7 +153,10 @@ const ChargeInfoForm = () => {
             validate={composeValidators(validateNotNegative, validateAsDecimal)}
           />
         </Col>
-        <Col xs={9}>
+        <Col xs={3}>
+          <Field component={renderButtonGroup} name="discountType" />
+        </Col>
+        <Col xs={6}>
           <Field
             component={TextArea}
             label={<FormattedMessage id="ui-oa.charge.discountNote" />}
@@ -133,13 +170,8 @@ const ChargeInfoForm = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.charge.tax" />}
             name="tax"
-            required
             type="number"
-            validate={composeValidators(
-              requiredValidator,
-              validateNotNegative,
-              validateAsDecimal
-            )}
+            validate={composeValidators(validateNotNegative, validateAsDecimal)}
           />
         </Col>
       </Row>

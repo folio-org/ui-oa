@@ -20,13 +20,18 @@ const ChargeCreateRoute = () => {
         handleClose();
       })
   );
+
   const submitCharge = (values) => {
-    const submitValues = { 'charges': [values] };
+    const submitValues = { charges: [values] };
     postCharge(submitValues);
   };
 
   return (
-    <Form mutators={arrayMutators} onSubmit={submitCharge}>
+    <Form
+      initialValues={{ discountType: 'percentage' }}
+      mutators={arrayMutators}
+      onSubmit={submitCharge}
+    >
       {({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           <ChargeForm
