@@ -32,7 +32,6 @@ const ChargeInfoForm = () => {
   const intl = useIntl();
   const { values } = useFormState();
   const { change } = useForm();
-  console.log(values);
 
   const refdataValues = useOARefdata([
     CHARGE_CATEGORY,

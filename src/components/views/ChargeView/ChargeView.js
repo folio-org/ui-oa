@@ -25,7 +25,6 @@ const ChargeView = ({ resource: request }) => {
 
   const chargeId = location.pathname.split('/').pop();
   const charge = request?.charges?.find((e) => e?.id === chargeId);
-  console.log(charge);
 
   const findRefdataLabel = (refdata, id) => {
     const refdataValue = refdata?.find((rdc) => rdc.id === id);
