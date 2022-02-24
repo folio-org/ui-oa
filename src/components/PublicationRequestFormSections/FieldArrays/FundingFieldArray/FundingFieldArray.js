@@ -7,7 +7,6 @@ import {
   Button,
   Col,
   IconButton,
-  Layout,
   Row,
   Select,
 } from '@folio/stripes/components';
@@ -82,14 +81,6 @@ FundingField.propTypes = {
     name: PropTypes.string
   })
 };
-/* const renderEmpty = () => {
-  return (
-    <Layout className="padding-bottom-gutter">
-      <FormattedMessage id="ui-oa.funders.requestHasNone" />
-    </Layout>
-    </>
-  );
-}; */
 
 const FundingFieldArray = () => {
   return <FieldArray component={FundingField} name="fundings" />;
