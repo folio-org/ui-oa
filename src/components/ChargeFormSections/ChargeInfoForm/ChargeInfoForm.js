@@ -169,8 +169,13 @@ const ChargeInfoForm = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.charge.tax" />}
             name="tax"
+            required
             type="number"
-            validate={composeValidators(validateNotNegative, validateAsDecimal)}
+            validate={composeValidators(
+              requiredValidator,
+              validateNotNegative,
+              validateAsDecimal
+            )}
           />
         </Col>
       </Row>
@@ -181,6 +186,8 @@ const ChargeInfoForm = () => {
             dataOptions={[{ value: '', label: '' }, ...categoryValues]}
             label={<FormattedMessage id="ui-oa.charge.category" />}
             name="category"
+            required
+            validate={requiredValidator}
           />
         </Col>
         <Col xs={3}>
@@ -189,6 +196,8 @@ const ChargeInfoForm = () => {
             dataOptions={[{ value: '', label: '' }, ...statusValues]}
             label={<FormattedMessage id="ui-oa.charge.status" />}
             name="chargeStatus"
+            required
+            validate={requiredValidator}
           />
         </Col>
         <Col xs={3}>
@@ -197,6 +206,8 @@ const ChargeInfoForm = () => {
             dataOptions={[{ value: '', label: '' }, ...payerValues]}
             label={<FormattedMessage id="ui-oa.charge.payer" />}
             name="payer"
+            required
+            validate={requiredValidator}
           />
         </Col>
         <Col xs={3}>
