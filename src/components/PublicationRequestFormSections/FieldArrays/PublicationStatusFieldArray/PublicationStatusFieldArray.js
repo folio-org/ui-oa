@@ -28,7 +28,6 @@ const PublicationStatusField = ({ fields: { name } }) => {
   return (
     <>
       {items.map((publicationStatus, index) => {
-        console.log(publicationStatus);
         return (
           <Row key={publicationStatus} start="xs">
             <Col xs={3}>
