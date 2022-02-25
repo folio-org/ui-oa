@@ -1,23 +1,12 @@
-import React from 'react';
-
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { AppIcon } from '@folio/stripes/core';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Pane, Row, Col, KeyValue, Headline } from '@folio/stripes/components';
 
-import useOARefdata from '../../../util/useOARefdata';
-
 const propTypes = {
   resource: PropTypes.object,
 };
-
-const [CHARGE_CATEGORY, CHARGE_STATUS, CHARGE_PAYER, CHARGE_DISCOUNT_TYPE] = [
-  'Charge.Category',
-  'Charge.ChargeStatus',
-  'Charge.Payer',
-  'Charge.DiscountType',
-];
 
 const ChargeView = ({ resource: request }) => {
   const location = useLocation();
@@ -25,11 +14,6 @@ const ChargeView = ({ resource: request }) => {
 
   const chargeId = location.pathname.split('/').pop();
   const charge = request?.charges?.find((e) => e?.id === chargeId);
-
-  const findRefdataLabel = (refdata, id) => {
-    const refdataValue = refdata?.find((rdc) => rdc.id === id);
-    return refdataValue?.label;
-  };
 
   const handleClose = () => {
     history.push(`/oa/publicationRequests/${request.id}`);
@@ -64,28 +48,19 @@ const ChargeView = ({ resource: request }) => {
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.category" />}
-            value={findRefdataLabel(
-              useOARefdata(CHARGE_CATEGORY),
-              charge?.category?.id
-            )}
+            value={charge?.category?.label}
           />
         </Col>
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.status" />}
-            value={findRefdataLabel(
-              useOARefdata(CHARGE_STATUS),
-              charge?.chargeStatus?.id
-            )}
+            value={charge?.chargeStatus?.label}
           />
         </Col>
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.payer" />}
-            value={findRefdataLabel(
-              useOARefdata(CHARGE_PAYER),
-              charge?.payer?.id
-            )}
+            value={charge?.payer?.label}
           />
         </Col>
         <Col xs={3}>
@@ -120,10 +95,7 @@ const ChargeView = ({ resource: request }) => {
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.discount" />}
             value={
-              findRefdataLabel(
-                useOARefdata(CHARGE_DISCOUNT_TYPE),
-                charge?.discountType?.id
-              ) === 'percentage'
+              charge?.discountType?.label === 'percentage'
                 ? charge?.discount + '%'
                 : charge?.discount
             }
