@@ -30,14 +30,14 @@ describe('Publication', () => {
 
     test('renders KeyValue components', async () => {
       await KeyValue('Publication title').has({ value: 'No value set-' });
-      await KeyValue('Author names').has({ value: '-' });
-      await KeyValue('Publication type').has({ value: '-' });
-      await KeyValue('Subtype').has({ value: '-' });
-      await KeyValue('Publisher').has({ value: '-' });
-      await KeyValue('License').has({ value: '-' });
-      await KeyValue('Local reference').has({ value: '-' });
-      await KeyValue('Publication URL').has({ value: '-' });
-      await KeyValue('DOI').has({ value: '-' });
+      await KeyValue('Author names').has({ value: 'No value set-' });
+      await KeyValue('Publication type').has({ value: 'No value set-' });
+      await KeyValue('Subtype').has({ value: 'No value set-' });
+      await KeyValue('Publisher').has({ value: 'No value set-' });
+      await KeyValue('License').has({ value: 'No value set-' });
+      await KeyValue('Local reference').has({ value: 'No value set-' });
+      await KeyValue('Publication URL').has({ value: 'No value set-' });
+      await KeyValue('DOI').has({ value: 'No value set-' });
     });
 
     test('renders Empty list', () => {
