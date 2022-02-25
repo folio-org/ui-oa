@@ -4,7 +4,6 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useMutation, useQuery } from 'react-query';
 import ChargeForm from '../../components/views/ChargeForm';
-import chargeSubmitHandler from '../../util/chargeSubmitHandler';
 
 const ChargeCreateRoute = () => {
   const history = useHistory();
@@ -12,7 +11,7 @@ const ChargeCreateRoute = () => {
   const { prId, chId } = useParams();
 
   const handleClose = () => {
-    history.push(`/oa/publicationRequests/${prId}`);
+    history.push(`/oa/publicationRequests/${prId}/charge/${chId}`);
   };
 
   const { data: publicationRequest } = useQuery(
@@ -30,8 +29,10 @@ const ChargeCreateRoute = () => {
   );
 
   const submitCharge = (values) => {
-    const submitValues = chargeSubmitHandler(values);
-    putCharge({ charges : [submitValues] });
+    const submitValues = {
+      charges: [{ ...values, discountType: values.discountType.value }],
+    };
+    putCharge(submitValues);
   };
 
   return (

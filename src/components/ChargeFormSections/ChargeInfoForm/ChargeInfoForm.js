@@ -39,13 +39,9 @@ const ChargeInfoForm = () => {
     CHARGE_PAYER,
   ]);
 
-  const categoryValues = selectifyRefdata(
-    refdataValues,
-    CHARGE_CATEGORY,
-    'value'
-  );
-  const statusValues = selectifyRefdata(refdataValues, CHARGE_STATUS, 'value');
-  const payerValues = selectifyRefdata(refdataValues, CHARGE_PAYER, 'value');
+  const categoryValues = selectifyRefdata(refdataValues, CHARGE_CATEGORY);
+  const statusValues = selectifyRefdata(refdataValues, CHARGE_STATUS);
+  const payerValues = selectifyRefdata(refdataValues, CHARGE_PAYER);
 
   return (
     <>
@@ -188,7 +184,7 @@ const ChargeInfoForm = () => {
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...categoryValues]}
             label={<FormattedMessage id="ui-oa.charge.category" />}
-            name="category.value"
+            name="category.id"
             required
             validate={requiredValidator}
           />
@@ -198,7 +194,7 @@ const ChargeInfoForm = () => {
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...statusValues]}
             label={<FormattedMessage id="ui-oa.charge.status" />}
-            name="chargeStatus.value"
+            name="chargeStatus.id"
             required
             validate={requiredValidator}
           />
@@ -208,7 +204,7 @@ const ChargeInfoForm = () => {
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...payerValues]}
             label={<FormattedMessage id="ui-oa.charge.payer" />}
-            name="payer.value"
+            name="payer.id"
             required
             validate={requiredValidator}
           />
