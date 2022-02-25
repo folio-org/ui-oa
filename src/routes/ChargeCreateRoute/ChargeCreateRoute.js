@@ -28,7 +28,7 @@ const ChargeCreateRoute = () => {
 
   return (
     <Form
-      initialValues={{ discountType: 'percentage' }}
+      initialValues={{ discountType: { value: 'percentage' } }}
       mutators={arrayMutators}
       onSubmit={submitCharge}
     >

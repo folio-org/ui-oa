@@ -5,7 +5,7 @@ import { useOkapiKy } from '@folio/stripes/core';
 import { useMutation, useQuery } from 'react-query';
 import ChargeForm from '../../components/views/ChargeForm';
 
-const ChargeCreateRoute = () => {
+const ChargeEditRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
   const { prId, chId } = useParams();
@@ -55,4 +55,4 @@ const ChargeCreateRoute = () => {
   );
 };
 
-export default ChargeCreateRoute;
+export default ChargeEditRoute;
