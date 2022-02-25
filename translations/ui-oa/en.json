@@ -209,6 +209,10 @@
   "charge.delete": "Delete",
   "charge.deleteCharge": "Delete charge",
   "charge.deleteChargeMessage": "This charge will be permanently deleted.",
+  "charge.estimatedPrices": "Estimate prices",
+  "charge.estimatedPriceLocal": "Estimate price ({localCurrency})",
+  "charge.estimatedPriceSpecified": "Estimate price ({specifiedCurrency})",
+
   
   "correspondence.newCorrespondence": "New correspondence",
   "correspondence.editCorrespondence": "Edit correspondence",
