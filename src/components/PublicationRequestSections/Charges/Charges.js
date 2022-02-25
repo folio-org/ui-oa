@@ -26,7 +26,9 @@ const Charges = ({ request }) => {
   };
 
   const handleRowClick = (e, charge) => {
-    history.push(`${urls.publicationRequestChargeView(request?.id, charge?.id)}`);
+    history.push(
+      `${urls.publicationRequestChargeView(request?.id, charge?.id)}`
+    );
   };
 
   const renderAddChargesButton = () => {
@@ -73,8 +75,9 @@ const Charges = ({ request }) => {
             columnMapping={{
               description: <FormattedMessage id="ui-oa.charge.description" />,
               amount: <FormattedMessage id="ui-oa.charge.amount" />,
-              discount: <FormattedMessage id="ui-oa.charge.discount" />,
               currency: <FormattedMessage id="ui-oa.charge.currency" />,
+              discount: <FormattedMessage id="ui-oa.charge.discount" />,
+              tax: <FormattedMessage id="ui-oa.charge.tax" />,
               exchangeRate: <FormattedMessage id="ui-oa.charge.exchangeRate" />,
               coefficient: <FormattedMessage id="ui-oa.charge.coefficient" />,
             }}
@@ -84,8 +87,9 @@ const Charges = ({ request }) => {
             visibleColumns={[
               'description',
               'amount',
-              'discount',
               'currency',
+              'discount',
+              'tax',
               'exchangeRate',
               'coefficient',
             ]}

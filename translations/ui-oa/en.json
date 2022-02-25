@@ -205,6 +205,10 @@
   "charge.currency.usd": "USD",
   "charge.validate.notNegative": "Cannot be negative",
   "charge.validate.maxDigits": "Maximum 10 digits either side",
+  "charge.edit": "Edit",
+  "charge.delete": "Delete",
+  "charge.deleteCharge": "Delete charge",
+  "charge.deleteChargeMessage": "This charge will be permanently deleted.",
   
   "correspondence.newCorrespondence": "New correspondence",
   "correspondence.editCorrespondence": "Edit correspondence",

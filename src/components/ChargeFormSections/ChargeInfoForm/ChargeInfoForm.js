@@ -53,17 +53,17 @@ const ChargeInfoForm = () => {
         <ButtonGroup>
           <Button
             buttonStyle={
-              values.discountType === 'percentage' ? 'primary' : 'default'
+              values?.discountType?.value === 'percentage' ? 'primary' : 'default'
             }
-            onClick={() => change('discountType', 'percentage')}
+            onClick={() => change('discountType.value', 'percentage')}
           >
             <FormattedMessage id="ui-oa.charge.type.percentage" />
           </Button>
           <Button
             buttonStyle={
-              values.discountType === 'subtracted' ? 'primary' : 'default'
+              values?.discountType?.value === 'subtracted' ? 'primary' : 'default'
             }
-            onClick={() => change('discountType', 'subtracted')}
+            onClick={() => change('discountType.value', 'subtracted')}
           >
             <FormattedMessage id="ui-oa.charge.type.pound" />
           </Button>
@@ -153,7 +153,7 @@ const ChargeInfoForm = () => {
           />
         </Col>
         <Col xs={3}>
-          <Field component={renderButtonGroup} name="discountType" />
+          <Field component={renderButtonGroup} name="discountType.value" />
         </Col>
         <Col xs={6}>
           <Field
@@ -185,7 +185,7 @@ const ChargeInfoForm = () => {
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...categoryValues]}
             label={<FormattedMessage id="ui-oa.charge.category" />}
-            name="category"
+            name="category.value"
             required
             validate={requiredValidator}
           />
@@ -195,7 +195,7 @@ const ChargeInfoForm = () => {
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...statusValues]}
             label={<FormattedMessage id="ui-oa.charge.status" />}
-            name="chargeStatus"
+            name="chargeStatus.value"
             required
             validate={requiredValidator}
           />
@@ -205,7 +205,7 @@ const ChargeInfoForm = () => {
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...payerValues]}
             label={<FormattedMessage id="ui-oa.charge.payer" />}
-            name="payer"
+            name="payer.value"
             required
             validate={requiredValidator}
           />

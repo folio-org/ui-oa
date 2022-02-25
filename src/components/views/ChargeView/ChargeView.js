@@ -2,7 +2,18 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { AppIcon } from '@folio/stripes/core';
 import { useHistory, useLocation } from 'react-router-dom';
-import { Pane, Row, Col, KeyValue, Headline } from '@folio/stripes/components';
+
+import {
+  Pane,
+  Row,
+  Col,
+  KeyValue,
+  Headline,
+  Button,
+  Icon,
+} from '@folio/stripes/components';
+
+import urls from '../../../util/urls';
 
 const propTypes = {
   resource: PropTypes.object,
@@ -16,11 +27,32 @@ const ChargeView = ({ resource: request }) => {
   const charge = request?.charges?.find((e) => e?.id === chargeId);
 
   const handleClose = () => {
-    history.push(`/oa/publicationRequests/${request.id}`);
+    history.push(urls.publicationRequest(request?.id));
+  };
+
+  const handleEdit = () => {
+    history.push(urls.publicationRequestChargeEdit(request?.id, chargeId));
+  };
+
+  const renderActionMenu = () => {
+    return (
+      <>
+        <Button
+          buttonStyle="dropdownItem"
+          id="charge-edit-button"
+          onClick={handleEdit}
+        >
+          <Icon icon="edit">
+            <FormattedMessage id="ui-oa.charge.edit" />
+          </Icon>
+        </Button>
+      </>
+    );
   };
 
   return (
     <Pane
+      actionMenu={renderActionMenu}
       appIcon={<AppIcon app="oa" iconKey="app" size="small" />}
       defaultWidth="55%"
       dismissible
