@@ -47,31 +47,6 @@ const ChargeInfoForm = () => {
   const statusValues = selectifyRefdata(refdataValues, CHARGE_STATUS, 'value');
   const payerValues = selectifyRefdata(refdataValues, CHARGE_PAYER, 'value');
 
-  const renderButtonGroup = () => {
-    return (
-      <KeyValue label={<FormattedMessage id="ui-oa.charge.type" />}>
-        <ButtonGroup>
-          <Button
-            buttonStyle={
-              values?.discountType?.value === 'percentage' ? 'primary' : 'default'
-            }
-            onClick={() => change('discountType.value', 'percentage')}
-          >
-            <FormattedMessage id="ui-oa.charge.type.percentage" />
-          </Button>
-          <Button
-            buttonStyle={
-              values?.discountType?.value === 'subtracted' ? 'primary' : 'default'
-            }
-            onClick={() => change('discountType.value', 'subtracted')}
-          >
-            <FormattedMessage id="ui-oa.charge.type.pound" />
-          </Button>
-        </ButtonGroup>
-      </KeyValue>
-    );
-  };
-
   return (
     <>
       <Row>
@@ -153,7 +128,35 @@ const ChargeInfoForm = () => {
           />
         </Col>
         <Col xs={3}>
-          <Field component={renderButtonGroup} name="discountType.value" />
+          <Field
+            name="discountType.value"
+            render={() => (
+              <KeyValue label={<FormattedMessage id="ui-oa.charge.type" />}>
+                <ButtonGroup>
+                  <Button
+                    buttonStyle={
+                      values?.discountType?.value === 'percentage'
+                        ? 'primary'
+                        : 'default'
+                    }
+                    onClick={() => change('discountType.value', 'percentage')}
+                  >
+                    <FormattedMessage id="ui-oa.charge.type.percentage" />
+                  </Button>
+                  <Button
+                    buttonStyle={
+                      values?.discountType?.value === 'subtracted'
+                        ? 'primary'
+                        : 'default'
+                    }
+                    onClick={() => change('discountType.value', 'subtracted')}
+                  >
+                    <FormattedMessage id="ui-oa.charge.type.pound" />
+                  </Button>
+                </ButtonGroup>
+              </KeyValue>
+            )}
+          />
         </Col>
         <Col xs={6}>
           <Field

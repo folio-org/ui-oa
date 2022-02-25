@@ -127,7 +127,7 @@ const ChargeView = ({ resource: request }) => {
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.discount" />}
             value={
-              charge?.discountType?.label === 'percentage'
+              charge?.discountType?.value === 'percentage'
                 ? charge?.discount + '%'
                 : charge?.discount
             }
