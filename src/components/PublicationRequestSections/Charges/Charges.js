@@ -32,8 +32,16 @@ const Charges = ({ request }) => {
   };
 
   const calculatePrice = (charge) => {
-      const tax = charge?.localAmount?.value / charge.tax;
-      return charge?.localAmount?.value + tax;
+    if (charge?.discountType?.value === 'subtracted') {
+      return charge?.localAmount?.value - charge?.discount;
+    }
+    if (charge?.discountType?.value === 'percentage') {
+      return (
+        charge?.localAmount?.value -
+        (charge?.localAmount?.value * charge?.discount) / 100
+      );
+    }
+    return charge?.localAmount?.value;
   };
 
   const renderAddChargesButton = () => {
