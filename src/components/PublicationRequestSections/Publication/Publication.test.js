@@ -29,7 +29,7 @@ describe('Publication', () => {
     });
 
     test('renders KeyValue components', async () => {
-      await KeyValue('Publication title').has({ value: 'No value set-' });
+      await KeyValue('Publication title').has({ value: '-' });
       await KeyValue('Author names').has({ value: '-' });
       await KeyValue('Publication type').has({ value: '-' });
       await KeyValue('Subtype').has({ value: '-' });

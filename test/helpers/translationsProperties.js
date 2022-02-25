@@ -18,7 +18,6 @@ const translationsProperties = [
       'saveAndClose': 'Save and close',
       'cancel': 'Cancel',
       'paneMenuActionsToggleLabel': 'Actions',
-      'noValue.noValueSet': 'No value set-',
       'collapseAll': 'Collapse all',
       'button.edit': 'Edit',
       'tableEmpty': 'The list contains no items',
