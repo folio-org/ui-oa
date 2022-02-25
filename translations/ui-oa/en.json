@@ -122,6 +122,7 @@
   "publicationRequest.requestDate": "Request date",
   "publicationRequest.requestTitle": "Request number - {number}",
   "publicationRequest.selectedJournal": "Journal",
+  "publicationRequest.success.callout": "Publication request {requestNumber} successfully created",
   "publicationRequest.status": "Status",
   "publicationRequest.statusDate": "Status date",
   "publicationRequest.statusNote": "Status note",
