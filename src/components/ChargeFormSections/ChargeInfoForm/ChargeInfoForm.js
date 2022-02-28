@@ -44,11 +44,7 @@ const ChargeInfoForm = () => {
   const categoryValues = selectifyRefdata(refdataValues, CHARGE_CATEGORY);
   const statusValues = selectifyRefdata(refdataValues, CHARGE_STATUS);
   const payerValues = selectifyRefdata(refdataValues, CHARGE_PAYER);
-  const discountTypeValues = selectifyRefdata(
-    refdataValues,
-    CHARGE_DISCOUNT_TYPE
-  );
-  console.log(discountTypeValues);
+  const discountTypeValues = selectifyRefdata(refdataValues, CHARGE_DISCOUNT_TYPE);
 
   return (
     <>
