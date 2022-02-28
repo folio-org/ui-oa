@@ -30,7 +30,7 @@ const ChargeEditRoute = () => {
 
   const submitCharge = (values) => {
     const submitValues = {
-      charges: [{ ...values, discountType: values.discountType.value }],
+      charges: [values],
     };
     putCharge(submitValues);
   };

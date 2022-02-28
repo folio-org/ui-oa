@@ -4,11 +4,14 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useMutation } from 'react-query';
 import ChargeForm from '../../components/views/ChargeForm';
+import useOARefdata from '../../util/useOARefdata';
 
 const ChargeCreateRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
   const { id } = useParams();
+
+  const perecentage = useOARefdata('Charge.DiscountType').find(e => e.label === 'percentage');
 
   const handleClose = () => {
     history.push(`/oa/publicationRequests/${id}`);
@@ -28,7 +31,7 @@ const ChargeCreateRoute = () => {
 
   return (
     <Form
-      initialValues={{ discountType: { value: 'percentage' } }}
+      initialValues={{ discountType: { id: perecentage?.id } }}
       mutators={arrayMutators}
       onSubmit={submitCharge}
     >

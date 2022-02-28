@@ -188,7 +188,7 @@
   "charge.tax": "Tax",
   "charge.type": "Type",
   "charge.type.percentage": "%",
-  "charge.type.pound": "£",
+  "charge.type.subtracted": "£",
   "charge.category": "Category",
   "charge.status": "Status",
   "charge.payer": "Payer",

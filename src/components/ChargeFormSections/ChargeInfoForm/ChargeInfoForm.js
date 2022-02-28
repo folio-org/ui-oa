@@ -22,10 +22,11 @@ import {
 import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
 
-const [CHARGE_CATEGORY, CHARGE_STATUS, CHARGE_PAYER] = [
+const [CHARGE_CATEGORY, CHARGE_STATUS, CHARGE_PAYER, CHARGE_DISCOUNT_TYPE] = [
   'Charge.Category',
   'Charge.ChargeStatus',
   'Charge.Payer',
+  'Charge.DiscountType',
 ];
 
 const ChargeInfoForm = () => {
@@ -37,11 +38,17 @@ const ChargeInfoForm = () => {
     CHARGE_CATEGORY,
     CHARGE_STATUS,
     CHARGE_PAYER,
+    CHARGE_DISCOUNT_TYPE,
   ]);
 
   const categoryValues = selectifyRefdata(refdataValues, CHARGE_CATEGORY);
   const statusValues = selectifyRefdata(refdataValues, CHARGE_STATUS);
   const payerValues = selectifyRefdata(refdataValues, CHARGE_PAYER);
+  const discountTypeValues = selectifyRefdata(
+    refdataValues,
+    CHARGE_DISCOUNT_TYPE
+  );
+  console.log(discountTypeValues);
 
   return (
     <>
@@ -125,30 +132,22 @@ const ChargeInfoForm = () => {
         </Col>
         <Col xs={3}>
           <Field
-            name="discountType.value"
+            name="discountType.id"
             render={() => (
               <KeyValue label={<FormattedMessage id="ui-oa.charge.type" />}>
                 <ButtonGroup>
-                  <Button
-                    buttonStyle={
-                      values?.discountType?.value === 'percentage'
-                        ? 'primary'
-                        : 'default'
-                    }
-                    onClick={() => change('discountType.value', 'percentage')}
-                  >
-                    <FormattedMessage id="ui-oa.charge.type.percentage" />
-                  </Button>
-                  <Button
-                    buttonStyle={
-                      values?.discountType?.value === 'subtracted'
-                        ? 'primary'
-                        : 'default'
-                    }
-                    onClick={() => change('discountType.value', 'subtracted')}
-                  >
-                    <FormattedMessage id="ui-oa.charge.type.pound" />
-                  </Button>
+                  {discountTypeValues.map((discountType) => (
+                    <Button
+                      buttonStyle={
+                        values?.discountType?.id === discountType.value
+                          ? 'primary'
+                          : 'default'
+                      }
+                      onClick={() => change('discountType.id', discountType.value)}
+                    >
+                      <FormattedMessage id={`ui-oa.charge.type.${discountType.label}`} />
+                    </Button>
+                  ))}
                 </ButtonGroup>
               </KeyValue>
             )}
