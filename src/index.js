@@ -14,6 +14,7 @@ import {
   PartiesEditRoute,
   JournalsRoute,
   ChargeCreateRoute,
+  ChargeEditRoute
 } from './routes';
 
 
@@ -54,6 +55,10 @@ const App = (props) => {
         <Route
           component={ChargeCreateRoute}
           path={`${path}/publicationRequests/:id/charge/create`}
+        />
+        <Route
+          component={ChargeEditRoute}
+          path={`${path}/publicationRequests/:prId/charge/:chId/edit`}
         />
         <Route
           component={PartiesEditRoute}

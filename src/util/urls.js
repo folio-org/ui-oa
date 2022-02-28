@@ -18,7 +18,9 @@ const urls = {
   publicationRequestCorrespondenceEdit: (prId, cId) => `/oa/publicationRequests/${prId}/correspondence/${cId}/edit`,
 
   publicationRequestChargeView: (prId, chId) => `/oa/publicationRequests/${prId}/charge/${chId}`,
-  publicationRequestChargeCreate: prId => `/oa/publicationRequests/${prId}/charge/create`
+  publicationRequestChargeCreate: prId => `/oa/publicationRequests/${prId}/charge/create`,
+  publicationRequestChargeEdit: (prId, chId) => `/oa/publicationRequests/${prId}/charge/${chId}/edit`,
+
 };
 
 export default urls;
