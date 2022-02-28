@@ -19,7 +19,9 @@ const urls = {
 
   publicationRequestChargeView: (prId, chId) => `/oa/publicationRequests/${prId}/charge/${chId}`,
   publicationRequestChargeLinkInvoice: (prId, chId) => `/oa/publicationRequests/${prId}/charge/${chId}/linkInvoice`,
-  publicationRequestChargeCreate: prId => `/oa/publicationRequests/${prId}/charge/create`
+  publicationRequestChargeCreate: prId => `/oa/publicationRequests/${prId}/charge/create`,
+  publicationRequestChargeEdit: (prId, chId) => `/oa/publicationRequests/${prId}/charge/${chId}/edit`,
+
 };
 
 export default urls;

@@ -9,3 +9,4 @@ export { default as PartiesEditRoute } from './PartyEditRoute';
 export { default as JournalsRoute } from './JournalsRoute';
 export { default as ChargeCreateRoute } from './ChargeCreateRoute';
 export { default as LinkInvoiceRoute } from './LinkInvoiceRoute';
+export { default as ChargeEditRoute } from './ChargeEditRoute';
