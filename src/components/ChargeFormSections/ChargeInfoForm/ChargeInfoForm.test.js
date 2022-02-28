@@ -11,6 +11,8 @@ import { charge } from '../../../../test/resources/chargeResources';
 const onSubmit = jest.fn();
 let renderComponent;
 
+jest.mock('../../../util/useOARefdata', () => () => []);
+
 describe('ChargeInfoForm', () => {
   describe('with no initial values', () => {
     beforeEach(() => {

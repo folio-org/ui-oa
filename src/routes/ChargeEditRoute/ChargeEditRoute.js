@@ -2,36 +2,42 @@ import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { useHistory, useParams } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import ChargeForm from '../../components/views/ChargeForm';
-import useOARefdata from '../../util/useOARefdata';
 
-const ChargeCreateRoute = () => {
+const ChargeEditRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
-  const { id } = useParams();
-
-  const perecentage = useOARefdata('Charge.DiscountType').find(e => e.label === 'percentage');
+  const { prId, chId } = useParams();
 
   const handleClose = () => {
-    history.push(`/oa/publicationRequests/${id}`);
+    history.push(`/oa/publicationRequests/${prId}/charge/${chId}`);
   };
 
-  const { mutateAsync: postCharge } = useMutation(
+  const { data: publicationRequest } = useQuery(
+    ['ui-oa', 'publicationEditRoute', 'publicationRequest', prId],
+    () => ky(`oa/publicationRequest/${prId}`).json()
+  );
+
+  const charge = publicationRequest?.charges?.find((e) => e?.id === chId);
+
+  const { mutateAsync: putCharge } = useMutation(
     ['ui-oa', 'ChargeCreateRoute', 'postCharge'],
-    (data) => ky.put(`oa/publicationRequest/${id}`, { json: data }).then(() => {
+    (data) => ky.put(`oa/publicationRequest/${prId}`, { json: data }).then(() => {
         handleClose();
       })
   );
 
   const submitCharge = (values) => {
-    const submitValues = { charges: [values] };
-    postCharge(submitValues);
+    const submitValues = {
+      charges: [values],
+    };
+    putCharge(submitValues);
   };
 
   return (
     <Form
-      initialValues={{ discountType: { id: perecentage?.id } }}
+      initialValues={charge}
       mutators={arrayMutators}
       onSubmit={submitCharge}
     >
@@ -49,4 +55,4 @@ const ChargeCreateRoute = () => {
   );
 };
 
-export default ChargeCreateRoute;
+export default ChargeEditRoute;
