@@ -78,6 +78,7 @@ const PublicationRequestsRoute = ({ path }) => {
     ),
     requestStatus: (d) => d?.requestStatus?.label,
     requestDate: (d) => (d.requestDate ? <FormattedUTCDate value={d.requestDate} /> : ''),
+    correspondingAuthorName: (d) => (d.correspondingAuthor?.partyOwner?.fullName),
   };
 
   const lastpaneMenu = (
