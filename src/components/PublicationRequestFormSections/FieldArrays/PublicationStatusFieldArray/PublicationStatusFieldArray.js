@@ -24,7 +24,7 @@ const PublicationStatusField = ({ fields: { name } }) => {
   const statusValues = selectifyRefdata(
     useOARefdata('PublicationStatus.PublicationStatus')
   );
-  
+
   return (
     <>
       {items.map((publicationStatus, index) => {

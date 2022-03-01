@@ -22,7 +22,7 @@ const IdentifiersField = ({ fields: { name } }) => {
   const identifierTypeValues = selectifyRefdata(
     useOARefdata('PublicationIdentifier.Type')
   );
-  
+
   return (
     <>
       {items.map((identifier, index) => {

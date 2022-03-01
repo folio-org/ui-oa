@@ -7,7 +7,6 @@ import {
 import { Button } from '@folio/stripes-testing';
 // import { within } from '@testing-library/react';
 import {
-  publicationRequest,
   handlers,
 } from '../../../../../test/resources/publicationRequestsResources';
 import IdentifiersFieldArray from './IdentifiersFieldArray';
@@ -55,42 +54,5 @@ describe('IdentifiersFieldArray', () => {
         getByRole('button', { name: 'Add identifier' })
       ).toBeInTheDocument();
     });
-  });
-
-  describe('with initial values set', () => {
-    let renderComponent;
-    beforeEach(async () => {
-      renderComponent = renderWithIntl(
-        <TestForm
-          initialValues={publicationRequest}
-          onSubmit={handlers.onSubmit}
-        >
-          <IdentifiersFieldArray />
-        </TestForm>,
-        translationsProperties
-      );
-    });
-
-    test('renders correct number of fields', () => {
-      const { queryAllByTestId } = renderComponent;
-      expect(queryAllByTestId(/IdentifiersFieldArray\[.*\]/).length).toEqual(1);
-    });
-
-    // Not working
-    // test('renders expected value within fields fields', () => {
-    //   const { queryByTestId } = renderComponent;
-    //   expect(
-    //     within(queryByTestId('IdentifiersFieldArray[0]')).getByRole(
-    //       'combobox',
-    //       { name: 'Type' }
-    //     )
-    //   ).toHaveDisplayValue('Funder 1');
-    //   expect(
-    //     within(queryByTestId('IdentifiersFieldArray[0]')).getByRole(
-    //       'combobox',
-    //       { name: 'Identifier' }
-    //     )
-    //   ).toHaveDisplayValue('Funder 1');
-    // });
   });
 });
