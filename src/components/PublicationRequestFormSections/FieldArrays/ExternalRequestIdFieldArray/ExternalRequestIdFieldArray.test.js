@@ -91,43 +91,4 @@ describe('ExternalRequestIdFieldArray', () => {
       ).toBeInTheDocument();
     });
   });
-
-  describe('adding and removing external request ids works as expected', () => {
-    let renderComponent;
-    beforeEach(async () => {
-      renderComponent = renderWithIntl(
-        <TestForm initialValues={{}} onSubmit={handlers.onSubmit}>
-          <ExternalRequestIdFieldArray />
-        </TestForm>,
-        translationsProperties
-      );
-    });
-
-    test('Add external request ID functions as expected', async () => {
-      const { queryAllByTestId } = renderComponent;
-
-      await expect(
-        queryAllByTestId(/externalRequestIdFieldArray\[.*\]/).length
-      ).toEqual(0);
-      await Button('Add external request ID').click();
-      await expect(
-        queryAllByTestId(/externalRequestIdFieldArray\[.*\]/).length
-      ).toEqual(1);
-    });
-
-    test('remove external request ID functions as expected', async () => {
-      const { queryAllByTestId, getByRole } = renderComponent;
-      await expect(
-        queryAllByTestId(/externalRequestIdFieldArray\[.*\]/).length
-      ).toEqual(0);
-      await Button('Add external request ID').click();
-      await expect(
-        queryAllByTestId(/externalRequestIdFieldArray\[.*\]/).length
-      ).toEqual(1);
-      await getByRole('button', { name: 'trash' }).click();
-      await expect(
-        queryAllByTestId(/externalRequestIdFieldArray\[.*\]/).length
-      ).toEqual(0);
-    });
-  });
 });

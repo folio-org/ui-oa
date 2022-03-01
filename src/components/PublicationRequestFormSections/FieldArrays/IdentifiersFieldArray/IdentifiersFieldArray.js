@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
@@ -10,65 +11,66 @@ import {
   TextField,
   Row,
 } from '@folio/stripes/components';
+
+import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
+
 import useOARefdata from '../../../../util/useOARefdata';
 import selectifyRefdata from '../../../../util/selectifyRefdata';
 
-const IdentifiersFieldArray = () => {
+const IdentifiersField = ({ fields: { name } }) => {
+  const { items, onAddField, onDeleteField } = useKiwtFieldArray(name);
   const identifierTypeValues = selectifyRefdata(
     useOARefdata('PublicationIdentifier.Type')
   );
-
-  const renderIdentifiers = (fields) => {
-    return (
-      <>
-        {fields.map((identifier, index) => (
-          <Row key={identifier} data-testid={`IdentifiersFieldArray[${index}]`} middle="xs">
+  
+  return (
+    <>
+      {items.map((identifier, index) => {
+        return (
+          <Row key={identifier} middle="xs">
             <Col xs={3}>
               <Field
-                autoFocus={!fields.value[index].type?.id}
+                autoFocus={!identifier?.id}
                 component={Select}
                 dataOptions={[
                   { value: '', label: '' },
                   ...identifierTypeValues,
                 ]}
                 label={<FormattedMessage id="ui-oa.identifiers.type" />}
-                name={`${identifier}.type.id`}
+                name={`${name}[${index}].type.id`}
               />
             </Col>
             <Col xs={3}>
               <Field
                 component={TextField}
                 label={<FormattedMessage id="ui-oa.identifiers.identifier" />}
-                name={`${identifier}.publicationIdentifier`}
+                name={`${name}[${index}].publicationIdentifier`}
               />
             </Col>
             <Col xs={6}>
-              <IconButton icon="trash" onClick={() => fields.remove(index)} />
+              <IconButton
+                icon="trash"
+                onClick={() => onDeleteField(index, identifier)}
+              />
             </Col>
           </Row>
-        ))}
-      </>
-    );
-  };
-
-  const renderEmpty = () => {
-    return (
-      <div />
-    );
-  };
-
-  return (
-    <FieldArray name="identifiers">
-      {({ fields }) => (
-        <>
-          <>{fields.length ? renderIdentifiers(fields) : renderEmpty()}</>
-          <Button onClick={() => fields.push({})}>
-            <FormattedMessage id="ui-oa.identifiers.addIdentifier" />
-          </Button>
-        </>
-      )}
-    </FieldArray>
+        );
+      })}
+      <Button onClick={() => onAddField({})}>
+        <FormattedMessage id="ui-oa.identifiers.addIdentifier" />
+      </Button>
+    </>
   );
+};
+
+IdentifiersField.propTypes = {
+  fields: PropTypes.shape({
+    name: PropTypes.string,
+  }),
+};
+
+const IdentifiersFieldArray = () => {
+  return <FieldArray component={IdentifiersField} name="identifiers" />;
 };
 
 export default IdentifiersFieldArray;

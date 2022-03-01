@@ -19,14 +19,12 @@ import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
 import useOARefdata from '../../../../util/useOARefdata';
 import selectifyRefdata from '../../../../util/selectifyRefdata';
 
-
 const PublicationStatusField = ({ fields: { name } }) => {
-  const {
-    items,
-    onAddField,
-    onDeleteField
-  } = useKiwtFieldArray(name);
-  const statusValues = selectifyRefdata(useOARefdata('PublicationStatus.PublicationStatus'));
+  const { items, onAddField, onDeleteField } = useKiwtFieldArray(name);
+  const statusValues = selectifyRefdata(
+    useOARefdata('PublicationStatus.PublicationStatus')
+  );
+  
   return (
     <>
       {items.map((publicationStatus, index) => {
@@ -37,7 +35,9 @@ const PublicationStatusField = ({ fields: { name } }) => {
                 autoFocus={!publicationStatus.id}
                 component={Select}
                 dataOptions={[{ value: '', label: '' }, ...statusValues]}
-                label={<FormattedMessage id="ui-oa.publicationRequest.publicationStatus" />}
+                label={
+                  <FormattedMessage id="ui-oa.publicationRequest.publicationStatus" />
+                }
                 name={`${name}[${index}].publicationStatus.id`}
               />
             </Col>
@@ -45,7 +45,9 @@ const PublicationStatusField = ({ fields: { name } }) => {
               <Field
                 backendDateStandard="YYYY-MM-DD"
                 component={Datepicker}
-                label={<FormattedMessage id="ui-oa.publicationStatus.publicationStatusDate" />}
+                label={
+                  <FormattedMessage id="ui-oa.publicationStatus.publicationStatusDate" />
+                }
                 name={`${name}[${index}].statusDate`}
                 timeZone="UTC"
               />
@@ -53,7 +55,9 @@ const PublicationStatusField = ({ fields: { name } }) => {
             <Col xs={5}>
               <Field
                 component={TextArea}
-                label={<FormattedMessage id="ui-oa.publicationStatus.publicationStatusNote" />}
+                label={
+                  <FormattedMessage id="ui-oa.publicationStatus.publicationStatusNote" />
+                }
                 name={`${name}[${index}].statusNote`}
               />
             </Col>
@@ -66,9 +70,7 @@ const PublicationStatusField = ({ fields: { name } }) => {
           </Row>
         );
       })}
-      <Button
-        onClick={() => onAddField({})}
-      >
+      <Button onClick={() => onAddField({})}>
         <FormattedMessage id="ui-oa.publicationStatus.addPublicationStatus" />
       </Button>
     </>
@@ -77,16 +79,13 @@ const PublicationStatusField = ({ fields: { name } }) => {
 
 PublicationStatusField.propTypes = {
   fields: PropTypes.shape({
-    name: PropTypes.string
-  })
+    name: PropTypes.string,
+  }),
 };
 
 const PublicationStatusFieldArray = () => {
   return (
-    <FieldArray
-      component={PublicationStatusField}
-      name="publicationStatuses"
-    />
+    <FieldArray component={PublicationStatusField} name="publicationStatuses" />
   );
 };
 
