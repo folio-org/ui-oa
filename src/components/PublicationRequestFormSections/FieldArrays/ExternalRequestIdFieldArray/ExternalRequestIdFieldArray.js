@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
@@ -10,51 +11,55 @@ import {
   Row,
 } from '@folio/stripes/components';
 
-const ExternalRequestIdFieldArray = () => {
-  const renderExternalRequestId = (fields) => {
-    return (
-      <>
-        {fields.map((externalRequestId, index) => (
+import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
+
+const ExternalRequestIdField = ({ fields: { name } }) => {
+  const { items, onAddField, onDeleteField } = useKiwtFieldArray(name);
+  return (
+    <>
+      {items.map((externalRequestId, index) => {
+        return (
           <div
-            key={externalRequestId}
+            key={externalRequestId + index}
             data-testid={`externalRequestIdFieldArray[${index}]`}
           >
             <Row middle="xs">
               <Col xs={3}>
                 <Field
-                  autoFocus={!fields.value[index].id}
+                  autoFocus={!externalRequestId?.id}
                   component={TextField}
                   label={
                     <FormattedMessage id="ui-oa.externalRequestId.externalRequestId" />
                   }
-                  name={`${externalRequestId}.externalId`}
+                  name={`${name}[${index}].externalId`}
                 />
               </Col>
               <Col xs={9}>
-                <IconButton icon="trash" onClick={() => fields.remove(index)} />
+                <IconButton
+                  icon="trash"
+                  onClick={() => onDeleteField(index, externalRequestId)}
+                />
               </Col>
             </Row>
           </div>
-        ))}
-      </>
-    );
-  };
+        );
+      })}
+      <Button onClick={() => onAddField({})}>
+        <FormattedMessage id="ui-oa.publicationRequest.addExternalRequestId" />
+      </Button>
+    </>
+  );
+};
 
-  const renderEmpty = () => {
-    return <div />;
-  };
+ExternalRequestIdField.propTypes = {
+  fields: PropTypes.shape({
+    name: PropTypes.string,
+  }),
+};
 
+const ExternalRequestIdFieldArray = () => {
   return (
-    <FieldArray name="externalRequestIds">
-      {({ fields }) => (
-        <>
-          <>{fields.length ? renderExternalRequestId(fields) : renderEmpty()}</>
-          <Button onClick={() => fields.push({})}>
-            <FormattedMessage id="ui-oa.publicationRequest.addExternalRequestId" />
-          </Button>
-        </>
-      )}
-    </FieldArray>
+    <FieldArray component={ExternalRequestIdField} name="externalRequestIds" />
   );
 };
 
