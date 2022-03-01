@@ -61,13 +61,6 @@ describe('FundingFieldArray', () => {
       await Button('Add funding').exists();
     });
 
-    test('renders empty field message', () => {
-      const { getByText } = renderComponent;
-      expect(
-        getByText('No funding for this publication request')
-      ).toBeInTheDocument();
-    });
-
     test('renders empty fields', () => {
       const { queryAllByTestId } = renderComponent;
       expect(queryAllByTestId(/fundingFieldArray\[.*\]/).length).toEqual(0);

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
@@ -6,61 +7,19 @@ import {
   Button,
   Col,
   IconButton,
-  Layout,
   Row,
   Select,
 } from '@folio/stripes/components';
+
+import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
+
 import useOARefdata from '../../../../util/useOARefdata';
 import selectifyRefdata from '../../../../util/selectifyRefdata';
 
-const renderFunders = (fields, fundersValues, aspectFundedValues) => {
-  return (
-    <>
-      {fields.map((name, index) => (
-        <div key={name} data-testid={`fundingFieldArray[${index}]`}>
-          <Row middle="xs">
-            <Col xs={3}>
-              <Field
-                autoFocus={!fields.value[index].aspectFunded?.id}
-                component={Select}
-                dataOptions={[{ value: '', label: '' }, ...aspectFundedValues]}
-                label={
-                  <FormattedMessage id="ui-oa.publicationRequest.aspectFunded" />
-                }
-                name={`${name}.aspectFunded.id`}
-              />
-            </Col>
-            <Col xs={3}>
-              <Field
-                component={Select}
-                dataOptions={[{ value: '', label: '' }, ...fundersValues]}
-                label={
-                  <FormattedMessage id="ui-oa.publicationRequest.funder" />
-                }
-                name={`${name}.funder.id`}
-              />
-            </Col>
-            <Col xs={6}>
-              <IconButton icon="trash" onClick={() => fields.remove(index)} />
-            </Col>
-          </Row>
-        </div>
-      ))}
-    </>
-  );
-};
-
-const renderEmpty = () => {
-  return (
-    <Layout className="padding-bottom-gutter">
-      <FormattedMessage id="ui-oa.funders.requestHasNone" />
-    </Layout>
-  );
-};
-
 const [FUNDER, ASPECT_FUNDED] = ['Funding.Funder', 'Funding.AspectFunded'];
 
-const FundingFieldArray = () => {
+const FundingField = ({ fields: { name } }) => {
+  const { items, onAddField, onDeleteField } = useKiwtFieldArray(name);
   const funderRefdataValues = useOARefdata([FUNDER, ASPECT_FUNDED]);
 
   const fundersValues = selectifyRefdata(funderRefdataValues, FUNDER);
@@ -70,21 +29,61 @@ const FundingFieldArray = () => {
   );
 
   return (
-    <FieldArray name="fundings">
-      {({ fields }) => (
-        <>
-          <>
-            {fields.length
-              ? renderFunders(fields, fundersValues, aspectFundedValues)
-              : renderEmpty()}
-          </>
-          <Button onClick={() => fields.push({})}>
-            <FormattedMessage id="ui-oa.funders.addFunding" />
-          </Button>
-        </>
-      )}
-    </FieldArray>
+    <>
+      {items.map((funding, index) => {
+        return (
+          <div key={name} data-testid={`fundingFieldArray[${index}]`}>
+            <Row middle="xs">
+              <Col xs={3}>
+                <Field
+                  autoFocus={!funding?.id}
+                  component={Select}
+                  dataOptions={[
+                    { value: '', label: '' },
+                    ...aspectFundedValues,
+                  ]}
+                  label={
+                    <FormattedMessage id="ui-oa.publicationRequest.aspectFunded" />
+                  }
+                  name={`${name}[${index}].aspectFunded.id`}
+                />
+              </Col>
+              <Col xs={3}>
+                <Field
+                  component={Select}
+                  dataOptions={[{ value: '', label: '' }, ...fundersValues]}
+                  label={
+                    <FormattedMessage id="ui-oa.publicationRequest.funder" />
+                  }
+                  name={`${name}[${index}].funder.id`}
+                />
+              </Col>
+              <Col xs={6}>
+                <IconButton
+                  icon="trash"
+                  onClick={() => onDeleteField(index, funding)}
+                />
+              </Col>
+            </Row>
+          </div>
+        );
+      })}
+      <Button onClick={() => onAddField({})}>
+        <FormattedMessage id="ui-oa.funders.addFunding" />
+      </Button>
+    </>
   );
+};
+
+
+FundingField.propTypes = {
+  fields: PropTypes.shape({
+    name: PropTypes.string
+  })
+};
+
+const FundingFieldArray = () => {
+  return <FieldArray component={FundingField} name="fundings" />;
 };
 
 export default FundingFieldArray;
