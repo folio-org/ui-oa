@@ -13,6 +13,7 @@ import {
   Button,
   Icon,
   ConfirmationModal,
+  LoadingView,
 } from '@folio/stripes/components';
 import { AppIcon, IfPermission } from '@folio/stripes/core';
 
@@ -20,10 +21,17 @@ const propTypes = {
   onClose: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool,
   correspondence: PropTypes.object,
 };
 
-const CorrespondenceView = ({ onClose, onDelete, onEdit, correspondence }) => {
+const CorrespondenceView = ({
+  onClose,
+  onDelete,
+  onEdit,
+  isLoading,
+  correspondence,
+}) => {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
   const openDeleteConfirmationModal = () => {
@@ -78,6 +86,10 @@ const CorrespondenceView = ({ onClose, onDelete, onEdit, correspondence }) => {
       </PaneMenu>
     );
   };
+
+  if (isLoading) {
+    return <LoadingView />;
+  }
 
   return (
     <Paneset>
