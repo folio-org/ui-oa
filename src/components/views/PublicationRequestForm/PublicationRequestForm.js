@@ -21,6 +21,7 @@ import {
   Paneset,
   PaneMenu,
   Row,
+  LoadingView
 } from '@folio/stripes/components';
 
 import {
@@ -40,6 +41,7 @@ const propTypes = {
   pristine: PropTypes.bool,
   publicationRequest: PropTypes.object,
   submitting: PropTypes.bool,
+  isLoading: PropTypes.bool
 };
 
 const PublicationRequestForm = ({
@@ -47,6 +49,7 @@ const PublicationRequestForm = ({
   pristine,
   publicationRequest,
   submitting,
+  isLoading
 }) => {
   const { values } = useFormState();
   const { change } = useForm();
@@ -128,6 +131,10 @@ const PublicationRequestForm = ({
       </PaneMenu>
     );
   };
+
+  if (isLoading) {
+    return <LoadingView />;
+  }
 
   return (
     <HasCommand

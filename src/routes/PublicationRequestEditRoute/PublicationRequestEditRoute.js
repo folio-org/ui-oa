@@ -16,7 +16,7 @@ const PublicationRequestEditRoute = () => {
     history.push(`/oa/publicationRequests/${id}`);
   };
 
-  const { data: publicationRequest } = useQuery(
+  const { data: publicationRequest, isLoading } = useQuery(
     ['ui-oa', 'publicationEditRoute', 'publicationRequest', id],
     () => ky(`oa/publicationRequest/${id}`).json()
   );
@@ -47,6 +47,7 @@ const PublicationRequestEditRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit
             }}
+            isLoading={isLoading}
             publicationRequest={publicationRequest}
           />
         </form>
