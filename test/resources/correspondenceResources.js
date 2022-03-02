@@ -7,32 +7,32 @@ const correspondence = {
       'id': 'db468f10-ab68-48ee-9cae-1acad0e89da7'
     },
     'mode': {
-      'id': '8a8189847dc879fa017dc87a88500001',
+      'id': '2c9180b17f432ae2017f432f6b71002c',
       'value': 'email',
       'label': 'Email',
       'owner': {
-        'id': '8a8189847dc879fa017dc87a88250000',
+        'id': '2c9180b17f432ae2017f432f6b6d002b',
         'desc': 'Correspondence.Mode',
         'internal': true
       }
     },
     'category': {
-      'id': '8a8189847dc879fa017dc87a88a40004',
+      'id': '2c9180b17f432ae2017f432f6b7e002f',
       'value': 'invoice',
       'label': 'Invoice',
       'owner': {
-        'id': '8a8189847dc879fa017dc87a88a10003',
+        'id': '2c9180b17f432ae2017f432f6b7c002e',
         'desc': 'Correspondence.Category',
         'internal': true
       }
     },
     'content': 'Test Description',
     'status': {
-      'id': '8a8189847dc879fa017dc87a88d00007',
+      'id': '2c9180b17f432ae2017f432f6b8d0032',
       'value': 'awaiting_reply',
       'label': 'Awaiting Reply',
       'owner': {
-        'id': '8a8189847dc879fa017dc87a88cc0006',
+        'id': '2c9180b17f432ae2017f432f6b8a0031',
         'desc': 'Correspondence.Status',
         'internal': true
       }
