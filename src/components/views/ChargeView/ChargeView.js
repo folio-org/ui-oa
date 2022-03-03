@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { AppIcon, useOkapiKy } from '@folio/stripes/core';
@@ -12,6 +13,7 @@ import {
   Headline,
   Button,
   Icon,
+  ConfirmationModal,
 } from '@folio/stripes/components';
 
 import urls from '../../../util/urls';
@@ -21,6 +23,8 @@ const propTypes = {
 };
 
 const ChargeView = ({ resource: request }) => {
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+
   const ky = useOkapiKy();
   const location = useLocation();
   const history = useHistory();
@@ -64,7 +68,7 @@ const ChargeView = ({ resource: request }) => {
         <Button
           buttonStyle="dropdownItem"
           id="charge-delete-button"
-          onClick={handleDelete}
+          onClick={() => setShowConfirmationModal(true)}
         >
           <Icon icon="trash">
             <FormattedMessage id="ui-oa.charge.delete" />
@@ -85,6 +89,18 @@ const ChargeView = ({ resource: request }) => {
         <FormattedMessage id="ui-oa.charge.publicationRequestCharge" />
       }
     >
+      <ConfirmationModal
+        confirmLabel={<FormattedMessage id="ui-oa.charge.delete" />}
+        heading={
+          <FormattedMessage id="ui-oa.charge.deleteCharge" />
+        }
+        message={
+          <FormattedMessage id="ui-oa.charge.deleteChargeMessage" />
+        }
+        onCancel={() => setShowConfirmationModal(false)}
+        onConfirm={() => handleDelete()}
+        open={showConfirmationModal}
+      />
       <Headline margin="large" size="x-large" tag="h2">
         <FormattedMessage id="ui-oa.charge.chargeInformation" />
       </Headline>
