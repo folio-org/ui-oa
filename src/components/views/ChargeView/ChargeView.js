@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { AppIcon } from '@folio/stripes/core';
+import { AppIcon, useOkapiKy } from '@folio/stripes/core';
 import { useHistory, useLocation } from 'react-router-dom';
+import { useMutation } from 'react-query';
 
 import {
   Pane,
@@ -20,6 +21,7 @@ const propTypes = {
 };
 
 const ChargeView = ({ resource: request }) => {
+  const ky = useOkapiKy();
   const location = useLocation();
   const history = useHistory();
 
@@ -30,8 +32,21 @@ const ChargeView = ({ resource: request }) => {
     history.push(urls.publicationRequest(request?.id));
   };
 
+  const { mutateAsync: deleteCharge } = useMutation(
+    ['ui-oa', 'ChargeView', 'deleteCharge'],
+    (data) => ky.put(`oa/publicationRequest/${request?.id}`, { json: data }).then(() => {
+        handleClose();
+      })
+  );
+
   const handleEdit = () => {
     history.push(urls.publicationRequestChargeEdit(request?.id, chargeId));
+  };
+
+  const handleDelete = () => {
+    deleteCharge({
+      charges: [{ ...charge, _delete: true }],
+    });
   };
 
   const renderActionMenu = () => {
@@ -44,6 +59,15 @@ const ChargeView = ({ resource: request }) => {
         >
           <Icon icon="edit">
             <FormattedMessage id="ui-oa.charge.edit" />
+          </Icon>
+        </Button>
+        <Button
+          buttonStyle="dropdownItem"
+          id="charge-delete-button"
+          onClick={handleDelete}
+        >
+          <Icon icon="trash">
+            <FormattedMessage id="ui-oa.charge.delete" />
           </Icon>
         </Button>
       </>
@@ -65,7 +89,7 @@ const ChargeView = ({ resource: request }) => {
         <FormattedMessage id="ui-oa.charge.chargeInformation" />
       </Headline>
       <Row>
-        <Col xs={3}>
+        <Col xs={12}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.publicationRequest" />}
             value={
