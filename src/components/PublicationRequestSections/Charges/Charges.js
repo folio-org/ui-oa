@@ -33,13 +33,12 @@ const Charges = ({ request }) => {
 
   const calculatePrice = (charge) => {
     if (charge?.discountType?.value === 'subtracted') {
-      return charge?.localAmount?.value - charge?.discount;
+      const withoutTax = charge?.localAmount?.value - charge?.discount;
+      return withoutTax + (withoutTax * charge?.tax) / 100;
     }
     if (charge?.discountType?.value === 'percentage') {
-      return (
-        charge?.localAmount?.value -
-        (charge?.localAmount?.value * charge?.discount) / 100
-      );
+      const withoutTax = charge?.localAmount?.value - (charge?.localAmount?.value * charge?.discount) / 100;
+      return withoutTax + (withoutTax * charge?.tax) / 100;
     }
     return charge?.localAmount?.value;
   };
@@ -111,7 +110,7 @@ const Charges = ({ request }) => {
               />
               :{' '}
             </strong>
-            {Math.round(calculatePrice(e) * e?.exchangeRate?.coefficient * 100) / 100}
+            {Math.round((calculatePrice(e) * e?.exchangeRate?.coefficient) * 100) / 100}
           </div>
         </div>
       );
