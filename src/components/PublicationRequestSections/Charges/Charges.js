@@ -101,7 +101,7 @@ const Charges = ({ request }) => {
               />
               :{' '}
             </strong>
-            {calculatePrice(e)}
+            {Math.round(calculatePrice(e) * 100) / 100}
           </div>
           <div>
             <strong>
@@ -111,7 +111,7 @@ const Charges = ({ request }) => {
               />
               :{' '}
             </strong>
-            {calculatePrice(e) * e?.exchangeRate?.coefficient}
+            {Math.round(calculatePrice(e) * e?.exchangeRate?.coefficient * 100) / 100}
           </div>
         </div>
       );
