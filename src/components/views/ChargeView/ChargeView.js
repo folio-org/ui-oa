@@ -65,7 +65,7 @@ const ChargeView = ({ resource: request }) => {
         <FormattedMessage id="ui-oa.charge.chargeInformation" />
       </Headline>
       <Row>
-        <Col xs={3}>
+        <Col xs={12}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.publicationRequest" />}
             value={
