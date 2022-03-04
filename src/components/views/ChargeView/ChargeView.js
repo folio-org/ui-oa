@@ -33,6 +33,8 @@ const ChargeView = ({ resource: request }) => {
   const charge = request?.charges?.find((e) => e?.id === chargeId);
 
   const handleClose = () => {
+    // TODO Change Refetch publication request upon close
+    history.push(urls.publicationRequests());
     history.push(urls.publicationRequest(request?.id));
   };
 
