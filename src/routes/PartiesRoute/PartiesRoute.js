@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 import {
-  AppIcon,
+  AppIcon, IfPermission
 } from '@folio/stripes/core';
+import { Button, PaneMenu } from '@folio/stripes/components';
+
 
 import { SASQRoute } from '@k-int/stripes-kint-components';
 import { OAFilterHeaderComponent } from '../../components/SearchAndFilter';
 import Party from '../../components/views/Party';
+import urls from '../../util/urls';
 
 const PartiesRoute = ({ path }) => {
   const renderHeaderComponent = () => {
@@ -59,6 +62,26 @@ const PartiesRoute = ({ path }) => {
     sort: 'givenNames'
   };
 
+  const lastpaneMenu = (
+    <IfPermission perm="oa.party.edit">
+      <PaneMenu>
+        <FormattedMessage id="ui-oa.party.new">
+          {(ariaLabel) => (
+            <Button
+              aria-label={ariaLabel}
+              buttonStyle="primary"
+              id="new-party"
+              marginBottom0
+              to={`${urls.partyCreate()}`}
+            >
+              <FormattedMessage id="stripes-smart-components.new" />
+            </Button>
+          )}
+        </FormattedMessage>
+      </PaneMenu>
+    </IfPermission>
+  );
+
   return (
     <SASQRoute
       fetchParameters={fetchParameters}
@@ -66,7 +89,7 @@ const PartiesRoute = ({ path }) => {
       id="parties-sasq"
       mainPaneProps={{
         appIcon: <AppIcon iconKey="app" size="small" />,
-        // lastMenu: lastpaneMenu,
+        lastMenu: lastpaneMenu,
         paneTitle: <FormattedMessage id="ui-oa.parties.people" />,
       }}
       mclProps={{ formatter }}
