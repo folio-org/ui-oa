@@ -42,6 +42,7 @@
   "party.phone": "Phone",
   "party.mobilePhone": "Mobile phone",
 
+  "journal.new": "New",
   "journal.title": "Title",
   "journal.noTitleInstances": "No title instances for this journal",
   "journal.materialType": "Material type",
