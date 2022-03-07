@@ -105,7 +105,7 @@
     "@folio/handler-stripes-registry": "^1.0.0",
     "@folio/react-intl-safe-html": "^3.1.0",
     "@folio/stripes-erm-components": "^6.0.0",
-    "@k-int/stripes-kint-components": "^1.7.0",
+    "@k-int/stripes-kint-components": "^2.0.0",
     "classnames": "^2.2.6",
     "compose-function": "^3.0.3",
     "final-form": "^4.18.5",
