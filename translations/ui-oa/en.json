@@ -24,6 +24,7 @@
   "journals.electronicIssn": "ISSN (Electronic)",
   
   "party.edit": "Edit",
+  "party.new": "New",
   "party.title.mr": "Mr",
   "party.title.ms": "Ms",
   "party.title.prof": "Prof",
@@ -41,6 +42,7 @@
   "party.phone": "Phone",
   "party.mobilePhone": "Mobile phone",
 
+  "journal.new": "New",
   "journal.title": "Title",
   "journal.noTitleInstances": "No title instances for this journal",
   "journal.materialType": "Material type",
