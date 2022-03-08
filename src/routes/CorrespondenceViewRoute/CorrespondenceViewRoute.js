@@ -10,7 +10,7 @@ const CorrespondenceViewRoute = () => {
   const ky = useOkapiKy();
   const { prId, cId } = useParams();
 
-  const { data: correspondence } = useQuery(
+  const { data: correspondence, isLoading } = useQuery(
     ['ui-oa', 'correspondenceViewRoute', 'correspondence', cId],
     () => ky(`oa/correspondence/${cId}`).json()
   );
@@ -37,6 +37,7 @@ const CorrespondenceViewRoute = () => {
   return (
     <CorrespondenceView
       correspondence={correspondence}
+      isLoading={isLoading}
       onClose={handleClose}
       onDelete={handleDelete}
       onEdit={handleEdit}

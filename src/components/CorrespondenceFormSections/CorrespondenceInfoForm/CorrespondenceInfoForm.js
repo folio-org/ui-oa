@@ -1,4 +1,4 @@
-import { FormattedMessage, useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
 
 import {
@@ -10,9 +10,25 @@ import {
   TextArea,
 } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
+import useOARefdata from '../../../util/useOARefdata';
+import selectifyRefdata from '../../../util/selectifyRefdata';
+
+const [CORRESPONDENCE_CATEGORY, CORRESPONDENCE_STATUS, CORRESPONDENCE_MODE] = [
+  'Correspondence.Category',
+  'Correspondence.Status',
+  'Correspondence.Mode',
+];
 
 const CorrespondenceInfoForm = () => {
-  const intl = useIntl();
+  const refdataValues = useOARefdata([
+    CORRESPONDENCE_CATEGORY,
+    CORRESPONDENCE_STATUS,
+    CORRESPONDENCE_MODE,
+  ]);
+
+  const categoryValues = selectifyRefdata(refdataValues, CORRESPONDENCE_CATEGORY);
+  const statusValues = selectifyRefdata(refdataValues, CORRESPONDENCE_STATUS);
+  const modeValues = selectifyRefdata(refdataValues, CORRESPONDENCE_MODE);
 
   return (
     <>
@@ -44,29 +60,10 @@ const CorrespondenceInfoForm = () => {
           <Field
             component={Select}
             dataOptions={[
-              { value: '', label: '' },
-              {
-                value: 'awaiting_reply',
-                label: intl.formatMessage({
-                  id: 'ui-oa.correspondence.status.awaitingReply',
-                }),
-              },
-              {
-                value: 'response_needed',
-                label: intl.formatMessage({
-                  id: 'ui-oa.correspondence.status.responseNeeded',
-                }),
-              },
-              {
-                value: 'closed',
-                label: intl.formatMessage({
-                  id: 'ui-oa.correspondence.status.responseNeeded',
-                }),
-              },
-            ]}
+              { value: '', label: '' }, ...statusValues]}
             id="correspondence-status"
             label={<FormattedMessage id="ui-oa.correspondence.status" />}
-            name="status.value"
+            name="status.id"
             required
             validate={requiredValidator}
           />
@@ -76,22 +73,11 @@ const CorrespondenceInfoForm = () => {
             component={Select}
             dataOptions={[
               { value: '', label: '' },
-              {
-                value: 'email',
-                label: intl.formatMessage({
-                  id: 'ui-oa.correspondence.mode.email',
-                }),
-              },
-              {
-                value: 'telephone',
-                label: intl.formatMessage({
-                  id: 'ui-oa.correspondence.mode.telephone',
-                }),
-              },
+              ...modeValues
             ]}
             id="correspondence-mode"
             label={<FormattedMessage id="ui-oa.correspondence.mode" />}
-            name="mode.value"
+            name="mode.id"
             required
             validate={requiredValidator}
           />
@@ -103,22 +89,11 @@ const CorrespondenceInfoForm = () => {
             component={Select}
             dataOptions={[
               { value: '', label: '' },
-              {
-                value: 'invoice',
-                label: intl.formatMessage({
-                  id: 'ui-oa.correspondence.category.invoice',
-                }),
-              },
-              {
-                value: 'funding',
-                label: intl.formatMessage({
-                  id: 'ui-oa.correspondence.category.funding',
-                }),
-              },
+              ...categoryValues
             ]}
             id="correspondence-category"
             label={<FormattedMessage id="ui-oa.correspondence.category" />}
-            name="category.value"
+            name="category.id"
           />
         </Col>
       </Row>

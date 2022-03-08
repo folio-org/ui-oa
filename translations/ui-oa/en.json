@@ -24,6 +24,7 @@
   "journals.electronicIssn": "ISSN (Electronic)",
   
   "party.edit": "Edit",
+  "party.new": "New",
   "party.title.mr": "Mr",
   "party.title.ms": "Ms",
   "party.title.prof": "Prof",
@@ -41,6 +42,7 @@
   "party.phone": "Phone",
   "party.mobilePhone": "Mobile phone",
 
+  "journal.new": "New",
   "journal.title": "Title",
   "journal.noTitleInstances": "No title instances for this journal",
   "journal.materialType": "Material type",
@@ -209,9 +211,9 @@
   "charge.delete": "Delete",
   "charge.deleteCharge": "Delete charge",
   "charge.deleteChargeMessage": "This charge will be permanently deleted.",
-  "charge.estimatedPrices": "Estimate prices",
-  "charge.estimatedPriceLocal": "Estimate price ({localCurrency})",
-  "charge.estimatedPriceSpecified": "Estimate price ({specifiedCurrency})",
+  "charge.estimatedPrices": "Estimated prices",
+  "charge.estimatedPriceLocal": "Estimated price ({localCurrency})",
+  "charge.estimatedPriceSpecified": "Estimated price ({specifiedCurrency})",
 
   
   "correspondence.newCorrespondence": "New correspondence",

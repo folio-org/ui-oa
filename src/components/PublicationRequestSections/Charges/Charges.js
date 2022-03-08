@@ -33,15 +33,14 @@ const Charges = ({ request }) => {
 
   const calculatePrice = (charge) => {
     if (charge?.discountType?.value === 'subtracted') {
-      return charge?.localAmount?.value - charge?.discount;
+      const withoutTax = charge?.amount?.value - charge?.discount;
+      return withoutTax + (withoutTax * charge?.tax) / 100;
     }
     if (charge?.discountType?.value === 'percentage') {
-      return (
-        charge?.localAmount?.value -
-        (charge?.localAmount?.value * charge?.discount) / 100
-      );
+      const withoutTax = charge?.amount?.value - (charge?.amount?.value * charge?.discount) / 100;
+      return withoutTax + (withoutTax * charge?.tax) / 100;
     }
-    return charge?.localAmount?.value;
+    return charge?.amount?.value;
   };
 
   const renderAddChargesButton = () => {
@@ -101,7 +100,7 @@ const Charges = ({ request }) => {
               />
               :{' '}
             </strong>
-            {calculatePrice(e)}
+            {Math.round(calculatePrice(e) * 100) / 100}
           </div>
           <div>
             <strong>
@@ -111,7 +110,7 @@ const Charges = ({ request }) => {
               />
               :{' '}
             </strong>
-            {calculatePrice(e) * e?.exchangeRate?.coefficient}
+            {Math.round((calculatePrice(e) * e?.exchangeRate?.coefficient) * 100) / 100}
           </div>
         </div>
       );

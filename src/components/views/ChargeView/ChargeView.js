@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { AppIcon } from '@folio/stripes/core';
+import { AppIcon, useOkapiKy } from '@folio/stripes/core';
 import { useHistory, useLocation } from 'react-router-dom';
+import { useMutation } from 'react-query';
 
 import {
   Pane,
@@ -11,6 +13,7 @@ import {
   Headline,
   Button,
   Icon,
+  ConfirmationModal,
 } from '@folio/stripes/components';
 
 import urls from '../../../util/urls';
@@ -20,6 +23,9 @@ const propTypes = {
 };
 
 const ChargeView = ({ resource: request }) => {
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+
+  const ky = useOkapiKy();
   const location = useLocation();
   const history = useHistory();
 
@@ -27,11 +33,26 @@ const ChargeView = ({ resource: request }) => {
   const charge = request?.charges?.find((e) => e?.id === chargeId);
 
   const handleClose = () => {
+    // TODO Change Refetch publication request upon close
+    history.push(urls.publicationRequests());
     history.push(urls.publicationRequest(request?.id));
   };
 
+  const { mutateAsync: deleteCharge } = useMutation(
+    ['ui-oa', 'ChargeView', 'deleteCharge'],
+    (data) => ky.put(`oa/publicationRequest/${request?.id}`, { json: data }).then(() => {
+        handleClose();
+      })
+  );
+
   const handleEdit = () => {
     history.push(urls.publicationRequestChargeEdit(request?.id, chargeId));
+  };
+
+  const handleDelete = () => {
+    deleteCharge({
+      charges: [{ ...charge, _delete: true }],
+    });
   };
 
   const renderActionMenu = () => {
@@ -44,6 +65,15 @@ const ChargeView = ({ resource: request }) => {
         >
           <Icon icon="edit">
             <FormattedMessage id="ui-oa.charge.edit" />
+          </Icon>
+        </Button>
+        <Button
+          buttonStyle="dropdownItem"
+          id="charge-delete-button"
+          onClick={() => setShowConfirmationModal(true)}
+        >
+          <Icon icon="trash">
+            <FormattedMessage id="ui-oa.charge.delete" />
           </Icon>
         </Button>
       </>
@@ -61,11 +91,23 @@ const ChargeView = ({ resource: request }) => {
         <FormattedMessage id="ui-oa.charge.publicationRequestCharge" />
       }
     >
+      <ConfirmationModal
+        confirmLabel={<FormattedMessage id="ui-oa.charge.delete" />}
+        heading={
+          <FormattedMessage id="ui-oa.charge.deleteCharge" />
+        }
+        message={
+          <FormattedMessage id="ui-oa.charge.deleteChargeMessage" />
+        }
+        onCancel={() => setShowConfirmationModal(false)}
+        onConfirm={() => handleDelete()}
+        open={showConfirmationModal}
+      />
       <Headline margin="large" size="x-large" tag="h2">
         <FormattedMessage id="ui-oa.charge.chargeInformation" />
       </Headline>
       <Row>
-        <Col xs={3}>
+        <Col xs={12}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.publicationRequest" />}
             value={
