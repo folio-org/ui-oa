@@ -98,6 +98,7 @@
   "publicationRequest.funding": "Funding",
   "publicationRequest.givenName": "Given name(s)",
   "publicationRequest.identifiers": "Identifiers",
+  "publicationRequest.addJournal": "Add journal",
   "publicationRequest.journalDetails": "Journal details",
   "publicationRequest.journalLookup": "Journal lookup",
   "publicationRequest.license": "License",
