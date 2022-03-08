@@ -9,6 +9,7 @@ import {
   Row,
   Card,
   Select,
+  Tooltip,
 } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
 
@@ -27,10 +28,24 @@ const InstancesFieldArray = () => {
               headerEnd={
                 fields.length !== 1 && (
                   <Col xs={9}>
-                    <IconButton
-                      icon="trash"
-                      onClick={() => fields.remove(index)}
-                    />
+                    <Tooltip
+                      text={
+                        <FormattedMessage
+                          id="ui-oa.journal.deleteInstance"
+                          values={{ index: index + 1 }}
+                        />
+                      }
+                    >
+                      {({ ref, ariaIds }) => (
+                        <IconButton
+                          ref={ref}
+                          aria-describedby={ariaIds.sub}
+                          aria-labelledby={ariaIds.text}
+                          icon="trash"
+                          onClick={() => fields.remove(index)}
+                        />
+                      )}
+                    </Tooltip>
                   </Col>
                 )
               }
@@ -39,7 +54,7 @@ const InstancesFieldArray = () => {
                   <FormattedMessage
                     id="ui-oa.journal.instanceIndex"
                     values={{
-                      index: (index + 1),
+                      index: index + 1,
                     }}
                   />
                 </strong>
@@ -49,7 +64,10 @@ const InstancesFieldArray = () => {
                 <Col xs={4}>
                   <Field
                     component={Select}
-                    dataOptions={[{ value: '', label: '' }, ...subTypeRefdataValues]}
+                    dataOptions={[
+                      { value: '', label: '' },
+                      ...subTypeRefdataValues,
+                    ]}
                     id="journal-instance-subType"
                     label={
                       <FormattedMessage id="ui-oa.journal.instance.subtype" />

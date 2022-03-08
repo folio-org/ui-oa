@@ -11,6 +11,7 @@ import {
   TextField,
   Row,
   Select,
+  Tooltip
 } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
 
@@ -76,10 +77,24 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
               </Col>
               {fields.length !== 1 && (
                 <Col xs={4}>
-                  <IconButton
-                    icon="trash"
-                    onClick={() => fields.remove(index)}
-                  />
+                  <Tooltip
+                    text={
+                      <FormattedMessage
+                        id="ui-oa.journal.deleteIdentifier"
+                        values={{ index: index + 1 }}
+                      />
+                    }
+                  >
+                    {({ ref, ariaIds }) => (
+                      <IconButton
+                        ref={ref}
+                        aria-describedby={ariaIds.sub}
+                        aria-labelledby={ariaIds.text}
+                        icon="trash"
+                        onClick={() => fields.remove(index)}
+                      />
+                    )}
+                  </Tooltip>
                 </Col>
               )}
             </Row>

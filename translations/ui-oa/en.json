@@ -53,6 +53,8 @@
   "journal.type": "Type",
   "journal.type.serial": "Serial",
   "journal.addInstance": "Add instance",
+  "journal.deleteInstance": "Delete Instance {index}",
+  "journal.deleteIdentifier": "Delete Identifier {index}",
   "journal.instanceIndex": "Instance {index}",
   "journal.instance.subtype": "Subtype",
   "journal.instance.subType.electronic": "Electronic",
