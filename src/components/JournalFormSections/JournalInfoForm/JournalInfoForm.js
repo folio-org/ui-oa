@@ -5,12 +5,11 @@ import { Col, Row, TextField } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
 import { InstancesFieldArray } from '../FieldArrays';
 
-
 const JournalInfoForm = () => {
   return (
     <>
       <Row>
-        <Col xs={3}>
+        <Col xs={12}>
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.journal.title" />}
