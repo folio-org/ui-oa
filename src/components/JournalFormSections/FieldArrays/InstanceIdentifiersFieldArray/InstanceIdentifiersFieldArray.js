@@ -89,15 +89,11 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
     );
   };
 
-  const renderEmpty = () => {
-    return <div />;
-  };
-
   return (
     <FieldArray name={`${instanceId}.ids`}>
       {({ fields }) => (
         <>
-          <>{fields.length ? renderIdentifier(fields) : renderEmpty()}</>
+          <>{renderIdentifier(fields)}</>
           <Button onClick={() => fields.push({})}>
             <FormattedMessage id="ui-oa.journal.instance.identifier.addIdentifier" />
           </Button>
