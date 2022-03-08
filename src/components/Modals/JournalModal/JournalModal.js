@@ -5,9 +5,10 @@ import { FormattedMessage } from 'react-intl';
 import { useMutation } from 'react-query';
 
 import { useOkapiKy } from '@folio/stripes/core';
-import { Button, Modal, ModalFooter } from '@folio/stripes/components';
+import { Button, Modal, ModalFooter, Loading, Layout } from '@folio/stripes/components';
 
 import JournalInfoForm from '../../JournalFormSections/JournalInfoForm';
+import css from './JournalModal.css';
 
 const propTypes = {
   showModal: PropTypes.bool,
@@ -22,7 +23,7 @@ const JournalModal = ({ showModal, setShowModal, handleJournalChange }) => {
     setShowModal(false);
   };
 
-  const { mutateAsync: postJournal } = useMutation(
+  const { mutateAsync: postJournal, isLoading } = useMutation(
     ['ui-oa', 'JournalModal', 'postJournal'],
     (data) => ky.post('oa/works/citation', { json: data }).json().then((res) => {
       handleJournalChange(res);
@@ -77,7 +78,15 @@ const JournalModal = ({ showModal, setShowModal, handleJournalChange }) => {
             onClose={() => setShowModal(false)}
             open={showModal}
           >
-            <JournalInfoForm />
+            {isLoading ? (
+              <Layout
+                className={css.spinnerStyle}
+              >
+                <Loading size="large" />
+              </Layout>
+            ) : (
+              <JournalInfoForm />
+            )}
           </Modal>
         </form>
       )}
