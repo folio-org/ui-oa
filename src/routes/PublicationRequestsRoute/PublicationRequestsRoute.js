@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
-import { Route } from 'react-router-dom';
 
 import { AppIcon, IfPermission } from '@folio/stripes/core';
 
