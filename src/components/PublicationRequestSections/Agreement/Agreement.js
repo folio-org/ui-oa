@@ -32,8 +32,7 @@ const Agreement = ({ request }) => {
 
   const openAccessProperties = Object.values(customProperties)
     .filter((cp) => cp[0]?.type?.ctx === 'OpenAccess')
-    .flat(1)
-    .map((cp) => cp.type);
+    .map((cp) => cp[0]?.type);
 
   const renderBadge = (agreement) => {
     return agreement ? <Badge>1</Badge> : <Badge>0</Badge>;
