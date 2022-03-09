@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { AppIcon, useOkapiKy } from '@folio/stripes/core';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useMutation } from 'react-query';
 
 import {
@@ -19,18 +19,15 @@ import {
 import urls from '../../../util/urls';
 
 const propTypes = {
-  resource: PropTypes.object,
+  charge: PropTypes.object,
+  request: PropTypes.object,
 };
 
-const ChargeView = ({ resource: request }) => {
+const ChargeView = ({ charge, request }) => {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
   const ky = useOkapiKy();
-  const location = useLocation();
   const history = useHistory();
-
-  const chargeId = location.pathname.split('/').pop();
-  const charge = request?.charges?.find((e) => e?.id === chargeId);
 
   const handleClose = () => {
     // TODO Change Refetch publication request upon close
@@ -46,7 +43,7 @@ const ChargeView = ({ resource: request }) => {
   );
 
   const handleEdit = () => {
-    history.push(urls.publicationRequestChargeEdit(request?.id, chargeId));
+    history.push(urls.publicationRequestChargeEdit(request?.id, charge?.id));
   };
 
   const handleDelete = () => {
