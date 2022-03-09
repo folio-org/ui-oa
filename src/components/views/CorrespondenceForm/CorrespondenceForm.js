@@ -8,6 +8,7 @@ import {
   Paneset,
   PaneMenu,
   IconButton,
+  LoadingView,
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 
@@ -21,11 +22,12 @@ const propTypes = {
   }).isRequired,
   pristine: PropTypes.bool,
   submitting: PropTypes.bool,
+  isLoading: PropTypes.bool,
   correspondence: PropTypes.object,
 };
 
 
-const CorrespondenceForm = ({ handlers: { onClose, onSubmit }, pristine, submitting, correspondence }) => {
+const CorrespondenceForm = ({ handlers: { onClose, onSubmit }, pristine, submitting, isLoading, correspondence }) => {
   const renderPaneTitle = () => (
     correspondence ?
       <FormattedMessage id="ui-oa.correspondence.editCorrespondence" /> :
@@ -74,6 +76,11 @@ const CorrespondenceForm = ({ handlers: { onClose, onSubmit }, pristine, submitt
       />
     );
   };
+
+  if (isLoading) {
+    return <LoadingView />;
+  }
+
   return (
     <Paneset>
       <Pane

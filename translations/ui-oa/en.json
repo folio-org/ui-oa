@@ -24,6 +24,7 @@
   "journals.electronicIssn": "ISSN (Electronic)",
   
   "party.edit": "Edit",
+  "party.new": "New",
   "party.title.mr": "Mr",
   "party.title.ms": "Ms",
   "party.title.prof": "Prof",
@@ -41,6 +42,7 @@
   "party.phone": "Phone",
   "party.mobilePhone": "Mobile phone",
 
+  "journal.new": "New",
   "journal.title": "Title",
   "journal.noTitleInstances": "No title instances for this journal",
   "journal.materialType": "Material type",
@@ -51,6 +53,8 @@
   "journal.type": "Type",
   "journal.type.serial": "Serial",
   "journal.addInstance": "Add instance",
+  "journal.deleteInstance": "Delete Instance {index}",
+  "journal.deleteIdentifier": "Delete Identifier {index}",
   "journal.instanceIndex": "Instance {index}",
   "journal.instance.subtype": "Subtype",
   "journal.instance.subType.electronic": "Electronic",
@@ -96,6 +100,7 @@
   "publicationRequest.funding": "Funding",
   "publicationRequest.givenName": "Given name(s)",
   "publicationRequest.identifiers": "Identifiers",
+  "publicationRequest.addJournal": "Add journal",
   "publicationRequest.journalDetails": "Journal details",
   "publicationRequest.journalLookup": "Journal lookup",
   "publicationRequest.license": "License",
@@ -209,9 +214,9 @@
   "charge.delete": "Delete",
   "charge.deleteCharge": "Delete charge",
   "charge.deleteChargeMessage": "This charge will be permanently deleted.",
-  "charge.estimatedPrices": "Estimate prices",
-  "charge.estimatedPriceLocal": "Estimate price ({localCurrency})",
-  "charge.estimatedPriceSpecified": "Estimate price ({specifiedCurrency})",
+  "charge.estimatedPrices": "Estimated prices",
+  "charge.estimatedPriceLocal": "Estimated price ({localCurrency})",
+  "charge.estimatedPriceSpecified": "Estimated price ({specifiedCurrency})",
 
   
   "correspondence.newCorrespondence": "New correspondence",

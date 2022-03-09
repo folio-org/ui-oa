@@ -14,7 +14,7 @@ const ChargeEditRoute = () => {
     history.push(`/oa/publicationRequests/${prId}/charge/${chId}`);
   };
 
-  const { data: publicationRequest } = useQuery(
+  const { data: publicationRequest, isLoading } = useQuery(
     ['ui-oa', 'publicationEditRoute', 'publicationRequest', prId],
     () => ky(`oa/publicationRequest/${prId}`).json()
   );
@@ -48,6 +48,7 @@ const ChargeEditRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit,
             }}
+            isLoading={isLoading}
           />
         </form>
       )}

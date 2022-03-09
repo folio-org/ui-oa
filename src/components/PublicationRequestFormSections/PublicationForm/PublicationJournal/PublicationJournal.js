@@ -94,9 +94,7 @@ const PublicationJournal = () => {
         <Col xs={12}>
           <Field
             component={QueryTypedown}
-            label={
-              <FormattedMessage id="ui-oa.publicationRequest.journalTitle" />
-            }
+            label={<FormattedMessage id="ui-oa.publicationRequest.addJournal" />}
             name="journal"
             path="oa/works"
             pathMutator={pathMutator}

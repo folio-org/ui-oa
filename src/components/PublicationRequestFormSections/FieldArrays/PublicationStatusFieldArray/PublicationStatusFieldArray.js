@@ -29,7 +29,7 @@ const PublicationStatusField = ({ fields: { name } }) => {
     <>
       {items.map((publicationStatus, index) => {
         return (
-          <Row key={publicationStatus} start="xs">
+          <Row key={publicationStatus + index} data-testid={`PublicationStatusFieldArray[${index}]`} start="xs">
             <Col xs={3}>
               <Field
                 autoFocus={!publicationStatus.id}

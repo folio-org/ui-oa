@@ -8,6 +8,7 @@ import {
   Paneset,
   PaneMenu,
   IconButton,
+  LoadingView,
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 
@@ -20,11 +21,12 @@ const propTypes = {
   }).isRequired,
   pristine: PropTypes.bool,
   submitting: PropTypes.bool,
+  isLoading: PropTypes.bool,
   charge: PropTypes.object,
 };
 
 
-const ChargeForm = ({ handlers: { onClose, onSubmit }, pristine, submitting, charge }) => {
+const ChargeForm = ({ handlers: { onClose, onSubmit }, pristine, submitting, isLoading, charge }) => {
   const renderPaneTitle = () => (
     charge ?
       <FormattedMessage id="ui-oa.charge.editCharge" /> :
@@ -73,6 +75,11 @@ const ChargeForm = ({ handlers: { onClose, onSubmit }, pristine, submitting, cha
       />
     );
   };
+
+  if (isLoading) {
+    return <LoadingView />;
+  }
+
   return (
     <Paneset>
       <Pane

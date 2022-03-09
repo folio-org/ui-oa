@@ -9,6 +9,7 @@ import {
   PaneFooter,
   Paneset,
   PaneMenu,
+  LoadingView
 } from '@folio/stripes/components';
 
 import PartyInfoForm from '../../PartyFormSections/PartyInfoForm/PartyInfoForm';
@@ -20,6 +21,7 @@ const propTypes = {
   }).isRequired,
   pristine: PropTypes.bool,
   party: PropTypes.object,
+  isLoading: PropTypes.bool,
   submitting: PropTypes.bool,
 };
 
@@ -28,6 +30,7 @@ const PartyForm = ({
   pristine,
   party,
   submitting,
+  isLoading
 }) => {
   const renderPaneTitle = () => (
     party ?
@@ -78,6 +81,10 @@ const PartyForm = ({
       </PaneMenu>
     );
   };
+
+  if (isLoading) {
+    return <LoadingView />;
+  }
 
   return (
     <Paneset>
