@@ -30,10 +30,6 @@ const Agreement = ({ request }) => {
   const customProperties =
     request?.agreement?.remoteId_object?.customProperties;
 
-  const openAccessProperties = Object.values(customProperties)
-    .filter((cp) => cp[0]?.type?.ctx === 'OpenAccess')
-    .map((cp) => cp[0]?.type);
-
   const renderBadge = (agreement) => {
     return agreement ? <Badge>1</Badge> : <Badge>0</Badge>;
   };
@@ -100,6 +96,20 @@ const Agreement = ({ request }) => {
       </>
     );
   };
+
+  const renderCustomProperties = () => {
+    const openAccessProperties = Object.values(customProperties)
+      .filter((cp) => cp[0]?.type?.ctx === 'OpenAccess')
+      .map((cp) => cp[0]?.type);
+
+    return (
+      <CustomPropertiesList
+        customProperties={openAccessProperties}
+        resource={request?.agreement?.remoteId_object}
+      />
+    );
+  };
+
   return (
     <Accordion
       closedByDefault
@@ -119,10 +129,7 @@ const Agreement = ({ request }) => {
           >
             {renderAgreement(request?.agreement?.remoteId_object)}
           </Card>
-          <CustomPropertiesList
-            customProperties={openAccessProperties}
-            resource={request?.agreement?.remoteId_object}
-          />
+          {renderCustomProperties()}
         </>
       ) : (
         renderEmpty()
