@@ -8,13 +8,17 @@ import { party, handlers } from '../../../../test/resources/partyResources';
 
 jest.mock('../../PartySections/PartyInfo', () => () => <div>PartyInfo</div>);
 
-describe('PublicationRequest', () => {
+describe('Party', () => {
   let renderComponent;
   describe('renders components', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
         <MemoryRouter>
-          <Party onClose={handlers.onClose} resource={party} />
+          <Party
+            onClose={handlers.onClose}
+            queryProps={{ isLoading: false }}
+            resource={party}
+          />
         </MemoryRouter>,
         translationsProperties
       );
