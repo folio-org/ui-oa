@@ -4,7 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 
 import { AppIcon } from '@folio/stripes/core';
 
-import { Pane, Button, Icon } from '@folio/stripes/components';
+import { Pane, Button, Icon, LoadingPane } from '@folio/stripes/components';
 
 import PartyInfo from '../../PartySections';
 import urls from '../../../util/urls';
@@ -12,9 +12,10 @@ import urls from '../../../util/urls';
 const propTypes = {
   onClose: PropTypes.func.isRequired,
   resource: PropTypes.object,
+  queryProps: PropTypes.object
 };
 
-const Party = ({ resource: party, onClose }) => {
+const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
   const history = useHistory();
   const params = useParams();
 
@@ -28,6 +29,10 @@ const Party = ({ resource: party, onClose }) => {
   const handleEdit = () => {
     history.push(`${urls.partyEdit(params?.id)}`);
   };
+
+  if (isLoading) {
+    return <LoadingPane dismissable onClose={onClose} />;
+  }
 
   return (
     <Pane
