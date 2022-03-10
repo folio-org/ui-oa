@@ -21,17 +21,17 @@ import urls from '../../../util/urls';
 const propTypes = {
   charge: PropTypes.object,
   request: PropTypes.object,
+  refetch: PropTypes.func
 };
 
-const ChargeView = ({ charge, request }) => {
+const ChargeView = ({ charge, request, refetch }) => {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
   const ky = useOkapiKy();
   const history = useHistory();
 
   const handleClose = () => {
-    // TODO Change Refetch publication request upon close
-    history.push(urls.publicationRequests());
+    refetch();
     history.push(urls.publicationRequest(request?.id));
   };
 

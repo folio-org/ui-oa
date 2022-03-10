@@ -11,7 +11,7 @@ const ChargeRoute = () => {
 
   const { prId, chId } = useParams();
 
-  const { data: publicationRequest, isLoading } = useQuery(
+  const { data: publicationRequest, isLoading, refetch } = useQuery(
     ['ui-oa', 'publicationEditRoute', 'publicationRequest', prId],
     () => ky(`oa/publicationRequest/${prId}`).json()
   );
@@ -25,6 +25,7 @@ const ChargeRoute = () => {
   return (
     <ChargeView
       charge={charge}
+      refetch={refetch}
       request={publicationRequest}
     />
   );
