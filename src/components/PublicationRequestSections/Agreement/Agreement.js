@@ -15,6 +15,7 @@ import {
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 import { Registry } from '@folio/handler-stripes-registry';
+import { CustomPropertiesList } from '@folio/stripes-erm-components';
 
 import css from './Agreement.css';
 
@@ -25,6 +26,9 @@ const propTypes = {
 const Agreement = ({ request }) => {
   const resourceReg = Registry?.getResource('agreement');
   const agreementLinkFunction = resourceReg?.getViewResource();
+
+  const customProperties =
+    request?.agreement?.remoteId_object?.customProperties;
 
   const renderBadge = (agreement) => {
     return agreement ? <Badge>1</Badge> : <Badge>0</Badge>;
@@ -92,6 +96,20 @@ const Agreement = ({ request }) => {
       </>
     );
   };
+
+  const renderCustomProperties = () => {
+    const openAccessProperties = Object.values(customProperties)
+      .filter((cp) => cp[0]?.type?.ctx === 'OpenAccess')
+      .map((cp) => cp[0]?.type);
+
+    return (
+      <CustomPropertiesList
+        customProperties={openAccessProperties}
+        resource={request?.agreement?.remoteId_object}
+      />
+    );
+  };
+
   return (
     <Accordion
       closedByDefault
@@ -100,16 +118,19 @@ const Agreement = ({ request }) => {
       label={<FormattedMessage id="ui-oa.publicationRequest.agreement" />}
     >
       {request?.agreement ? (
-        <Card
-          cardStyle="positive"
-          headerStart={
-            <AppIcon app="agreements" size="small">
-              {renderAgreementLink()}
-            </AppIcon>
-          }
-        >
-          {renderAgreement(request?.agreement?.remoteId_object)}
-        </Card>
+        <>
+          <Card
+            cardStyle="positive"
+            headerStart={
+              <AppIcon app="agreements" size="small">
+                {renderAgreementLink()}
+              </AppIcon>
+            }
+          >
+            {renderAgreement(request?.agreement?.remoteId_object)}
+          </Card>
+          {renderCustomProperties()}
+        </>
       ) : (
         renderEmpty()
       )}
