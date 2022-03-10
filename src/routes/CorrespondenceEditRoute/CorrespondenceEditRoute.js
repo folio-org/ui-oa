@@ -16,7 +16,7 @@ const CorrespondenceEditRoute = () => {
     history.push(`/oa/publicationRequests/${prId}`);
   };
 
-  const { data: correspondence } = useQuery(
+  const { data: correspondence, isLoading } = useQuery(
     ['ui-oa', 'CorrespondenceEditRoute', 'correspondence', cId],
     () => ky(`oa/correspondence/${cId}`).json()
   );
@@ -45,6 +45,7 @@ const CorrespondenceEditRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit,
             }}
+            isLoading={isLoading}
           />
         </form>
       )}

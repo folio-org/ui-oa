@@ -11,11 +11,13 @@ import {
   CorrespondenceViewRoute,
   CorrespondenceEditRoute,
   PartiesRoute,
-  PartiesEditRoute,
+  PartyCreateRoute,
+  PartyEditRoute,
   JournalsRoute,
   ChargeCreateRoute,
   LinkInvoiceRoute,
   ChargeEditRoute,
+  ChargeRoute
 } from './routes';
 
 const App = (props) => {
@@ -67,14 +69,28 @@ const App = (props) => {
           component={ChargeEditRoute}
           path={`${path}/publicationRequests/:prId/charge/:chId/edit`}
         />
-        <Route component={PartiesEditRoute} path={`${path}/people/:id/edit`} />
-        <PartiesRoute path={`${path}/people`} />
-        <JournalsRoute path={`${path}/journals`} />
-        <PublicationRequestsRoute path={`${path}/publicationRequests`} />
-        <Route component={PartiesEditRoute} path={`${path}/people/:id/edit`} />
-        <PartiesRoute path={`${path}/people`} />
-        <JournalsRoute path={`${path}/journals`} />
-        <PublicationRequestsRoute path={`${path}/publicationRequests`} />
+        <Route
+          component={PartyCreateRoute}
+          path={`${path}/people/create`}
+        />
+        <Route
+          component={PartyEditRoute}
+          path={`${path}/people/:id/edit`}
+        />
+        <PartiesRoute
+          path={`${path}/people`}
+        />
+        <JournalsRoute
+          path={`${path}/journals`}
+        />
+        <PublicationRequestsRoute
+          path={`${path}/publicationRequests`}
+        >
+          <Route
+            component={ChargeRoute}
+            path={`${path}/publicationRequests/:prId/charge/:chId`}
+          />
+        </PublicationRequestsRoute>
       </Switch>
     </Suspense>
   );

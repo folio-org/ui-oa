@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { AppIcon } from '@folio/stripes/core';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { AppIcon, useOkapiKy } from '@folio/stripes/core';
+import { useMutation } from 'react-query';
+
 import {
   Pane,
   Row,
@@ -10,32 +13,49 @@ import {
   Button,
   Icon,
   Headline,
+  ConfirmationModal,
 } from '@folio/stripes/components';
 
 import urls from '../../../util/urls';
 
 const propTypes = {
-  resource: PropTypes.object,
+  charge: PropTypes.object,
+  request: PropTypes.object,
 };
 
-const ChargeView = ({ resource: request }) => {
-  const location = useLocation();
+const ChargeView = ({ charge, request }) => {
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+
+  const ky = useOkapiKy();
   const history = useHistory();
 
-  const chargeId = location.pathname.split('/').pop();
-  const charge = request?.charges?.find((e) => e?.id === chargeId);
-
   const handleClose = () => {
+    // TODO Change Refetch publication request upon close
+    history.push(urls.publicationRequests());
     history.push(urls.publicationRequest(request?.id));
   };
 
+  const { mutateAsync: deleteCharge } = useMutation(
+    ['ui-oa', 'ChargeView', 'deleteCharge'],
+    (data) => ky.put(`oa/publicationRequest/${request?.id}`, { json: data })
+          .then(() => {
+          handleClose();
+        })
+  );
+
   const handleEdit = () => {
-    history.push(urls.publicationRequestChargeEdit(request?.id, chargeId));
+    history.push(urls.publicationRequestChargeEdit(request?.id, charge?.id));
+  };
+
+  const handleDelete = () => {
+    deleteCharge({
+      charges: [{ ...charge, _delete: true }],
+    });
   };
 
   const handleLink = () => {
     history.push(
-      `${urls.publicationRequestChargeLinkInvoice(request.id, chargeId)}`
+      `${urls.publicationRequestChargeLinkInvoice(request.id, charge.id)}`
     );
   };
 
@@ -60,6 +80,15 @@ const ChargeView = ({ resource: request }) => {
             <FormattedMessage id="ui-oa.charge.invoice.linkInvoice" />
           </Icon>
         </Button>
+        <Button
+          buttonStyle="dropdownItem"
+          id="charge-delete-button"
+          onClick={() => setShowConfirmationModal(true)}
+        >
+          <Icon icon="trash">
+            <FormattedMessage id="ui-oa.charge.delete" />
+          </Icon>
+        </Button>
       </>
     );
   };
@@ -75,11 +104,19 @@ const ChargeView = ({ resource: request }) => {
         <FormattedMessage id="ui-oa.charge.publicationRequestCharge" />
       }
     >
+      <ConfirmationModal
+        confirmLabel={<FormattedMessage id="ui-oa.charge.delete" />}
+        heading={<FormattedMessage id="ui-oa.charge.deleteCharge" />}
+        message={<FormattedMessage id="ui-oa.charge.deleteChargeMessage" />}
+        onCancel={() => setShowConfirmationModal(false)}
+        onConfirm={() => handleDelete()}
+        open={showConfirmationModal}
+      />
       <Headline margin="large" size="x-large" tag="h2">
         <FormattedMessage id="ui-oa.charge.chargeInformation" />
       </Headline>
       <Row>
-        <Col xs={3}>
+        <Col xs={12}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.publicationRequest" />}
             value={

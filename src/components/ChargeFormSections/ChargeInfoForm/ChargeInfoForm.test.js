@@ -33,13 +33,9 @@ describe('ChargeInfoForm', () => {
       await Select({ id: 'charge-currency' }).exists();
     });
 
-    test('renders Exchange rate select', async () => {
-      await Select({ id: 'charge-exchange-rate' }).exists();
-    });
-
-    test('renders Coefficient field', () => {
+    test('renders Exchange rate field', () => {
       const { getByRole } = renderComponent;
-      expect(getByRole('spinbutton', { name: 'Coefficient' }));
+      expect(getByRole('spinbutton', { name: 'Exchange rate' }));
     });
 
     test('renders Discount field', () => {
@@ -68,19 +64,15 @@ describe('ChargeInfoForm', () => {
       expect(getByRole('spinbutton', { name: 'Amount' })).toHaveDisplayValue('100');
     });
 
-    test('renders Exchange rate select with expected value', () => {
-        const { getByRole } = renderComponent;
-        expect(getByRole('combobox', { name: 'Exchange rate' })).toHaveDisplayValue('GBP');
-      });
 
     test('renders Currency select with expected value', () => {
       const { getByRole } = renderComponent;
-      expect(getByRole('combobox', { name: 'Currency' })).toHaveDisplayValue('USD');
+      expect(getByRole('combobox', { name: 'Currency' })).toHaveDisplayValue('GBP');
     });
 
-    test('renders Coefficient field with expected value', () => {
+    test('renders Exchange rate field with expected value', () => {
       const { getByRole } = renderComponent;
-      expect(getByRole('spinbutton', { name: 'Coefficient' })).toHaveDisplayValue('1.1');
+      expect(getByRole('spinbutton', { name: 'Exchange rate' })).toHaveDisplayValue('1.1');
     });
 
     test('renders Discount field with expected value', () => {

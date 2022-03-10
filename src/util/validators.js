@@ -8,8 +8,18 @@ const validateNotNegative = (value) => {
 
 const validateAsDecimal = (value) => {
   const regexp = /(?!^0*$)(?!^0*\.0*$)^\d{1,10}(\.\d{1,10})?$/;
-  return value && !regexp.test(value) ? (
-    <FormattedMessage id="ui-oa.charge.validate.maxDigits" />
-  ) : undefined;
+  if (value === '0') {
+    return undefined;
+  } else {
+    return value && !regexp.test(value) && value !== 0 ? (
+      <FormattedMessage id="ui-oa.charge.validate.maxDigits" />
+    ) : undefined;
+  }
 };
-export { validateNotNegative, validateAsDecimal };
+
+const validateNotLessThanZero = (value) => {
+  return !value || value >= 0 ? undefined : (
+    <FormattedMessage id="ui-oa.charge.validate.notLessThanZero" />
+  );
+};
+export { validateNotNegative, validateAsDecimal, validateNotLessThanZero };

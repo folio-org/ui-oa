@@ -14,7 +14,7 @@ const PartyEditRoute = () => {
     history.push(`/oa/people/${id}`);
   };
 
-  const { data: party } = useQuery(
+  const { data: party, isLoading } = useQuery(
     ['ui-oa', 'PartyEditRoute', 'party', id],
     () => ky(`oa/party/${id}`).json()
   );
@@ -43,6 +43,7 @@ const PartyEditRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit,
             }}
+            isLoading={isLoading}
             party={party}
           />
         </form>

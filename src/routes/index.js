@@ -5,8 +5,10 @@ export { default as CorrespondenceCreateRoute } from './CorrespondenceCreateRout
 export { default as CorrespondenceViewRoute } from './CorrespondenceViewRoute';
 export { default as CorrespondenceEditRoute } from './CorrespondenceEditRoute';
 export { default as PartiesRoute } from './PartiesRoute';
-export { default as PartiesEditRoute } from './PartyEditRoute';
+export { default as PartyCreateRoute } from './PartyCreateRoute';
+export { default as PartyEditRoute } from './PartyEditRoute';
 export { default as JournalsRoute } from './JournalsRoute';
 export { default as ChargeCreateRoute } from './ChargeCreateRoute';
 export { default as LinkInvoiceRoute } from './LinkInvoiceRoute';
 export { default as ChargeEditRoute } from './ChargeEditRoute';
+export { default as ChargeRoute } from './ChargeRoute';
