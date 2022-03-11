@@ -60,6 +60,8 @@ const RelatedRequests = ({ requests }) => {
             }}
             contentData={requests}
             formatter={formatter}
+            sortedColumn="requestDate"
+            sortOrder="descending"
             visibleColumns={[
               'requestNumber',
               'requestDate',
