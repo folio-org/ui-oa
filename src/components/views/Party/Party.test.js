@@ -1,10 +1,13 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
-import { MemoryRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { Button } from '@folio/stripes-testing';
-import translationsProperties from '../../../../test/helpers';
+import translationsProperties from '../../../../test/helpers/translationsProperties';
+import StripesHarness from '../../../../test/helpers/stripesHarness';
 import Party from './Party';
 import { party, handlers } from '../../../../test/resources/partyResources';
+
+const queryClient = new QueryClient();
 
 jest.mock('../../PartySections/PartyInfo', () => () => <div>PartyInfo</div>);
 
@@ -13,13 +16,15 @@ describe('Party', () => {
   describe('renders components', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <MemoryRouter>
-          <Party
-            onClose={handlers.onClose}
-            queryProps={{ isLoading: false }}
-            resource={party}
-          />
-        </MemoryRouter>,
+        <StripesHarness>
+          <QueryClientProvider client={queryClient}>
+            <Party
+              onClose={handlers.onClose}
+              queryProps={{ isLoading: false }}
+              resource={party}
+            />
+          </QueryClientProvider>
+        </StripesHarness>,
         translationsProperties
       );
     });
