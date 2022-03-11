@@ -85,6 +85,14 @@ const PartyTypedownForm = ({ formName }) => {
     );
   };
 
+  const renderEndOFList = () => {
+    return (
+      <Layout className={css.endOfList}>
+        <FormattedMessage id="ui-oa.party.noResultsFound" />
+      </Layout>
+    );
+  };
+
   return (
     <>
       <Accordion
@@ -125,6 +133,7 @@ const PartyTypedownForm = ({ formName }) => {
             </Label>
             <Field
               component={QueryTypedown}
+              endOfList={renderEndOFList()}
               name={`${formName}.partyOwner`}
               path="oa/party"
               pathMutator={pathMutator}
