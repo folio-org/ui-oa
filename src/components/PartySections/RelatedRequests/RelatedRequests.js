@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 
 import {
   Accordion,
@@ -9,8 +10,10 @@ import {
   Col,
   MultiColumnList,
   Row,
-  FormattedUTCDate
+  FormattedUTCDate,
 } from '@folio/stripes/components';
+
+import urls from '../../../util/urls';
 
 const propTypes = {
   requests: PropTypes.object,
@@ -22,10 +25,14 @@ const RelatedRequests = ({ requests }) => {
   };
 
   const formatter = {
-    requestNumber: (d) => d?.requestNumber,
+    requestNumber: (d) => (
+      <Link to={urls.publicationRequest(d?.id)}>
+        {d?.requestNumber}
+      </Link>
+    ),
     requestStatus: (d) => d?.requestStatus?.label,
     requestDate: (d) => (d.requestDate ? <FormattedUTCDate value={d.requestDate} /> : ''),
-    correspondingAuthorName: (d) => (d.correspondingAuthor?.partyOwner?.fullName),
+    correspondingAuthorName: (d) => d.correspondingAuthor?.partyOwner?.fullName,
   };
   return (
     <Accordion
