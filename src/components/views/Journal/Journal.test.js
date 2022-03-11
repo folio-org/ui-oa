@@ -5,15 +5,21 @@ import translationsProperties from '../../../../test/helpers';
 import Journal from './Journal';
 import { journal, handlers } from '../../../../test/resources/journalResources';
 
-jest.mock('../../JournalSections/JournalInstances', () => () => <div>JournalInstances</div>);
+jest.mock('../../JournalSections/JournalInstances', () => () => (
+  <div>JournalInstances</div>
+));
 
-describe('PublicationRequest', () => {
+describe('Journal', () => {
   let renderComponent;
   describe('renders components', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
         <MemoryRouter>
-          <Journal onClose={handlers.onClose} resource={journal} />
+          <Journal
+            onClose={handlers.onClose}
+            queryProps={{ isLoading: false }}
+            resource={journal}
+          />
         </MemoryRouter>,
         translationsProperties
       );
