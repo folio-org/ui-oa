@@ -25,6 +25,10 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
     () => ky('oa/publicationRequest').json()
   );
 
+  const relatedRequests = publicationRequests?.filter(
+    (request) => request?.correspondingAuthor?.partyOwner?.id === party?.id
+  );
+
   const getSectionProps = (name) => {
     return {
       id: `party-section-${name}`,
@@ -68,10 +72,7 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
       }
     >
       <PartyInfo {...getSectionProps('partyInfo')} />
-      <RelatedRequests
-        {...getSectionProps('relatedRequests')}
-        requests={publicationRequests}
-      />
+      {relatedRequests && <RelatedRequests requests={relatedRequests} />}
     </Pane>
   );
 };

@@ -14,16 +14,11 @@ import {
 
 const propTypes = {
   requests: PropTypes.object,
-  party: PropTypes.object,
 };
 
-const RelatedRequests = ({ requests, party }) => {
-  const relatedRequests = requests?.filter(
-    (request) => request?.correspondingAuthor?.partyOwner?.id === party?.id
-  );
-
+const RelatedRequests = ({ requests }) => {
   const renderBadge = () => {
-    return relatedRequests ? <Badge>{relatedRequests?.length}</Badge> : <Badge>0</Badge>;
+    return requests ? <Badge>{requests?.length}</Badge> : <Badge>0</Badge>;
   };
 
   const formatter = {
@@ -56,9 +51,8 @@ const RelatedRequests = ({ requests, party }) => {
                 <FormattedMessage id="ui-oa.publicationRequest.publicationTitle" />
               ),
             }}
-            contentData={relatedRequests}
+            contentData={requests}
             formatter={formatter}
-            sortedColumn="requestDate"
             visibleColumns={[
               'requestNumber',
               'requestDate',
