@@ -33,11 +33,7 @@ const RelatedRequests = ({ requests }) => {
     publicationTitle: 'publicationTitle',
   };
 
-  const sortedRequests = getSortedItems(
-    requests,
-    sortFormatter[sortedColumn.column],
-    sortedColumn.direction
-  );
+  const sortedRequests = getSortedItems(requests, sortFormatter, sortedColumn);
 
   const renderBadge = () => {
     return requests ? <Badge>{requests?.length}</Badge> : <Badge>0</Badge>;

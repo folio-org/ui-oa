@@ -1,7 +1,7 @@
 import orderBy from 'lodash/orderBy';
 
-const getSortedItems = (input, sortBy, sortDirection) => {
-    return orderBy(input, sortBy, sortDirection);
+const getSortedItems = (input, sortFormatter, sortState) => {
+  return orderBy(input, sortFormatter[sortState?.column], sortState?.direction);
 };
 
 export default getSortedItems;
