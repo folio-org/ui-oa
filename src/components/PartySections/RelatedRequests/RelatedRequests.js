@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { orderBy } from 'lodash';
+import orderBy from 'lodash/orderBy';
 
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
