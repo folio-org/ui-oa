@@ -26,7 +26,14 @@ const RelatedRequests = ({ requests }) => {
     direction: 'desc',
   });
 
-  const sortedRequests = orderBy(requests, sortedColumn.column, sortedColumn.direction);
+  const sortedRequests = orderBy(
+    requests,
+    requests[0][sortedColumn.column].value
+      ? `${sortedColumn.column}.value`
+      : sortedColumn.column,
+    sortedColumn.direction
+  );
+
   const renderBadge = () => {
     return requests ? <Badge>{requests?.length}</Badge> : <Badge>0</Badge>;
   };
