@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import orderBy from 'lodash/orderBy';
 
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
@@ -15,6 +14,7 @@ import {
 } from '@folio/stripes/components';
 
 import urls from '../../../util/urls';
+import getSortedItems from '../../../util/getSortedItems';
 
 const propTypes = {
   requests: PropTypes.object,
@@ -26,11 +26,16 @@ const RelatedRequests = ({ requests }) => {
     direction: 'desc',
   });
 
-  const sortedRequests = orderBy(
+  const sortFormatter = {
+    requestNumber: 'requestNumber',
+    requestStatus: 'requestStatus.label',
+    requestDate: 'requestDate',
+    publicationTitle: 'publicationTitle',
+  };
+
+  const sortedRequests = getSortedItems(
     requests,
-    requests[0][sortedColumn.column].value
-      ? `${sortedColumn.column}.value`
-      : sortedColumn.column,
+    sortFormatter[sortedColumn.column],
     sortedColumn.direction
   );
 
