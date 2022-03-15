@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { orderBy } from 'lodash';
 
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
@@ -22,9 +23,10 @@ const propTypes = {
 const RelatedRequests = ({ requests }) => {
   const [sortedColumn, setSortedColumn] = useState({
     column: 'requestDate',
-    direction: 'descending',
+    direction: 'desc',
   });
 
+  const sortedRequests = orderBy(requests, sortedColumn.column, sortedColumn.direction);
   const renderBadge = () => {
     return requests ? <Badge>{requests?.length}</Badge> : <Badge>0</Badge>;
   };
@@ -36,22 +38,22 @@ const RelatedRequests = ({ requests }) => {
       </Link>
     ),
     requestStatus: (d) => d?.requestStatus?.label,
-    requestDate: (d) => (d.requestDate ? <FormattedUTCDate value={d.requestDate} /> : ''),
-    correspondingAuthorName: (d) => d.correspondingAuthor?.partyOwner?.fullName,
+    requestDate: (d) => (d?.requestDate ? <FormattedUTCDate value={d.requestDate} /> : ''),
+    publicationTitle: (d) => d?.publicationTitle,
   };
 
-  const onHeaderClick = (e, { name }) => {
-    if (sortedColumn.column !== name) {
+  const onHeaderClick = (e, meta) => {
+    if (sortedColumn.column !== meta.name) {
       setSortedColumn({
-        column: name,
+        column: meta.name,
         direction:
-          'descending'
+          'desc'
       });
     } else {
       setSortedColumn({
         column: sortedColumn.column,
         direction:
-          sortedColumn.direction === 'descending' ? 'ascending' : 'descending',
+          sortedColumn.direction === 'desc' ? 'asc' : 'desc',
       });
     }
   };
@@ -80,11 +82,11 @@ const RelatedRequests = ({ requests }) => {
                 <FormattedMessage id="ui-oa.publicationRequest.publicationTitle" />
               ),
             }}
-            contentData={requests}
+            contentData={sortedRequests}
             formatter={formatter}
             onHeaderClick={onHeaderClick}
-            sortDirection={sortedColumn?.direction}
-            sortOrder={sortedColumn?.column}
+            sortDirection={`${sortedColumn.direction}ending`}
+            sortedColumn={sortedColumn.column}
             visibleColumns={[
               'requestNumber',
               'requestDate',
