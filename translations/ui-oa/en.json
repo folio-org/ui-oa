@@ -223,7 +223,14 @@
   "charge.estimatedPrices": "Estimated prices",
   "charge.estimatedPriceLocal": "Estimated price ({localCurrency})",
   "charge.estimatedPriceSpecified": "Estimated price ({specifiedCurrency})",
-
+  "charge.invoice.newInvoice": "New Invoice",
+  "charge.invoice.invoiceDate": "Invoice date",
+  "charge.invoice.invoiceNumber": "Invoice number",
+  "charge.invoice.vendorOrganisation": "Vendor organisation",
+  "charge.invoice.paymentMethod": "Payment method",
+  "charge.invoice.batchGroup": "Batch group",
+  "charge.invoice.linkInvoice": "Link invoice",
+  "charge.invoice.addInvoice": "Add invoice",
   
   "correspondence.newCorrespondence": "New correspondence",
   "correspondence.editCorrespondence": "Edit correspondence",
