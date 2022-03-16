@@ -17,7 +17,7 @@ const propTypes = {
   })
 };
 
-const JournalDetails = ({ request: { work } }) => {
+const JournalDetails = ({ request: { work } = {} }) => {
   const printIssn = findIssnByNamespace(work, 'print');
   const electronicIssn = findIssnByNamespace(work, 'electronic');
 
