@@ -21,19 +21,19 @@ const InvoiceInfo = ({ invoice }) => {
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.invoice.vendorOrganisation" />}
-            value={invoice.vendorOrganisation}
+            value={invoice?.vendorOrganisation}
           />
         </Col>
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.invoice.paymentMethod" />}
-            value={invoice.paymentMethod}
+            value={invoice?.paymentMethod}
           />
         </Col>
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.invoice.batchGroup" />}
-            value={invoice.batchGroup}
+            value={invoice?.batchGroup}
           />
         </Col>
       </Row>
@@ -47,7 +47,7 @@ const InvoiceInfo = ({ invoice }) => {
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.exchangeRate" />}
-            value={invoice.exchangeRate}
+            value={invoice?.exchangeRate}
           />
         </Col>
       </Row>

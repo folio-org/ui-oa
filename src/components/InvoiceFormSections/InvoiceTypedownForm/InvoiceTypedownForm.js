@@ -54,7 +54,6 @@ const InvoiceTypedownForm = ({ charge }) => {
           name="invoice"
           renderFooter={renderFooter}
         />
-        {values.invoice && JSON.stringify(values.invoice)}
         {values.invoice && (
           <Card
             cardStyle="positive"
