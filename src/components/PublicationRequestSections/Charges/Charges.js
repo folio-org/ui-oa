@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { useHistory } from 'react-router-dom';
 
-import { IfPermission } from '@folio/stripes/core';
+import { IfPermission, useStripes } from '@folio/stripes/core';
 import {
   Accordion,
   Badge,
@@ -10,6 +10,8 @@ import {
   MultiColumnList,
   Row,
   Col,
+  MessageBanner,
+  Layout,
 } from '@folio/stripes/components';
 
 import urls from '../../../util/urls';
@@ -19,6 +21,7 @@ const propTypes = {
 };
 
 const Charges = ({ request }) => {
+  const stripes = useStripes();
   const history = useHistory();
 
   const renderBadge = (charges) => {
@@ -37,7 +40,9 @@ const Charges = ({ request }) => {
       return withoutTax + (withoutTax * charge?.tax) / 100;
     }
     if (charge?.discountType?.value === 'percentage') {
-      const withoutTax = charge?.amount?.value - (charge?.amount?.value * charge?.discount) / 100;
+      const withoutTax =
+        charge?.amount?.value -
+        (charge?.amount?.value * charge?.discount) / 100;
       return withoutTax + (withoutTax * charge?.tax) / 100;
     }
     return charge?.amount?.value;
@@ -48,6 +53,7 @@ const Charges = ({ request }) => {
       <>
         <IfPermission perm="oa.publicationRequest.edit">
           <Button
+            disabled={!stripes?.currency}
             id="add-charge-button"
             to={`${urls.publicationRequestChargeCreate(request?.id)}`}
           >
@@ -110,7 +116,9 @@ const Charges = ({ request }) => {
               />
               :{' '}
             </strong>
-            {Math.round((calculatePrice(e) * e?.exchangeRate?.coefficient) * 100) / 100}
+            {Math.round(
+              calculatePrice(e) * e?.exchangeRate?.coefficient * 100
+            ) / 100}
           </div>
         </div>
       );
@@ -121,6 +129,11 @@ const Charges = ({ request }) => {
     currency: (e) => {
       return e?.exchangeRate?.fromCurrency;
     },
+    discount: (e) => {
+      return e?.discountType?.value === 'percentage'
+        ? e?.discount + '%'
+        : e?.discount;
+    },
   };
 
   return (
@@ -130,33 +143,41 @@ const Charges = ({ request }) => {
       displayWhenOpen={renderAddChargesButton()}
       label={<FormattedMessage id="ui-oa.publicationRequest.charges" />}
     >
-      <Row>
-        <Col xs={12}>
-          <MultiColumnList
-            columnMapping={{
-              description: <FormattedMessage id="ui-oa.charge.description" />,
-              amount: <FormattedMessage id="ui-oa.charge.amount" />,
-              currency: <FormattedMessage id="ui-oa.charge.currency" />,
-              discount: <FormattedMessage id="ui-oa.charge.discount" />,
-              tax: <FormattedMessage id="ui-oa.charge.tax" />,
-              estimatedPrices: (
-                <FormattedMessage id="ui-oa.charge.estimatedPrices" />
-              ),
-            }}
-            contentData={request?.charges}
-            formatter={formatter}
-            onRowClick={handleRowClick}
-            visibleColumns={[
-              'description',
-              'amount',
-              'currency',
-              'discount',
-              'tax',
-              'estimatedPrices',
-            ]}
-          />
-        </Col>
-      </Row>
+      {stripes?.currency ? (
+        <Row>
+          <Col xs={12}>
+            <MultiColumnList
+              columnMapping={{
+                description: <FormattedMessage id="ui-oa.charge.description" />,
+                amount: <FormattedMessage id="ui-oa.charge.amount" />,
+                currency: <FormattedMessage id="ui-oa.charge.currency" />,
+                discount: <FormattedMessage id="ui-oa.charge.discount" />,
+                tax: <FormattedMessage id="ui-oa.charge.taxPercentage" />,
+                estimatedPrices: (
+                  <FormattedMessage id="ui-oa.charge.estimatedPrices" />
+                ),
+              }}
+              contentData={request?.charges}
+              formatter={formatter}
+              onRowClick={handleRowClick}
+              visibleColumns={[
+                'description',
+                'amount',
+                'currency',
+                'discount',
+                'tax',
+                'estimatedPrices',
+              ]}
+            />
+          </Col>
+        </Row>
+      ) : (
+        <Layout className="padding-all-gutter">
+          <MessageBanner type="warning">
+            <FormattedMessage id="ui-oa.publicationRequest.noCurrencySet" />
+          </MessageBanner>
+        </Layout>
+      )}
     </Accordion>
   );
 };

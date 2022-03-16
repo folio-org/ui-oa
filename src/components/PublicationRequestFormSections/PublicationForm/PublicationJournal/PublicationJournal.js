@@ -22,6 +22,7 @@ import { JournalModal } from '../../../Modals';
 import { JournalDetails } from '../../../PublicationRequestSections/PublicationType';
 import { findIssnByNamespace } from '../../../../util/journalUtils';
 import urls from '../../../../util/urls';
+import css from './PublicationJournal.css';
 
 const PublicationJournal = () => {
   const { values } = useFormState();
@@ -80,6 +81,14 @@ const PublicationJournal = () => {
     );
   };
 
+  const renderEndOFList = () => {
+    return (
+      <Layout className={css.endOfList}>
+        <FormattedMessage id="ui-oa.journal.noResultsFound" />
+      </Layout>
+    );
+  };
+
   return (
     <>
       <Row>
@@ -94,6 +103,7 @@ const PublicationJournal = () => {
         <Col xs={12}>
           <Field
             component={QueryTypedown}
+            endOfList={renderEndOFList()}
             label={<FormattedMessage id="ui-oa.publicationRequest.addJournal" />}
             name="work"
             path="oa/works"

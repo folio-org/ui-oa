@@ -18,7 +18,8 @@ import {
   Icon,
   MetaSection,
   Pane,
-  Row
+  Row,
+  LoadingPane,
 } from '@folio/stripes/components';
 
 import {
@@ -30,17 +31,22 @@ import {
   RequestInfo,
   Correspondence,
   Agreement,
-  Charges
+  Charges,
 } from '../../PublicationRequestSections';
 
 import urls from '../../../util/urls';
 
 const propTypes = {
   onClose: PropTypes.func.isRequired,
-  resource: PropTypes.object
+  resource: PropTypes.object,
+  queryProps: PropTypes.object,
 };
 
-const PublicationRequest = ({ resource: request, onClose }) => {
+const PublicationRequest = ({
+  resource: request,
+  onClose,
+  queryProps: { isLoading },
+}) => {
   const history = useHistory();
   const params = useParams();
   const accordionStatusRef = React.createRef();
@@ -67,6 +73,10 @@ const PublicationRequest = ({ resource: request, onClose }) => {
     },
   ];
 
+  if (isLoading) {
+    return <LoadingPane dismissable onClose={onClose} />;
+  }
+
   return (
     <HasCommand
       commands={shortcuts}
@@ -89,7 +99,11 @@ const PublicationRequest = ({ resource: request, onClose }) => {
         defaultWidth="55%"
         dismissible
         onClose={onClose}
-        paneSub={request?.publicationTitle !== undefined ? request?.publicationTitle : ''}
+        paneSub={
+          request?.publicationTitle !== undefined
+            ? request?.publicationTitle
+            : ''
+        }
         paneTitle={
           <FormattedMessage
             id="ui-oa.publicationRequest.requestTitle"
@@ -113,14 +127,16 @@ const PublicationRequest = ({ resource: request, onClose }) => {
           </Row>
           <AccordionSet>
             {request?.correspondingAuthor?.id && (
-              <CorrespondingAuthor {...getSectionProps('correspondingAuthor')} />
+              <CorrespondingAuthor
+                {...getSectionProps('correspondingAuthor')}
+              />
             )}
             {request?.requestContact?.id && (
-              <RequestContact {...getSectionProps('requestContact')} />)}
+              <RequestContact {...getSectionProps('requestContact')} />
+            )}
             <Publication {...getSectionProps('publication')} />
             <PublicationStatus {...getSectionProps('publicationStatus')} />
-            {request?.fundings && (
-              <Funding {...getSectionProps('funding')} />)}
+            {request?.fundings && <Funding {...getSectionProps('funding')} />}
 
             {(request?.agreement || request?.withoutAgreement) && (
               <Agreement {...getSectionProps('agreement')} />

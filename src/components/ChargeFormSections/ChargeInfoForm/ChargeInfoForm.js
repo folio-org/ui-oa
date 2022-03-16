@@ -18,6 +18,7 @@ import {
 import {
   validateNotNegative,
   validateAsDecimal,
+  validateNotLessThanZero
 } from '../../../util/validators';
 import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
@@ -44,7 +45,10 @@ const ChargeInfoForm = () => {
   const categoryValues = selectifyRefdata(refdataValues, CHARGE_CATEGORY);
   const statusValues = selectifyRefdata(refdataValues, CHARGE_STATUS);
   const payerValues = selectifyRefdata(refdataValues, CHARGE_PAYER);
-  const discountTypeValues = selectifyRefdata(refdataValues, CHARGE_DISCOUNT_TYPE);
+  const discountTypeValues = selectifyRefdata(
+    refdataValues,
+    CHARGE_DISCOUNT_TYPE
+  );
 
   return (
     <>
@@ -69,33 +73,14 @@ const ChargeInfoForm = () => {
             dataOptions={[
               { value: '', label: '' },
               {
-                value: 'USD',
-                label: intl.formatMessage({
-                  id: 'ui-oa.charge.currency.usd',
-                }),
-              },
-            ]}
-            id="charge-currency"
-            label={<FormattedMessage id="ui-oa.charge.currency" />}
-            name="amount.baseCurrency"
-            required
-            validate={requiredValidator}
-          />
-        </Col>
-        <Col xs={3}>
-          <Field
-            component={Select}
-            dataOptions={[
-              { value: '', label: '' },
-              {
                 value: 'GBP',
                 label: intl.formatMessage({
                   id: 'ui-oa.charge.currency.gbp',
                 }),
               },
             ]}
-            id="charge-exchange-rate"
-            label={<FormattedMessage id="ui-oa.charge.exchangeRate" />}
+            id="charge-currency"
+            label={<FormattedMessage id="ui-oa.charge.currency" />}
             name="exchangeRate.toCurrency"
             required
             validate={requiredValidator}
@@ -104,7 +89,7 @@ const ChargeInfoForm = () => {
         <Col xs={3}>
           <Field
             component={TextField}
-            label={<FormattedMessage id="ui-oa.charge.coefficient" />}
+            label={<FormattedMessage id="ui-oa.charge.exchangeRate" />}
             name="exchangeRate.coefficient"
             required
             type="number"
@@ -141,7 +126,9 @@ const ChargeInfoForm = () => {
                       }
                       onClick={() => change('discountType.id', discountType.value)}
                     >
-                      <FormattedMessage id={`ui-oa.charge.type.${discountType.label}`} />
+                      <FormattedMessage
+                        id={`ui-oa.charge.type.${discountType.label}`}
+                      />
                     </Button>
                   ))}
                 </ButtonGroup>
@@ -161,13 +148,13 @@ const ChargeInfoForm = () => {
         <Col xs={3}>
           <Field
             component={TextField}
-            label={<FormattedMessage id="ui-oa.charge.tax" />}
+            label={<FormattedMessage id="ui-oa.charge.taxPercentage" />}
             name="tax"
             required
             type="number"
             validate={composeValidators(
               requiredValidator,
-              validateNotNegative,
+              validateNotLessThanZero,
               validateAsDecimal
             )}
           />

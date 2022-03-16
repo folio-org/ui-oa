@@ -129,7 +129,7 @@ const Agreement = ({ request }) => {
           >
             {renderAgreement(request?.agreement?.remoteId_object)}
           </Card>
-          {renderCustomProperties()}
+          {customProperties && renderCustomProperties()}
         </>
       ) : (
         renderEmpty()
