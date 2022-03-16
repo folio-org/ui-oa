@@ -112,7 +112,7 @@ const PublicationJournal = () => {
           }
           headerStart={<AppIcon size="small">{renderJournalLink()}</AppIcon>}
         >
-          <JournalDetails journal={values?.work} />
+          <JournalDetails request={{ work: values?.work }} />
         </Card>
       )}
       <JournalModal
