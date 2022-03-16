@@ -39,7 +39,10 @@ describe('PublicationRequest', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
         <MemoryRouter>
-          <PublicationRequest onClose={handlers.onClose} />
+          <PublicationRequest
+            onClose={handlers.onClose}
+            queryProps={{ isLoading: false }}
+          />
         </MemoryRouter>,
         translationsProperties
       );
@@ -78,6 +81,7 @@ describe('PublicationRequest', () => {
         <MemoryRouter>
           <PublicationRequest
             onClose={handlers.onClose}
+            queryProps={{ isLoading: false }}
             resource={publicationRequest}
           />
         </MemoryRouter>,
