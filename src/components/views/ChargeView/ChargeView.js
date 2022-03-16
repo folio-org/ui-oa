@@ -52,6 +52,12 @@ const ChargeView = ({ charge, request, refetch }) => {
     });
   };
 
+  const handleLink = () => {
+    history.push(
+      `${urls.publicationRequestChargeLinkInvoice(request.id, charge.id)}`
+    );
+  };
+
   const renderActionMenu = () => {
     return (
       <>
@@ -62,6 +68,15 @@ const ChargeView = ({ charge, request, refetch }) => {
         >
           <Icon icon="edit">
             <FormattedMessage id="ui-oa.charge.edit" />
+          </Icon>
+        </Button>
+        <Button
+          buttonStyle="dropdownItem"
+          id="link-invoice-button"
+          onClick={handleLink}
+        >
+          <Icon icon="link">
+            <FormattedMessage id="ui-oa.charge.invoice.linkInvoice" />
           </Icon>
         </Button>
         <Button
