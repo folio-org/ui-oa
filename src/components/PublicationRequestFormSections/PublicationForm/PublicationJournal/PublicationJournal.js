@@ -37,8 +37,8 @@ const PublicationJournal = () => {
     return `${path}${query}`;
   };
 
-  const handleJournalChange = (journal) => {
-    change('journal', journal);
+  const handleWorkChange = (work) => {
+    change('work', work);
   };
 
   const renderFooter = () => {
@@ -55,15 +55,15 @@ const PublicationJournal = () => {
     );
   };
 
-  const renderListItem = (journal) => {
-    const printIssn = findIssnByNamespace(journal, 'print');
-    const electronicIssn = findIssnByNamespace(journal, 'electronic');
+  const renderListItem = (work) => {
+    const printIssn = findIssnByNamespace(work, 'print');
+    const electronicIssn = findIssnByNamespace(work, 'electronic');
 
     return (
       <FormattedMessage
         id="ui-oa.publicationJournal.typedown"
         values={{
-          title: journal.title,
+          title: work.title,
           printIssn: printIssn?.value || '',
           electronicIssn: electronicIssn?.value || '',
         }}
@@ -72,12 +72,12 @@ const PublicationJournal = () => {
   };
 
   const renderJournalLink = () => {
-    return values?.journal.id ? (
-      <Link to={urls.journal(values.journal.id)}>
-        <strong>{values?.journal?.title}</strong>
+    return values?.work.id ? (
+      <Link to={urls.journal(values?.work.id)}>
+        <strong>{values?.work?.title}</strong>
       </Link>
     ) : (
-      <strong>{values?.journal?.title}</strong>
+      <strong>{values?.work?.title}</strong>
     );
   };
 
@@ -105,7 +105,7 @@ const PublicationJournal = () => {
             component={QueryTypedown}
             endOfList={renderEndOFList()}
             label={<FormattedMessage id="ui-oa.publicationRequest.addJournal" />}
-            name="journal"
+            name="work"
             path="oa/works"
             pathMutator={pathMutator}
             renderFooter={renderFooter}
@@ -114,19 +114,19 @@ const PublicationJournal = () => {
         </Col>
       </Row>
 
-      {values.journal && (
+      {values?.work && (
         <Card
           cardStyle="positive"
           headerEnd={
-            <IconButton icon="trash" onClick={() => handleJournalChange()} />
+            <IconButton icon="trash" onClick={() => handleWorkChange()} />
           }
           headerStart={<AppIcon size="small">{renderJournalLink()}</AppIcon>}
         >
-          <JournalDetails journal={values?.journal} />
+          <JournalDetails request={{ work: values?.work }} />
         </Card>
       )}
       <JournalModal
-        handleJournalChange={handleJournalChange}
+        handleJournalChange={handleWorkChange}
         setShowModal={setShowJournalModal}
         showModal={showJournalModal}
       />
