@@ -27,10 +27,7 @@ const RelatedRequests = ({ requests }) => {
   });
 
   const sortFormatter = {
-    requestNumber: 'requestNumber',
     requestStatus: 'requestStatus.label',
-    requestDate: 'requestDate',
-    publicationTitle: 'publicationTitle',
   };
 
   const sortedRequests = getSortedItems(requests, sortFormatter, sortedColumn);
