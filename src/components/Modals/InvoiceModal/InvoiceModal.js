@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { FormattedMessage } from 'react-intl';
+
+import { useOkapiKy } from '@folio/stripes/core';
 import { Button, Modal, ModalFooter } from '@folio/stripes/components';
 
 import { CreateInvoiceForm } from '../../InvoiceFormSections';
@@ -20,9 +22,15 @@ const InvoiceModal = ({
   handleInvoiceChange,
   charge,
 }) => {
+  const ky = useOkapiKy();
   // const handleClose = () => {
   //   setShowModal(false);
   // };
+
+  const { data: batchGroups } = useQuery(
+    ['ui-oa', 'InvoiceModal', 'batchGroup'],
+    () => ky('batch-groups').json()
+  );
 
   const { mutateAsync: postInvoice } = useMutation(
     ['ui-oa', 'InvoiceModal', 'postInvoice'],
@@ -57,7 +65,7 @@ const InvoiceModal = ({
     <Form
       initialValues={{
         currency: charge?.exchangeRate?.fromCurrency,
-        exchangeRate: charge?.exchangeRate?.toCurrency,
+        exchangeRate: charge?.exchangeRate?.coefficient,
       }}
       // Setting initial values of type to serial instead of select field
       mutators={arrayMutators}
@@ -71,7 +79,7 @@ const InvoiceModal = ({
             onClose={() => setShowModal(false)}
             open={showModal}
           >
-            <CreateInvoiceForm />
+            <CreateInvoiceForm batchGroups={batchGroups?.batchGroups} />
           </Modal>
         </form>
       )}

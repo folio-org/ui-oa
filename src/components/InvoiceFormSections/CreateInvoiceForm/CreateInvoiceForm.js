@@ -1,6 +1,7 @@
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Field, useForm } from 'react-final-form';
-
 import {
   Row,
   Col,
@@ -9,15 +10,29 @@ import {
   Datepicker,
 } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
-import { Pluggable } from '@folio/stripes/core';
+import {
+  FieldSelectFinal,
+  FieldSelectionFinal,
+  FieldOrganization,
+  PAYMENT_METHOD_OPTIONS,
+} from '@folio/stripes-acq-components';
 
-const CreateInvoiceForm = () => {
+import getBatchGroupsOptions from '../../../util/invoiceUtils';
+
+const propTypes = {
+  batchGroups: PropTypes.object,
+};
+
+const CreateInvoiceForm = ({ batchGroups }) => {
+  const [selectedVendor, setSelectedVendor] = useState();
   const intl = useIntl();
   const { change } = useForm();
 
-  const handleOrganizationSelected = (org) => {
-    change('vendorOrganisation', org.name);
-    change('paymentMethod', org.paymentMethod);
+  const selectVendor = (vendor) => {
+    if (selectedVendor?.id !== vendor.id) {
+      setSelectedVendor(vendor);
+    }
+    change('paymentMethod', vendor.paymentMethod);
   };
 
   return (
@@ -27,7 +42,7 @@ const CreateInvoiceForm = () => {
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.charge.invoice.invoiceNumber" />}
-            name="number"
+            name="vendorInvoiceNo"
             required
             validate={requiredValidator}
           />
@@ -37,7 +52,7 @@ const CreateInvoiceForm = () => {
             backendDateStandard="YYYY-MM-DD"
             component={Datepicker}
             label={<FormattedMessage id="ui-oa.charge.invoice.invoiceDate" />}
-            name="date"
+            name="invoiceDate"
             required
             timeZone="UTC"
             validate={requiredValidator}
@@ -45,47 +60,30 @@ const CreateInvoiceForm = () => {
         </Col>
       </Row>
       <Row>
-        {/* Org and Batch group should be select fields, see agreements */}
         <Col xs={3}>
-          <Field
-            component={TextField}
-            label={
-              <FormattedMessage id="ui-oa.charge.invoice.vendorOrganisation" />
-            }
-            name="vendorOrganisation"
+          <FieldOrganization
+            change={change}
+            labelId="ui-oa.charge.invoice.vendorOrganisation"
+            name="vendorId"
+            onSelect={selectVendor}
             required
-            validate={requiredValidator}
           />
-          <Pluggable
-            aria-haspopup="true"
-            dataKey="organization"
-            id="plugin"
-            searchButtonStyle="link"
-            searchLabel={
-              <FormattedMessage id="stripes-acq-components.filter.organization.lookup" />
-            }
-            selectVendor={handleOrganizationSelected}
-            type="find-organization"
-          >
-            <FormattedMessage id="stripes-acq-components.filter.organization.lookupNoSupport" />
-          </Pluggable>
+          {/* Change to registry when it becomes available */}
         </Col>
         <Col xs={3}>
-          <Field
-            component={TextField}
+          <FieldSelectFinal
+            dataOptions={PAYMENT_METHOD_OPTIONS}
             label={<FormattedMessage id="ui-oa.charge.invoice.paymentMethod" />}
             name="paymentMethod"
             required
-            validate={requiredValidator}
           />
         </Col>
         <Col xs={3}>
-          <Field
-            component={TextField}
-            label={<FormattedMessage id="ui-oa.charge.invoice.batchGroup" />}
-            name="batchGroup"
+          <FieldSelectionFinal
+            dataOptions={getBatchGroupsOptions(batchGroups)}
+            labelId="ui-oa.charge.invoice.batchGroup"
+            name="batchGroupId"
             required
-            validate={requiredValidator}
           />
         </Col>
       </Row>
@@ -112,16 +110,7 @@ const CreateInvoiceForm = () => {
         </Col>
         <Col xs={3}>
           <Field
-            component={Select}
-            dataOptions={[
-              { value: '', label: '' },
-              {
-                value: 'GBP',
-                label: intl.formatMessage({
-                  id: 'ui-oa.charge.currency.gbp',
-                }),
-              },
-            ]}
+            component={TextField}
             id="invoice-exchangeRate"
             label={<FormattedMessage id="ui-oa.charge.exchangeRate" />}
             name="exchangeRate"
@@ -133,4 +122,7 @@ const CreateInvoiceForm = () => {
     </>
   );
 };
+
+CreateInvoiceForm.propTypes = propTypes;
+
 export default CreateInvoiceForm;
