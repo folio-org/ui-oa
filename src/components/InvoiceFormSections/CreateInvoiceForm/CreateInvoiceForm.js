@@ -1,16 +1,16 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage, useIntl } from 'react-intl';
-import { Field, useForm } from 'react-final-form';
+import { FormattedMessage } from 'react-intl';
+import { Field, useForm, useFormState } from 'react-final-form';
 import {
   Row,
   Col,
   TextField,
-  Select,
   Datepicker,
+  RadioButton,
 } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
 import {
+  FieldCurrency,
   FieldSelectFinal,
   FieldSelectionFinal,
   FieldOrganization,
@@ -21,18 +21,19 @@ import getBatchGroupsOptions from '../../../util/invoiceUtils';
 
 const propTypes = {
   batchGroups: PropTypes.object,
+  charge: PropTypes.object,
 };
 
-const CreateInvoiceForm = ({ batchGroups }) => {
-  const [selectedVendor, setSelectedVendor] = useState();
-  const intl = useIntl();
+const CreateInvoiceForm = ({ batchGroups, charge }) => {
+  const { values } = useFormState();
   const { change } = useForm();
 
-  const selectVendor = (vendor) => {
-    if (selectedVendor?.id !== vendor.id) {
-      setSelectedVendor(vendor);
-    }
+  const handleVendorChange = (vendor) => {
     change('paymentMethod', vendor.paymentMethod);
+  };
+
+  const handleCurrencyChange = (currency) => {
+    change('currency', currency);
   };
 
   return (
@@ -65,7 +66,7 @@ const CreateInvoiceForm = ({ batchGroups }) => {
             change={change}
             labelId="ui-oa.charge.invoice.vendorOrganisation"
             name="vendorId"
-            onSelect={selectVendor}
+            onSelect={handleVendorChange}
             required
           />
           {/* Change to registry when it becomes available */}
@@ -87,35 +88,29 @@ const CreateInvoiceForm = ({ batchGroups }) => {
           />
         </Col>
       </Row>
-      <Row>
+      <Row middle="xs">
         {/* Both rows below should be poulated from selected charge */}
         <Col xs={3}>
-          <Field
-            component={Select}
-            dataOptions={[
-              { value: '', label: '' },
-              {
-                value: 'USD',
-                label: intl.formatMessage({
-                  id: 'ui-oa.charge.currency.usd',
-                }),
-              },
-            ]}
+          <FieldCurrency
             id="invoice-currency"
-            label={<FormattedMessage id="ui-oa.charge.currency" />}
+            labelId="ui-oa.charge.currency"
             name="currency"
+            onChange={handleCurrencyChange}
             required
-            validate={requiredValidator}
           />
         </Col>
-        <Col xs={3}>
-          <Field
-            component={TextField}
-            id="invoice-exchangeRate"
-            label={<FormattedMessage id="ui-oa.charge.exchangeRate" />}
-            name="exchangeRate"
-            required
-            validate={requiredValidator}
+        <Col xs={4}>
+          <RadioButton
+            checked={!values.exchangeRate}
+            label="Use current exchange rate"
+            onChange={() => change('exchangeRate', null)}
+          />
+        </Col>
+        <Col xs={4}>
+          <RadioButton
+            checked={values.exchangeRate !== null}
+            label="Use charge exchange rate"
+            onChange={() => change('exchangeRate', charge?.exchangeRate?.coefficient)}
           />
         </Col>
       </Row>

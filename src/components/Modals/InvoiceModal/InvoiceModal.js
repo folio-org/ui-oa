@@ -23,9 +23,9 @@ const InvoiceModal = ({
   charge,
 }) => {
   const ky = useOkapiKy();
-  // const handleClose = () => {
-  //   setShowModal(false);
-  // };
+  const handleClose = () => {
+    setShowModal(false);
+  };
 
   const { data: batchGroups } = useQuery(
     ['ui-oa', 'InvoiceModal', 'batchGroup'],
@@ -34,8 +34,16 @@ const InvoiceModal = ({
 
   const { mutateAsync: postInvoice } = useMutation(
     ['ui-oa', 'InvoiceModal', 'postInvoice'],
-    (data) => handleInvoiceChange(data)
+    (data) => ky.post('invoice/invoices', { json: data }).json().then((res) => {
+    handleInvoiceChange(res);
+    handleClose();
+    })
   );
+
+  const submitInvoice = (values) => {
+    const submitValues = { ...values, source: 'User', status: 'Open' };
+    postInvoice(submitValues);
+  };
 
   const renderModalFooter = (handleSubmit, formRestart) => {
     return (
@@ -69,7 +77,7 @@ const InvoiceModal = ({
       }}
       // Setting initial values of type to serial instead of select field
       mutators={arrayMutators}
-      onSubmit={postInvoice}
+      onSubmit={submitInvoice}
       render={({ handleSubmit, form: { restart: formRestart } }) => (
         <form onSubmit={handleSubmit}>
           <Modal
@@ -79,7 +87,10 @@ const InvoiceModal = ({
             onClose={() => setShowModal(false)}
             open={showModal}
           >
-            <CreateInvoiceForm batchGroups={batchGroups?.batchGroups} />
+            <CreateInvoiceForm
+              batchGroups={batchGroups?.batchGroups}
+              charge={charge}
+            />
           </Modal>
         </form>
       )}
