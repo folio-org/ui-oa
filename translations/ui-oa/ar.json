@@ -217,5 +217,16 @@
     "charge.deleteChargeMessage": "سيتم حذف هذه الرسوم نهائياً.",
     "charge.estimatedPrices": "الأسعار المقدرة",
     "charge.estimatedPriceLocal": "السعر المقدر ({localCurrency})",
-    "charge.estimatedPriceSpecified": "السعر المقدر ({specifiedCurrency})"
+    "charge.estimatedPriceSpecified": "السعر المقدر ({specifiedCurrency})",
+    "party.new": "جديد",
+    "journal.new": "جديد",
+    "journal.deleteInstance": "حذف الوعاء {index}",
+    "journal.deleteIdentifier": "حذف المعرّف {index}",
+    "publicationRequest.addJournal": "إضافة دورية",
+    "publicationRequest.noCurrencySet": "تعذر إنشاء رسوم لأن العملة غير معروفة. يرجى تعيين عملة في الإعدادات > الوصول المفتوح > اللغة والتوطين > العملة الأساسية",
+    "charge.taxPercentage": "الضريبة (%)",
+    "charge.validate.notLessThanZero": "لا يمكن أن يكون أقل من صفر",
+    "party.noResultsFound": "لم يتم العثور على نتائج",
+    "journal.noResultsFound": "لم يتم العثور على نتائج",
+    "party.requests": "الطلبات"
 }
