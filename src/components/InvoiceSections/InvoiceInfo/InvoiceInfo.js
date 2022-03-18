@@ -1,27 +1,43 @@
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
+import { useQuery } from 'react-query';
 
-import { Col, KeyValue, Row } from '@folio/stripes/components';
+import { useOkapiKy } from '@folio/stripes/core';
+import { Col, KeyValue, Row, FormattedUTCDate } from '@folio/stripes/components';
 
 const propTypes = {
   invoice: PropTypes.object,
 };
 
 const InvoiceInfo = ({ invoice }) => {
+  const ky = useOkapiKy();
+
+  const { data: batchGroup } = useQuery(
+    ['ui-oa', 'InvoiceInfo', 'batchGroup'],
+    () => ky(`batch-groups/${invoice?.batchGroupId}`).json()
+  );
+
+  const { data: vendorOrg } = useQuery(
+    ['ui-oa', 'InvoiceInfo', 'vendorOrg'],
+    () => ky(`organizations/organizations/${invoice.vendorId}`).json()
+  );
+
   return (
     <>
       <Row>
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.invoice.invoiceDate" />}
-            value={invoice?.date}
+            value={<FormattedUTCDate value={invoice?.invoiceDate} />}
           />
         </Col>
         <Col xs={3}>
           <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.invoice.vendorOrganisation" />}
-            value={invoice?.vendorOrganisation}
+            label={
+              <FormattedMessage id="ui-oa.charge.invoice.vendorOrganisation" />
+            }
+            value={vendorOrg?.name}
           />
         </Col>
         <Col xs={3}>
@@ -33,7 +49,7 @@ const InvoiceInfo = ({ invoice }) => {
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.invoice.batchGroup" />}
-            value={invoice?.batchGroup}
+            value={batchGroup?.name}
           />
         </Col>
       </Row>

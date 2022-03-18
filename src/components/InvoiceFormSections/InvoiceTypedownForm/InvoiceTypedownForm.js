@@ -61,8 +61,8 @@ const InvoiceTypedownForm = ({ charge }) => {
               <IconButton icon="trash" onClick={() => handleInvoiceChange()} />
             }
             headerStart={
-              <AppIcon size="small">
-                <strong>{values?.invoice?.number}</strong>
+              <AppIcon app="invoice" size="small">
+                <strong>{values?.invoice?.vendorInvoiceNo}</strong>
               </AppIcon>
             }
           >

@@ -231,6 +231,8 @@
   "charge.invoice.batchGroup": "Batch group",
   "charge.invoice.linkInvoice": "Link invoice",
   "charge.invoice.addInvoice": "Add invoice",
+  "charge.invoice.useCurrentExchange": "Use current exchange rate",
+  "charge.invoice.useChargeExchange": "Use charge exchange rate",
   
   "correspondence.newCorrespondence": "New correspondence",
   "correspondence.editCorrespondence": "Edit correspondence",

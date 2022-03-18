@@ -102,14 +102,14 @@ const CreateInvoiceForm = ({ batchGroups, charge }) => {
         <Col xs={4}>
           <RadioButton
             checked={!values.exchangeRate}
-            label="Use current exchange rate"
+            label={<FormattedMessage id="ui-oa.charge.invoice.useCurrentExchange" />}
             onChange={() => change('exchangeRate', null)}
           />
         </Col>
         <Col xs={4}>
           <RadioButton
             checked={values.exchangeRate !== null}
-            label="Use charge exchange rate"
+            label={<FormattedMessage id="ui-oa.charge.invoice.useChargeExchange" />}
             onChange={() => change('exchangeRate', charge?.exchangeRate?.coefficient)}
           />
         </Col>
