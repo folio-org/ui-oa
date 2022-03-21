@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
-import { useOkapiKy } from '@folio/stripes/core';
 import { Col, KeyValue, Row, FormattedUTCDate } from '@folio/stripes/components';
 import { useBatchGroup, useVendorOrg } from '../../../hooks/invoiceHooks';
 
@@ -10,10 +9,8 @@ const propTypes = {
 };
 
 const InvoiceInfo = ({ invoice }) => {
-  console.log(invoice);
   const batchGroup = useBatchGroup(invoice?.batchGroupId);
   const vendorOrg = useVendorOrg(invoice?.vendorId);
-  console.log(vendorOrg);
 
   return (
     <>
