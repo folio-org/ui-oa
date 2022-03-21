@@ -11,10 +11,10 @@ import {
   Card,
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
-import { Typedown } from '@k-int/stripes-kint-components';
 
 import { InvoiceModal } from '../../Modals';
 import InvoiceInfo from '../../InvoiceSections';
+import InvoiceQueryTypedown from '../../InvoiceQueryTypedown';
 
 const propTypes = {
   charge: PropTypes.object,
@@ -30,6 +30,10 @@ const InvoiceTypedownForm = ({ charge }) => {
     setShowInvoiceModal(false);
   };
 
+  const pathMutator = (input, path) => {
+    return `${path}`;
+  };
+
   const renderFooter = () => {
     return (
       <Layout className="textCentered">
@@ -43,6 +47,11 @@ const InvoiceTypedownForm = ({ charge }) => {
       </Layout>
     );
   };
+
+  const renderListItem = (invoice) => {
+    return <>{invoice?.vendorInvoiceNo}</>;
+  };
+
   return (
     <>
       <>
@@ -50,9 +59,13 @@ const InvoiceTypedownForm = ({ charge }) => {
           <FormattedMessage id="ui-oa.charge.invoice.addInvoice" />
         </Label>
         <Field
-          component={Typedown}
+          component={InvoiceQueryTypedown}
+          identifier="invoices"
           name="invoice"
+          path="invoice/invoices"
+          pathMutator={pathMutator}
           renderFooter={renderFooter}
+          renderListItem={renderListItem}
         />
         {values.invoice && (
           <Card
