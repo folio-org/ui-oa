@@ -1,27 +1,19 @@
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
-import { useQuery } from 'react-query';
-
 import { useOkapiKy } from '@folio/stripes/core';
 import { Col, KeyValue, Row, FormattedUTCDate } from '@folio/stripes/components';
+import { useBatchGroup, useVendorOrg } from '../../../hooks/invoiceHooks';
 
 const propTypes = {
   invoice: PropTypes.object,
 };
 
 const InvoiceInfo = ({ invoice }) => {
-  const ky = useOkapiKy();
-
-  const { data: batchGroup } = useQuery(
-    ['ui-oa', 'InvoiceInfo', 'batchGroup'],
-    () => ky(`batch-groups/${invoice?.batchGroupId}`).json()
-  );
-
-  const { data: vendorOrg } = useQuery(
-    ['ui-oa', 'InvoiceInfo', 'vendorOrg'],
-    () => ky(`organizations/organizations/${invoice.vendorId}`).json()
-  );
+  console.log(invoice);
+  const batchGroup = useBatchGroup(invoice?.batchGroupId);
+  const vendorOrg = useVendorOrg(invoice?.vendorId);
+  console.log(vendorOrg);
 
   return (
     <>
