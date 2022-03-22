@@ -31,7 +31,12 @@ const InvoiceTypedownForm = ({ charge }) => {
   };
 
   const pathMutator = (input, path) => {
-    return `${path}`;
+    const queryParams = [];
+    if (input) {
+        queryParams.push(`query=vendorInvoiceNo=="*${input}*"`);
+    }
+    queryParams.push('limit=10');
+    return `${path}?${queryParams.join('&')}`;
   };
 
   const renderFooter = () => {
