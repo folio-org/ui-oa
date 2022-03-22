@@ -102,7 +102,7 @@ const Charges = ({ request }) => {
             <strong>
               <FormattedMessage
                 id="ui-oa.charge.estimatedPriceLocal"
-                values={{ localCurrency: e?.exchangeRate?.fromCurrency }}
+                values={{ localCurrency: e?.exchangeRate?.toCurrency }}
               />
               :{' '}
             </strong>
@@ -112,7 +112,7 @@ const Charges = ({ request }) => {
             <strong>
               <FormattedMessage
                 id="ui-oa.charge.estimatedPriceSpecified"
-                values={{ specifiedCurrency: e?.exchangeRate?.toCurrency }}
+                values={{ specifiedCurrency: e?.exchangeRate?.fromCurrency }}
               />
               :{' '}
             </strong>
@@ -127,7 +127,7 @@ const Charges = ({ request }) => {
       return e?.amount?.value;
     },
     currency: (e) => {
-      return e?.exchangeRate?.fromCurrency;
+      return e?.exchangeRate?.toCurrency;
     },
     discount: (e) => {
       return e?.discountType?.value === 'percentage'
