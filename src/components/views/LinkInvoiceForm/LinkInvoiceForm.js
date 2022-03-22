@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { useFormState } from 'react-final-form';
 
 import {
   Button,
@@ -12,6 +13,7 @@ import {
 import { AppIcon } from '@folio/stripes/core';
 import {
   InvoiceTypedownForm,
+  InvoiceLineTypedownForm
 } from '../../InvoiceFormSections';
 
 const propTypes = {
@@ -30,6 +32,7 @@ const LinkInvoiceForm = ({
   submitting,
   charge,
 }) => {
+  const { values } = useFormState();
   const getSectionProps = (name) => {
     return {
       id: `link-invoice-section-${name}`,
@@ -95,6 +98,9 @@ const LinkInvoiceForm = ({
         paneTitle={renderPaneTitle()}
       >
         <InvoiceTypedownForm {...getSectionProps('invoiceTypedown')} />
+        {values?.selectedInvoice &&
+        <InvoiceLineTypedownForm {...getSectionProps('invoiceLineTypedown')} />
+        }
       </Pane>
     </Paneset>
   );

@@ -5,9 +5,10 @@ import { useQuery } from 'react-query';
 const useBatchGroup = (batchGroupId) => {
   const ky = useOkapiKy();
 
-  const { data, isLoading } = useQuery(['ui-oa', 'invoiceHooks'], () => (
-    ky(`batch-groups/${batchGroupId}`).json()
-  ));
+  const { data, isLoading } = useQuery(
+    ['ui-oa', 'invoiceHooks', 'useBatchGroup'],
+    () => ky(`batch-groups/${batchGroupId}`).json()
+  );
 
   const [batchGroup, setBatchGroup] = useState();
   useEffect(() => {
@@ -21,9 +22,10 @@ const useBatchGroup = (batchGroupId) => {
 const useVendorOrg = (vendorId) => {
   const ky = useOkapiKy();
 
-  const { data, isLoading } = useQuery(['ui-oa', 'invoiceHooks'], () => (
-    ky(`organizations/organizations/${vendorId}`).json()
-  ));
+  const { data, isLoading } = useQuery(
+    ['ui-oa', 'invoiceHooks', 'useVendorOrg'],
+    () => ky(`organizations/organizations/${vendorId}`).json()
+  );
 
   const [vendorOrg, setVendorOrg] = useState();
   useEffect(() => {

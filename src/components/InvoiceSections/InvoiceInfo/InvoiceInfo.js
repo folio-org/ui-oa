@@ -9,9 +9,6 @@ const propTypes = {
 };
 
 const InvoiceInfo = ({ invoice }) => {
-  const batchGroup = useBatchGroup(invoice?.batchGroupId);
-  const vendorOrg = useVendorOrg(invoice?.vendorId);
-
   return (
     <>
       <Row>
@@ -26,7 +23,7 @@ const InvoiceInfo = ({ invoice }) => {
             label={
               <FormattedMessage id="ui-oa.charge.invoice.vendorOrganisation" />
             }
-            value={vendorOrg?.name}
+            value={useVendorOrg(invoice?.vendorId)?.name}
           />
         </Col>
         <Col xs={3}>
@@ -38,7 +35,7 @@ const InvoiceInfo = ({ invoice }) => {
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.invoice.batchGroup" />}
-            value={batchGroup?.name}
+            value={useBatchGroup(invoice?.batchGroupId)?.name}
           />
         </Col>
       </Row>

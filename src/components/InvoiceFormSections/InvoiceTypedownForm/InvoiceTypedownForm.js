@@ -6,14 +6,13 @@ import { Field, useForm, useFormState } from 'react-final-form';
 import {
   Button,
   Layout,
-  Label,
   IconButton,
   Card,
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 
 import { InvoiceModal } from '../../Modals';
-import InvoiceInfo from '../../InvoiceSections';
+import { InvoiceInfo } from '../../InvoiceSections';
 import InvoiceQueryTypedown from '../../InvoiceQueryTypedown';
 
 const propTypes = {
@@ -26,14 +25,15 @@ const InvoiceTypedownForm = ({ charge }) => {
   const [showInvoiceModal, setShowInvoiceModal] = useState(false);
 
   const handleInvoiceChange = (invoice) => {
-    change('invoice', invoice);
+    change('invoiceLine', null);
+    change('selectedInvoice', invoice);
     setShowInvoiceModal(false);
   };
 
   const pathMutator = (input, path) => {
     const queryParams = [];
     if (input) {
-        queryParams.push(`query=vendorInvoiceNo=="*${input}*"`);
+      queryParams.push(`query=vendorInvoiceNo=="*${input}*"`);
     }
     queryParams.push('limit=10');
     return `${path}?${queryParams.join('&')}`;
@@ -59,35 +59,34 @@ const InvoiceTypedownForm = ({ charge }) => {
 
   return (
     <>
-      <>
-        <Label>
-          <FormattedMessage id="ui-oa.charge.invoice.addInvoice" />
-        </Label>
-        <Field
-          component={InvoiceQueryTypedown}
-          identifier="invoices"
-          name="invoice"
-          path="invoice/invoices"
-          pathMutator={pathMutator}
-          renderFooter={renderFooter}
-          renderListItem={renderListItem}
-        />
-        {values.invoice && (
-          <Card
-            cardStyle="positive"
-            headerEnd={
-              <IconButton icon="trash" onClick={() => handleInvoiceChange()} />
-            }
-            headerStart={
-              <AppIcon app="invoice" size="small">
-                <strong>{values?.invoice?.vendorInvoiceNo}</strong>
-              </AppIcon>
-            }
-          >
-            <InvoiceInfo invoice={values?.invoice} />
-          </Card>
-        )}
-      </>
+      {/* Field name must be "selectedInvoice" to prevent both typedowns from being opened */}
+      {/* TODO Change this component to QueryTypedown when data mutation has been added */}
+      <Field
+        component={InvoiceQueryTypedown}
+        identifier="invoices"
+        label={<FormattedMessage id="ui-oa.charge.invoice.addInvoice" />}
+        name="selectedInvoice"
+        onChange={() => change('invoiceLine', null)}
+        path="invoice/invoices"
+        pathMutator={pathMutator}
+        renderFooter={renderFooter}
+        renderListItem={renderListItem}
+      />
+      {values?.selectedInvoice && (
+        <Card
+          cardStyle="positive"
+          headerEnd={
+            <IconButton icon="trash" onClick={() => handleInvoiceChange()} />
+          }
+          headerStart={
+            <AppIcon app="invoice" size="small">
+              <strong>{values?.selectedInvoice?.vendorInvoiceNo}</strong>
+            </AppIcon>
+          }
+        >
+          <InvoiceInfo invoice={values?.selectedInvoice} />
+        </Card>
+      )}
       <InvoiceModal
         charge={charge}
         handleInvoiceChange={handleInvoiceChange}
