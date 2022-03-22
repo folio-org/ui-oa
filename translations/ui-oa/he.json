@@ -215,7 +215,18 @@
     "charge.delete": "Delete",
     "charge.deleteCharge": "Delete charge",
     "charge.deleteChargeMessage": "This charge will be permanently deleted.",
-    "charge.estimatedPrices": "Estimate prices",
-    "charge.estimatedPriceLocal": "Estimate price ({localCurrency})",
-    "charge.estimatedPriceSpecified": "Estimate price ({specifiedCurrency})"
+    "charge.estimatedPrices": "Estimated prices",
+    "charge.estimatedPriceLocal": "Estimated price ({localCurrency})",
+    "charge.estimatedPriceSpecified": "Estimated price ({specifiedCurrency})",
+    "party.new": "New",
+    "journal.new": "New",
+    "journal.deleteInstance": "Delete Instance {index}",
+    "journal.deleteIdentifier": "Delete Identifier {index}",
+    "publicationRequest.addJournal": "הוסף יומן",
+    "publicationRequest.noCurrencySet": " Unable to create charge because the currency is unknown. Please set a currency in Settings > Open Access > Language and localization > Primary currency",
+    "charge.taxPercentage": "Tax (%)",
+    "charge.validate.notLessThanZero": "Cannot be less than zero",
+    "party.noResultsFound": "לא נמצאו תוצאות",
+    "journal.noResultsFound": "לא נמצאו תוצאות",
+    "party.requests": "Requests"
 }

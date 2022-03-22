@@ -215,7 +215,18 @@
     "charge.delete": "Supprimer",
     "charge.deleteCharge": "Delete charge",
     "charge.deleteChargeMessage": "This charge will be permanently deleted.",
-    "charge.estimatedPrices": "Estimate prices",
-    "charge.estimatedPriceLocal": "Estimate price ({localCurrency})",
-    "charge.estimatedPriceSpecified": "Prix estimatif ( {specifiedCurrency} )"
+    "charge.estimatedPrices": "Prix estimés",
+    "charge.estimatedPriceLocal": "Prix estimé ( {localCurrency} )",
+    "charge.estimatedPriceSpecified": "Prix estimatif ( {specifiedCurrency} )",
+    "party.new": "Nouveau",
+    "journal.new": "Nouveau",
+    "journal.deleteInstance": "Supprimer l'instance {index}",
+    "journal.deleteIdentifier": "Delete Identifier {index}",
+    "publicationRequest.addJournal": "Ajouter la revue",
+    "publicationRequest.noCurrencySet": " Unable to create charge because the currency is unknown. Please set a currency in Settings > Open Access > Language and localization > Primary currency",
+    "charge.taxPercentage": "Taxe (%)",
+    "charge.validate.notLessThanZero": "Ne peut pas être inférieur à zéro",
+    "party.noResultsFound": "Aucun résultat trouvé",
+    "journal.noResultsFound": "Aucun résultat trouvé",
+    "party.requests": "Requests"
 }

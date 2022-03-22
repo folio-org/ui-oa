@@ -4,6 +4,7 @@ const publicationRequestSubmitHandler = (values) => {
     useCorrespondingAuthor: _useCorrespondingAuthor,
     correspondingAuthor,
     requestContact,
+    work,
     ...submitValues
   } = { ...values };
 
@@ -26,6 +27,16 @@ const publicationRequestSubmitHandler = (values) => {
     submitValues.agreement = agreement;
   } else {
     submitValues.agreement = null;
+  }
+
+  if (work) {
+    submitValues.work = {
+      id: work.id
+    };
+  } else {
+    submitValues.work = {
+      id: ''
+    };
   }
 
   return submitValues;

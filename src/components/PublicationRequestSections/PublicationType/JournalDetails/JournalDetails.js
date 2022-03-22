@@ -12,12 +12,14 @@ import {
 import { findIssnByNamespace } from '../../../../util/journalUtils';
 
 const propTypes = {
-  journal: PropTypes.object,
+  request: PropTypes.shape({
+    work: PropTypes.object,
+  })
 };
 
-const JournalDetails = ({ journal }) => {
-  const printIssn = findIssnByNamespace(journal, 'print');
-  const electronicIssn = findIssnByNamespace(journal, 'electronic');
+const JournalDetails = ({ request: { work } = {} }) => {
+  const printIssn = findIssnByNamespace(work, 'print');
+  const electronicIssn = findIssnByNamespace(work, 'electronic');
 
   return (
     <>
@@ -28,7 +30,7 @@ const JournalDetails = ({ journal }) => {
           </Headline>
           <KeyValue
             label={<FormattedMessage id="ui-oa.publicationJournal.title" />}
-            value={journal?.title}
+            value={work?.title}
           />
         </Col>
       </Row>

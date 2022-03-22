@@ -72,7 +72,9 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
       }
     >
       <PartyInfo {...getSectionProps('partyInfo')} />
-      {relatedRequests && <RelatedRequests requests={relatedRequests} />}
+      {!!relatedRequests?.length && (
+        <RelatedRequests requests={relatedRequests} />
+      )}
     </Pane>
   );
 };
