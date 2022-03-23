@@ -1,4 +1,4 @@
-import { FormattedMessage, useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { Field, useFormState, useForm } from 'react-final-form';
 
 import {
@@ -15,10 +15,11 @@ import {
   requiredValidator,
   composeValidators,
 } from '@folio/stripes-erm-components';
+import { FieldCurrency } from '@folio/stripes-acq-components';
 import {
   validateNotNegative,
   validateAsDecimal,
-  validateNotLessThanZero
+  validateNotLessThanZero,
 } from '../../../util/validators';
 import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
@@ -31,7 +32,6 @@ const [CHARGE_CATEGORY, CHARGE_STATUS, CHARGE_PAYER, CHARGE_DISCOUNT_TYPE] = [
 ];
 
 const ChargeInfoForm = () => {
-  const intl = useIntl();
   const { values } = useFormState();
   const { change } = useForm();
 
@@ -49,6 +49,10 @@ const ChargeInfoForm = () => {
     refdataValues,
     CHARGE_DISCOUNT_TYPE
   );
+
+  const handleCurrencyChange = (currency) => {
+    change('exchangeRate.toCurrency', currency);
+  };
 
   return (
     <>
@@ -68,20 +72,11 @@ const ChargeInfoForm = () => {
           />
         </Col>
         <Col xs={3}>
-          <Field
-            component={Select}
-            dataOptions={[
-              { value: '', label: '' },
-              {
-                value: 'GBP',
-                label: intl.formatMessage({
-                  id: 'ui-oa.charge.currency.gbp',
-                }),
-              },
-            ]}
+          <FieldCurrency
             id="charge-currency"
-            label={<FormattedMessage id="ui-oa.charge.currency" />}
+            labelId="ui-oa.charge.currency"
             name="exchangeRate.toCurrency"
+            onChange={handleCurrencyChange}
             required
             validate={requiredValidator}
           />
@@ -124,7 +119,8 @@ const ChargeInfoForm = () => {
                           ? 'primary'
                           : 'default'
                       }
-                      onClick={() => change('discountType.id', discountType.value)}
+                      onClick={() => change('discountType.id', discountType.value)
+                      }
                     >
                       <FormattedMessage
                         id={`ui-oa.charge.type.${discountType.label}`}
