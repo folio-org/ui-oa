@@ -30,7 +30,7 @@ const InvoiceLineModal = ({
   const chargeInvoiceLine = {
     invoiceId: values?.selectedInvoice?.id,
     description: charge.description
-      ? charge?.category?.label + ', ' + charge?.description
+      ? charge?.category?.label + ': ' + charge?.description
       : charge?.category?.label,
     invoiceLineStatus: 'Open',
     quantity: '1',

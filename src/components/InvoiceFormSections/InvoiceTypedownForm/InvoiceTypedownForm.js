@@ -3,8 +3,14 @@ import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import { Field, useForm, useFormState } from 'react-final-form';
 
-import { Button, Layout, IconButton, Card } from '@folio/stripes/components';
+import {
+  Button,
+  Layout,
+  IconButton,
+  Card,
+} from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
+import { requiredValidator } from '@folio/stripes-erm-components';
 
 import { InvoiceModal } from '../../Modals';
 import { InvoiceInfo } from '../../InvoiceSections';
@@ -49,7 +55,13 @@ const InvoiceTypedownForm = ({ charge }) => {
   };
 
   const renderListItem = (invoice) => {
-    return <>{invoice?.vendorInvoiceNo}</>;
+    return (
+      <>
+        {invoice?.vendorInvoiceNo}
+        {', ' + invoice?.status}
+        {invoice?.total ? ', ' + invoice.total + ' ' + invoice?.currency : ''}
+      </>
+    );
   };
 
   return (
@@ -66,6 +78,8 @@ const InvoiceTypedownForm = ({ charge }) => {
         pathMutator={pathMutator}
         renderFooter={renderFooter}
         renderListItem={renderListItem}
+        required
+        validate={requiredValidator}
       />
       {values?.selectedInvoice && (
         <Card

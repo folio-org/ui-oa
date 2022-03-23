@@ -5,6 +5,7 @@ import { Field, useForm, useFormState } from 'react-final-form';
 
 import { Button, Layout, IconButton, Card } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
+import { requiredValidator } from '@folio/stripes-erm-components';
 
 import { InvoiceLineInfo } from '../../InvoiceSections';
 import { InvoiceLineModal } from '../../Modals';
@@ -50,7 +51,16 @@ const InvoiceLineTypedownForm = ({ charge }) => {
   };
 
   const renderListItem = (invoiceLine) => {
-    return <>{invoiceLine?.invoiceLineNumber}</>;
+    return (
+      <>
+        {invoiceLine?.invoiceLineNumber + ', '}
+        {invoiceLine?.description?.length > 50
+          ? invoiceLine?.description.substr(0, 49) + '...'
+          : invoiceLine?.description}
+        {invoiceLine?.total && ', ' + invoiceLine.total}
+        {invoiceLine?.invoiceLineStatus && ', ' + invoiceLine.invoiceLineStatus}
+      </>
+    );
   };
 
   return (
@@ -67,6 +77,8 @@ const InvoiceLineTypedownForm = ({ charge }) => {
         pathMutator={pathMutator}
         renderFooter={renderFooter}
         renderListItem={renderListItem}
+        required
+        validate={requiredValidator}
       />
       {values?.invoiceLine && (
         <Card
