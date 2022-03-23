@@ -230,6 +230,10 @@
   "charge.invoice.paymentMethod": "Payment method",
   "charge.invoice.batchGroup": "Batch group",
   "charge.invoice.linkInvoice": "Link invoice",
+  "charge.invoice.unlinkInvoice": "Unlink invoice",
+  "charge.invoice.unlinkInvoiceMessage": "The associated invoice will be unlinked from this charge.",
+  "charge.invoice.unlink": "Unlink",
+
   "charge.invoice.addInvoice": "Add invoice",
   "charge.invoiceLine.addInvoiceLine": "Add invoice line",
   "charge.invoiceLine.newInvoiceLine": "New invoice line",

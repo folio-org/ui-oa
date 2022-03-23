@@ -17,6 +17,7 @@ import {
 } from '@folio/stripes/components';
 
 import urls from '../../../util/urls';
+import useOARefdata from '../../../util/useOARefdata';
 
 const propTypes = {
   charge: PropTypes.object,
@@ -25,10 +26,14 @@ const propTypes = {
 };
 
 const ChargeView = ({ charge, request, refetch }) => {
-  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [showDeleteConfirmModal, setShowDeleteConfirmModal] = useState(false);
+  const [showUnlinkConfirmModal, setShowUnlinkConfirmModal] = useState(false);
+
 
   const ky = useOkapiKy();
   const history = useHistory();
+
+  const expectedStatusRefData = useOARefdata('Charge.ChargeStatus').find(e => e.value === 'expected');
 
   const handleClose = () => {
     refetch();
@@ -39,6 +44,14 @@ const ChargeView = ({ charge, request, refetch }) => {
     ['ui-oa', 'ChargeView', 'deleteCharge'],
     (data) => ky.put(`oa/publicationRequest/${request?.id}`, { json: data }).then(() => {
         handleClose();
+      })
+  );
+
+  const { mutateAsync: unlinkInvoice } = useMutation(
+    ['ui-oa', 'ChargeView', 'unlinkInvoice'],
+    (data) => ky.put(`oa/publicationRequest/${request?.id}`, { json: data }).then(() => {
+        refetch();
+        setShowUnlinkConfirmModal(false);
       })
   );
 
@@ -58,6 +71,20 @@ const ChargeView = ({ charge, request, refetch }) => {
     );
   };
 
+  const handleUnlink = () => {
+    const submitValues = {
+      charges: [
+        {
+          ...charge,
+          invoiceReference: null,
+          invoiceLineItemReference: null,
+          chargeStatus: expectedStatusRefData,
+        },
+      ],
+    };
+    unlinkInvoice(submitValues);
+  };
+
   const renderActionMenu = () => {
     return (
       <>
@@ -70,19 +97,31 @@ const ChargeView = ({ charge, request, refetch }) => {
             <FormattedMessage id="ui-oa.charge.edit" />
           </Icon>
         </Button>
-        <Button
-          buttonStyle="dropdownItem"
-          id="link-invoice-button"
-          onClick={handleLink}
-        >
-          <Icon icon="link">
-            <FormattedMessage id="ui-oa.charge.invoice.linkInvoice" />
-          </Icon>
-        </Button>
+        {!charge?.invoiceReference ? (
+          <Button
+            buttonStyle="dropdownItem"
+            id="link-invoice-button"
+            onClick={handleLink}
+          >
+            <Icon icon="link">
+              <FormattedMessage id="ui-oa.charge.invoice.linkInvoice" />
+            </Icon>
+          </Button>
+        ) : (
+          <Button
+            buttonStyle="dropdownItem"
+            id="unlink-invoice-button"
+            onClick={() => setShowUnlinkConfirmModal(true)}
+          >
+            <Icon icon="unlink">
+              <FormattedMessage id="ui-oa.charge.invoice.unlinkInvoice" />
+            </Icon>
+          </Button>
+        )}
         <Button
           buttonStyle="dropdownItem"
           id="charge-delete-button"
-          onClick={() => setShowConfirmationModal(true)}
+          onClick={() => setShowDeleteConfirmModal(true)}
         >
           <Icon icon="trash">
             <FormattedMessage id="ui-oa.charge.delete" />
@@ -105,15 +144,19 @@ const ChargeView = ({ charge, request, refetch }) => {
     >
       <ConfirmationModal
         confirmLabel={<FormattedMessage id="ui-oa.charge.delete" />}
-        heading={
-          <FormattedMessage id="ui-oa.charge.deleteCharge" />
-        }
-        message={
-          <FormattedMessage id="ui-oa.charge.deleteChargeMessage" />
-        }
-        onCancel={() => setShowConfirmationModal(false)}
+        heading={<FormattedMessage id="ui-oa.charge.deleteCharge" />}
+        message={<FormattedMessage id="ui-oa.charge.deleteChargeMessage" />}
+        onCancel={() => setShowDeleteConfirmModal(false)}
         onConfirm={() => handleDelete()}
-        open={showConfirmationModal}
+        open={showDeleteConfirmModal}
+      />
+      <ConfirmationModal
+        confirmLabel={<FormattedMessage id="ui-oa.charge.invoice.unlink" />}
+        heading={<FormattedMessage id="ui-oa.charge.invoice.unlinkInvoice" />}
+        message={<FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceMessage" />}
+        onCancel={() => setShowUnlinkConfirmModal(false)}
+        onConfirm={() => handleUnlink()}
+        open={showUnlinkConfirmModal}
       />
       <Headline margin="large" size="x-large" tag="h2">
         <FormattedMessage id="ui-oa.charge.chargeInformation" />
