@@ -209,7 +209,7 @@ const ChargeView = ({ charge, request, refetch }) => {
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.currency" />}
-            value={charge?.amount?.baseCurrency}
+            value={charge?.exchangeRate?.toCurrency}
           />
         </Col>
         <Col xs={3}>
