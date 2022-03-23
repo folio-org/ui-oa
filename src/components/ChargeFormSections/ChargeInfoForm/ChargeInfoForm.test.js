@@ -30,7 +30,8 @@ describe('ChargeInfoForm', () => {
     });
 
     test('renders Currency select', async () => {
-      await Select({ id: 'charge-currency' }).exists();
+      const { getByRole } = renderComponent;
+      expect(getByRole('button', { name: 'Currency required' }));
     });
 
     test('renders Exchange rate field', () => {
@@ -62,12 +63,6 @@ describe('ChargeInfoForm', () => {
     test('renders Amount field with expected value', () => {
       const { getByRole } = renderComponent;
       expect(getByRole('spinbutton', { name: 'Amount' })).toHaveDisplayValue('100');
-    });
-
-
-    test('renders Currency select with expected value', () => {
-      const { getByRole } = renderComponent;
-      expect(getByRole('combobox', { name: 'Currency' })).toHaveDisplayValue('GBP');
     });
 
     test('renders Exchange rate field with expected value', () => {
