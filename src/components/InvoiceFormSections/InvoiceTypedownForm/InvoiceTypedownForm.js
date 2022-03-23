@@ -3,12 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import { Field, useForm, useFormState } from 'react-final-form';
 
-import {
-  Button,
-  Layout,
-  IconButton,
-  Card,
-} from '@folio/stripes/components';
+import { Button, Layout, IconButton, Card } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 
 import { InvoiceModal } from '../../Modals';
@@ -84,7 +79,7 @@ const InvoiceTypedownForm = ({ charge }) => {
             </AppIcon>
           }
         >
-          <InvoiceInfo invoice={values?.selectedInvoice} />
+          <InvoiceInfo charge={charge} invoice={values?.selectedInvoice} />
         </Card>
       )}
       <InvoiceModal
