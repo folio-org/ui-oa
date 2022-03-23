@@ -3,7 +3,6 @@ import {
   renderWithIntl,
   TestForm,
 } from '@folio/stripes-erm-components/test/jest/helpers';
-import { Select } from '@folio/stripes-testing';
 import translationsProperties from '../../../../test/helpers';
 import ChargeInfoForm from './ChargeInfoForm';
 import { charge } from '../../../../test/resources/chargeResources';
