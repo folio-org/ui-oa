@@ -1,6 +1,7 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
 import { KeyValue } from '@folio/stripes-testing';
+import { MemoryRouter } from 'react-router-dom';
 import translationsProperties from '../../../../test/helpers';
 import PartyInfo from './PartyInfo';
 import { party } from '../../../../test/resources/partyResources';
@@ -8,19 +9,16 @@ import { party } from '../../../../test/resources/partyResources';
 describe('PartyInfo', () => {
   describe('renders components', () => {
     beforeEach(() => {
-      renderWithIntl(<PartyInfo />, translationsProperties);
+      renderWithIntl(
+        <MemoryRouter>
+          <PartyInfo />
+        </MemoryRouter>,
+        translationsProperties
+      );
     });
 
-    test('renders Title KeyValue', async () => {
-      await KeyValue('Title').exists();
-    });
-
-    test('renders Family name KeyValue', async () => {
-      await KeyValue('Family name').exists();
-    });
-
-    test('renders Given name(s) KeyValue', async () => {
-      await KeyValue('Given name(s)').exists();
+    test('renders Name KeyValue', async () => {
+      await KeyValue('Name').exists();
     });
 
     test('renders ORCID iD KeyValue', async () => {
@@ -42,19 +40,16 @@ describe('PartyInfo', () => {
 
   describe('renders components with initial values', () => {
     beforeEach(() => {
-      renderWithIntl(<PartyInfo party={party} />, translationsProperties);
+      renderWithIntl(
+        <MemoryRouter>
+          <PartyInfo party={party} />
+        </MemoryRouter>,
+        translationsProperties
+      );
     });
 
-    test('renders Title KeyValue', async () => {
-      await KeyValue('Title').has({ value: 'Dr' });
-    });
-
-    test('renders Family name KeyValue', async () => {
-      await KeyValue('Family name').has({ value: 'Dempsey' });
-    });
-
-    test('renders Given name(s) KeyValue', async () => {
-      await KeyValue('Given name(s)').has({ value: 'Elijah' });
+    test('renders Name KeyValue', async () => {
+      await KeyValue('Name').has({ value: 'Dr Elijah Dempsey' });
     });
 
     test('renders ORCID iD KeyValue', async () => {
@@ -62,7 +57,9 @@ describe('PartyInfo', () => {
     });
 
     test('renders Main email KeyValue', async () => {
-      await KeyValue('Main email address').has({ value: 'Elijah_Dempsey6074@brety.org' });
+      await KeyValue('Main email address').has({
+        value: 'Elijah_Dempsey6074@brety.org',
+      });
     });
 
     test('renders Phone KeyValue', async () => {
