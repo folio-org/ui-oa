@@ -7,12 +7,12 @@ import {
   TextField,
   Datepicker,
   RadioButton,
+  Select,
+  useCurrencyOptions,
 } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
 import {
-  FieldCurrency,
   FieldSelectFinal,
-  FieldSelectionFinal,
   FieldOrganization,
   PAYMENT_METHOD_OPTIONS,
 } from '@folio/stripes-acq-components';
@@ -31,10 +31,7 @@ const CreateInvoiceForm = ({ batchGroups, charge }) => {
   const handleVendorChange = (vendor) => {
     change('paymentMethod', vendor.paymentMethod);
   };
-
-  const handleCurrencyChange = (currency) => {
-    change('currency', currency);
-  };
+  const currencyOptions = useCurrencyOptions();
 
   return (
     <>
@@ -80,9 +77,13 @@ const CreateInvoiceForm = ({ batchGroups, charge }) => {
           />
         </Col>
         <Col xs={3}>
-          <FieldSelectionFinal
-            dataOptions={getBatchGroupsOptions(batchGroups)}
-            labelId="ui-oa.charge.invoice.batchGroup"
+          <Field
+            component={Select}
+            dataOptions={[
+              { value: '', label: '' },
+              ...getBatchGroupsOptions(batchGroups),
+            ]}
+            label={<FormattedMessage id="ui-oa.charge.invoice.batchGroup" />}
             name="batchGroupId"
             required
           />
@@ -91,26 +92,32 @@ const CreateInvoiceForm = ({ batchGroups, charge }) => {
       <Row middle="xs">
         {/* Both rows below should be poulated from selected charge */}
         <Col xs={3}>
-          <FieldCurrency
+          <Field
+            component={Select}
+            dataOptions={currencyOptions}
             id="invoice-currency"
-            labelId="ui-oa.charge.currency"
+            label={<FormattedMessage id="ui-oa.charge.currency" />}
             name="currency"
-            onChange={handleCurrencyChange}
             required
           />
         </Col>
         <Col xs={4}>
           <RadioButton
             checked={!values.exchangeRate}
-            label={<FormattedMessage id="ui-oa.charge.invoice.useCurrentExchange" />}
+            label={
+              <FormattedMessage id="ui-oa.charge.invoice.useCurrentExchange" />
+            }
             onChange={() => change('exchangeRate', null)}
           />
         </Col>
         <Col xs={4}>
           <RadioButton
             checked={values.exchangeRate !== null}
-            label={<FormattedMessage id="ui-oa.charge.invoice.useChargeExchange" />}
-            onChange={() => change('exchangeRate', charge?.exchangeRate?.coefficient)}
+            label={
+              <FormattedMessage id="ui-oa.charge.invoice.useChargeExchange" />
+            }
+            onChange={() => change('exchangeRate', charge?.exchangeRate?.coefficient)
+            }
           />
         </Col>
       </Row>
