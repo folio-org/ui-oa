@@ -28,10 +28,14 @@ const InvoiceTypedownForm = ({ charge }) => {
   const { change } = useForm();
   const [showInvoiceModal, setShowInvoiceModal] = useState(false);
 
+  const invoicesPath = 'invoice/invoices';
+  const queryClient = useQueryClient();
+
   const handleInvoiceChange = (invoice) => {
     change('invoiceLine', null);
     change('selectedInvoice', invoice);
     setShowInvoiceModal(false);
+    queryClient.invalidateQueries(typedownQueryKey(invoicesPath));
   };
 
   const pathMutator = (input, path) => {
@@ -57,8 +61,6 @@ const InvoiceTypedownForm = ({ charge }) => {
     );
   };
 
-  const invoicesPath = 'invoice/invoices';
-  const queryClient = useQueryClient();
 
   const renderListItem = (invoice) => {
     return (
@@ -81,7 +83,6 @@ const InvoiceTypedownForm = ({ charge }) => {
         name="selectedInvoice"
         onChange={() => {
           change('invoiceLine', null);
-          queryClient.invalidateQueries(typedownQueryKey(invoicesPath));
         }}
         path={invoicesPath}
         pathMutator={pathMutator}

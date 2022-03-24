@@ -23,9 +23,13 @@ const InvoiceLineTypedownForm = ({ charge }) => {
   const { change } = useForm();
   const [showInvoiceLineModal, setShowInvoiceLineModal] = useState(false);
 
+  const invoiceLinesPath = 'invoice/invoice-lines';
+  const queryClient = useQueryClient();
+
   const handleInvoiceLineChange = (invoiceLine) => {
     change('invoiceLine', invoiceLine);
     setShowInvoiceLineModal(false);
+    queryClient.invalidateQueries(typedownQueryKey(invoiceLinesPath));
   };
 
   const pathMutator = (input, path) => {
@@ -66,9 +70,6 @@ const InvoiceLineTypedownForm = ({ charge }) => {
     );
   };
 
-  const invoiceLinesPath = 'invoice/invoice-lines';
-  const queryClient = useQueryClient();
-
   return (
     <>
       {/* TODO Change this component to QueryTypedown when data mutation has been added */}
@@ -79,9 +80,6 @@ const InvoiceLineTypedownForm = ({ charge }) => {
           <FormattedMessage id="ui-oa.charge.invoiceLine.addInvoiceLine" />
         }
         name="invoiceLine"
-        onChange={() => {
-          queryClient.invalidateQueries(typedownQueryKey(invoiceLinesPath));
-        }}
         path="invoice/invoice-lines"
         pathMutator={pathMutator}
         renderFooter={renderFooter}
