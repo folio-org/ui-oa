@@ -19,7 +19,8 @@ const PublicationRequestsRoute = ({ children, path }) => {
   const fetchParameters = {
     endpoint: 'oa/publicationRequest',
     SASQ_MAP: {
-      searchKey: 'publicationTitle,requestNumber',
+      searchKey:
+        'publicationTitle,requestNumber,correspondingAuthor.partyOwner.fullName,requestContact.partyOwner.fullName',
       filterKeys: {
         requestStatus: 'requestStatus.value',
       },
@@ -64,8 +65,9 @@ const PublicationRequestsRoute = ({ children, path }) => {
       </AppIcon>
     ),
     requestStatus: (d) => d?.requestStatus?.label,
-    requestDate: (d) => (d.requestDate ? <FormattedUTCDate value={d.requestDate} /> : ''),
-    correspondingAuthorName: (d) => (d.correspondingAuthor?.partyOwner?.fullName),
+    requestDate: (d) =>
+      d.requestDate ? <FormattedUTCDate value={d.requestDate} /> : '',
+    correspondingAuthorName: (d) => d.correspondingAuthor?.partyOwner?.fullName,
   };
 
   const lastpaneMenu = (
