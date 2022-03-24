@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-
+import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
 import { Card, Col, KeyValue, Label, Row } from '@folio/stripes/components';
 
 import ExternalLink from '../../ExternalLink';
+import urls from '../../../util/urls';
 
 const propTypes = {
   otherEmailAddresses: PropTypes.object,
@@ -176,27 +177,19 @@ const PartyInfo = ({
       <Row>
         <Col xs={3}>
           <KeyValue
-            label={<FormattedMessage id="ui-oa.party.title" />}
-            value={party?.title}
-          />
-        </Col>
-        <Col xs={3}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.party.familyName" />}
-            value={party?.familyName}
-          />
-        </Col>
-        <Col xs={3}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.party.givenNames" />}
-            value={party?.givenNames}
+            label={<FormattedMessage id="ui-oa.party.name" />}
+            value={
+              <Link to={urls.party(party?.id)}>
+                {party?.title + ' '}
+                {party?.givenNames + ' '}
+                {party?.familyName}
+              </Link>
+            }
           />
         </Col>
         {renderOrcidId(party?.orcidId)}
       </Row>
-      <Row>
-        {renderContactInformation(party)}
-      </Row>
+      <Row>{renderContactInformation(party)}</Row>
       <Row>
         {otherEmailAddresses && renderOtherEmailAddresses(otherEmailAddresses)}
       </Row>
