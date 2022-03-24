@@ -52,7 +52,8 @@ const InvoiceModal = ({
           buttonStyle="primary"
           id="invoice-modal-save-button"
           onClick={() => {
-            handleSubmit().then(formRestart);
+            handleSubmit();
+            formRestart();
           }}
           type="submit"
         >

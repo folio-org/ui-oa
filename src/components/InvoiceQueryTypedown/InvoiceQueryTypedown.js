@@ -7,7 +7,7 @@ import useTypedownData from '../../hooks/useTypedownData';
 
 const InvoiceQueryTypedown = ({ path, pathMutator, identifier, ...rest }) => {
   const [callPath, setCallPath] = useState(pathMutator(null, path));
-  const data = useTypedownData(callPath)?.[identifier];
+  const data = useTypedownData(path, callPath)?.[identifier];
 
   const onType = (e) => {
     setCallPath(pathMutator(e.target.value, path));

@@ -3,13 +3,16 @@ import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import { Field, useForm, useFormState } from 'react-final-form';
 
+import { useQueryClient } from 'react-query';
+
 import { Button, Layout, IconButton, Card } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 import { requiredValidator } from '@folio/stripes-erm-components';
 
+import { QueryTypedown, typedownQueryKey } from '@k-int/stripes-kint-components';
+
 import { InvoiceLineInfo } from '../../InvoiceSections';
 import { InvoiceLineModal } from '../../Modals';
-import InvoiceQueryTypedown from '../../InvoiceQueryTypedown';
 
 const propTypes = {
   charge: PropTypes.object,
@@ -63,16 +66,22 @@ const InvoiceLineTypedownForm = ({ charge }) => {
     );
   };
 
+  const invoiceLinesPath = 'invoice/invoice-lines';
+  const queryClient = useQueryClient();
+
   return (
     <>
       {/* TODO Change this component to QueryTypedown when data mutation has been added */}
       <Field
-        component={InvoiceQueryTypedown}
-        identifier="invoiceLines"
+        component={QueryTypedown}
+        dataFormatter={data => data?.invoiceLines}
         label={
           <FormattedMessage id="ui-oa.charge.invoiceLine.addInvoiceLine" />
         }
         name="invoiceLine"
+        onChange={() => {
+          queryClient.invalidateQueries(typedownQueryKey(invoiceLinesPath));
+        }}
         path="invoice/invoice-lines"
         pathMutator={pathMutator}
         renderFooter={renderFooter}
