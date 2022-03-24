@@ -65,8 +65,7 @@ const PublicationRequestsRoute = ({ children, path }) => {
       </AppIcon>
     ),
     requestStatus: (d) => d?.requestStatus?.label,
-    requestDate: (d) =>
-      d.requestDate ? <FormattedUTCDate value={d.requestDate} /> : '',
+    requestDate: (d) => (d.requestDate ? <FormattedUTCDate value={d.requestDate} /> : ''),
     correspondingAuthorName: (d) => d.correspondingAuthor?.partyOwner?.fullName,
   };
 
