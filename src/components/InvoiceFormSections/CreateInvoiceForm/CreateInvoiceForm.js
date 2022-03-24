@@ -53,6 +53,7 @@ const CreateInvoiceForm = ({ batchGroups, charge }) => {
             name="invoiceDate"
             required
             timeZone="UTC"
+            usePortal
             validate={requiredValidator}
           />
         </Col>
