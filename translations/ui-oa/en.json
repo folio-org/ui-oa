@@ -35,6 +35,7 @@
   "party.newPerson": "New person",
   "party.closeForm": "Close form",
   "party.familyNameOrdered": "{familyName}, {givenNames}",
+  "party.name": "Name",
   "party.title": "Title",
   "party.familyName": "Family name",
   "party.givenNames": "Given name(s)",
