@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Field, useFormState, useForm } from 'react-final-form';
 
@@ -10,12 +11,16 @@ import {
   ButtonGroup,
   Button,
   KeyValue,
+  Label
 } from '@folio/stripes/components';
 import {
   requiredValidator,
   composeValidators,
 } from '@folio/stripes-erm-components';
 import { FieldCurrency } from '@folio/stripes-acq-components';
+import { useStripes } from '@folio/stripes-core';
+
+import useExchangeRateValue from '../../../hooks/useExchangeRateValue';
 import {
   validateNotNegative,
   validateAsDecimal,
@@ -34,6 +39,12 @@ const [CHARGE_CATEGORY, CHARGE_STATUS, CHARGE_PAYER, CHARGE_DISCOUNT_TYPE] = [
 const ChargeInfoForm = () => {
   const { values } = useFormState();
   const { change } = useForm();
+  const stripes = useStripes();
+
+  const calculatedExchangeRate = useExchangeRateValue(
+    stripes?.currency,
+    values?.exchangeRate?.toCurrency
+  );
 
   const refdataValues = useOARefdata([
     CHARGE_CATEGORY,
@@ -50,8 +61,21 @@ const ChargeInfoForm = () => {
     CHARGE_DISCOUNT_TYPE
   );
 
+  const truncateNumber = (number) => {
+    return Number(number.toString().match(/^-?\d+(?:\.\d{0,10})?/)[0]);
+  };
+
+  useEffect(() => {
+    if (calculatedExchangeRate) {
+      change('exchangeRate.coefficient', truncateNumber(calculatedExchangeRate));
+    }
+  }, [calculatedExchangeRate, change]);
+
   const handleCurrencyChange = (currency) => {
     change('exchangeRate.toCurrency', currency);
+    if (calculatedExchangeRate !== undefined) {
+      change('exchangeRate.coefficient', truncateNumber(calculatedExchangeRate));
+    }
   };
 
   return (
@@ -94,6 +118,19 @@ const ChargeInfoForm = () => {
               validateAsDecimal
             )}
           />
+        </Col>
+        <Col xs={3}>
+          <Label>
+            <FormattedMessage id="ui-oa.charge.refreshExchangeRate" />
+          </Label>
+          <Button
+            buttonStyle="primary"
+            disabled={!calculatedExchangeRate}
+            onClick={() => change('exchangeRate.coefficient', truncateNumber(calculatedExchangeRate))
+            }
+          >
+            <FormattedMessage id="ui-oa.charge.updateExchangeRate" />
+          </Button>
         </Col>
       </Row>
       <Row>

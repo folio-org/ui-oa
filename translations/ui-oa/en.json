@@ -192,6 +192,8 @@
 
   "charge.chargeInformation": "Charge information",
   "charge.publicationRequestCharge": "Publication Request Charge",
+  "charge.refreshExchangeRate": "Refresh exchange rate",
+  "charge.updateExchangeRate": "Update current exchange rate",
   "charge.publicationRequest": "Publication request",
   "charge.title": "Charge",
   "charge.discountNote": "Discount note",
