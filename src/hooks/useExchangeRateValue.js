@@ -11,7 +11,7 @@ const useExchangeRateValue = (exchangeFrom, exchangeTo, manualExchangeRate) => {
     to: exchangeTo,
   };
 
-  const { data, isLoading } = useQuery(
+  const { data, isLoading, refetch } = useQuery(
     ['exchange-rate-value', searchParams],
     () => ky.get('finance/exchange-rate', { searchParams }).json(),
     { enabled: !manualExchangeRate }
@@ -24,7 +24,11 @@ const useExchangeRateValue = (exchangeFrom, exchangeTo, manualExchangeRate) => {
     }
   }, [data, isLoading]);
 
-  return { exchangeRate: exchangeRate?.exchangeRate || null, isLoading };
+  return {
+    exchangeRate: exchangeRate?.exchangeRate || null,
+    isLoading,
+    refetch,
+  };
 };
 
 export default useExchangeRateValue;

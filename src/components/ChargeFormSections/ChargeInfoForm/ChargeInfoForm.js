@@ -39,7 +39,7 @@ const ChargeInfoForm = () => {
   const { initialValues, values } = useFormState();
   const { change } = useForm();
   const stripes = useStripes();
-  const { exchangeRate, isLoading } = useExchangeRateValue(
+  const { exchangeRate, isLoading, refetch } = useExchangeRateValue(
     stripes?.currency,
     values?.exchangeRate?.toCurrency
   );
@@ -69,7 +69,6 @@ const ChargeInfoForm = () => {
       : null;
   };
 
-
   // TODO Create Custom component for handling exchange rate coefficient
   useEffect(() => {
     if (!isLoading && !isEdit) {
@@ -82,7 +81,7 @@ const ChargeInfoForm = () => {
       setIsEdit(false);
       change('exchangeRate.toCurrency', currency);
     }
-    change('exchangeRate.coefficient', exchangeRate);
+    change('exchangeRate.toCurrency', currency);
   };
 
   return (
@@ -134,7 +133,9 @@ const ChargeInfoForm = () => {
             buttonStyle="primary"
             disabled={!exchangeRate}
             onClick={() => {
-              change('exchangeRate.coefficient', truncateNumber(exchangeRate));
+              refetch().then(
+                change('exchangeRate.coefficient', truncateNumber(exchangeRate))
+              );
             }}
           >
             <FormattedMessage id="ui-oa.charge.updateExchangeRate" />
