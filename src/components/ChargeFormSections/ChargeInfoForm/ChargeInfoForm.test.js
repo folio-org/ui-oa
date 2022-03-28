@@ -3,22 +3,34 @@ import {
   renderWithIntl,
   TestForm,
 } from '@folio/stripes-erm-components/test/jest/helpers';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import translationsProperties from '../../../../test/helpers';
+import StripesHarness from '../../../../test/helpers/stripesHarness';
 import ChargeInfoForm from './ChargeInfoForm';
 import { charge } from '../../../../test/resources/chargeResources';
 
+const queryClient = new QueryClient();
 const onSubmit = jest.fn();
 let renderComponent;
 
 jest.mock('../../../util/useOARefdata', () => () => []);
+jest.mock('../../../hooks/useExchangeRateValue', () => ({
+  useExchangeRateValue: jest
+    .fn()
+    .mockReturnValue({ exchangeRate: 1, isLoading: false, refetch: jest.fn() }),
+}));
 
 describe('ChargeInfoForm', () => {
   describe('with no initial values', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <TestForm onSubmit={onSubmit}>
-          <ChargeInfoForm />
-        </TestForm>,
+        <StripesHarness>
+          <QueryClientProvider client={queryClient}>
+            <TestForm onSubmit={onSubmit}>
+              <ChargeInfoForm />
+            </TestForm>
+          </QueryClientProvider>
+        </StripesHarness>,
         translationsProperties
       );
     });
