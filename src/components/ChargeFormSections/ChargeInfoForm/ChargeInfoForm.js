@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Field, useFormState, useForm } from 'react-final-form';
 
@@ -10,12 +11,14 @@ import {
   ButtonGroup,
   Button,
   KeyValue,
+  Label,
 } from '@folio/stripes/components';
 import {
   requiredValidator,
   composeValidators,
 } from '@folio/stripes-erm-components';
-import { FieldCurrency } from '@folio/stripes-acq-components';
+import { FieldCurrency, CurrencySymbol } from '@folio/stripes-acq-components';
+import { useStripes } from '@folio/stripes-core';
 import {
   validateNotNegative,
   validateAsDecimal,
@@ -23,6 +26,7 @@ import {
 } from '../../../util/validators';
 import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
+import useExchangeRateValue from '../../../hooks/useExchangeRateValue';
 
 const [CHARGE_CATEGORY, CHARGE_STATUS, CHARGE_PAYER, CHARGE_DISCOUNT_TYPE] = [
   'Charge.Category',
@@ -32,8 +36,17 @@ const [CHARGE_CATEGORY, CHARGE_STATUS, CHARGE_PAYER, CHARGE_DISCOUNT_TYPE] = [
 ];
 
 const ChargeInfoForm = () => {
-  const { values } = useFormState();
+  const { initialValues, values } = useFormState();
   const { change } = useForm();
+  const stripes = useStripes();
+  const { exchangeRate, isLoading, refetch } = useExchangeRateValue(
+    stripes?.currency,
+    values?.exchangeRate?.toCurrency
+  );
+
+  const [isEdit, setIsEdit] = useState(
+    !!initialValues?.exchangeRate?.coefficient
+  );
 
   const refdataValues = useOARefdata([
     CHARGE_CATEGORY,
@@ -50,7 +63,24 @@ const ChargeInfoForm = () => {
     CHARGE_DISCOUNT_TYPE
   );
 
+  const truncateNumber = (number) => {
+    return number
+      ? Number(number.toString().match(/^-?\d+(?:\.\d{0,10})?/)[0])
+      : null;
+  };
+
+  // TODO Create Custom component for handling exchange rate coefficient
+  useEffect(() => {
+    if (!isLoading && !isEdit) {
+      change('exchangeRate.coefficient', truncateNumber(exchangeRate));
+    }
+  }, [isLoading, change, exchangeRate, isEdit]);
+
   const handleCurrencyChange = (currency) => {
+    if (isEdit) {
+      setIsEdit(false);
+      change('exchangeRate.toCurrency', currency);
+    }
     change('exchangeRate.toCurrency', currency);
   };
 
@@ -95,6 +125,22 @@ const ChargeInfoForm = () => {
             )}
           />
         </Col>
+        <Col xs={3}>
+          <Label>
+            <FormattedMessage id="ui-oa.charge.refreshExchangeRate" />
+          </Label>
+          <Button
+            buttonStyle="primary"
+            disabled={!exchangeRate}
+            onClick={() => {
+              refetch().then(
+                change('exchangeRate.coefficient', truncateNumber(exchangeRate))
+              );
+            }}
+          >
+            <FormattedMessage id="ui-oa.charge.updateExchangeRate" />
+          </Button>
+        </Col>
       </Row>
       <Row>
         <Col xs={3}>
@@ -111,7 +157,7 @@ const ChargeInfoForm = () => {
             name="discountType.id"
             render={() => (
               <KeyValue label={<FormattedMessage id="ui-oa.charge.type" />}>
-                <ButtonGroup>
+                <ButtonGroup fullWidth>
                   {discountTypeValues.map((discountType) => (
                     <Button
                       buttonStyle={
@@ -119,11 +165,20 @@ const ChargeInfoForm = () => {
                           ? 'primary'
                           : 'default'
                       }
-                      onClick={() => change('discountType.id', discountType.value)
-                      }
+                      onClick={() => {
+                        change('discountType.id', discountType.value);
+                      }}
                     >
                       <FormattedMessage
                         id={`ui-oa.charge.type.${discountType.label}`}
+                        values={{
+                          currency: (
+                            <CurrencySymbol
+                              currency={values?.exchangeRate?.toCurrency}
+                              stripes={stripes}
+                            />
+                          ),
+                        }}
                       />
                     </Button>
                   ))}
@@ -208,4 +263,5 @@ const ChargeInfoForm = () => {
     </>
   );
 };
+
 export default ChargeInfoForm;
