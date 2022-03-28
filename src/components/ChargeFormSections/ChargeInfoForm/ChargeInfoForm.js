@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Field, useFormState, useForm } from 'react-final-form';
 
@@ -10,12 +11,14 @@ import {
   ButtonGroup,
   Button,
   KeyValue,
+  Label,
 } from '@folio/stripes/components';
 import {
   requiredValidator,
   composeValidators,
 } from '@folio/stripes-erm-components';
 import { FieldCurrency } from '@folio/stripes-acq-components';
+import { useStripes } from '@folio/stripes-core';
 import {
   validateNotNegative,
   validateAsDecimal,
@@ -23,6 +26,7 @@ import {
 } from '../../../util/validators';
 import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
+import useExchangeRateValue from '../../../hooks/useExchangeRateValue';
 
 const [CHARGE_CATEGORY, CHARGE_STATUS, CHARGE_PAYER, CHARGE_DISCOUNT_TYPE] = [
   'Charge.Category',
@@ -32,8 +36,13 @@ const [CHARGE_CATEGORY, CHARGE_STATUS, CHARGE_PAYER, CHARGE_DISCOUNT_TYPE] = [
 ];
 
 const ChargeInfoForm = () => {
-  const { values } = useFormState();
+  const { initialValues, values } = useFormState();
   const { change } = useForm();
+  const stripes = useStripes();
+  const { exchangeRate, isLoading } = useExchangeRateValue(
+    stripes?.currency,
+    values?.exchangeRate?.toCurrency
+  );
 
   const refdataValues = useOARefdata([
     CHARGE_CATEGORY,
@@ -49,6 +58,28 @@ const ChargeInfoForm = () => {
     refdataValues,
     CHARGE_DISCOUNT_TYPE
   );
+
+  const truncateNumber = (number) => {
+    return number
+      ? Number(number.toString().match(/^-?\d+(?:\.\d{0,10})?/)[0])
+      : null;
+  };
+
+  useEffect(() => {
+    if (
+      !isLoading &&
+      initialValues?.exchangeRate?.coefficient !==
+        values?.exchangeRate?.coefficient
+    ) {
+      change('exchangeRate.coefficient', truncateNumber(exchangeRate));
+    }
+  }, [
+    isLoading,
+    change,
+    exchangeRate,
+    values?.exchangeRate?.coefficient,
+    initialValues?.exchangeRate?.coefficient,
+  ]);
 
   const handleCurrencyChange = (currency) => {
     change('exchangeRate.toCurrency', currency);
@@ -95,6 +126,20 @@ const ChargeInfoForm = () => {
             )}
           />
         </Col>
+        <Col xs={3}>
+          <Label>
+            <FormattedMessage id="ui-oa.charge.refreshExchangeRate" />
+          </Label>
+          <Button
+            buttonStyle="primary"
+            disabled={!exchangeRate}
+            onClick={() => {
+              change('exchangeRate.coefficient', truncateNumber(exchangeRate));
+            }}
+          >
+            <FormattedMessage id="ui-oa.charge.updateExchangeRate" />
+          </Button>
+        </Col>
       </Row>
       <Row>
         <Col xs={3}>
@@ -119,8 +164,9 @@ const ChargeInfoForm = () => {
                           ? 'primary'
                           : 'default'
                       }
-                      onClick={() => change('discountType.id', discountType.value)
-                      }
+                      onClick={() => {
+                        change('discountType.id', discountType.value);
+                      }}
                     >
                       <FormattedMessage
                         id={`ui-oa.charge.type.${discountType.label}`}
@@ -208,4 +254,5 @@ const ChargeInfoForm = () => {
     </>
   );
 };
+
 export default ChargeInfoForm;
