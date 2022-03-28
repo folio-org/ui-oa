@@ -17,7 +17,7 @@ import {
   requiredValidator,
   composeValidators,
 } from '@folio/stripes-erm-components';
-import { FieldCurrency } from '@folio/stripes-acq-components';
+import { FieldCurrency, CurrencySymbol } from '@folio/stripes-acq-components';
 import { useStripes } from '@folio/stripes-core';
 import {
   validateNotNegative,
@@ -157,7 +157,7 @@ const ChargeInfoForm = () => {
             name="discountType.id"
             render={() => (
               <KeyValue label={<FormattedMessage id="ui-oa.charge.type" />}>
-                <ButtonGroup>
+                <ButtonGroup fullWidth>
                   {discountTypeValues.map((discountType) => (
                     <Button
                       buttonStyle={
@@ -171,6 +171,14 @@ const ChargeInfoForm = () => {
                     >
                       <FormattedMessage
                         id={`ui-oa.charge.type.${discountType.label}`}
+                        values={{
+                          currency: (
+                            <CurrencySymbol
+                              currency={values?.exchangeRate?.toCurrency}
+                              stripes={stripes}
+                            />
+                          ),
+                        }}
                       />
                     </Button>
                   ))}
