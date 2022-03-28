@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Field, useFormState, useForm } from 'react-final-form';
 
@@ -44,6 +44,10 @@ const ChargeInfoForm = () => {
     values?.exchangeRate?.toCurrency
   );
 
+  const [isEdit, setIsEdit] = useState(
+    !!initialValues?.exchangeRate?.coefficient
+  );
+
   const refdataValues = useOARefdata([
     CHARGE_CATEGORY,
     CHARGE_STATUS,
@@ -65,24 +69,20 @@ const ChargeInfoForm = () => {
       : null;
   };
 
+
+  // TODO Create Custom component for handling exchange rate coefficient
   useEffect(() => {
-    if (
-      !isLoading &&
-      initialValues?.exchangeRate?.coefficient !==
-        values?.exchangeRate?.coefficient
-    ) {
+    if (!isLoading && !isEdit) {
       change('exchangeRate.coefficient', truncateNumber(exchangeRate));
     }
-  }, [
-    isLoading,
-    change,
-    exchangeRate,
-    values?.exchangeRate?.coefficient,
-    initialValues?.exchangeRate?.coefficient,
-  ]);
+  }, [isLoading, change, exchangeRate, isEdit]);
 
   const handleCurrencyChange = (currency) => {
-    change('exchangeRate.toCurrency', currency);
+    if (isEdit) {
+      setIsEdit(false);
+      change('exchangeRate.toCurrency', currency);
+    }
+    change('exchangeRate.coefficient', exchangeRate);
   };
 
   return (
