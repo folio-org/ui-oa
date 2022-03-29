@@ -108,7 +108,6 @@ const ChargeInfoForm = () => {
             name="exchangeRate.toCurrency"
             onChange={handleCurrencyChange}
             required
-            validate={requiredValidator}
           />
         </Col>
         <Col xs={3}>
