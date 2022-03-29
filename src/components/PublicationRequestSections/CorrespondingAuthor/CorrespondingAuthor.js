@@ -9,13 +9,13 @@ import {
   Col,
   Label,
   MultiColumnList,
-  Row
+  Row,
 } from '@folio/stripes/components';
 
 import PartyInfo from '../../PartySections/PartyInfo';
 
 const propTypes = {
-  request: PropTypes.object
+  request: PropTypes.object,
 };
 
 const renderBadge = (correspondingAuthor) => {
@@ -28,34 +28,43 @@ const CorrespondingAuthor = ({ request }) => {
       closedByDefault
       displayWhenClosed={renderBadge(request?.correspondingAuthor)}
       displayWhenOpen={renderBadge(request?.correspondingAuthor)}
-      label={<FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />}
+      label={
+        <FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />
+      }
     >
       <PartyInfo
-        otherEmailAddresses={request?.otherEmailAddresses}
         party={request?.correspondingAuthor?.partyOwner}
         streetAddresses={request?.streetAddresses}
       />
-      <Row>
-        <Col xs={12}>
-          <Label>
-            <FormattedMessage id="ui-oa.publicationRequest.affiliations" />
-          </Label>
-          <MultiColumnList
-            columnMapping={{
-              faculty: <FormattedMessage id="ui-oa.affiliation.faculty" />,
-              school: <FormattedMessage id="ui-oa.affiliation.school" />,
-              department: <FormattedMessage id="ui-oa.affiliation.department" />,
-              dateFrom: <FormattedMessage id="ui-oa.affiliation.dateFrom" />,
-              dateTo: <FormattedMessage id="ui-oa.affiliation.dateTo" />,
-            }}
-            contentData={request?.correspondingAuthor?.affiliations}
-            visibleColumns={['faculty', 'school', 'department', 'dateFrom', 'dateTo']}
-          />
-        </Col>
-      </Row>
-
+      {request?.correspondingAuthor?.affiliations && (
+        <Row>
+          <Col xs={12}>
+            <Label>
+              <FormattedMessage id="ui-oa.publicationRequest.affiliations" />
+            </Label>
+            <MultiColumnList
+              columnMapping={{
+                faculty: <FormattedMessage id="ui-oa.affiliation.faculty" />,
+                school: <FormattedMessage id="ui-oa.affiliation.school" />,
+                department: (
+                  <FormattedMessage id="ui-oa.affiliation.department" />
+                ),
+                dateFrom: <FormattedMessage id="ui-oa.affiliation.dateFrom" />,
+                dateTo: <FormattedMessage id="ui-oa.affiliation.dateTo" />,
+              }}
+              contentData={request?.correspondingAuthor?.affiliations}
+              visibleColumns={[
+                'faculty',
+                'school',
+                'department',
+                'dateFrom',
+                'dateTo',
+              ]}
+            />
+          </Col>
+        </Row>
+      )}
     </Accordion>
-
   );
 };
 

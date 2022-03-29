@@ -9,10 +9,10 @@ import {
   PaneFooter,
   Paneset,
   PaneMenu,
-  LoadingView
+  LoadingView,
 } from '@folio/stripes/components';
 
-import PartyInfoForm from '../../PartyFormSections/PartyInfoForm/PartyInfoForm';
+import { PartyInfoForm, OtherEmailsFieldArray } from '../../PartyFormSections';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -30,13 +30,13 @@ const PartyForm = ({
   pristine,
   party,
   submitting,
-  isLoading
+  isLoading,
 }) => {
-  const renderPaneTitle = () => (
-    party ?
-      <FormattedMessage id="ui-oa.party.editPerson" /> :
+  const renderPaneTitle = () => (party ? (
+    <FormattedMessage id="ui-oa.party.editPerson" />
+    ) : (
       <FormattedMessage id="ui-oa.party.createPerson" />
-  );
+    ));
 
   const renderPaneFooter = () => {
     return (
@@ -98,6 +98,7 @@ const PartyForm = ({
         paneTitle={renderPaneTitle()}
       >
         <PartyInfoForm />
+        <OtherEmailsFieldArray />
       </Pane>
     </Paneset>
   );

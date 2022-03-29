@@ -2,7 +2,6 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { Field } from 'react-final-form';
 
 import { Col, Row, Select, TextField } from '@folio/stripes/components';
-
 import { requiredValidator } from '@folio/stripes-erm-components';
 
 const PartyInfoForm = () => {

@@ -25,10 +25,5 @@ describe('CorrespondingAuthor', () => {
       const { getByText } = renderComponent;
       expect(getByText('PartyInfo')).toBeInTheDocument();
     });
-
-    test('renders Empty list', () => {
-      const { getByText } = renderComponent;
-      expect(getByText('The list contains no items')).toBeInTheDocument();
-    });
   });
 });
