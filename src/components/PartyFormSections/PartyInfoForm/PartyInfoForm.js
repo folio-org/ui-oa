@@ -2,8 +2,9 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { Field } from 'react-final-form';
 
 import { Col, Row, Select, TextField } from '@folio/stripes/components';
-
 import { requiredValidator } from '@folio/stripes-erm-components';
+
+import OtherEmailsFieldArray from '../OtherEmailsFieldArray';
 
 const PartyInfoForm = () => {
   const intl = useIntl();
@@ -85,6 +86,11 @@ const PartyInfoForm = () => {
             label={<FormattedMessage id="ui-oa.party.mobilePhone" />}
             name="mobile"
           />
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={9}>
+          <OtherEmailsFieldArray />
         </Col>
       </Row>
     </>
