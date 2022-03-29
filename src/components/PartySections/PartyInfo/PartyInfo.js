@@ -165,11 +165,7 @@ const renderStreetAddresses = (streetAddresses) => {
   );
 };
 
-const PartyInfo = ({
-  party,
-  streetAddresses,
-  compact,
-}) => {
+const PartyInfo = ({ party, streetAddresses, compact }) => {
   return !compact ? (
     <>
       <Row>
@@ -189,7 +185,9 @@ const PartyInfo = ({
       </Row>
       <Row>{renderContactInformation(party)}</Row>
       <Row>
-        {party?.alternateEmails && renderOtherEmailAddresses(party?.alternateEmails)}
+        {party?.alternateEmails.length
+          ? renderOtherEmailAddresses(party?.alternateEmails)
+          : ''}
       </Row>
 
       {streetAddresses && (
@@ -210,7 +208,9 @@ const PartyInfo = ({
         {renderOrcidId(party?.orcidId)}
       </Row>
       <Row>
-        {party?.alternateEmails && renderOtherEmailAddresses(party?.alternateEmails)}
+        {party?.alternateEmails.length
+          ? renderOtherEmailAddresses(party?.alternateEmails)
+          : ''}
       </Row>
     </>
   );
