@@ -20,13 +20,12 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
   const history = useHistory();
   const params = useParams();
 
+  // Filter publication requests in which the corresponding author matches the current party
+  const queryParams = `?filters=correspondingAuthor.partyOwner.id==${params.id}`;
+
   const { data: publicationRequests } = useQuery(
     ['ui-oa', 'party', 'publicationRequests'],
-    () => ky('oa/publicationRequest').json()
-  );
-
-  const relatedRequests = publicationRequests?.filter(
-    (request) => request?.correspondingAuthor?.partyOwner?.id === party?.id
+    () => ky(`oa/publicationRequest${queryParams}`).json()
   );
 
   const getSectionProps = (name) => {
@@ -72,8 +71,8 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
       }
     >
       <PartyInfo {...getSectionProps('partyInfo')} />
-      {!!relatedRequests?.length && (
-        <RelatedRequests requests={relatedRequests} />
+      {!!publicationRequests?.length && (
+        <RelatedRequests requests={publicationRequests} />
       )}
     </Pane>
   );
