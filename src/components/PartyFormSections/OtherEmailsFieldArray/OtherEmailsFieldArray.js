@@ -25,7 +25,7 @@ const OtherEmailsField = ({ fields: { name } }) => {
       {items.map((email, index) => {
         return (
           <Row key={email} start="xs">
-            <Col xs={6}>
+            <Col xs={9}>
               <Field
                 component={TextField}
                 name={`${name}[${index}].email`}
