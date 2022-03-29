@@ -31,7 +31,6 @@ const CorrespondingAuthor = ({ request }) => {
       label={<FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />}
     >
       <PartyInfo
-        otherEmailAddresses={request?.otherEmailAddresses}
         party={request?.correspondingAuthor?.partyOwner}
         streetAddresses={request?.streetAddresses}
       />

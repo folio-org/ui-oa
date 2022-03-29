@@ -8,7 +8,6 @@ import ExternalLink from '../../ExternalLink';
 import urls from '../../../util/urls';
 
 const propTypes = {
-  otherEmailAddresses: PropTypes.object,
   party: PropTypes.object,
   streetAddresses: PropTypes.object,
   compact: PropTypes.bool,
@@ -42,7 +41,7 @@ const renderOtherEmailAddresses = (otherEmailAddresses) => {
           otherEmailAddresses && (
             <ul>
               {otherEmailAddresses.map((email) => (
-                <li key={email?.id}>{email?.emailAddress}</li>
+                <li key={email?.id}>{email?.email}</li>
               ))}
             </ul>
           )
@@ -169,7 +168,6 @@ const renderStreetAddresses = (streetAddresses) => {
 const PartyInfo = ({
   party,
   streetAddresses,
-  otherEmailAddresses,
   compact,
 }) => {
   return !compact ? (
@@ -191,7 +189,7 @@ const PartyInfo = ({
       </Row>
       <Row>{renderContactInformation(party)}</Row>
       <Row>
-        {otherEmailAddresses && renderOtherEmailAddresses(otherEmailAddresses)}
+        {party?.alternateEmails && renderOtherEmailAddresses(party?.alternateEmails)}
       </Row>
 
       {streetAddresses && (
@@ -212,7 +210,7 @@ const PartyInfo = ({
         {renderOrcidId(party?.orcidId)}
       </Row>
       <Row>
-        {otherEmailAddresses && renderOtherEmailAddresses(otherEmailAddresses)}
+        {party?.alternateEmails && renderOtherEmailAddresses(party?.alternateEmails)}
       </Row>
     </>
   );
