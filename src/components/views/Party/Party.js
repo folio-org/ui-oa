@@ -21,11 +21,9 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
   const params = useParams();
 
   // Filter publication requests in which the corresponding author matches the current party
-  const queryParams = `?filters=correspondingAuthor.partyOwner.id==${params.id}`;
-
   const { data: publicationRequests } = useQuery(
-    ['ui-oa', 'party', 'publicationRequests'],
-    () => ky(`oa/publicationRequest${queryParams}`).json()
+    ['ui-oa', 'party', 'publicationRequests', party.id],
+    () => ky(`oa/publicationRequest?filters=correspondingAuthor.partyOwner.id==${party.id}`).json()
   );
 
   const getSectionProps = (name) => {
