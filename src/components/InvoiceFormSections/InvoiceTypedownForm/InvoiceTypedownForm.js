@@ -75,7 +75,6 @@ const InvoiceTypedownForm = ({ charge }) => {
   return (
     <>
       {/* Field name must be "selectedInvoice" to prevent both typedowns from being opened */}
-      {/* TODO Change this component to QueryTypedown when data mutation has been added */}
       <Field
         component={QueryTypedown}
         dataFormatter={data => data?.invoices}

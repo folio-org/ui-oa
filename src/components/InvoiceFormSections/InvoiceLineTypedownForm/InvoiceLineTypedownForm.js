@@ -72,7 +72,6 @@ const InvoiceLineTypedownForm = ({ charge }) => {
 
   return (
     <>
-      {/* TODO Change this component to QueryTypedown when data mutation has been added */}
       <Field
         component={QueryTypedown}
         dataFormatter={data => data?.invoiceLines}
