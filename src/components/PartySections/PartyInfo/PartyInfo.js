@@ -185,7 +185,7 @@ const PartyInfo = ({ party, streetAddresses, compact }) => {
       </Row>
       <Row>{renderContactInformation(party)}</Row>
       <Row>
-        {party?.alternateEmails.length
+        {party?.alternateEmails?.length
           ? renderOtherEmailAddresses(party?.alternateEmails)
           : ''}
       </Row>
@@ -208,7 +208,7 @@ const PartyInfo = ({ party, streetAddresses, compact }) => {
         {renderOrcidId(party?.orcidId)}
       </Row>
       <Row>
-        {party?.alternateEmails.length
+        {party?.alternateEmails?.length
           ? renderOtherEmailAddresses(party?.alternateEmails)
           : ''}
       </Row>
