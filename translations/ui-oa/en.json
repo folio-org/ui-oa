@@ -160,6 +160,7 @@
   "funders.addFunding": "Add funding",
   "funders.requestHasNone": "No funding for this publication request",
 
+  "otherEmail.addEmailAddress": "Add email address",
   "otherEmail.otherEmailAddress": "Other email address",
   "otherEmail.otherEmailAddresses": "Other email addresses",
 
@@ -193,13 +194,16 @@
   "charge.chargeInformation": "Charge information",
   "charge.publicationRequestCharge": "Publication Request Charge",
   "charge.publicationRequest": "Publication request",
+  "charge.updateExchangeRate": "Update to current exchange rate",
+  "charge.refreshExchangeRate": "Refresh exchange rate",
   "charge.title": "Charge",
   "charge.discountNote": "Discount note",
   "charge.tax": "Tax",
   "charge.taxPercentage": "Tax (%)",
   "charge.type": "Type",
   "charge.type.percentage": "%",
-  "charge.type.subtracted": "£",
+  "charge.type.subtracted": "{currency}",
+
   "charge.category": "Category",
   "charge.status": "Status",
   "charge.payer": "Payer",

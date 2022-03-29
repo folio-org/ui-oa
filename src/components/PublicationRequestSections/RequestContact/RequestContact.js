@@ -27,7 +27,6 @@ const RequestContact = ({ request }) => {
       label={<FormattedMessage id="ui-oa.publicationRequest.requestContact" />}
     >
       <PartyInfo
-        otherEmailAddresses={request?.otherEmailAddresses}
         party={request?.requestContact?.partyOwner}
         streetAddresses={request?.streetAddresses}
       />
