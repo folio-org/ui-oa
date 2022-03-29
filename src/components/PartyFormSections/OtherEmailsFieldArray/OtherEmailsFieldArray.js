@@ -56,7 +56,13 @@ OtherEmailsField.propTypes = {
 };
 
 const OtherEmailsFieldArray = () => {
-  return <FieldArray component={OtherEmailsField} name="alternateEmails" />;
+  return (
+    <Row>
+      <Col xs={12}>
+        <FieldArray component={OtherEmailsField} name="alternateEmails" />
+      </Col>
+    </Row>
+  );
 };
 
 export default OtherEmailsFieldArray;
