@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { Button, Modal, ModalFooter } from '@folio/stripes/components';
 import { useOkapiKy } from '@folio/stripes/core';
 
-import PartyInfoForm from '../../PartyFormSections/PartyInfoForm/PartyInfoForm';
+import { PartyInfoForm } from '../../PartyFormSections';
 
 const propTypes = {
   showModal: PropTypes.bool,
