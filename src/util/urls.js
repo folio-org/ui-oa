@@ -8,6 +8,9 @@ const urls = {
   partyCreate: () => '/oa/people/create',
   partyEdit: id => `/oa/people/${id}/edit`,
 
+  invoice: id => `/invoice/view/${id}`,
+  invoiceLine: (invoiceId, lineId) => `/invoice/view/${invoiceId}/line/${lineId}/view`,
+
   publicationRequests: () => '/oa/publicationRequests',
   publicationRequest: id => `/oa/publicationRequests/${id}`,
   publicationRequestCreate: () => '/oa/publicationRequests/create',
