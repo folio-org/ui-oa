@@ -5,7 +5,13 @@ import { Field, useForm, useFormState } from 'react-final-form';
 
 import { useQueryClient } from 'react-query';
 
-import { Button, Layout, IconButton, Card } from '@folio/stripes/components';
+import {
+  Button,
+  Layout,
+  IconButton,
+  Card,
+  MessageBanner,
+} from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 import { requiredValidator } from '@folio/stripes-erm-components';
 
@@ -28,6 +34,9 @@ const InvoiceLineTypedownForm = ({ charge }) => {
 
   const invoiceLinesPath = 'invoice/invoice-lines';
   const queryClient = useQueryClient();
+  const canCreate = ['Paid', 'Approved', 'Cancelled'].every((value) => {
+    return value !== values?.selectedInvoice?.status;
+  });
 
   const handleInvoiceLineChange = (invoiceLine) => {
     change('invoiceLine', invoiceLine);
@@ -51,11 +60,7 @@ const InvoiceLineTypedownForm = ({ charge }) => {
       <Layout className="textCentered">
         <Button
           buttonStyle="primary"
-          disabled={
-            values?.selectedInvoice?.status === 'Approved' ||
-            values?.selectedInvoice?.status === 'Paid' ||
-            values?.selectedInvoice?.status === 'Cancelled'
-          }
+          disabled={!canCreate}
           marginBottom0
           onClick={() => setShowInvoiceLineModal(true)}
         >
@@ -94,6 +99,11 @@ const InvoiceLineTypedownForm = ({ charge }) => {
         required
         validate={requiredValidator}
       />
+      {(!canCreate && !values?.invoiceLine) && (
+        <MessageBanner type="warning">
+          <FormattedMessage id="ui-oa.charge.invoiceLine.noNewInvoiceLine" />
+        </MessageBanner>
+      )}
       {values?.invoiceLine && (
         <Card
           cardStyle="positive"
