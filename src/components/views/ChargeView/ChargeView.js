@@ -18,7 +18,10 @@ import ChargeInfo from '../../ChargeSections/ChargeInfo';
 import { InvoiceInfo, InvoiceLineInfo } from '../../InvoiceSections';
 import urls from '../../../util/urls';
 import useOARefdata from '../../../util/useOARefdata';
-import { useInvoice, useInvoiceLine } from '../../../hooks/invoiceHooks';
+import {
+  useInvoice,
+  useInvoiceLine,
+} from '../../../hooks/invoiceHooks';
 
 const propTypes = {
   charge: PropTypes.object,
@@ -191,14 +194,19 @@ const ChargeView = ({ charge, request, refetch }) => {
             cardStyle="positive"
             headerStart={
               <AppIcon app="invoice" size="small">
-                <Link
-                  to={urls?.invoiceLine(
-                    charge?.invoiceReference,
-                    charge?.invoiceLineItemReference
-                  )}
-                >
-                  <strong>{invoiceLine?.invoiceLineNumber}</strong>
-                </Link>
+                <strong>
+                  <Link
+                    to={urls?.invoiceLine(
+                      charge?.invoiceReference,
+                      charge?.invoiceLineItemReference
+                    )}
+                  >
+                    {invoiceLine?.invoiceLineNumber}
+                    {invoiceLine?.description?.length > 50
+                      ? ', ' + invoiceLine?.description.substr(0, 49) + '...'
+                      : ', ' + invoiceLine?.description}
+                  </Link>
+                </strong>
               </AppIcon>
             }
           >
