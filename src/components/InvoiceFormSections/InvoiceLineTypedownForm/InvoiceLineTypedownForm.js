@@ -9,7 +9,10 @@ import { Button, Layout, IconButton, Card } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 import { requiredValidator } from '@folio/stripes-erm-components';
 
-import { QueryTypedown, typedownQueryKey } from '@k-int/stripes-kint-components';
+import {
+  QueryTypedown,
+  typedownQueryKey,
+} from '@k-int/stripes-kint-components';
 
 import { InvoiceLineInfo } from '../../InvoiceSections';
 import { InvoiceLineModal } from '../../Modals';
@@ -48,7 +51,11 @@ const InvoiceLineTypedownForm = ({ charge }) => {
       <Layout className="textCentered">
         <Button
           buttonStyle="primary"
-          disabled={values?.selectedInvoice?.status === 'Approved'}
+          disabled={
+            values?.selectedInvoice?.status === 'Approved' ||
+            values?.selectedInvoice?.status === 'Paid' ||
+            values?.selectedInvoice?.status === 'Cancelled'
+          }
           marginBottom0
           onClick={() => setShowInvoiceLineModal(true)}
         >
@@ -75,7 +82,7 @@ const InvoiceLineTypedownForm = ({ charge }) => {
     <>
       <Field
         component={QueryTypedown}
-        dataFormatter={data => data?.invoiceLines}
+        dataFormatter={(data) => data?.invoiceLines}
         label={
           <FormattedMessage id="ui-oa.charge.invoiceLine.addInvoiceLine" />
         }
