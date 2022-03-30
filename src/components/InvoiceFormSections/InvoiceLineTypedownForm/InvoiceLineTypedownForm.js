@@ -48,6 +48,7 @@ const InvoiceLineTypedownForm = ({ charge }) => {
       <Layout className="textCentered">
         <Button
           buttonStyle="primary"
+          disabled={values?.selectedInvoice?.status === 'Approved'}
           marginBottom0
           onClick={() => setShowInvoiceLineModal(true)}
         >
