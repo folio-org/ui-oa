@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { AppIcon, useOkapiKy } from '@folio/stripes/core';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { useMutation } from 'react-query';
 
 import {
@@ -175,7 +175,9 @@ const ChargeView = ({ charge, request, refetch }) => {
             cardStyle="positive"
             headerStart={
               <AppIcon app="invoice" size="small">
-                <strong>{invoice?.vendorInvoiceNo}</strong>
+                <Link to={urls?.invoice(charge?.invoiceReference)}>
+                  <strong>{invoice?.vendorInvoiceNo}</strong>
+                </Link>
               </AppIcon>
             }
           >
@@ -189,7 +191,14 @@ const ChargeView = ({ charge, request, refetch }) => {
             cardStyle="positive"
             headerStart={
               <AppIcon app="invoice" size="small">
-                <strong>{invoiceLine?.invoiceLineNumber}</strong>
+                <Link
+                  to={urls?.invoiceLine(
+                    charge?.invoiceReference,
+                    charge?.invoiceLineItemReference
+                  )}
+                >
+                  <strong>{invoiceLine?.invoiceLineNumber}</strong>
+                </Link>
               </AppIcon>
             }
           >
