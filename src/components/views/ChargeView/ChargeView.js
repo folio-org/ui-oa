@@ -7,33 +7,37 @@ import { useMutation } from 'react-query';
 
 import {
   Pane,
-  Row,
-  Col,
-  KeyValue,
-  Headline,
   Button,
   Icon,
   ConfirmationModal,
+  Card,
+  Row,
 } from '@folio/stripes/components';
 
+import ChargeInfo from '../../ChargeSections/ChargeInfo';
+import { InvoiceInfo, InvoiceLineInfo } from '../../InvoiceSections';
 import urls from '../../../util/urls';
 import useOARefdata from '../../../util/useOARefdata';
+import { useInvoice, useInvoiceLine } from '../../../hooks/invoiceHooks';
 
 const propTypes = {
   charge: PropTypes.object,
   request: PropTypes.object,
-  refetch: PropTypes.func
+  refetch: PropTypes.func,
 };
 
 const ChargeView = ({ charge, request, refetch }) => {
   const [showDeleteConfirmModal, setShowDeleteConfirmModal] = useState(false);
   const [showUnlinkConfirmModal, setShowUnlinkConfirmModal] = useState(false);
 
-
   const ky = useOkapiKy();
   const history = useHistory();
 
-  const expectedStatusRefData = useOARefdata('Charge.ChargeStatus').find(e => e.value === 'expected');
+  const expectedStatusRefData = useOARefdata('Charge.ChargeStatus').find(
+    (e) => e.value === 'expected'
+  );
+  const invoice = useInvoice(charge?.invoiceReference);
+  const invoiceLine = useInvoiceLine(charge?.invoiceLineItemReference);
 
   const handleClose = () => {
     refetch();
@@ -42,17 +46,21 @@ const ChargeView = ({ charge, request, refetch }) => {
 
   const { mutateAsync: deleteCharge } = useMutation(
     ['ui-oa', 'ChargeView', 'deleteCharge'],
-    (data) => ky.put(`oa/publicationRequest/${request?.id}`, { json: data }).then(() => {
-        handleClose();
-      })
+    (data) => ky
+        .put(`oa/publicationRequest/${request?.id}`, { json: data })
+        .then(() => {
+          handleClose();
+        })
   );
 
   const { mutateAsync: unlinkInvoice } = useMutation(
     ['ui-oa', 'ChargeView', 'unlinkInvoice'],
-    (data) => ky.put(`oa/publicationRequest/${request?.id}`, { json: data }).then(() => {
-        refetch();
-        setShowUnlinkConfirmModal(false);
-      })
+    (data) => ky
+        .put(`oa/publicationRequest/${request?.id}`, { json: data })
+        .then(() => {
+          refetch();
+          setShowUnlinkConfirmModal(false);
+        })
   );
 
   const handleEdit = () => {
@@ -153,106 +161,42 @@ const ChargeView = ({ charge, request, refetch }) => {
       <ConfirmationModal
         confirmLabel={<FormattedMessage id="ui-oa.charge.invoice.unlink" />}
         heading={<FormattedMessage id="ui-oa.charge.invoice.unlinkInvoice" />}
-        message={<FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceMessage" />}
+        message={
+          <FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceMessage" />
+        }
         onCancel={() => setShowUnlinkConfirmModal(false)}
         onConfirm={() => handleUnlink()}
         open={showUnlinkConfirmModal}
       />
-      <Headline margin="large" size="x-large" tag="h2">
-        <FormattedMessage id="ui-oa.charge.chargeInformation" />
-      </Headline>
-      <Row>
-        <Col xs={12}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.publicationRequest" />}
-            value={
-              request?.publicationTitle
-                ? request?.requestNumber + ' : ' + request?.publicationTitle
-                : request.requestNumber
+      <ChargeInfo charge={charge} request={request} />
+      {invoice && (
+        <Row>
+          <Card
+            cardStyle="positive"
+            headerStart={
+              <AppIcon app="invoice" size="small">
+                <strong>{invoice?.vendorInvoiceNo}</strong>
+              </AppIcon>
             }
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={3}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.category" />}
-            value={charge?.category?.label}
-          />
-        </Col>
-        <Col xs={3}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.status" />}
-            value={charge?.chargeStatus?.label}
-          />
-        </Col>
-        <Col xs={3}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.payer" />}
-            value={charge?.payer?.label}
-          />
-        </Col>
-        <Col xs={3}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.payerNote" />}
-            value={charge?.payerNote}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={3}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.amount" />}
-            value={charge?.amount?.value}
-          />
-        </Col>
-        <Col xs={3}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.currency" />}
-            value={charge?.exchangeRate?.toCurrency}
-          />
-        </Col>
-        <Col xs={3}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.exchangeRate" />}
-            value={charge?.exchangeRate?.coefficient}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={3}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.discount" />}
-            value={
-              charge?.discountType?.value === 'percentage'
-                ? charge?.discount + '%'
-                : charge?.discount
+          >
+            <InvoiceInfo charge={charge} invoice={invoice} />
+          </Card>
+        </Row>
+      )}
+      {invoiceLine && (
+        <Row>
+          <Card
+            cardStyle="positive"
+            headerStart={
+              <AppIcon app="invoice" size="small">
+                <strong>{invoiceLine?.invoiceLineNumber}</strong>
+              </AppIcon>
             }
-          />
-        </Col>
-        <Col xs={9}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.discountNote" />}
-            value={charge?.discountNote}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={3}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.tax" />}
-            value={charge?.tax ? charge?.tax + '%' : null}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={12}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.description" />}
-            value={charge?.description}
-          />
-        </Col>
-      </Row>
+          >
+            <InvoiceLineInfo invoiceLine={invoiceLine} />
+          </Card>
+        </Row>
+      )}
     </Pane>
   );
 };

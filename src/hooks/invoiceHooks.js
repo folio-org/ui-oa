@@ -36,4 +36,38 @@ const useVendorOrg = (vendorId) => {
   return vendorOrg;
 };
 
-export { useBatchGroup, useVendorOrg };
+const useInvoice = (invoiceId) => {
+  const ky = useOkapiKy();
+
+  const { data, isLoading } = useQuery(
+    ['ui-oa', 'invoiceHooks', 'useInvoice', invoiceId],
+    () => ky(`invoice/invoices/${invoiceId}`).json()
+  );
+
+  const [invoice, setInvoice] = useState();
+  useEffect(() => {
+    if (!isLoading) {
+      setInvoice(data);
+    }
+  }, [data, isLoading]);
+  return invoice;
+};
+
+const useInvoiceLine = (invoiceLineId) => {
+  const ky = useOkapiKy();
+
+  const { data, isLoading } = useQuery(
+    ['ui-oa', 'invoiceHooks', 'useInvoice', invoiceLineId],
+    () => ky(`invoice/invoice-lines/${invoiceLineId}`).json()
+  );
+
+  const [invoiceLine, setInvoiceLine] = useState();
+  useEffect(() => {
+    if (!isLoading) {
+      setInvoiceLine(data);
+    }
+  }, [data, isLoading]);
+  return invoiceLine;
+};
+
+export { useBatchGroup, useVendorOrg, useInvoice, useInvoiceLine };

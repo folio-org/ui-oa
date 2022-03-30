@@ -40,8 +40,8 @@ const ChargeInfoForm = () => {
   const { change } = useForm();
   const stripes = useStripes();
   const { exchangeRate, isLoading, refetch } = useExchangeRateValue(
-    stripes?.currency,
-    values?.exchangeRate?.toCurrency
+    values?.exchangeRate?.toCurrency,
+    stripes?.currency
   );
 
   const [isEdit, setIsEdit] = useState(
