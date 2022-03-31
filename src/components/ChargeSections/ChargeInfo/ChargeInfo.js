@@ -67,7 +67,7 @@ const ChargeInfo = ({ request, charge }) => {
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.currency" />}
-            value={charge?.exchangeRate?.toCurrency}
+            value={charge?.amount?.baseCurrency}
           />
         </Col>
         <Col xs={3}>
