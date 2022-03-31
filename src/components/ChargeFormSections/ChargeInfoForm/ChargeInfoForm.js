@@ -40,8 +40,8 @@ const ChargeInfoForm = () => {
   const { change } = useForm();
   const stripes = useStripes();
   const { exchangeRate, isLoading, refetch } = useExchangeRateValue(
-    values?.exchangeRate?.toCurrency,
-    stripes?.currency
+    values?.amount?.baseCurrency,
+    stripes?.currency,
   );
 
   const [isEdit, setIsEdit] = useState(
@@ -79,9 +79,9 @@ const ChargeInfoForm = () => {
   const handleCurrencyChange = (currency) => {
     if (isEdit) {
       setIsEdit(false);
-      change('exchangeRate.toCurrency', currency);
+      change('amount.baseCurrency', currency);
     }
-    change('exchangeRate.toCurrency', currency);
+    change('amount.baseCurrency', currency);
   };
 
   return (
@@ -105,7 +105,7 @@ const ChargeInfoForm = () => {
           <FieldCurrency
             id="charge-currency"
             labelId="ui-oa.charge.currency"
-            name="exchangeRate.toCurrency"
+            name="amount.baseCurrency"
             onChange={handleCurrencyChange}
             required
           />
@@ -173,7 +173,7 @@ const ChargeInfoForm = () => {
                         values={{
                           currency: (
                             <CurrencySymbol
-                              currency={values?.exchangeRate?.toCurrency}
+                              currency={values?.amount?.baseCurrency}
                               stripes={stripes}
                             />
                           ),

@@ -30,7 +30,15 @@ const ChargeEditRoute = () => {
 
   const submitCharge = (values) => {
     const submitValues = {
-      charges: [values],
+      charges: [
+        {
+          ...values,
+          exchangeRate: {
+            ...values.exchangeRate,
+            fromCurrency: values?.amount?.baseCurrency,
+          },
+        },
+      ],
     };
     putCharge(submitValues);
   };

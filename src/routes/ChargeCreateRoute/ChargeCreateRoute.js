@@ -28,7 +28,7 @@ const ChargeCreateRoute = () => {
   const submitCharge = (values) => {
     const submitValues = {
       charges: [
-        { ...values, amount: { ...values.amount, baseCurrency: stripes?.currency } },
+        { ...values, exchangeRate: { ...values.exchangeRate, toCurrency: stripes?.currency } },
       ],
     };
     postCharge(submitValues);
