@@ -35,8 +35,8 @@ const InvoiceInfo = ({ invoice, charge }) => {
         </Col>
         <Col xs={3}>
           <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.invoice.paymentMethod" />}
-            value={invoice?.paymentMethod}
+            label={<FormattedMessage id="ui-oa.charge.invoice.status" />}
+            value={invoice?.status}
           />
         </Col>
         <Col xs={3}>
@@ -47,6 +47,12 @@ const InvoiceInfo = ({ invoice, charge }) => {
         </Col>
       </Row>
       <Row>
+        <Col xs={3}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.charge.invoice.paymentMethod" />}
+            value={invoice?.paymentMethod}
+          />
+        </Col>
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.currency" />}
@@ -61,6 +67,10 @@ const InvoiceInfo = ({ invoice, charge }) => {
             manualExchangeRate={invoice?.exchangeRate}
           />
         </Col>
+        <KeyValue
+          label={<FormattedMessage id="ui-oa.charge.invoice.total" />}
+          value={invoice?.total}
+        />
       </Row>
     </>
   );

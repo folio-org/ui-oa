@@ -40,6 +40,12 @@ const InvoiceLineTypedownForm = ({ charge }) => {
 
   const handleInvoiceLineChange = (invoiceLine) => {
     change('invoiceLine', invoiceLine);
+    if (invoiceLine?.total) {
+      change(
+        'selectedInvoice.total',
+        values?.selectedInvoice?.total + invoiceLine?.total
+      );
+    }
     setShowInvoiceLineModal(false);
     queryClient.invalidateQueries(typedownQueryKey(invoiceLinesPath));
   };
@@ -99,7 +105,7 @@ const InvoiceLineTypedownForm = ({ charge }) => {
         required
         validate={requiredValidator}
       />
-      {(!canCreate && !values?.invoiceLine) && (
+      {!canCreate && !values?.invoiceLine && (
         <MessageBanner type="warning">
           <FormattedMessage id="ui-oa.charge.invoiceLine.noNewInvoiceLine" />
         </MessageBanner>

@@ -230,6 +230,8 @@
   "charge.estimatedPriceSpecified": "Estimated price ({specifiedCurrency})",
   "charge.invoice.newInvoice": "New Invoice",
   "charge.invoice.invoiceDate": "Invoice date",
+  "charge.invoice.status": "Status",
+  "charge.invoice.total": "Total",
   "charge.invoice.invoiceNumber": "Invoice number",
   "charge.invoice.vendorOrganisation": "Vendor organisation",
   "charge.invoice.paymentMethod": "Payment method",
