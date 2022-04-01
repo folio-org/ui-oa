@@ -87,6 +87,7 @@ const CreateInvoiceForm = ({ batchGroups, charge }) => {
             label={<FormattedMessage id="ui-oa.charge.invoice.batchGroup" />}
             name="batchGroupId"
             required
+            validate={requiredValidator}
           />
         </Col>
       </Row>
