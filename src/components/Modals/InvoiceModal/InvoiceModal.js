@@ -32,18 +32,17 @@ const InvoiceModal = ({
 
   const { mutateAsync: postInvoice } = useMutation(
     ['ui-oa', 'InvoiceModal', 'postInvoice'],
-    (data) => ky
-        .post('invoice/invoices', { json: data })
-        .json()
-        .then((res) => {
-          handleInvoiceChange(res);
-          handleClose();
-        })
+    (data) => ky.post('invoice/invoices', { json: data }).json()
   );
 
-  const submitInvoice = (values) => {
+  const submitInvoice = (values, form) => {
     const submitValues = { ...values, source: 'User', status: 'Open' };
-    postInvoice(submitValues);
+    postInvoice(submitValues)
+      .then((res) => {
+        handleInvoiceChange(res);
+        handleClose();
+        form.restart();
+      });
   };
 
   return (
