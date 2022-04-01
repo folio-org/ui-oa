@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import arrayMutators from 'final-form-arrays';
 import { useMutation, useQuery } from 'react-query';
+import { FormattedMessage } from 'react-intl';
 
 import { useOkapiKy } from '@folio/stripes/core';
 import { FormModal } from '@k-int/stripes-kint-components';
@@ -37,12 +38,11 @@ const InvoiceModal = ({
 
   const submitInvoice = (values, form) => {
     const submitValues = { ...values, source: 'User', status: 'Open' };
-    postInvoice(submitValues)
-      .then((res) => {
-        handleInvoiceChange(res);
-        handleClose();
-        form.restart();
-      });
+    postInvoice(submitValues).then((res) => {
+      handleInvoiceChange(res);
+      handleClose();
+      form.restart();
+    });
   };
 
   return (
@@ -52,7 +52,11 @@ const InvoiceModal = ({
         exchangeRate: charge?.exchangeRate?.coefficient,
       }}
       // Setting initial values of type to serial instead of select field
-      modalProps={{ onClose: handleClose, open: showModal }}
+      modalProps={{
+        onClose: handleClose,
+        open: showModal,
+        label: <FormattedMessage id="ui-oa.charge.invoice.newInvoice" />,
+      }}
       mutators={arrayMutators}
       onSubmit={submitInvoice}
     >
