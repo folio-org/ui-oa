@@ -28,7 +28,6 @@ const InvoiceTypedownForm = ({ charge }) => {
 
   const invoicesPath = 'invoice/invoices';
   const queryClient = useQueryClient();
-  console.log(values);
 
   const handleInvoiceChange = (invoice) => {
     if (values?.invoiceLine) {
