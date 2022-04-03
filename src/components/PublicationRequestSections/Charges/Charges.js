@@ -34,20 +34,6 @@ const Charges = ({ request }) => {
     );
   };
 
-  const calculatePrice = (charge) => {
-    if (charge?.discountType?.value === 'subtracted') {
-      const withoutTax = charge?.amount?.value - charge?.discount;
-      return withoutTax + (withoutTax * charge?.tax) / 100;
-    }
-    if (charge?.discountType?.value === 'percentage') {
-      const withoutTax =
-        charge?.amount?.value -
-        (charge?.amount?.value * charge?.discount) / 100;
-      return withoutTax + (withoutTax * charge?.tax) / 100;
-    }
-    return charge?.amount?.value;
-  };
-
   const renderAddChargesButton = () => {
     return (
       <>
@@ -102,23 +88,23 @@ const Charges = ({ request }) => {
             <strong>
               <FormattedMessage
                 id="ui-oa.charge.estimatedPriceLocal"
-                values={{ localCurrency: e?.amount?.baseCurrency }}
+                values={{ localCurrency: e?.estimatedPrice?.baseCurrency }}
               />
               :{' '}
             </strong>
-            {Math.round(calculatePrice(e) * 100) / 100}
+            {e?.estimatedPrice?.value}
           </div>
           <div>
             <strong>
               <FormattedMessage
                 id="ui-oa.charge.estimatedPriceSpecified"
-                values={{ specifiedCurrency: e?.localAmount?.baseCurrency }}
+                values={{
+                  specifiedCurrency: e?.estimatedInvoicePrice?.baseCurrency,
+                }}
               />
               :{' '}
             </strong>
-            {Math.round(
-              calculatePrice(e) * e?.exchangeRate?.coefficient * 100
-            ) / 100}
+            {e?.estimatedInvoicePrice?.value}
           </div>
         </div>
       );
