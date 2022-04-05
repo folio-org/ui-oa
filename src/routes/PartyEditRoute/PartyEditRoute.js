@@ -43,7 +43,7 @@ const PartyEditRoute = () => {
         ),
         type: 'success',
       });
-      handleClose(res.id);
+      handleClose();
     })
     .catch((err) => {
       err.response.json().then((text) => {
