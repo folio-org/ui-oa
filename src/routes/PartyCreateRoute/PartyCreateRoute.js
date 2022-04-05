@@ -29,6 +29,7 @@ const PartyCreateRoute = () => {
         .catch((err) => {
           err.response.json().then((text) => {
             if (text.total) {
+              // If there are multiple errors, map the errors onto seperate callouts.
               text._embedded.errors.map((error) => callout.sendCallout({
                   message: getPartyErrorMessage(error?.message),
                   type: 'error',
