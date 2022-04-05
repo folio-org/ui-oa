@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { Form } from 'react-final-form';
+import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import arrayMutators from 'final-form-arrays';
 import { useHistory } from 'react-router-dom';
 import { useMutation } from 'react-query';
@@ -24,6 +25,20 @@ const PartyCreateRoute = () => {
         .post('oa/party', { json: data })
         .json()
         .then((res) => {
+          const party =
+            (res.title ? res.title + ' ' : '') +
+            res?.givenNames +
+            ' ' +
+            res?.familyName;
+          callout.sendCallout({
+            message: (
+              <SafeHTMLMessage
+                id="ui-oa.party.successCallout"
+                values={{ party }}
+              />
+            ),
+            type: 'success',
+          });
           handleClose(res.id);
         })
         .catch((err) => {

@@ -46,6 +46,7 @@
   "party.noResultsFound": "No results found",
   "party.uniqueOrcIdError": "Party was not saved. OrcId must be unique. A Party with OrcId {duplicateElement} already exists",
   "party.uniqueMainError": "Party was not saved. Main email must be unique. A Party with the main email {duplicateElement} already exists",
+  "party.successCallout": "Party {party} successfully created",
 
   "journal.new": "New",
   "journal.title": "Title",
