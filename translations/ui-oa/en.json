@@ -44,8 +44,8 @@
   "party.phone": "Phone",
   "party.mobilePhone": "Mobile phone",
   "party.noResultsFound": "No results found",
-  "party.uniqueOrcIdError": "Party was not saved. OrcId must be unique. A Party with OrcId {duplicateElement} already exists",
-  "party.uniqueMainError": "Party was not saved. Main email must be unique. A Party with the main email {duplicateElement} already exists",
+  "party.uniqueOrcIdError": "<strong>Error:</strong> Party was not saved. OrcId must be unique. A Party with OrcId {duplicateElement} already exists",
+  "party.uniqueMainError": "<strong>Error:</strong> Party was not saved. Main email must be unique. A Party with the main email {duplicateElement} already exists",
   "party.creationSuccessCallout": "<strong>Party created:</strong> {createdParty}",
   "party.updatedSuccessCallout": "<strong>Party updated:</strong> {updatedParty}",
 
