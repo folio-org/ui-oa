@@ -254,7 +254,7 @@
     "charge.invoiceLine.total": "Total",
     "charge.invoiceLine.newInvoiceLineMessage": "Uma nova linha de fatura será adicionada à fatura {invoiceNo} com os detalhes abaixo:",
     "charge.invoiceLine.newInvoiceLineConfirmMessage": "Selecione 'Enviar' para prosseguir.",
-    "charge.invoiceLine.noNewInvoiceLine": "You cannot generate new invoice lines for invoices which are approved, cancelled or paid",
-    "charge.invoice.status": "Status",
+    "charge.invoiceLine.noNewInvoiceLine": "Você não pode gerar novas linhas de faturas para faturas que estão aprovadas, canceladas ou pagas",
+    "charge.invoice.status": "Estado",
     "charge.invoice.total": "Total"
 }

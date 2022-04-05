@@ -206,7 +206,7 @@
     "charge.tax": "Tax",
     "charge.type": "Type",
     "charge.type.percentage": "%",
-    "charge.type.subtracted": "£",
+    "charge.type.subtracted": "{currency}",
     "charge.category": "Category",
     "charge.status": "Status",
     "charge.payer": "Payer",
