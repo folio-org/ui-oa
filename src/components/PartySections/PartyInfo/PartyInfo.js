@@ -174,7 +174,7 @@ const PartyInfo = ({ party, streetAddresses, compact }) => {
             label={<FormattedMessage id="ui-oa.party.name" />}
             value={
               <Link to={urls.party(party?.id)}>
-                {party?.title + ' '}
+                {party?.title && party?.title + ' '}
                 {party?.givenNames + ' '}
                 {party?.familyName}
               </Link>

@@ -1,12 +1,16 @@
+import { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import arrayMutators from 'final-form-arrays';
 import { useMutation } from 'react-query';
 import { FormattedMessage } from 'react-intl';
+import SafeHTMLMessage from '@folio/react-intl-safe-html';
 
-import { useOkapiKy } from '@folio/stripes/core';
+import { useOkapiKy, CalloutContext } from '@folio/stripes/core';
 import { FormModal } from '@k-int/stripes-kint-components';
+import { MessageBanner } from '@folio/stripes/components';
 
 import { PartyInfoForm } from '../../PartyFormSections';
+import getPartyErrorMessage from '../../../util/getPartyErrorMessage';
 
 const propTypes = {
   showModal: PropTypes.bool,
@@ -15,10 +19,13 @@ const propTypes = {
 };
 
 const PartyModal = ({ showModal, setShowModal, handlePartyChange }) => {
+  const [errors, setErrors] = useState();
   const ky = useOkapiKy();
+  const callout = useContext(CalloutContext);
 
   const handleClose = () => {
     setShowModal(false);
+    setErrors();
   };
 
   const { mutateAsync: postParty } = useMutation(
@@ -27,11 +34,35 @@ const PartyModal = ({ showModal, setShowModal, handlePartyChange }) => {
   );
 
   const submitParty = (values, form) => {
-    postParty(values).then((res) => {
-      handlePartyChange(res);
-      handleClose();
-      form.restart();
-    });
+    postParty(values)
+      .then((res) => {
+        handlePartyChange(res);
+        const createdParty =
+          (res.title ? res.title + ' ' : '') +
+          res?.givenNames +
+          ' ' +
+          res?.familyName;
+        callout.sendCallout({
+          message: (
+            <SafeHTMLMessage
+              id="ui-oa.party.creationSuccessCallout"
+              values={{ createdParty }}
+            />
+          ),
+          type: 'success',
+        });
+        handleClose();
+        form.restart();
+      })
+      .catch((err) => {
+        err.response.json().then((text) => {
+          if (text.total) {
+            setErrors(text?._embedded?.errors.map((e) => e?.message));
+          } else {
+            setErrors([text?.message]);
+          }
+        });
+      });
   };
 
   return (
@@ -45,6 +76,11 @@ const PartyModal = ({ showModal, setShowModal, handlePartyChange }) => {
       onSubmit={submitParty}
     >
       <PartyInfoForm />
+      {errors?.map((e) => (
+        <MessageBanner dismissable show={errors} type="error">
+          {getPartyErrorMessage(e)}
+        </MessageBanner>
+      ))}
     </FormModal>
   );
 };
