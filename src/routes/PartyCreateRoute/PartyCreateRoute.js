@@ -25,7 +25,7 @@ const PartyCreateRoute = () => {
         .post('oa/party', { json: data })
         .json()
         .then((res) => {
-          const party =
+          const createdParty =
             (res.title ? res.title + ' ' : '') +
             res?.givenNames +
             ' ' +
@@ -33,8 +33,8 @@ const PartyCreateRoute = () => {
           callout.sendCallout({
             message: (
               <SafeHTMLMessage
-                id="ui-oa.party.successCallout"
-                values={{ party }}
+                id="ui-oa.party.creationSuccessCallout"
+                values={{ createdParty }}
               />
             ),
             type: 'success',
