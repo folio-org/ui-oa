@@ -255,6 +255,6 @@
     "charge.invoiceLine.newInvoiceLineMessage": "ستتم إضافة سطر فاتورة جديد إلى الفاتورة {invoiceNo} بالتفاصيل التالية:",
     "charge.invoiceLine.newInvoiceLineConfirmMessage": "حدد 'إرسال' للمضي قدماً.",
     "charge.invoiceLine.noNewInvoiceLine": "لا يمكنك إنشاء سطور فاتورة جديدة للفواتير المقبولة، أو الملغاة أو المدفوعة",
-    "charge.invoice.status": "Status",
-    "charge.invoice.total": "Total"
+    "charge.invoice.status": "الحالة",
+    "charge.invoice.total": "الإجمالي"
 }
