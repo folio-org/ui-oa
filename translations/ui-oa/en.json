@@ -73,6 +73,9 @@
   "journal.instance.identifier.ns.issn": "ISSN",
   "journal.instance.identifier.ns.ezb": "EZB",
   "journal.instance.identifier.ns.zdb": "ZDB",
+  "journal.creationError": "<strong>Error:</strong> Unable to create a new journal, please check the details and try again",
+  "journal.creationSuccess": "<strong>Journal created:</strong> {journalTitle}",
+
 
   "publicationRequest.addFunding": "Add funding",
   "publicationRequest.addPerson": "Add person",

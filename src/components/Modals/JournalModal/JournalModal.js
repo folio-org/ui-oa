@@ -1,14 +1,15 @@
+import { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import arrayMutators from 'final-form-arrays';
 import { FormattedMessage } from 'react-intl';
 import { useMutation } from 'react-query';
 
-import { useOkapiKy } from '@folio/stripes/core';
-import { Loading, Layout } from '@folio/stripes/components';
+import SafeHTMLMessage from '@folio/react-intl-safe-html';
+import { useOkapiKy, CalloutContext } from '@folio/stripes/core';
+import { MessageBanner } from '@folio/stripes/components';
 import { FormModal } from '@k-int/stripes-kint-components';
 
 import JournalInfoForm from '../../JournalFormSections/JournalInfoForm';
-import css from './JournalModal.css';
 
 const propTypes = {
   showModal: PropTypes.bool,
@@ -18,21 +19,38 @@ const propTypes = {
 
 const JournalModal = ({ showModal, setShowModal, handleJournalChange }) => {
   const ky = useOkapiKy();
+  const callout = useContext(CalloutContext);
+  const [savedValues, setSavedValues] = useState();
 
   const handleClose = () => {
     setShowModal(false);
+    setSavedValues();
   };
 
-  const { mutateAsync: postJournal, isLoading } = useMutation(
+  const { mutateAsync: postJournal, isError } = useMutation(
     ['ui-oa', 'JournalModal', 'postJournal'],
     (data) => ky.post('oa/works/citation', { json: data }).json()
   );
 
   const submitJournal = (values, form) => {
     const submitValues = { ...values, type: 'serial' };
+    // Due to stranged nested field array interation, form values need to be saved
+    // Saved values are then used as the initial values for the form upon error
+    setSavedValues(submitValues);
     postJournal(submitValues).then((res) => {
       handleJournalChange(res);
+      callout.sendCallout({
+        message: (
+          <SafeHTMLMessage
+            id="ui-oa.journal.creationSuccess"
+            values={{ journalTitle: res?.title }}
+          />
+        ),
+        type: 'success',
+      });
       handleClose();
+      // Saved values then cleared upon successful submission
+      setSavedValues();
       form.restart();
     });
   };
@@ -40,10 +58,12 @@ const JournalModal = ({ showModal, setShowModal, handleJournalChange }) => {
   return (
     <FormModal
       // Setting initial values of type to serial instead of select field
-      initialValues={{
-        title: '',
-        instances: [{ ids: [{ ns: '', id: '' }], subType: '' }],
-      }}
+      initialValues={
+        savedValues || {
+          title: '',
+          instances: [{ ids: [{ ns: '', id: '' }], subType: '' }],
+        }
+      }
       modalProps={{
         onClose: handleClose,
         open: showModal,
@@ -52,12 +72,12 @@ const JournalModal = ({ showModal, setShowModal, handleJournalChange }) => {
       mutators={arrayMutators}
       onSubmit={submitJournal}
     >
-      {isLoading ? (
-        <Layout className={css.spinnerStyle}>
-          <Loading size="large" />
-        </Layout>
-      ) : (
-        <JournalInfoForm />
+      <JournalInfoForm />
+      {/* Saved values conditional used as isError persists when modal is closed */}
+      {savedValues && (
+        <MessageBanner dismissable show={isError} type="error">
+          <SafeHTMLMessage id="ui-oa.journal.creationError" />
+        </MessageBanner>
       )}
     </FormModal>
   );
