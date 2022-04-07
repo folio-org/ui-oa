@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import arrayMutators from 'final-form-arrays';
 import { useMutation } from 'react-query';
 import { FormattedMessage } from 'react-intl';
-import SafeHTMLMessage from '@folio/react-intl-safe-html';
 
 import { useOkapiKy, CalloutContext } from '@folio/stripes/core';
 import { FormModal } from '@k-int/stripes-kint-components';
@@ -44,7 +43,7 @@ const PartyModal = ({ showModal, setShowModal, handlePartyChange }) => {
           res?.familyName;
         callout.sendCallout({
           message: (
-            <SafeHTMLMessage
+            <FormattedMessage
               id="ui-oa.party.creationSuccessCallout"
               values={{ createdParty }}
             />

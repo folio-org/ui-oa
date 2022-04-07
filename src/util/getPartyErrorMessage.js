@@ -1,4 +1,4 @@
-import SafeHTMLMessage from '@folio/react-intl-safe-html';
+import { FormattedMessage } from 'react-intl';
 
 const getPartyErrorMessage = (message) => {
   // Example: Party was not saved. OrcId must be unique. A Party with OrcId "1" already exists
@@ -7,7 +7,7 @@ const getPartyErrorMessage = (message) => {
   const duplicateElement = '"' + message.split('"')[1] + '"';
   // duplicateElement finds the element in the message nested within quotations to use as the callout values
   return (
-    <SafeHTMLMessage
+    <FormattedMessage
       id={`ui-oa.party.unique${identifier}Error`}
       values={{ duplicateElement }}
     />

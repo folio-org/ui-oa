@@ -4,7 +4,6 @@ import arrayMutators from 'final-form-arrays';
 import { FormattedMessage } from 'react-intl';
 import { useMutation } from 'react-query';
 
-import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import { useOkapiKy, CalloutContext } from '@folio/stripes/core';
 import { MessageBanner } from '@folio/stripes/components';
 import { FormModal } from '@k-int/stripes-kint-components';
@@ -41,7 +40,7 @@ const JournalModal = ({ showModal, setShowModal, handleJournalChange }) => {
       handleJournalChange(res);
       callout.sendCallout({
         message: (
-          <SafeHTMLMessage
+          <FormattedMessage
             id="ui-oa.journal.creationSuccess"
             values={{ journalTitle: res?.title }}
           />
@@ -76,7 +75,7 @@ const JournalModal = ({ showModal, setShowModal, handleJournalChange }) => {
       {/* Saved values conditional used as isError persists when modal is closed */}
       {savedValues && (
         <MessageBanner dismissable show={isError} type="error">
-          <SafeHTMLMessage id="ui-oa.journal.creationError" />
+          <FormattedMessage id="ui-oa.journal.creationError" />
         </MessageBanner>
       )}
     </FormModal>
