@@ -1,9 +1,10 @@
 import { useContext } from 'react';
 import { Form } from 'react-final-form';
-import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import arrayMutators from 'final-form-arrays';
 import { useHistory } from 'react-router-dom';
 import { useMutation } from 'react-query';
+import { FormattedMessage } from 'react-intl';
+
 
 import { useOkapiKy, CalloutContext } from '@folio/stripes/core';
 
@@ -32,7 +33,7 @@ const PartyCreateRoute = () => {
             res?.familyName;
           callout.sendCallout({
             message: (
-              <SafeHTMLMessage
+              <FormattedMessage
                 id="ui-oa.party.creationSuccessCallout"
                 values={{ createdParty }}
               />

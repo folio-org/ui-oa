@@ -3,9 +3,9 @@ import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { useHistory } from 'react-router-dom';
 import { useMutation } from 'react-query';
+import { FormattedMessage } from 'react-intl';
 
 import { useOkapiKy, CalloutContext } from '@folio/stripes/core';
-import SafeHTMLMessage from '@folio/react-intl-safe-html';
 
 import PublicationRequestForm from '../../components/views/PublicationRequestForm';
 import publicationRequestSubmitHandler from '../../util/publicationRequestSubmitHandler';
@@ -26,7 +26,7 @@ const PublicationRequestCreateRoute = () => {
     ['ui-oa', 'PublicationRequestCreateRoute', 'postPublicationRequest'],
     (data) => ky.post('oa/publicationRequest', { json: data }).json().then(res => {
       const requestNumber = res.requestNumber;
-      callout.sendCallout({ message: <SafeHTMLMessage id="ui-oa.publicationRequest.success.callout" values={{ requestNumber }} /> });
+      callout.sendCallout({ message: <FormattedMessage id="ui-oa.publicationRequest.success.callout" values={{ requestNumber }} /> });
       handleClose(res.id);
     })
   );
