@@ -5,35 +5,35 @@ import { useQuery } from 'react-query';
 const useBatchGroup = (batchGroupId) => {
   const ky = useOkapiKy();
 
-  const { data, isLoading } = useQuery(
+  const { data, isFetching } = useQuery(
     ['ui-oa', 'invoiceHooks', 'useBatchGroup'],
     () => ky(`batch-groups/${batchGroupId}`).json()
   );
 
   const [batchGroup, setBatchGroup] = useState();
   useEffect(() => {
-    if (!isLoading) {
+    if (!isFetching) {
       setBatchGroup(data);
     }
-  }, [data, isLoading]);
-  return batchGroup;
+  }, [data, isFetching]);
+  return { batchGroup, isFetching };
 };
 
 const useVendorOrg = (vendorId) => {
   const ky = useOkapiKy();
 
-  const { data, isLoading } = useQuery(
+  const { data, isFetching } = useQuery(
     ['ui-oa', 'invoiceHooks', 'useVendorOrg'],
     () => ky(`organizations/organizations/${vendorId}`).json()
   );
 
   const [vendorOrg, setVendorOrg] = useState();
   useEffect(() => {
-    if (!isLoading) {
+    if (!isFetching) {
       setVendorOrg(data);
     }
-  }, [data, isLoading]);
-  return vendorOrg;
+  }, [data, isFetching]);
+  return { vendorOrg, isFetching };
 };
 
 const useInvoice = (invoiceId) => {

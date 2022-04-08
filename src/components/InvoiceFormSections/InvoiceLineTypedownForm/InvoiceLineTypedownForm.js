@@ -33,6 +33,8 @@ const InvoiceLineTypedownForm = ({ charge }) => {
   const [showInvoiceLineModal, setShowInvoiceLineModal] = useState(false);
 
   const invoiceLinesPath = 'invoice/invoice-lines';
+  const invoicesPath = 'invoice/invoices';
+
   const queryClient = useQueryClient();
   const canCreate = ['Paid', 'Approved', 'Cancelled'].every((value) => {
     return value !== values?.selectedInvoice?.status;
@@ -48,6 +50,7 @@ const InvoiceLineTypedownForm = ({ charge }) => {
     }
     setShowInvoiceLineModal(false);
     queryClient.invalidateQueries(typedownQueryKey(invoiceLinesPath));
+    queryClient.invalidateQueries(typedownQueryKey(invoicesPath));
   };
 
   const pathMutator = (input, path) => {
@@ -91,20 +94,22 @@ const InvoiceLineTypedownForm = ({ charge }) => {
 
   return (
     <>
-      <Field
-        component={QueryTypedown}
-        dataFormatter={(data) => data?.invoiceLines}
-        label={
-          <FormattedMessage id="ui-oa.charge.invoiceLine.addInvoiceLine" />
-        }
-        name="invoiceLine"
-        path="invoice/invoice-lines"
-        pathMutator={pathMutator}
-        renderFooter={renderFooter}
-        renderListItem={renderListItem}
-        required
-        validate={requiredValidator}
-      />
+      <div key={values?.selectedInvoice?.id}>
+        <Field
+          component={QueryTypedown}
+          dataFormatter={(data) => data?.invoiceLines}
+          label={
+            <FormattedMessage id="ui-oa.charge.invoiceLine.addInvoiceLine" />
+          }
+          name="invoiceLine"
+          path="invoice/invoice-lines"
+          pathMutator={pathMutator}
+          renderFooter={renderFooter}
+          renderListItem={renderListItem}
+          required
+          validate={requiredValidator}
+        />
+      </div>
       {!canCreate && !values?.invoiceLine && (
         <MessageBanner type="warning">
           <FormattedMessage id="ui-oa.charge.invoiceLine.noNewInvoiceLine" />
