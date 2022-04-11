@@ -138,7 +138,7 @@ const renderStreetAddresses = (address) => {
             </Col>
             <Col xs={3}>
               <KeyValue
-                label={<FormattedMessage id="ui-oa.streetAddresses.country" />}
+                label={<FormattedMessage id="ui-oa.party.streetAddress.country" />}
                 value={address?.country}
               />
             </Col>
