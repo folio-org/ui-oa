@@ -1,12 +1,15 @@
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
 
-import { Col, Row, TextField, Card } from '@folio/stripes/components';
+import { Col, Row, TextField, Card, Label } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
 
 const StreetAddress = () => {
   return (
     <>
+      <Label>
+        <FormattedMessage id="ui-oa.party.streetAddresses" />
+      </Label>
       <Card
         headerStart={
           <strong>
