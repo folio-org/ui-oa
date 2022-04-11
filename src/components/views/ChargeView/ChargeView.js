@@ -22,6 +22,7 @@ import {
   useInvoice,
   useInvoiceLine,
 } from '../../../hooks/invoiceHooks';
+import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
 
 const propTypes = {
   charge: PropTypes.object,
@@ -146,7 +147,7 @@ const ChargeView = ({ charge, request, refetch }) => {
     <Pane
       actionMenu={renderActionMenu}
       appIcon={<AppIcon app="oa" iconKey="app" size="small" />}
-      defaultWidth="55%"
+      defaultWidth={PANE_DEFAULT_WIDTH}
       dismissible
       onClose={handleClose}
       paneTitle={

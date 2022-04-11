@@ -5,6 +5,7 @@ import { useQuery } from 'react-query';
 import { LoadingPane } from '@folio/stripes/components';
 
 import ChargeView from '../../components/views/ChargeView';
+import { PANE_DEFAULT_WIDTH } from '../../constants/config';
 
 const ChargeRoute = () => {
   const ky = useOkapiKy();
@@ -17,7 +18,12 @@ const ChargeRoute = () => {
   );
 
   if (isLoading) {
-    return <LoadingPane />;
+    return (
+      <LoadingPane
+        defaultWidth={PANE_DEFAULT_WIDTH}
+        dismissable
+      />
+    );
   }
 
   const charge = publicationRequest?.charges?.find(pr => pr?.id === chId);

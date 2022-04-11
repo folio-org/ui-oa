@@ -8,6 +8,7 @@ import { Pane, Button, Icon, LoadingPane } from '@folio/stripes/components';
 
 import { PartyInfo, RelatedRequests } from '../../PartySections';
 import urls from '../../../util/urls';
+import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
 
 const propTypes = {
   onClose: PropTypes.func.isRequired,
@@ -38,7 +39,13 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
   };
 
   if (isLoading) {
-    return <LoadingPane dismissable onClose={onClose} />;
+    return (
+      <LoadingPane
+        defaultWidth={PANE_DEFAULT_WIDTH}
+        dismissable
+        onClose={onClose}
+      />
+    );
   }
 
   return (
@@ -55,7 +62,7 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
         </Button>
       )}
       appIcon={<AppIcon iconKey="app" size="small" />}
-      defaultWidth="55%"
+      defaultWidth={PANE_DEFAULT_WIDTH}
       dismissible
       onClose={onClose}
       paneTitle={
