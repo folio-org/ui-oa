@@ -4,6 +4,7 @@ import { AppIcon } from '@folio/stripes/core';
 
 import { Pane, LoadingPane } from '@folio/stripes/components';
 import JournalInstances from '../../JournalSections';
+import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
 
 const propTypes = {
   onClose: PropTypes.func.isRequired,
@@ -20,13 +21,19 @@ const Journal = ({ resource: journal, onClose, queryProps: { isLoading } }) => {
   };
 
   if (isLoading) {
-    return <LoadingPane dismissable onClose={onClose} />;
+    return (
+      <LoadingPane
+        defaultWidth={PANE_DEFAULT_WIDTH}
+        dismissable
+        onClose={onClose}
+      />
+    );
   }
 
   return (
     <Pane
       appIcon={<AppIcon iconKey="app" size="small" />}
-      defaultWidth="55%"
+      defaultWidth={PANE_DEFAULT_WIDTH}
       dismissible
       onClose={onClose}
       paneTitle={journal?.title}

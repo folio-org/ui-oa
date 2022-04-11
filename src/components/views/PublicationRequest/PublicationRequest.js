@@ -35,6 +35,7 @@ import {
 } from '../../PublicationRequestSections';
 
 import urls from '../../../util/urls';
+import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
 
 const propTypes = {
   onClose: PropTypes.func.isRequired,
@@ -74,7 +75,13 @@ const PublicationRequest = ({
   ];
 
   if (isLoading) {
-    return <LoadingPane dismissable onClose={onClose} />;
+    return (
+      <LoadingPane
+        defaultWidth={PANE_DEFAULT_WIDTH}
+        dismissable
+        onClose={onClose}
+      />
+    );
   }
 
   return (
@@ -96,7 +103,7 @@ const PublicationRequest = ({
           </Button>
         )}
         appIcon={<AppIcon app="oa" iconKey="app" size="small" />}
-        defaultWidth="55%"
+        defaultWidth={PANE_DEFAULT_WIDTH}
         dismissible
         onClose={onClose}
         paneSub={
