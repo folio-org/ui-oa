@@ -56,9 +56,9 @@
   "party.streetAddress.addressLineOne": "Address line 1",
   "party.streetAddress.addressLineTwo": "Address line 2",
   "party.streetAddress.city": "City",
-  "party.streetAddress.region": "Region",
+  "party.streetAddress.region": "State/Prov./Region",
   "party.streetAddress.country": "Country",
-  "party.streetAddress.postalCode": "Postal code",
+  "party.streetAddress.postalCode": "Zip/Postal code",
 
   "journal.new": "New",
   "journal.title": "Title",
