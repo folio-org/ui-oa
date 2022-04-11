@@ -12,7 +12,9 @@ const ChargeCreateRoute = () => {
   const ky = useOkapiKy();
   const { id } = useParams();
 
-  const perecentage = useOARefdata('Charge.DiscountType').find(e => e.label === 'percentage');
+  const perecentage = useOARefdata('Charge.DiscountType').find(
+    (e) => e.label === 'percentage'
+  );
 
   const handleClose = () => {
     history.push(`/oa/publicationRequests/${id}`);
@@ -28,7 +30,13 @@ const ChargeCreateRoute = () => {
   const submitCharge = (values) => {
     const submitValues = {
       charges: [
-        { ...values, exchangeRate: { ...values.exchangeRate, toCurrency: stripes?.currency } },
+        {
+          ...values,
+          exchangeRate: {
+            ...values.exchangeRate,
+            toCurrency: stripes?.currency,
+          },
+        },
       ],
     };
     postCharge(submitValues);
@@ -39,6 +47,7 @@ const ChargeCreateRoute = () => {
       initialValues={{
         discountType: { id: perecentage?.id },
         exchangeRate: { coefficient: 1 },
+        amount: { baseCurrency: stripes?.currency },
       }}
       mutators={arrayMutators}
       onSubmit={submitCharge}
