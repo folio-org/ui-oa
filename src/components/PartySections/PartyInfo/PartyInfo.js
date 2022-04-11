@@ -186,7 +186,7 @@ const PartyInfo = ({ party, compact }) => {
         <Row>
           <Col xs={12}>
             <Label>
-              <FormattedMessage id="ui-oa.publicationRequest.streetAddresses" />
+              <FormattedMessage id="ui-oa.party.streetAddresses" />
             </Label>
             {renderStreetAddresses(party?.streetAddress?.address)}
           </Col>
