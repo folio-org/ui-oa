@@ -197,18 +197,6 @@
   "publicationStatus.publicationStatusNote": "Status Note",
   "publicationStatus.status": "Status",
 
-  "streetAddresses.removeStreetAddress": "Remove street address {number}",
-  "streetAddresses.streetAddressTitle": "Street address {number}",
-  "streetAddresses.addressType": "Address type",
-  "streetAddresses.addressLine1": "Address line 1",
-  "streetAddresses.addressLine2": "Address line 2",
-  "streetAddresses.city": "City",
-  "streetAddresses.stateRegion": "State/Prov./Region",
-  "streetAddresses.postalCode": "Zip/Postal code",
-  "streetAddresses.country": "Country",
-  "streetAddresses.addStreetAddress": "Add street address",
-  "streetAddresses.requestHasNone": "No street addresses for this { section }",
-
   "charge.chargeInformation": "Charge information",
   "charge.publicationRequestCharge": "Publication Request Charge",
   "charge.publicationRequest": "Publication request",
