@@ -12,7 +12,11 @@ import {
   LoadingView,
 } from '@folio/stripes/components';
 
-import { PartyInfoForm, OtherEmailsFieldArray } from '../../PartyFormSections';
+import {
+  PartyInfoForm,
+  OtherEmailsFieldArray,
+  StreetAddress,
+} from '../../PartyFormSections';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -24,6 +28,8 @@ const propTypes = {
   isLoading: PropTypes.bool,
   submitting: PropTypes.bool,
 };
+
+// TODO Replace StreetAddress with StreetAddresses when domain model supports multiple street addresses
 
 const PartyForm = ({
   handlers: { onClose, onSubmit },
@@ -98,6 +104,8 @@ const PartyForm = ({
         paneTitle={renderPaneTitle()}
       >
         <PartyInfoForm />
+        <StreetAddress />
+        {/* <StreetAddressesFieldArray /> */}
         <OtherEmailsFieldArray />
       </Pane>
     </Paneset>
