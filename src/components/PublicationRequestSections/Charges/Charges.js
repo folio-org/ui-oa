@@ -72,12 +72,14 @@ const Charges = ({ request }) => {
             </strong>
             {e?.payer?.label}
           </div>
-          <div>
-            <strong>
-              <FormattedMessage id="ui-oa.charge.description" />:{' '}
-            </strong>
-            {e?.description}
-          </div>
+          {e?.description && (
+            <div>
+              <strong>
+                <FormattedMessage id="ui-oa.charge.description" />:{' '}
+              </strong>
+              {e.description}
+            </div>
+          )}
         </div>
       );
     },
@@ -110,15 +112,15 @@ const Charges = ({ request }) => {
       );
     },
     amount: (e) => {
-      return e?.amount?.value;
-    },
-    currency: (e) => {
-      return e?.amount?.baseCurrency;
+      return e?.amount?.value + ' ' + e?.amount?.baseCurrency;
     },
     discount: (e) => {
       return e?.discountType?.value === 'percentage'
         ? e?.discount + '%'
-        : e?.discount;
+        : e?.discount + ' ' + e?.amount?.baseCurrency;
+    },
+    tax: (e) => {
+      return e?.tax + '%';
     },
   };
 
@@ -136,9 +138,8 @@ const Charges = ({ request }) => {
               columnMapping={{
                 description: <FormattedMessage id="ui-oa.charge.description" />,
                 amount: <FormattedMessage id="ui-oa.charge.amount" />,
-                currency: <FormattedMessage id="ui-oa.charge.currency" />,
                 discount: <FormattedMessage id="ui-oa.charge.discount" />,
-                tax: <FormattedMessage id="ui-oa.charge.taxPercentage" />,
+                tax: <FormattedMessage id="ui-oa.charge.tax" />,
                 estimatedPrices: (
                   <FormattedMessage id="ui-oa.charge.estimatedPrices" />
                 ),
@@ -149,7 +150,6 @@ const Charges = ({ request }) => {
               visibleColumns={[
                 'description',
                 'amount',
-                'currency',
                 'discount',
                 'tax',
                 'estimatedPrices',
