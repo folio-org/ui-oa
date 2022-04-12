@@ -138,7 +138,9 @@ const renderStreetAddresses = (address) => {
             </Col>
             <Col xs={3}>
               <KeyValue
-                label={<FormattedMessage id="ui-oa.party.streetAddress.country" />}
+                label={
+                  <FormattedMessage id="ui-oa.party.streetAddress.country" />
+                }
                 value={address?.country}
               />
             </Col>
@@ -177,9 +179,8 @@ const PartyInfo = ({ party, compact }) => {
       </Row>
       <Row>{renderContactInformation(party)}</Row>
       <Row>
-        {party?.alternateEmails?.length
-          ? renderOtherEmailAddresses(party?.alternateEmails)
-          : ''}
+        {party?.alternateEmails?.length > 0 &&
+          renderOtherEmailAddresses(party?.alternateEmails)}
       </Row>
 
       {party?.streetAddress && (
@@ -200,9 +201,8 @@ const PartyInfo = ({ party, compact }) => {
         {renderOrcidId(party?.orcidId)}
       </Row>
       <Row>
-        {party?.alternateEmails?.length
-          ? renderOtherEmailAddresses(party?.alternateEmails)
-          : ''}
+        {party?.alternateEmails?.length > 0 &&
+          renderOtherEmailAddresses(party?.alternateEmails)}
       </Row>
     </>
   );

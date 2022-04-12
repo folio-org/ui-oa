@@ -1,12 +1,7 @@
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
-import {
-  Col,
-  KeyValue,
-  Row,
-  Headline
-} from '@folio/stripes/components';
+import { Col, KeyValue, Row, Headline } from '@folio/stripes/components';
 
 const propTypes = {
   request: PropTypes.object,

@@ -12,10 +12,12 @@ const BookDetails = ({ request }) => {
   return (
     <>
       <Row start="xs">
+        <Headline margin="small" size="large" tag="h5">
+          <FormattedMessage id="ui-oa.publicationRequest.bookDetails" />
+        </Headline>
+      </Row>
+      <Row>
         <Col xs={3}>
-          <Headline margin="small" size="large" tag="h5">
-            <FormattedMessage id="ui-oa.publicationRequest.bookDetails" />
-          </Headline>
           <KeyValue
             label={
               <FormattedMessage id="ui-oa.publicationRequest.publicationYear" />
@@ -31,7 +33,6 @@ const BookDetails = ({ request }) => {
             value={request?.publicationPlace}
           />
         </Col>
-        <Col xs={6} />
       </Row>
     </>
   );

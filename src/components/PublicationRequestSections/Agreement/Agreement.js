@@ -9,7 +9,6 @@ import {
   Row,
   Col,
   KeyValue,
-  NoValue,
   FormattedUTCDate,
   Layout,
 } from '@folio/stripes/components';
@@ -62,10 +61,8 @@ const Agreement = ({ request }) => {
                 <FormattedMessage id="ui-oa.publicationRequest.agreementStartDate" />
               }
               value={
-                agreement?.startDate ? (
+                agreement?.startDate && (
                   <FormattedUTCDate value={agreement.startDate} />
-                ) : (
-                  <NoValue />
                 )
               }
             />
@@ -76,10 +73,8 @@ const Agreement = ({ request }) => {
                 <FormattedMessage id="ui-oa.publicationRequest.agreementEndDate" />
               }
               value={
-                agreement?.endDate ? (
+                agreement?.endDate && (
                   <FormattedUTCDate value={agreement.endDate} />
-                ) : (
-                  <NoValue />
                 )
               }
             />
@@ -89,7 +84,7 @@ const Agreement = ({ request }) => {
               label={
                 <FormattedMessage id="ui-oa.publicationRequest.agreementStatus" />
               }
-              value={agreement?.agreementStatus?.label ?? <NoValue />}
+              value={agreement?.agreementStatus?.label}
             />
           </Col>
         </Row>

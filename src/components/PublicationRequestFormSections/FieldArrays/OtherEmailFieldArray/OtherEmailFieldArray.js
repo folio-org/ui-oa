@@ -39,17 +39,11 @@ const OtherEmailFieldArray = ({ name }) => {
     );
   };
 
-  const renderEmpty = () => {
-    return (
-      <div />
-    );
-  };
-
   return (
     <FieldArray name={name}>
       {({ fields }) => (
         <>
-          <>{fields.length ? renderOtherEmail(fields) : renderEmpty()}</>
+          <>{fields.length > 0 && renderOtherEmail(fields)}</>
           <Button onClick={() => fields.push({})}>
             <FormattedMessage id="ui-oa.publicationRequest.addOtherEmail" />
           </Button>

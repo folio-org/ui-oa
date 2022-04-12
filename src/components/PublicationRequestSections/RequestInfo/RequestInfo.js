@@ -52,13 +52,13 @@ const RequestInfo = ({ request }) => {
               <FormattedMessage id="ui-oa.publicationRequest.externalRequestIds" />
             }
             value={
-              request?.externalRequestIds?.length ? (
+              request?.externalRequestIds?.length > 0 && (
                 <ul>
                   {request?.externalRequestIds?.map((requestId) => (
                     <li key={requestId?.id}>{requestId?.externalId}</li>
                   ))}
                 </ul>
-              ) : null
+              )
             }
           />
         </Col>
