@@ -26,7 +26,10 @@ const CorrespondenceInfoForm = () => {
     CORRESPONDENCE_MODE,
   ]);
 
-  const categoryValues = selectifyRefdata(refdataValues, CORRESPONDENCE_CATEGORY);
+  const categoryValues = selectifyRefdata(
+    refdataValues,
+    CORRESPONDENCE_CATEGORY
+  );
   const statusValues = selectifyRefdata(refdataValues, CORRESPONDENCE_STATUS);
   const modeValues = selectifyRefdata(refdataValues, CORRESPONDENCE_MODE);
 
@@ -59,8 +62,7 @@ const CorrespondenceInfoForm = () => {
         <Col xs={3}>
           <Field
             component={Select}
-            dataOptions={[
-              { value: '', label: '' }, ...statusValues]}
+            dataOptions={[{ value: '', label: '' }, ...statusValues]}
             id="correspondence-status"
             label={<FormattedMessage id="ui-oa.correspondence.status" />}
             name="status.id"
@@ -71,10 +73,7 @@ const CorrespondenceInfoForm = () => {
         <Col xs={3}>
           <Field
             component={Select}
-            dataOptions={[
-              { value: '', label: '' },
-              ...modeValues
-            ]}
+            dataOptions={[{ value: '', label: '' }, ...modeValues]}
             id="correspondence-mode"
             label={<FormattedMessage id="ui-oa.correspondence.mode" />}
             name="mode.id"
@@ -87,13 +86,11 @@ const CorrespondenceInfoForm = () => {
         <Col xs={3}>
           <Field
             component={Select}
-            dataOptions={[
-              { value: '', label: '' },
-              ...categoryValues
-            ]}
+            dataOptions={[{ value: '', label: '' }, ...categoryValues]}
             id="correspondence-category"
             label={<FormattedMessage id="ui-oa.correspondence.category" />}
             name="category.id"
+            parse={v => v}
           />
         </Col>
       </Row>

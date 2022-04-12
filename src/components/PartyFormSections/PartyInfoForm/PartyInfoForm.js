@@ -35,6 +35,7 @@ const PartyInfoForm = () => {
             id="party-title"
             label={<FormattedMessage id="ui-oa.party.title" />}
             name="title"
+            parse={(v) => v}
           />
         </Col>
         <Col xs={3}>
@@ -60,6 +61,7 @@ const PartyInfoForm = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.party.orcidId" />}
             name="orcidId"
+            parse={(v) => v}
           />
         </Col>
       </Row>
@@ -69,6 +71,7 @@ const PartyInfoForm = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.party.mainEmailAddress" />}
             name="mainEmail"
+            parse={(v) => v}
           />
         </Col>
         <Col xs={3}>
@@ -76,6 +79,7 @@ const PartyInfoForm = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.party.phone" />}
             name="phone"
+            parse={(v) => v}
           />
         </Col>
         <Col xs={3}>
@@ -83,6 +87,7 @@ const PartyInfoForm = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.party.mobilePhone" />}
             name="mobile"
+            parse={(v) => v}
           />
         </Col>
       </Row>

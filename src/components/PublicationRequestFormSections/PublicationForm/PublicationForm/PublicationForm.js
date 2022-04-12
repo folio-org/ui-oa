@@ -18,12 +18,7 @@ import selectifyRefdata from '../../../../util/selectifyRefdata';
 import PublicationJournal from '../PublicationJournal';
 import PublicationBook from '../PublicationBook';
 
-const [
-  PUBLICATION_TYPE,
-  PUBLISHER,
-  SUBTYPE,
-  LICENSE,
- ] = [
+const [PUBLICATION_TYPE, PUBLISHER, SUBTYPE, LICENSE] = [
   'PublicationRequest.PublicationType',
   'PublicationRequest.Publisher',
   'PublicationRequest.Subtype',
@@ -37,19 +32,24 @@ const PublicationForm = () => {
     PUBLICATION_TYPE,
     PUBLISHER,
     SUBTYPE,
-    LICENSE
-   ]);
+    LICENSE,
+  ]);
 
-  const publicationTypeValues = selectifyRefdata(refdataValues, PUBLICATION_TYPE);
+  const publicationTypeValues = selectifyRefdata(
+    refdataValues,
+    PUBLICATION_TYPE
+  );
   const publisherValues = selectifyRefdata(refdataValues, PUBLISHER);
   const subtypeValues = selectifyRefdata(refdataValues, SUBTYPE);
   const licenseValues = selectifyRefdata(refdataValues, LICENSE);
 
   const getRDVId = (desc, value) => {
     // First filter by desc
-    const refdataDescValues = refdataValues?.find(rdc => rdc.desc === desc);
+    const refdataDescValues = refdataValues?.find((rdc) => rdc.desc === desc);
     // Then grab the values and filter by value
-    const refdataValue = refdataDescValues?.values?.find(rdv => rdv.value === value);
+    const refdataValue = refdataDescValues?.values?.find(
+      (rdv) => rdv.value === value
+    );
     // At this point we have the refdataValue object, which is an id, a value and a label (or undefined).
     // Return the id
     return refdataValue?.id;
@@ -68,6 +68,7 @@ const PublicationForm = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.doi" />}
             name="doi"
+            parse={(v) => v}
           />
         </Col>
         <Col xs={9} />
@@ -78,8 +79,11 @@ const PublicationForm = () => {
           <Field
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...publicationTypeValues]}
-            label={<FormattedMessage id="ui-oa.publicationRequest.publicationType" />}
+            label={
+              <FormattedMessage id="ui-oa.publicationRequest.publicationType" />
+            }
             name="publicationType.id"
+            parse={(v) => v}
           />
         </Col>
         <Col xs={3}>
@@ -88,6 +92,7 @@ const PublicationForm = () => {
             dataOptions={[{ value: '', label: '' }, ...subtypeValues]}
             label={<FormattedMessage id="ui-oa.publicationRequest.subtype" />}
             name="subtype.id"
+            parse={(v) => v}
           />
         </Col>
         <Col xs={3}>
@@ -96,6 +101,7 @@ const PublicationForm = () => {
             dataOptions={[{ value: '', label: '' }, ...publisherValues]}
             label={<FormattedMessage id="ui-oa.publicationRequest.publisher" />}
             name="publisher.id"
+            parse={(v) => v}
           />
         </Col>
         <Col xs={3}>
@@ -104,6 +110,7 @@ const PublicationForm = () => {
             dataOptions={[{ value: '', label: '' }, ...licenseValues]}
             label={<FormattedMessage id="ui-oa.publicationRequest.license" />}
             name="license.id"
+            parse={(v) => v}
           />
         </Col>
       </Row>
@@ -112,15 +119,21 @@ const PublicationForm = () => {
         <Col xs={6}>
           <Field
             component={TextArea}
-            label={<FormattedMessage id="ui-oa.publicationRequest.publicationTitle" />}
+            label={
+              <FormattedMessage id="ui-oa.publicationRequest.publicationTitle" />
+            }
             name="publicationTitle"
+            parse={(v) => v}
           />
         </Col>
         <Col xs={6}>
           <Field
             component={TextArea}
-            label={<FormattedMessage id="ui-oa.publicationRequest.authorNames" />}
+            label={
+              <FormattedMessage id="ui-oa.publicationRequest.authorNames" />
+            }
             name="authorNames"
+            parse={(v) => v}
           />
         </Col>
       </Row>
@@ -129,15 +142,21 @@ const PublicationForm = () => {
         <Col xs={6}>
           <Field
             component={TextField}
-            label={<FormattedMessage id="ui-oa.publicationRequest.publicationUrl" />}
+            label={
+              <FormattedMessage id="ui-oa.publicationRequest.publicationUrl" />
+            }
             name="publicationUrl"
+            parse={(v) => v}
           />
         </Col>
         <Col xs={6}>
           <Field
             component={TextField}
-            label={<FormattedMessage id="ui-oa.publicationRequest.localReference" />}
+            label={
+              <FormattedMessage id="ui-oa.publicationRequest.localReference" />
+            }
             name="localReference"
+            parse={(v) => v}
           />
         </Col>
       </Row>
@@ -156,14 +175,11 @@ const PublicationForm = () => {
         </Col>
       </Row>
 
-      {values.publicationType?.id === journalArticleId &&
+      {values.publicationType?.id === journalArticleId && (
         <PublicationJournal />
-      }
+      )}
 
-      {values.publicationType?.id === bookId &&
-        <PublicationBook />
-      }
-
+      {values.publicationType?.id === bookId && <PublicationBook />}
     </Accordion>
   );
 };

@@ -1,6 +1,10 @@
 const publicationRequestSubmitHandler = (values) => {
   const {
     agreement,
+    publicationType,
+    license,
+    publisher,
+    subtype,
     useCorrespondingAuthor: _useCorrespondingAuthor,
     correspondingAuthor,
     requestContact,
@@ -9,6 +13,7 @@ const publicationRequestSubmitHandler = (values) => {
   } = { ...values };
 
   // Explicitly set RequestParty values to null if no partyOwner, to allow unsetting of values
+  // Due to the amount of fields in publication request, this may need refactoring
   if (requestContact?.partyOwner?.id) {
     requestContact.role = 'request_contact';
     submitValues.requestContact = requestContact;
@@ -29,13 +34,37 @@ const publicationRequestSubmitHandler = (values) => {
     submitValues.agreement = null;
   }
 
+  if (publicationType?.id) {
+    submitValues.publicationType = publicationType;
+  } else {
+    submitValues.publicationType = null;
+  }
+
+  if (license?.id) {
+    submitValues.license = license;
+  } else {
+    submitValues.license = null;
+  }
+
+  if (publisher?.id) {
+    submitValues.publisher = publisher;
+  } else {
+    submitValues.publisher = null;
+  }
+
+  if (subtype?.id) {
+    submitValues.subtype = subtype;
+  } else {
+    submitValues.subtype = null;
+  }
+
   if (work) {
     submitValues.work = {
-      id: work.id
+      id: work.id,
     };
   } else {
     submitValues.work = {
-      id: ''
+      id: null,
     };
   }
 
