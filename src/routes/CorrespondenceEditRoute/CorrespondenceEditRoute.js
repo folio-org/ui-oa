@@ -1,13 +1,11 @@
 import { Form } from 'react-final-form';
-import { FormattedMessage } from 'react-intl';
 import arrayMutators from 'final-form-arrays';
 import { useHistory, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from 'react-query';
 
 import { useOkapiKy } from '@folio/stripes/core';
 
-import FormPage from '../../components/FormPage';
-import CorrespondenceInfoForm from '../../components/CorrespondenceFormSections/CorrespondenceInfoForm';
+import CorrespondenceForm from '../../components/views/CorrespondenceForm';
 
 const CorrespondenceEditRoute = () => {
   const history = useHistory();
@@ -33,10 +31,6 @@ const CorrespondenceEditRoute = () => {
     putCorrespondence(values);
   };
 
-  const renderPaneTitle = () => (
-    <FormattedMessage id="ui-oa.correspondence.editCorrespondence" />
-  );
-
   return (
     <Form
       initialValues={correspondence}
@@ -45,17 +39,14 @@ const CorrespondenceEditRoute = () => {
     >
       {({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
-          <FormPage
+          <CorrespondenceForm
+            correspondence={correspondence}
             handlers={{
               onClose: handleClose,
               onSubmit: handleSubmit,
             }}
             isLoading={isLoading}
-            name="correspondence"
-            renderPaneTitle={renderPaneTitle}
-          >
-            <CorrespondenceInfoForm />
-          </FormPage>
+          />
         </form>
       )}
     </Form>
