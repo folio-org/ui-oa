@@ -1,9 +1,13 @@
 import { Form } from 'react-final-form';
+import { FormattedMessage } from 'react-intl';
 import arrayMutators from 'final-form-arrays';
 import { useHistory, useParams } from 'react-router-dom';
-import { useOkapiKy } from '@folio/stripes/core';
 import { useMutation } from 'react-query';
-import CorrespondenceForm from '../../components/views/CorrespondenceForm';
+
+import { useOkapiKy } from '@folio/stripes/core';
+
+import FormPage from '../../components/FormPage';
+import CorrespondenceInfoForm from '../../components/CorrespondenceFormSections/CorrespondenceInfoForm';
 
 const CorrespondenceCreateRoute = () => {
   const history = useHistory();
@@ -16,25 +20,35 @@ const CorrespondenceCreateRoute = () => {
 
   const { mutateAsync: postCorrespondence } = useMutation(
     ['ui-oa', 'CorrespondenceCreateRoute', 'postCorrespondence'],
-    (data) => ky.post('oa/correspondence', { json: data }).json().then(() => {
-        handleClose();
-      })
+    (data) => ky
+        .post('oa/correspondence', { json: data })
+        .json()
+        .then(() => {
+          handleClose();
+        })
   );
   const submitCorrespondence = (values) => {
-    const submitValues = { ...values, 'owner':{ id } };
+    const submitValues = { ...values, owner: { id } };
     postCorrespondence(submitValues);
   };
+
+  const renderPaneTitle = () => (
+    <FormattedMessage id="ui-oa.correspondence.newCorrespondence" />
+  );
 
   return (
     <Form mutators={arrayMutators} onSubmit={submitCorrespondence}>
       {({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
-          <CorrespondenceForm
+          <FormPage
             handlers={{
               onClose: handleClose,
               onSubmit: handleSubmit,
             }}
-          />
+            renderPaneTitle={renderPaneTitle}
+          >
+            <CorrespondenceInfoForm />
+          </FormPage>
         </form>
       )}
     </Form>
