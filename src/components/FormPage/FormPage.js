@@ -1,5 +1,4 @@
 import { FormattedMessage } from 'react-intl';
-import { useFormState } from 'react-final-form';
 import PropTypes from 'prop-types';
 
 import {
@@ -23,20 +22,35 @@ const propTypes = {
     onClose: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
   }).isRequired,
-  isLoading: PropTypes.bool,
-  renderPaneTitle: PropTypes.func,
+  formStates: PropTypes.shape({
+    pristine: PropTypes.bool,
+    submitting: PropTypes.bool,
+    isLoading: PropTypes.bool,
+  }),
+  titleProps: PropTypes.object,
   name: PropTypes.string,
+  resource: PropTypes.object,
 };
 
 const FormPage = ({
   children,
   handlers: { onClose, onSubmit },
-  isLoading,
-  renderPaneTitle,
+  formStates: { pristine, submitting, isLoading },
+  titleProps,
   name,
+  resource,
 }) => {
-  const { pristine, submitting } = useFormState();
-
+  function capitalise(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+  const renderPaneTitle = () => (resource ? (
+    <FormattedMessage id={`ui-oa.${name}.edit${capitalise(name)}`} />
+    ) : (
+      <FormattedMessage
+        id={`ui-oa.${name}.new${capitalise(name)}`}
+        values={{ titleProps }}
+      />
+    ));
   const renderFirstMenu = () => {
     return (
       <PaneMenu>
@@ -94,7 +108,7 @@ const FormPage = ({
         firstMenu={renderFirstMenu()}
         footer={renderPaneFooter()}
         id={`pane.oa.${name}.form`}
-        paneTitle={renderPaneTitle}
+        paneTitle={renderPaneTitle()}
       >
         {children}
       </Pane>
