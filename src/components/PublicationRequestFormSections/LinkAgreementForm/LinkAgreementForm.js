@@ -31,12 +31,7 @@ const LinkAgreementForm = () => {
 
   const handleAgreementSelected = (a) => {
     setAgreement(a);
-    change('agreement.remoteId', a.id);
-  };
-
-  const handleAgreementRemoved = () => {
-    setAgreement({});
-    change('agreement.remoteId', undefined);
+    change('agreement.remoteId', a?.id);
   };
 
   return (
@@ -53,14 +48,14 @@ const LinkAgreementForm = () => {
             }
             name="withoutAgreement"
             onChange={(e) => {
-              handleAgreementRemoved();
+              handleAgreementSelected();
               change('withoutAgreement', e.target.checked);
             }}
           />
         </Col>
         <Col>
           {values.agreement && (
-            <IconButton icon="trash" onClick={() => handleAgreementRemoved()} />
+            <IconButton icon="trash" onClick={() => handleAgreementSelected()} />
           )}
         </Col>
       </Row>
