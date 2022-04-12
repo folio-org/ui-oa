@@ -34,7 +34,6 @@ const CorrespondingAuthor = ({ request }) => {
     >
       <PartyInfo
         party={request?.correspondingAuthor?.partyOwner}
-        streetAddresses={request?.streetAddresses}
       />
       {request?.correspondingAuthor?.affiliations && (
         <Row>

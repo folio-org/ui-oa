@@ -28,7 +28,6 @@ const RequestContact = ({ request }) => {
     >
       <PartyInfo
         party={request?.requestContact?.partyOwner}
-        streetAddresses={request?.streetAddresses}
       />
     </Accordion>
   );
