@@ -147,6 +147,7 @@ const ChargeInfoForm = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.charge.discount" />}
             name="discount"
+            parse={v => Number(v)}
             type="number"
             validate={composeValidators(validateNotNegative, validateAsDecimal)}
           />
@@ -191,6 +192,7 @@ const ChargeInfoForm = () => {
             component={TextArea}
             label={<FormattedMessage id="ui-oa.charge.discountNote" />}
             name="discountNote"
+            parse={v => v}
           />
         </Col>
       </Row>
@@ -246,6 +248,7 @@ const ChargeInfoForm = () => {
             component={TextArea}
             label={<FormattedMessage id="ui-oa.charge.payerNote" />}
             name="payerNote"
+            parse={v => v}
           />
         </Col>
       </Row>
@@ -256,6 +259,7 @@ const ChargeInfoForm = () => {
             fullWidth
             label={<FormattedMessage id="ui-oa.charge.description" />}
             name="description"
+            parse={v => v}
           />
         </Col>
       </Row>
