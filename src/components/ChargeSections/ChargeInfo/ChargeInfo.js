@@ -94,7 +94,7 @@ const ChargeInfo = ({ request, charge }) => {
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.tax" />}
-            value={charge?.tax ? charge?.tax + '%' : null}
+            value={charge?.tax + '%'}
           />
         </Col>
       </Row>
