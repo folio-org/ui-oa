@@ -106,11 +106,7 @@ const PublicationRequest = ({
         defaultWidth={PANE_DEFAULT_WIDTH}
         dismissible
         onClose={onClose}
-        paneSub={
-          request?.publicationTitle !== undefined
-            ? request?.publicationTitle
-            : ''
-        }
+        paneSub={request?.publicationTitle}
         paneTitle={
           <FormattedMessage
             id="ui-oa.publicationRequest.requestTitle"
