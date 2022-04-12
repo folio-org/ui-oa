@@ -7,8 +7,8 @@ import StripesHarness from '../../../test/helpers/stripesHarness';
 
 const queryClient = new QueryClient();
 
-jest.mock('../../components/FormPage', () => () => (
-  <div>FormPage</div>
+jest.mock('../../components/views/CorrespondenceForm', () => () => (
+  <div>CorrespondenceForm</div>
 ));
 
 // eslint-disable-next-line react/prop-types
@@ -29,8 +29,8 @@ describe('CorrespondenceEditRoute', () => {
     );
   });
 
-  test('renders FormPage Component', () => {
+  test('renders CorrespondenceForm Component', () => {
     const { getByText } = renderComponent;
-    expect(getByText('FormPage')).toBeInTheDocument();
+    expect(getByText('CorrespondenceForm')).toBeInTheDocument();
   });
 });
