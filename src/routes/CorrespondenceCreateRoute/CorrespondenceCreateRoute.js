@@ -45,6 +45,7 @@ const CorrespondenceCreateRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit,
             }}
+            name="correspondence"
             renderPaneTitle={renderPaneTitle}
           >
             <CorrespondenceInfoForm />

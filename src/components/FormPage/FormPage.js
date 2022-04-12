@@ -40,7 +40,7 @@ const FormPage = ({
   const renderFirstMenu = () => {
     return (
       <PaneMenu>
-        <FormattedMessage id="ui-oa.publicationRequest.closeForm">
+        <FormattedMessage id="stripes-components.close">
           {([ariaLabel]) => (
             <IconButton
               aria-label={ariaLabel}
