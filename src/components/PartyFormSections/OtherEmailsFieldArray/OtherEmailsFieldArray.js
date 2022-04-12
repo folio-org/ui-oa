@@ -28,6 +28,9 @@ const OtherEmailsField = ({ fields: { name } }) => {
             <Col xs={9}>
               <Field
                 component={TextField}
+                label={
+                  <FormattedMessage id="ui-oa.party.emailAddress" />
+                }
                 name={`${name}[${index}].email`}
                 required
                 validate={requiredValidator}

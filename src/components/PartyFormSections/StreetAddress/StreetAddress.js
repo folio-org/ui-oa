@@ -26,6 +26,7 @@ const StreetAddress = () => {
               component={TextField}
               label={<FormattedMessage id="ui-oa.party.streetAddress.name" />}
               name="streetAddress.address.name"
+              parse={(v) => v}
             />
           </Col>
           <Col xs={3}>
@@ -35,6 +36,7 @@ const StreetAddress = () => {
                 <FormattedMessage id="ui-oa.party.streetAddress.addressLineOne" />
               }
               name="streetAddress.address.addressLineOne"
+              parse={(v) => v}
             />
           </Col>
           <Col xs={3}>
@@ -44,6 +46,7 @@ const StreetAddress = () => {
                 <FormattedMessage id="ui-oa.party.streetAddress.addressLineTwo" />
               }
               name="streetAddress.address.addressLineTwo"
+              parse={(v) => v}
             />
           </Col>
           <Col xs={3}>
@@ -51,6 +54,7 @@ const StreetAddress = () => {
               component={TextField}
               label={<FormattedMessage id="ui-oa.party.streetAddress.city" />}
               name="streetAddress.address.city"
+              parse={(v) => v}
             />
           </Col>
         </Row>
@@ -60,6 +64,7 @@ const StreetAddress = () => {
               component={TextField}
               label={<FormattedMessage id="ui-oa.party.streetAddress.region" />}
               name="streetAddress.address.region"
+              parse={(v) => v}
             />
           </Col>
           <Col xs={3}>
