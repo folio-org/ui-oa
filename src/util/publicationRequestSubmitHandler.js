@@ -35,7 +35,7 @@ const publicationRequestSubmitHandler = (values) => {
     };
   } else {
     submitValues.work = {
-      id: ''
+      id: null
     };
   }
 

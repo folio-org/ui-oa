@@ -28,7 +28,13 @@ const CorrespondenceEditRoute = () => {
       })
   );
   const submitCorrespondence = (values) => {
-    putCorrespondence(values);
+    const { category, ...submitValues } = { ...values };
+    if (category?.id) {
+      submitValues.category = category;
+    } else {
+      submitValues.category = null;
+    }
+    putCorrespondence(submitValues);
   };
 
   return (
