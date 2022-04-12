@@ -90,16 +90,12 @@ const InstancesFieldArray = () => {
     );
   };
 
-  const renderEmpty = () => {
-    return <div />;
-  };
-
   return (
     <>
       <FieldArray name="instances">
         {({ fields }) => (
           <>
-            {fields.length ? renderInstance(fields) : renderEmpty()}
+            {fields.length > 0 && renderInstance(fields)}
             <Button onClick={() => fields.push({})}>
               <FormattedMessage id="ui-oa.journal.addInstance" />
             </Button>
