@@ -21,7 +21,7 @@ import {
   Paneset,
   PaneMenu,
   Row,
-  LoadingView
+  LoadingView,
 } from '@folio/stripes/components';
 
 import {
@@ -38,20 +38,16 @@ const propTypes = {
     onClose: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
   }).isRequired,
-  pristine: PropTypes.bool,
   publicationRequest: PropTypes.object,
-  submitting: PropTypes.bool,
-  isLoading: PropTypes.bool
+  isLoading: PropTypes.bool,
 };
 
 const PublicationRequestForm = ({
   handlers: { onClose, onSubmit },
-  pristine,
   publicationRequest,
-  submitting,
-  isLoading
+  isLoading,
 }) => {
-  const { values } = useFormState();
+  const { values, submitting, pristine } = useFormState();
   const { change } = useForm();
   const accordionStatusRef = React.createRef();
 

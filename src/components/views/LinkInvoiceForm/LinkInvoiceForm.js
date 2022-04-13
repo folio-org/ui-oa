@@ -13,7 +13,7 @@ import {
 import { AppIcon } from '@folio/stripes/core';
 import {
   InvoiceTypedownForm,
-  InvoiceLineTypedownForm
+  InvoiceLineTypedownForm,
 } from '../../InvoiceFormSections';
 
 const propTypes = {
@@ -21,18 +21,12 @@ const propTypes = {
     onClose: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
   }).isRequired,
-  pristine: PropTypes.bool,
-  submitting: PropTypes.bool,
   charge: PropTypes.object,
 };
 
-const LinkInvoiceForm = ({
-  handlers: { onClose, onSubmit },
-  pristine,
-  submitting,
-  charge,
-}) => {
-  const { values } = useFormState();
+const LinkInvoiceForm = ({ handlers: { onClose, onSubmit }, charge }) => {
+  const { values, pristine, submitting } = useFormState();
+
   const getSectionProps = (name) => {
     return {
       id: `link-invoice-section-${name}`,
@@ -98,9 +92,11 @@ const LinkInvoiceForm = ({
         paneTitle={renderPaneTitle()}
       >
         <InvoiceTypedownForm {...getSectionProps('invoiceTypedown')} />
-        {values?.selectedInvoice &&
-        <InvoiceLineTypedownForm {...getSectionProps('invoiceLineTypedown')} />
-        }
+        {values?.selectedInvoice && (
+          <InvoiceLineTypedownForm
+            {...getSectionProps('invoiceLineTypedown')}
+          />
+        )}
       </Pane>
     </Paneset>
   );

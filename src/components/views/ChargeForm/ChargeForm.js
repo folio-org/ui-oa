@@ -1,4 +1,5 @@
 import { FormattedMessage } from 'react-intl';
+import { useFormState } from 'react-final-form';
 import PropTypes from 'prop-types';
 
 import {
@@ -19,19 +20,19 @@ const propTypes = {
     onClose: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
   }).isRequired,
-  pristine: PropTypes.bool,
-  submitting: PropTypes.bool,
   isLoading: PropTypes.bool,
   charge: PropTypes.object,
 };
 
+const ChargeForm = ({ handlers: { onClose, onSubmit }, isLoading, charge }) => {
+  const { submitting, pristine } = useFormState();
 
-const ChargeForm = ({ handlers: { onClose, onSubmit }, pristine, submitting, isLoading, charge }) => {
-  const renderPaneTitle = () => (
-    charge ?
-      <FormattedMessage id="ui-oa.charge.editCharge" /> :
+  const renderPaneTitle = () => (charge ? (
+    <FormattedMessage id="ui-oa.charge.editCharge" />
+    ) : (
       <FormattedMessage id="ui-oa.charge.newCharge" />
-  );
+    ));
+
   const renderFirstMenu = () => {
     return (
       <PaneMenu>

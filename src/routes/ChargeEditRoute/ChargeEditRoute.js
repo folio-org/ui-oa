@@ -52,6 +52,7 @@ const ChargeEditRoute = () => {
       {({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           <ChargeForm
+            charge={charge}
             handlers={{
               onClose: handleClose,
               onSubmit: handleSubmit,
