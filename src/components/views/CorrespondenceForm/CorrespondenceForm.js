@@ -1,4 +1,5 @@
 import { FormattedMessage } from 'react-intl';
+import { useFormState } from 'react-final-form';
 import PropTypes from 'prop-types';
 
 import {
@@ -14,20 +15,19 @@ import { AppIcon } from '@folio/stripes/core';
 
 import CorrespondenceInfoForm from '../../CorrespondenceFormSections';
 
-
 const propTypes = {
   handlers: PropTypes.shape({
     onClose: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
   }).isRequired,
-  pristine: PropTypes.bool,
-  submitting: PropTypes.bool,
   isLoading: PropTypes.bool,
   correspondence: PropTypes.object,
 };
 
 
-const CorrespondenceForm = ({ handlers: { onClose, onSubmit }, pristine, submitting, isLoading, correspondence }) => {
+const CorrespondenceForm = ({ handlers: { onClose, onSubmit }, isLoading, correspondence }) => {
+  const { submitting, pristine } = useFormState();
+
   const renderPaneTitle = () => (
     correspondence ?
       <FormattedMessage id="ui-oa.correspondence.editCorrespondence" /> :

@@ -1,6 +1,6 @@
 import { FormattedMessage } from 'react-intl';
+import { useFormState } from 'react-final-form';
 import PropTypes from 'prop-types';
-import { AppIcon } from '@folio/stripes/core';
 
 import {
   Button,
@@ -11,6 +11,7 @@ import {
   PaneMenu,
   LoadingView,
 } from '@folio/stripes/components';
+import { AppIcon } from '@folio/stripes/core';
 
 import {
   PartyInfoForm,
@@ -23,21 +24,15 @@ const propTypes = {
     onClose: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
   }).isRequired,
-  pristine: PropTypes.bool,
   party: PropTypes.object,
   isLoading: PropTypes.bool,
-  submitting: PropTypes.bool,
 };
 
 // TODO Replace StreetAddress with StreetAddresses when domain model supports multiple street addresses
 
-const PartyForm = ({
-  handlers: { onClose, onSubmit },
-  pristine,
-  party,
-  submitting,
-  isLoading,
-}) => {
+const PartyForm = ({ handlers: { onClose, onSubmit }, party, isLoading }) => {
+  const { submitting, pristine } = useFormState();
+
   const renderPaneTitle = () => (party ? (
     <FormattedMessage id="ui-oa.party.editPerson" />
     ) : (
