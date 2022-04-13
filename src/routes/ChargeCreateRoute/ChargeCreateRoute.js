@@ -49,6 +49,7 @@ const ChargeCreateRoute = () => {
         exchangeRate: { coefficient: 1 },
         amount: { baseCurrency: stripes?.currency },
       }}
+      keepDirtyOnReinitialize
       mutators={arrayMutators}
       onSubmit={submitCharge}
     >
