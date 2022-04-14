@@ -16,7 +16,6 @@ import {
 } from '@folio/stripes/components';
 
 import urls from '../../../util/urls';
-import { MAX_CONTENT_LENGTH, columnWidths } from '../../../constants';
 
 import css from './Correspondence.css';
 
@@ -107,13 +106,13 @@ const Correspondence = ({ request }) => {
         <div>
           <div>
             <div>
-              {contentExpanded[e?.id] ? e?.content : e?.content.substring(0, MAX_CONTENT_LENGTH)}
+              {contentExpanded[e?.id] ? e?.content : e?.content.substring(0, 255)}
             </div>
             <strong><FormattedMessage id="ui-oa.correspondence.mode" />: </strong>
             {e?.mode?.label}
           </div>
           <div>
-            {e?.content.length > MAX_CONTENT_LENGTH && renderShowMoreButton(e?.id)}
+            {e?.content.length > 255 && renderShowMoreButton(e?.id)}
             {renderEditButton(e)}
           </div>
         </div>
@@ -143,7 +142,6 @@ const Correspondence = ({ request }) => {
               status: <FormattedMessage id="ui-oa.correspondence.status" />,
               category: <FormattedMessage id="ui-oa.correspondence.category" />
             }}
-            columnWidths={columnWidths}
             contentData={request?.correspondences}
             formatter={formatter}
             getCellClass={getCellClass}
