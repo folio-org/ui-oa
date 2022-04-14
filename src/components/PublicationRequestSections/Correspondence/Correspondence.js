@@ -12,16 +12,14 @@ import {
   Row,
   Col,
   MultiColumnList,
-  FormattedUTCDate
+  FormattedUTCDate,
 } from '@folio/stripes/components';
 
 import urls from '../../../util/urls';
-import { MAX_CONTENT_LENGTH, columnWidths } from '../../../constants';
-
 import css from './Correspondence.css';
 
 const propTypes = {
-  request: PropTypes.object
+  request: PropTypes.object,
 };
 
 const Correspondence = ({ request }) => {
@@ -29,12 +27,22 @@ const Correspondence = ({ request }) => {
   const [contentExpanded, setContentExpanded] = useState({});
 
   const handleRowClick = (e, correspondence) => {
-    history.push(`${urls.publicationRequestCorrespondenceView(request?.id, correspondence?.id)}`);
+    history.push(
+      `${urls.publicationRequestCorrespondenceView(
+        request?.id,
+        correspondence?.id
+      )}`
+    );
   };
 
   const handleEditClick = (e, correspondence) => {
     e.stopPropagation();
-    history.push(`${urls.publicationRequestCorrespondenceEdit(request?.id, correspondence?.id)}`);
+    history.push(
+      `${urls.publicationRequestCorrespondenceEdit(
+        request?.id,
+        correspondence?.id
+      )}`
+    );
   };
 
   const handleShowMoreClick = (e, id) => {
@@ -43,25 +51,27 @@ const Correspondence = ({ request }) => {
   };
 
   const renderBadge = (correspondences) => {
-    return correspondences ?
-      <Badge>{correspondences?.length}</Badge> :
-      <Badge>0</Badge>;
+    return correspondences ? (
+      <Badge>{correspondences?.length}</Badge>
+    ) : (
+      <Badge>0</Badge>
+    );
   };
 
   const renderAddCorrespondenceButton = () => {
-      return (
-        <>
-          <IfPermission perm="oa.publicationRequest.edit">
-            <Button
-              id="add-correspondence-button"
-              to={`${urls.publicationRequestCorrespondenceCreate(request?.id)}`}
-            >
-              <FormattedMessage id="ui-oa.publicationRequest.addCorrespondence" />
-            </Button>
-          </IfPermission>
-        </>
-      );
-    };
+    return (
+      <>
+        <IfPermission perm="oa.publicationRequest.edit">
+          <Button
+            id="add-correspondence-button"
+            to={`${urls.publicationRequestCorrespondenceCreate(request?.id)}`}
+          >
+            <FormattedMessage id="ui-oa.publicationRequest.addCorrespondence" />
+          </Button>
+        </IfPermission>
+      </>
+    );
+  };
 
   const renderEditButton = (correspondence) => {
     return (
@@ -84,41 +94,47 @@ const Correspondence = ({ request }) => {
         onClick={(e) => handleShowMoreClick(e, id)}
         type="button"
       >
-        {contentExpanded[id]
-        ? <FormattedMessage id="ui-oa.correspondence.showLess" />
-        : <FormattedMessage id="ui-oa.correspondence.showMore" />
-        }
+        {contentExpanded[id] ? (
+          <FormattedMessage id="ui-oa.correspondence.showLess" />
+        ) : (
+          <FormattedMessage id="ui-oa.correspondence.showMore" />
+        )}
       </button>
     );
   };
 
   const formatter = {
-    category: e => {
+    category: (e) => {
       return e?.category?.label;
     },
-    status: e => {
+    status: (e) => {
       return e?.status?.label;
     },
-    dateOfCorrespondence: e => {
+    dateOfCorrespondence: (e) => {
       return <FormattedUTCDate value={e?.dateOfCorrespondence} />;
     },
-    content: e => {
+    content: (e) => {
       return (
         <div>
           <div>
             <div>
-              {contentExpanded[e?.id] ? e?.content : e?.content.substring(0, MAX_CONTENT_LENGTH)}
+              {contentExpanded[e?.id]
+                ? e?.content
+                : e?.content.substring(0, 255)}
             </div>
-            <strong><FormattedMessage id="ui-oa.correspondence.mode" />: </strong>
+            <strong>
+              <FormattedMessage id="ui-oa.correspondence.mode" />:{' '}
+            </strong>
             {e?.mode?.label}
           </div>
           <div>
-            {e?.content.length > MAX_CONTENT_LENGTH && renderShowMoreButton(e?.id)}
+            {e?.content.length > 255 &&
+              renderShowMoreButton(e?.id)}
             {renderEditButton(e)}
           </div>
         </div>
       );
-    }
+    },
   };
 
   const getCellClass = (mclCellStyle) => {
@@ -137,19 +153,33 @@ const Correspondence = ({ request }) => {
           <MultiColumnList
             autoSize
             columnMapping={{
-              dateOfCorrespondence: <FormattedMessage id="ui-oa.correspondence.dateOfCorrespondence" />,
-              content: <FormattedMessage id="ui-oa.correspondence.descriptionAndMode" />,
-              correspondent: <FormattedMessage id="ui-oa.correspondence.correspondent" />,
+              dateOfCorrespondence: (
+                <FormattedMessage id="ui-oa.correspondence.dateOfCorrespondence" />
+              ),
+              content: (
+                <FormattedMessage id="ui-oa.correspondence.descriptionAndMode" />
+              ),
+              correspondent: (
+                <FormattedMessage id="ui-oa.correspondence.correspondent" />
+              ),
               status: <FormattedMessage id="ui-oa.correspondence.status" />,
-              category: <FormattedMessage id="ui-oa.correspondence.category" />
+              category: <FormattedMessage id="ui-oa.correspondence.category" />,
             }}
-            columnWidths={columnWidths}
+            columnWidths={{
+              content: 300,
+            }}
             contentData={request?.correspondences}
             formatter={formatter}
             getCellClass={getCellClass}
             interactive
             onRowClick={handleRowClick}
-            visibleColumns={['dateOfCorrespondence', 'content', 'correspondent', 'status', 'category']}
+            visibleColumns={[
+              'dateOfCorrespondence',
+              'content',
+              'correspondent',
+              'status',
+              'category',
+            ]}
           />
         </Col>
       </Row>
