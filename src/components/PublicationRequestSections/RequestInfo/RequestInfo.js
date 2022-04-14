@@ -46,7 +46,7 @@ const RequestInfo = ({ request }) => {
         <Col xs={3} />
       </Row>
       <Row start="xs">
-        <Col xs={3}>
+        <Col xs={12}>
           <KeyValue
             label={
               <FormattedMessage id="ui-oa.publicationRequest.externalRequestIds" />

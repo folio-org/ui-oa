@@ -144,6 +144,7 @@ const Charges = ({ request }) => {
                   <FormattedMessage id="ui-oa.charge.estimatedPrices" />
                 ),
               }}
+              columnWidths={{ description: 300 }}
               contentData={request?.charges}
               formatter={formatter}
               onRowClick={handleRowClick}
