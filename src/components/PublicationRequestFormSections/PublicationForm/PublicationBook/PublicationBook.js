@@ -4,6 +4,7 @@ import { Field } from 'react-final-form';
 
 import {
   Col,
+  Datepicker,
   Headline,
   Row,
   TextField,
@@ -23,16 +24,19 @@ const PublicationBook = () => {
       <Row end="xs">
         <Col xs={3}>
           <Field
-            component={TextField}
+            backendDateStandard="YYYY-MM-DD"
+            component={Datepicker}
             label={<FormattedMessage id="ui-oa.publicationRequest.publicationYear" />}
-            name="publicationYear"
+            name="bookDateOfPublication"
+            timeZone="UTC"
+            usePortal
           />
         </Col>
         <Col xs={3}>
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.publicationPlace" />}
-            name="publicationPlace"
+            name="bookPlaceOfPublication"
           />
         </Col>
         <Col xs={6} />
