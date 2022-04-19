@@ -6,10 +6,9 @@ import {
   KeyValue,
   Row,
   FormattedUTCDate,
-  Loading,
 } from '@folio/stripes/components';
 import { ExchangeRateValue } from '@folio/stripes-acq-components';
-import { useBatchGroup, useVendorOrg } from '../../../hooks/invoiceHooks';
+import { BatchGroupValue, VendorOrgValue } from './InvoiceElementValues';
 
 const propTypes = {
   invoice: PropTypes.object,
@@ -17,26 +16,6 @@ const propTypes = {
 };
 
 const InvoiceInfo = ({ invoice, charge }) => {
-  const BatchGroupValue = () => {
-    const { batchGroup, isFetching } = useBatchGroup(invoice?.batchGroupId);
-    return (
-      <KeyValue
-        label={<FormattedMessage id="ui-oa.charge.invoice.batchGroup" />}
-        value={isFetching ? <Loading /> : batchGroup?.name}
-      />
-    );
-  };
-  const VendorOrgValue = () => {
-    const { vendorOrg, isFetching } = useVendorOrg(invoice?.vendorId);
-    return (
-      <KeyValue
-        label={
-          <FormattedMessage id="ui-oa.charge.invoice.vendorOrganisation" />
-        }
-        value={isFetching ? <Loading /> : vendorOrg?.name}
-      />
-    );
-  };
   return (
     <>
       <Row>
@@ -47,7 +26,7 @@ const InvoiceInfo = ({ invoice, charge }) => {
           />
         </Col>
         <Col xs={3}>
-          <VendorOrgValue />
+          <VendorOrgValue invoice={invoice} />
         </Col>
         <Col xs={3}>
           <KeyValue
@@ -56,7 +35,7 @@ const InvoiceInfo = ({ invoice, charge }) => {
           />
         </Col>
         <Col xs={3}>
-          <BatchGroupValue />
+          <BatchGroupValue invoice={invoice} />
         </Col>
       </Row>
       <Row>
