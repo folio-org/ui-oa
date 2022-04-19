@@ -13,7 +13,7 @@ import {
   Select,
   TextArea,
 } from '@folio/stripes/components';
-
+import { requiredValidator } from '@folio/stripes-erm-components';
 import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
 
 import useOARefdata from '../../../../util/useOARefdata';
@@ -39,6 +39,8 @@ const PublicationStatusField = ({ fields: { name } }) => {
                   <FormattedMessage id="ui-oa.publicationRequest.publicationStatus" />
                 }
                 name={`${name}[${index}].publicationStatus.id`}
+                required
+                validate={requiredValidator}
               />
             </Col>
             <Col xs={3}>
@@ -49,7 +51,9 @@ const PublicationStatusField = ({ fields: { name } }) => {
                   <FormattedMessage id="ui-oa.publicationStatus.publicationStatusDate" />
                 }
                 name={`${name}[${index}].statusDate`}
+                required
                 timeZone="UTC"
+                validate={requiredValidator}
               />
             </Col>
             <Col xs={5}>
