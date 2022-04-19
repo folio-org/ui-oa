@@ -10,6 +10,7 @@ import {
   TextField,
   Row,
 } from '@folio/stripes/components';
+import { requiredValidator } from '@folio/stripes-erm-components';
 
 import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
 
@@ -32,6 +33,8 @@ const ExternalRequestIdField = ({ fields: { name } }) => {
                     <FormattedMessage id="ui-oa.externalRequestId.externalRequestId" />
                   }
                   name={`${name}[${index}].externalId`}
+                  required
+                  validate={requiredValidator}
                 />
               </Col>
               <Col xs={9}>

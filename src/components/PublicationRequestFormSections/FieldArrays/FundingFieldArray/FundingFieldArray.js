@@ -10,7 +10,7 @@ import {
   Row,
   Select,
 } from '@folio/stripes/components';
-
+import { requiredValidator } from '@folio/stripes-erm-components';
 import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
 
 import useOARefdata from '../../../../util/useOARefdata';
@@ -46,6 +46,8 @@ const FundingField = ({ fields: { name } }) => {
                     <FormattedMessage id="ui-oa.publicationRequest.aspectFunded" />
                   }
                   name={`${name}[${index}].aspectFunded.id`}
+                  required
+                  validate={requiredValidator}
                 />
               </Col>
               <Col xs={3}>
@@ -56,6 +58,8 @@ const FundingField = ({ fields: { name } }) => {
                     <FormattedMessage id="ui-oa.publicationRequest.funder" />
                   }
                   name={`${name}[${index}].funder.id`}
+                  required
+                  validate={requiredValidator}
                 />
               </Col>
               <Col xs={6}>
