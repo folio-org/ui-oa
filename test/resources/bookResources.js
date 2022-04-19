@@ -1,6 +1,6 @@
 const book = {
-    'publicationPlace': 'Test Place',
-    'publicationYear' : 'Test Year'
+    'bookPlaceOfPublication': 'Test Place',
+    'bookDateOfPublication' : '1996-10-10'
 };
 
 const handlers = {

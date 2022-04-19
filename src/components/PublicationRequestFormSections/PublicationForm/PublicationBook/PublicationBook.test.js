@@ -54,7 +54,7 @@ describe('PublicationBook', () => {
       const { getByRole } = renderComponent;
       expect(
         getByRole('textbox', { name: 'Year of publication' })
-      ).toHaveDisplayValue('Test Year');
+      ).toHaveDisplayValue('10/10/1996');
     });
 
     test('renders publication place field', () => {

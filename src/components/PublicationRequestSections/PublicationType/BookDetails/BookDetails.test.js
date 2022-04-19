@@ -36,7 +36,7 @@ describe('BookDetails', () => {
     });
 
     test('renders Year of publication  KeyValue with initial value', async () => {
-      await KeyValue('Year of publication').has({ value: 'Test Year' });
+      await KeyValue('Year of publication').has({ value: '10/10/1996' });
     });
   });
 });
