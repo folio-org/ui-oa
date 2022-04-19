@@ -6,34 +6,22 @@ const useBatchGroup = (batchGroupId) => {
   const ky = useOkapiKy();
 
   const { data, isFetching } = useQuery(
-    ['ui-oa', 'invoiceHooks', 'useBatchGroup'],
+    ['ui-oa', 'invoiceHooks', 'useBatchGroup', batchGroupId],
     () => ky(`batch-groups/${batchGroupId}`).json()
   );
 
-  const [batchGroup, setBatchGroup] = useState();
-  useEffect(() => {
-    if (!isFetching) {
-      setBatchGroup(data);
-    }
-  }, [data, isFetching]);
-  return { batchGroup, isFetching };
+  return { batchGroup: data, isFetching };
 };
 
 const useVendorOrg = (vendorId) => {
   const ky = useOkapiKy();
 
   const { data, isFetching } = useQuery(
-    ['ui-oa', 'invoiceHooks', 'useVendorOrg'],
+    ['ui-oa', 'invoiceHooks', 'useVendorOrg', vendorId],
     () => ky(`organizations/organizations/${vendorId}`).json()
   );
 
-  const [vendorOrg, setVendorOrg] = useState();
-  useEffect(() => {
-    if (!isFetching) {
-      setVendorOrg(data);
-    }
-  }, [data, isFetching]);
-  return { vendorOrg, isFetching };
+  return { vendorOrg: data, isFetching };
 };
 
 const useInvoice = (invoiceId) => {
