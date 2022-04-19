@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 
-import { Col, Headline, KeyValue, Row } from '@folio/stripes/components';
+import { Col, FormattedUTCDate, Headline, KeyValue, Row } from '@folio/stripes/components';
 
 const propTypes = {
   request: PropTypes.object,
@@ -22,7 +22,7 @@ const BookDetails = ({ request }) => {
             label={
               <FormattedMessage id="ui-oa.publicationRequest.publicationYear" />
             }
-            value={request?.publicationYear}
+            value={<FormattedUTCDate value={request?.bookDateOfPublication} />}
           />
         </Col>
         <Col xs={3}>
@@ -30,7 +30,7 @@ const BookDetails = ({ request }) => {
             label={
               <FormattedMessage id="ui-oa.publicationRequest.publicationPlace" />
             }
-            value={request?.publicationPlace}
+            value={request?.bookPlaceOfPublication}
           />
         </Col>
       </Row>
