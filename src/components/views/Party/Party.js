@@ -42,7 +42,7 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
     return (
       <LoadingPane
         defaultWidth={PANE_DEFAULT_WIDTH}
-        dismissable
+        dismissible
         onClose={onClose}
       />
     );
