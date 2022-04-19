@@ -78,7 +78,7 @@ const PublicationRequest = ({
     return (
       <LoadingPane
         defaultWidth={PANE_DEFAULT_WIDTH}
-        dismissable
+        dismissible
         onClose={onClose}
       />
     );
