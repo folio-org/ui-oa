@@ -11,7 +11,7 @@ import {
   TextField,
   Row,
 } from '@folio/stripes/components';
-
+import { requiredValidator } from '@folio/stripes-erm-components';
 import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
 
 import useOARefdata from '../../../../util/useOARefdata';
@@ -38,6 +38,8 @@ const IdentifiersField = ({ fields: { name } }) => {
                 ]}
                 label={<FormattedMessage id="ui-oa.identifiers.type" />}
                 name={`${name}[${index}].type.id`}
+                required
+                validate={requiredValidator}
               />
             </Col>
             <Col xs={3}>
@@ -45,6 +47,8 @@ const IdentifiersField = ({ fields: { name } }) => {
                 component={TextField}
                 label={<FormattedMessage id="ui-oa.identifiers.identifier" />}
                 name={`${name}[${index}].publicationIdentifier`}
+                required
+                validate={requiredValidator}
               />
             </Col>
             <Col xs={6}>
