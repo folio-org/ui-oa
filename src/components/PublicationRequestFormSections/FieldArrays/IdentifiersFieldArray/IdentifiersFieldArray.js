@@ -10,6 +10,7 @@ import {
   Select,
   TextField,
   Row,
+  Tooltip,
 } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
 import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
@@ -52,10 +53,24 @@ const IdentifiersField = ({ fields: { name } }) => {
               />
             </Col>
             <Col xs={6}>
-              <IconButton
-                icon="trash"
-                onClick={() => onDeleteField(index, identifier)}
-              />
+              <Tooltip
+                text={
+                  <FormattedMessage
+                    id="ui-oa.identifiers.removeIdentifierIndex"
+                    values={{ index: index + 1 }}
+                  />
+                }
+              >
+                {({ ref, ariaIds }) => (
+                  <IconButton
+                    ref={ref}
+                    aria-describedby={ariaIds.sub}
+                    aria-labelledby={ariaIds.text}
+                    icon="trash"
+                    onClick={() => onDeleteField(index, identifier)}
+                  />
+                )}
+              </Tooltip>
             </Col>
           </Row>
         );

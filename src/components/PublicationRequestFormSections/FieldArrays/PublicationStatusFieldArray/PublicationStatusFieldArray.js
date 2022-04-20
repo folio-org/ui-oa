@@ -12,6 +12,7 @@ import {
   Row,
   Select,
   TextArea,
+  Tooltip,
 } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
 import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
@@ -29,7 +30,11 @@ const PublicationStatusField = ({ fields: { name } }) => {
     <>
       {items.map((publicationStatus, index) => {
         return (
-          <Row key={publicationStatus + index} data-testid={`PublicationStatusFieldArray[${index}]`} start="xs">
+          <Row
+            key={publicationStatus + index}
+            data-testid={`PublicationStatusFieldArray[${index}]`}
+            start="xs"
+          >
             <Col xs={3}>
               <Field
                 autoFocus={!publicationStatus.id}
@@ -66,10 +71,24 @@ const PublicationStatusField = ({ fields: { name } }) => {
               />
             </Col>
             <Col xs={1}>
-              <IconButton
-                icon="trash"
-                onClick={() => onDeleteField(index, publicationStatus)}
-              />
+              <Tooltip
+                text={
+                  <FormattedMessage
+                    id="ui-oa.publicationStatus.removePublicationStatusIndex"
+                    values={{ index: index + 1 }}
+                  />
+                }
+              >
+                {({ ref, ariaIds }) => (
+                  <IconButton
+                    ref={ref}
+                    aria-describedby={ariaIds.sub}
+                    aria-labelledby={ariaIds.text}
+                    icon="trash"
+                    onClick={() => onDeleteField(index, publicationStatus)}
+                  />
+                )}
+              </Tooltip>
             </Col>
           </Row>
         );
