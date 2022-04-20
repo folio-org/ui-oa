@@ -10,6 +10,7 @@ import {
   TextField,
   Row,
   Label,
+  Tooltip
 } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
 import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
@@ -28,19 +29,31 @@ const OtherEmailsField = ({ fields: { name } }) => {
             <Col xs={9}>
               <Field
                 component={TextField}
-                label={
-                  <FormattedMessage id="ui-oa.party.emailAddress" />
-                }
+                label={<FormattedMessage id="ui-oa.party.emailAddress" />}
                 name={`${name}[${index}].email`}
                 required
                 validate={requiredValidator}
               />
             </Col>
             <Col xs={3}>
-              <IconButton
-                icon="trash"
-                onClick={() => onDeleteField(index, email)}
-              />
+              <Tooltip
+                text={
+                  <FormattedMessage
+                    id="ui-oa.publicationRequest.removeOtherEmailIndex"
+                    values={{ index: index + 1 }}
+                  />
+                }
+              >
+                {({ ref, ariaIds }) => (
+                  <IconButton
+                    ref={ref}
+                    aria-describedby={ariaIds.sub}
+                    aria-labelledby={ariaIds.text}
+                    icon="trash"
+                    onClick={() => onDeleteField(index, email)}
+                  />
+                )}
+              </Tooltip>
             </Col>
           </Row>
         );
