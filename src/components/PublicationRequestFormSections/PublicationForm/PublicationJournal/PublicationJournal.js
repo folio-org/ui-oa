@@ -11,6 +11,7 @@ import {
   IconButton,
   Layout,
   Button,
+  Tooltip,
 } from '@folio/stripes/components';
 import {
   generateKiwtQuery,
@@ -104,7 +105,9 @@ const PublicationJournal = () => {
           <Field
             component={QueryTypedown}
             endOfList={renderEndOFList()}
-            label={<FormattedMessage id="ui-oa.publicationRequest.addJournal" />}
+            label={
+              <FormattedMessage id="ui-oa.publicationRequest.addJournal" />
+            }
             name="work"
             path="oa/works"
             pathMutator={pathMutator}
@@ -118,7 +121,23 @@ const PublicationJournal = () => {
         <Card
           cardStyle="positive"
           headerEnd={
-            <IconButton icon="trash" onClick={() => handleWorkChange()} />
+            <Tooltip
+              text={
+                <FormattedMessage
+                  id="ui-oa.publicationRequest.removeJournal"
+                />
+              }
+            >
+              {({ ref, ariaIds }) => (
+                <IconButton
+                  ref={ref}
+                  aria-describedby={ariaIds.sub}
+                  aria-labelledby={ariaIds.text}
+                  icon="trash"
+                  onClick={() => handleWorkChange()}
+                />
+              )}
+            </Tooltip>
           }
           headerStart={<AppIcon size="small">{renderJournalLink()}</AppIcon>}
         >
