@@ -72,6 +72,7 @@ const PublicationStatusField = ({ fields: { name } }) => {
             </Col>
             <Col xs={1}>
               <Tooltip
+                id={`publication-status-${index + 1}-trash-button-tooltip`}
                 text={
                   <FormattedMessage
                     id="ui-oa.publicationStatus.removePublicationStatusIndex"

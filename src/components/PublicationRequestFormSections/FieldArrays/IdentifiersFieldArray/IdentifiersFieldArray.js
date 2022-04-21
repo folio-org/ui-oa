@@ -54,6 +54,7 @@ const IdentifiersField = ({ fields: { name } }) => {
             </Col>
             <Col xs={6}>
               <Tooltip
+                id={`identifiers-${index + 1}-trash-button-tooltip`}
                 text={
                   <FormattedMessage
                     id="ui-oa.identifiers.removeIdentifierIndex"

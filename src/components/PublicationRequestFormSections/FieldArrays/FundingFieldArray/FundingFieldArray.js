@@ -9,7 +9,7 @@ import {
   IconButton,
   Row,
   Select,
-  Tooltip
+  Tooltip,
 } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
 import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
@@ -33,7 +33,7 @@ const FundingField = ({ fields: { name } }) => {
     <>
       {items.map((funding, index) => {
         return (
-          <div key={name} data-testid={`fundingFieldArray[${index}]`}>
+          <div key={name + index} data-testid={`fundingFieldArray[${index}]`}>
             <Row middle="xs">
               <Col xs={3}>
                 <Field
@@ -65,6 +65,7 @@ const FundingField = ({ fields: { name } }) => {
               </Col>
               <Col xs={6}>
                 <Tooltip
+                  id={`funding-${index + 1}-trash-button-tooltip`}
                   text={
                     <FormattedMessage
                       id="ui-oa.publicationRequest.removeFundingIndex"

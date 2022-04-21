@@ -9,7 +9,7 @@ import {
   Checkbox,
   TextField,
   IconButton,
-  Tooltip
+  Tooltip,
 } from '@folio/stripes/components';
 
 import { Registry } from '@folio/handler-stripes-registry';
@@ -57,6 +57,7 @@ const LinkAgreementForm = () => {
         <Col>
           {values.agreement && (
             <Tooltip
+              id="agreement-trash-button-tooltip"
               text={
                 <FormattedMessage id="ui-oa.publicationRequest.removeAgreement" />
               }

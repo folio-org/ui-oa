@@ -121,6 +121,7 @@ const InvoiceLineTypedownForm = ({ charge }) => {
           cardStyle="positive"
           headerEnd={
             <Tooltip
+              id="invoice-line-trash-button-tooltip"
               text={
                 <FormattedMessage
                   id="ui-oa.charge.invoiceLine.removeInvoiceLine"

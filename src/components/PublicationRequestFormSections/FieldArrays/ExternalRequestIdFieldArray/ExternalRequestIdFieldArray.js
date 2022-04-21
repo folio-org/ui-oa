@@ -40,6 +40,7 @@ const ExternalRequestIdField = ({ fields: { name } }) => {
               </Col>
               <Col xs={9}>
                 <Tooltip
+                  id={`request-id-${index + 1}-trash-button-tooltip`}
                   text={
                     <FormattedMessage
                       id="ui-oa.publicationRequest.removeExternalRequestIdIndex"

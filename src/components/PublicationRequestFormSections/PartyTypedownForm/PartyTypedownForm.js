@@ -151,6 +151,7 @@ const PartyTypedownForm = ({ formName }) => {
               (!values.useCorrespondingAuthor ||
                 formName === 'correspondingAuthor') && (
                 <Tooltip
+                  id={`${formName}-trash-button-tooltip`}
                   text={
                     <FormattedMessage
                       id={`ui-oa.publicationRequest.removeParty.${formName}`}

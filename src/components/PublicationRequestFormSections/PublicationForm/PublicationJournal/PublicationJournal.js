@@ -122,10 +122,9 @@ const PublicationJournal = () => {
           cardStyle="positive"
           headerEnd={
             <Tooltip
+              id="publication-journal-trash-button-tooltip"
               text={
-                <FormattedMessage
-                  id="ui-oa.publicationRequest.removeJournal"
-                />
+                <FormattedMessage id="ui-oa.publicationRequest.removeJournal" />
               }
             >
               {({ ref, ariaIds }) => (

@@ -10,7 +10,7 @@ import {
   TextField,
   Row,
   Label,
-  Tooltip
+  Tooltip,
 } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
 import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
@@ -37,6 +37,7 @@ const OtherEmailsField = ({ fields: { name } }) => {
             </Col>
             <Col xs={3}>
               <Tooltip
+                id={`other-email-${index + 1}-trash-button-tooltip`}
                 text={
                   <FormattedMessage
                     id="ui-oa.publicationRequest.removeOtherEmailIndex"

@@ -11,7 +11,7 @@ import {
   TextField,
   Row,
   Select,
-  Tooltip
+  Tooltip,
 } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
 
@@ -78,6 +78,7 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
               {fields.length !== 1 && (
                 <Col xs={4}>
                   <Tooltip
+                    id={`${identifierId}-trash-button-tooltip`}
                     text={
                       <FormattedMessage
                         id="ui-oa.journal.deleteIdentifier"
