@@ -79,14 +79,14 @@ describe('ExternalRequestIdFieldArray', () => {
       const { queryByTestId } = renderComponent;
       expect(
         within(queryByTestId('externalRequestIdFieldArray[0]')).getByRole(
-          'button',
-          { name: 'trash' }
+          'tooltip',
+          { name: 'Remove external request ID 1' }
         )
       ).toBeInTheDocument();
       expect(
         within(queryByTestId('externalRequestIdFieldArray[1]')).getByRole(
-          'button',
-          { name: 'trash' }
+          'tooltip',
+          { name: 'Remove external request ID 2' }
         )
       ).toBeInTheDocument();
     });
