@@ -29,6 +29,7 @@ const InstancesFieldArray = () => {
                 fields.length !== 1 && (
                   <Col xs={9}>
                     <Tooltip
+                      id={`${instanceId}-trash-button-tooltip`}
                       text={
                         <FormattedMessage
                           id="ui-oa.journal.deleteInstance"

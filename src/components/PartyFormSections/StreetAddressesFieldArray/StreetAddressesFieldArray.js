@@ -31,6 +31,7 @@ const StreetAddressesField = ({ fields: { name } }) => {
               headerEnd={
                 <Col xs={9}>
                   <Tooltip
+                    id={`street-address-${index + 1}-trash-button-tooltip`}
                     text={
                       <FormattedMessage
                         id="ui-oa.party.streetAddress.delete"

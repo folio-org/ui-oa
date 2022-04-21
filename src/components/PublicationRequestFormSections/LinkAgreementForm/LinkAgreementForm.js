@@ -9,6 +9,7 @@ import {
   Checkbox,
   TextField,
   IconButton,
+  Tooltip,
 } from '@folio/stripes/components';
 
 import { Registry } from '@folio/handler-stripes-registry';
@@ -55,7 +56,22 @@ const LinkAgreementForm = () => {
         </Col>
         <Col>
           {values.agreement && (
-            <IconButton icon="trash" onClick={() => handleAgreementSelected()} />
+            <Tooltip
+              id="agreement-trash-button-tooltip"
+              text={
+                <FormattedMessage id="ui-oa.publicationRequest.removeAgreement" />
+              }
+            >
+              {({ ref, ariaIds }) => (
+                <IconButton
+                  ref={ref}
+                  aria-describedby={ariaIds.sub}
+                  aria-labelledby={ariaIds.text}
+                  icon="trash"
+                  onClick={() => handleAgreementSelected()}
+                />
+              )}
+            </Tooltip>
           )}
         </Col>
       </Row>

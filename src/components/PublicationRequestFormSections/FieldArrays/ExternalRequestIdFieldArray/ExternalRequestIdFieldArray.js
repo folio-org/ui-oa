@@ -9,6 +9,7 @@ import {
   IconButton,
   TextField,
   Row,
+  Tooltip,
 } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
 
@@ -38,10 +39,25 @@ const ExternalRequestIdField = ({ fields: { name } }) => {
                 />
               </Col>
               <Col xs={9}>
-                <IconButton
-                  icon="trash"
-                  onClick={() => onDeleteField(index, externalRequestId)}
-                />
+                <Tooltip
+                  id={`request-id-${index + 1}-trash-button-tooltip`}
+                  text={
+                    <FormattedMessage
+                      id="ui-oa.publicationRequest.removeExternalRequestIdIndex"
+                      values={{ index: index + 1 }}
+                    />
+                  }
+                >
+                  {({ ref, ariaIds }) => (
+                    <IconButton
+                      ref={ref}
+                      aria-describedby={ariaIds.sub}
+                      aria-labelledby={ariaIds.text}
+                      icon="trash"
+                      onClick={() => onDeleteField(index, externalRequestId)}
+                    />
+                  )}
+                </Tooltip>
               </Col>
             </Row>
           </div>

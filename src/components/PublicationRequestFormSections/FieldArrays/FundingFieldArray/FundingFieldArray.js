@@ -9,6 +9,7 @@ import {
   IconButton,
   Row,
   Select,
+  Tooltip,
 } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
 import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
@@ -32,7 +33,7 @@ const FundingField = ({ fields: { name } }) => {
     <>
       {items.map((funding, index) => {
         return (
-          <div key={name} data-testid={`fundingFieldArray[${index}]`}>
+          <div key={name + index} data-testid={`fundingFieldArray[${index}]`}>
             <Row middle="xs">
               <Col xs={3}>
                 <Field
@@ -63,10 +64,25 @@ const FundingField = ({ fields: { name } }) => {
                 />
               </Col>
               <Col xs={6}>
-                <IconButton
-                  icon="trash"
-                  onClick={() => onDeleteField(index, funding)}
-                />
+                <Tooltip
+                  id={`funding-${index + 1}-trash-button-tooltip`}
+                  text={
+                    <FormattedMessage
+                      id="ui-oa.publicationRequest.removeFundingIndex"
+                      values={{ index: index + 1 }}
+                    />
+                  }
+                >
+                  {({ ref, ariaIds }) => (
+                    <IconButton
+                      ref={ref}
+                      aria-describedby={ariaIds.sub}
+                      aria-labelledby={ariaIds.text}
+                      icon="trash"
+                      onClick={() => onDeleteField(index, funding)}
+                    />
+                  )}
+                </Tooltip>
               </Col>
             </Row>
           </div>
@@ -79,11 +95,10 @@ const FundingField = ({ fields: { name } }) => {
   );
 };
 
-
 FundingField.propTypes = {
   fields: PropTypes.shape({
-    name: PropTypes.string
-  })
+    name: PropTypes.string,
+  }),
 };
 
 const FundingFieldArray = () => {

@@ -14,6 +14,7 @@ import {
   Row,
   Col,
   Checkbox,
+  Tooltip,
 } from '@folio/stripes/components';
 import {
   generateKiwtQuery,
@@ -149,7 +150,24 @@ const PartyTypedownForm = ({ formName }) => {
             headerEnd={
               (!values.useCorrespondingAuthor ||
                 formName === 'correspondingAuthor') && (
-                <IconButton icon="trash" onClick={() => handlePartyChange()} />
+                <Tooltip
+                  id={`${formName}-trash-button-tooltip`}
+                  text={
+                    <FormattedMessage
+                      id={`ui-oa.publicationRequest.removeParty.${formName}`}
+                    />
+                  }
+                >
+                  {({ ref, ariaIds }) => (
+                    <IconButton
+                      ref={ref}
+                      aria-describedby={ariaIds.sub}
+                      aria-labelledby={ariaIds.text}
+                      icon="trash"
+                      onClick={() => handlePartyChange()}
+                    />
+                  )}
+                </Tooltip>
               )
             }
             headerStart={<AppIcon size="small">{renderPartyLink()}</AppIcon>}
