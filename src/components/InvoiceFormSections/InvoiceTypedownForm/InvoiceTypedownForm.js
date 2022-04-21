@@ -5,7 +5,13 @@ import { Field, useForm, useFormState } from 'react-final-form';
 
 import { useQueryClient } from 'react-query';
 
-import { Button, Layout, IconButton, Card } from '@folio/stripes/components';
+import {
+  Button,
+  Layout,
+  IconButton,
+  Card,
+  Tooltip,
+} from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 import { requiredValidator } from '@folio/stripes-erm-components';
 
@@ -95,7 +101,23 @@ const InvoiceTypedownForm = ({ charge }) => {
         <Card
           cardStyle="positive"
           headerEnd={
-            <IconButton icon="trash" onClick={() => handleInvoiceChange()} />
+            <Tooltip
+              text={
+                <FormattedMessage
+                  id="ui-oa.charge.invoice.removeInvoice"
+                />
+              }
+            >
+              {({ ref, ariaIds }) => (
+                <IconButton
+                  ref={ref}
+                  aria-describedby={ariaIds.sub}
+                  aria-labelledby={ariaIds.text}
+                  icon="trash"
+                  onClick={() => handleInvoiceChange()}
+                />
+              )}
+            </Tooltip>
           }
           headerStart={
             <AppIcon app="invoice" size="small">

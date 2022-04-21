@@ -11,6 +11,7 @@ import {
   IconButton,
   Card,
   MessageBanner,
+  Tooltip,
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 import { requiredValidator } from '@folio/stripes-erm-components';
@@ -119,10 +120,23 @@ const InvoiceLineTypedownForm = ({ charge }) => {
         <Card
           cardStyle="positive"
           headerEnd={
-            <IconButton
-              icon="trash"
-              onClick={() => handleInvoiceLineChange()}
-            />
+            <Tooltip
+              text={
+                <FormattedMessage
+                  id="ui-oa.charge.invoiceLine.removeInvoiceLine"
+                />
+              }
+            >
+              {({ ref, ariaIds }) => (
+                <IconButton
+                  ref={ref}
+                  aria-describedby={ariaIds.sub}
+                  aria-labelledby={ariaIds.text}
+                  icon="trash"
+                  onClick={() => handleInvoiceLineChange()}
+                />
+              )}
+            </Tooltip>
           }
           headerStart={
             <AppIcon app="invoice" size="small">

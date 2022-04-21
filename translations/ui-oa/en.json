@@ -254,8 +254,10 @@
   "charge.invoice.unlink": "Unlink",
 
   "charge.invoice.addInvoice": "Add invoice",
+  "charge.invoice.removeInvoice": "Remove invoice",
   "charge.invoiceLine.noNewInvoiceLine": "You cannot generate new invoice lines for invoices which are approved, cancelled or paid",
   "charge.invoiceLine.addInvoiceLine": "Add invoice line",
+  "charge.invoiceLine.removeInvoiceLine": "Remove invoice line",
   "charge.invoiceLine.newInvoiceLine": "New invoice line",
   "charge.invoice.useCurrentExchange": "Use current exchange rate",
   "charge.invoice.useChargeExchange": "Use charge exchange rate",
