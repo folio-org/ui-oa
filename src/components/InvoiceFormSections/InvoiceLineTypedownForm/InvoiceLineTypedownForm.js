@@ -17,6 +17,7 @@ import { AppIcon } from '@folio/stripes/core';
 import { requiredValidator } from '@folio/stripes-erm-components';
 
 import {
+  highlightString,
   QueryTypedown,
   typedownQueryKey,
 } from '@k-int/stripes-kint-components';
@@ -80,10 +81,10 @@ const InvoiceLineTypedownForm = ({ charge }) => {
     );
   };
 
-  const renderListItem = (invoiceLine) => {
+  const renderListItem = (invoiceLine, input) => {
     return (
       <>
-        {invoiceLine?.invoiceLineNumber + ', '}
+        {highlightString(input, invoiceLine?.invoiceLineNumber)}{', '}
         {invoiceLine?.description?.length > 50
           ? invoiceLine?.description.substr(0, 49) + '...'
           : invoiceLine?.description}
@@ -123,9 +124,7 @@ const InvoiceLineTypedownForm = ({ charge }) => {
             <Tooltip
               id="invoice-line-trash-button-tooltip"
               text={
-                <FormattedMessage
-                  id="ui-oa.charge.invoiceLine.removeInvoiceLine"
-                />
+                <FormattedMessage id="ui-oa.charge.invoiceLine.removeInvoiceLine" />
               }
             >
               {({ ref, ariaIds }) => (
