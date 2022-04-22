@@ -44,6 +44,7 @@ const PartyTypedownForm = ({ formName }) => {
       },
       {
         query: input,
+        sort: 'familyName',
       }
     );
     return `${path}${query}`;
@@ -70,7 +71,8 @@ const PartyTypedownForm = ({ formName }) => {
   const renderListItem = (party, input) => {
     return (
       <>
-        {party?.title} {highlightString(input, party?.familyName)}{', '}
+        {party?.title} {highlightString(input, party?.familyName)}
+        {', '}
         {highlightString(input, party?.givenNames)}
         {party?.orcidId && ' - ' + party.orcidId}
         {party?.mainEmail && ' - ' + party.mainEmail}
