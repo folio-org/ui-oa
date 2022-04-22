@@ -5,5 +5,5 @@ export {
   SETTINGS_ENDPOINT
 };
 
-const PANE_DEFAULT_WIDTH = '25%';
+const PANE_DEFAULT_WIDTH = '35%';
 export { PANE_DEFAULT_WIDTH };
