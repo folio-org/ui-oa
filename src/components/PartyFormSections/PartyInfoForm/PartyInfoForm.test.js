@@ -1,6 +1,5 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl, TestForm } from '@folio/stripes-erm-components/test/jest/helpers';
-import { Select } from '@folio/stripes-testing';
 import translationsProperties from '../../../../test/helpers';
 import PartyInfoForm from './PartyInfoForm';
 import { party, handlers } from '../../../../test/resources/partyResources';
@@ -17,9 +16,10 @@ describe('PartyInfoForm', () => {
         translationsProperties
       );
     });
-    test('renders title select', async () => {
-        await Select({ id : 'party-title' }).exists();
-      });
+    test('renders Title field', () => {
+      const { getByRole } = renderComponent;
+      expect(getByRole('textbox', { name: 'Title' }));
+    });
 
     test('renders Family Name field', () => {
       const { getByRole } = renderComponent;
@@ -64,7 +64,7 @@ describe('PartyInfoForm', () => {
 
     test('renders expected value in title field', () => {
         const { getByRole } = renderComponent;
-        expect(getByRole('combobox', { name: 'Title' })).toHaveDisplayValue('Dr');
+        expect(getByRole('textbox', { name: 'Title' })).toHaveDisplayValue('Dr');
       });
     test('renders expected value Family Name field', () => {
       const { getByRole } = renderComponent;
