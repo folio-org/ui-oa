@@ -17,6 +17,7 @@ import {
   Tooltip,
 } from '@folio/stripes/components';
 import {
+  highlightString,
   generateKiwtQuery,
   QueryTypedown,
 } from '@k-int/stripes-kint-components';
@@ -38,11 +39,12 @@ const PartyTypedownForm = ({ formName }) => {
   const pathMutator = (input, path) => {
     const query = generateKiwtQuery(
       {
-        searchKey: 'fullName',
+        searchKey: 'familyName,givenNames',
         stats: false,
       },
       {
         query: input,
+        sort: 'familyName',
       }
     );
     return `${path}${query}`;
@@ -66,10 +68,12 @@ const PartyTypedownForm = ({ formName }) => {
     );
   };
 
-  const renderListItem = (party) => {
+  const renderListItem = (party, input) => {
     return (
       <>
-        {party?.title} {party?.familyName + ','} {party?.givenNames}
+        {party?.title} {highlightString(input, party?.familyName)}
+        {', '}
+        {highlightString(input, party?.givenNames)}
         {party?.orcidId && ' - ' + party.orcidId}
         {party?.mainEmail && ' - ' + party.mainEmail}
       </>

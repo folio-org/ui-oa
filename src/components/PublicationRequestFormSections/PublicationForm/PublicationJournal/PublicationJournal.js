@@ -14,6 +14,7 @@ import {
   Tooltip,
 } from '@folio/stripes/components';
 import {
+  highlightString,
   generateKiwtQuery,
   QueryTypedown,
 } from '@k-int/stripes-kint-components';
@@ -33,7 +34,7 @@ const PublicationJournal = () => {
   const pathMutator = (input, path) => {
     const query = generateKiwtQuery(
       { searchKey: 'title', stats: false },
-      { query: input }
+      { query: input, sort: 'title' }
     );
     return `${path}${query}`;
   };
@@ -56,7 +57,7 @@ const PublicationJournal = () => {
     );
   };
 
-  const renderListItem = (work) => {
+  const renderListItem = (work, input) => {
     const printIssn = findIssnByNamespace(work, 'print');
     const electronicIssn = findIssnByNamespace(work, 'electronic');
 
@@ -64,7 +65,7 @@ const PublicationJournal = () => {
       <FormattedMessage
         id="ui-oa.publicationJournal.typedown"
         values={{
-          title: work.title,
+          title: highlightString(input, work.title),
           printIssn: printIssn?.value || '',
           electronicIssn: electronicIssn?.value || '',
         }}

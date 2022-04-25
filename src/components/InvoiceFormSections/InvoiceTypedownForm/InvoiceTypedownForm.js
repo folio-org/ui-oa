@@ -16,6 +16,7 @@ import { AppIcon } from '@folio/stripes/core';
 import { requiredValidator } from '@folio/stripes-erm-components';
 
 import {
+  highlightString,
   QueryTypedown,
   typedownQueryKey,
 } from '@k-int/stripes-kint-components';
@@ -67,10 +68,10 @@ const InvoiceTypedownForm = ({ charge }) => {
     );
   };
 
-  const renderListItem = (invoice) => {
+  const renderListItem = (invoice, input) => {
     return (
       <>
-        {invoice?.vendorInvoiceNo}
+        {highlightString(input, invoice?.vendorInvoiceNo)}
         {', ' + invoice?.status}
         {invoice?.total ? ', ' + invoice.total + ' ' + invoice?.currency : ''}
       </>
