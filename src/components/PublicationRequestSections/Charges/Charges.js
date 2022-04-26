@@ -113,7 +113,7 @@ const Charges = ({ request }) => {
               value={e?.estimatedPrice?.value}
             />
           </div>
-          {e?.exchangeRate?.toCurrency !== e?.exchangeRate?.fromCurrency && (
+          {e?.estimatedInvoicePrice?.baseCurrency !== stripes?.currency && (
             <div>
               <FormattedNumber
                 currency={e?.estimatedInvoicePrice?.baseCurrency}
