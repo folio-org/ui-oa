@@ -1,3 +1,4 @@
+/* eslint-disable react/style-prop-object */
 import PropTypes from 'prop-types';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 import { useHistory } from 'react-router-dom';
@@ -87,27 +88,21 @@ const Charges = ({ request }) => {
       return (
         <div>
           <div>
-            <strong>
-              <FormattedMessage
-                id="ui-oa.charge.estimatedPriceLocal"
-                values={{ localCurrency: e?.estimatedPrice?.baseCurrency }}
-              />
-              :{' '}
-            </strong>
-            {e?.estimatedPrice?.value}
+            <FormattedNumber
+              currency={e?.estimatedPrice?.baseCurrency}
+              style="currency"
+              value={e?.estimatedPrice?.value}
+            />
           </div>
-          <div>
-            <strong>
-              <FormattedMessage
-                id="ui-oa.charge.estimatedPriceSpecified"
-                values={{
-                  specifiedCurrency: e?.estimatedInvoicePrice?.baseCurrency,
-                }}
+          {e?.exchangeRate?.toCurrency !== e?.exchangeRate?.fromCurrency && (
+            <div>
+              <FormattedNumber
+                currency={e?.estimatedInvoicePrice?.baseCurrency}
+                style="currency"
+                value={e?.estimatedInvoicePrice?.value}
               />
-              :{' '}
-            </strong>
-            {e?.estimatedInvoicePrice?.value}
-          </div>
+            </div>
+          )}
         </div>
       );
     },
@@ -115,16 +110,21 @@ const Charges = ({ request }) => {
       return (
         <FormattedNumber
           currency={e?.amount?.baseCurrency}
-          // eslint-disable-next-line react/style-prop-object
           style="currency"
           value={e?.amount?.value}
         />
       );
     },
     discount: (e) => {
-      return e?.discountType?.value === 'percentage'
-        ? e?.discount + '%'
-        : e?.discount + ' ' + e?.amount?.baseCurrency;
+      return e?.discountType?.value === 'percentage' ? (
+        e?.discount + '%'
+      ) : (
+        <FormattedNumber
+          currency={e?.amount?.baseCurrency}
+          style="currency"
+          value={e?.discount}
+        />
+      );
     },
     tax: (e) => {
       return e?.tax + '%';
@@ -148,7 +148,7 @@ const Charges = ({ request }) => {
                 discount: <FormattedMessage id="ui-oa.charge.discount" />,
                 tax: <FormattedMessage id="ui-oa.charge.tax" />,
                 estimatedPrices: (
-                  <FormattedMessage id="ui-oa.charge.estimatedPrices" />
+                  <FormattedMessage id="ui-oa.charge.estimatedAmount" />
                 ),
               }}
               columnWidths={{ description: 300 }}
