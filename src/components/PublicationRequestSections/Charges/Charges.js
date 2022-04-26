@@ -1,5 +1,6 @@
 /* eslint-disable react/style-prop-object */
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 import { useHistory } from 'react-router-dom';
 
@@ -16,6 +17,7 @@ import {
 } from '@folio/stripes/components';
 
 import urls from '../../../util/urls';
+import getSortedItems from '../../../util/getSortedItems';
 
 const propTypes = {
   request: PropTypes.object,
@@ -24,6 +26,23 @@ const propTypes = {
 const Charges = ({ request }) => {
   const stripes = useStripes();
   const history = useHistory();
+
+  const [sortedColumn, setSortedColumn] = useState({
+    column: 'description',
+    direction: 'desc',
+  });
+
+  const sortFormatter = {
+    requestStatus: ['chargeStatus.value', 'category.value', 'payer.value'],
+    amount: ['amount.value'],
+    estimatedPrices: ['estimatedPrice.value', 'estimatedInvoicePrice.value'],
+  };
+
+  const sortedCharges = getSortedItems(
+    request?.charges,
+    sortFormatter,
+    sortedColumn
+  );
 
   const renderBadge = (charges) => {
     return charges ? <Badge>{charges?.length}</Badge> : <Badge>0</Badge>;
@@ -131,6 +150,20 @@ const Charges = ({ request }) => {
     },
   };
 
+  const onHeaderClick = (e, meta) => {
+    if (sortedColumn.column !== meta.name) {
+      setSortedColumn({
+        column: meta.name,
+        direction: 'desc',
+      });
+    } else {
+      setSortedColumn({
+        column: sortedColumn.column,
+        direction: sortedColumn.direction === 'desc' ? 'asc' : 'desc',
+      });
+    }
+  };
+
   return (
     <Accordion
       closedByDefault
@@ -152,9 +185,12 @@ const Charges = ({ request }) => {
                 ),
               }}
               columnWidths={{ description: 300 }}
-              contentData={request?.charges}
+              contentData={sortedCharges}
               formatter={formatter}
+              onHeaderClick={onHeaderClick}
               onRowClick={handleRowClick}
+              sortDirection={`${sortedColumn.direction}ending`}
+              sortedColumn={sortedColumn.column}
               visibleColumns={[
                 'description',
                 'amount',
