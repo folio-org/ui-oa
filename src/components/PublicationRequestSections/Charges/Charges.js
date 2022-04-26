@@ -33,7 +33,7 @@ const Charges = ({ request }) => {
   });
 
   const sortFormatter = {
-    requestStatus: ['chargeStatus.value', 'category.value', 'payer.value'],
+    description: ['chargeStatus.value', 'category.value', 'payer.value'],
     amount: ['amount.value'],
     estimatedPrices: ['estimatedPrice.value', 'estimatedInvoicePrice.value'],
   };
