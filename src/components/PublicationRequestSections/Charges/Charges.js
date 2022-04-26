@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, FormattedNumber } from 'react-intl';
 import { useHistory } from 'react-router-dom';
 
 import { IfPermission, useStripes } from '@folio/stripes/core';
@@ -112,7 +112,14 @@ const Charges = ({ request }) => {
       );
     },
     amount: (e) => {
-      return e?.amount?.value + ' ' + e?.amount?.baseCurrency;
+      return (
+        <FormattedNumber
+          currency={e?.amount?.baseCurrency}
+          // eslint-disable-next-line react/style-prop-object
+          style="currency"
+          value={e?.amount?.value}
+        />
+      );
     },
     discount: (e) => {
       return e?.discountType?.value === 'percentage'
