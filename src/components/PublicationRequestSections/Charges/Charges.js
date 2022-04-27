@@ -72,30 +72,31 @@ const Charges = ({ request }) => {
   };
 
   const renderInvoiceLineLink = (charge) => {
-    return charge?.invoiceLineItemReference ? (
-      <Tooltip
-        text={
-          <FormattedMessage
-            id="ui-oa.charge.linkToInvoiceLineIndex"
-            values={{ index: charge.rowIndex + 1 }}
-          />
+    return charge?.invoiceLineItemReference &&
+      charge?.chargeStatus?.value === 'invoiced' ? (
+        <Tooltip
+          text={
+            <FormattedMessage
+              id="ui-oa.charge.linkToInvoiceLineIndex"
+              values={{ index: charge.rowIndex + 1 }}
+            />
         }
-      >
-        {({ ref, ariaIds }) => (
-          <a
-            ref={ref}
-            aria-describedby={ariaIds.sub}
-            aria-labelledby={ariaIds.text}
-            href={urls.invoiceLine(
+        >
+          {({ ref, ariaIds }) => (
+            <a
+              ref={ref}
+              aria-describedby={ariaIds.sub}
+              aria-labelledby={ariaIds.text}
+              href={urls.invoiceLine(
               charge?.invoiceReference,
               charge?.invoiceLineItemReference
             )}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {charge?.chargeStatus?.label}
-          </a>
+              onClick={(e) => e.stopPropagation()}
+            >
+              {charge?.chargeStatus?.label}
+            </a>
         )}
-      </Tooltip>
+        </Tooltip>
     ) : (
       charge?.chargeStatus?.label
     );
