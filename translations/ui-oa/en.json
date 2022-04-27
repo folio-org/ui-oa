@@ -221,7 +221,7 @@
   "charge.type.subtracted": "{currency}",
 
   "charge.category": "Category",
-  "charge.linkToInvoiceLineIndex": "Link to invoice line {index}",
+  "charge.linkToInvoiceLineIndex": "View invoice line for charge {index}",
   "charge.status": "Status",
   "charge.payer": "Payer",
   "charge.payerNote": "Payer note",
