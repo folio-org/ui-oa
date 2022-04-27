@@ -221,6 +221,7 @@
   "charge.type.subtracted": "{currency}",
 
   "charge.category": "Category",
+  "charge.linkToInvoiceLineIndex": "View invoice line for charge {index}",
   "charge.status": "Status",
   "charge.payer": "Payer",
   "charge.payerNote": "Payer note",
@@ -241,7 +242,7 @@
   "charge.delete": "Delete",
   "charge.deleteCharge": "Delete charge",
   "charge.deleteChargeMessage": "This charge will be permanently deleted.",
-  "charge.estimatedPrices": "Estimated prices",
+  "charge.estimatedAmount": "Estimated amount inc. discounts and tax",
   "charge.estimatedPriceLocal": "Estimated price ({localCurrency})",
   "charge.estimatedPriceSpecified": "Estimated price ({specifiedCurrency})",
   "charge.invoice.newInvoice": "New Invoice",

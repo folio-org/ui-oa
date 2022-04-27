@@ -1,5 +1,7 @@
+/* eslint-disable react/style-prop-object */
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import { useState } from 'react';
+import { FormattedMessage, FormattedNumber } from 'react-intl';
 import { useHistory } from 'react-router-dom';
 
 import { IfPermission, useStripes } from '@folio/stripes/core';
@@ -12,9 +14,11 @@ import {
   Col,
   MessageBanner,
   Layout,
+  Tooltip,
 } from '@folio/stripes/components';
 
 import urls from '../../../util/urls';
+import getSortedItems from '../../../util/getSortedItems';
 
 const propTypes = {
   request: PropTypes.object,
@@ -23,6 +27,23 @@ const propTypes = {
 const Charges = ({ request }) => {
   const stripes = useStripes();
   const history = useHistory();
+
+  const [sortedColumn, setSortedColumn] = useState({
+    column: 'description',
+    direction: 'desc',
+  });
+
+  const sortFormatter = {
+    description: ['chargeStatus.value', 'category.value', 'payer.value'],
+    amount: ['amount.value'],
+    estimatedPrices: ['estimatedPrice.value', 'estimatedInvoicePrice.value'],
+  };
+
+  const sortedCharges = getSortedItems(
+    request?.charges,
+    sortFormatter,
+    sortedColumn
+  );
 
   const renderBadge = (charges) => {
     return charges ? <Badge>{charges?.length}</Badge> : <Badge>0</Badge>;
@@ -50,6 +71,37 @@ const Charges = ({ request }) => {
     );
   };
 
+  const renderInvoiceLineLink = (charge) => {
+    return charge?.invoiceLineItemReference &&
+      charge?.chargeStatus?.value === 'invoiced' ? (
+        <Tooltip
+          text={
+            <FormattedMessage
+              id="ui-oa.charge.linkToInvoiceLineIndex"
+              values={{ index: charge.rowIndex + 1 }}
+            />
+        }
+        >
+          {({ ref, ariaIds }) => (
+            <a
+              ref={ref}
+              aria-describedby={ariaIds.sub}
+              aria-labelledby={ariaIds.text}
+              href={urls.invoiceLine(
+              charge?.invoiceReference,
+              charge?.invoiceLineItemReference
+            )}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {charge?.chargeStatus?.label}
+            </a>
+        )}
+        </Tooltip>
+    ) : (
+      charge?.chargeStatus?.label
+    );
+  };
+
   const formatter = {
     description: (e) => {
       return (
@@ -58,7 +110,7 @@ const Charges = ({ request }) => {
             <strong>
               <FormattedMessage id="ui-oa.charge.status" />:{' '}
             </strong>
-            {e?.chargeStatus?.label}
+            {renderInvoiceLineLink(e)}
           </div>
           <div>
             <strong>
@@ -87,41 +139,61 @@ const Charges = ({ request }) => {
       return (
         <div>
           <div>
-            <strong>
-              <FormattedMessage
-                id="ui-oa.charge.estimatedPriceLocal"
-                values={{ localCurrency: e?.estimatedPrice?.baseCurrency }}
-              />
-              :{' '}
-            </strong>
-            {e?.estimatedPrice?.value}
+            <FormattedNumber
+              currency={e?.estimatedPrice?.baseCurrency}
+              style="currency"
+              value={e?.estimatedPrice?.value}
+            />
           </div>
-          <div>
-            <strong>
-              <FormattedMessage
-                id="ui-oa.charge.estimatedPriceSpecified"
-                values={{
-                  specifiedCurrency: e?.estimatedInvoicePrice?.baseCurrency,
-                }}
+          {e?.estimatedInvoicePrice?.baseCurrency !== stripes?.currency && (
+            <div>
+              <FormattedNumber
+                currency={e?.estimatedInvoicePrice?.baseCurrency}
+                style="currency"
+                value={e?.estimatedInvoicePrice?.value}
               />
-              :{' '}
-            </strong>
-            {e?.estimatedInvoicePrice?.value}
-          </div>
+            </div>
+          )}
         </div>
       );
     },
     amount: (e) => {
-      return e?.amount?.value + ' ' + e?.amount?.baseCurrency;
+      return (
+        <FormattedNumber
+          currency={e?.amount?.baseCurrency}
+          style="currency"
+          value={e?.amount?.value}
+        />
+      );
     },
     discount: (e) => {
-      return e?.discountType?.value === 'percentage'
-        ? e?.discount + '%'
-        : e?.discount + ' ' + e?.amount?.baseCurrency;
+      return e?.discountType?.value === 'percentage' ? (
+        e?.discount + '%'
+      ) : (
+        <FormattedNumber
+          currency={e?.amount?.baseCurrency}
+          style="currency"
+          value={e?.discount}
+        />
+      );
     },
     tax: (e) => {
       return e?.tax + '%';
     },
+  };
+
+  const onHeaderClick = (e, meta) => {
+    if (sortedColumn.column !== meta.name) {
+      setSortedColumn({
+        column: meta.name,
+        direction: 'desc',
+      });
+    } else {
+      setSortedColumn({
+        column: sortedColumn.column,
+        direction: sortedColumn.direction === 'desc' ? 'asc' : 'desc',
+      });
+    }
   };
 
   return (
@@ -141,13 +213,16 @@ const Charges = ({ request }) => {
                 discount: <FormattedMessage id="ui-oa.charge.discount" />,
                 tax: <FormattedMessage id="ui-oa.charge.tax" />,
                 estimatedPrices: (
-                  <FormattedMessage id="ui-oa.charge.estimatedPrices" />
+                  <FormattedMessage id="ui-oa.charge.estimatedAmount" />
                 ),
               }}
               columnWidths={{ description: 300 }}
-              contentData={request?.charges}
+              contentData={sortedCharges}
               formatter={formatter}
+              onHeaderClick={onHeaderClick}
               onRowClick={handleRowClick}
+              sortDirection={`${sortedColumn.direction}ending`}
+              sortedColumn={sortedColumn.column}
               visibleColumns={[
                 'description',
                 'amount',
