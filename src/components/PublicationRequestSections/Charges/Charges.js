@@ -14,6 +14,7 @@ import {
   Col,
   MessageBanner,
   Layout,
+  Tooltip,
 } from '@folio/stripes/components';
 
 import urls from '../../../util/urls';
@@ -70,6 +71,36 @@ const Charges = ({ request }) => {
     );
   };
 
+  const renderInvoiceLineLink = (charge) => {
+    return charge?.invoiceLineItemReference ? (
+      <Tooltip
+        text={
+          <FormattedMessage
+            id="ui-oa.charge.linkToInvoiceLineIndex"
+            values={{ index: charge.rowIndex + 1 }}
+          />
+        }
+      >
+        {({ ref, ariaIds }) => (
+          <a
+            ref={ref}
+            aria-describedby={ariaIds.sub}
+            aria-labelledby={ariaIds.text}
+            href={urls.invoiceLine(
+              charge?.invoiceReference,
+              charge?.invoiceLineItemReference
+            )}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {charge?.chargeStatus?.label}
+          </a>
+        )}
+      </Tooltip>
+    ) : (
+      charge?.chargeStatus?.label
+    );
+  };
+
   const formatter = {
     description: (e) => {
       return (
@@ -78,7 +109,7 @@ const Charges = ({ request }) => {
             <strong>
               <FormattedMessage id="ui-oa.charge.status" />:{' '}
             </strong>
-            {e?.chargeStatus?.label}
+            {renderInvoiceLineLink(e)}
           </div>
           <div>
             <strong>
