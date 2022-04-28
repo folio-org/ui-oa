@@ -168,12 +168,13 @@ const Publication = ({ request }) => {
             }}
             contentData={request?.identifiers}
             formatter={formatter}
+            interactive={false}
             visibleColumns={['type', 'publicationIdentifier']}
           />
         </Col>
       </Row>
-      {isJournal(request) && <JournalDetails request={request} /> }
-      {isBook(request) && <BookDetails request={request} /> }
+      {isJournal(request) && <JournalDetails request={request} />}
+      {isBook(request) && <BookDetails request={request} />}
     </Accordion>
   );
 };

@@ -59,10 +59,12 @@ const InvoiceInfo = ({ invoice, charge }) => {
             manualExchangeRate={invoice?.exchangeRate}
           />
         </Col>
-        <KeyValue
-          label={<FormattedMessage id="ui-oa.charge.invoice.total" />}
-          value={invoice?.total}
-        />
+        <Col xs={3}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.charge.invoice.total" />}
+            value={invoice?.total}
+          />
+        </Col>
       </Row>
     </>
   );

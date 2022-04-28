@@ -8,28 +8,25 @@ import {
   Badge,
   Col,
   MultiColumnList,
-  Row
+  Row,
 } from '@folio/stripes/components';
 
 const propTypes = {
-  request: PropTypes.object
+  request: PropTypes.object,
 };
 
 const renderBadge = (funders) => {
-  return funders ?
-    <Badge>{funders?.length}</Badge> :
-    <Badge>0</Badge>;
+  return funders ? <Badge>{funders?.length}</Badge> : <Badge>0</Badge>;
 };
 
 const formatter = {
-  funder: e => {
+  funder: (e) => {
     return e?.funder?.label;
   },
-  aspectFunded: e => {
+  aspectFunded: (e) => {
     return e?.aspectFunded?.label;
   },
 };
-
 
 const Funding = ({ request }) => {
   return (
@@ -44,15 +41,17 @@ const Funding = ({ request }) => {
           <MultiColumnList
             columnMapping={{
               funder: <FormattedMessage id="ui-oa.publicationRequest.funder" />,
-              aspectFunded: <FormattedMessage id="ui-oa.publicationRequest.aspectFunded" />,
+              aspectFunded: (
+                <FormattedMessage id="ui-oa.publicationRequest.aspectFunded" />
+              ),
             }}
             contentData={request?.fundings}
             formatter={formatter}
+            interactive={false}
             visibleColumns={['funder', 'aspectFunded']}
           />
         </Col>
       </Row>
-
     </Accordion>
   );
 };

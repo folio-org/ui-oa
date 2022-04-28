@@ -8,18 +8,18 @@ import {
   Badge,
   MultiColumnList,
   Row,
-  FormattedUTCDate
+  FormattedUTCDate,
 } from '@folio/stripes/components';
 
 const propTypes = {
-  request: PropTypes.object
+  request: PropTypes.object,
 };
 
 const formatter = {
-  publicationStatus: e => {
+  publicationStatus: (e) => {
     return e?.publicationStatus?.label;
   },
-  statusDate: e => {
+  statusDate: (e) => {
     return <FormattedUTCDate value={e?.statusDate} />;
   },
 };
@@ -34,17 +34,27 @@ const PublicationStatus = ({ request }) => {
       closedByDefault
       displayWhenClosed={renderBadge(request?.publicationStatuses)}
       displayWhenOpen={renderBadge(request?.publicationStatuses)}
-      label={<FormattedMessage id="ui-oa.publicationRequest.publicationStatus" />}
+      label={
+        <FormattedMessage id="ui-oa.publicationRequest.publicationStatus" />
+      }
     >
       <Row>
         <MultiColumnList
           columnMapping={{
-            publicationStatus: <FormattedMessage id="ui-oa.publicationStatus.status" />,
-            statusDate: <FormattedMessage id="ui-oa.publicationRequest.statusDate" />,
-            statusNote: <FormattedMessage id="ui-oa.publicationRequest.statusNote" />,
+            publicationStatus: (
+              <FormattedMessage id="ui-oa.publicationStatus.status" />
+            ),
+            statusDate: (
+              <FormattedMessage id="ui-oa.publicationRequest.statusDate" />
+            ),
+            statusNote: (
+              <FormattedMessage id="ui-oa.publicationRequest.statusNote" />
+            ),
           }}
+          columnWidths={{ statusNote: 300 }}
           contentData={request?.publicationStatuses}
           formatter={formatter}
+          interactive={false}
           visibleColumns={['publicationStatus', 'statusDate', 'statusNote']}
         />
       </Row>
