@@ -29,7 +29,7 @@ describe('PartyForm', () => {
 
     test('renders "Create person" condtional', () => {
       const { getByText } = renderComponent;
-      expect(getByText('Create person')).toBeInTheDocument();
+      expect(getByText('New person')).toBeInTheDocument();
     });
 
     test('renders PartyInfoForm Component', () => {
