@@ -10,26 +10,31 @@ const propTypes = {
   request: PropTypes.shape({
     work: PropTypes.object,
   }),
+  isCard: PropTypes.bool,
 };
 
-const JournalDetails = ({ request: { work } = {} }) => {
+const JournalDetails = ({ request: { work } = {}, isCard }) => {
   const printIssn = findIssnByNamespace(work, 'print');
   const electronicIssn = findIssnByNamespace(work, 'electronic');
 
   return (
     <>
-      <br />
-      <Row start="xs">
-        <Col xs={12}>
-          <Headline margin="small" size="large" tag="h5">
-            <FormattedMessage id="ui-oa.publicationRequest.journalDetails" />
-          </Headline>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.publicationJournal.title" />}
-            value={work?.title}
-          />
-        </Col>
-      </Row>
+      {!isCard && (
+        <>
+          <br />
+          <Row start="xs">
+            <Col xs={12}>
+              <Headline margin="small" size="large" tag="h5">
+                <FormattedMessage id="ui-oa.publicationRequest.journalDetails" />
+              </Headline>
+              <KeyValue
+                label={<FormattedMessage id="ui-oa.publicationJournal.title" />}
+                value={work?.title}
+              />
+            </Col>
+          </Row>
+        </>
+      )}
       <Row start="xs">
         <Col xs={3}>
           <KeyValue
