@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
 import { Card, Col, KeyValue, Label, Row } from '@folio/stripes/components';
@@ -9,26 +9,7 @@ import urls from '../../../util/urls';
 
 const propTypes = {
   party: PropTypes.object,
-  compact: PropTypes.bool,
-};
-
-const renderOrcidId = (orcidId) => {
-  return (
-    <Col xs={3}>
-      <KeyValue
-        label={<FormattedMessage id="ui-oa.party.orcidId" />}
-        value={
-          orcidId && (
-            <ExternalLink
-              content={orcidId}
-              href={'https://orcid.org/' + orcidId}
-              icon
-            />
-          )
-        }
-      />
-    </Col>
-  );
+  isCard: PropTypes.bool,
 };
 
 const renderOtherEmailAddresses = (otherEmailAddresses) => {
@@ -50,17 +31,18 @@ const renderOtherEmailAddresses = (otherEmailAddresses) => {
   );
 };
 
-const renderContactInformation = (party) => {
+const renderIdentifiers = (party) => {
   return (
     <>
       <Col xs={3}>
         <KeyValue
-          label={<FormattedMessage id="ui-oa.party.mainEmailAddress" />}
+          label={<FormattedMessage id="ui-oa.party.orcidId" />}
           value={
-            party?.mainEmail && (
+            party?.orcidId && (
               <ExternalLink
-                content={party.mainEmail}
-                href={'mailto:' + party.mainEmail}
+                content={party?.orcidId}
+                href={'https://orcid.org/' + party?.orcidId}
+                icon
               />
             )
           }
@@ -159,25 +141,48 @@ const renderStreetAddresses = (address) => {
   );
 };
 
-const PartyInfo = ({ party, compact }) => {
-  return !compact ? (
+const PartyInfo = ({ party, isCard }) => {
+  const location = useLocation();
+  return !isCard ? (
     <>
       <Row>
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.party.name" />}
             value={
-              <Link to={urls.party(party?.id)}>
-                {party?.title && party?.title + ' '}
-                {party?.givenNames + ' '}
-                {party?.familyName}
-              </Link>
+              location?.pathname !== `/oa/people/${party?.id}` ? (
+                <Link to={urls.party(party?.id)}>
+                  {party?.title && party?.title + ' '}
+                  {party?.givenNames + ' '}
+                  {party?.familyName}
+                </Link>
+              ) : (
+                <>
+                  {party?.title && party?.title + ' '}
+                  {party?.givenNames + ' '}
+                  {party?.familyName}
+                </>
+              )
             }
           />
         </Col>
-        {renderOrcidId(party?.orcidId)}
+        {renderIdentifiers(party)}
       </Row>
-      <Row>{renderContactInformation(party)}</Row>
+      <Row>
+        <Col xs={12}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.party.mainEmailAddress" />}
+            value={
+              party?.mainEmail && (
+                <ExternalLink
+                  content={party.mainEmail}
+                  href={'mailto:' + party.mainEmail}
+                />
+              )
+            }
+          />
+        </Col>
+      </Row>
       <Row>
         {party?.alternateEmails?.length > 0 &&
           renderOtherEmailAddresses(party?.alternateEmails)}
@@ -196,9 +201,21 @@ const PartyInfo = ({ party, compact }) => {
     </>
   ) : (
     <>
+      <Row>{renderIdentifiers(party)}</Row>
       <Row>
-        {renderContactInformation(party)}
-        {renderOrcidId(party?.orcidId)}
+        <Col xs={12}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.party.mainEmailAddress" />}
+            value={
+              party?.mainEmail && (
+                <ExternalLink
+                  content={party.mainEmail}
+                  href={'mailto:' + party.mainEmail}
+                />
+              )
+            }
+          />
+        </Col>
       </Row>
       <Row>
         {party?.alternateEmails?.length > 0 &&

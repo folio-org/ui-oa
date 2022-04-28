@@ -176,7 +176,7 @@ const PartyTypedownForm = ({ formName }) => {
             }
             headerStart={<AppIcon size="small">{renderPartyLink()}</AppIcon>}
           >
-            <PartyInfo compact party={values[formName].partyOwner} />
+            <PartyInfo isCard party={values[formName].partyOwner} />
           </Card>
         )}
       </Accordion>
