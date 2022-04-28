@@ -75,6 +75,7 @@ const LinkAgreementForm = () => {
           )}
         </Col>
       </Row>
+      <br />
       {!values.withoutAgreement && (
         <Field
           component={LookupComponent}
