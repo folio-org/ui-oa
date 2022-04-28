@@ -51,6 +51,7 @@ const PublicationStatus = ({ request }) => {
               <FormattedMessage id="ui-oa.publicationRequest.statusNote" />
             ),
           }}
+          columnWidths={{ statusNote: 300 }}
           contentData={request?.publicationStatuses}
           formatter={formatter}
           interactive={false}
