@@ -36,7 +36,7 @@ const PartyForm = ({ handlers: { onClose, onSubmit }, party, isLoading }) => {
   const renderPaneTitle = () => (party ? (
     <FormattedMessage id="ui-oa.party.editPerson" />
     ) : (
-      <FormattedMessage id="ui-oa.party.createPerson" />
+      <FormattedMessage id="ui-oa.party.newPerson" />
     ));
 
   const renderPaneFooter = () => {

@@ -53,7 +53,7 @@ const PublicationStatusField = ({ fields: { name } }) => {
                 backendDateStandard="YYYY-MM-DD"
                 component={Datepicker}
                 label={
-                  <FormattedMessage id="ui-oa.publicationStatus.publicationStatusDate" />
+                  <FormattedMessage id="ui-oa.publicationRequest.statusDate" />
                 }
                 name={`${name}[${index}].statusDate`}
                 required
@@ -65,7 +65,7 @@ const PublicationStatusField = ({ fields: { name } }) => {
               <Field
                 component={TextArea}
                 label={
-                  <FormattedMessage id="ui-oa.publicationStatus.publicationStatusNote" />
+                  <FormattedMessage id="ui-oa.publicationRequest.statusNote" />
                 }
                 name={`${name}[${index}].statusNote`}
               />

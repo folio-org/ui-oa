@@ -208,7 +208,7 @@
   "publicationStatus.status": "Status",
 
   "charge.chargeInformation": "Charge information",
-  "charge.publicationRequestCharge": "Publication Request Charge",
+  "charge.publicationRequestCharge": "Publication request charge",
   "charge.publicationRequest": "Publication request",
   "charge.updateExchangeRate": "Update to current exchange rate",
   "charge.refreshExchangeRate": "Refresh exchange rate",
