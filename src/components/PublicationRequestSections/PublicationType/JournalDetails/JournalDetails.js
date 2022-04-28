@@ -2,19 +2,14 @@ import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 
-import {
-  Col,
-  Headline,
-  KeyValue,
-  Row,
-} from '@folio/stripes/components';
+import { Col, Headline, KeyValue, Row } from '@folio/stripes/components';
 
 import { findIssnByNamespace } from '../../../../util/journalUtils';
 
 const propTypes = {
   request: PropTypes.shape({
     work: PropTypes.object,
-  })
+  }),
 };
 
 const JournalDetails = ({ request: { work } = {} }) => {
@@ -23,6 +18,7 @@ const JournalDetails = ({ request: { work } = {} }) => {
 
   return (
     <>
+      <br />
       <Row start="xs">
         <Col xs={12}>
           <Headline margin="small" size="large" tag="h5">

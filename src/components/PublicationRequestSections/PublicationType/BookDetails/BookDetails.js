@@ -2,7 +2,13 @@ import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 
-import { Col, FormattedUTCDate, Headline, KeyValue, Row } from '@folio/stripes/components';
+import {
+  Col,
+  FormattedUTCDate,
+  Headline,
+  KeyValue,
+  Row,
+} from '@folio/stripes/components';
 
 const propTypes = {
   request: PropTypes.object,
@@ -11,10 +17,13 @@ const propTypes = {
 const BookDetails = ({ request }) => {
   return (
     <>
+      <br />
       <Row start="xs">
-        <Headline margin="small" size="large" tag="h5">
-          <FormattedMessage id="ui-oa.publicationRequest.bookDetails" />
-        </Headline>
+        <Col xs={12}>
+          <Headline margin="small" size="large" tag="h5">
+            <FormattedMessage id="ui-oa.publicationRequest.bookDetails" />
+          </Headline>
+        </Col>
       </Row>
       <Row>
         <Col xs={3}>
