@@ -8,7 +8,7 @@ import {
   handlers,
 } from '../../../../test/resources/correspondenceResources';
 
-describe('CorrespondenceForm', () => {
+describe('CorrespondenceView', () => {
   describe('renders components', () => {
     beforeEach(() => {
       renderWithIntl(

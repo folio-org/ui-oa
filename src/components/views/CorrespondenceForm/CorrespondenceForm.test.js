@@ -25,7 +25,10 @@ describe('CorrespondenceForm', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
         <TestForm onSubmit={onSubmit}>
-          <CorrespondenceForm handlers={handlers} />
+          <CorrespondenceForm
+            handlers={handlers}
+            queryStates={{ isLoading: false, isSubmitting: false }}
+          />
         </TestForm>,
         translationsProperties
       );
@@ -59,6 +62,7 @@ describe('CorrespondenceForm', () => {
           <CorrespondenceForm
             correspondence={correspondence}
             handlers={handlers}
+            queryStates={{ isLoading: false, isSubmitting: false }}
           />{' '}
         </TestForm>,
         translationsProperties
