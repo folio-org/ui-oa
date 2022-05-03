@@ -22,6 +22,7 @@ import {
   typedownQueryKey,
 } from '@k-int/stripes-kint-components';
 
+import css from './InvoiceLineTypedownForm.css';
 import { InvoiceLineInfo } from '../../InvoiceSections';
 import { InvoiceLineModal } from '../../Modals';
 
@@ -84,7 +85,8 @@ const InvoiceLineTypedownForm = ({ charge }) => {
   const renderListItem = (invoiceLine, input) => {
     return (
       <>
-        {highlightString(input, invoiceLine?.invoiceLineNumber)}{', '}
+        {highlightString(input, invoiceLine?.invoiceLineNumber)}
+        {', '}
         {invoiceLine?.description?.length > 50
           ? invoiceLine?.description.substr(0, 49) + '...'
           : invoiceLine?.description}
@@ -94,12 +96,21 @@ const InvoiceLineTypedownForm = ({ charge }) => {
     );
   };
 
+  const renderEndOFList = () => {
+    return (
+      <Layout className={css.endOfList}>
+        <FormattedMessage id="ui-oa.party.noResultsFound" />
+      </Layout>
+    );
+  };
+
   return (
     <>
       <div key={values?.selectedInvoice?.id}>
         <Field
           component={QueryTypedown}
           dataFormatter={(data) => data?.invoiceLines}
+          endOfList={renderEndOFList()}
           label={
             <FormattedMessage id="ui-oa.charge.invoiceLine.addInvoiceLine" />
           }
@@ -143,6 +154,7 @@ const InvoiceLineTypedownForm = ({ charge }) => {
               <strong>{values?.invoiceLine?.invoiceLineNumber}</strong>
             </AppIcon>
           }
+          roundedBorder
         >
           <InvoiceLineInfo invoiceLine={values?.invoiceLine} />
         </Card>

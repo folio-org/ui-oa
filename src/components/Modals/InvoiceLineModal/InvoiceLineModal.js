@@ -9,6 +9,7 @@ import {
   Col,
   KeyValue,
   ConfirmationModal,
+  MessageBanner,
 } from '@folio/stripes/components';
 
 const propTypes = {
@@ -84,6 +85,18 @@ const InvoiceLineModal = ({
             />
           </Col>
         </Row>
+        {charge?.amount?.baseCurrency !== values?.selectedInvoice?.currency && (
+          <MessageBanner type="warning">
+            <FormattedMessage
+              id="ui-oa.charge.invoiceLine.currencyDifferenceMessage"
+              values={{
+                chargeCurrency: charge?.amount?.baseCurrency,
+                invoiceCurrency: values?.selectedInvoice?.currency,
+              }}
+            />
+          </MessageBanner>
+        )}
+        <br />
         <Row>
           <Col xs={12}>
             <FormattedMessage id="ui-oa.charge.invoiceLine.newInvoiceLineConfirmMessage" />

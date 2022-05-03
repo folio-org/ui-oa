@@ -77,6 +77,7 @@ const renderStreetAddresses = (address) => {
               />
             </Label>
           }
+          roundedBorder
         >
           <Row start="xs">
             <Col xs={3}>

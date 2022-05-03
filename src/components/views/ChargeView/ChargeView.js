@@ -18,10 +18,7 @@ import ChargeInfo from '../../ChargeSections/ChargeInfo';
 import { InvoiceInfo, InvoiceLineInfo } from '../../InvoiceSections';
 import urls from '../../../util/urls';
 import useOARefdata from '../../../util/useOARefdata';
-import {
-  useInvoice,
-  useInvoiceLine,
-} from '../../../hooks/invoiceHooks';
+import { useInvoice, useInvoiceLine } from '../../../hooks/invoiceHooks';
 import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
 
 const propTypes = {
@@ -184,6 +181,7 @@ const ChargeView = ({ charge, request, refetch }) => {
                 </Link>
               </AppIcon>
             }
+            rounderBorder
           >
             <InvoiceInfo charge={charge} invoice={invoice} />
           </Card>
@@ -210,6 +208,7 @@ const ChargeView = ({ charge, request, refetch }) => {
                 </strong>
               </AppIcon>
             }
+            roundedBorder
           >
             <InvoiceLineInfo invoiceLine={invoiceLine} />
           </Card>
