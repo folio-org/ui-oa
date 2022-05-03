@@ -22,6 +22,7 @@ import {
   typedownQueryKey,
 } from '@k-int/stripes-kint-components';
 
+import css from './InvoiceLineTypedownForm.css';
 import { InvoiceLineInfo } from '../../InvoiceSections';
 import { InvoiceLineModal } from '../../Modals';
 
@@ -95,12 +96,21 @@ const InvoiceLineTypedownForm = ({ charge }) => {
     );
   };
 
+  const renderEndOFList = () => {
+    return (
+      <Layout className={css.endOfList}>
+        <FormattedMessage id="ui-oa.party.noResultsFound" />
+      </Layout>
+    );
+  };
+
   return (
     <>
       <div key={values?.selectedInvoice?.id}>
         <Field
           component={QueryTypedown}
           dataFormatter={(data) => data?.invoiceLines}
+          endOfList={renderEndOFList()}
           label={
             <FormattedMessage id="ui-oa.charge.invoiceLine.addInvoiceLine" />
           }

@@ -1,0 +1,7 @@
+@import '@folio/stripes-components/lib/variables.css';
+
+.endOfList {
+  color: var(--color-text-p2);
+  padding: var(--gutter-static-two-thirds) 0;
+  margin-left: 1rem;
+}

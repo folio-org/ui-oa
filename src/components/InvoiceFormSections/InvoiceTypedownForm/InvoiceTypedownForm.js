@@ -21,6 +21,7 @@ import {
   typedownQueryKey,
 } from '@k-int/stripes-kint-components';
 
+import css from './InvoiceTypedownForm.css';
 import { InvoiceModal } from '../../Modals';
 import { InvoiceInfo } from '../../InvoiceSections';
 
@@ -78,12 +79,21 @@ const InvoiceTypedownForm = ({ charge }) => {
     );
   };
 
+  const renderEndOFList = () => {
+    return (
+      <Layout className={css.endOfList}>
+        <FormattedMessage id="ui-oa.party.noResultsFound" />
+      </Layout>
+    );
+  };
+
   return (
     <>
       {/* Field name must be "selectedInvoice" to prevent both typedowns from being opened */}
       <Field
         component={QueryTypedown}
         dataFormatter={(data) => data?.invoices}
+        endOfList={renderEndOFList()}
         label={<FormattedMessage id="ui-oa.charge.invoice.addInvoice" />}
         name="selectedInvoice"
         onChange={() => {
