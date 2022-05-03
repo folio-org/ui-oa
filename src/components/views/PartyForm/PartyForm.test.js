@@ -21,7 +21,10 @@ describe('PartyForm', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
         <TestForm onSubmit={onSubmit}>
-          <PartyForm handlers={handlers} />
+          <PartyForm
+            handlers={handlers}
+            queryStates={{ isLoading: false, isSubmitting: false }}
+          />
         </TestForm>,
         translationsProperties
       );
@@ -52,7 +55,12 @@ describe('PartyForm', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
         <TestForm onSubmit={onSubmit}>
-          <PartyForm handlers={handlers} party={party} />,
+          <PartyForm
+            handlers={handlers}
+            party={party}
+            queryStates={{ isLoading: false, isSubmitting: false }}
+          />
+          ,
         </TestForm>,
         translationsProperties
       );
