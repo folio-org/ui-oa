@@ -21,13 +21,13 @@ const PublicationRequestEditRoute = () => {
     () => ky(`oa/publicationRequest/${id}`).json()
   );
 
-  const { mutateAsync: putPublicationRequest } = useMutation(
-    ['ui-oa', 'PublicationRequestEditRoute', 'putPublicationRequest'],
-    (data) => ky.put(`oa/publicationRequest/${data.id}`, { json: data })
-      .then(() => {
-        handleClose();
-      })
-  );
+  const { mutateAsync: putPublicationRequest, isLoading: isSubmitting } =
+    useMutation(
+      ['ui-oa', 'PublicationRequestEditRoute', 'putPublicationRequest'],
+      (data) => ky.put(`oa/publicationRequest/${data.id}`, { json: data }).then(() => {
+          handleClose();
+        })
+    );
 
   const submitRequest = (values) => {
     const submitValues = publicationRequestSubmitHandler(values);
@@ -45,10 +45,13 @@ const PublicationRequestEditRoute = () => {
           <PublicationRequestForm
             handlers={{
               onClose: handleClose,
-              onSubmit: handleSubmit
+              onSubmit: handleSubmit,
             }}
-            isLoading={isLoading}
             publicationRequest={publicationRequest}
+            queryStates={{
+              isSubmitting,
+              isLoading,
+            }}
           />
         </form>
       )}
