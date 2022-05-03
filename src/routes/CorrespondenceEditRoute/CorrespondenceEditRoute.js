@@ -21,12 +21,13 @@ const CorrespondenceEditRoute = () => {
     () => ky(`oa/correspondence/${cId}`).json()
   );
 
-  const { mutateAsync: putCorrespondence } = useMutation(
-    ['ui-oa', 'CorrespondenceEditRoute', 'putCorrespondence'],
-    (data) => ky.put(`oa/correspondence/${cId}`, { json: data }).then(() => {
-        handleClose();
-      })
-  );
+  const { mutateAsync: putCorrespondence, isLoading: isSubmitting } =
+    useMutation(
+      ['ui-oa', 'CorrespondenceEditRoute', 'putCorrespondence'],
+      (data) => ky.put(`oa/correspondence/${cId}`, { json: data }).then(() => {
+          handleClose();
+        })
+    );
   const submitCorrespondence = (values) => {
     const { category, ...submitValues } = { ...values };
     if (category?.id) {
@@ -51,7 +52,10 @@ const CorrespondenceEditRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit,
             }}
-            isLoading={isLoading}
+            queryStates={{
+              isSubmitting,
+              isLoading,
+            }}
           />
         </form>
       )}
