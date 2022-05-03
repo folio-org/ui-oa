@@ -272,6 +272,7 @@
   "charge.invoiceLine.total": "Total",
   "charge.invoiceLine.newInvoiceLineMessage": "A new invoice line will be added to invoice {invoiceNo} with the below details:",
   "charge.invoiceLine.newInvoiceLineConfirmMessage": "Select 'Submit' to go ahead.",
+  "charge.invoiceLine.currencyDifferenceMessage": "You are adding a charge that is in a different currency than the one identified on this invoice. Note: The cost will be recorded in the currency identified on the invoice",
 
   "correspondence.newCorrespondence": "New correspondence",
   "correspondence.editCorrespondence": "Edit correspondence",

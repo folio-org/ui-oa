@@ -9,6 +9,7 @@ import {
   Col,
   KeyValue,
   ConfirmationModal,
+  MessageBanner,
 } from '@folio/stripes/components';
 
 const propTypes = {
@@ -26,6 +27,9 @@ const InvoiceLineModal = ({
 }) => {
   const ky = useOkapiKy();
   const { values } = useFormState();
+
+  console.log(values);
+  console.log(charge);
 
   const chargeInvoiceLine = {
     invoiceId: values?.selectedInvoice?.id,
@@ -84,6 +88,12 @@ const InvoiceLineModal = ({
             />
           </Col>
         </Row>
+        {charge?.amount?.baseCurrency !== values?.selectedInvoice?.currency && (
+          <MessageBanner type="warning">
+            <FormattedMessage id="ui-oa.charge.invoiceLine.currencyDifferenceMessage" />
+          </MessageBanner>
+        )}
+        <br />
         <Row>
           <Col xs={12}>
             <FormattedMessage id="ui-oa.charge.invoiceLine.newInvoiceLineConfirmMessage" />
