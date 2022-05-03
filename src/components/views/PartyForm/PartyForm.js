@@ -24,14 +24,21 @@ const propTypes = {
     onClose: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
   }).isRequired,
+  queryStates: PropTypes.shape({
+    isLoading: PropTypes.bool,
+    isSubmitting: PropTypes.bool,
+  }),
   party: PropTypes.object,
-  isLoading: PropTypes.bool,
 };
 
 // TODO Replace StreetAddress with StreetAddresses when domain model supports multiple street addresses
 
-const PartyForm = ({ handlers: { onClose, onSubmit }, party, isLoading }) => {
-  const { submitting, pristine } = useFormState();
+const PartyForm = ({
+  handlers: { onClose, onSubmit },
+  queryStates: { isLoading, isSubmitting },
+  party,
+}) => {
+  const { pristine } = useFormState();
 
   const renderPaneTitle = () => (party ? (
     <FormattedMessage id="ui-oa.party.editPerson" />
@@ -45,7 +52,7 @@ const PartyForm = ({ handlers: { onClose, onSubmit }, party, isLoading }) => {
         renderEnd={
           <Button
             buttonStyle="primary mega"
-            disabled={pristine || submitting}
+            disabled={pristine || isSubmitting}
             marginBottom0
             onClick={onSubmit}
             type="submit"

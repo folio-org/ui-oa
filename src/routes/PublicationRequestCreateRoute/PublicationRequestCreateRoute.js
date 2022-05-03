@@ -15,21 +15,31 @@ const PublicationRequestCreateRoute = () => {
   const ky = useOkapiKy();
   const callout = useContext(CalloutContext);
 
-
   const handleClose = (id) => {
     let path = '/oa/publicationRequests';
     if (id) path += `/${id}`;
     history.push(path);
   };
 
-  const { mutateAsync: postPublicationRequest } = useMutation(
-    ['ui-oa', 'PublicationRequestCreateRoute', 'postPublicationRequest'],
-    (data) => ky.post('oa/publicationRequest', { json: data }).json().then(res => {
-      const requestNumber = res.requestNumber;
-      callout.sendCallout({ message: <FormattedMessage id="ui-oa.publicationRequest.success.callout" values={{ requestNumber }} /> });
-      handleClose(res.id);
-    })
-  );
+  const { mutateAsync: postPublicationRequest, isLoading: isSubmitting } =
+    useMutation(
+      ['ui-oa', 'PublicationRequestCreateRoute', 'postPublicationRequest'],
+      (data) => ky
+          .post('oa/publicationRequest', { json: data })
+          .json()
+          .then((res) => {
+            const requestNumber = res.requestNumber;
+            callout.sendCallout({
+              message: (
+                <FormattedMessage
+                  id="ui-oa.publicationRequest.success.callout"
+                  values={{ requestNumber }}
+                />
+              ),
+            });
+            handleClose(res.id);
+          })
+    );
 
   const submitRequest = (values) => {
     const submitValues = publicationRequestSubmitHandler(values);
@@ -37,16 +47,16 @@ const PublicationRequestCreateRoute = () => {
   };
 
   return (
-    <Form
-      mutators={arrayMutators}
-      onSubmit={submitRequest}
-    >
+    <Form mutators={arrayMutators} onSubmit={submitRequest}>
       {({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           <PublicationRequestForm
             handlers={{
               onClose: handleClose,
-              onSubmit: handleSubmit
+              onSubmit: handleSubmit,
+            }}
+            queryStates={{
+              isSubmitting,
             }}
           />
         </form>

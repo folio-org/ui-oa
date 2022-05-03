@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { FormattedMessage } from 'react-intl';
 
-
 import { useOkapiKy, CalloutContext } from '@folio/stripes/core';
 
 import PartyForm from '../../components/views/PartyForm';
@@ -20,7 +19,7 @@ const PartyCreateRoute = () => {
     history.push(`/oa/people/${id}`);
   };
 
-  const { mutateAsync: postParty } = useMutation(
+  const { mutateAsync: postParty, isLoading: isSubmitting } = useMutation(
     ['ui-oa', 'PartyCreateRoute', 'postParty'],
     (data) => ky
         .post('oa/party', { json: data })
@@ -72,6 +71,9 @@ const PartyCreateRoute = () => {
             handlers={{
               onClose: handleClose,
               onSubmit: handleSubmit,
+            }}
+            queryStates={{
+              isSubmitting,
             }}
           />
         </form>

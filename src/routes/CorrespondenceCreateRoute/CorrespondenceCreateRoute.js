@@ -14,7 +14,7 @@ const CorrespondenceCreateRoute = () => {
     history.push(`/oa/publicationRequests/${id}`);
   };
 
-  const { mutateAsync: postCorrespondence } = useMutation(
+  const { mutateAsync: postCorrespondence, isLoading: isSubmitting } = useMutation(
     ['ui-oa', 'CorrespondenceCreateRoute', 'postCorrespondence'],
     (data) => ky.post('oa/correspondence', { json: data }).json().then(() => {
         handleClose();
@@ -33,6 +33,9 @@ const CorrespondenceCreateRoute = () => {
             handlers={{
               onClose: handleClose,
               onSubmit: handleSubmit,
+            }}
+            queryStates={{
+              isSubmitting
             }}
           />
         </form>

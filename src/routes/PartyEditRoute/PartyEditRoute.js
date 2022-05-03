@@ -10,7 +10,6 @@ import { useOkapiKy, CalloutContext } from '@folio/stripes/core';
 import PartyForm from '../../components/views/PartyForm';
 import getPartyErrorMessage from '../../util/getPartyErrorMessage';
 
-
 const PartyEditRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
@@ -26,41 +25,44 @@ const PartyEditRoute = () => {
     () => ky(`oa/party/${id}`).json()
   );
 
-  const { mutateAsync: putParty } = useMutation(
+  const { mutateAsync: putParty, isLoading: isSubmitting } = useMutation(
     ['ui-oa', 'PartyEditRoute', 'putParty'],
-    (data) => ky.put(`oa/party/${data.id}`, { json: data }).json().then((res) => {
-      const updatedParty =
-        (res.title ? res.title + ' ' : '') +
-        res?.givenNames +
-        ' ' +
-        res?.familyName;
-      callout.sendCallout({
-        message: (
-          <FormattedMessage
-            id="ui-oa.party.updatedSuccessCallout"
-            values={{ updatedParty }}
-          />
-        ),
-        type: 'success',
-      });
-      handleClose();
-    })
-    .catch((err) => {
-      err.response.json().then((text) => {
-        if (text.total) {
-          // If there are multiple errors, map the errors onto seperate callouts.
-          text._embedded.errors.map((error) => callout.sendCallout({
-              message: getPartyErrorMessage(error?.message),
-              type: 'error',
-            }));
-        } else {
+    (data) => ky
+        .put(`oa/party/${data.id}`, { json: data })
+        .json()
+        .then((res) => {
+          const updatedParty =
+            (res.title ? res.title + ' ' : '') +
+            res?.givenNames +
+            ' ' +
+            res?.familyName;
           callout.sendCallout({
-            message: getPartyErrorMessage(text?.message),
-            type: 'error',
+            message: (
+              <FormattedMessage
+                id="ui-oa.party.updatedSuccessCallout"
+                values={{ updatedParty }}
+              />
+            ),
+            type: 'success',
           });
-        }
-      });
-    })
+          handleClose();
+        })
+        .catch((err) => {
+          err.response.json().then((text) => {
+            if (text.total) {
+              // If there are multiple errors, map the errors onto seperate callouts.
+              text._embedded.errors.map((error) => callout.sendCallout({
+                  message: getPartyErrorMessage(error?.message),
+                  type: 'error',
+                }));
+            } else {
+              callout.sendCallout({
+                message: getPartyErrorMessage(text?.message),
+                type: 'error',
+              });
+            }
+          });
+        })
   );
 
   const submitRequest = (values) => {
@@ -80,8 +82,11 @@ const PartyEditRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit,
             }}
-            isLoading={isLoading}
             party={party}
+            queryStates={{
+              isLoading,
+              isSubmitting,
+            }}
           />
         </form>
       )}

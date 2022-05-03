@@ -8,7 +8,7 @@ import {
   Row,
   Col,
   KeyValue,
-  ConfirmationModal
+  ConfirmationModal,
 } from '@folio/stripes/components';
 
 const propTypes = {
@@ -41,12 +41,15 @@ const InvoiceLineModal = ({
     setShowModal(false);
   };
 
-  const { mutateAsync: postInvoiceLine } = useMutation(
+  const { mutateAsync: postInvoiceLine, isLoading: isSubmitting } = useMutation(
     ['ui-oa', 'InvoiceLineModal', 'postInvoiceLine'],
-    (data) => ky.post('invoice/invoice-lines', { json: data }).json().then((res) => {
-        handleInvoiceLineChange(res);
-        handleClose();
-    })
+    (data) => ky
+        .post('invoice/invoice-lines', { json: data })
+        .json()
+        .then((res) => {
+          handleInvoiceLineChange(res);
+          handleClose();
+        })
   );
 
   const renderModalMessage = () => {
@@ -83,9 +86,7 @@ const InvoiceLineModal = ({
         </Row>
         <Row>
           <Col xs={12}>
-            <FormattedMessage
-              id="ui-oa.charge.invoiceLine.newInvoiceLineConfirmMessage"
-            />
+            <FormattedMessage id="ui-oa.charge.invoiceLine.newInvoiceLineConfirmMessage" />
           </Col>
         </Row>
       </>
@@ -99,7 +100,11 @@ const InvoiceLineModal = ({
       }
       message={renderModalMessage()}
       onCancel={() => setShowModal(false)}
-      onConfirm={() => postInvoiceLine(chargeInvoiceLine)}
+      onConfirm={() => {
+        if (!isSubmitting) {
+          postInvoiceLine(chargeInvoiceLine);
+        }
+      }}
       open={showModal}
     />
   );

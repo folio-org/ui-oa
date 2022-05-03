@@ -21,7 +21,10 @@ describe('ChargeInfoForm', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
         <TestForm onSubmit={onSubmit}>
-          <ChargeForm handlers={handlers} />
+          <ChargeForm
+            handlers={handlers}
+            queryStates={{ isLoading: false, isSubmitting: false }}
+          />
         </TestForm>,
         translationsProperties
       );
@@ -52,7 +55,11 @@ describe('ChargeInfoForm', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
         <TestForm onSubmit={onSubmit}>
-          <ChargeForm charge={charge} handlers={handlers} />
+          <ChargeForm
+            charge={charge}
+            handlers={handlers}
+            queryStates={{ isLoading: false, isSubmitting: false }}
+          />
         </TestForm>,
         translationsProperties
       );

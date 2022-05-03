@@ -24,7 +24,7 @@ const LinkInvoiceRoute = () => {
     () => ky(`oa/publicationRequest/${prId}`).json()
   );
 
-  const { mutateAsync: linkInvoice } = useMutation(
+  const { mutateAsync: linkInvoice, isLoading: isSubmitting } = useMutation(
     ['ui-oa', 'LinkInvoiceRoute', 'linkInvoice'],
     (data) => ky.put(`oa/publicationRequest/${prId}`, { json: data }).then(() => {
         handleClose();
@@ -56,6 +56,9 @@ const LinkInvoiceRoute = () => {
             handlers={{
               onClose: handleClose,
               onSubmit: handleSubmit,
+            }}
+            queryStates={{
+              isSubmitting,
             }}
           />
         </form>
