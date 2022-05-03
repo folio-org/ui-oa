@@ -20,7 +20,7 @@ const ChargeCreateRoute = () => {
     history.push(`/oa/publicationRequests/${id}`);
   };
 
-  const { mutateAsync: postCharge } = useMutation(
+  const { mutateAsync: postCharge, isLoading: isSubmitting } = useMutation(
     ['ui-oa', 'ChargeCreateRoute', 'postCharge'],
     (data) => ky.put(`oa/publicationRequest/${id}`, { json: data }).then(() => {
         handleClose();
@@ -59,6 +59,9 @@ const ChargeCreateRoute = () => {
             handlers={{
               onClose: handleClose,
               onSubmit: handleSubmit,
+            }}
+            queryStates={{
+              isSubmitting,
             }}
           />
         </form>

@@ -20,12 +20,19 @@ const propTypes = {
     onClose: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
   }).isRequired,
-  isLoading: PropTypes.bool,
+  queryStates: PropTypes.shape({
+    isLoading: PropTypes.bool,
+    isSubmitting: PropTypes.bool,
+  }),
   charge: PropTypes.object,
 };
 
-const ChargeForm = ({ handlers: { onClose, onSubmit }, isLoading, charge }) => {
-  const { submitting, pristine } = useFormState();
+const ChargeForm = ({
+  handlers: { onClose, onSubmit },
+  queryStates: { isLoading, isSubmitting },
+  charge,
+}) => {
+  const { pristine } = useFormState();
 
   const renderPaneTitle = () => (charge ? (
     <FormattedMessage id="ui-oa.charge.editCharge" />
@@ -56,7 +63,7 @@ const ChargeForm = ({ handlers: { onClose, onSubmit }, isLoading, charge }) => {
         renderEnd={
           <Button
             buttonStyle="primary mega"
-            disabled={pristine || submitting}
+            disabled={pristine || isSubmitting}
             marginBottom0
             onClick={onSubmit}
             type="submit"
