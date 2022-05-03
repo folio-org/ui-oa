@@ -28,9 +28,6 @@ const InvoiceLineModal = ({
   const ky = useOkapiKy();
   const { values } = useFormState();
 
-  console.log(values);
-  console.log(charge);
-
   const chargeInvoiceLine = {
     invoiceId: values?.selectedInvoice?.id,
     description: charge.description
