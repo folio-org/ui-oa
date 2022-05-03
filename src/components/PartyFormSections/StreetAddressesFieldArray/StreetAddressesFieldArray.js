@@ -61,6 +61,7 @@ const StreetAddressesField = ({ fields: { name } }) => {
                   />
                 </strong>
               }
+              roundedBorder
             >
               <Row>
                 <Col xs={3}>

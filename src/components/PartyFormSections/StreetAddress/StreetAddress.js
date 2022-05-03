@@ -19,6 +19,7 @@ const StreetAddress = () => {
             />
           </strong>
         }
+        roundedBorder
       >
         <Row>
           <Col xs={3}>

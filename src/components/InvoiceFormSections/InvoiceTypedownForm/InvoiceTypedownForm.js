@@ -124,6 +124,7 @@ const InvoiceTypedownForm = ({ charge }) => {
               <strong>{values?.selectedInvoice?.vendorInvoiceNo}</strong>
             </AppIcon>
           }
+          roundedBorder
         >
           <InvoiceInfo charge={charge} invoice={values?.selectedInvoice} />
         </Card>

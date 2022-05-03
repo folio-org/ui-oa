@@ -175,6 +175,7 @@ const PartyTypedownForm = ({ formName }) => {
               )
             }
             headerStart={<AppIcon size="small">{renderPartyLink()}</AppIcon>}
+            roundedBorder
           >
             <PartyInfo isCard party={values[formName].partyOwner} />
           </Card>

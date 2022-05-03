@@ -121,6 +121,7 @@ const Agreement = ({ request }) => {
                 {renderAgreementLink()}
               </AppIcon>
             }
+            roundedBorder
           >
             {renderAgreement(request?.agreement?.remoteId_object)}
           </Card>

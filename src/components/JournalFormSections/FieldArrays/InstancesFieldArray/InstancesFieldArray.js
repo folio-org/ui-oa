@@ -60,6 +60,7 @@ const InstancesFieldArray = () => {
                   />
                 </strong>
               }
+              roundedBorder
             >
               <Row>
                 <Col xs={4}>
