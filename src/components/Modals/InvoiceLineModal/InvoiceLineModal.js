@@ -87,7 +87,13 @@ const InvoiceLineModal = ({
         </Row>
         {charge?.amount?.baseCurrency !== values?.selectedInvoice?.currency && (
           <MessageBanner type="warning">
-            <FormattedMessage id="ui-oa.charge.invoiceLine.currencyDifferenceMessage" />
+            <FormattedMessage
+              id="ui-oa.charge.invoiceLine.currencyDifferenceMessage"
+              values={{
+                chargeCurrency: charge?.amount?.baseCurrency,
+                invoiceCurrency: values?.selectedInvoice?.currency,
+              }}
+            />
           </MessageBanner>
         )}
         <br />
