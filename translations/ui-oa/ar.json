@@ -204,7 +204,6 @@
     "charge.delete": "حذف",
     "charge.deleteCharge": "حذف الرسوم",
     "charge.deleteChargeMessage": "سيتم حذف هذه الرسوم نهائياً.",
-    "charge.estimatedPrices": "الأسعار المقدرة",
     "charge.estimatedPriceLocal": "السعر المقدر ({localCurrency})",
     "charge.estimatedPriceSpecified": "السعر المقدر ({specifiedCurrency})",
     "party.new": "جديد",
@@ -263,5 +262,19 @@
     "party.streetAddress.region": "الدولة/المحافظة/المنطقة",
     "party.streetAddress.country": "البلد",
     "party.streetAddress.postalCode": "الرمز البريدي",
-    "party.emailAddress": "عنوان البريد الإلكتروني"
+    "party.emailAddress": "عنوان البريد الإلكتروني",
+    "publicationRequest.removeFundingIndex": "إزالة التمويل {index}",
+    "publicationRequest.removeExternalRequestIdIndex": "إزالة معرّف الطلب الخارجي {index}",
+    "publicationRequest.removeOtherEmailIndex": "إزالة البريد الإلكتروني الآخر {index}",
+    "publicationRequest.removeAgreement": "إزالة الاتفاقية",
+    "publicationRequest.removeParty.correspondingAuthor": "إزالة المؤلف المراسل",
+    "publicationRequest.removeParty.requestContact": "إزالة جهة اتصال الطلب",
+    "publicationRequest.removeJournal": "إزالة الدورية",
+    "identifiers.removeIdentifierIndex": "إزالة المعرّف {index}",
+    "publicationStatus.removePublicationStatusIndex": "إزالة حالة النشر {index}",
+    "charge.invoice.removeInvoice": "إزالة الفاتورة",
+    "charge.invoiceLine.removeInvoiceLine": "إزالة سطر الفاتورة",
+    "charge.linkToInvoiceLineIndex": "عرض سطر الفاتورة للرسوم {index}",
+    "charge.estimatedAmount": "المبلغ المقدر بما في ذلك الخصومات والضرائب",
+    "charge.invoiceLine.currencyDifferenceMessage": "تحذير: <strong>عملات متضاربة</strong> . العملة المستخدمة في رسم الطلب هي {chargeCurrency} . سيتم إنشاء سطر الفاتورة هذا باستخدام العملة الموجودة في الفاتورة: {invoiceCurrency}"
 }
