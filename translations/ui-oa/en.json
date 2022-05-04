@@ -89,6 +89,8 @@
   "journal.creationSuccess": "<strong>Journal created:</strong> {journalTitle}",
   "journal.inDOAJ": "In DOAJ",
   "journal.oaStatus": "OA Status",
+  "journal.journalDOAJ": "Journal in DOAJ",
+  "journal.journalOAStatus": "Journal OA Status",
 
 
   "publicationRequest.addFunding": "Add funding",
