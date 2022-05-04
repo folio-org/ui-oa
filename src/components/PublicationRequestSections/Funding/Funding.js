@@ -11,6 +11,8 @@ import {
   Row,
 } from '@folio/stripes/components';
 
+import getSortedItems from '../../../util/getSortedItems';
+
 const propTypes = {
   request: PropTypes.object,
 };
@@ -29,6 +31,10 @@ const formatter = {
 };
 
 const Funding = ({ request }) => {
+  const sortedFundings = getSortedItems(request?.fundings, null, {
+    column: 'funder.value',
+    direction: 'asc',
+  });
   return (
     <Accordion
       closedByDefault
@@ -45,7 +51,7 @@ const Funding = ({ request }) => {
                 <FormattedMessage id="ui-oa.publicationRequest.aspectFunded" />
               ),
             }}
-            contentData={request?.fundings}
+            contentData={sortedFundings}
             formatter={formatter}
             interactive={false}
             visibleColumns={['funder', 'aspectFunded']}
