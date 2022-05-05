@@ -26,10 +26,6 @@ describe('RequestInfo', () => {
     test('renders Status KeyValue', async () => {
       await KeyValue('Status').exists();
     });
-
-    test('renders External request IDs KeyValue', async () => {
-      await KeyValue('External request IDs').exists();
-    });
   });
 
   describe('renders components with initial values', () => {
