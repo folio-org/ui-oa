@@ -54,6 +54,7 @@ const Funding = ({ request }) => {
             contentData={sortedFundings}
             formatter={formatter}
             interactive={false}
+            isEmptyMessage={<FormattedMessage id="ui-oa.publicationRequest.emptyFundings" />}
             visibleColumns={['funder', 'aspectFunded']}
           />
         </Col>
