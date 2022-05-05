@@ -8,6 +8,7 @@ import {
   MultiColumnList,
   Row,
   FormattedUTCDate,
+  Col
 } from '@folio/stripes/components';
 
 import getSortedItems from '../../../util/getSortedItems';
@@ -45,24 +46,29 @@ const PublicationStatus = ({ request }) => {
       }
     >
       <Row>
-        <MultiColumnList
-          columnMapping={{
-            publicationStatus: (
-              <FormattedMessage id="ui-oa.publicationStatus.status" />
-            ),
-            statusDate: (
-              <FormattedMessage id="ui-oa.publicationRequest.statusDate" />
-            ),
-            statusNote: (
-              <FormattedMessage id="ui-oa.publicationRequest.statusNote" />
-            ),
-          }}
-          columnWidths={{ statusNote: 300 }}
-          contentData={sortedStatuses}
-          formatter={formatter}
-          interactive={false}
-          visibleColumns={['publicationStatus', 'statusDate', 'statusNote']}
-        />
+        <Col xs={12}>
+          <MultiColumnList
+            columnMapping={{
+              publicationStatus: (
+                <FormattedMessage id="ui-oa.publicationStatus.status" />
+              ),
+              statusDate: (
+                <FormattedMessage id="ui-oa.publicationRequest.statusDate" />
+              ),
+              statusNote: (
+                <FormattedMessage id="ui-oa.publicationRequest.statusNote" />
+              ),
+            }}
+            columnWidths={{ statusNote: 300 }}
+            contentData={sortedStatuses}
+            formatter={formatter}
+            interactive={false}
+            isEmptyMessage={
+              <FormattedMessage id="ui-oa.publicationRequest.emptyPublicationStatuses" />
+            }
+            visibleColumns={['publicationStatus', 'statusDate', 'statusNote']}
+          />
+        </Col>
       </Row>
     </Accordion>
   );

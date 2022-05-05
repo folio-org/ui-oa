@@ -45,28 +45,28 @@ const RequestInfo = ({ request }) => {
         </Col>
         <Col xs={3} />
       </Row>
-      <Row start="xs">
-        <Col xs={12}>
-          <KeyValue
-            label={
-              <FormattedMessage id="ui-oa.publicationRequest.externalRequestIds" />
-            }
-            value={
-              request?.externalRequestIds?.length > 0 && (
+      {request?.externalRequestIds?.length > 0 && (
+        <Row start="xs">
+          <Col xs={12}>
+            <KeyValue
+              label={
+                <FormattedMessage id="ui-oa.publicationRequest.externalRequestIds" />
+              }
+              value={
                 <ul>
                   {request?.externalRequestIds
                     ?.sort((a, b) => {
                       return a?.externalId < b?.externalId ? -1 : 1;
                     })
-                    .map((requestId) => (
+                    ?.map((requestId) => (
                       <li key={requestId?.id}>{requestId?.externalId}</li>
                     ))}
                 </ul>
-              )
-            }
-          />
-        </Col>
-      </Row>
+              }
+            />
+          </Col>
+        </Row>
+      )}
     </>
   );
 };

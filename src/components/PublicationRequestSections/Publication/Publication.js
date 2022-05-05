@@ -159,26 +159,27 @@ const Publication = ({ request }) => {
           />
         </Col>
       </Row>
-
-      <Row>
-        <Col xs={12}>
-          <Label>
-            <FormattedMessage id="ui-oa.identifiers.otherIdentifiers" />
-          </Label>
-          <MultiColumnList
-            columnMapping={{
-              type: <FormattedMessage id="ui-oa.identifiers.type" />,
-              publicationIdentifier: (
-                <FormattedMessage id="ui-oa.identifiers.identifier" />
-              ),
-            }}
-            contentData={sortedIdentifiers}
-            formatter={formatter}
-            interactive={false}
-            visibleColumns={['type', 'publicationIdentifier']}
-          />
-        </Col>
-      </Row>
+      {request?.identifiers?.length > 0 && (
+        <Row>
+          <Col xs={12}>
+            <Label>
+              <FormattedMessage id="ui-oa.identifiers.otherIdentifiers" />
+            </Label>
+            <MultiColumnList
+              columnMapping={{
+                type: <FormattedMessage id="ui-oa.identifiers.type" />,
+                publicationIdentifier: (
+                  <FormattedMessage id="ui-oa.identifiers.identifier" />
+                ),
+              }}
+              contentData={sortedIdentifiers}
+              formatter={formatter}
+              interactive={false}
+              visibleColumns={['type', 'publicationIdentifier']}
+            />
+          </Col>
+        </Row>
+      )}
       {isJournal(request) && <JournalDetails request={request} />}
       {isBook(request) && <BookDetails request={request} />}
     </Accordion>

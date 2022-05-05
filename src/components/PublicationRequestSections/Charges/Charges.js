@@ -219,6 +219,9 @@ const Charges = ({ request }) => {
               columnWidths={{ description: 300 }}
               contentData={sortedCharges}
               formatter={formatter}
+              isEmptyMessage={
+                <FormattedMessage id="ui-oa.publicationRequest.emptyCharges" />
+              }
               onHeaderClick={onHeaderClick}
               onRowClick={handleRowClick}
               sortDirection={`${sortedColumn.direction}ending`}
