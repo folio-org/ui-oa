@@ -204,7 +204,6 @@
     "charge.delete": "삭제",
     "charge.deleteCharge": "요금 삭제",
     "charge.deleteChargeMessage": "이 요금은 영구적으로 삭제됩니다.",
-    "charge.estimatedPrices": "예상 가격",
     "charge.estimatedPriceLocal": "예상 가격( {localCurrency} )",
     "charge.estimatedPriceSpecified": "예상 가격( {specifiedCurrency} )",
     "party.new": "신규",
@@ -263,5 +262,19 @@
     "party.streetAddress.region": "주 / 도 / 지역",
     "party.streetAddress.country": "국가",
     "party.streetAddress.postalCode": "우편번호",
-    "party.emailAddress": "이메일 주소"
+    "party.emailAddress": "이메일 주소",
+    "publicationRequest.removeFundingIndex": "Remove funding {index}",
+    "publicationRequest.removeExternalRequestIdIndex": "Remove external request ID {index}",
+    "publicationRequest.removeOtherEmailIndex": "Remove other email {index}",
+    "publicationRequest.removeAgreement": "Remove agreement",
+    "publicationRequest.removeParty.correspondingAuthor": "Remove corresponding author",
+    "publicationRequest.removeParty.requestContact": "Remove request contact",
+    "publicationRequest.removeJournal": "Remove journal",
+    "identifiers.removeIdentifierIndex": "Remove identifier {index}",
+    "publicationStatus.removePublicationStatusIndex": "Remove publication status {index}",
+    "charge.invoice.removeInvoice": "Remove invoice",
+    "charge.invoiceLine.removeInvoiceLine": "Remove invoice line",
+    "charge.linkToInvoiceLineIndex": "View invoice line for charge {index}",
+    "charge.estimatedAmount": "Estimated amount inc. discounts and tax",
+    "charge.invoiceLine.currencyDifferenceMessage": "Warning: <strong>Conflicting currencies</strong>. The currency on the request charge is {chargeCurrency}. This invoice line will be created using the currency on the invoice: {invoiceCurrency}"
 }

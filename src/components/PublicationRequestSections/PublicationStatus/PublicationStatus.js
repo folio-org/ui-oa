@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
@@ -10,6 +9,8 @@ import {
   Row,
   FormattedUTCDate,
 } from '@folio/stripes/components';
+
+import getSortedItems from '../../../util/getSortedItems';
 
 const propTypes = {
   request: PropTypes.object,
@@ -29,6 +30,11 @@ const renderBadge = (publicationStatuses) => {
 };
 
 const PublicationStatus = ({ request }) => {
+  const sortedStatuses = getSortedItems(request?.publicationStatuses, null, {
+    column: 'statusDate',
+    direction: 'desc',
+  });
+
   return (
     <Accordion
       closedByDefault
@@ -52,7 +58,7 @@ const PublicationStatus = ({ request }) => {
             ),
           }}
           columnWidths={{ statusNote: 300 }}
-          contentData={request?.publicationStatuses}
+          contentData={sortedStatuses}
           formatter={formatter}
           interactive={false}
           visibleColumns={['publicationStatus', 'statusDate', 'statusNote']}

@@ -54,9 +54,13 @@ const RequestInfo = ({ request }) => {
             value={
               request?.externalRequestIds?.length > 0 && (
                 <ul>
-                  {request?.externalRequestIds?.map((requestId) => (
-                    <li key={requestId?.id}>{requestId?.externalId}</li>
-                  ))}
+                  {request?.externalRequestIds
+                    ?.sort((a, b) => {
+                      return a?.externalId < b?.externalId ? -1 : 1;
+                    })
+                    .map((requestId) => (
+                      <li key={requestId?.id}>{requestId?.externalId}</li>
+                    ))}
                 </ul>
               )
             }

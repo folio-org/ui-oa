@@ -14,6 +14,7 @@ import {
 import { JournalDetails, BookDetails } from '../PublicationType';
 import { publicationRequestFields } from '../../../constants';
 import ExternalLink from '../../ExternalLink';
+import getSortedItems from '../../../util/getSortedItems';
 
 const propTypes = {
   request: PropTypes.object,
@@ -55,6 +56,11 @@ const renderBadge = (request) => {
 };
 
 const Publication = ({ request }) => {
+  const sortedIdentifiers = getSortedItems(request?.identifiers, null, {
+    column: 'type.value',
+    direction: 'asc',
+  });
+
   return (
     <Accordion
       closedByDefault
@@ -166,7 +172,7 @@ const Publication = ({ request }) => {
                 <FormattedMessage id="ui-oa.identifiers.identifier" />
               ),
             }}
-            contentData={request?.identifiers}
+            contentData={sortedIdentifiers}
             formatter={formatter}
             interactive={false}
             visibleColumns={['type', 'publicationIdentifier']}
