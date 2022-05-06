@@ -49,7 +49,6 @@ const PublicationJournal = () => {
   };
 
   const handleWorkChange = (work) => {
-    console.log(work);
     change('work', work);
     change('workIndexedInDOAJ.id', work?.indexedInDOAJ?.id);
     change('workOAStatus.id', work?.oaStatus?.id);

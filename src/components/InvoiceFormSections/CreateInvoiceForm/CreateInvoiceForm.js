@@ -17,7 +17,7 @@ import {
   PAYMENT_METHOD_OPTIONS,
 } from '@folio/stripes-acq-components';
 
-import getBatchGroupsOptions from '../../../util/getBatchGroupOptions';
+import getBatchGroupsOptions from '../../../util/getBatchGroupsOptions';
 
 const propTypes = {
   batchGroups: PropTypes.object,

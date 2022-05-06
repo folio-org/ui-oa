@@ -49,7 +49,7 @@ const Charges = ({ request }) => {
     return charges ? <Badge>{charges?.length}</Badge> : <Badge>0</Badge>;
   };
 
-  const handleRowClick = (e, charge) => {
+  const handleRowClick = (_e, charge) => {
     history.push(
       `${urls.publicationRequestChargeView(request?.id, charge?.id)}`
     );
@@ -182,7 +182,7 @@ const Charges = ({ request }) => {
     },
   };
 
-  const onHeaderClick = (e, meta) => {
+  const onHeaderClick = (_e, meta) => {
     if (sortedColumn.column !== meta.name) {
       setSortedColumn({
         column: meta.name,

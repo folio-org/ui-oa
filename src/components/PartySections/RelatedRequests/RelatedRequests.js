@@ -47,7 +47,7 @@ const RelatedRequests = ({ requests }) => {
     publicationTitle: (d) => d?.publicationTitle,
   };
 
-  const onHeaderClick = (e, meta) => {
+  const onHeaderClick = (_e, meta) => {
     if (sortedColumn.column !== meta.name) {
       setSortedColumn({
         column: meta.name,
