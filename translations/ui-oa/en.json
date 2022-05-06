@@ -87,6 +87,10 @@
   "journal.instance.identifier.ns.zdb": "ZDB",
   "journal.creationError": "<strong>Error:</strong> Unable to create a new journal, please check the details and try again",
   "journal.creationSuccess": "<strong>Journal created:</strong> {journalTitle}",
+  "journal.inDOAJ": "In DOAJ",
+  "journal.oaStatus": "OA Status",
+  "journal.journalDOAJ": "Journal in DOAJ",
+  "journal.journalOAStatus": "Journal OA Status",
 
 
   "publicationRequest.addFunding": "Add funding",

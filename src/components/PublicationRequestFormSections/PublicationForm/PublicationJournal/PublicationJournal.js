@@ -12,6 +12,7 @@ import {
   Layout,
   Button,
   Tooltip,
+  Select,
 } from '@folio/stripes/components';
 import {
   highlightString,
@@ -23,13 +24,21 @@ import { AppIcon } from '@folio/stripes/core';
 import { JournalModal } from '../../../Modals';
 import { JournalDetails } from '../../../PublicationRequestSections/PublicationType';
 import { findIssnByNamespace } from '../../../../util/journalUtils';
+
+import useOARefdata from '../../../../util/useOARefdata';
+import selectifyRefdata from '../../../../util/selectifyRefdata';
 import urls from '../../../../util/urls';
 import css from './PublicationJournal.css';
+
+const [YES_NO, OA_STATUS] = ['Global.Yes_No', 'Work.OaStatus'];
 
 const PublicationJournal = () => {
   const { values } = useFormState();
   const { change } = useForm();
   const [showJournalModal, setShowJournalModal] = useState(false);
+  const refdataValues = useOARefdata([YES_NO, OA_STATUS]);
+  const yesNoValues = selectifyRefdata(refdataValues, YES_NO);
+  const oaStatusValues = selectifyRefdata(refdataValues, OA_STATUS);
 
   const pathMutator = (input, path) => {
     const query = generateKiwtQuery(
@@ -40,7 +49,10 @@ const PublicationJournal = () => {
   };
 
   const handleWorkChange = (work) => {
+    console.log(work);
     change('work', work);
+    change('workIndexedInDOAJ.id', work?.indexedInDOAJ?.id);
+    change('workOAStatus.id', work?.oaStatus?.id);
   };
 
   const renderFooter = () => {
@@ -110,6 +122,7 @@ const PublicationJournal = () => {
               <FormattedMessage id="ui-oa.publicationRequest.addJournal" />
             }
             name="work"
+            onChange={(e) => handleWorkChange(e)}
             path="oa/works"
             pathMutator={pathMutator}
             renderFooter={renderFooter}
@@ -119,31 +132,51 @@ const PublicationJournal = () => {
       </Row>
 
       {values?.work && (
-        <Card
-          cardStyle="positive"
-          headerEnd={
-            <Tooltip
-              id="publication-journal-trash-button-tooltip"
-              text={
-                <FormattedMessage id="ui-oa.publicationRequest.removeJournal" />
-              }
-            >
-              {({ ref, ariaIds }) => (
-                <IconButton
-                  ref={ref}
-                  aria-describedby={ariaIds.sub}
-                  aria-labelledby={ariaIds.text}
-                  icon="trash"
-                  onClick={() => handleWorkChange()}
-                />
-              )}
-            </Tooltip>
-          }
-          headerStart={<AppIcon size="small">{renderJournalLink()}</AppIcon>}
-          roundedBorder
-        >
-          <JournalDetails isCard request={{ work: values?.work }} />
-        </Card>
+        <>
+          <Card
+            cardStyle="positive"
+            headerEnd={
+              <Tooltip
+                id="publication-journal-trash-button-tooltip"
+                text={
+                  <FormattedMessage id="ui-oa.publicationRequest.removeJournal" />
+                }
+              >
+                {({ ref, ariaIds }) => (
+                  <IconButton
+                    ref={ref}
+                    aria-describedby={ariaIds.sub}
+                    aria-labelledby={ariaIds.text}
+                    icon="trash"
+                    onClick={() => handleWorkChange()}
+                  />
+                )}
+              </Tooltip>
+            }
+            headerStart={<AppIcon size="small">{renderJournalLink()}</AppIcon>}
+            roundedBorder
+          >
+            <JournalDetails isCard request={{ work: values?.work }} />
+          </Card>
+          <Row>
+            <Col xs={3}>
+              <Field
+                component={Select}
+                dataOptions={[{ value: '', label: '' }, ...yesNoValues]}
+                label={<FormattedMessage id="ui-oa.journal.journalDOAJ" />}
+                name="workIndexedInDOAJ.id"
+              />
+            </Col>
+            <Col xs={3}>
+              <Field
+                component={Select}
+                dataOptions={[{ value: '', label: '' }, ...oaStatusValues]}
+                label={<FormattedMessage id="ui-oa.journal.journalOAStatus" />}
+                name="workOAStatus.id"
+              />
+            </Col>
+          </Row>
+        </>
       )}
       <JournalModal
         handleJournalChange={handleWorkChange}
