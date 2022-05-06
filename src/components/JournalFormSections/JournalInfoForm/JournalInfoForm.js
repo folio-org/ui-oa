@@ -11,8 +11,8 @@ const [YES_NO, OA_STATUS] = ['Global.Yes_No', 'Work.OaStatus'];
 
 const JournalInfoForm = () => {
   const refdataValues = useOARefdata([YES_NO, OA_STATUS]);
-  const yesNoValues = selectifyRefdata(refdataValues, YES_NO);
-  const oaStatusValues = selectifyRefdata(refdataValues, OA_STATUS);
+  const yesNoValues = selectifyRefdata(refdataValues, YES_NO, 'value');
+  const oaStatusValues = selectifyRefdata(refdataValues, OA_STATUS, 'value');
   return (
     <>
       <Row>
@@ -32,7 +32,7 @@ const JournalInfoForm = () => {
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...yesNoValues]}
             label={<FormattedMessage id="ui-oa.journal.inDOAJ" />}
-            name="indexedInDOAJ.id"
+            name="indexedInDOAJ"
           />
         </Col>
         <Col xs={3}>
@@ -40,7 +40,7 @@ const JournalInfoForm = () => {
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...oaStatusValues]}
             label={<FormattedMessage id="ui-oa.journal.oaStatus" />}
-            name="oaStatus.id"
+            name="oaStatus"
           />
         </Col>
       </Row>

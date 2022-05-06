@@ -49,9 +49,10 @@ const PublicationJournal = () => {
   };
 
   const handleWorkChange = (work) => {
+    console.log(work);
     change('work', work);
     change('workIndexedInDOAJ.id', work?.indexedInDOAJ?.id);
-    change('workOAStatus.id', work?.indexedInDOAJ?.id);
+    change('workOAStatus.id', work?.oaStatus?.id);
   };
 
   const renderFooter = () => {
@@ -121,6 +122,7 @@ const PublicationJournal = () => {
               <FormattedMessage id="ui-oa.publicationRequest.addJournal" />
             }
             name="work"
+            onChange={(e) => handleWorkChange(e)}
             path="oa/works"
             pathMutator={pathMutator}
             renderFooter={renderFooter}
