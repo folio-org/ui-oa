@@ -26,7 +26,7 @@ const Correspondence = ({ request }) => {
   const history = useHistory();
   const [contentExpanded, setContentExpanded] = useState({});
 
-  const handleRowClick = (e, correspondence) => {
+  const handleRowClick = (_e, correspondence) => {
     history.push(
       `${urls.publicationRequestCorrespondenceView(
         request?.id,

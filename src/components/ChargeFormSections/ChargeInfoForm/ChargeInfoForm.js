@@ -69,7 +69,6 @@ const ChargeInfoForm = () => {
       : null;
   };
 
-  // TODO Create Custom component for handling exchange rate coefficient
   useEffect(() => {
     if (!isLoading && !isEdit) {
       change('exchangeRate.coefficient', truncateNumber(exchangeRate));
