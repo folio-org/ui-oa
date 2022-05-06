@@ -164,7 +164,7 @@ const PublicationForm = () => {
       <Row middle="xs">
         <Col xs>
           <Headline margin="small" size="large" tag="h3">
-            <FormattedMessage id="ui-oa.publicationRequest.identifiers" />
+            <FormattedMessage id="ui-oa.identifiers.otherIdentifiers" />
           </Headline>
         </Col>
       </Row>

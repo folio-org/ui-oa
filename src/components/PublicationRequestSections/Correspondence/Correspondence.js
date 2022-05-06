@@ -128,8 +128,7 @@ const Correspondence = ({ request }) => {
             {e?.mode?.label}
           </div>
           <div>
-            {e?.content.length > 255 &&
-              renderShowMoreButton(e?.id)}
+            {e?.content.length > 255 && renderShowMoreButton(e?.id)}
             {renderEditButton(e)}
           </div>
         </div>
@@ -172,6 +171,9 @@ const Correspondence = ({ request }) => {
             formatter={formatter}
             getCellClass={getCellClass}
             interactive
+            isEmptyMessage={
+              <FormattedMessage id="ui-oa.publicationRequest.emptyCorrespondence" />
+            }
             onRowClick={handleRowClick}
             visibleColumns={[
               'dateOfCorrespondence',

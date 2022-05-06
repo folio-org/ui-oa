@@ -39,11 +39,6 @@ describe('Publication', () => {
       await KeyValue('Publication URL').has({ value: 'No value set-' });
       await KeyValue('DOI').has({ value: 'No value set-' });
     });
-
-    test('renders Empty list', () => {
-      const { getByText } = renderComponent;
-      expect(getByText('The list contains no items')).toBeInTheDocument();
-    });
   });
 
   describe('renders components with values', () => {

@@ -170,6 +170,10 @@
   "publicationRequest.subtype": "Subtype",
   "publicationRequest.title": "Title",
   "publicationRequest.useCorrespondingAuthor": "Use corresponding author",
+  "publicationRequest.emptyFundings": "No funding for this request",
+  "publicationRequest.emptyPublicationStatuses": "No publication statuses for this request",
+  "publicationRequest.emptyCorrespondence": "No correspondence for this request",
+  "publicationRequest.emptyCharges": "No charges for this request",
   
   "publicationJournal.title": "Title",
   "publicationJournal.issnPrint": "ISSN (print)",

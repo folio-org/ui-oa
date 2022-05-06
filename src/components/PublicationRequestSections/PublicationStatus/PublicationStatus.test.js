@@ -26,7 +26,7 @@ describe('PublicationStatus', () => {
 
     test('renders Empty list', () => {
       const { getByText } = renderComponent;
-      expect(getByText('The list contains no items')).toBeInTheDocument();
+      expect(getByText('No publication statuses for this request')).toBeInTheDocument();
     });
   });
 
