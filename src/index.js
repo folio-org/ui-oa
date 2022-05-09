@@ -17,12 +17,14 @@ import {
   ChargeCreateRoute,
   ChargeEditRoute,
   ChargeRoute,
-  LinkInvoiceRoute
+  LinkInvoiceRoute,
 } from './routes';
 
-
 const App = (props) => {
-  const { actAs, match: { path } } = props;
+  const {
+    actAs,
+    match: { path },
+  } = props;
 
   if (actAs === 'settings') {
     return (
@@ -52,10 +54,6 @@ const App = (props) => {
           path={`${path}/publicationRequests/:prId/correspondence/:cId/edit`}
         />
         <Route
-          component={CorrespondenceViewRoute}
-          path={`${path}/publicationRequests/:prId/correspondence/:cId`}
-        />
-        <Route
           component={LinkInvoiceRoute}
           path={`${path}/publicationRequests/:prId/charge/:chId/linkInvoice`}
         />
@@ -67,26 +65,18 @@ const App = (props) => {
           component={ChargeEditRoute}
           path={`${path}/publicationRequests/:prId/charge/:chId/edit`}
         />
-        <Route
-          component={PartyCreateRoute}
-          path={`${path}/people/create`}
-        />
-        <Route
-          component={PartyEditRoute}
-          path={`${path}/people/:id/edit`}
-        />
-        <PartiesRoute
-          path={`${path}/people`}
-        />
-        <JournalsRoute
-          path={`${path}/journals`}
-        />
-        <PublicationRequestsRoute
-          path={`${path}/publicationRequests`}
-        >
+        <Route component={PartyCreateRoute} path={`${path}/people/create`} />
+        <Route component={PartyEditRoute} path={`${path}/people/:id/edit`} />
+        <PartiesRoute path={`${path}/people`} />
+        <JournalsRoute path={`${path}/journals`} />
+        <PublicationRequestsRoute path={`${path}/publicationRequests`}>
           <Route
             component={ChargeRoute}
             path={`${path}/publicationRequests/:prId/charge/:chId`}
+          />
+          <Route
+            component={CorrespondenceViewRoute}
+            path={`${path}/publicationRequests/:prId/correspondence/:cId`}
           />
         </PublicationRequestsRoute>
       </Switch>
