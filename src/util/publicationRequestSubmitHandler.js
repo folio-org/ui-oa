@@ -9,6 +9,8 @@ const publicationRequestSubmitHandler = (values) => {
     correspondingAuthor,
     requestContact,
     work,
+    workIndexedInDOAJ,
+    workOAStatus,
     ...submitValues
   } = { ...values };
 
@@ -56,6 +58,18 @@ const publicationRequestSubmitHandler = (values) => {
     submitValues.subtype = subtype;
   } else {
     submitValues.subtype = null;
+  }
+
+  if (workIndexedInDOAJ?.id) {
+    submitValues.workIndexedInDOAJ = workIndexedInDOAJ;
+  } else {
+    submitValues.workIndexedInDOAJ = null;
+  }
+
+  if (workOAStatus?.id) {
+    submitValues.workOAStatus = workOAStatus;
+  } else {
+    submitValues.workOAStatus = null;
   }
 
   if (work) {
