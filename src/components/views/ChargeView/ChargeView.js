@@ -181,7 +181,7 @@ const ChargeView = ({ charge, request, refetch }) => {
                 </Link>
               </AppIcon>
             }
-            rounderBorder
+            roundedBorder
           >
             <InvoiceInfo charge={charge} invoice={invoice} />
           </Card>
