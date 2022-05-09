@@ -4,18 +4,16 @@ import PropTypes from 'prop-types';
 
 import {
   Pane,
-  Paneset,
-  PaneMenu,
-  IconButton,
   Row,
   Col,
   KeyValue,
   Button,
   Icon,
   ConfirmationModal,
-  LoadingView,
+  LoadingPane,
 } from '@folio/stripes/components';
 import { AppIcon, IfPermission } from '@folio/stripes/core';
+import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
 
 const propTypes = {
   onClose: PropTypes.func.isRequired,
@@ -70,100 +68,86 @@ const CorrespondenceView = ({
       </>
     );
   };
-  const renderFirstMenu = () => {
-    return (
-      <PaneMenu>
-        <FormattedMessage id="ui-oa.publicationRequest.closeForm">
-          {([ariaLabel]) => (
-            <IconButton
-              aria-label={ariaLabel}
-              icon="times"
-              id="close-correspondence-view-button"
-              onClick={() => onClose()}
-            />
-          )}
-        </FormattedMessage>
-      </PaneMenu>
-    );
-  };
 
   if (isLoading) {
-    return <LoadingView />;
+    return (
+      <LoadingPane
+        defaultWidth={PANE_DEFAULT_WIDTH}
+        dismissible
+        onClose={onClose}
+      />
+    );
   }
 
   return (
-    <Paneset>
-      <Pane
-        actionMenu={getActionMenu}
-        appIcon={<AppIcon app="oa" />}
-        centerContent
-        defaultWidth="100%"
-        firstMenu={renderFirstMenu()}
-        id="pane.oa.correspondence.view"
-        paneTitle={
-          <FormattedMessage id="ui-oa.correspondence.viewCorrespondence" />
+    <Pane
+      actionMenu={getActionMenu}
+      appIcon={<AppIcon app="oa" iconKey="app" size="small" />}
+      defaultWidth={PANE_DEFAULT_WIDTH}
+      dismissible
+      id="pane.oa.correspondence.view"
+      onClose={onClose}
+      paneTitle={
+        <FormattedMessage id="ui-oa.correspondence.viewCorrespondence" />
+      }
+    >
+      <ConfirmationModal
+        confirmLabel={<FormattedMessage id="ui-oa.correspondence.delete" />}
+        heading={
+          <FormattedMessage id="ui-oa.correspondence.deleteCorrespondence" />
         }
-      >
-        <ConfirmationModal
-          confirmLabel={<FormattedMessage id="ui-oa.correspondence.delete" />}
-          heading={
-            <FormattedMessage id="ui-oa.correspondence.deleteCorrespondence" />
-          }
-          message={
-            <FormattedMessage id="ui-oa.correspondence.deleteCorrespondenceMessage" />
-          }
-          onCancel={closeDeleteConfirmationModal}
-          onConfirm={() => onDelete()}
-          open={showConfirmationModal}
-        />
-        <Row>
-          <Col xs={3}>
-            <KeyValue
-              label={
-                <FormattedMessage id="ui-oa.correspondence.correspondent" />
-              }
-              value={correspondence?.correspondent}
-            />
-          </Col>
-          <Col xs={3}>
-            <KeyValue
-              label={
-                <FormattedMessage id="ui-oa.correspondence.dateOfCorrespondence" />
-              }
-              value={correspondence?.dateOfCorrespondence}
-            />
-          </Col>
-          <Col xs={3}>
-            <KeyValue
-              label={<FormattedMessage id="ui-oa.correspondence.status" />}
-              value={correspondence?.status?.label}
-            />
-          </Col>
-          <Col xs={3}>
-            <KeyValue
-              label={<FormattedMessage id="ui-oa.correspondence.mode" />}
-              value={correspondence?.mode?.label}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={3}>
-            <KeyValue
-              label={<FormattedMessage id="ui-oa.correspondence.category" />}
-              value={correspondence?.category?.label}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12}>
-            <KeyValue
-              label={<FormattedMessage id="ui-oa.correspondence.description" />}
-              value={correspondence?.content}
-            />
-          </Col>
-        </Row>
-      </Pane>
-    </Paneset>
+        message={
+          <FormattedMessage id="ui-oa.correspondence.deleteCorrespondenceMessage" />
+        }
+        onCancel={closeDeleteConfirmationModal}
+        onConfirm={() => onDelete()}
+        open={showConfirmationModal}
+      />
+      <Row>
+        <Col xs={3}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.correspondence.correspondent" />}
+            value={correspondence?.correspondent}
+          />
+        </Col>
+        <Col xs={3}>
+          <KeyValue
+            label={
+              <FormattedMessage id="ui-oa.correspondence.dateOfCorrespondence" />
+            }
+            value={correspondence?.dateOfCorrespondence}
+          />
+        </Col>
+        <Col xs={3}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.correspondence.status" />}
+            value={correspondence?.status?.label}
+          />
+        </Col>
+        <Col xs={3}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.correspondence.mode" />}
+            value={correspondence?.mode?.label}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={3}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.correspondence.category" />}
+            value={correspondence?.category?.label}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={12}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.correspondence.description" />}
+            value={correspondence?.content}
+          />
+        </Col>
+      </Row>
+    </Pane>
   );
 };
 
