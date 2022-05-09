@@ -66,22 +66,38 @@ const InvoiceLineModal = ({
         </Row>
         <br />
         <Row>
-          <Col xs={3}>
-            <KeyValue
-              label={<FormattedMessage id="ui-oa.charge.category" />}
-              value={charge?.category?.label}
-            />
-          </Col>
-          <Col xs={3}>
-            <KeyValue
-              label={<FormattedMessage id="ui-oa.charge.amount" />}
-              value={charge?.amount?.value}
-            />
-          </Col>
-          <Col xs={6}>
+          <Col xs={12}>
             <KeyValue
               label={<FormattedMessage id="ui-oa.charge.description" />}
-              value={charge?.description}
+              value={
+                charge.description
+                  ? charge?.category?.label + ': ' + charge?.description
+                  : charge?.category?.label
+              }
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={3}>
+            <KeyValue
+              label={<FormattedMessage id="ui-oa.charge.invoiceLine.status" />}
+              value={
+                <FormattedMessage id="ui-oa.charge.invoiceLine.status.open" />
+              }
+            />
+          </Col>
+          <Col xs={3}>
+            <KeyValue
+              label={
+                <FormattedMessage id="ui-oa.charge.invoiceLine.quantity" />
+              }
+              value="1"
+            />
+          </Col>
+          <Col xs={3}>
+            <KeyValue
+              label={<FormattedMessage id="ui-oa.charge.invoiceLine.total" />}
+              value={charge?.amount?.value}
             />
           </Col>
         </Row>
