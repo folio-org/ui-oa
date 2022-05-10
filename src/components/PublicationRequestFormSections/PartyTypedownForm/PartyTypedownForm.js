@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import {
   Accordion,
   Button,
-  Label,
   Layout,
   Card,
   IconButton,
@@ -41,7 +40,7 @@ const PartyTypedownForm = ({ formName }) => {
       {
         searchKey: 'familyName,givenNames',
         stats: false,
-        sort: [{ path: 'familyName' }, { path: 'givenNames' }]
+        sort: [{ path: 'familyName' }, { path: 'givenNames' }],
       },
       {
         query: input,
@@ -133,12 +132,12 @@ const PartyTypedownForm = ({ formName }) => {
         {(!values.useCorrespondingAuthor ||
           formName === 'correspondingAuthor') && (
           <>
-            <Label className={css.partyFormLabel}>
-              <FormattedMessage id="ui-oa.publicationRequest.addPerson" />
-            </Label>
             <Field
               component={QueryTypedown}
               endOfList={renderEndOFList()}
+              label={
+                <FormattedMessage id="ui-oa.publicationRequest.addPerson" />
+              }
               name={`${formName}.partyOwner`}
               path="oa/party"
               pathMutator={pathMutator}
