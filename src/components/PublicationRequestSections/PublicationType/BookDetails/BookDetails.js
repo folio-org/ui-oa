@@ -31,7 +31,11 @@ const BookDetails = ({ request }) => {
             label={
               <FormattedMessage id="ui-oa.publicationRequest.publicationYear" />
             }
-            value={<FormattedUTCDate value={request?.bookDateOfPublication} />}
+            value={
+              request?.bookDateOfPublication ? (
+                <FormattedUTCDate value={request.bookDateOfPublication} />
+              ) : null
+            }
           />
         </Col>
         <Col xs={3}>
