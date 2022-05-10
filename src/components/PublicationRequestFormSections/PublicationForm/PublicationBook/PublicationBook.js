@@ -26,8 +26,11 @@ const PublicationBook = () => {
           <Field
             backendDateStandard="YYYY-MM-DD"
             component={Datepicker}
-            label={<FormattedMessage id="ui-oa.publicationRequest.publicationYear" />}
+            label={
+              <FormattedMessage id="ui-oa.publicationRequest.publicationYear" />
+            }
             name="bookDateOfPublication"
+            parse={(v) => v}
             timeZone="UTC"
             usePortal
           />
@@ -35,8 +38,11 @@ const PublicationBook = () => {
         <Col xs={3}>
           <Field
             component={TextField}
-            label={<FormattedMessage id="ui-oa.publicationRequest.publicationPlace" />}
+            label={
+              <FormattedMessage id="ui-oa.publicationRequest.publicationPlace" />
+            }
             name="bookPlaceOfPublication"
+            parse={(v) => v}
           />
         </Col>
         <Col xs={6} />
