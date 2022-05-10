@@ -23,6 +23,7 @@ const OtherEmailsField = ({ fields: { name } }) => {
       <Label>
         <FormattedMessage id="ui-oa.otherEmail.otherEmailAddresses" />
       </Label>
+      <br />
       {items.map((email, index) => {
         return (
           <Row key={email} start="xs">
