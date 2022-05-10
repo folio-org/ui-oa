@@ -41,10 +41,10 @@ const PartyTypedownForm = ({ formName }) => {
       {
         searchKey: 'familyName,givenNames',
         stats: false,
+        sort: [{ path: 'familyName' }, { path: 'givenNames' }]
       },
       {
         query: input,
-        sort: 'familyName',
       }
     );
     return `${path}${query}`;
