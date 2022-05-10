@@ -75,8 +75,6 @@ const StreetAddress = () => {
                 <FormattedMessage id="ui-oa.party.streetAddress.country" />
               }
               name="streetAddress.address.country"
-              required
-              validate={requiredValidator}
             />
           </Col>
           <Col xs={3}>
@@ -86,8 +84,6 @@ const StreetAddress = () => {
                 <FormattedMessage id="ui-oa.party.streetAddress.postalCode" />
               }
               name="streetAddress.address.postalCode"
-              required
-              validate={requiredValidator}
             />
           </Col>
         </Row>
