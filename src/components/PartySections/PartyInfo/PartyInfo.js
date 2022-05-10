@@ -21,7 +21,12 @@ const renderOtherEmailAddresses = (otherEmailAddresses) => {
           otherEmailAddresses && (
             <ul>
               {otherEmailAddresses.map((email) => (
-                <li key={email?.id}>{email?.email}</li>
+                <li key={email?.id}>
+                  <ExternalLink
+                    content={email?.email}
+                    href={'mailto:' + email?.email}
+                  />
+                </li>
               ))}
             </ul>
           )
