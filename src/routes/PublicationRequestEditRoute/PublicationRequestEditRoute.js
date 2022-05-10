@@ -6,11 +6,23 @@ import { useQuery, useMutation } from 'react-query';
 import PublicationRequestForm from '../../components/views/PublicationRequestForm';
 
 import publicationRequestSubmitHandler from '../../util/publicationRequestSubmitHandler';
+import useOARefdata from '../../util/useOARefdata';
+import getRDVId from '../../util/getRDVId';
+
+const [PUBLICATION_TYPE] = ['PublicationRequest.PublicationType'];
 
 const PublicationRequestEditRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
   const { id } = useParams();
+
+  const refdataValues = useOARefdata([PUBLICATION_TYPE]);
+
+  const journalArticleId = getRDVId(
+    refdataValues,
+    PUBLICATION_TYPE,
+    'journal_article'
+  );
 
   const handleClose = () => {
     history.push(`/oa/publicationRequests/${id}`);
@@ -30,7 +42,10 @@ const PublicationRequestEditRoute = () => {
     );
 
   const submitRequest = (values) => {
-    const submitValues = publicationRequestSubmitHandler(values);
+    const submitValues = publicationRequestSubmitHandler(
+      values,
+      journalArticleId
+    );
     putPublicationRequest(submitValues);
   };
 

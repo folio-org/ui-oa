@@ -1,85 +1,61 @@
-const publicationRequestSubmitHandler = (values) => {
-  const {
-    agreement,
-    publicationType,
-    license,
-    publisher,
-    subtype,
-    useCorrespondingAuthor: _useCorrespondingAuthor,
-    correspondingAuthor,
-    requestContact,
-    work,
-    workIndexedInDOAJ,
-    workOAStatus,
-    ...submitValues
-  } = { ...values };
+const publicationRequestSubmitHandler = (values, journalArticleId) => {
+  const submitValues = { ...values };
+  const unsetValueArray = [
+    'publicationType',
+    'publisher',
+    'subtype',
+    'license',
+    'workIndexedInDOAJ',
+    'workOAStatus',
+    'work',
+  ];
+  // For all ref data selects within the publicationrequest create page, allows for the unsetting of values
+  // If the specified refdata does not have an id, then the entire property is set to null
+  unsetValueArray.forEach((e) => {
+    if (values?.[e]?.id) {
+      submitValues[e] = values[e];
+    } else {
+      submitValues[e] = null;
+    }
+  });
 
+  // If the publication type selector is set to journal/book, then the other publication type values are set to null upon saving
+  if (values?.publicationType?.id) {
+    if (values?.publicationType?.id === journalArticleId) {
+      submitValues.bookDateOfPublication = null;
+      submitValues.bookPlaceOfPublication = null;
+    } else {
+      submitValues.work = null;
+      submitValues.workOAStatus = null;
+      submitValues.workIndexedInDOAJ = null;
+    }
+  } else {
+    submitValues.bookDateOfPublication = null;
+    submitValues.bookPlaceOfPublication = null;
+    submitValues.work = null;
+    submitValues.workOAStatus = null;
+    submitValues.workIndexedInDOAJ = null;
+  }
   // Explicitly set RequestParty values to null if no partyOwner, to allow unsetting of values
   // Due to the amount of fields in publication request, this may need refactoring
-  if (requestContact?.partyOwner?.id) {
-    requestContact.role = 'request_contact';
-    submitValues.requestContact = requestContact;
+  if (values?.requestContact?.partyOwner?.id) {
+    values.requestContact.role = 'request_contact';
+    submitValues.requestContact = values.requestContact;
   } else {
     submitValues.requestContact = null;
   }
 
-  if (correspondingAuthor?.partyOwner?.id) {
-    correspondingAuthor.role = 'corresponding_author';
-    submitValues.correspondingAuthor = correspondingAuthor;
+  if (values?.correspondingAuthor?.partyOwner?.id) {
+    values.correspondingAuthor.role = 'corresponding_author';
+    submitValues.correspondingAuthor = values.correspondingAuthor;
   } else {
     submitValues.correspondingAuthor = null;
   }
 
-  if (agreement?.remoteId) {
-    submitValues.agreement = agreement;
+  if (values?.agreement?.remoteId) {
+    submitValues.agreement = values?.agreement;
   } else {
     submitValues.agreement = null;
-  }
-
-  if (publicationType?.id) {
-    submitValues.publicationType = publicationType;
-  } else {
-    submitValues.publicationType = null;
-  }
-
-  if (license?.id) {
-    submitValues.license = license;
-  } else {
-    submitValues.license = null;
-  }
-
-  if (publisher?.id) {
-    submitValues.publisher = publisher;
-  } else {
-    submitValues.publisher = null;
-  }
-
-  if (subtype?.id) {
-    submitValues.subtype = subtype;
-  } else {
-    submitValues.subtype = null;
-  }
-
-  if (workIndexedInDOAJ?.id) {
-    submitValues.workIndexedInDOAJ = workIndexedInDOAJ;
-  } else {
-    submitValues.workIndexedInDOAJ = null;
-  }
-
-  if (workOAStatus?.id) {
-    submitValues.workOAStatus = workOAStatus;
-  } else {
-    submitValues.workOAStatus = null;
-  }
-
-  if (work) {
-    submitValues.work = {
-      id: work.id,
-    };
-  } else {
-    submitValues.work = {
-      id: null,
-    };
   }
 
   return submitValues;

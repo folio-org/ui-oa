@@ -9,12 +9,23 @@ import { useOkapiKy, CalloutContext } from '@folio/stripes/core';
 
 import PublicationRequestForm from '../../components/views/PublicationRequestForm';
 import publicationRequestSubmitHandler from '../../util/publicationRequestSubmitHandler';
+import useOARefdata from '../../util/useOARefdata';
+import getRDVId from '../../util/getRDVId';
+
+const [PUBLICATION_TYPE] = ['PublicationRequest.PublicationType'];
 
 const PublicationRequestCreateRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
   const callout = useContext(CalloutContext);
 
+  const refdataValues = useOARefdata([PUBLICATION_TYPE]);
+
+  const journalArticleId = getRDVId(
+    refdataValues,
+    PUBLICATION_TYPE,
+    'journal_article'
+  );
   const handleClose = (id) => {
     let path = '/oa/publicationRequests';
     if (id) path += `/${id}`;
@@ -42,7 +53,10 @@ const PublicationRequestCreateRoute = () => {
     );
 
   const submitRequest = (values) => {
-    const submitValues = publicationRequestSubmitHandler(values);
+    const submitValues = publicationRequestSubmitHandler(
+      values,
+      journalArticleId
+    );
     postPublicationRequest(submitValues);
   };
 
