@@ -14,6 +14,7 @@ import {
 import { IdentifiersFieldArray } from '../../FieldArrays';
 import useOARefdata from '../../../../util/useOARefdata';
 import selectifyRefdata from '../../../../util/selectifyRefdata';
+import getRDVId from '../../../../util/getRDVId';
 
 import PublicationJournal from '../PublicationJournal';
 import PublicationBook from '../PublicationBook';
@@ -43,20 +44,8 @@ const PublicationForm = () => {
   const subtypeValues = selectifyRefdata(refdataValues, SUBTYPE);
   const licenseValues = selectifyRefdata(refdataValues, LICENSE);
 
-  const getRDVId = (desc, value) => {
-    // First filter by desc
-    const refdataDescValues = refdataValues?.find((rdc) => rdc.desc === desc);
-    // Then grab the values and filter by value
-    const refdataValue = refdataDescValues?.values?.find(
-      (rdv) => rdv.value === value
-    );
-    // At this point we have the refdataValue object, which is an id, a value and a label (or undefined).
-    // Return the id
-    return refdataValue?.id;
-  };
-
-  const bookId = getRDVId(PUBLICATION_TYPE, 'book');
-  const journalArticleId = getRDVId(PUBLICATION_TYPE, 'journal_article');
+  const bookId = getRDVId(refdataValues, PUBLICATION_TYPE, 'book');
+  const journalArticleId = getRDVId(refdataValues, PUBLICATION_TYPE, 'journal_article');
 
   return (
     <Accordion
