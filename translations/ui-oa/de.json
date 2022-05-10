@@ -276,5 +276,14 @@
     "charge.invoiceLine.removeInvoiceLine": "Remove invoice line",
     "charge.linkToInvoiceLineIndex": "View invoice line for charge {index}",
     "charge.estimatedAmount": "Estimated amount inc. discounts and tax",
-    "charge.invoiceLine.currencyDifferenceMessage": "Warning: <strong>Conflicting currencies</strong>. The currency on the request charge is {chargeCurrency}. This invoice line will be created using the currency on the invoice: {invoiceCurrency}"
+    "charge.invoiceLine.currencyDifferenceMessage": "Warning: <strong>Conflicting currencies</strong>. The currency on the request charge is {chargeCurrency}. This invoice line will be created using the currency on the invoice: {invoiceCurrency}",
+    "publicationRequest.emptyFundings": "No funding for this request",
+    "publicationRequest.emptyPublicationStatuses": "No publication statuses for this request",
+    "publicationRequest.emptyCorrespondence": "No correspondence for this request",
+    "publicationRequest.emptyCharges": "No charges for this request",
+    "journal.inDOAJ": "In DOAJ",
+    "journal.oaStatus": "OA Status",
+    "journal.journalDOAJ": "Journal in DOAJ",
+    "journal.journalOAStatus": "Journal OA Status",
+    "charge.invoiceLine.status.open": "Open"
 }
