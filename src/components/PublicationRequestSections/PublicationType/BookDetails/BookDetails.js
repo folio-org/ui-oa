@@ -2,13 +2,7 @@ import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 
-import {
-  Col,
-  FormattedUTCDate,
-  Headline,
-  KeyValue,
-  Row,
-} from '@folio/stripes/components';
+import { Col, Headline, KeyValue, Row } from '@folio/stripes/components';
 
 const propTypes = {
   request: PropTypes.object,
@@ -29,13 +23,12 @@ const BookDetails = ({ request }) => {
         <Col xs={3}>
           <KeyValue
             label={
-              <FormattedMessage id="ui-oa.publicationRequest.publicationYear" />
+              <FormattedMessage id="ui-oa.publicationRequest.publicationDate" />
             }
-            value={
-              request?.bookDateOfPublication ? (
-                <FormattedUTCDate value={request.bookDateOfPublication} />
-              ) : null
-            }
+            value={request?.bookDateOfPublication
+              .split('-')
+              .reverse()
+              .join('/')}
           />
         </Col>
         <Col xs={3}>
