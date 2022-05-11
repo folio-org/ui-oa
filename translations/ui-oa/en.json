@@ -155,6 +155,7 @@
   "publicationRequest.publicationType": "Publication type",
   "publicationRequest.publicationUrl": "Publication URL",
   "publicationRequest.publicationYear": "Year of publication",
+  "publicationRequest.publicationYear.validate": "Please enter a date in the format YYYY, YYYY-MM or YYYY-MM-DD",
   "publicationRequest.publisher": "Publisher",
   "publicationRequest.rejectionReason": "Reason for rejection",
   "publicationRequest.requestContact": "Request contact",

@@ -4,11 +4,12 @@ import { Field } from 'react-final-form';
 
 import {
   Col,
-  Datepicker,
   Headline,
   Row,
   TextField,
 } from '@folio/stripes/components';
+
+import { validateDateFormat } from '../../../../util/validators';
 
 const PublicationBook = () => {
   return (
@@ -24,15 +25,14 @@ const PublicationBook = () => {
       <Row end="xs">
         <Col xs={3}>
           <Field
-            backendDateStandard="YYYY-MM-DD"
-            component={Datepicker}
+            component={TextField}
             label={
               <FormattedMessage id="ui-oa.publicationRequest.publicationYear" />
             }
             name="bookDateOfPublication"
             parse={(v) => v}
-            timeZone="UTC"
-            usePortal
+            placeholder="YYYY-MM-DD"
+            validate={validateDateFormat}
           />
         </Col>
         <Col xs={3}>
