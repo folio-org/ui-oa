@@ -27,7 +27,7 @@ const PublicationBook = () => {
           <Field
             component={TextField}
             label={
-              <FormattedMessage id="ui-oa.publicationRequest.publicationYear" />
+              <FormattedMessage id="ui-oa.publicationRequest.publicationDate" />
             }
             name="bookDateOfPublication"
             parse={(v) => v}

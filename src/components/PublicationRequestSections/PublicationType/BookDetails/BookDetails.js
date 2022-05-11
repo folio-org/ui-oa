@@ -23,7 +23,7 @@ const BookDetails = ({ request }) => {
         <Col xs={3}>
           <KeyValue
             label={
-              <FormattedMessage id="ui-oa.publicationRequest.publicationYear" />
+              <FormattedMessage id="ui-oa.publicationRequest.publicationDate" />
             }
             value={request?.bookDateOfPublication
               .split('-')
