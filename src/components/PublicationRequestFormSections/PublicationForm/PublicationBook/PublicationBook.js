@@ -2,12 +2,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
 
-import {
-  Col,
-  Headline,
-  Row,
-  TextField,
-} from '@folio/stripes/components';
+import { Col, Headline, Row, TextField } from '@folio/stripes/components';
 
 import { validateDateFormat } from '../../../../util/validators';
 
