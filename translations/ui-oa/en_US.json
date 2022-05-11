@@ -285,5 +285,7 @@
     "journal.oaStatus": "OA Status",
     "journal.journalDOAJ": "Journal in DOAJ",
     "journal.journalOAStatus": "Journal OA Status",
-    "charge.invoiceLine.status.open": "Open"
+    "charge.invoiceLine.status.open": "Open",
+    "publicationRequest.publicationDate": "Date of publication",
+    "publicationRequest.publicationYear.validate": "Please enter a date in the format YYYY, YYYY-MM or YYYY-MM-DD"
 }
