@@ -28,7 +28,7 @@ const IdentifiersField = ({ fields: { name } }) => {
     <>
       {items.map((identifier, index) => {
         return (
-          <Row key={identifier} middle="xs">
+          <Row key={identifier}>
             <Col xs={3}>
               <Field
                 autoFocus={!identifier?.id}
@@ -69,6 +69,7 @@ const IdentifiersField = ({ fields: { name } }) => {
                     aria-labelledby={ariaIds.text}
                     icon="trash"
                     onClick={() => onDeleteField(index, identifier)}
+                    style={{ 'padding-top': '25px' }}
                   />
                 )}
               </Tooltip>
