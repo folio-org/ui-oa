@@ -33,7 +33,6 @@ const PublicationStatusField = ({ fields: { name } }) => {
           <Row
             key={publicationStatus + index}
             data-testid={`PublicationStatusFieldArray[${index}]`}
-            start="xs"
           >
             <Col xs={3}>
               <Field
@@ -87,6 +86,7 @@ const PublicationStatusField = ({ fields: { name } }) => {
                     aria-labelledby={ariaIds.text}
                     icon="trash"
                     onClick={() => onDeleteField(index, publicationStatus)}
+                    style={{ 'padding-top': '25px' }}
                   />
                 )}
               </Tooltip>
