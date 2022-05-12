@@ -285,5 +285,7 @@
     "journal.oaStatus": "Stav OA",
     "journal.journalDOAJ": "Časopis v DOAJ",
     "journal.journalOAStatus": "Stav časopisu OA",
-    "charge.invoiceLine.status.open": "Open"
+    "charge.invoiceLine.status.open": "Open",
+    "publicationRequest.publicationDate": "Date of publication",
+    "publicationRequest.publicationYear.validate": "Please enter a date in the format YYYY, YYYY-MM or YYYY-MM-DD"
 }
