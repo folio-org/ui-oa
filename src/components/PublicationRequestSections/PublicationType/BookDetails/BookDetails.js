@@ -25,10 +25,11 @@ const BookDetails = ({ request }) => {
             label={
               <FormattedMessage id="ui-oa.publicationRequest.publicationDate" />
             }
-            value={request?.bookDateOfPublication
-              .split('-')
-              .reverse()
-              .join('/')}
+            value={
+              request?.bookDateOfPublication
+                ? request.bookDateOfPublication.split('-').reverse().join('/')
+                : null
+            }
           />
         </Col>
         <Col xs={3}>
