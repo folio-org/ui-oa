@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
@@ -16,6 +16,11 @@ import {
 } from '../../components/SearchAndFilter';
 
 const PublicationRequestsRoute = ({ children, path }) => {
+  const [sortState, setSortState] = useState({
+    path: 'requestNumber',
+    direction: 'desc',
+  });
+
   const fetchParameters = {
     endpoint: 'oa/publicationRequest',
     SASQ_MAP: {
@@ -24,6 +29,7 @@ const PublicationRequestsRoute = ({ children, path }) => {
       filterKeys: {
         requestStatus: 'requestStatus.value',
       },
+      sort: [{ path: sortState?.path, direction: sortState?.direction }],
     },
   };
 
@@ -65,8 +71,20 @@ const PublicationRequestsRoute = ({ children, path }) => {
       </AppIcon>
     ),
     requestStatus: (d) => d?.requestStatus?.label,
-    requestDate: (d) => (d.requestDate ? <FormattedUTCDate value={d.requestDate} /> : ''),
+    requestDate: (d) =>
+      d.requestDate ? <FormattedUTCDate value={d.requestDate} /> : '',
     correspondingAuthorName: (d) => d.correspondingAuthor?.partyOwner?.fullName,
+  };
+
+  const onSort = (_e, meta) => {
+    if (sortState.path !== meta.name) {
+      setSortState({ path: meta?.name, direction: 'desc' });
+    } else {
+      setSortState({
+        path: sortState.path,
+        direction: sortState.direction === 'desc' ? 'asc' : 'desc',
+      });
+    }
   };
 
   const lastpaneMenu = (
@@ -100,7 +118,12 @@ const PublicationRequestsRoute = ({ children, path }) => {
         lastMenu: lastpaneMenu,
         paneTitle: <FormattedMessage id="ui-oa.publicationRequests" />,
       }}
-      mclProps={{ formatter }}
+      mclProps={{
+        formatter,
+        sortedColumn: sortState?.path,
+        sortDirection: `${sortState.direction}ending`,
+      }}
+      onSort={onSort}
       path={path}
       resultColumns={resultColumns}
       ViewComponent={PublicationRequest}
