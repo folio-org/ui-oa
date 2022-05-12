@@ -281,9 +281,11 @@
     "publicationRequest.emptyPublicationStatuses": "لا توجد حالات نشر لهذا الطلب",
     "publicationRequest.emptyCorrespondence": "لا توجد مراسلات لهذا الطلب",
     "publicationRequest.emptyCharges": "لا توجد رسوم لهذا الطلب",
-    "journal.inDOAJ": "In DOAJ",
+    "journal.inDOAJ": "في دليل الوصول المفتوح إلى الدوريات",
     "journal.oaStatus": "حالة الوصول المفتوح",
-    "journal.journalDOAJ": "Journal in DOAJ",
+    "journal.journalDOAJ": "دورية في دليل الوصول المفتوح إلى الدوريات",
     "journal.journalOAStatus": "حالة الوصول المفتوح للدورية",
-    "charge.invoiceLine.status.open": "مفتوحة"
+    "charge.invoiceLine.status.open": "مفتوحة",
+    "publicationRequest.publicationDate": "تاريخ النشر",
+    "publicationRequest.publicationYear.validate": "يرجى إدخال تاريخ بتنسيق YYYYY أو YYYY-MM أو YYYY-MM-DD"
 }
