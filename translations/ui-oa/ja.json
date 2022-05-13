@@ -162,7 +162,7 @@
     "publicationRequest.charges": "Charges",
     "charge.newCharge": "New charge",
     "charge.editCharge": "Edit charge",
-    "charge.amount": "Amount",
+    "charge.amount": "金額",
     "charge.currency": "Currency",
     "charge.exchangeRate": "為替レート",
     "charge.coefficient": "Coefficient",
