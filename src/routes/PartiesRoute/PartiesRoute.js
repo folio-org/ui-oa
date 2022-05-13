@@ -2,11 +2,8 @@ import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
 
-import {
-  AppIcon, IfPermission
-} from '@folio/stripes/core';
+import { AppIcon, IfPermission } from '@folio/stripes/core';
 import { Button, PaneMenu } from '@folio/stripes/components';
-
 
 import { SASQRoute } from '@k-int/stripes-kint-components';
 import { OAFilterHeaderComponent } from '../../components/SearchAndFilter';
@@ -22,44 +19,36 @@ const PartiesRoute = ({ path }) => {
     endpoint: 'oa/party',
     SASQ_MAP: {
       searchKey: 'mainEmail,givenNames,familyName,orcidId',
-      filterKeys: {
-      }
-    }
+      filterKeys: {},
+      sort: [{ path: 'familyName' }, { path: 'givenNames' }],
+    },
   };
 
   const resultColumns = [
     {
-      propertyPath:'givenNames',
-      label: <FormattedMessage id="ui-oa.parties.givenNames" />
+      propertyPath: 'givenNames',
+      label: <FormattedMessage id="ui-oa.parties.givenNames" />,
     },
     {
-      propertyPath:'familyName',
-      label: <FormattedMessage id="ui-oa.parties.familyName" />
+      propertyPath: 'familyName',
+      label: <FormattedMessage id="ui-oa.parties.familyName" />,
     },
     {
-      propertyPath:'orcidId',
-      label: <FormattedMessage id="ui-oa.parties.orcidId" />
+      propertyPath: 'orcidId',
+      label: <FormattedMessage id="ui-oa.parties.orcidId" />,
     },
     {
-      propertyPath:'mainEmail',
-      label: <FormattedMessage id="ui-oa.parties.mainEmail" />
+      propertyPath: 'mainEmail',
+      label: <FormattedMessage id="ui-oa.parties.mainEmail" />,
     },
   ];
 
   const formatter = {
-    givenNames: d => (
-      <AppIcon
-        iconAlignment="baseline"
-        iconKey="app"
-        size="small"
-      >
+    givenNames: (d) => (
+      <AppIcon iconAlignment="baseline" iconKey="app" size="small">
         {d?.givenNames}
       </AppIcon>
     ),
-  };
-
-  const initialSortState = {
-    sort: 'givenNames'
   };
 
   const lastpaneMenu = (
@@ -95,14 +84,13 @@ const PartiesRoute = ({ path }) => {
       mclProps={{ formatter }}
       path={path}
       resultColumns={resultColumns}
-      sasqProps={{ initialSortState }}
       ViewComponent={Party}
     />
   );
 };
 
 PartiesRoute.propTypes = {
-  path: PropTypes.string.isRequired
+  path: PropTypes.string.isRequired,
 };
 
 export default PartiesRoute;
