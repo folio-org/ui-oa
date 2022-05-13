@@ -36,6 +36,7 @@ const JournalsRoute = ({ path }) => {
       searchKey: 'instances.identifiers.identifier.value,title',
       filterKeys: {},
     },
+    sort: [{ path: 'title' }],
   };
 
   const resultColumns = [
@@ -83,10 +84,6 @@ const JournalsRoute = ({ path }) => {
     </IfPermission>
   );
 
-  const initialSortState = {
-    sort: 'title',
-  };
-
   return (
     <>
       <SASQRoute
@@ -101,7 +98,6 @@ const JournalsRoute = ({ path }) => {
         mclProps={{ formatter }}
         path={path}
         resultColumns={resultColumns}
-        sasqProps={{ initialSortState }}
         ViewComponent={Journal}
       />
       <JournalModal
