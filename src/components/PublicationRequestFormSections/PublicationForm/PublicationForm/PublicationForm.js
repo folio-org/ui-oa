@@ -18,6 +18,7 @@ import getRDVId from '../../../../util/getRDVId';
 
 import PublicationJournal from '../PublicationJournal';
 import PublicationBook from '../PublicationBook';
+import { MAX_CHAR_LONG, MAX_CHAR_SHORT } from '../../../../constants/config';
 
 const [PUBLICATION_TYPE, PUBLISHER, SUBTYPE, LICENSE] = [
   'PublicationRequest.PublicationType',
@@ -45,7 +46,11 @@ const PublicationForm = () => {
   const licenseValues = selectifyRefdata(refdataValues, LICENSE);
 
   const bookId = getRDVId(refdataValues, PUBLICATION_TYPE, 'book');
-  const journalArticleId = getRDVId(refdataValues, PUBLICATION_TYPE, 'journal_article');
+  const journalArticleId = getRDVId(
+    refdataValues,
+    PUBLICATION_TYPE,
+    'journal_article'
+  );
 
   return (
     <Accordion
@@ -56,6 +61,7 @@ const PublicationForm = () => {
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.publicationRequest.doi" />}
+            maxLength={MAX_CHAR_SHORT}
             name="doi"
             parse={(v) => v}
           />
@@ -111,6 +117,7 @@ const PublicationForm = () => {
             label={
               <FormattedMessage id="ui-oa.publicationRequest.publicationTitle" />
             }
+            maxLength={MAX_CHAR_LONG}
             name="publicationTitle"
             parse={(v) => v}
           />
@@ -121,6 +128,7 @@ const PublicationForm = () => {
             label={
               <FormattedMessage id="ui-oa.publicationRequest.authorNames" />
             }
+            maxLength={MAX_CHAR_LONG}
             name="authorNames"
             parse={(v) => v}
           />
@@ -134,6 +142,7 @@ const PublicationForm = () => {
             label={
               <FormattedMessage id="ui-oa.publicationRequest.publicationUrl" />
             }
+            maxLength={MAX_CHAR_LONG}
             name="publicationUrl"
             parse={(v) => v}
           />
@@ -144,6 +153,7 @@ const PublicationForm = () => {
             label={
               <FormattedMessage id="ui-oa.publicationRequest.localReference" />
             }
+            maxLength={MAX_CHAR_SHORT}
             name="localReference"
             parse={(v) => v}
           />
