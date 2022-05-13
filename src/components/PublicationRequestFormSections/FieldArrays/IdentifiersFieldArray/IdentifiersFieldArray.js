@@ -17,6 +17,7 @@ import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
 
 import useOARefdata from '../../../../util/useOARefdata';
 import selectifyRefdata from '../../../../util/selectifyRefdata';
+import { MAX_CHAR_SHORT } from '../../../../constants/config';
 
 const IdentifiersField = ({ fields: { name } }) => {
   const { items, onAddField, onDeleteField } = useKiwtFieldArray(name);
@@ -47,6 +48,7 @@ const IdentifiersField = ({ fields: { name } }) => {
               <Field
                 component={TextField}
                 label={<FormattedMessage id="ui-oa.identifiers.identifier" />}
+                maxLength={MAX_CHAR_SHORT}
                 name={`${name}[${index}].publicationIdentifier`}
                 required
                 validate={requiredValidator}
