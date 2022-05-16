@@ -2,6 +2,7 @@ import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
 
 import { Col, Row, TextField, Label } from '@folio/stripes/components';
+import { MAX_CHAR_LONG } from '../../../constants/config';
 
 const StreetAddress = () => {
   return (
@@ -20,6 +21,7 @@ const StreetAddress = () => {
             label={
               <FormattedMessage id="ui-oa.party.streetAddress.addressLineOne" />
             }
+            maxLength={MAX_CHAR_LONG}
             name="streetAddress.address.addressLineOne"
             parse={(v) => v}
           />
@@ -30,6 +32,7 @@ const StreetAddress = () => {
             label={
               <FormattedMessage id="ui-oa.party.streetAddress.addressLineTwo" />
             }
+            maxLength={MAX_CHAR_LONG}
             name="streetAddress.address.addressLineTwo"
             parse={(v) => v}
           />
@@ -38,6 +41,7 @@ const StreetAddress = () => {
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.party.streetAddress.city" />}
+            maxLength={MAX_CHAR_LONG}
             name="streetAddress.address.city"
             parse={(v) => v}
           />
@@ -46,6 +50,7 @@ const StreetAddress = () => {
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.party.streetAddress.region" />}
+            maxLength={MAX_CHAR_LONG}
             name="streetAddress.address.region"
             parse={(v) => v}
           />
@@ -56,6 +61,7 @@ const StreetAddress = () => {
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.party.streetAddress.country" />}
+            maxLength={MAX_CHAR_LONG}
             name="streetAddress.address.country"
           />
         </Col>
@@ -65,6 +71,7 @@ const StreetAddress = () => {
             label={
               <FormattedMessage id="ui-oa.party.streetAddress.postalCode" />
             }
+            maxLength={MAX_CHAR_LONG}
             name="streetAddress.address.postalCode"
           />
         </Col>
