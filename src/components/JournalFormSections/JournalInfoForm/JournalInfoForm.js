@@ -20,6 +20,7 @@ const JournalInfoForm = () => {
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.journal.title" />}
+            maxLength={2047}
             name="title"
             required
             validate={requiredValidator}
