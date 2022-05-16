@@ -17,6 +17,7 @@ import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
 
 import useOARefdata from '../../../../util/useOARefdata';
 import selectifyRefdata from '../../../../util/selectifyRefdata';
+import { MAX_CHAR_SHORT } from '../../../../constants/config';
 
 const IdentifiersField = ({ fields: { name } }) => {
   const { items, onAddField, onDeleteField } = useKiwtFieldArray(name);
@@ -28,7 +29,7 @@ const IdentifiersField = ({ fields: { name } }) => {
     <>
       {items.map((identifier, index) => {
         return (
-          <Row key={identifier} middle="xs">
+          <Row key={identifier}>
             <Col xs={3}>
               <Field
                 autoFocus={!identifier?.id}
@@ -47,6 +48,7 @@ const IdentifiersField = ({ fields: { name } }) => {
               <Field
                 component={TextField}
                 label={<FormattedMessage id="ui-oa.identifiers.identifier" />}
+                maxLength={MAX_CHAR_SHORT}
                 name={`${name}[${index}].publicationIdentifier`}
                 required
                 validate={requiredValidator}
@@ -69,6 +71,7 @@ const IdentifiersField = ({ fields: { name } }) => {
                     aria-labelledby={ariaIds.text}
                     icon="trash"
                     onClick={() => onDeleteField(index, identifier)}
+                    style={{ 'padding-top': '25px' }}
                   />
                 )}
               </Tooltip>

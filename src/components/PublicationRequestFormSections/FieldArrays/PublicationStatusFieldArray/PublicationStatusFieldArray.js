@@ -19,6 +19,7 @@ import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
 
 import useOARefdata from '../../../../util/useOARefdata';
 import selectifyRefdata from '../../../../util/selectifyRefdata';
+import { MAX_CHAR_LONG } from '../../../../constants/config';
 
 const PublicationStatusField = ({ fields: { name } }) => {
   const { items, onAddField, onDeleteField } = useKiwtFieldArray(name);
@@ -33,7 +34,6 @@ const PublicationStatusField = ({ fields: { name } }) => {
           <Row
             key={publicationStatus + index}
             data-testid={`PublicationStatusFieldArray[${index}]`}
-            start="xs"
           >
             <Col xs={3}>
               <Field
@@ -67,6 +67,7 @@ const PublicationStatusField = ({ fields: { name } }) => {
                 label={
                   <FormattedMessage id="ui-oa.publicationRequest.statusNote" />
                 }
+                maxLength={MAX_CHAR_LONG}
                 name={`${name}[${index}].statusNote`}
               />
             </Col>
@@ -87,6 +88,7 @@ const PublicationStatusField = ({ fields: { name } }) => {
                     aria-labelledby={ariaIds.text}
                     icon="trash"
                     onClick={() => onDeleteField(index, publicationStatus)}
+                    style={{ 'padding-top': '25px' }}
                   />
                 )}
               </Tooltip>

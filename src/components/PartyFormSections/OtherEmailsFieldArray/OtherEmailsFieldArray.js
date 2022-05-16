@@ -26,7 +26,7 @@ const OtherEmailsField = ({ fields: { name } }) => {
       <br />
       {items.map((email, index) => {
         return (
-          <Row key={email} start="xs">
+          <Row key={email}>
             <Col xs={9}>
               <Field
                 component={TextField}
@@ -53,6 +53,7 @@ const OtherEmailsField = ({ fields: { name } }) => {
                     aria-labelledby={ariaIds.text}
                     icon="trash"
                     onClick={() => onDeleteField(index, email)}
+                    style={{ 'padding-top': '25px' }}
                   />
                 )}
               </Tooltip>

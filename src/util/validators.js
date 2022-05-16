@@ -22,4 +22,22 @@ const validateNotLessThanZero = (value) => {
     <FormattedMessage id="ui-oa.charge.validate.notLessThanZero" />
   );
 };
-export { validateNotNegative, validateAsDecimal, validateNotLessThanZero };
+
+const validateDateFormat = (value) => {
+  const regex =
+    /^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$|^[0-9]{4}-(((0[123456789]|(10|11|12))))$|^[0-9]{4}$/;
+  const match = regex.test(value);
+  if (!value) {
+    return undefined;
+  } else {
+    return value && !match ? (
+      <FormattedMessage id="ui-oa.publicationRequest.publicationYear.validate" />
+    ) : undefined;
+  }
+};
+export {
+  validateNotNegative,
+  validateAsDecimal,
+  validateNotLessThanZero,
+  validateDateFormat,
+};

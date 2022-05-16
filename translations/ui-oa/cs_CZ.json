@@ -59,8 +59,8 @@
     "funders.requestHasNone": "No funding for this publication request",
     "otherEmail.otherEmailAddress": "Other email address",
     "affiliation.addAffiliation": "Přidejte příslušnost",
-    "affiliation.affiliationTitle": "Příslušnost {číslo}",
-    "affiliation.removeAffiliation": "Odstranění příslušnosti {číslo}",
+    "affiliation.affiliationTitle": "Příslušnost {number}",
+    "affiliation.removeAffiliation": "Odstranění příslušnosti {number}",
     "publicationStatus.addPublicationStatus": "Add publication status",
     "publicationStatus.requestHasNone": "No publication statuses for this publication request",
     "publicationStatus.publicationStatusDate": "Status Date",
@@ -276,5 +276,16 @@
     "charge.invoiceLine.removeInvoiceLine": "Odebrat řádek faktury",
     "charge.linkToInvoiceLineIndex": "Zobrazení řádku faktury pro náklady {index}",
     "charge.estimatedAmount": "Odhadovaná částka včetně slev a daně",
-    "charge.invoiceLine.currencyDifferenceMessage": "Upozornění: <strong>Konfliktní měny</strong>. Měna poplatku za žádost je {chargeCurrency}. Tento řádek faktury bude vytvořen pomocí měny na faktuře: {invoiceCurrency}"
+    "charge.invoiceLine.currencyDifferenceMessage": "Upozornění: <strong>Konfliktní měny</strong>. Měna poplatku za žádost je {chargeCurrency}. Tento řádek faktury bude vytvořen pomocí měny na faktuře: {invoiceCurrency}",
+    "publicationRequest.emptyFundings": "Žádné financování pro tuto žádost",
+    "publicationRequest.emptyPublicationStatuses": "Pro tento požadavek nejsou žádné stavy publikování",
+    "publicationRequest.emptyCorrespondence": "Žádná korespondence k této žádosti",
+    "publicationRequest.emptyCharges": "Za tuto žádost nejsou účtovány žádné poplatky",
+    "journal.inDOAJ": "V DOAJ",
+    "journal.oaStatus": "Stav OA",
+    "journal.journalDOAJ": "Časopis v DOAJ",
+    "journal.journalOAStatus": "Stav časopisu OA",
+    "charge.invoiceLine.status.open": "Otevřená",
+    "publicationRequest.publicationDate": "Datum zveřejnění",
+    "publicationRequest.publicationYear.validate": "Zadejte datum ve formátu RRRR, RRRR-MM nebo RRRR-MM-DD"
 }

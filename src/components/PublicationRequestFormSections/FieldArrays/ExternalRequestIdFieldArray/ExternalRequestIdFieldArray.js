@@ -14,6 +14,7 @@ import {
 import { requiredValidator } from '@folio/stripes-erm-components';
 
 import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
+import { MAX_CHAR_SHORT } from '../../../../constants/config';
 
 const ExternalRequestIdField = ({ fields: { name } }) => {
   const { items, onAddField, onDeleteField } = useKiwtFieldArray(name);
@@ -25,7 +26,7 @@ const ExternalRequestIdField = ({ fields: { name } }) => {
             key={externalRequestId + index}
             data-testid={`externalRequestIdFieldArray[${index}]`}
           >
-            <Row middle="xs">
+            <Row>
               <Col xs={3}>
                 <Field
                   autoFocus={!externalRequestId?.id}
@@ -33,6 +34,7 @@ const ExternalRequestIdField = ({ fields: { name } }) => {
                   label={
                     <FormattedMessage id="ui-oa.externalRequestId.externalRequestId" />
                   }
+                  maxLength={MAX_CHAR_SHORT}
                   name={`${name}[${index}].externalId`}
                   required
                   validate={requiredValidator}
@@ -55,6 +57,7 @@ const ExternalRequestIdField = ({ fields: { name } }) => {
                       aria-labelledby={ariaIds.text}
                       icon="trash"
                       onClick={() => onDeleteField(index, externalRequestId)}
+                      style={{ 'padding-top': '25px' }}
                     />
                   )}
                 </Tooltip>

@@ -24,6 +24,7 @@ const PublicationRequestsRoute = ({ children, path }) => {
       filterKeys: {
         requestStatus: 'requestStatus.value',
       },
+      sort: [{ path: 'requestNumber' }],
     },
   };
 

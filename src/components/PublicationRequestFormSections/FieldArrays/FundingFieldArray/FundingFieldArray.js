@@ -34,7 +34,7 @@ const FundingField = ({ fields: { name } }) => {
       {items.map((funding, index) => {
         return (
           <div key={name + index} data-testid={`fundingFieldArray[${index}]`}>
-            <Row middle="xs">
+            <Row>
               <Col xs={3}>
                 <Field
                   autoFocus={!funding?.id}
@@ -80,6 +80,7 @@ const FundingField = ({ fields: { name } }) => {
                       aria-labelledby={ariaIds.text}
                       icon="trash"
                       onClick={() => onDeleteField(index, funding)}
+                      style={{ 'padding-top': '25px' }}
                     />
                   )}
                 </Tooltip>

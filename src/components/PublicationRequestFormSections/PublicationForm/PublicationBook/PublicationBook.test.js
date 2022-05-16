@@ -28,7 +28,7 @@ describe('PublicationBook', () => {
     test('renders publication year field', () => {
       const { getByRole } = renderComponent;
       expect(
-        getByRole('textbox', { name: 'Year of publication' })
+        getByRole('textbox', { name: 'Date of publication' })
       ).toBeInTheDocument();
     });
 
@@ -53,8 +53,8 @@ describe('PublicationBook', () => {
     test('renders publication year field', () => {
       const { getByRole } = renderComponent;
       expect(
-        getByRole('textbox', { name: 'Year of publication' })
-      ).toHaveDisplayValue('10/10/1996');
+        getByRole('textbox', { name: 'Date of publication' })
+      ).toHaveDisplayValue('1996-10-10');
     });
 
     test('renders publication place field', () => {

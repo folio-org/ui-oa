@@ -276,5 +276,16 @@
     "charge.invoiceLine.removeInvoiceLine": "إزالة سطر الفاتورة",
     "charge.linkToInvoiceLineIndex": "عرض سطر الفاتورة للرسوم {index}",
     "charge.estimatedAmount": "المبلغ المقدر بما في ذلك الخصومات والضرائب",
-    "charge.invoiceLine.currencyDifferenceMessage": "تحذير: <strong>عملات متضاربة</strong> . العملة المستخدمة في رسم الطلب هي {chargeCurrency} . سيتم إنشاء سطر الفاتورة هذا باستخدام العملة الموجودة في الفاتورة: {invoiceCurrency}"
+    "charge.invoiceLine.currencyDifferenceMessage": "تحذير: <strong>عملات متضاربة</strong> . العملة المستخدمة في رسم الطلب هي {chargeCurrency} . سيتم إنشاء سطر الفاتورة هذا باستخدام العملة الموجودة في الفاتورة: {invoiceCurrency}",
+    "publicationRequest.emptyFundings": "لا يوجد تمويل لهذا الطلب",
+    "publicationRequest.emptyPublicationStatuses": "لا توجد حالات نشر لهذا الطلب",
+    "publicationRequest.emptyCorrespondence": "لا توجد مراسلات لهذا الطلب",
+    "publicationRequest.emptyCharges": "لا توجد رسوم لهذا الطلب",
+    "journal.inDOAJ": "في دليل الوصول المفتوح إلى الدوريات",
+    "journal.oaStatus": "حالة الوصول المفتوح",
+    "journal.journalDOAJ": "دورية في دليل الوصول المفتوح إلى الدوريات",
+    "journal.journalOAStatus": "حالة الوصول المفتوح للدورية",
+    "charge.invoiceLine.status.open": "مفتوحة",
+    "publicationRequest.publicationDate": "تاريخ النشر",
+    "publicationRequest.publicationYear.validate": "يرجى إدخال تاريخ بتنسيق YYYYY أو YYYY-MM أو YYYY-MM-DD"
 }

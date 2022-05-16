@@ -31,7 +31,7 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
             key={identifierId}
             data-testid={`InstanceIdentifiersFieldArray[${index}]`}
           >
-            <Row middle="xs">
+            <Row>
               <Col xs={4}>
                 <Field
                   component={Select}
@@ -93,6 +93,7 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
                         aria-labelledby={ariaIds.text}
                         icon="trash"
                         onClick={() => fields.remove(index)}
+                        style={{ 'padding-top': '25px' }}
                       />
                     )}
                   </Tooltip>
