@@ -14,6 +14,7 @@ import {
   Tooltip,
 } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
+import { MAX_CHAR_LONG } from '../../../../constants/config';
 
 const propTypes = {
   instanceId: PropTypes.string.isRequired,
@@ -70,6 +71,7 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
                   label={
                     <FormattedMessage id="ui-oa.journal.instance.identifier.id" />
                   }
+                  maxLength={MAX_CHAR_LONG}
                   name={`${identifierId}.id`}
                   required
                   validate={requiredValidator}
