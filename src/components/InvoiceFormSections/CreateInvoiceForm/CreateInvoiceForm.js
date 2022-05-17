@@ -36,7 +36,7 @@ const CreateInvoiceForm = ({ batchGroups, charge }) => {
   return (
     <>
       <Row>
-        <Col xs={3}>
+        <Col xs={4}>
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.charge.invoice.invoiceNumber" />}
@@ -45,7 +45,7 @@ const CreateInvoiceForm = ({ batchGroups, charge }) => {
             validate={requiredValidator}
           />
         </Col>
-        <Col xs={3}>
+        <Col xs={4}>
           <Field
             backendDateStandard="YYYY-MM-DD"
             component={Datepicker}
@@ -59,7 +59,7 @@ const CreateInvoiceForm = ({ batchGroups, charge }) => {
         </Col>
       </Row>
       <Row>
-        <Col xs={3}>
+        <Col xs={4}>
           <FieldOrganization
             change={change}
             labelId="ui-oa.charge.invoice.vendorOrganisation"
@@ -69,7 +69,7 @@ const CreateInvoiceForm = ({ batchGroups, charge }) => {
           />
           {/* Change to registry when it becomes available */}
         </Col>
-        <Col xs={3}>
+        <Col xs={4}>
           <FieldSelectFinal
             dataOptions={PAYMENT_METHOD_OPTIONS}
             label={<FormattedMessage id="ui-oa.charge.invoice.paymentMethod" />}
@@ -77,7 +77,7 @@ const CreateInvoiceForm = ({ batchGroups, charge }) => {
             required
           />
         </Col>
-        <Col xs={3}>
+        <Col xs={4}>
           <Field
             component={Select}
             dataOptions={[
@@ -93,7 +93,7 @@ const CreateInvoiceForm = ({ batchGroups, charge }) => {
       </Row>
       <Row middle="xs">
         {/* Both rows below should be poulated from selected charge */}
-        <Col xs={3}>
+        <Col xs={4}>
           <Field
             component={Select}
             dataOptions={currencyOptions}
