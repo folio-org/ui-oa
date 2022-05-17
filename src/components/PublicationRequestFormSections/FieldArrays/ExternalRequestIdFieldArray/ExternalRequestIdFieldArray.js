@@ -14,6 +14,7 @@ import {
 import { requiredValidator } from '@folio/stripes-erm-components';
 
 import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
+import { MAX_CHAR_SHORT } from '../../../../constants/config';
 
 const ExternalRequestIdField = ({ fields: { name } }) => {
   const { items, onAddField, onDeleteField } = useKiwtFieldArray(name);
@@ -33,6 +34,7 @@ const ExternalRequestIdField = ({ fields: { name } }) => {
                   label={
                     <FormattedMessage id="ui-oa.externalRequestId.externalRequestId" />
                   }
+                  maxLength={MAX_CHAR_SHORT}
                   name={`${name}[${index}].externalId`}
                   required
                   validate={requiredValidator}

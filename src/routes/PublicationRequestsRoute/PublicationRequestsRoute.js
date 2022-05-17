@@ -122,6 +122,7 @@ const PublicationRequestsRoute = ({ children, path }) => {
         formatter,
         sortedColumn: sortState?.path,
         sortDirection: `${sortState.direction}ending`,
+        columnWidths: { publicationTitle: 500 }
       }}
       onSort={onSort}
       path={path}

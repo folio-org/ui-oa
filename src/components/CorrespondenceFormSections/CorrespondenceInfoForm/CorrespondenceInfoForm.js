@@ -12,6 +12,7 @@ import {
 import { requiredValidator } from '@folio/stripes-erm-components';
 import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
+import { MAX_CHAR_LONG } from '../../../constants/config';
 
 const [CORRESPONDENCE_CATEGORY, CORRESPONDENCE_STATUS, CORRESPONDENCE_MODE] = [
   'Correspondence.Category',
@@ -40,7 +41,7 @@ const CorrespondenceInfoForm = () => {
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.correspondence.correspondent" />}
-            maxLength={255}
+            maxLength={MAX_CHAR_LONG}
             name="correspondent"
             required
             validate={requiredValidator}
