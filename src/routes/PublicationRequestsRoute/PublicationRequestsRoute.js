@@ -101,7 +101,7 @@ const PublicationRequestsRoute = ({ children, path }) => {
         lastMenu: lastpaneMenu,
         paneTitle: <FormattedMessage id="ui-oa.publicationRequests" />,
       }}
-      mclProps={{ formatter }}
+      mclProps={{ formatter, columnWidths: { publicationTitle: 500 } }}
       path={path}
       resultColumns={resultColumns}
       ViewComponent={PublicationRequest}
