@@ -26,9 +26,13 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
   const { values } = useFormState();
   const intl = useIntl();
   const [optionsInUse, setOptionsInUse] = useState([]);
+  const [hasSubtype, setHasSubtype] = useState(false);
 
   // Sets the options that are currently being used by getting the namespace value of all identifiers
   useEffect(() => {
+    if (get(values, instanceId)?.subType) {
+      setHasSubtype(true);
+    }
     setOptionsInUse(
       get(values, `${instanceId}.ids`)
         ?.map((i) => i?.ns)
@@ -45,16 +49,17 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
       }),
     },
     {
-      value: 'ezb',
-      label: intl.formatMessage({
-        id: 'ui-oa.journal.instance.identifier.ns.ezb',
-      }),
-    },
-    {
       value: 'zdb',
       label: intl.formatMessage({
         id: 'ui-oa.journal.instance.identifier.ns.zdb',
       }),
+    },
+    {
+      value: 'ezb',
+      label: intl.formatMessage({
+        id: 'ui-oa.journal.instance.identifier.ns.ezb',
+      }),
+      disabled: get(values, instanceId)?.subType !== 'electronic',
     },
   ];
 
@@ -81,6 +86,7 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
                   <Field
                     component={Select}
                     dataOptions={availableOptions}
+                    disabled={!hasSubtype}
                     label={
                       <FormattedMessage id="ui-oa.journal.instance.identifier.nameSpace" />
                     }
@@ -92,6 +98,7 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
                 <Col xs={4}>
                   <Field
                     component={TextField}
+                    disabled={!hasSubtype}
                     label={
                       <FormattedMessage id="ui-oa.journal.instance.identifier.id" />
                     }
@@ -138,7 +145,16 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
       {({ fields }) => (
         <>
           <>{renderIdentifier(fields)}</>
-          <Button onClick={() => fields.push({})}>
+          <Button
+            disabled={
+              !hasSubtype ||
+              (get(values, instanceId)?.subType === 'print' &&
+                get(values, instanceId)?.ids.length === 2) ||
+              (get(values, instanceId)?.subType === 'electronic' &&
+                get(values, instanceId)?.ids.length === 3)
+            }
+            onClick={() => fields.push({})}
+          >
             <FormattedMessage id="ui-oa.journal.instance.identifier.addIdentifier" />
           </Button>
         </>
