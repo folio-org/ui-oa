@@ -140,6 +140,8 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
     );
   };
 
+  // The button to add more identifiers is disabled when all avaialble options
+  // for namespaces have been used
   return (
     <FieldArray name={`${instanceId}.ids`}>
       {({ fields }) => (
@@ -150,8 +152,7 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
               !hasSubtype ||
               (get(values, instanceId)?.subType === 'print' &&
                 get(values, instanceId)?.ids.length === 2) ||
-              (get(values, instanceId)?.subType === 'electronic' &&
-                get(values, instanceId)?.ids.length === 3)
+              get(values, instanceId)?.ids.length === 3
             }
             onClick={() => fields.push({})}
           >
