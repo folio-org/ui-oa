@@ -9,6 +9,7 @@ import {
   RadioButton,
   Select,
   useCurrencyOptions,
+  Selection
 } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
 import {
@@ -95,7 +96,7 @@ const CreateInvoiceForm = ({ batchGroups, charge }) => {
         {/* Both rows below should be poulated from selected charge */}
         <Col xs={4}>
           <Field
-            component={Select}
+            component={Selection}
             dataOptions={currencyOptions}
             id="invoice-currency"
             label={<FormattedMessage id="ui-oa.charge.currency" />}
