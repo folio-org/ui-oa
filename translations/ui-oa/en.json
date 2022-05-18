@@ -88,9 +88,9 @@
   "journal.creationError": "<strong>Error:</strong> Unable to create a new journal, please check the details and try again",
   "journal.creationSuccess": "<strong>Journal created:</strong> {journalTitle}",
   "journal.inDOAJ": "In DOAJ",
-  "journal.oaStatus": "OA Status",
+  "journal.oaStatus": "OA status",
   "journal.journalDOAJ": "Journal in DOAJ",
-  "journal.journalOAStatus": "Journal OA Status",
+  "journal.journalOAStatus": "Journal OA status",
   "journal.validate.notElectronicSubtype": "EZB is not a valid option for the subtype 'Print'. Please rectify",
   "journal.validate.duplicateNamespaceID": "This ID and namespace combination exists in another instance, please rectify",
 
