@@ -35,6 +35,7 @@ const validateDateFormat = (value) => {
     ) : undefined;
   }
 };
+
 export {
   validateNotNegative,
   validateAsDecimal,

@@ -22,7 +22,7 @@
   "journals.title": "Title",
   "journals.printIssn": "ISSN (Print)",
   "journals.electronicIssn": "ISSN (Electronic)",
-  
+
   "party.edit": "Edit",
   "party.requests": "Requests",
   "party.new": "New",
@@ -88,10 +88,12 @@
   "journal.creationError": "<strong>Error:</strong> Unable to create a new journal, please check the details and try again",
   "journal.creationSuccess": "<strong>Journal created:</strong> {journalTitle}",
   "journal.inDOAJ": "In DOAJ",
-  "journal.oaStatus": "OA Status",
+  "journal.oaStatus": "OA status",
   "journal.journalDOAJ": "Journal in DOAJ",
-  "journal.journalOAStatus": "Journal OA Status",
-
+  "journal.journalOAStatus": "Journal OA status",
+  "journal.validate.notElectronicSubtype": "EZB is not a valid option for the subtype 'Print'. Please rectify",
+  "journal.validate.duplicateNamespaceID": "This ID and namespace combination exists in another instance, please rectify",
+  "journal.subtypePopover": "The Subtype value selected will affect the options available in the Namespace field. For example, 'EZB' is only available for the subtype 'Electronic'.",
 
   "publicationRequest.addFunding": "Add funding",
   "publicationRequest.removeFundingIndex": "Remove funding {index}",
@@ -176,7 +178,7 @@
   "publicationRequest.emptyPublicationStatuses": "No publication statuses for this request",
   "publicationRequest.emptyCorrespondence": "No correspondence for this request",
   "publicationRequest.emptyCharges": "No charges for this request",
-  
+
   "publicationJournal.title": "Title",
   "publicationJournal.issnPrint": "ISSN (print)",
   "publicationJournal.issnElectronic": "ISSN (electronic)",
@@ -185,7 +187,7 @@
   "publicationRequests": "Publication requests",
   "publicationRequests.recordsFound": "{number} records found",
 
-  "externalRequestId.externalRequestId": "External request ID", 
+  "externalRequestId.externalRequestId": "External request ID",
 
   "identifiers.addIdentifier": "Add identifier",
   "identifiers.removeIdentifierIndex": "Remove identifier {index}",
@@ -203,12 +205,12 @@
 
   "affiliation.addAffiliation": "Add affiliation",
   "affiliation.affiliationTitle": "Affiliation {number}",
-  "affiliation.removeAffiliation": "Remove affiliation {number}", 
-  "affiliation.faculty": "Faculty", 
-  "affiliation.school": "School", 
-  "affiliation.department": "Department", 
-  "affiliation.dateFrom": "Date from", 
-  "affiliation.dateTo": "Date to", 
+  "affiliation.removeAffiliation": "Remove affiliation {number}",
+  "affiliation.faculty": "Faculty",
+  "affiliation.school": "School",
+  "affiliation.department": "Department",
+  "affiliation.dateFrom": "Date from",
+  "affiliation.dateTo": "Date to",
 
   "publicationStatus.addPublicationStatus": "Add publication status",
   "publicationStatus.removePublicationStatusIndex": "Remove publication status {index}",
