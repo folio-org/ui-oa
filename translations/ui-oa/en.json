@@ -92,6 +92,7 @@
   "journal.journalDOAJ": "Journal in DOAJ",
   "journal.journalOAStatus": "Journal OA Status",
   "journal.validate.notElectronicSubtype": "EZB is not a valid option for the subtype 'Print'. Please rectify",
+  "journal.validate.duplicateNamespaceID": "This ID and namespace combination exists in another instance, please rectify",
 
   "publicationRequest.addFunding": "Add funding",
   "publicationRequest.removeFundingIndex": "Remove funding {index}",

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import PropTypes from 'prop-types';
-import { get } from 'lodash';
+import { get, isEqual } from 'lodash';
 
 import { Field, useFormState } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
@@ -87,7 +87,27 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
               <FormattedMessage id="ui-oa.journal.validate.notElectronicSubtype" />
             ) : undefined;
           };
-          // console.log(get(values, identifierId).ns);
+
+          const validateDuplicateIdentifier = (value, allValues) => {
+            // Creates an object of the current ns and id of the field to be validated
+            const match = { ns: get(allValues, identifierId)?.ns, id: value };
+            const matchingIds = [];
+            // Then goes through all other instances and identifiers to find if an already existing ns/id combo exists
+            // If it does, then it will through a validation error
+            allValues?.instances?.forEach((instance) => {
+              instance?.ids?.forEach((id) => {
+                if (isEqual(id, match)) {
+                  matchingIds.push(id);
+                }
+              });
+            });
+            // Since the curent cobination should be the only existing combination
+            // If the array length contains more than one, it return a validation error
+            return matchingIds.length > 1 ? (
+              <FormattedMessage id="ui-oa.journal.validate.duplicateNamespaceID" />
+            ) : undefined;
+          };
+
           return (
             <div
               key={identifierId}
@@ -120,7 +140,10 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
                     maxLength={MAX_CHAR_LONG}
                     name={`${identifierId}.id`}
                     required
-                    validate={requiredValidator}
+                    validate={composeValidators(
+                      requiredValidator,
+                      validateDuplicateIdentifier
+                    )}
                   />
                 </Col>
                 {fields.length !== 1 && (
