@@ -15,7 +15,10 @@ import {
   Select,
   Tooltip,
 } from '@folio/stripes/components';
-import { requiredValidator } from '@folio/stripes-erm-components';
+import {
+  requiredValidator,
+  composeValidators,
+} from '@folio/stripes-erm-components';
 import { MAX_CHAR_LONG } from '../../../../constants/config';
 
 const propTypes = {
@@ -76,6 +79,15 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
               data.value === get(values, identifierId).ns ||
               data.value === ' '
           );
+
+          // Validate all fields to ensure that EZB is only used within electronic subtype
+          const validateCorrectSubtype = (value, allValues) => {
+            const subType = get(allValues, instanceId)?.subType;
+            return value === 'ezb' && subType !== 'electronic' ? (
+              <FormattedMessage id="ui-oa.journal.validate.notElectronicSubtype" />
+            ) : undefined;
+          };
+          // console.log(get(values, identifierId).ns);
           return (
             <div
               key={identifierId}
@@ -92,7 +104,10 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
                     }
                     name={`${identifierId}.ns`}
                     required
-                    validate={requiredValidator}
+                    validate={composeValidators(
+                      requiredValidator,
+                      validateCorrectSubtype
+                    )}
                   />
                 </Col>
                 <Col xs={4}>

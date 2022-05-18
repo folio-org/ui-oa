@@ -22,7 +22,7 @@
   "journals.title": "Title",
   "journals.printIssn": "ISSN (Print)",
   "journals.electronicIssn": "ISSN (Electronic)",
-  
+
   "party.edit": "Edit",
   "party.requests": "Requests",
   "party.new": "New",
@@ -91,7 +91,7 @@
   "journal.oaStatus": "OA Status",
   "journal.journalDOAJ": "Journal in DOAJ",
   "journal.journalOAStatus": "Journal OA Status",
-
+  "journal.validate.notElectronicSubtype": "EZB is not a valid option for the subtype 'Print'. Please rectify",
 
   "publicationRequest.addFunding": "Add funding",
   "publicationRequest.removeFundingIndex": "Remove funding {index}",
@@ -176,7 +176,7 @@
   "publicationRequest.emptyPublicationStatuses": "No publication statuses for this request",
   "publicationRequest.emptyCorrespondence": "No correspondence for this request",
   "publicationRequest.emptyCharges": "No charges for this request",
-  
+
   "publicationJournal.title": "Title",
   "publicationJournal.issnPrint": "ISSN (print)",
   "publicationJournal.issnElectronic": "ISSN (electronic)",
@@ -185,7 +185,7 @@
   "publicationRequests": "Publication requests",
   "publicationRequests.recordsFound": "{number} records found",
 
-  "externalRequestId.externalRequestId": "External request ID", 
+  "externalRequestId.externalRequestId": "External request ID",
 
   "identifiers.addIdentifier": "Add identifier",
   "identifiers.removeIdentifierIndex": "Remove identifier {index}",
@@ -203,12 +203,12 @@
 
   "affiliation.addAffiliation": "Add affiliation",
   "affiliation.affiliationTitle": "Affiliation {number}",
-  "affiliation.removeAffiliation": "Remove affiliation {number}", 
-  "affiliation.faculty": "Faculty", 
-  "affiliation.school": "School", 
-  "affiliation.department": "Department", 
-  "affiliation.dateFrom": "Date from", 
-  "affiliation.dateTo": "Date to", 
+  "affiliation.removeAffiliation": "Remove affiliation {number}",
+  "affiliation.faculty": "Faculty",
+  "affiliation.school": "School",
+  "affiliation.department": "Department",
+  "affiliation.dateFrom": "Date from",
+  "affiliation.dateTo": "Date to",
 
   "publicationStatus.addPublicationStatus": "Add publication status",
   "publicationStatus.removePublicationStatusIndex": "Remove publication status {index}",
