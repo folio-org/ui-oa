@@ -3,6 +3,7 @@ import arrayMutators from 'final-form-arrays';
 import { useHistory, useParams } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useQuery, useMutation } from 'react-query';
+import { orderBy } from 'lodash';
 import PublicationRequestForm from '../../components/views/PublicationRequestForm';
 
 import publicationRequestSubmitHandler from '../../util/publicationRequestSubmitHandler';
@@ -49,9 +50,25 @@ const PublicationRequestEditRoute = () => {
     putPublicationRequest(submitValues);
   };
 
+  const getInitialValues = () => {
+    return {
+      ...publicationRequest,
+      externalRequestIds: orderBy(
+        publicationRequest?.externalRequestIds,
+        'externalId'
+      ),
+      identifiers: orderBy(publicationRequest?.identifiers, 'type.value'),
+      publicationStatuses: orderBy(
+        publicationRequest?.publicationStatuses,
+        'statusDate'
+      ),
+      fundings: orderBy(publicationRequest?.fundings, 'funder.value'),
+    };
+  };
+
   return (
     <Form
-      initialValues={publicationRequest}
+      initialValues={getInitialValues()}
       mutators={arrayMutators}
       onSubmit={submitRequest}
     >
