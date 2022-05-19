@@ -10,6 +10,7 @@ import {
   Card,
   Select,
   Tooltip,
+  InfoPopover,
 } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
 
@@ -72,7 +73,15 @@ const InstancesFieldArray = () => {
                     ]}
                     id="journal-instance-subType"
                     label={
-                      <FormattedMessage id="ui-oa.journal.instance.subtype" />
+                      <>
+                        <InfoPopover
+                          content={
+                            <FormattedMessage id="ui-oa.journal.subtypePopover" />
+                          }
+                        />
+
+                        <FormattedMessage id="ui-oa.journal.instance.subtype" />
+                      </>
                     }
                     name={`${instanceId}.subType`}
                     required
