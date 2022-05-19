@@ -16,11 +16,6 @@ import {
 } from '../../components/SearchAndFilter';
 
 const PublicationRequestsRoute = ({ children, path }) => {
-  const [sortState, setSortState] = useState({
-    path: 'requestNumber',
-    direction: 'desc',
-  });
-
   const fetchParameters = {
     endpoint: 'oa/publicationRequest',
     SASQ_MAP: {
@@ -29,7 +24,6 @@ const PublicationRequestsRoute = ({ children, path }) => {
       filterKeys: {
         requestStatus: 'requestStatus.value',
       },
-      sort: [{ path: sortState?.path, direction: sortState?.direction }],
     },
   };
 
@@ -71,20 +65,8 @@ const PublicationRequestsRoute = ({ children, path }) => {
       </AppIcon>
     ),
     requestStatus: (d) => d?.requestStatus?.label,
-    requestDate: (d) =>
-      d.requestDate ? <FormattedUTCDate value={d.requestDate} /> : '',
+    requestDate: (d) => (d.requestDate ? <FormattedUTCDate value={d.requestDate} /> : ''),
     correspondingAuthorName: (d) => d.correspondingAuthor?.partyOwner?.fullName,
-  };
-
-  const onSort = (_e, meta) => {
-    if (sortState.path !== meta.name) {
-      setSortState({ path: meta?.name, direction: 'desc' });
-    } else {
-      setSortState({
-        path: sortState.path,
-        direction: sortState.direction === 'desc' ? 'asc' : 'desc',
-      });
-    }
   };
 
   const lastpaneMenu = (
@@ -120,13 +102,11 @@ const PublicationRequestsRoute = ({ children, path }) => {
       }}
       mclProps={{
         formatter,
-        sortedColumn: sortState?.path,
-        sortDirection: `${sortState.direction}ending`,
-        columnWidths: { publicationTitle: 500 }
+        columnWidths: { publicationTitle: 500 },
       }}
-      onSort={onSort}
       path={path}
       resultColumns={resultColumns}
+      sasqProps={{ initialSortState: { sort: 'requestNumber' } }}
       ViewComponent={PublicationRequest}
     >
       {children}
