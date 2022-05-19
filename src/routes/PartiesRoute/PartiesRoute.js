@@ -20,7 +20,6 @@ const PartiesRoute = ({ path }) => {
     SASQ_MAP: {
       searchKey: 'mainEmail,givenNames,familyName,orcidId',
       filterKeys: {},
-      sort: [{ path: 'familyName' }, { path: 'givenNames' }],
     },
   };
 
@@ -84,6 +83,7 @@ const PartiesRoute = ({ path }) => {
       mclProps={{ formatter }}
       path={path}
       resultColumns={resultColumns}
+      sasqProps={{ initialSortState: { sort: 'familyName,givenNames' } }}
       ViewComponent={Party}
     />
   );

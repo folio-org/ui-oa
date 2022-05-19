@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
@@ -24,7 +23,6 @@ const PublicationRequestsRoute = ({ children, path }) => {
       filterKeys: {
         requestStatus: 'requestStatus.value',
       },
-      sort: [{ path: 'requestNumber' }],
     },
   };
 
@@ -101,9 +99,13 @@ const PublicationRequestsRoute = ({ children, path }) => {
         lastMenu: lastpaneMenu,
         paneTitle: <FormattedMessage id="ui-oa.publicationRequests" />,
       }}
-      mclProps={{ formatter, columnWidths: { publicationTitle: 500 } }}
+      mclProps={{
+        formatter,
+        columnWidths: { publicationTitle: 500 },
+      }}
       path={path}
       resultColumns={resultColumns}
+      sasqProps={{ initialSortState: { sort: 'requestNumber' } }}
       ViewComponent={PublicationRequest}
     >
       {children}
