@@ -106,9 +106,9 @@ const PartyForm = ({
         paneTitle={renderPaneTitle()}
       >
         <PartyInfoForm />
-        <StreetAddress />
         {/* <StreetAddressesFieldArray /> */}
         <OtherEmailsFieldArray />
+        <StreetAddress />
       </Pane>
     </Paneset>
   );

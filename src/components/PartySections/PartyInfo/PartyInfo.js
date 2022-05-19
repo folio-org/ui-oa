@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
-import { Card, Col, KeyValue, Label, Row } from '@folio/stripes/components';
+import { Col, KeyValue, Label, Row } from '@folio/stripes/components';
 
 import ExternalLink from '../../ExternalLink';
 import urls from '../../../util/urls';
@@ -21,7 +21,12 @@ const renderOtherEmailAddresses = (otherEmailAddresses) => {
           otherEmailAddresses && (
             <ul>
               {otherEmailAddresses.map((email) => (
-                <li key={email?.id}>{email?.email}</li>
+                <li key={email?.id}>
+                  <ExternalLink
+                    content={email?.email}
+                    href={'mailto:' + email?.email}
+                  />
+                </li>
               ))}
             </ul>
           )
@@ -67,76 +72,52 @@ const renderIdentifiers = (party) => {
 const renderStreetAddresses = (address) => {
   return (
     <>
-      <Row>
-        <Card
-          headerStart={
-            <Label>
-              <FormattedMessage
-                id="ui-oa.party.streetAddress.index"
-                values={{ index: '' }}
-              />
-            </Label>
-          }
-          roundedBorder
-        >
-          <Row start="xs">
-            <Col xs={3}>
-              <KeyValue
-                label={<FormattedMessage id="ui-oa.party.streetAddress.name" />}
-                value={address?.name}
-              />
-            </Col>
-            <Col xs={3}>
-              <KeyValue
-                label={
-                  <FormattedMessage id="ui-oa.party.streetAddress.addressLineOne" />
-                }
-                value={address?.addressLineOne}
-              />
-            </Col>
-            <Col xs={3}>
-              <KeyValue
-                label={
-                  <FormattedMessage id="ui-oa.party.streetAddress.addressLineTwo" />
-                }
-                value={address?.addressLineTwo}
-              />
-            </Col>
-            <Col xs={3}>
-              <KeyValue
-                label={<FormattedMessage id="ui-oa.party.streetAddress.city" />}
-                value={address?.city}
-              />
-            </Col>
-          </Row>
+      <Row start="xs">
+        <Col xs={3}>
+          <KeyValue
+            label={
+              <FormattedMessage id="ui-oa.party.streetAddress.addressLineOne" />
+            }
+            value={address?.addressLineOne}
+          />
+        </Col>
+        <Col xs={3}>
+          <KeyValue
+            label={
+              <FormattedMessage id="ui-oa.party.streetAddress.addressLineTwo" />
+            }
+            value={address?.addressLineTwo}
+          />
+        </Col>
+        <Col xs={3}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.party.streetAddress.city" />}
+            value={address?.city}
+          />
+        </Col>
 
-          <Row start="xs">
-            <Col xs={3}>
-              <KeyValue
-                label={
-                  <FormattedMessage id="ui-oa.party.streetAddress.region" />
-                }
-                value={address?.region}
-              />
-            </Col>
-            <Col xs={3}>
-              <KeyValue
-                label={
-                  <FormattedMessage id="ui-oa.party.streetAddress.country" />
-                }
-                value={address?.country}
-              />
-            </Col>
-            <Col xs={3}>
-              <KeyValue
-                label={
-                  <FormattedMessage id="ui-oa.party.streetAddress.postalCode" />
-                }
-                value={address?.postalCode}
-              />
-            </Col>
-          </Row>
-        </Card>
+        <Col xs={3}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.party.streetAddress.region" />}
+            value={address?.region}
+          />
+        </Col>
+      </Row>
+      <Row start="xs">
+        <Col xs={3}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.party.streetAddress.country" />}
+            value={address?.country}
+          />
+        </Col>
+        <Col xs={3}>
+          <KeyValue
+            label={
+              <FormattedMessage id="ui-oa.party.streetAddress.postalCode" />
+            }
+            value={address?.postalCode}
+          />
+        </Col>
       </Row>
     </>
   );
@@ -193,8 +174,12 @@ const PartyInfo = ({ party, isCard }) => {
         <Row>
           <Col xs={12}>
             <Label>
-              <FormattedMessage id="ui-oa.party.streetAddresses" />
+              <FormattedMessage
+                id="ui-oa.party.streetAddress.index"
+                values={{ index: '' }}
+              />
             </Label>
+            <br />
             {renderStreetAddresses(party?.streetAddress?.address)}
           </Col>
         </Row>
