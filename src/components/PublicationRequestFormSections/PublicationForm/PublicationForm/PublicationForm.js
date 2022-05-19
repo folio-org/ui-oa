@@ -19,6 +19,7 @@ import getRDVId from '../../../../util/getRDVId';
 import PublicationJournal from '../PublicationJournal';
 import PublicationBook from '../PublicationBook';
 import { MAX_CHAR_LONG, MAX_CHAR_SHORT } from '../../../../constants/config';
+import { validateURL } from '../../../../util/validators';
 
 const [PUBLICATION_TYPE, PUBLISHER, SUBTYPE, LICENSE] = [
   'PublicationRequest.PublicationType',
@@ -145,6 +146,7 @@ const PublicationForm = () => {
             maxLength={MAX_CHAR_LONG}
             name="publicationUrl"
             parse={(v) => v}
+            validate={validateURL}
           />
         </Col>
         <Col xs={6}>

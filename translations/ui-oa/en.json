@@ -156,6 +156,7 @@
   "publicationRequest.publicationTitle": "Publication title",
   "publicationRequest.publicationType": "Publication type",
   "publicationRequest.publicationUrl": "Publication URL",
+  "publicationRequest.validate.publicationURL": "Please enter a valid URL (including 'http' or 'https')",
   "publicationRequest.publicationYear": "Year of publication",
   "publicationRequest.publicationDate": "Date of publication",
   "publicationRequest.publicationYear.validate": "Please enter a date in the format YYYY, YYYY-MM or YYYY-MM-DD",
