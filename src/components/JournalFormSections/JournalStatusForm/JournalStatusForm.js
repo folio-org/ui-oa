@@ -13,7 +13,7 @@ const JournalStatusForm = () => {
   const oaStatusValues = selectifyRefdata(refdataValues, OA_STATUS);
   return (
     <>
-      <Row>
+      <Row center="xs">
         <Col xs={3}>
           <Field
             component={Select}
