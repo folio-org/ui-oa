@@ -27,14 +27,14 @@ const CorrespondenceEditRoute = () => {
         handleClose();
       })
   );
-  const submitCorrespondence = (values) => {
+  const submitCorrespondence = async (values) => {
     const { category, ...submitValues } = { ...values };
     if (category?.id) {
       submitValues.category = category;
     } else {
       submitValues.category = null;
     }
-    putCorrespondence(submitValues);
+    await putCorrespondence(submitValues);
   };
 
   return (

@@ -22,7 +22,7 @@ const ChargeEditRoute = () => {
   const charge = publicationRequest?.charges?.find((e) => e?.id === chId);
 
   const { mutateAsync: putCharge } = useMutation(
-    ['ui-oa', 'ChargeCreateRoute', 'postCharge'],
+    ['ui-oa', 'ChargeEditRoute', 'postCharge'],
     (data) => ky.put(`oa/publicationRequest/${prId}`, { json: data }).then(() => {
         handleClose();
       })

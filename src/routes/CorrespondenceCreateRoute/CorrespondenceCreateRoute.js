@@ -20,9 +20,9 @@ const CorrespondenceCreateRoute = () => {
         handleClose();
       })
   );
-  const submitCorrespondence = (values) => {
+  const submitCorrespondence = async (values) => {
     const submitValues = { ...values, 'owner':{ id } };
-    postCorrespondence(submitValues);
+     await postCorrespondence(submitValues);
   };
 
   return (
