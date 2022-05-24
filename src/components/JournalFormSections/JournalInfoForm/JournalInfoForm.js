@@ -28,7 +28,7 @@ const JournalInfoForm = () => {
         </Col>
       </Row>
       <Row>
-        <Col xs={3}>
+        <Col xs={4}>
           <Field
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...yesNoValues]}
@@ -36,7 +36,7 @@ const JournalInfoForm = () => {
             name="indexedInDOAJ"
           />
         </Col>
-        <Col xs={3}>
+        <Col xs={4}>
           <Field
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...oaStatusValues]}
