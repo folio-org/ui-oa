@@ -24,7 +24,7 @@ const LinkInvoiceRoute = () => {
     () => ky(`oa/publicationRequest/${prId}`).json()
   );
 
-  const { mutateAsync: linkInvoice, isLoading: isSubmitting } = useMutation(
+  const { mutateAsync: linkInvoice } = useMutation(
     ['ui-oa', 'LinkInvoiceRoute', 'linkInvoice'],
     (data) => ky.put(`oa/publicationRequest/${prId}`, { json: data }).then(() => {
         handleClose();
@@ -33,7 +33,7 @@ const LinkInvoiceRoute = () => {
 
   const charge = request?.charges?.find((e) => e.id === chId);
 
-  const submitInvoice = (values) => {
+  const submitInvoice = async (values) => {
     const submitValues = {
       charges: [
         {
@@ -44,7 +44,7 @@ const LinkInvoiceRoute = () => {
         },
       ],
     };
-    linkInvoice(submitValues);
+    await linkInvoice(submitValues);
   };
 
   return (
@@ -56,9 +56,6 @@ const LinkInvoiceRoute = () => {
             handlers={{
               onClose: handleClose,
               onSubmit: handleSubmit,
-            }}
-            queryStates={{
-              isSubmitting,
             }}
           />
         </form>

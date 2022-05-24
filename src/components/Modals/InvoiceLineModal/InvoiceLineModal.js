@@ -42,7 +42,7 @@ const InvoiceLineModal = ({
     setShowModal(false);
   };
 
-  const { mutateAsync: postInvoiceLine, isLoading: isSubmitting } = useMutation(
+  const { mutateAsync: postInvoiceLine, isLoading } = useMutation(
     ['ui-oa', 'InvoiceLineModal', 'postInvoiceLine'],
     (data) => ky
         .post('invoice/invoice-lines', { json: data })
@@ -130,7 +130,7 @@ const InvoiceLineModal = ({
       message={renderModalMessage()}
       onCancel={() => setShowModal(false)}
       onConfirm={() => {
-        if (!isSubmitting) {
+        if (!isLoading) {
           postInvoiceLine(chargeInvoiceLine);
         }
       }}

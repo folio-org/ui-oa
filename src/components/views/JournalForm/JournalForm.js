@@ -20,19 +20,16 @@ const propTypes = {
     onClose: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
   }).isRequired,
-  queryStates: PropTypes.shape({
-    isLoading: PropTypes.bool,
-    isSubmitting: PropTypes.bool,
-  }),
+  isLoading: PropTypes.bool,
   journal: PropTypes.object,
 };
 
 const JournalForm = ({
   handlers: { onClose, onSubmit },
-  queryStates: { isLoading, isSubmitting },
+  isLoading,
   journal,
 }) => {
-  const { pristine } = useFormState();
+  const { pristine, submitting } = useFormState();
 
   const renderPaneTitle = () => (journal ? (
     <FormattedMessage id="ui-oa.journal.editJournal" />
@@ -63,7 +60,7 @@ const JournalForm = ({
         renderEnd={
           <Button
             buttonStyle="primary mega"
-            disabled={pristine || isSubmitting}
+            disabled={pristine || submitting}
             marginBottom0
             onClick={onSubmit}
             type="submit"
