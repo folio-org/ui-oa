@@ -13,6 +13,7 @@ const JournalStatusForm = () => {
   const oaStatusValues = selectifyRefdata(refdataValues, OA_STATUS);
   return (
     <>
+      {/* This centering of the row will need to be removed once the form has been expanded upon */}
       <Row center="xs">
         <Col xs={3}>
           <Field
