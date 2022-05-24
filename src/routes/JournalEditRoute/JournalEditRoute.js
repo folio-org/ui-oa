@@ -28,11 +28,15 @@ const JournalEditRoute = () => {
       })
   );
   const submitJournal = (values) => {
-    const { oaStatus, indexedInDOAJ, ...submitValues } = { ...values };
-    if (!oaStatus?.id) {
+    const { ...submitValues } = { ...values };
+    if (values?.oaStatus?.id) {
+      submitValues.oaStatus = values.oaStatus;
+    } else {
       submitValues.oaStatus = null;
     }
-    if (!indexedInDOAJ?.id) {
+    if (values?.indexedInDOAJ?.id) {
+      submitValues.indexedInDOAJ = values.indexedInDOAJ;
+    } else {
       submitValues.indexedInDOAJ = null;
     }
     putJournal(submitValues);
