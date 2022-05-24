@@ -2,6 +2,7 @@ const urls = {
 
   journals: () => '/oa/journals',
   journal: id => `/oa/journals/${id}`,
+  journalEdit: id => `/oa/journals/${id}/edit`,
 
   parties: () => '/oa/people',
   party: id => `/oa/people/${id}`,

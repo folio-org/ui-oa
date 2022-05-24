@@ -62,6 +62,7 @@
   "party.streetAddress.postalCode": "Zip/Postal code",
 
   "journal.new": "New",
+  "journal.edit": "Edit",
   "journal.title": "Title",
   "journal.noTitleInstances": "No title instances for this journal",
   "journal.materialType": "Material type",
@@ -69,6 +70,7 @@
   "journal.zdb": "ZDB",
   "journal.issn": "ISSN",
   "journal.newJournal": "New journal",
+  "journal.editJournal": "Edit journal",
   "journal.noResultsFound": "No results found",
   "journal.type": "Type",
   "journal.type.serial": "Serial",
