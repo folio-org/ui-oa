@@ -50,7 +50,7 @@ const PublicationRequestsRoute = ({ children, path }) => {
       ),
     },
     {
-      propertyPath: 'correspondingAuthorName',
+      propertyPath: 'correspondingAuthor',
       label: (
         <FormattedMessage id="ui-oa.publicationRequest.correspondingAuthorName" />
       ),
@@ -65,7 +65,7 @@ const PublicationRequestsRoute = ({ children, path }) => {
     ),
     requestStatus: (d) => d?.requestStatus?.label,
     requestDate: (d) => (d.requestDate ? <FormattedUTCDate value={d.requestDate} /> : ''),
-    correspondingAuthorName: (d) => d.correspondingAuthor?.partyOwner?.fullName,
+    correspondingAuthor: (d) => d.correspondingAuthor?.partyOwner?.fullName,
   };
 
   const lastpaneMenu = (
