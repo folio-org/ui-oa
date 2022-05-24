@@ -62,6 +62,7 @@
   "party.streetAddress.postalCode": "Zip/Postal code",
 
   "journal.new": "New",
+  "journal.edit": "Edit",
   "journal.title": "Title",
   "journal.noTitleInstances": "No title instances for this journal",
   "journal.materialType": "Material type",

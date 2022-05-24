@@ -13,7 +13,7 @@ import {
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 
-import JournalInfoForm from '../../JournalFormSections/JournalInfoForm';
+import { JournalStatusForm } from '../../JournalFormSections';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -99,7 +99,7 @@ const JournalForm = ({
         id="pane-oa-journal-form"
         paneTitle={renderPaneTitle()}
       >
-        <JournalInfoForm />
+        <JournalStatusForm />
       </Pane>
     </Paneset>
   );
