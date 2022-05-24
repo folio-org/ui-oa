@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
+import createDecorator from 'final-form-focus';
+
 import { useHistory } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { FormattedMessage } from 'react-intl';
@@ -18,6 +20,7 @@ const PublicationRequestCreateRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
   const callout = useContext(CalloutContext);
+  const focusOnError = createDecorator();
 
   const refdataValues = useOARefdata([PUBLICATION_TYPE]);
 
@@ -61,7 +64,11 @@ const PublicationRequestCreateRoute = () => {
   };
 
   return (
-    <Form mutators={arrayMutators} onSubmit={submitRequest}>
+    <Form
+      decorators={[focusOnError]}
+      mutators={arrayMutators}
+      onSubmit={submitRequest}
+    >
       {({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           <PublicationRequestForm
