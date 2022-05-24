@@ -1,5 +1,7 @@
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
+import createDecorator from 'final-form-focus';
+
 import { useHistory, useParams } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useQuery, useMutation } from 'react-query';
@@ -13,6 +15,7 @@ import getRDVId from '../../util/getRDVId';
 const [PUBLICATION_TYPE] = ['PublicationRequest.PublicationType'];
 
 const PublicationRequestEditRoute = () => {
+  const focusOnError = createDecorator();
   const history = useHistory();
   const ky = useOkapiKy();
   const { id } = useParams();
@@ -68,6 +71,7 @@ const PublicationRequestEditRoute = () => {
 
   return (
     <Form
+      decorators={[focusOnError]}
       initialValues={getInitialValues()}
       mutators={arrayMutators}
       onSubmit={submitRequest}
