@@ -19,7 +19,7 @@ const PartyCreateRoute = () => {
     history.push(`/oa/people/${id}`);
   };
 
-  const { mutateAsync: postParty, isLoading: isSubmitting } = useMutation(
+  const { mutateAsync: postParty } = useMutation(
     ['ui-oa', 'PartyCreateRoute', 'postParty'],
     (data) => ky
         .post('oa/party', { json: data })
@@ -59,8 +59,8 @@ const PartyCreateRoute = () => {
         })
   );
 
-  const submitParty = (values) => {
-    postParty(values);
+  const submitParty = async (values) => {
+    await postParty(values);
   };
 
   return (
@@ -71,9 +71,6 @@ const PartyCreateRoute = () => {
             handlers={{
               onClose: handleClose,
               onSubmit: handleSubmit,
-            }}
-            queryStates={{
-              isSubmitting,
             }}
           />
         </form>

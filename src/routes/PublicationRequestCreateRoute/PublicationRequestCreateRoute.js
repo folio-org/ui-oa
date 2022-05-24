@@ -35,7 +35,7 @@ const PublicationRequestCreateRoute = () => {
     history.push(path);
   };
 
-  const { mutateAsync: postPublicationRequest, isLoading: isSubmitting } =
+  const { mutateAsync: postPublicationRequest } =
     useMutation(
       ['ui-oa', 'PublicationRequestCreateRoute', 'postPublicationRequest'],
       (data) => ky
@@ -55,12 +55,12 @@ const PublicationRequestCreateRoute = () => {
           })
     );
 
-  const submitRequest = (values) => {
+  const submitRequest = async (values) => {
     const submitValues = publicationRequestSubmitHandler(
       values,
       journalArticleId
     );
-    postPublicationRequest(submitValues);
+    await postPublicationRequest(submitValues);
   };
 
   return (
@@ -75,9 +75,6 @@ const PublicationRequestCreateRoute = () => {
             handlers={{
               onClose: handleClose,
               onSubmit: handleSubmit,
-            }}
-            queryStates={{
-              isSubmitting,
             }}
           />
         </form>

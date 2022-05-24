@@ -21,13 +21,13 @@ const JournalEditRoute = () => {
     () => ky(`oa/works/${id}`).json()
   );
 
-  const { mutateAsync: putJournal, isLoading: isSubmitting } = useMutation(
+  const { mutateAsync: putJournal } = useMutation(
     ['ui-oa', 'JournalEditRoute', 'putJournal'],
     (data) => ky.put(`oa/works/${id}`, { json: data }).then(() => {
         handleClose();
       })
   );
-  const submitJournal = (values) => {
+  const submitJournal = async (values) => {
     const { ...submitValues } = { ...values };
     if (values?.oaStatus?.id) {
       submitValues.oaStatus = values.oaStatus;
@@ -39,7 +39,7 @@ const JournalEditRoute = () => {
     } else {
       submitValues.indexedInDOAJ = null;
     }
-    putJournal(submitValues);
+    await putJournal(submitValues);
   };
 
   return (
@@ -55,11 +55,8 @@ const JournalEditRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit,
             }}
+            isLoading={isLoading}
             journal={journal}
-            queryStates={{
-              isSubmitting,
-              isLoading,
-            }}
           />
         </form>
       )}

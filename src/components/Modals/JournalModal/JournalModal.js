@@ -31,12 +31,12 @@ const JournalModal = ({ showModal, setShowModal, handleJournalChange }) => {
     (data) => ky.post('oa/works/citation', { json: data }).json()
   );
 
-  const submitJournal = (values, form) => {
+  const submitJournal = async (values, form) => {
     const submitValues = { ...values, type: 'serial' };
     // Due to stranged nested field array interation, form values need to be saved
     // Saved values are then used as the initial values for the form upon error
     setSavedValues(submitValues);
-    postJournal(submitValues).then((res) => {
+    await postJournal(submitValues).then((res) => {
       handleJournalChange(res);
       callout.sendCallout({
         message: (

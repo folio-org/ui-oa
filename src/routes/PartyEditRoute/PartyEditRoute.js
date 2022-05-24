@@ -25,7 +25,7 @@ const PartyEditRoute = () => {
     () => ky(`oa/party/${id}`).json()
   );
 
-  const { mutateAsync: putParty, isLoading: isSubmitting } = useMutation(
+  const { mutateAsync: putParty } = useMutation(
     ['ui-oa', 'PartyEditRoute', 'putParty'],
     (data) => ky
         .put(`oa/party/${data.id}`, { json: data })
@@ -65,8 +65,8 @@ const PartyEditRoute = () => {
         })
   );
 
-  const submitRequest = (values) => {
-    putParty(values);
+  const submitRequest = async (values) => {
+    await putParty(values);
   };
 
   return (
@@ -82,11 +82,8 @@ const PartyEditRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit,
             }}
+            isLoading={isLoading}
             party={party}
-            queryStates={{
-              isLoading,
-              isSubmitting,
-            }}
           />
         </form>
       )}

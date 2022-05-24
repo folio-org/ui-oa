@@ -29,10 +29,9 @@ const propTypes = {
 
 const LinkInvoiceForm = ({
   handlers: { onClose, onSubmit },
-  queryStates: { isSubmitting },
   charge,
 }) => {
-  const { values, pristine } = useFormState();
+  const { values, pristine, submitting } = useFormState();
 
   const getSectionProps = (name) => {
     return {
@@ -67,7 +66,7 @@ const LinkInvoiceForm = ({
         renderEnd={
           <Button
             buttonStyle="primary mega"
-            disabled={pristine || isSubmitting}
+            disabled={pristine || submitting}
             marginBottom0
             onClick={onSubmit}
             type="submit"

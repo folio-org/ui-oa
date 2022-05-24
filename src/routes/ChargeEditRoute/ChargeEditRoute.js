@@ -21,14 +21,14 @@ const ChargeEditRoute = () => {
 
   const charge = publicationRequest?.charges?.find((e) => e?.id === chId);
 
-  const { mutateAsync: putCharge, isLoading: isSubmitting } = useMutation(
-    ['ui-oa', 'ChargeCreateRoute', 'postCharge'],
+  const { mutateAsync: putCharge } = useMutation(
+    ['ui-oa', 'ChargeEditRoute', 'postCharge'],
     (data) => ky.put(`oa/publicationRequest/${prId}`, { json: data }).then(() => {
         handleClose();
       })
   );
 
-  const submitCharge = (values) => {
+  const submitCharge = async (values) => {
     const submitValues = {
       charges: [
         {
@@ -40,7 +40,7 @@ const ChargeEditRoute = () => {
         },
       ],
     };
-    putCharge(submitValues);
+    await putCharge(submitValues);
   };
 
   return (
@@ -57,10 +57,7 @@ const ChargeEditRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit,
             }}
-            queryStates={{
-              isLoading,
-              isSubmitting,
-            }}
+            isLoading={isLoading}
           />
         </form>
       )}
