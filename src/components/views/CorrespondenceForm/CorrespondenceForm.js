@@ -20,19 +20,16 @@ const propTypes = {
     onClose: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
   }).isRequired,
-  queryStates: PropTypes.shape({
-    isLoading: PropTypes.bool,
-    isSubmitting: PropTypes.bool,
-  }),
+  isLoading: PropTypes.bool,
   correspondence: PropTypes.object,
 };
 
 const CorrespondenceForm = ({
   handlers: { onClose, onSubmit },
-  queryStates: { isLoading, isSubmitting },
+  isLoading,
   correspondence,
 }) => {
-  const { pristine } = useFormState();
+  const { pristine, submitting } = useFormState();
 
   const renderPaneTitle = () => (correspondence ? (
     <FormattedMessage id="ui-oa.correspondence.editCorrespondence" />
@@ -63,7 +60,7 @@ const CorrespondenceForm = ({
         renderEnd={
           <Button
             buttonStyle="primary mega"
-            disabled={pristine || isSubmitting}
+            disabled={pristine || submitting}
             marginBottom0
             onClick={onSubmit}
             type="submit"
