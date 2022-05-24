@@ -38,19 +38,16 @@ const propTypes = {
     onClose: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
   }).isRequired,
-  queryStates: PropTypes.shape({
     isLoading: PropTypes.bool,
-    isSubmitting: PropTypes.bool,
-  }),
   publicationRequest: PropTypes.object,
 };
 
 const PublicationRequestForm = ({
   handlers: { onClose, onSubmit },
-  queryStates: { isLoading, isSubmitting },
+  isLoading,
   publicationRequest,
 }) => {
-  const { values, pristine } = useFormState();
+  const { values, pristine, submitting } = useFormState();
   const { change } = useForm();
   const accordionStatusRef = React.createRef();
 
@@ -84,7 +81,7 @@ const PublicationRequestForm = ({
         renderEnd={
           <Button
             buttonStyle="primary mega"
-            disabled={pristine || isSubmitting}
+            disabled={pristine || submitting}
             marginBottom0
             onClick={onSubmit}
             type="submit"
