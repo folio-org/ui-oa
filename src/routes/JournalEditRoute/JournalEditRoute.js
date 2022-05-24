@@ -21,15 +21,21 @@ const JournalEditRoute = () => {
     () => ky(`oa/works/${id}`).json()
   );
 
-  const { mutateAsync: putJournal, isLoading: isSubmitting } =
-    useMutation(
-      ['ui-oa', 'JournalEditRoute', 'putJournal'],
-      (data) => ky.put(`oa/works/${id}`, { json: data }).then(() => {
-          handleClose();
-        })
-    );
+  const { mutateAsync: putJournal, isLoading: isSubmitting } = useMutation(
+    ['ui-oa', 'JournalEditRoute', 'putJournal'],
+    (data) => ky.put(`oa/works/${id}`, { json: data }).then(() => {
+        handleClose();
+      })
+  );
   const submitJournal = (values) => {
-    putJournal(values);
+    const { oaStatus, indexedInDOAJ, ...submitValues } = { ...values };
+    if (!oaStatus?.id) {
+      submitValues.oaStatus = null;
+    }
+    if (!indexedInDOAJ?.id) {
+      submitValues.indexedInDOAJ = null;
+    }
+    putJournal(submitValues);
   };
 
   return (
