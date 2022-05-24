@@ -68,7 +68,7 @@ const Publication = ({ request }) => {
       displayWhenOpen={renderBadge(request)}
       label={<FormattedMessage id="ui-oa.publicationRequest.publication" />}
     >
-      <Row start="xs">
+      <Row>
         <Col xs={6}>
           <KeyValue
             label={
@@ -87,7 +87,7 @@ const Publication = ({ request }) => {
         </Col>
       </Row>
 
-      <Row start="xs">
+      <Row>
         <Col xs={3}>
           <KeyValue
             label={
@@ -116,16 +116,8 @@ const Publication = ({ request }) => {
         </Col>
       </Row>
 
-      <Row start="xs">
-        <Col xs={3}>
-          <KeyValue
-            label={
-              <FormattedMessage id="ui-oa.publicationRequest.localReference" />
-            }
-            value={request?.localReference}
-          />
-        </Col>
-        <Col xs={9}>
+      <Row>
+        <Col xs={12}>
           <KeyValue
             label={
               <FormattedMessage id="ui-oa.publicationRequest.publicationUrl" />
@@ -143,8 +135,8 @@ const Publication = ({ request }) => {
         </Col>
       </Row>
 
-      <Row start="xs">
-        <Col xs={3}>
+      <Row>
+        <Col xs={6}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.publicationRequest.doi" />}
             value={
@@ -158,7 +150,31 @@ const Publication = ({ request }) => {
             }
           />
         </Col>
+        <Col xs={6}>
+          <KeyValue
+            label={
+              <FormattedMessage id="ui-oa.publicationRequest.localReference" />
+            }
+            value={request?.localReference}
+          />
+        </Col>
       </Row>
+      {request?.work && (
+        <Row>
+          <Col xs={6}>
+            <KeyValue
+              label={<FormattedMessage id="ui-oa.journal.journalDOAJ" />}
+              value={request?.workIndexedInDOAJ?.label}
+            />
+          </Col>
+          <Col xs={6}>
+            <KeyValue
+              label={<FormattedMessage id="ui-oa.journal.journalOAStatus" />}
+              value={request?.workOAStatus?.label}
+            />
+          </Col>
+        </Row>
+      )}
       {request?.identifiers?.length > 0 && (
         <Row>
           <Col xs={12}>
