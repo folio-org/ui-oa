@@ -36,9 +36,9 @@ const InvoiceModal = ({
     (data) => ky.post('invoice/invoices', { json: data }).json()
   );
 
-  const submitInvoice = (values, form) => {
+  const submitInvoice = async (values, form) => {
     const submitValues = { ...values, source: 'User', status: 'Open' };
-    postInvoice(submitValues).then((res) => {
+    await postInvoice(submitValues).then((res) => {
       handleInvoiceChange(res);
       handleClose();
       form.restart();

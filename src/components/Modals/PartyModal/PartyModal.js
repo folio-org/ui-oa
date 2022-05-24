@@ -32,8 +32,8 @@ const PartyModal = ({ showModal, setShowModal, handlePartyChange }) => {
     (data) => ky.post('oa/party', { json: data }).json()
   );
 
-  const submitParty = (values, form) => {
-    postParty(values)
+  const submitParty = async (values, form) => {
+    await postParty(values)
       .then((res) => {
         handlePartyChange(res);
         const createdParty =
