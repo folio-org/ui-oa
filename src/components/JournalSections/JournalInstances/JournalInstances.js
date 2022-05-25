@@ -1,8 +1,15 @@
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
+import { orderBy } from 'lodash';
 
-import { Col, KeyValue, Row, Layout } from '@folio/stripes/components';
+import {
+  Col,
+  KeyValue,
+  Row,
+  Layout,
+  Headline,
+} from '@folio/stripes/components';
 
 import { findIdentifierByNamespace } from '../../../util/journalUtils';
 
@@ -21,51 +28,72 @@ const JournalInstances = ({ journal }) => {
 
   return journal?.instances ? (
     <>
-      {journal.instances.map((instance, index) => (
-        <div key={index} data-testid={`journalInstances[${index}]`}>
-          <Row>
-            <Col xs={3}>
-              <KeyValue
-                label={<FormattedMessage id="ui-oa.journal.title" />}
-                value={instance?.title}
-              />
-            </Col>
-            <Col xs={3}>
-              <KeyValue
-                label={<FormattedMessage id="ui-oa.journal.materialType" />}
-                value={instance?.subType?.label}
-              />
-            </Col>
-          </Row>
-          <Row>
-            {findIdentifierByNamespace(instance, 'ezb') && (
+      {orderBy(journal.instances, 'subType.value').map((instance, index) => {
+        const ezbIdentifier = findIdentifierByNamespace(instance, 'ezb');
+        const zdbIdentifier = findIdentifierByNamespace(instance, 'zdb');
+        const issnIdentifier = findIdentifierByNamespace(instance, 'issn');
+
+        return (
+          <div key={index} data-testid={`journalInstances[${index}]`}>
+            {index === 0 && (
+              <>
+                <Headline margin="small" size="xx-large" tag="h1">
+                  {instance?.title}
+                </Headline>
+                <Row>
+                  <Col xs={3}>
+                    <KeyValue
+                      label={<FormattedMessage id="ui-oa.journal.inDOAJ" />}
+                      value={journal?.indexedInDOAJ?.label}
+                    />
+                  </Col>
+                  <Col xs={3}>
+                    <KeyValue
+                      label={<FormattedMessage id="ui-oa.journal.oaStatus" />}
+                      value={journal?.oaStatus?.label}
+                    />
+                  </Col>
+                </Row>
+              </>
+            )}
+            <hr />
+            <Row>
               <Col xs={3}>
                 <KeyValue
-                  label={<FormattedMessage id="ui-oa.journal.ezb" />}
-                  value={findIdentifierByNamespace(instance, 'ezb')?.value}
+                  label={<FormattedMessage id="ui-oa.journal.materialType" />}
+                  value={instance?.subType?.label}
                 />
               </Col>
-            )}
-            {findIdentifierByNamespace(instance, 'zdb') && (
-              <Col xs={3}>
-                <KeyValue
-                  label={<FormattedMessage id="ui-oa.journal.zdb" />}
-                  value={findIdentifierByNamespace(instance, 'zdb')?.value}
-                />
-              </Col>
-            )}
-            {findIdentifierByNamespace(instance, 'issn') && (
-              <Col xs={3}>
-                <KeyValue
-                  label={<FormattedMessage id="ui-oa.journal.issn" />}
-                  value={findIdentifierByNamespace(instance, 'issn')?.value}
-                />
-              </Col>
-            )}
-          </Row>
-          <hr />
-        </div>
-      ))}
+            </Row>
+            <Row>
+              {ezbIdentifier && (
+                <Col xs={3}>
+                  <KeyValue
+                    label={<FormattedMessage id="ui-oa.journal.ezb" />}
+                    value={ezbIdentifier?.value}
+                  />
+                </Col>
+              )}
+              {zdbIdentifier && (
+                <Col xs={3}>
+                  <KeyValue
+                    label={<FormattedMessage id="ui-oa.journal.zdb" />}
+                    value={zdbIdentifier?.value}
+                  />
+                </Col>
+              )}
+              {issnIdentifier && (
+                <Col xs={3}>
+                  <KeyValue
+                    label={<FormattedMessage id="ui-oa.journal.issn" />}
+                    value={issnIdentifier?.value}
+                  />
+                </Col>
+              )}
+            </Row>
+          </div>
+        );
+      })}
     </>
   ) : (
     renderEmpty()
