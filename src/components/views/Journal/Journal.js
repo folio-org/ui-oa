@@ -1,13 +1,15 @@
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { useHistory } from 'react-router-dom';
+import { useQuery } from 'react-query';
 
-import { AppIcon } from '@folio/stripes/core';
+import { AppIcon, useOkapiKy } from '@folio/stripes/core';
 
 import { Pane, LoadingPane, Button, Icon } from '@folio/stripes/components';
 import JournalInstances from '../../JournalSections';
 import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
 import urls from '../../../util/urls';
+import { RelatedRequests } from '../../PartySections';
 
 const propTypes = {
   onClose: PropTypes.func.isRequired,
@@ -16,7 +18,13 @@ const propTypes = {
 };
 
 const Journal = ({ resource: journal, onClose, queryProps: { isLoading } }) => {
+  const ky = useOkapiKy();
   const history = useHistory();
+
+  const { data: publicationRequests } = useQuery(
+    ['ui-oa', 'party', 'publicationRequests', journal.id],
+    () => ky(`oa/publicationRequest?filters=work.id==${journal.id}`).json()
+  );
 
   const getSectionProps = (name) => {
     return {
@@ -63,6 +71,9 @@ const Journal = ({ resource: journal, onClose, queryProps: { isLoading } }) => {
       paneTitle={journal?.title}
     >
       <JournalInstances {...getSectionProps('journalInfo')} />
+      {!!publicationRequests?.length && (
+        <RelatedRequests requests={publicationRequests} />
+      )}
     </Pane>
   );
 };
