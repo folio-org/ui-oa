@@ -43,12 +43,10 @@ describe('JournalInstances', () => {
 
     test('renders the correct values with fields', () => {
       const { queryByTestId } = renderComponent;
-      expect(within(queryByTestId('journalInstances[0]')).getByText('Annals of Global Analysis and Geometry'));
-      expect(within(queryByTestId('journalInstances[0]')).getByText('Print'));
+      expect(within(queryByTestId('journalInstances[0]')).getByText('Electronic'));
       expect(within(queryByTestId('journalInstances[0]')).getByText('ISSN'));
 
-      expect(within(queryByTestId('journalInstances[1]')).getByText('Annals of Global Analysis and Geometry'));
-      expect(within(queryByTestId('journalInstances[1]')).getByText('Electronic'));
+      expect(within(queryByTestId('journalInstances[1]')).getByText('Print'));
       expect(within(queryByTestId('journalInstances[1]')).getByText('ISSN'));
     });
   });
