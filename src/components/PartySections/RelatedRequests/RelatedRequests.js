@@ -14,8 +14,8 @@ import {
 import getSortedItems from '../../../util/getSortedItems';
 
 const propTypes = {
-  requests: PropTypes.object,
-  requestsFormatter: PropTypes.object,
+  requests: PropTypes.arrayOf(PropTypes.object),
+  requestsFormatter: PropTypes.arrayOf(PropTypes.object),
   sortFormatter: PropTypes.object,
 };
 
