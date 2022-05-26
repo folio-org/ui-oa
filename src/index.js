@@ -52,7 +52,8 @@ const App = (props) => {
     'expandAllSections',
     'collapseAllSections',
     'expandOrCollapseAccordion',
-    'search',
+    // Will be implemented when ID is assigned to search field in k-int components
+    // 'search',
     'openShortcutModal',
   ]);
 

@@ -10,6 +10,8 @@ import {
   PaneMenu,
   IconButton,
   LoadingView,
+  HasCommand,
+  checkScope,
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 
@@ -54,6 +56,13 @@ const JournalForm = ({
     );
   };
 
+  const shortcuts = [
+    {
+      name: 'save',
+      handler: onSubmit,
+    },
+  ];
+
   const renderPaneFooter = () => {
     return (
       <PaneFooter
@@ -86,19 +95,25 @@ const JournalForm = ({
   }
 
   return (
-    <Paneset>
-      <Pane
-        appIcon={<AppIcon app="oa" />}
-        centerContent
-        defaultWidth="100%"
-        firstMenu={renderFirstMenu()}
-        footer={renderPaneFooter()}
-        id="pane-oa-journal-form"
-        paneTitle={renderPaneTitle()}
-      >
-        <JournalStatusForm />
-      </Pane>
-    </Paneset>
+    <HasCommand
+      commands={shortcuts}
+      isWithinScope={checkScope}
+      scope={document.body}
+    >
+      <Paneset>
+        <Pane
+          appIcon={<AppIcon app="oa" />}
+          centerContent
+          defaultWidth="100%"
+          firstMenu={renderFirstMenu()}
+          footer={renderPaneFooter()}
+          id="pane-oa-journal-form"
+          paneTitle={renderPaneTitle()}
+        >
+          <JournalStatusForm />
+        </Pane>
+      </Paneset>
+    </HasCommand>
   );
 };
 

@@ -13,7 +13,7 @@ const CorrespondenceEditRoute = () => {
   const { prId, cId } = useParams();
 
   const handleClose = () => {
-    history.push(`/oa/publicationRequests/${prId}`);
+    history.push(`/oa/publicationRequests/${prId}/correspondence/${cId}`);
   };
 
   const { data: correspondence, isLoading } = useQuery(

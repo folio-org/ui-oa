@@ -10,6 +10,8 @@ import {
   PaneMenu,
   IconButton,
   LoadingView,
+  HasCommand,
+  checkScope,
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 
@@ -81,24 +83,37 @@ const CorrespondenceForm = ({
     );
   };
 
+  const shortcuts = [
+    {
+      name: 'save',
+      handler: onSubmit,
+    },
+  ];
+
   if (isLoading) {
     return <LoadingView />;
   }
 
   return (
-    <Paneset>
-      <Pane
-        appIcon={<AppIcon app="oa" />}
-        centerContent
-        defaultWidth="100%"
-        firstMenu={renderFirstMenu()}
-        footer={renderPaneFooter()}
-        id="pane.oa.correspondence.form"
-        paneTitle={renderPaneTitle()}
-      >
-        <CorrespondenceInfoForm />
-      </Pane>
-    </Paneset>
+    <HasCommand
+      commands={shortcuts}
+      isWithinScope={checkScope}
+      scope={document.body}
+    >
+      <Paneset>
+        <Pane
+          appIcon={<AppIcon app="oa" />}
+          centerContent
+          defaultWidth="100%"
+          firstMenu={renderFirstMenu()}
+          footer={renderPaneFooter()}
+          id="pane.oa.correspondence.form"
+          paneTitle={renderPaneTitle()}
+        >
+          <CorrespondenceInfoForm />
+        </Pane>
+      </Paneset>
+    </HasCommand>
   );
 };
 

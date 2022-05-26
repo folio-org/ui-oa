@@ -38,7 +38,7 @@ const propTypes = {
     onClose: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
   }).isRequired,
-    isLoading: PropTypes.bool,
+  isLoading: PropTypes.bool,
   publicationRequest: PropTypes.object,
 };
 
@@ -65,6 +65,7 @@ const PublicationRequestForm = ({
   }, [change, values]);
 
   const shortcuts = [
+    { name: 'save', handler: onSubmit },
     {
       name: 'expandAllSections',
       handler: (e) => expandAllSections(e, accordionStatusRef),

@@ -10,6 +10,8 @@ import {
   Paneset,
   PaneMenu,
   LoadingView,
+  HasCommand,
+  checkScope,
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 
@@ -83,27 +85,40 @@ const PartyForm = ({ handlers: { onClose, onSubmit }, isLoading, party }) => {
     );
   };
 
+  const shortcuts = [
+    {
+      name: 'save',
+      handler: onSubmit,
+    },
+  ];
+
   if (isLoading) {
     return <LoadingView />;
   }
 
   return (
-    <Paneset>
-      <Pane
-        appIcon={<AppIcon />}
-        centerContent
-        defaultWidth="100%"
-        firstMenu={renderFirstMenu()}
-        footer={renderPaneFooter()}
-        id="pane-oa-party-form"
-        paneTitle={renderPaneTitle()}
-      >
-        <PartyInfoForm />
-        {/* <StreetAddressesFieldArray /> */}
-        <OtherEmailsFieldArray />
-        <StreetAddress />
-      </Pane>
-    </Paneset>
+    <HasCommand
+      commands={shortcuts}
+      isWithinScope={checkScope}
+      scope={document.body}
+    >
+      <Paneset>
+        <Pane
+          appIcon={<AppIcon />}
+          centerContent
+          defaultWidth="100%"
+          firstMenu={renderFirstMenu()}
+          footer={renderPaneFooter()}
+          id="pane-oa-party-form"
+          paneTitle={renderPaneTitle()}
+        >
+          <PartyInfoForm />
+          {/* <StreetAddressesFieldArray /> */}
+          <OtherEmailsFieldArray />
+          <StreetAddress />
+        </Pane>
+      </Paneset>
+    </HasCommand>
   );
 };
 
