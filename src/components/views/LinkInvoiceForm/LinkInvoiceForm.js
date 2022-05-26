@@ -9,6 +9,8 @@ import {
   Paneset,
   PaneMenu,
   IconButton,
+  HasCommand,
+  checkScope,
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 import {
@@ -27,10 +29,7 @@ const propTypes = {
   charge: PropTypes.object,
 };
 
-const LinkInvoiceForm = ({
-  handlers: { onClose, onSubmit },
-  charge,
-}) => {
+const LinkInvoiceForm = ({ handlers: { onClose, onSubmit }, charge }) => {
   const { values, pristine, submitting } = useFormState();
 
   const getSectionProps = (name) => {
@@ -86,25 +85,34 @@ const LinkInvoiceForm = ({
       />
     );
   };
+
+  const shortcuts = [{ name: 'save', handler: onSubmit }];
+
   return (
-    <Paneset>
-      <Pane
-        appIcon={<AppIcon app="oa" />}
-        centerContent
-        defaultWidth="100%"
-        firstMenu={renderFirstMenu()}
-        footer={renderPaneFooter()}
-        id="pane.oa.invoice.form"
-        paneTitle={renderPaneTitle()}
-      >
-        <InvoiceTypedownForm {...getSectionProps('invoiceTypedown')} />
-        {values?.selectedInvoice && (
-          <InvoiceLineTypedownForm
-            {...getSectionProps('invoiceLineTypedown')}
-          />
-        )}
-      </Pane>
-    </Paneset>
+    <HasCommand
+      commands={shortcuts}
+      isWithinScope={checkScope}
+      scope={document.body}
+    >
+      <Paneset>
+        <Pane
+          appIcon={<AppIcon app="oa" />}
+          centerContent
+          defaultWidth="100%"
+          firstMenu={renderFirstMenu()}
+          footer={renderPaneFooter()}
+          id="pane.oa.invoice.form"
+          paneTitle={renderPaneTitle()}
+        >
+          <InvoiceTypedownForm {...getSectionProps('invoiceTypedown')} />
+          {values?.selectedInvoice && (
+            <InvoiceLineTypedownForm
+              {...getSectionProps('invoiceLineTypedown')}
+            />
+          )}
+        </Pane>
+      </Paneset>
+    </HasCommand>
   );
 };
 
