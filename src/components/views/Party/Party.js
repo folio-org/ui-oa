@@ -1,10 +1,16 @@
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
 import { AppIcon, useOkapiKy } from '@folio/stripes/core';
-import { Pane, Button, Icon, LoadingPane } from '@folio/stripes/components';
+import {
+  Pane,
+  Button,
+  Icon,
+  LoadingPane,
+  FormattedUTCDate,
+} from '@folio/stripes/components';
 
 import { PartyInfo, RelatedRequests } from '../../PartySections';
 import urls from '../../../util/urls';
@@ -24,7 +30,9 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
   // Filter publication requests in which the corresponding author matches the current party
   const { data: publicationRequests } = useQuery(
     ['ui-oa', 'party', 'publicationRequests', party.id],
-    () => ky(`oa/publicationRequest?filters=correspondingAuthor.partyOwner.id==${party.id}`).json()
+    () => ky(
+        `oa/publicationRequest?filters=correspondingAuthor.partyOwner.id==${party.id}`
+      ).json()
   );
 
   const getSectionProps = (name) => {
@@ -33,6 +41,37 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
       party,
     };
   };
+
+  const requestsFormat = [
+    {
+      name: 'requestNumber',
+      translation: (
+        <FormattedMessage id="ui-oa.publicationRequest.requestNumber" />
+      ),
+      format: (d) => (
+        <Link to={urls.publicationRequest(d?.id)}>{d?.requestNumber}</Link>
+      ),
+    },
+    {
+      name: 'requestDate',
+      translation: (
+        <FormattedMessage id="ui-oa.publicationRequest.requestDate" />
+      ),
+      format: (d) => (d?.requestDate ? <FormattedUTCDate value={d.requestDate} /> : ''),
+    },
+    {
+      name: 'requestStatus',
+      translation: <FormattedMessage id="ui-oa.publicationRequest.status" />,
+      format: (d) => d?.requestStatus?.label,
+    },
+    {
+      name: 'publicationTitle',
+      translation: (
+        <FormattedMessage id="ui-oa.publicationRequest.publicationTitle" />
+      ),
+      format: (d) => d?.publicationTitle,
+    },
+  ];
 
   const handleEdit = () => {
     history.push(`${urls.partyEdit(params?.id)}`);
@@ -77,7 +116,7 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
     >
       <PartyInfo {...getSectionProps('partyInfo')} />
       {!!publicationRequests?.length && (
-        <RelatedRequests requests={publicationRequests} />
+        <RelatedRequests requests={publicationRequests} requestsFormat={requestsFormat} />
       )}
     </Pane>
   );

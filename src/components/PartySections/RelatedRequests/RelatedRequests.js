@@ -2,7 +2,6 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
-import { Link } from 'react-router-dom';
 
 import {
   Accordion,
@@ -10,17 +9,16 @@ import {
   Col,
   MultiColumnList,
   Row,
-  FormattedUTCDate,
 } from '@folio/stripes/components';
 
-import urls from '../../../util/urls';
 import getSortedItems from '../../../util/getSortedItems';
 
 const propTypes = {
   requests: PropTypes.object,
+  requestsFormat: PropTypes.object,
 };
 
-const RelatedRequests = ({ requests }) => {
+const RelatedRequests = ({ requests, requestsFormat }) => {
   const [sortedColumn, setSortedColumn] = useState({
     column: 'requestDate',
     direction: 'desc',
@@ -30,35 +28,31 @@ const RelatedRequests = ({ requests }) => {
     requestStatus: 'requestStatus.label',
   };
 
+  // Creates a new object containing just the associated MCL translations
+  const columnMapping = requestsFormat.reduce(
+    (obj, item) => Object.assign(obj, { [item.name]: item.translation }),
+    {}
+  );
+
+  // Creates a new object containg only the associated formats of the required data
+  const formatter = requestsFormat.reduce((obj, item) => Object.assign(obj, { [item.name]: item.format }));
+
   const sortedRequests = getSortedItems(requests, sortFormatter, sortedColumn);
 
   const renderBadge = () => {
     return requests ? <Badge>{requests?.length}</Badge> : <Badge>0</Badge>;
   };
 
-  const formatter = {
-    requestNumber: (d) => (
-      <Link to={urls.publicationRequest(d?.id)}>
-        {d?.requestNumber}
-      </Link>
-    ),
-    requestStatus: (d) => d?.requestStatus?.label,
-    requestDate: (d) => (d?.requestDate ? <FormattedUTCDate value={d.requestDate} /> : ''),
-    publicationTitle: (d) => d?.publicationTitle,
-  };
-
   const onHeaderClick = (_e, meta) => {
     if (sortedColumn.column !== meta.name) {
       setSortedColumn({
         column: meta.name,
-        direction:
-          'desc'
+        direction: 'desc',
       });
     } else {
       setSortedColumn({
         column: sortedColumn.column,
-        direction:
-          sortedColumn.direction === 'desc' ? 'asc' : 'desc',
+        direction: sortedColumn.direction === 'desc' ? 'asc' : 'desc',
       });
     }
   };
@@ -73,31 +67,13 @@ const RelatedRequests = ({ requests }) => {
       <Row>
         <Col xs={12}>
           <MultiColumnList
-            columnMapping={{
-              requestNumber: (
-                <FormattedMessage id="ui-oa.publicationRequest.requestNumber" />
-              ),
-              requestDate: (
-                <FormattedMessage id="ui-oa.publicationRequest.requestDate" />
-              ),
-              requestStatus: (
-                <FormattedMessage id="ui-oa.publicationRequest.status" />
-              ),
-              publicationTitle: (
-                <FormattedMessage id="ui-oa.publicationRequest.publicationTitle" />
-              ),
-            }}
+            columnMapping={columnMapping}
             contentData={sortedRequests}
             formatter={formatter}
             onHeaderClick={onHeaderClick}
             sortDirection={`${sortedColumn.direction}ending`}
             sortedColumn={sortedColumn.column}
-            visibleColumns={[
-              'requestNumber',
-              'requestDate',
-              'requestStatus',
-              'publicationTitle',
-            ]}
+            visibleColumns={requestsFormat.map((e) => e.name)}
           />
         </Col>
       </Row>
