@@ -15,8 +15,8 @@ const PartyCreateRoute = () => {
   const ky = useOkapiKy();
   const callout = useContext(CalloutContext);
 
-  const handleClose = (id) => {
-    history.push(`/oa/people/${id}`);
+  const handleClose = () => {
+    history.push('/oa/people/');
   };
 
   const { mutateAsync: postParty } = useMutation(

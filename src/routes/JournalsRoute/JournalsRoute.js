@@ -4,7 +4,12 @@ import { FormattedMessage } from 'react-intl';
 import { useHistory } from 'react-router-dom';
 
 import { AppIcon, IfPermission } from '@folio/stripes/core';
-import { Button, PaneMenu } from '@folio/stripes/components';
+import {
+  Button,
+  checkScope,
+  HasCommand,
+  PaneMenu,
+} from '@folio/stripes/components';
 import { SASQRoute } from '@k-int/stripes-kint-components';
 
 import { OAFilterHeaderComponent } from '../../components/SearchAndFilter';
@@ -37,6 +42,8 @@ const JournalsRoute = ({ path }) => {
       filterKeys: {},
     },
   };
+
+  const shortcuts = [{ name: 'new', handler: () => setShowModal(true) }];
 
   const resultColumns = [
     {
@@ -85,21 +92,27 @@ const JournalsRoute = ({ path }) => {
 
   return (
     <>
-      <SASQRoute
-        fetchParameters={fetchParameters}
-        FilterPaneHeaderComponent={renderHeaderComponent}
-        id="journals-sasq"
-        mainPaneProps={{
-          appIcon: <AppIcon iconKey="app" size="small" />,
-          lastMenu: lastpaneMenu,
-          paneTitle: <FormattedMessage id="ui-oa.journals" />,
-        }}
-        mclProps={{ formatter }}
-        path={path}
-        resultColumns={resultColumns}
-        sasqProps={{ initialSortState: { sort: 'title' } }}
-        ViewComponent={Journal}
-      />
+      <HasCommand
+        commands={shortcuts}
+        isWithinScope={checkScope}
+        scope={document.body}
+      >
+        <SASQRoute
+          fetchParameters={fetchParameters}
+          FilterPaneHeaderComponent={renderHeaderComponent}
+          id="journals-sasq"
+          mainPaneProps={{
+            appIcon: <AppIcon iconKey="app" size="small" />,
+            lastMenu: lastpaneMenu,
+            paneTitle: <FormattedMessage id="ui-oa.journals" />,
+          }}
+          mclProps={{ formatter }}
+          path={path}
+          resultColumns={resultColumns}
+          sasqProps={{ initialSortState: { sort: 'title' } }}
+          ViewComponent={Journal}
+        />
+      </HasCommand>
       <JournalModal
         handleJournalChange={handleJournalChange}
         setShowModal={setShowModal}

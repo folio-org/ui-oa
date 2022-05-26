@@ -1,10 +1,17 @@
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
+import { useHistory } from 'react-router-dom';
 
 import { AppIcon, IfPermission } from '@folio/stripes/core';
 
-import { Button, FormattedUTCDate, PaneMenu } from '@folio/stripes/components';
+import {
+  Button,
+  FormattedUTCDate,
+  HasCommand,
+  PaneMenu,
+  checkScope,
+} from '@folio/stripes/components';
 
 import { SASQRoute } from '@k-int/stripes-kint-components';
 import PublicationRequest from '../../components/views/PublicationRequest';
@@ -15,6 +22,8 @@ import {
 } from '../../components/SearchAndFilter';
 
 const PublicationRequestsRoute = ({ children, path }) => {
+  const history = useHistory();
+
   const fetchParameters = {
     endpoint: 'oa/publicationRequest',
     SASQ_MAP: {
@@ -25,6 +34,12 @@ const PublicationRequestsRoute = ({ children, path }) => {
       },
     },
   };
+
+  const handleCreate = () => {
+    history.push(urls.publicationRequestCreate());
+  };
+
+  const shortcuts = [{ name: 'new', handler: () => handleCreate() }];
 
   const renderHeaderComponent = () => {
     return <OAFilterHeaderComponent primary="publicationRequests" />;
@@ -78,7 +93,7 @@ const PublicationRequestsRoute = ({ children, path }) => {
               buttonStyle="primary"
               id="clickable-new-publication-request"
               marginBottom0
-              to={`${urls.publicationRequestCreate()}`}
+              onClick={() => handleCreate()}
             >
               <FormattedMessage id="stripes-smart-components.new" />
             </Button>
@@ -89,27 +104,33 @@ const PublicationRequestsRoute = ({ children, path }) => {
   );
 
   return (
-    <SASQRoute
-      fetchParameters={fetchParameters}
-      FilterComponent={PublicationRequestsFilters}
-      FilterPaneHeaderComponent={renderHeaderComponent}
-      id="publication-requests"
-      mainPaneProps={{
-        appIcon: <AppIcon app="oa" iconKey="app" size="small" />,
-        lastMenu: lastpaneMenu,
-        paneTitle: <FormattedMessage id="ui-oa.publicationRequests" />,
-      }}
-      mclProps={{
-        formatter,
-        columnWidths: { publicationTitle: 500 },
-      }}
-      path={path}
-      resultColumns={resultColumns}
-      sasqProps={{ initialSortState: { sort: 'requestNumber' } }}
-      ViewComponent={PublicationRequest}
+    <HasCommand
+      commands={shortcuts}
+      isWithinScope={checkScope}
+      scope={document.body}
     >
-      {children}
-    </SASQRoute>
+      <SASQRoute
+        fetchParameters={fetchParameters}
+        FilterComponent={PublicationRequestsFilters}
+        FilterPaneHeaderComponent={renderHeaderComponent}
+        id="publication-requests"
+        mainPaneProps={{
+          appIcon: <AppIcon app="oa" iconKey="app" size="small" />,
+          lastMenu: lastpaneMenu,
+          paneTitle: <FormattedMessage id="ui-oa.publicationRequests" />,
+        }}
+        mclProps={{
+          formatter,
+          columnWidths: { publicationTitle: 500 },
+        }}
+        path={path}
+        resultColumns={resultColumns}
+        sasqProps={{ initialSortState: { sort: 'requestNumber' } }}
+        ViewComponent={PublicationRequest}
+      >
+        {children}
+      </SASQRoute>
+    </HasCommand>
   );
 };
 
