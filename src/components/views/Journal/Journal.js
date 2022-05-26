@@ -39,7 +39,7 @@ const Journal = ({ resource: journal, onClose, queryProps: { isLoading } }) => {
     };
   };
 
-  const requestsFormat = [
+  const requestsFormatter = [
     {
       name: 'requestNumber',
       translation: (
@@ -69,6 +69,11 @@ const Journal = ({ resource: journal, onClose, queryProps: { isLoading } }) => {
       format: (d) => d?.correspondingAuthor?.partyOwner?.fullName,
     }
   ];
+
+  const sortFormatter = {
+    requestStatus: 'requestStatus.label',
+    correspondingAuthor: 'correspondingAuthor.partyOwner.fullName'
+  };
 
   const handleEdit = () => {
     history.push(urls.journalEdit(journal?.id));
@@ -111,7 +116,8 @@ const Journal = ({ resource: journal, onClose, queryProps: { isLoading } }) => {
       {!!publicationRequests?.length && (
         <RelatedRequests
           requests={publicationRequests}
-          requestsFormat={requestsFormat}
+          requestsFormatter={requestsFormatter}
+          sortFormatter={sortFormatter}
         />
       )}
     </Pane>

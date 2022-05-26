@@ -42,7 +42,11 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
     };
   };
 
-  const requestsFormat = [
+  const sortFormatter = {
+    requestStatus: 'requestStatus.label',
+  };
+
+  const requestsFormatter = [
     {
       name: 'requestNumber',
       translation: (
@@ -116,7 +120,11 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
     >
       <PartyInfo {...getSectionProps('partyInfo')} />
       {!!publicationRequests?.length && (
-        <RelatedRequests requests={publicationRequests} requestsFormat={requestsFormat} />
+        <RelatedRequests
+          requests={publicationRequests}
+          requestsFormatter={requestsFormatter}
+          sortFormatter={sortFormatter}
+        />
       )}
     </Pane>
   );

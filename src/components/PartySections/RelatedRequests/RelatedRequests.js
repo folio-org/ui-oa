@@ -15,27 +15,24 @@ import getSortedItems from '../../../util/getSortedItems';
 
 const propTypes = {
   requests: PropTypes.object,
-  requestsFormat: PropTypes.object,
+  requestsFormatter: PropTypes.object,
+  sortFormatter: PropTypes.object,
 };
 
-const RelatedRequests = ({ requests, requestsFormat }) => {
+const RelatedRequests = ({ requests, requestsFormatter, sortFormatter }) => {
   const [sortedColumn, setSortedColumn] = useState({
     column: 'requestDate',
     direction: 'desc',
   });
 
-  const sortFormatter = {
-    requestStatus: 'requestStatus.label',
-  };
-
   // Creates a new object containing just the associated MCL translations
-  const columnMapping = requestsFormat.reduce(
+  const columnMapping = requestsFormatter.reduce(
     (obj, item) => Object.assign(obj, { [item.name]: item.translation }),
     {}
   );
 
   // Creates a new object containg only the associated formats of the required data
-  const formatter = requestsFormat.reduce(
+  const formatter = requestsFormatter.reduce(
     (obj, item) => Object.assign(obj, { [item.name]: item.format }),
     {}
   );
@@ -76,7 +73,7 @@ const RelatedRequests = ({ requests, requestsFormat }) => {
             onHeaderClick={onHeaderClick}
             sortDirection={`${sortedColumn.direction}ending`}
             sortedColumn={sortedColumn.column}
-            visibleColumns={requestsFormat.map((e) => e.name)}
+            visibleColumns={requestsFormatter.map((e) => e.name)}
           />
         </Col>
       </Row>
