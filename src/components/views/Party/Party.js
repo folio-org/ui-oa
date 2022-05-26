@@ -12,7 +12,8 @@ import {
   FormattedUTCDate,
 } from '@folio/stripes/components';
 
-import { PartyInfo, RelatedRequests } from '../../PartySections';
+import PartyInfo from '../../PartySections';
+import RelatedRequests from '../../RelatedRequests';
 import urls from '../../../util/urls';
 import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
 

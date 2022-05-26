@@ -15,7 +15,7 @@ import {
 import JournalInstances from '../../JournalSections';
 import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
 import urls from '../../../util/urls';
-import { RelatedRequests } from '../../PartySections';
+import RelatedRequests from '../../RelatedRequests';
 
 const propTypes = {
   onClose: PropTypes.func.isRequired,
@@ -67,12 +67,12 @@ const Journal = ({ resource: journal, onClose, queryProps: { isLoading } }) => {
         <FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />
       ),
       format: (d) => d?.correspondingAuthor?.partyOwner?.fullName,
-    }
+    },
   ];
 
   const sortFormatter = {
     requestStatus: 'requestStatus.label',
-    correspondingAuthor: 'correspondingAuthor.partyOwner.fullName'
+    correspondingAuthor: 'correspondingAuthor.partyOwner.fullName',
   };
 
   const handleEdit = () => {
