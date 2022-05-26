@@ -10,6 +10,8 @@ import {
   Icon,
   LoadingPane,
   FormattedUTCDate,
+  checkScope,
+  HasCommand,
 } from '@folio/stripes/components';
 
 import PartyInfo from '../../PartySections';
@@ -82,6 +84,13 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
     history.push(`${urls.partyEdit(params?.id)}`);
   };
 
+  const shortcuts = [
+    {
+      name: 'edit',
+      handler: () => handleEdit(),
+    },
+  ];
+
   if (isLoading) {
     return (
       <LoadingPane
@@ -93,41 +102,47 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
   }
 
   return (
-    <Pane
-      actionMenu={() => (
-        <Button
-          buttonStyle="dropdownItem"
-          id="clickable-dropdown-edit-party"
-          onClick={handleEdit}
-        >
-          <Icon icon="edit">
-            <FormattedMessage id="ui-oa.party.edit" />
-          </Icon>
-        </Button>
-      )}
-      appIcon={<AppIcon iconKey="app" size="small" />}
-      defaultWidth={PANE_DEFAULT_WIDTH}
-      dismissible
-      onClose={onClose}
-      paneTitle={
-        <FormattedMessage
-          id="ui-oa.party.familyNameOrdered"
-          values={{
-            familyName: party?.familyName,
-            givenNames: party?.givenNames,
-          }}
-        />
-      }
+    <HasCommand
+      commands={shortcuts}
+      isWithinScope={checkScope}
+      scope={document.body}
     >
-      <PartyInfo {...getSectionProps('partyInfo')} />
-      {!!publicationRequests?.length && (
-        <RelatedRequests
-          requests={publicationRequests}
-          requestsFormatter={requestsFormatter}
-          sortFormatter={sortFormatter}
-        />
-      )}
-    </Pane>
+      <Pane
+        actionMenu={() => (
+          <Button
+            buttonStyle="dropdownItem"
+            id="clickable-dropdown-edit-party"
+            onClick={handleEdit}
+          >
+            <Icon icon="edit">
+              <FormattedMessage id="ui-oa.party.edit" />
+            </Icon>
+          </Button>
+        )}
+        appIcon={<AppIcon iconKey="app" size="small" />}
+        defaultWidth={PANE_DEFAULT_WIDTH}
+        dismissible
+        onClose={onClose}
+        paneTitle={
+          <FormattedMessage
+            id="ui-oa.party.familyNameOrdered"
+            values={{
+              familyName: party?.familyName,
+              givenNames: party?.givenNames,
+            }}
+          />
+        }
+      >
+        <PartyInfo {...getSectionProps('partyInfo')} />
+        {!!publicationRequests?.length && (
+          <RelatedRequests
+            requests={publicationRequests}
+            requestsFormatter={requestsFormatter}
+            sortFormatter={sortFormatter}
+          />
+        )}
+      </Pane>
+    </HasCommand>
   );
 };
 

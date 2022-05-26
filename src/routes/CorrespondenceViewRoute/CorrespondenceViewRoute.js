@@ -2,6 +2,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useQuery, useMutation } from 'react-query';
 
+import { checkScope, HasCommand } from '@folio/stripes/components';
 import urls from '../../util/urls';
 import CorrespondenceView from '../../components/views/CorrespondenceView';
 
@@ -34,14 +35,27 @@ const CorrespondenceViewRoute = () => {
     history.push(`${urls.publicationRequestCorrespondenceEdit(prId, cId)}`);
   };
 
+  const shortcuts = [
+    {
+      name: 'edit',
+      handler: () => handleEdit(),
+    },
+  ];
+
   return (
-    <CorrespondenceView
-      correspondence={correspondence}
-      isLoading={isLoading}
-      onClose={handleClose}
-      onDelete={handleDelete}
-      onEdit={handleEdit}
-    />
+    <HasCommand
+      commands={shortcuts}
+      isWithinScope={checkScope}
+      scope={document.body}
+    >
+      <CorrespondenceView
+        correspondence={correspondence}
+        isLoading={isLoading}
+        onClose={handleClose}
+        onDelete={handleDelete}
+        onEdit={handleEdit}
+      />
+    </HasCommand>
   );
 };
 
