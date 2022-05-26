@@ -1,11 +1,17 @@
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
 import { AppIcon, useOkapiKy } from '@folio/stripes/core';
 
-import { Pane, LoadingPane, Button, Icon } from '@folio/stripes/components';
+import {
+  Pane,
+  LoadingPane,
+  Button,
+  Icon,
+  FormattedUTCDate,
+} from '@folio/stripes/components';
 import JournalInstances from '../../JournalSections';
 import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
 import urls from '../../../util/urls';
@@ -32,6 +38,37 @@ const Journal = ({ resource: journal, onClose, queryProps: { isLoading } }) => {
       journal,
     };
   };
+
+  const requestsFormat = [
+    {
+      name: 'requestNumber',
+      translation: (
+        <FormattedMessage id="ui-oa.publicationRequest.requestNumber" />
+      ),
+      format: (d) => (
+        <Link to={urls.publicationRequest(d?.id)}>{d?.requestNumber}</Link>
+      ),
+    },
+    {
+      name: 'requestDate',
+      translation: (
+        <FormattedMessage id="ui-oa.publicationRequest.requestDate" />
+      ),
+      format: (d) => (d?.requestDate ? <FormattedUTCDate value={d.requestDate} /> : ''),
+    },
+    {
+      name: 'requestStatus',
+      translation: <FormattedMessage id="ui-oa.publicationRequest.status" />,
+      format: (d) => d?.requestStatus?.label,
+    },
+    {
+      name: 'correspondingAuthor',
+      translation: (
+        <FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />
+      ),
+      format: (d) => d?.correspondingAuthor?.partyOwner?.fullName,
+    }
+  ];
 
   const handleEdit = () => {
     history.push(urls.journalEdit(journal?.id));
@@ -72,7 +109,10 @@ const Journal = ({ resource: journal, onClose, queryProps: { isLoading } }) => {
     >
       <JournalInstances {...getSectionProps('journalInfo')} />
       {!!publicationRequests?.length && (
-        <RelatedRequests requests={publicationRequests} />
+        <RelatedRequests
+          requests={publicationRequests}
+          requestsFormat={requestsFormat}
+        />
       )}
     </Pane>
   );
