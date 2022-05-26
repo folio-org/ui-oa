@@ -28,7 +28,7 @@ const PublicationRequestsRoute = ({ children, path }) => {
     endpoint: 'oa/publicationRequest',
     SASQ_MAP: {
       searchKey:
-        'publicationTitle,requestNumber,correspondingAuthor.partyOwner.fullName,requestContact.partyOwner.fullName',
+        'publicationTitle,requestNumber,correspondingAuthor.partyOwner.fullName,requestContact.partyOwner.fullName,externalRequestIds.externalId',
       filterKeys: {
         requestStatus: 'requestStatus.value',
       },
