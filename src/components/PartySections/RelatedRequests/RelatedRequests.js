@@ -35,7 +35,10 @@ const RelatedRequests = ({ requests, requestsFormat }) => {
   );
 
   // Creates a new object containg only the associated formats of the required data
-  const formatter = requestsFormat.reduce((obj, item) => Object.assign(obj, { [item.name]: item.format }));
+  const formatter = requestsFormat.reduce(
+    (obj, item) => Object.assign(obj, { [item.name]: item.format }),
+    {}
+  );
 
   const sortedRequests = getSortedItems(requests, sortFormatter, sortedColumn);
 
