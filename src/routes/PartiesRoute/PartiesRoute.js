@@ -1,9 +1,15 @@
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
+import { useHistory } from 'react-router-dom';
 
 import { AppIcon, IfPermission } from '@folio/stripes/core';
-import { Button, PaneMenu } from '@folio/stripes/components';
+import {
+  Button,
+  PaneMenu,
+  HasCommand,
+  checkScope,
+} from '@folio/stripes/components';
 
 import { SASQRoute } from '@k-int/stripes-kint-components';
 import { OAFilterHeaderComponent } from '../../components/SearchAndFilter';
@@ -11,6 +17,7 @@ import Party from '../../components/views/Party';
 import urls from '../../util/urls';
 
 const PartiesRoute = ({ path }) => {
+  const history = useHistory();
   const renderHeaderComponent = () => {
     return <OAFilterHeaderComponent primary="people" />;
   };
@@ -42,6 +49,12 @@ const PartiesRoute = ({ path }) => {
     },
   ];
 
+  const handleCreate = () => {
+    history.push(urls.partyCreate());
+  };
+
+  const shortcuts = [{ name: 'new', handler: () => handleCreate() }];
+
   const formatter = {
     givenNames: (d) => (
       <AppIcon iconAlignment="baseline" iconKey="app" size="small">
@@ -60,7 +73,7 @@ const PartiesRoute = ({ path }) => {
               buttonStyle="primary"
               id="new-party"
               marginBottom0
-              to={`${urls.partyCreate()}`}
+              onClick={() => handleCreate()}
             >
               <FormattedMessage id="stripes-smart-components.new" />
             </Button>
@@ -71,21 +84,27 @@ const PartiesRoute = ({ path }) => {
   );
 
   return (
-    <SASQRoute
-      fetchParameters={fetchParameters}
-      FilterPaneHeaderComponent={renderHeaderComponent}
-      id="parties-sasq"
-      mainPaneProps={{
-        appIcon: <AppIcon iconKey="app" size="small" />,
-        lastMenu: lastpaneMenu,
-        paneTitle: <FormattedMessage id="ui-oa.parties.people" />,
-      }}
-      mclProps={{ formatter }}
-      path={path}
-      resultColumns={resultColumns}
-      sasqProps={{ initialSortState: { sort: 'familyName,givenNames' } }}
-      ViewComponent={Party}
-    />
+    <HasCommand
+      commands={shortcuts}
+      isWithinScope={checkScope}
+      scope={document.body}
+    >
+      <SASQRoute
+        fetchParameters={fetchParameters}
+        FilterPaneHeaderComponent={renderHeaderComponent}
+        id="parties-sasq"
+        mainPaneProps={{
+          appIcon: <AppIcon iconKey="app" size="small" />,
+          lastMenu: lastpaneMenu,
+          paneTitle: <FormattedMessage id="ui-oa.parties.people" />,
+        }}
+        mclProps={{ formatter }}
+        path={path}
+        resultColumns={resultColumns}
+        sasqProps={{ initialSortState: { sort: 'familyName,givenNames' } }}
+        ViewComponent={Party}
+      />
+    </HasCommand>
   );
 };
 

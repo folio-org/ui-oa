@@ -12,6 +12,8 @@ import {
   ConfirmationModal,
   Card,
   Row,
+  HasCommand,
+  checkScope,
 } from '@folio/stripes/components';
 
 import ChargeInfo from '../../ChargeSections/ChargeInfo';
@@ -94,6 +96,13 @@ const ChargeView = ({ charge, request, refetch }) => {
     unlinkInvoice(submitValues);
   };
 
+  const shortcuts = [
+    {
+      name: 'edit',
+      handler: () => handleEdit(),
+    },
+  ];
+
   const renderActionMenu = () => {
     return (
       <>
@@ -141,80 +150,86 @@ const ChargeView = ({ charge, request, refetch }) => {
   };
 
   return (
-    <Pane
-      actionMenu={renderActionMenu}
-      appIcon={<AppIcon app="oa" iconKey="app" size="small" />}
-      defaultWidth={PANE_DEFAULT_WIDTH}
-      dismissible
-      onClose={handleClose}
-      paneTitle={
-        <FormattedMessage id="ui-oa.charge.publicationRequestCharge" />
-      }
+    <HasCommand
+      commands={shortcuts}
+      isWithinScope={checkScope}
+      scope={document.body}
     >
-      <ConfirmationModal
-        confirmLabel={<FormattedMessage id="ui-oa.charge.delete" />}
-        heading={<FormattedMessage id="ui-oa.charge.deleteCharge" />}
-        message={<FormattedMessage id="ui-oa.charge.deleteChargeMessage" />}
-        onCancel={() => setShowDeleteConfirmModal(false)}
-        onConfirm={() => handleDelete()}
-        open={showDeleteConfirmModal}
-      />
-      <ConfirmationModal
-        confirmLabel={<FormattedMessage id="ui-oa.charge.invoice.unlink" />}
-        heading={<FormattedMessage id="ui-oa.charge.invoice.unlinkInvoice" />}
-        message={
-          <FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceMessage" />
+      <Pane
+        actionMenu={renderActionMenu}
+        appIcon={<AppIcon app="oa" iconKey="app" size="small" />}
+        defaultWidth={PANE_DEFAULT_WIDTH}
+        dismissible
+        onClose={handleClose}
+        paneTitle={
+          <FormattedMessage id="ui-oa.charge.publicationRequestCharge" />
         }
-        onCancel={() => setShowUnlinkConfirmModal(false)}
-        onConfirm={() => handleUnlink()}
-        open={showUnlinkConfirmModal}
-      />
-      <ChargeInfo charge={charge} request={request} />
-      {invoice && (
-        <Row>
-          <Card
-            cardStyle="positive"
-            headerStart={
-              <AppIcon app="invoice" size="small">
-                <Link to={urls?.invoice(charge?.invoiceReference)}>
-                  <strong>{invoice?.vendorInvoiceNo}</strong>
-                </Link>
-              </AppIcon>
-            }
-            roundedBorder
-          >
-            <InvoiceInfo charge={charge} invoice={invoice} />
-          </Card>
-        </Row>
-      )}
-      {invoiceLine && (
-        <Row>
-          <Card
-            cardStyle="positive"
-            headerStart={
-              <AppIcon app="invoice" size="small">
-                <strong>
-                  <Link
-                    to={urls?.invoiceLine(
-                      charge?.invoiceReference,
-                      charge?.invoiceLineItemReference
-                    )}
-                  >
-                    {invoiceLine?.invoiceLineNumber}
-                    {invoiceLine?.description?.length > 50
-                      ? ', ' + invoiceLine?.description.substr(0, 49) + '...'
-                      : ', ' + invoiceLine?.description}
+      >
+        <ConfirmationModal
+          confirmLabel={<FormattedMessage id="ui-oa.charge.delete" />}
+          heading={<FormattedMessage id="ui-oa.charge.deleteCharge" />}
+          message={<FormattedMessage id="ui-oa.charge.deleteChargeMessage" />}
+          onCancel={() => setShowDeleteConfirmModal(false)}
+          onConfirm={() => handleDelete()}
+          open={showDeleteConfirmModal}
+        />
+        <ConfirmationModal
+          confirmLabel={<FormattedMessage id="ui-oa.charge.invoice.unlink" />}
+          heading={<FormattedMessage id="ui-oa.charge.invoice.unlinkInvoice" />}
+          message={
+            <FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceMessage" />
+          }
+          onCancel={() => setShowUnlinkConfirmModal(false)}
+          onConfirm={() => handleUnlink()}
+          open={showUnlinkConfirmModal}
+        />
+        <ChargeInfo charge={charge} request={request} />
+        {invoice && (
+          <Row>
+            <Card
+              cardStyle="positive"
+              headerStart={
+                <AppIcon app="invoice" size="small">
+                  <Link to={urls?.invoice(charge?.invoiceReference)}>
+                    <strong>{invoice?.vendorInvoiceNo}</strong>
                   </Link>
-                </strong>
-              </AppIcon>
-            }
-            roundedBorder
-          >
-            <InvoiceLineInfo invoiceLine={invoiceLine} />
-          </Card>
-        </Row>
-      )}
-    </Pane>
+                </AppIcon>
+              }
+              roundedBorder
+            >
+              <InvoiceInfo charge={charge} invoice={invoice} />
+            </Card>
+          </Row>
+        )}
+        {invoiceLine && (
+          <Row>
+            <Card
+              cardStyle="positive"
+              headerStart={
+                <AppIcon app="invoice" size="small">
+                  <strong>
+                    <Link
+                      to={urls?.invoiceLine(
+                        charge?.invoiceReference,
+                        charge?.invoiceLineItemReference
+                      )}
+                    >
+                      {invoiceLine?.invoiceLineNumber}
+                      {invoiceLine?.description?.length > 50
+                        ? ', ' + invoiceLine?.description.substr(0, 49) + '...'
+                        : ', ' + invoiceLine?.description}
+                    </Link>
+                  </strong>
+                </AppIcon>
+              }
+              roundedBorder
+            >
+              <InvoiceLineInfo invoiceLine={invoiceLine} />
+            </Card>
+          </Row>
+        )}
+      </Pane>
+    </HasCommand>
   );
 };
 

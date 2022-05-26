@@ -16,7 +16,11 @@ const PartyCreateRoute = () => {
   const callout = useContext(CalloutContext);
 
   const handleClose = (id) => {
-    history.push(`/oa/people/${id}`);
+    if (id) {
+      history.push(`/oa/people/${id}`);
+    } else {
+      history.push('/oa/people/');
+    }
   };
 
   const { mutateAsync: postParty } = useMutation(

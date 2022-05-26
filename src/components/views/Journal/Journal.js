@@ -11,6 +11,8 @@ import {
   Button,
   Icon,
   FormattedUTCDate,
+  HasCommand,
+  checkScope,
 } from '@folio/stripes/components';
 import JournalInstances from '../../JournalSections';
 import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
@@ -103,24 +105,37 @@ const Journal = ({ resource: journal, onClose, queryProps: { isLoading } }) => {
     );
   };
 
+  const shortcuts = [
+    {
+      name: 'edit',
+      handler: () => handleEdit(),
+    },
+  ];
+
   return (
-    <Pane
-      actionMenu={renderActionMenu}
-      appIcon={<AppIcon iconKey="app" size="small" />}
-      defaultWidth={PANE_DEFAULT_WIDTH}
-      dismissible
-      onClose={onClose}
-      paneTitle={journal?.title}
+    <HasCommand
+      commands={shortcuts}
+      isWithinScope={checkScope}
+      scope={document.body}
     >
-      <JournalInstances {...getSectionProps('journalInfo')} />
-      {!!publicationRequests?.length && (
-        <RelatedRequests
-          requests={publicationRequests}
-          requestsFormatter={requestsFormatter}
-          sortFormatter={sortFormatter}
-        />
-      )}
-    </Pane>
+      <Pane
+        actionMenu={renderActionMenu}
+        appIcon={<AppIcon iconKey="app" size="small" />}
+        defaultWidth={PANE_DEFAULT_WIDTH}
+        dismissible
+        onClose={onClose}
+        paneTitle={journal?.title}
+      >
+        <JournalInstances {...getSectionProps('journalInfo')} />
+        {!!publicationRequests?.length && (
+          <RelatedRequests
+            requests={publicationRequests}
+            requestsFormatter={requestsFormatter}
+            sortFormatter={sortFormatter}
+          />
+        )}
+      </Pane>
+    </HasCommand>
   );
 };
 

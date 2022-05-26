@@ -10,19 +10,26 @@ const CorrespondenceCreateRoute = () => {
   const ky = useOkapiKy();
   const { id } = useParams();
 
-  const handleClose = () => {
-    history.push(`/oa/publicationRequests/${id}`);
+  const handleClose = (cId) => {
+    if (cId) {
+      history.push(`/oa/publicationRequests/${id}/correspondence/${cId}`);
+    } else {
+      history.push(`/oa/publicationRequests/${id}`);
+    }
   };
 
   const { mutateAsync: postCorrespondence } = useMutation(
     ['ui-oa', 'CorrespondenceCreateRoute', 'postCorrespondence'],
-    (data) => ky.post('oa/correspondence', { json: data }).json().then(() => {
-        handleClose();
-      })
+    (data) => ky
+        .post('oa/correspondence', { json: data })
+        .json()
+        .then((res) => {
+          handleClose(res?.id);
+        })
   );
   const submitCorrespondence = async (values) => {
-    const submitValues = { ...values, 'owner':{ id } };
-     await postCorrespondence(submitValues);
+    const submitValues = { ...values, owner: { id } };
+    await postCorrespondence(submitValues);
   };
 
   return (
