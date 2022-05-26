@@ -64,6 +64,7 @@ const PublicationRequest = ({
   };
 
   const shortcuts = [
+    { name: 'edit', handler: () => handleEdit() },
     {
       name: 'expandAllSections',
       handler: (e) => expandAllSections(e, accordionStatusRef),
