@@ -287,5 +287,11 @@
     "journal.journalOAStatus": "Stav časopisu OA",
     "charge.invoiceLine.status.open": "Otevřená",
     "publicationRequest.publicationDate": "Datum zveřejnění",
-    "publicationRequest.publicationYear.validate": "Zadejte datum ve formátu RRRR, RRRR-MM nebo RRRR-MM-DD"
+    "publicationRequest.publicationYear.validate": "Zadejte datum ve formátu RRRR, RRRR-MM nebo RRRR-MM-DD",
+    "journal.validate.notElectronicSubtype": "EZB is not a valid option for the subtype 'Print'. Please rectify",
+    "journal.validate.duplicateNamespaceID": "This ID and namespace combination exists in another instance, please rectify",
+    "journal.subtypePopover": "The Subtype value selected will affect the options available in the Namespace field. For example, 'EZB' is only available for the subtype 'Electronic'.",
+    "publicationRequest.validate.publicationURL": "Please enter a valid URL (including 'http' or 'https')",
+    "journal.edit": "Edit",
+    "journal.editJournal": "Edit journal"
 }
