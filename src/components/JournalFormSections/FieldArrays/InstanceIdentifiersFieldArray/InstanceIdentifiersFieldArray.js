@@ -19,7 +19,11 @@ import {
   requiredValidator,
   composeValidators,
 } from '@folio/stripes-erm-components';
-import { MAX_CHAR_LONG } from '../../../../constants/config';
+import {
+  MAX_CHAR_LONG,
+  MAX_ELECTRONIC_IDENTIFIERS,
+  MAX_PRINT_IDENTIFIERS,
+} from '../../../../constants/config';
 
 const propTypes = {
   instanceId: PropTypes.string.isRequired,
@@ -189,8 +193,9 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
             disabled={
               !hasSubtype ||
               (get(values, instanceId)?.subType === 'print' &&
-                get(values, instanceId)?.ids.length === 2) ||
-              get(values, instanceId)?.ids.length === 3
+                get(values, instanceId)?.ids.length ===
+                  MAX_PRINT_IDENTIFIERS) ||
+              get(values, instanceId)?.ids.length === MAX_ELECTRONIC_IDENTIFIERS
             }
             onClick={() => fields.push({})}
           >
