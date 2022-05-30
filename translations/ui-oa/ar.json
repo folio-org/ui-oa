@@ -287,5 +287,11 @@
     "journal.journalOAStatus": "حالة الوصول المفتوح للدورية",
     "charge.invoiceLine.status.open": "مفتوحة",
     "publicationRequest.publicationDate": "تاريخ النشر",
-    "publicationRequest.publicationYear.validate": "يرجى إدخال تاريخ بتنسيق YYYYY أو YYYY-MM أو YYYY-MM-DD"
+    "publicationRequest.publicationYear.validate": "يرجى إدخال تاريخ بتنسيق YYYYY أو YYYY-MM أو YYYY-MM-DD",
+    "journal.validate.notElectronicSubtype": "EZB ليس خياراً صالحاً للنوع الفرعي 'ورقي'. يرجى التصحيح",
+    "journal.validate.duplicateNamespaceID": "مجموعة المعرّف ومساحة الاسم هذه موجودة في وعاء آخر، يرجى التصحيح",
+    "journal.subtypePopover": "ستؤثر قيمة النوع الفرعي Subtype المحددة على الخيارات المتاحة في حقل مساحة الاسم Namespace. على سبيل المثال: 'EZB' متاح فقط للنوع الفرعي 'إلكتروني'.",
+    "publicationRequest.validate.publicationURL": "يرجى إدخال عنوان URL صالح (يحتوي على 'http' أو 'https')",
+    "journal.edit": "تحرير",
+    "journal.editJournal": "تحرير دورية"
 }
