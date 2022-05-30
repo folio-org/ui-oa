@@ -1,6 +1,9 @@
 import { useState, Suspense } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
+import { AppContextMenu } from '@folio/stripes-core';
 
 import {
   CommandList,
@@ -8,6 +11,9 @@ import {
   HasCommand,
   KeyboardShortcutsModal,
   checkScope,
+  NavList,
+  NavListItem,
+  NavListSection,
 } from '@folio/stripes/components';
 
 import Settings from './settings';
@@ -76,6 +82,23 @@ const App = (props) => {
           isWithinScope={checkScope}
           scope={document.body}
         >
+          <AppContextMenu>
+            {(handleToggle) => (
+              <NavList>
+                <NavListSection>
+                  <NavListItem
+                    id="keyboard-shortcuts-item"
+                    onClick={() => {
+                      handleToggle();
+                      setShowShortcutModal(true);
+                    }}
+                  >
+                    <FormattedMessage id="ui-oa.appMenu.keyboardShortcuts" />
+                  </NavListItem>
+                </NavListSection>
+              </NavList>
+            )}
+          </AppContextMenu>
           <Suspense fallback={null}>
             <Switch>
               <Route
