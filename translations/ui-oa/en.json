@@ -1,5 +1,8 @@
 {
   "meta.title": "Open Access",
+  
+  "appMenu.keyboardShortcuts": "Keyboards shortcuts",
+
   "settings.edit": "Edit",
   "settings.finish-editing": "Save",
   "settings.no-current-value": "No current value",
