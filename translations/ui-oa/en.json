@@ -118,6 +118,7 @@
   "publicationRequest.agreementEndDate": "End date",
   "publicationRequest.agreementStatus": "Status",
   "publicationRequest.agreementNotLinked": "This request is not covered by an agreement",
+  "publicationRequest.agreementsNotWorking": "<strong>Error :</strong> Agreements is currently unavailable, please try again later or contact your system administrator",
   "publicationRequest.noAgreement": "Request has no agreement",
   "publicationRequest.aspectFunded": "Aspect funded",
   "publicationRequest.authorLookup": "Author lookup",
