@@ -58,7 +58,7 @@ const LinkAgreementForm = () => {
           />
         </Col>
         <Col>
-          {values.agreement && (
+          {values.agreement && LookupComponent && (
             <Tooltip
               id="agreement-trash-button-tooltip"
               text={
