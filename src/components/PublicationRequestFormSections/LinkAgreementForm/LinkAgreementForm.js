@@ -7,9 +7,10 @@ import {
   Row,
   Col,
   Checkbox,
-  TextField,
   IconButton,
+  Badge,
   Tooltip,
+  MessageBanner,
 } from '@folio/stripes/components';
 
 import { Registry } from '@folio/handler-stripes-registry';
@@ -19,7 +20,7 @@ const LinkAgreementForm = () => {
   const { change } = useForm();
 
   const resourceReg = Registry.getResource('agreement');
-  const LookupComponent = resourceReg?.getLookupComponent() ?? TextField;
+  const LookupComponent = resourceReg?.getLookupComponent() ?? null;
 
   const initialAgreement = initialValues?.agreement?.remoteId_object;
   const [agreement, setAgreement] = useState(initialAgreement ?? {});
@@ -37,6 +38,8 @@ const LinkAgreementForm = () => {
 
   return (
     <Accordion
+      displayWhenClosed={!LookupComponent ? <Badge color="red">!</Badge> : null}
+      displayWhenOpen={!LookupComponent ? <Badge color="red">!</Badge> : null}
       label={<FormattedMessage id="ui-oa.publicationRequest.agreement" />}
     >
       <Row between="xs">
@@ -55,7 +58,7 @@ const LinkAgreementForm = () => {
           />
         </Col>
         <Col>
-          {values.agreement && (
+          {values.agreement && LookupComponent && (
             <Tooltip
               id="agreement-trash-button-tooltip"
               text={
@@ -76,13 +79,17 @@ const LinkAgreementForm = () => {
         </Col>
       </Row>
       <br />
-      {!values.withoutAgreement && (
+      {!values.withoutAgreement && LookupComponent ? (
         <Field
           component={LookupComponent}
           name="agreement.remoteId"
           onResourceSelected={handleAgreementSelected}
           resource={agreement}
         />
+      ) : (
+        <MessageBanner type="error">
+          <FormattedMessage id="ui-oa.publicationRequest.agreementsNotWorking" />
+        </MessageBanner>
       )}
     </Accordion>
   );
