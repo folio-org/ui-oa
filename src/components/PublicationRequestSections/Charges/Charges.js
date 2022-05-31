@@ -75,6 +75,7 @@ const Charges = ({ request }) => {
     return charge?.invoiceLineItemReference &&
       charge?.chargeStatus?.value === 'invoiced' ? (
         <Tooltip
+          id={`charge-${charge.rowIndex + 1}-invoiced-button`}
           text={
             <FormattedMessage
               id="ui-oa.charge.linkToInvoiceLineIndex"
