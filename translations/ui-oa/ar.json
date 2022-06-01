@@ -293,5 +293,7 @@
     "journal.subtypePopover": "ستؤثر قيمة النوع الفرعي Subtype المحددة على الخيارات المتاحة في حقل مساحة الاسم Namespace. على سبيل المثال: 'EZB' متاح فقط للنوع الفرعي 'إلكتروني'.",
     "publicationRequest.validate.publicationURL": "يرجى إدخال عنوان URL صالح (يحتوي على 'http' أو 'https')",
     "journal.edit": "تحرير",
-    "journal.editJournal": "تحرير دورية"
+    "journal.editJournal": "تحرير دورية",
+    "appMenu.keyboardShortcuts": "اختصارات لوحة المفاتيح",
+    "publicationRequest.agreementsNotWorking": "<strong>خطأ:</strong> الاتفاقيات غير متاحة حاليًا، يرجى المحاولة مرة أخرى لاحقًا أو الاتصال بمدير النظام"
 }
