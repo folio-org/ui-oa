@@ -15,11 +15,13 @@ const ChargeRoute = () => {
   const { prId, chId } = useParams();
 
   const {
-    data: publicationRequest,
+    data: charge,
     isLoading,
-    refetch,
-  } = useQuery(
-    ['ui-oa', 'publicationEditRoute', 'publicationRequest', prId],
+    refetch: refetchCharge,
+  } = useQuery(['ui-oa', 'ChargeRoute', 'getCharge', chId], () => ky(`oa/charges/${chId}`).json());
+
+  const { data: request, refetch: refetchRequest } = useQuery(
+    ['ui-oa', 'ChargeRoute', 'getPublicationRequest', prId],
     () => ky(`oa/publicationRequest/${prId}`).json()
   );
 
@@ -37,13 +39,12 @@ const ChargeRoute = () => {
     );
   }
 
-  const charge = publicationRequest?.charges?.find((pr) => pr?.id === chId);
-
   return (
     <ChargeView
       charge={charge}
-      refetch={refetch}
-      request={publicationRequest}
+      refetchCharge={refetchCharge}
+      refetchRequest={refetchRequest}
+      request={request}
     />
   );
 };

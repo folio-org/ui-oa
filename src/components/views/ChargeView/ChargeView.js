@@ -26,10 +26,12 @@ import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
 const propTypes = {
   charge: PropTypes.object,
   request: PropTypes.object,
-  refetch: PropTypes.func,
+  refetchCharge: PropTypes.func,
+  refetchRequest: PropTypes.func,
+
 };
 
-const ChargeView = ({ charge, request, refetch }) => {
+const ChargeView = ({ charge, request, refetchRequest, refetchCharge }) => {
   const [showDeleteConfirmModal, setShowDeleteConfirmModal] = useState(false);
   const [showUnlinkConfirmModal, setShowUnlinkConfirmModal] = useState(false);
 
@@ -43,37 +45,27 @@ const ChargeView = ({ charge, request, refetch }) => {
   const invoiceLine = useInvoiceLine(charge?.invoiceLineItemReference);
 
   const handleClose = () => {
-    refetch();
+    refetchRequest();
     history.push(urls.publicationRequest(request?.id));
   };
 
   const { mutateAsync: deleteCharge } = useMutation(
     ['ui-oa', 'ChargeView', 'deleteCharge'],
-    (data) => ky
-        .put(`oa/publicationRequest/${request?.id}`, { json: data })
-        .then(() => {
-          handleClose();
-        })
+    () => ky.delete(`oa/charges/${charge?.id}`).then(() => {
+        handleClose();
+      })
   );
 
   const { mutateAsync: unlinkInvoice } = useMutation(
     ['ui-oa', 'ChargeView', 'unlinkInvoice'],
-    (data) => ky
-        .put(`oa/publicationRequest/${request?.id}`, { json: data })
-        .then(() => {
-          refetch();
-          setShowUnlinkConfirmModal(false);
-        })
+    (data) => ky.put(`oa/charges/${charge?.id}`, { json: data }).then(() => {
+        refetchCharge();
+        setShowUnlinkConfirmModal(false);
+      })
   );
 
   const handleEdit = () => {
     history.push(urls.publicationRequestChargeEdit(request?.id, charge?.id));
-  };
-
-  const handleDelete = () => {
-    deleteCharge({
-      charges: [{ ...charge, _delete: true }],
-    });
   };
 
   const handleLink = () => {
@@ -84,14 +76,10 @@ const ChargeView = ({ charge, request, refetch }) => {
 
   const handleUnlink = () => {
     const submitValues = {
-      charges: [
-        {
-          ...charge,
-          invoiceReference: null,
-          invoiceLineItemReference: null,
-          chargeStatus: expectedStatusRefData,
-        },
-      ],
+      ...charge,
+      invoiceReference: null,
+      invoiceLineItemReference: null,
+      chargeStatus: expectedStatusRefData,
     };
     unlinkInvoice(submitValues);
   };
@@ -170,7 +158,7 @@ const ChargeView = ({ charge, request, refetch }) => {
           heading={<FormattedMessage id="ui-oa.charge.deleteCharge" />}
           message={<FormattedMessage id="ui-oa.charge.deleteChargeMessage" />}
           onCancel={() => setShowDeleteConfirmModal(false)}
-          onConfirm={() => handleDelete()}
+          onConfirm={() => deleteCharge()}
           open={showDeleteConfirmModal}
         />
         <ConfirmationModal
