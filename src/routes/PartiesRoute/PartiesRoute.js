@@ -15,6 +15,7 @@ import { SASQRoute } from '@k-int/stripes-kint-components';
 import { OAFilterHeaderComponent } from '../../components/SearchAndFilter';
 import Party from '../../components/views/Party';
 import urls from '../../util/urls';
+import focusSASQSearchField from '../../util/focusSASQSearchField';
 
 const PartiesRoute = ({ path }) => {
   const history = useHistory();
@@ -53,7 +54,10 @@ const PartiesRoute = ({ path }) => {
     history.push(urls.partyCreate());
   };
 
-  const shortcuts = [{ name: 'new', handler: () => handleCreate() }];
+  const shortcuts = [
+    { name: 'new', handler: () => handleCreate() },
+    { name: 'search', handler: () => focusSASQSearchField('parties') },
+  ];
 
   const formatter = {
     givenNames: (d) => (
@@ -92,7 +96,7 @@ const PartiesRoute = ({ path }) => {
       <SASQRoute
         fetchParameters={fetchParameters}
         FilterPaneHeaderComponent={renderHeaderComponent}
-        id="parties-sasq"
+        id="parties"
         mainPaneProps={{
           appIcon: <AppIcon iconKey="app" size="small" />,
           lastMenu: lastpaneMenu,

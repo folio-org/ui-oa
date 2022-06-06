@@ -17,6 +17,7 @@ import { findIssnByNamespace } from '../../util/journalUtils';
 import Journal from '../../components/views/Journal';
 import { JournalModal } from '../../components/Modals';
 import urls from '../../util/urls';
+import focusSASQSearchField from '../../util/focusSASQSearchField';
 
 const JournalsRoute = ({ path }) => {
   const history = useHistory();
@@ -43,7 +44,10 @@ const JournalsRoute = ({ path }) => {
     },
   };
 
-  const shortcuts = [{ name: 'new', handler: () => setShowModal(true) }];
+  const shortcuts = [
+    { name: 'new', handler: () => setShowModal(true) },
+    { name: 'search', handler: () => focusSASQSearchField('journals') },
+  ];
 
   const resultColumns = [
     {
@@ -100,7 +104,7 @@ const JournalsRoute = ({ path }) => {
         <SASQRoute
           fetchParameters={fetchParameters}
           FilterPaneHeaderComponent={renderHeaderComponent}
-          id="journals-sasq"
+          id="journals"
           mainPaneProps={{
             appIcon: <AppIcon iconKey="app" size="small" />,
             lastMenu: lastpaneMenu,
