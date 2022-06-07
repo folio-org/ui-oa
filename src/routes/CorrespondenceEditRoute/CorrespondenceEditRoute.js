@@ -16,7 +16,7 @@ const CorrespondenceEditRoute = () => {
     history.push(`/oa/publicationRequests/${prId}/correspondence/${cId}`);
   };
 
-  const { data: correspondence, isLoading } = useQuery(
+  const { data: correspondence, isLoading, refetch } = useQuery(
     ['ui-oa', 'CorrespondenceEditRoute', 'correspondence', cId],
     () => ky(`oa/correspondence/${cId}`).json()
   );
@@ -24,6 +24,8 @@ const CorrespondenceEditRoute = () => {
   const { mutateAsync: putCorrespondence } = useMutation(
     ['ui-oa', 'CorrespondenceEditRoute', 'putCorrespondence'],
     (data) => ky.put(`oa/correspondence/${cId}`, { json: data }).then(() => {
+        // Added refetch so that if the form is edited again after, the old values arent displayed breifly
+        refetch();
         handleClose();
       })
   );
