@@ -19,15 +19,12 @@ import { requiredValidator } from '@folio/stripes-erm-components';
 
 import { InstanceIdentifiersFieldArray } from '..';
 import useOARefdata from '../../../../util/useOARefdata';
-import selectifyRefdata from '../../../../util/selectifyRefdata';
 
+// TODO: This and InstanceIdentifiersFieldArray requires refactoring
 const InstancesFieldArray = () => {
   const { values } = useFormState();
   const [optionsInUse, setOptionsInUse] = useState([]);
-  const subTypeRefdataValues = selectifyRefdata(
-    useOARefdata('TitleInstance.SubType')
-  );
-
+  const subTypeRefdataValues = useOARefdata('TitleInstance.SubType');
   // Sets the options that are currently being used by getting the namespace value of all identifiers
   useEffect(() => {
     setOptionsInUse(

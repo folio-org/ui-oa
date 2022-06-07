@@ -293,5 +293,7 @@
     "journal.subtypePopover": "The Subtype value selected will affect the options available in the Namespace field. For example, 'EZB' is only available for the subtype 'Electronic'.",
     "publicationRequest.validate.publicationURL": "Please enter a valid URL (including 'http' or 'https')",
     "journal.edit": "Edit",
-    "journal.editJournal": "Edit journal"
+    "journal.editJournal": "Edit journal",
+    "appMenu.keyboardShortcuts": "Keyboards shortcuts",
+    "publicationRequest.agreementsNotWorking": "<strong>Error :</strong> Agreements is currently unavailable, please try again later or contact your system administrator"
 }
