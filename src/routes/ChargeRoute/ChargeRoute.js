@@ -1,18 +1,23 @@
 import { useParams, useHistory } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
-import { useQuery } from 'react-query';
+import { useQuery, useMutation } from 'react-query';
 
 import { LoadingPane } from '@folio/stripes/components';
 
 import ChargeView from '../../components/views/ChargeView';
 import { PANE_DEFAULT_WIDTH } from '../../constants/config';
 import urls from '../../util/urls';
+import useOARefdata from '../../util/useOARefdata';
 
 const ChargeRoute = () => {
   const ky = useOkapiKy();
   const history = useHistory();
 
   const { prId, chId } = useParams();
+
+  const expectedStatusRefData = useOARefdata('Charge.ChargeStatus').find(
+    (e) => e.value === 'expected'
+  );
 
   const {
     data: charge,
@@ -26,7 +31,43 @@ const ChargeRoute = () => {
   );
 
   const handleClose = () => {
-    history.push(urls.publicationRequest(prId));
+    history.push(urls.publicationRequest(request?.id));
+  };
+
+  const handleEdit = () => {
+    history.push(urls.publicationRequestChargeEdit(request?.id, charge?.id));
+  };
+
+  const handleLink = () => {
+    history.push(
+      `${urls.publicationRequestChargeLinkInvoice(request.id, charge.id)}`
+    );
+  };
+
+  const { mutateAsync: deleteCharge } = useMutation(
+    ['ui-oa', 'ChargeView', 'deleteCharge'],
+    () => ky.delete(`oa/charges/${charge?.id}`).then(() => {
+        refetchRequest();
+        handleClose();
+      })
+  );
+
+  const { mutateAsync: unlinkInvoice } = useMutation(
+    ['ui-oa', 'ChargeView', 'unlinkInvoice'],
+    (data) => ky.put(`oa/charges/${charge?.id}`, { json: data }).then(() => {
+        refetchCharge();
+        // setShowUnlinkConfirmModal(false);
+      })
+  );
+
+  const handleUnlink = () => {
+    const submitValues = {
+      ...charge,
+      invoiceReference: null,
+      invoiceLineItemReference: null,
+      chargeStatus: expectedStatusRefData,
+    };
+    unlinkInvoice(submitValues);
   };
 
   if (isLoading) {
@@ -42,8 +83,13 @@ const ChargeRoute = () => {
   return (
     <ChargeView
       charge={charge}
-      refetchCharge={refetchCharge}
-      refetchRequest={refetchRequest}
+      handlers={{
+        handleClose,
+        handleEdit,
+        handleLink,
+        handleUnlink,
+        handleDelete: deleteCharge,
+      }}
       request={request}
     />
   );
