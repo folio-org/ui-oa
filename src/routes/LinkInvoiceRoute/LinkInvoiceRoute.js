@@ -19,30 +19,24 @@ const LinkInvoiceRoute = () => {
     history.push(urls.publicationRequestChargeView(prId, chId));
   };
 
-  const { data: request } = useQuery(
-    ['ui-oa', 'LinkInvoiceRoute', 'request'],
-    () => ky(`oa/publicationRequest/${prId}`).json()
+  const { data: charge } = useQuery(
+    ['ui-oa', 'LinkInvoiceRoute', 'charge'],
+    () => ky(`oa/charges/${chId}`).json()
   );
 
   const { mutateAsync: linkInvoice } = useMutation(
     ['ui-oa', 'LinkInvoiceRoute', 'linkInvoice'],
-    (data) => ky.put(`oa/publicationRequest/${prId}`, { json: data }).then(() => {
+    (data) => ky.put(`oa/charges/${chId}`, { json: data }).then(() => {
         handleClose();
       })
   );
 
-  const charge = request?.charges?.find((e) => e.id === chId);
-
   const submitInvoice = async (values) => {
     const submitValues = {
-      charges: [
-        {
-          ...charge,
-          invoiceReference: values?.selectedInvoice?.id,
-          invoiceLineItemReference: values?.invoiceLine?.id,
-          chargeStatus: invoicedRefData,
-        },
-      ],
+      ...charge,
+      invoiceReference: values?.selectedInvoice?.id,
+      invoiceLineItemReference: values?.invoiceLine?.id,
+      chargeStatus: invoicedRefData,
     };
     await linkInvoice(submitValues);
   };
