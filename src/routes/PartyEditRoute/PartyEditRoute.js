@@ -72,6 +72,7 @@ const PartyEditRoute = () => {
   return (
     <Form
       initialValues={party}
+      keepDirtyOnReinitialize
       mutators={arrayMutators}
       onSubmit={submitRequest}
     >

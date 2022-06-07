@@ -40,6 +40,7 @@ const CorrespondenceEditRoute = () => {
   return (
     <Form
       initialValues={correspondence}
+      keepDirtyOnReinitialize
       mutators={arrayMutators}
       onSubmit={submitCorrespondence}
     >

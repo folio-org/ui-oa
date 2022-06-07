@@ -72,6 +72,7 @@ const PublicationRequestEditRoute = () => {
     <Form
       decorators={[focusOnError]}
       initialValues={getInitialValues()}
+      keepDirtyOnReinitialize
       mutators={arrayMutators}
       onSubmit={submitRequest}
     >
