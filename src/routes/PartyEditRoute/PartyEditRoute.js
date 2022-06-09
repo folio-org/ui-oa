@@ -20,10 +20,11 @@ const PartyEditRoute = () => {
     history.push(`/oa/people/${id}`);
   };
 
-  const { data: party, isLoading } = useQuery(
-    ['ui-oa', 'PartyEditRoute', 'party', id],
-    () => ky(`oa/party/${id}`).json()
-  );
+  const {
+    data: party,
+    isLoading,
+    refetch,
+  } = useQuery(['ui-oa', 'PartyEditRoute', 'party', id], () => ky(`oa/party/${id}`).json());
 
   const { mutateAsync: putParty } = useMutation(
     ['ui-oa', 'PartyEditRoute', 'putParty'],
@@ -45,6 +46,8 @@ const PartyEditRoute = () => {
             ),
             type: 'success',
           });
+          // Added refetch so that if the form is edited again after, the old values arent displayed breifly
+          refetch();
           handleClose();
         })
         .catch((err) => {
@@ -72,6 +75,7 @@ const PartyEditRoute = () => {
   return (
     <Form
       initialValues={party}
+      keepDirtyOnReinitialize
       mutators={arrayMutators}
       onSubmit={submitRequest}
     >

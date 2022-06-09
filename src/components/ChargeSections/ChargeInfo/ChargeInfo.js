@@ -21,7 +21,7 @@ const ChargeInfo = ({ request, charge }) => {
             value={
               request?.publicationTitle
                 ? request?.requestNumber + ' : ' + request?.publicationTitle
-                : request.requestNumber
+                : request?.requestNumber
             }
           />
         </Col>

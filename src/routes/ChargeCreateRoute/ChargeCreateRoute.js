@@ -5,6 +5,7 @@ import { useOkapiKy, useStripes } from '@folio/stripes/core';
 import { useMutation } from 'react-query';
 import ChargeForm from '../../components/views/ChargeForm';
 import useOARefdata from '../../util/useOARefdata';
+import urls from '../../util/urls';
 
 const ChargeCreateRoute = () => {
   const stripes = useStripes();
@@ -16,28 +17,32 @@ const ChargeCreateRoute = () => {
     (e) => e.label === 'percentage'
   );
 
-  const handleClose = () => {
-    history.push(`/oa/publicationRequests/${id}`);
+  const handleClose = (chargeId) => {
+    if (chargeId) {
+      history.push(urls.publicationRequestChargeView(id, chargeId));
+    } else {
+      history.push(urls.publicationRequest(id));
+    }
   };
 
   const { mutateAsync: postCharge } = useMutation(
     ['ui-oa', 'ChargeCreateRoute', 'postCharge'],
-    (data) => ky.put(`oa/publicationRequest/${id}`, { json: data }).then(() => {
-        handleClose();
-      })
+    (data) => ky
+        .post('oa/charges', { json: data })
+        .json()
+        .then((res) => {
+          handleClose(res?.id);
+        })
   );
 
   const submitCharge = async (values) => {
     const submitValues = {
-      charges: [
-        {
-          ...values,
-          exchangeRate: {
-            ...values.exchangeRate,
-            toCurrency: stripes?.currency,
-          },
-        },
-      ],
+      ...values,
+      exchangeRate: {
+        ...values.exchangeRate,
+        toCurrency: stripes?.currency,
+      },
+      owner: { id },
     };
     await postCharge(submitValues);
   };

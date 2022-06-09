@@ -295,5 +295,5 @@
     "journal.edit": "Upravit",
     "journal.editJournal": "Upravit deník",
     "appMenu.keyboardShortcuts": "Klávesové zkratky",
-    "publicationRequest.agreementsNotWorking": "<strong>Error :</strong> Agreements is currently unavailable, please try again later or contact your system administrator"
+    "publicationRequest.agreementsNotWorking": "<strong>Chyba:</strong> Smlouvy jsou momentálně nedostupné, prosím zkuste později nebo se obraťte na správce systému"
 }
