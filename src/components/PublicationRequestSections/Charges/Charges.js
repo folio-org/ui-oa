@@ -127,6 +127,20 @@ const Charges = ({ request }) => {
               {e.description}
             </div>
           )}
+          {e?.payers?.length > 0 && (
+            <div>
+              <strong>
+                <FormattedMessage id="ui-oa.charge.paymentSplit" />:{' '}
+              </strong>
+              {e.payers.map((i) => {
+                return (
+                  <li>
+                    {i?.payer?.label} ({i?.payerAmount})
+                  </li>
+                );
+              })}
+            </div>
+          )}
         </div>
       );
     },
