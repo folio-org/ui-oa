@@ -15,7 +15,7 @@ import {
   checkScope,
 } from '@folio/stripes/components';
 
-import ChargeInfo from '../../ChargeSections/ChargeInfo';
+import { ChargeInfo, PaymentSplit } from '../../ChargeSections';
 import { InvoiceInfo, InvoiceLineInfo } from '../../InvoiceSections';
 import urls from '../../../util/urls';
 import { useInvoice, useInvoiceLine } from '../../../hooks/invoiceHooks';
@@ -135,6 +135,7 @@ const ChargeView = ({
           open={showUnlinkConfirmModal}
         />
         <ChargeInfo charge={charge} request={request} />
+        <PaymentSplit charge={charge} />
         {invoice && (
           <Row>
             <Card

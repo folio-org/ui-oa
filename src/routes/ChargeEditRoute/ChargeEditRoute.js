@@ -3,6 +3,7 @@ import arrayMutators from 'final-form-arrays';
 import { useHistory, useParams } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useMutation, useQuery } from 'react-query';
+import { orderBy } from 'lodash';
 import ChargeForm from '../../components/views/ChargeForm';
 import urls from '../../util/urls';
 
@@ -38,9 +39,19 @@ const ChargeEditRoute = () => {
     await putCharge(submitValues);
   };
 
+  const getInitialValues = () => {
+    return {
+      ...charge,
+      payers: orderBy(
+        charge?.payers,
+        'payer.value'
+      ),
+    };
+  };
+
   return (
     <Form
-      initialValues={charge}
+      initialValues={getInitialValues()}
       mutators={arrayMutators}
       onSubmit={submitCharge}
     >

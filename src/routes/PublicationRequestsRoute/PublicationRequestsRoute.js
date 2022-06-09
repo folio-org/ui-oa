@@ -16,6 +16,7 @@ import {
 import { SASQRoute } from '@k-int/stripes-kint-components';
 import PublicationRequest from '../../components/views/PublicationRequest';
 import urls from '../../util/urls';
+import focusSASQSearchField from '../../util/focusSASQSearchField';
 import {
   PublicationRequestsFilters,
   OAFilterHeaderComponent,
@@ -39,7 +40,10 @@ const PublicationRequestsRoute = ({ children, path }) => {
     history.push(urls.publicationRequestCreate());
   };
 
-  const shortcuts = [{ name: 'new', handler: () => handleCreate() }];
+  const shortcuts = [
+    { name: 'new', handler: () => handleCreate() },
+    { name: 'search', handler: () => focusSASQSearchField('publication-requests') },
+  ];
 
   const renderHeaderComponent = () => {
     return <OAFilterHeaderComponent primary="publicationRequests" />;

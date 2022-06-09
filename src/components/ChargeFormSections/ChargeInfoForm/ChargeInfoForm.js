@@ -28,10 +28,9 @@ import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
 import useExchangeRateValue from '../../../hooks/useExchangeRateValue';
 
-const [CHARGE_CATEGORY, CHARGE_STATUS, CHARGE_PAYER, CHARGE_DISCOUNT_TYPE] = [
+const [CHARGE_CATEGORY, CHARGE_STATUS, CHARGE_DISCOUNT_TYPE] = [
   'Charge.Category',
   'Charge.ChargeStatus',
-  'Charge.Payer',
   'Charge.DiscountType',
 ];
 
@@ -41,7 +40,7 @@ const ChargeInfoForm = () => {
   const stripes = useStripes();
   const { exchangeRate, isLoading, refetch } = useExchangeRateValue(
     values?.amount?.baseCurrency,
-    stripes?.currency,
+    stripes?.currency
   );
 
   const [isEdit, setIsEdit] = useState(
@@ -51,13 +50,11 @@ const ChargeInfoForm = () => {
   const refdataValues = useOARefdata([
     CHARGE_CATEGORY,
     CHARGE_STATUS,
-    CHARGE_PAYER,
     CHARGE_DISCOUNT_TYPE,
   ]);
 
   const categoryValues = selectifyRefdata(refdataValues, CHARGE_CATEGORY);
   const statusValues = selectifyRefdata(refdataValues, CHARGE_STATUS);
-  const payerValues = selectifyRefdata(refdataValues, CHARGE_PAYER);
   const discountTypeValues = selectifyRefdata(
     refdataValues,
     CHARGE_DISCOUNT_TYPE
@@ -146,7 +143,7 @@ const ChargeInfoForm = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.charge.discount" />}
             name="discount"
-            parse={v => Number(v)}
+            parse={(v) => Number(v)}
             type="number"
             validate={composeValidators(validateNotNegative, validateAsDecimal)}
           />
@@ -191,7 +188,7 @@ const ChargeInfoForm = () => {
             component={TextArea}
             label={<FormattedMessage id="ui-oa.charge.discountNote" />}
             name="discountNote"
-            parse={v => v}
+            parse={(v) => v}
           />
         </Col>
       </Row>
@@ -232,24 +229,6 @@ const ChargeInfoForm = () => {
             validate={requiredValidator}
           />
         </Col>
-        <Col xs={3}>
-          <Field
-            component={Select}
-            dataOptions={[{ value: '', label: '' }, ...payerValues]}
-            label={<FormattedMessage id="ui-oa.charge.payer" />}
-            name="payer.id"
-            required
-            validate={requiredValidator}
-          />
-        </Col>
-        <Col xs={3}>
-          <Field
-            component={TextArea}
-            label={<FormattedMessage id="ui-oa.charge.payerNote" />}
-            name="payerNote"
-            parse={v => v}
-          />
-        </Col>
       </Row>
       <Row>
         <Col xs={12}>
@@ -258,7 +237,7 @@ const ChargeInfoForm = () => {
             fullWidth
             label={<FormattedMessage id="ui-oa.charge.description" />}
             name="description"
-            parse={v => v}
+            parse={(v) => v}
           />
         </Col>
       </Row>

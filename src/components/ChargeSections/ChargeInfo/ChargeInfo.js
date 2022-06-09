@@ -39,18 +39,6 @@ const ChargeInfo = ({ request, charge }) => {
             value={charge?.chargeStatus?.label}
           />
         </Col>
-        <Col xs={3}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.payer" />}
-            value={charge?.payer?.label}
-          />
-        </Col>
-        <Col xs={3}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.payerNote" />}
-            value={charge?.payerNote}
-          />
-        </Col>
       </Row>
       <Row>
         <Col xs={3}>
