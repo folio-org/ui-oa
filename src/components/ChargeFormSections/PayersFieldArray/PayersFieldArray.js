@@ -23,7 +23,7 @@ import selectifyRefdata from '../../../util/selectifyRefdata';
 const PayersField = ({ fields: { name } }) => {
   const { items, onAddField, onDeleteField } = useKiwtFieldArray(name);
   const payerNameValues = selectifyRefdata(
-    useOARefdata('Payer.PayerName')
+    useOARefdata('Payer.Payer')
   );
 
   return (
@@ -42,7 +42,7 @@ const PayersField = ({ fields: { name } }) => {
                 label={
                   <FormattedMessage id="ui-oa.charge.payer" />
                 }
-                name={`${name}[${index}].payerName.id`}
+                name={`${name}[${index}].payer.id`}
                 required
                 validate={requiredValidator}
               />
