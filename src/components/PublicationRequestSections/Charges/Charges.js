@@ -34,7 +34,7 @@ const Charges = ({ request }) => {
   });
 
   const sortFormatter = {
-    description: ['chargeStatus.value', 'category.value', 'payer.value'],
+    description: ['chargeStatus.value', 'category.value'],
     amount: ['amount.value'],
     estimatedPrices: ['estimatedPrice.value', 'estimatedInvoicePrice.value'],
   };
@@ -118,12 +118,6 @@ const Charges = ({ request }) => {
               <FormattedMessage id="ui-oa.charge.category" />:{' '}
             </strong>
             {e?.category?.label}
-          </div>
-          <div>
-            <strong>
-              <FormattedMessage id="ui-oa.charge.payer" />:{' '}
-            </strong>
-            {e?.payer?.label}
           </div>
           {e?.description && (
             <div>
