@@ -15,7 +15,7 @@ import {
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 
-import { ChargeInfoForm } from '../../ChargeFormSections';
+import { ChargeInfoForm, PayersFieldArray } from '../../ChargeFormSections';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -107,6 +107,7 @@ const ChargeForm = ({ handlers: { onClose, onSubmit }, isLoading, charge }) => {
           paneTitle={renderPaneTitle()}
         >
           <ChargeInfoForm />
+          <PayersFieldArray />
         </Pane>
       </Paneset>
     </HasCommand>

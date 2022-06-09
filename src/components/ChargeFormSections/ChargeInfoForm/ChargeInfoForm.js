@@ -3,7 +3,6 @@ import { FormattedMessage } from 'react-intl';
 import { Field, useFormState, useForm } from 'react-final-form';
 
 import {
-  Accordion,
   Row,
   Col,
   TextField,
@@ -28,7 +27,6 @@ import {
 import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
 import useExchangeRateValue from '../../../hooks/useExchangeRateValue';
-import PayersFieldArray from '../PayersFieldArray';
 
 const [CHARGE_CATEGORY, CHARGE_STATUS, CHARGE_DISCOUNT_TYPE] = [
   'Charge.Category',
@@ -243,11 +241,6 @@ const ChargeInfoForm = () => {
           />
         </Col>
       </Row>
-      <Accordion
-        label={<FormattedMessage id="ui-oa.charge.payers" />}
-      >
-        <PayersFieldArray />
-      </Accordion>
     </>
   );
 };

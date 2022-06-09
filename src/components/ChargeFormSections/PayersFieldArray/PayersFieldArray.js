@@ -1,10 +1,13 @@
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
-import { Field } from 'react-final-form';
+import { Field, useFormState } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
+import { get } from 'lodash';
 
 import {
+  Accordion,
   Button,
   Col,
   IconButton,
@@ -21,27 +24,33 @@ import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
 
 const PayersField = ({ fields: { name } }) => {
+  const { values } = useFormState();
+  const [optionsInUse, setOptionsInUse] = useState([]);
   const { items, onAddField, onDeleteField } = useKiwtFieldArray(name);
-  const payerNameValues = selectifyRefdata(
-    useOARefdata('Payer.Payer')
-  );
+  const payerNameValues = selectifyRefdata(useOARefdata('Payer.Payer'));
+
+  useEffect(() => {
+    setOptionsInUse(
+      values?.payers?.map((i) => i?.payer?.id).filter((x) => !!x)
+    );
+  }, [values]);
 
   return (
     <>
       {items.map((payer, index) => {
+        const availableOptions = payerNameValues.filter(
+          (data) => !optionsInUse?.includes(data.value) ||
+            data.value === payer?.payer?.id ||
+            data.value === ' '
+        );
         return (
-          <Row
-            key={payer + index}
-            data-testid={`PayersFieldArray[${index}]`}
-          >
+          <Row key={payer + index} data-testid={`PayersFieldArray[${index}]`}>
             <Col xs={3}>
               <Field
                 autoFocus={!payer.id}
                 component={Select}
-                dataOptions={[{ value: '', label: '' }, ...payerNameValues]}
-                label={
-                  <FormattedMessage id="ui-oa.charge.payer" />
-                }
+                dataOptions={[{ value: '', label: '' }, ...availableOptions]}
+                label={<FormattedMessage id="ui-oa.charge.payer" />}
                 name={`${name}[${index}].payer.id`}
                 required
                 validate={requiredValidator}
@@ -50,9 +59,7 @@ const PayersField = ({ fields: { name } }) => {
             <Col xs={3}>
               <Field
                 component={TextField}
-                label={
-                  <FormattedMessage id="ui-oa.charge.payerAmount" />
-                }
+                label={<FormattedMessage id="ui-oa.charge.payerAmount" />}
                 name={`${name}[${index}].payerAmount`}
                 required
                 type="number"
@@ -62,9 +69,7 @@ const PayersField = ({ fields: { name } }) => {
             <Col xs={5}>
               <Field
                 component={TextArea}
-                label={
-                  <FormattedMessage id="ui-oa.charge.payerNote" />
-                }
+                label={<FormattedMessage id="ui-oa.charge.payerNote" />}
                 name={`${name}[${index}].payerNote`}
               />
             </Col>
@@ -93,7 +98,9 @@ const PayersField = ({ fields: { name } }) => {
           </Row>
         );
       })}
-      <Button onClick={() => onAddField({})}>
+      <Button
+        onClick={() => onAddField({})}
+      >
         <FormattedMessage id="ui-oa.charge.addPayer" />
       </Button>
     </>
@@ -108,7 +115,9 @@ PayersField.propTypes = {
 
 const PayersFieldArray = () => {
   return (
-    <FieldArray component={PayersField} name="payers" />
+    <Accordion label={<FormattedMessage id="ui-oa.charge.payers" />}>
+      <FieldArray component={PayersField} name="payers" />
+    </Accordion>
   );
 };
 
