@@ -247,6 +247,7 @@
   "charge.payerAmount": "Amount in charge currency",
   "charge.payerNote": "Payer note",
   "charge.paymentSplit": "Payment split",
+  "charge.paymentSplit.isEmptyMessage": "There are no payers associated with this charge",
   "charge.addPayer": "Add payer",
   "charge.removePayerIndex": "Remove payer {index}",
   "charge.newCharge": "New charge",

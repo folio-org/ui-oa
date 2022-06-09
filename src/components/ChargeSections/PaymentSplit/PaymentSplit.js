@@ -62,7 +62,7 @@ const PaymentSplit = ({ charge }) => {
             formatter={formatter}
             interactive={false}
             isEmptyMessage={
-              <FormattedMessage id="ui-oa.publicationRequest.emptyFundings" />
+              <FormattedMessage id="ui-oa.charge.paymentSplit.isEmptyMessage" />
             }
             visibleColumns={['payer', 'payerAmount', 'payerNote']}
           />
