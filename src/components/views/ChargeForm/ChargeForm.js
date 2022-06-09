@@ -15,7 +15,7 @@ import {
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 
-import ChargeInfoForm from '../../ChargeFormSections/ChargeInfoForm';
+import { ChargeInfoForm } from '../../ChargeFormSections';
 
 const propTypes = {
   handlers: PropTypes.shape({
