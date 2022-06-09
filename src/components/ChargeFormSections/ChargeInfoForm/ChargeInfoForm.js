@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { Field, useFormState, useForm } from 'react-final-form';
 
 import {
+  Accordion,
   Row,
   Col,
   TextField,
@@ -41,7 +42,7 @@ const ChargeInfoForm = () => {
   const stripes = useStripes();
   const { exchangeRate, isLoading, refetch } = useExchangeRateValue(
     values?.amount?.baseCurrency,
-    stripes?.currency,
+    stripes?.currency
   );
 
   const [isEdit, setIsEdit] = useState(
@@ -144,7 +145,7 @@ const ChargeInfoForm = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.charge.discount" />}
             name="discount"
-            parse={v => Number(v)}
+            parse={(v) => Number(v)}
             type="number"
             validate={composeValidators(validateNotNegative, validateAsDecimal)}
           />
@@ -189,7 +190,7 @@ const ChargeInfoForm = () => {
             component={TextArea}
             label={<FormattedMessage id="ui-oa.charge.discountNote" />}
             name="discountNote"
-            parse={v => v}
+            parse={(v) => v}
           />
         </Col>
       </Row>
@@ -238,11 +239,15 @@ const ChargeInfoForm = () => {
             fullWidth
             label={<FormattedMessage id="ui-oa.charge.description" />}
             name="description"
-            parse={v => v}
+            parse={(v) => v}
           />
         </Col>
       </Row>
-      <PayersFieldArray />
+      <Accordion
+        label={<FormattedMessage id="ui-oa.charge.payers" />}
+      >
+        <PayersFieldArray />
+      </Accordion>
     </>
   );
 };
