@@ -163,6 +163,7 @@ const ChargeInfoForm = () => {
                       }
                       onClick={() => {
                         change('discountType.id', discountType.value);
+                        change('discountType.value', discountType.label);
                       }}
                     >
                       <FormattedMessage

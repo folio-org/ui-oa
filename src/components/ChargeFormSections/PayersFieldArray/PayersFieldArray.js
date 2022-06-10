@@ -1,6 +1,7 @@
+/* eslint-disable react/style-prop-object */
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, FormattedNumber } from 'react-intl';
 
 import { Field, useFormState } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
@@ -16,11 +17,20 @@ import {
   TextField,
   Tooltip,
 } from '@folio/stripes/components';
-import { requiredValidator } from '@folio/stripes-erm-components';
+import {
+  requiredValidator,
+  composeValidators,
+} from '@folio/stripes-erm-components';
 import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
+
+import {
+  validateNotNegative,
+  validateAsDecimal,
+} from '../../../util/validators';
 
 import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
+import getEstimatedInvoicePrice from '../../../util/getEstimatedInvoicePrice';
 
 const PayersField = ({ fields: { name } }) => {
   const { values } = useFormState();
@@ -62,7 +72,11 @@ const PayersField = ({ fields: { name } }) => {
                 name={`${name}[${index}].payerAmount`}
                 required
                 type="number"
-                validate={requiredValidator}
+                validate={composeValidators(
+                  requiredValidator,
+                  validateNotNegative,
+                  validateAsDecimal
+                )}
               />
             </Col>
             <Col xs={5}>
@@ -114,8 +128,33 @@ PayersField.propTypes = {
 };
 
 const PayersFieldArray = () => {
+  const { values } = useFormState();
+
+  const estimatedInvoicePrice = getEstimatedInvoicePrice(values);
+
+  const totalPayersAmount = values?.payers?.reduce((a, b) => {
+    return a + (Number(b.payerAmount) || 0);
+  }, 0);
+
   return (
     <Accordion label={<FormattedMessage id="ui-oa.charge.payers" />}>
+      <Row>
+        <Col xs={12}>
+          <FormattedMessage
+            id="ui-oa.charge.payers.remainingAmount"
+            values={{
+              amount: (
+                <FormattedNumber
+                  currency={values?.amount?.baseCurrency}
+                  style="currency"
+                  value={estimatedInvoicePrice - totalPayersAmount}
+                />
+              ),
+            }}
+          />
+        </Col>
+      </Row>
+      <br />
       <FieldArray component={PayersField} name="payers" />
     </Accordion>
   );
