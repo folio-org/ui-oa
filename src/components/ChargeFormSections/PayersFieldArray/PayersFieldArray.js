@@ -4,7 +4,6 @@ import { FormattedMessage } from 'react-intl';
 
 import { Field, useFormState } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
-import { get } from 'lodash';
 
 import {
   Accordion,
@@ -99,6 +98,7 @@ const PayersField = ({ fields: { name } }) => {
         );
       })}
       <Button
+        disabled={items?.length >= payerNameValues?.length}
         onClick={() => onAddField({})}
       >
         <FormattedMessage id="ui-oa.charge.addPayer" />
