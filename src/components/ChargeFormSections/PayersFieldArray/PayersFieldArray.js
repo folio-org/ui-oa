@@ -5,6 +5,7 @@ import { FormattedMessage, FormattedNumber } from 'react-intl';
 
 import { Field, useFormState } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
+import { ARRAY_ERROR } from 'final-form';
 
 import {
   Accordion,
@@ -26,11 +27,14 @@ import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
 import {
   validateNotNegative,
   validateAsDecimal,
+  validateMoreThanTotal,
 } from '../../../util/validators';
 
 import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
 import getEstimatedInvoicePrice from '../../../util/getEstimatedInvoicePrice';
+
+import css from './PayersFieldArray.css';
 
 const PayersField = ({ fields: { name } }) => {
   const { values } = useFormState();
@@ -128,13 +132,14 @@ PayersField.propTypes = {
 };
 
 const PayersFieldArray = () => {
-  const { values } = useFormState();
+  const { values, errors } = useFormState();
 
   const estimatedInvoicePrice = getEstimatedInvoicePrice(values);
 
-  const totalPayersAmount = values?.payers?.reduce((a, b) => {
-    return a + (Number(b.payerAmount) || 0);
-  }, 0);
+  const totalPayersAmount =
+    values?.payers?.reduce((a, b) => {
+      return a + (Number(b.payerAmount) || 0);
+    }, 0) || 0;
 
   return (
     <Accordion label={<FormattedMessage id="ui-oa.charge.payers" />}>
@@ -154,8 +159,22 @@ const PayersFieldArray = () => {
           />
         </Col>
       </Row>
+      {errors?.payers?.[ARRAY_ERROR] && (
+        <>
+          <br />
+          <Row>
+            <Col className={css.feedbackError} xs={12}>
+              {errors?.payers?.[ARRAY_ERROR]}
+            </Col>
+          </Row>
+        </>
+      )}
       <br />
-      <FieldArray component={PayersField} name="payers" />
+      <FieldArray
+        component={PayersField}
+        name="payers"
+        validate={validateMoreThanTotal}
+      />
     </Accordion>
   );
 };
