@@ -244,6 +244,8 @@
   "charge.status": "Status",
   "charge.payer": "Payer",
   "charge.payers": "Payers",
+  "charge.payers.remainingAmount": "<strong>Remaining amount to be split between payers: {amount}</strong>",
+  "charge.payers.amountsMoreThanChargeTotal": "The amount(s) should be equal to or less than the charge total amount",
   "charge.payerAmount": "Amount in charge currency",
   "charge.payerNote": "Payer note",
   "charge.paymentSplit": "Payment split",

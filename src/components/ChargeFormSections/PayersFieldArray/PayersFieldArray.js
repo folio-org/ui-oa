@@ -1,10 +1,11 @@
+/* eslint-disable react/style-prop-object */
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, FormattedNumber } from 'react-intl';
 
 import { Field, useFormState } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
-import { get } from 'lodash';
+import { ARRAY_ERROR } from 'final-form';
 
 import {
   Accordion,
@@ -17,11 +18,23 @@ import {
   TextField,
   Tooltip,
 } from '@folio/stripes/components';
-import { requiredValidator } from '@folio/stripes-erm-components';
+import {
+  requiredValidator,
+  composeValidators,
+} from '@folio/stripes-erm-components';
 import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
+
+import {
+  validateNotNegative,
+  validateAsDecimal,
+  validateMoreThanTotal,
+} from '../../../util/validators';
 
 import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
+import getEstimatedInvoicePrice from '../../../util/getEstimatedInvoicePrice';
+
+import css from './PayersFieldArray.css';
 
 const PayersField = ({ fields: { name } }) => {
   const { values } = useFormState();
@@ -63,7 +76,11 @@ const PayersField = ({ fields: { name } }) => {
                 name={`${name}[${index}].payerAmount`}
                 required
                 type="number"
-                validate={requiredValidator}
+                validate={composeValidators(
+                  requiredValidator,
+                  validateNotNegative,
+                  validateAsDecimal
+                )}
               />
             </Col>
             <Col xs={5}>
@@ -99,6 +116,7 @@ const PayersField = ({ fields: { name } }) => {
         );
       })}
       <Button
+        disabled={items?.length >= payerNameValues?.length}
         onClick={() => onAddField({})}
       >
         <FormattedMessage id="ui-oa.charge.addPayer" />
@@ -114,9 +132,49 @@ PayersField.propTypes = {
 };
 
 const PayersFieldArray = () => {
+  const { values, errors } = useFormState();
+
+  const estimatedInvoicePrice = getEstimatedInvoicePrice(values);
+
+  const totalPayersAmount =
+    values?.payers?.reduce((a, b) => {
+      return a + (Number(b.payerAmount) || 0);
+    }, 0) || 0;
+
   return (
     <Accordion label={<FormattedMessage id="ui-oa.charge.payers" />}>
-      <FieldArray component={PayersField} name="payers" />
+      <Row>
+        <Col xs={12}>
+          <FormattedMessage
+            id="ui-oa.charge.payers.remainingAmount"
+            values={{
+              amount: (
+                <FormattedNumber
+                  currency={values?.amount?.baseCurrency}
+                  style="currency"
+                  value={estimatedInvoicePrice - totalPayersAmount}
+                />
+              ),
+            }}
+          />
+        </Col>
+      </Row>
+      {errors?.payers?.[ARRAY_ERROR] && (
+        <>
+          <br />
+          <Row>
+            <Col className={css.feedbackError} xs={12}>
+              {errors?.payers?.[ARRAY_ERROR]}
+            </Col>
+          </Row>
+        </>
+      )}
+      <br />
+      <FieldArray
+        component={PayersField}
+        name="payers"
+        validate={validateMoreThanTotal}
+      />
     </Accordion>
   );
 };

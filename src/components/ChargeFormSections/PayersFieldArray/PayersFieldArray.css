@@ -1,0 +1,6 @@
+
+@import '@folio/stripes-components/lib/variables';
+
+.feedbackError {
+  color: var(--error);
+}
