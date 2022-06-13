@@ -8,9 +8,12 @@ import useOARefdata from '../../util/useOARefdata';
 import { REFDATA_ENDPOINT } from '../../constants';
 
 const PickListValues = () => {
- const rdcOptions = useOARefdata()?.map(rdv => ({ value: rdv.desc, label: rdv.desc }));
- const [selectedPickList, setSelectedPickList] = useState('');
- const history = useHistory();
+  const rdcOptions = useOARefdata()?.map((rdv) => ({
+    value: rdv.desc,
+    label: rdv.desc,
+  }));
+  const [selectedPickList, setSelectedPickList] = useState('');
+  const history = useHistory();
 
   return (
     <Pane
@@ -18,19 +21,25 @@ const PickListValues = () => {
       dismissible
       id="edit-refdata-requestStatus"
       onClose={() => history.push('/settings/oa')}
-      paneTitle={<FormattedMessage id="ui-oa.settings.refdata.picklistValues" />}
+      paneTitle={
+        <FormattedMessage id="ui-oa.settings.refdata.picklistValues" />
+      }
     >
       <Select
         dataOptions={[{ value: '', label: '' }, ...rdcOptions]}
-        onChange={e => setSelectedPickList(e.target.value)}
+        label={<FormattedMessage id="ui-oa.settings.refdata.picklist" />}
+        onChange={(e) => setSelectedPickList(e.target.value)}
         value={selectedPickList}
       />
-      {selectedPickList &&
+      {selectedPickList && (
         <EditableRefdataList
           desc={selectedPickList}
+          label={
+            <FormattedMessage id="ui-oa.settings.refdata.picklistValues" />
+          }
           refdataEndpoint={REFDATA_ENDPOINT}
         />
-      }
+      )}
     </Pane>
   );
 };
