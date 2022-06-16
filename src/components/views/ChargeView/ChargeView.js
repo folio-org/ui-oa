@@ -16,6 +16,7 @@ import {
   expandAllSections,
   Row,
   HasCommand,
+  MetaSection,
   checkScope,
 } from '@folio/stripes/components';
 
@@ -126,6 +127,12 @@ const ChargeView = ({
             <FormattedMessage id="ui-oa.charge.publicationRequestCharge" />
           }
         >
+          <MetaSection
+            contentId="chargeMetaContent"
+            createdDate={charge?.dateCreated}
+            hideSource
+            lastUpdatedDate={charge?.lastUpdated}
+          />
           <ChargeInfo charge={charge} request={request} />
           <AccordionStatus ref={accordionStatusRef}>
             <Row end="xs">
