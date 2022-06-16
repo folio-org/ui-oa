@@ -107,7 +107,7 @@ const ChargeInfoForm = () => {
           <Field
             component={TextArea}
             fullWidth
-            label={<FormattedMessage id="ui-oa.charge.description" />}
+            label={<FormattedMessage id="ui-oa.charge.chargeDescription" />}
             name="description"
             parse={(v) => v}
           />
@@ -117,7 +117,7 @@ const ChargeInfoForm = () => {
         <Col xs={3}>
           <Field
             component={TextField}
-            label={<FormattedMessage id="ui-oa.charge.amount" />}
+            label={<FormattedMessage id="ui-oa.charge.invoiceLineAmount" />}
             name="amount.value"
             required
             type="number"
@@ -183,7 +183,7 @@ const ChargeInfoForm = () => {
           <Field
             name="discountType.id"
             render={() => (
-              <KeyValue label={<FormattedMessage id="ui-oa.charge.type" />}>
+              <KeyValue label={<FormattedMessage id="ui-oa.charge.discountType" />}>
                 <ButtonGroup fullWidth>
                   {discountTypeValues.map((discountType) => (
                     <Button
@@ -198,7 +198,7 @@ const ChargeInfoForm = () => {
                       }}
                     >
                       <FormattedMessage
-                        id={`ui-oa.charge.type.${discountType.label}`}
+                        id={`ui-oa.charge.discountType.${discountType.label}`}
                         values={{
                           currency: (
                             <CurrencySymbol
