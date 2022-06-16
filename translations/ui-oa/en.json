@@ -257,7 +257,7 @@
   "charge.editCharge": "Edit charge",
   "charge.amount": "Amount",
   "charge.calculatedAmount": "Calculated amount",
-  "charge.invoiceLineAmount": "Invoice line amount",
+  "charge.netAmount": "Net amount",
   "charge.currency":"Charge currency",
   "charge.exchangeRate": "Exchange rate",
   "charge.exchangeRateApplied": "Exchange rate applied",

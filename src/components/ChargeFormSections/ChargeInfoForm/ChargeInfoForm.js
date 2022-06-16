@@ -117,7 +117,7 @@ const ChargeInfoForm = () => {
         <Col xs={3}>
           <Field
             component={TextField}
-            label={<FormattedMessage id="ui-oa.charge.invoiceLineAmount" />}
+            label={<FormattedMessage id="ui-oa.charge.netAmount" />}
             name="amount.value"
             required
             type="number"
