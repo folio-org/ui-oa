@@ -33,7 +33,7 @@ import {
 
 import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
-import getEstimatedInvoicePrice from '../../../util/getEstimatedInvoicePrice';
+import { getEstimatedInvoicePrice, getTotalPayersAmount } from '../../../util/chargeUtils';
 
 import css from './PayersFieldArray.css';
 
@@ -137,11 +137,7 @@ const PayersFieldArray = () => {
   const { items } = useKiwtFieldArray('payers');
 
   const estimatedInvoicePrice = getEstimatedInvoicePrice(values);
-
-  const totalPayersAmount =
-    values?.payers?.reduce((a, b) => {
-      return a + (Number(b.payerAmount) || 0);
-    }, 0) || 0;
+  const totalPayersAmount = getTotalPayersAmount(values?.payers);
 
   const renderBadge = (payers) => {
     return payers ? <Badge>{payers?.length}</Badge> : <Badge>0</Badge>;
