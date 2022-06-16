@@ -39,6 +39,12 @@ const ChargeInfo = ({ request, charge }) => {
             value={charge?.chargeStatus?.label}
           />
         </Col>
+        <Col xs={6}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.charge.description" />}
+            value={charge?.description}
+          />
+        </Col>
       </Row>
       <Row>
         <Col xs={3}>
@@ -59,6 +65,12 @@ const ChargeInfo = ({ request, charge }) => {
             value={charge?.exchangeRate?.coefficient}
           />
         </Col>
+        <Col xs={3}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.charge.tax" />}
+            value={charge?.tax + '%'}
+          />
+        </Col>
       </Row>
       <Row>
         <Col xs={3}>
@@ -75,22 +87,6 @@ const ChargeInfo = ({ request, charge }) => {
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.discountNote" />}
             value={charge?.discountNote}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={3}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.tax" />}
-            value={charge?.tax + '%'}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={12}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.description" />}
-            value={charge?.description}
           />
         </Col>
       </Row>

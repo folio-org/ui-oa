@@ -32,23 +32,6 @@ const ChargeInvoice = ({ charge, invoice, invoiceLine }) => {
   const renderInvoiceSections = () => {
     return (
       <>
-        {invoice && (
-          <Row>
-            <Card
-              cardStyle="positive"
-              headerStart={
-                <AppIcon app="invoice" size="small">
-                  <Link to={urls?.invoice(charge?.invoiceReference)}>
-                    <strong>{invoice?.vendorInvoiceNo}</strong>
-                  </Link>
-                </AppIcon>
-              }
-              roundedBorder
-            >
-              <InvoiceInfo charge={charge} invoice={invoice} />
-            </Card>
-          </Row>
-        )}
         {invoiceLine && (
           <Row>
             <Card
@@ -73,6 +56,23 @@ const ChargeInvoice = ({ charge, invoice, invoiceLine }) => {
               roundedBorder
             >
               <InvoiceLineInfo invoiceLine={invoiceLine} />
+            </Card>
+          </Row>
+        )}
+        {invoice && (
+          <Row>
+            <Card
+              cardStyle="positive"
+              headerStart={
+                <AppIcon app="invoice" size="small">
+                  <Link to={urls?.invoice(charge?.invoiceReference)}>
+                    <strong>{invoice?.vendorInvoiceNo}</strong>
+                  </Link>
+                </AppIcon>
+              }
+              roundedBorder
+            >
+              <InvoiceInfo charge={charge} invoice={invoice} />
             </Card>
           </Row>
         )}

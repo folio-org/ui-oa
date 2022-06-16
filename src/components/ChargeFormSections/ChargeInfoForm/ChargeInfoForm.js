@@ -85,6 +85,37 @@ const ChargeInfoForm = () => {
       <Row>
         <Col xs={3}>
           <Field
+            component={Select}
+            dataOptions={[{ value: '', label: '' }, ...categoryValues]}
+            label={<FormattedMessage id="ui-oa.charge.category" />}
+            name="category.id"
+            required
+            validate={requiredValidator}
+          />
+        </Col>
+        <Col xs={3}>
+          <Field
+            component={Select}
+            dataOptions={[{ value: '', label: '' }, ...statusValues]}
+            label={<FormattedMessage id="ui-oa.charge.status" />}
+            name="chargeStatus.id"
+            required
+            validate={requiredValidator}
+          />
+        </Col>
+        <Col xs={6}>
+          <Field
+            component={TextArea}
+            fullWidth
+            label={<FormattedMessage id="ui-oa.charge.description" />}
+            name="description"
+            parse={(v) => v}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={3}>
+          <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.charge.amount" />}
             name="amount.value"
@@ -206,39 +237,6 @@ const ChargeInfoForm = () => {
               validateNotLessThanZero,
               validateAsDecimal
             )}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={3}>
-          <Field
-            component={Select}
-            dataOptions={[{ value: '', label: '' }, ...categoryValues]}
-            label={<FormattedMessage id="ui-oa.charge.category" />}
-            name="category.id"
-            required
-            validate={requiredValidator}
-          />
-        </Col>
-        <Col xs={3}>
-          <Field
-            component={Select}
-            dataOptions={[{ value: '', label: '' }, ...statusValues]}
-            label={<FormattedMessage id="ui-oa.charge.status" />}
-            name="chargeStatus.id"
-            required
-            validate={requiredValidator}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={12}>
-          <Field
-            component={TextArea}
-            fullWidth
-            label={<FormattedMessage id="ui-oa.charge.description" />}
-            name="description"
-            parse={(v) => v}
           />
         </Col>
       </Row>
