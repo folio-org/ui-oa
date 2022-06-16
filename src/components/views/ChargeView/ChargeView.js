@@ -1,13 +1,20 @@
-import { useState } from 'react';
+import { useState, createRef } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { AppIcon } from '@folio/stripes/core';
 
 import {
+  AccordionSet,
+  AccordionStatus,
   Pane,
   Button,
+  Col,
+  collapseAllSections,
   Icon,
   ConfirmationModal,
+  ExpandAllButton,
+  expandAllSections,
+  Row,
   HasCommand,
   checkScope,
 } from '@folio/stripes/components';
@@ -39,11 +46,20 @@ const ChargeView = ({
 
   const invoice = useInvoice(charge?.invoiceReference);
   const invoiceLine = useInvoiceLine(charge?.invoiceLineItemReference);
+  const accordionStatusRef = createRef();
 
   const shortcuts = [
     {
       name: 'edit',
       handler: () => handleEdit(),
+    },
+    {
+      name: 'expandAllSections',
+      handler: (e) => expandAllSections(e, accordionStatusRef),
+    },
+    {
+      name: 'collapseAllSections',
+      handler: (e) => collapseAllSections(e, accordionStatusRef),
     },
   ];
 
@@ -94,53 +110,64 @@ const ChargeView = ({
   };
 
   return (
-    <HasCommand
-      commands={shortcuts}
-      isWithinScope={checkScope}
-      scope={document.body}
-    >
-      <Pane
-        actionMenu={renderActionMenu}
-        appIcon={<AppIcon app="oa" iconKey="app" size="small" />}
-        defaultWidth={PANE_DEFAULT_WIDTH}
-        dismissible
-        onClose={handleClose}
-        paneTitle={
-          <FormattedMessage id="ui-oa.charge.publicationRequestCharge" />
-        }
+    <>
+      <HasCommand
+        commands={shortcuts}
+        isWithinScope={checkScope}
+        scope={document.body}
       >
-        <ConfirmationModal
-          confirmLabel={<FormattedMessage id="ui-oa.charge.delete" />}
-          heading={<FormattedMessage id="ui-oa.charge.deleteCharge" />}
-          message={<FormattedMessage id="ui-oa.charge.deleteChargeMessage" />}
-          onCancel={() => setShowDeleteConfirmModal(false)}
-          onConfirm={() => handleDelete()}
-          open={showDeleteConfirmModal}
-        />
-        <ConfirmationModal
-          confirmLabel={<FormattedMessage id="ui-oa.charge.invoice.unlink" />}
-          heading={<FormattedMessage id="ui-oa.charge.invoice.unlinkInvoice" />}
-          message={
-            <FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceMessage" />
+        <Pane
+          actionMenu={renderActionMenu}
+          appIcon={<AppIcon app="oa" iconKey="app" size="small" />}
+          defaultWidth={PANE_DEFAULT_WIDTH}
+          dismissible
+          onClose={handleClose}
+          paneTitle={
+            <FormattedMessage id="ui-oa.charge.publicationRequestCharge" />
           }
-          onCancel={() => setShowUnlinkConfirmModal(false)}
-          onConfirm={() => {
-            handleUnlink();
-            setShowUnlinkConfirmModal(false);
-          }}
-          open={showUnlinkConfirmModal}
-        />
-        <ChargeInfo charge={charge} request={request} />
-        {charge?.chargeStatus?.value === 'invoiced' && (
-          <ChargeInvoice
-            charge={charge}
-            invoice={invoice}
-            invoiceLine={invoiceLine}
-          />
-        )}
-        <PaymentSplit charge={charge} />
-      </Pane>
-    </HasCommand>
+        >
+          <ChargeInfo charge={charge} request={request} />
+          <AccordionStatus ref={accordionStatusRef}>
+            <Row end="xs">
+              <Col xs>
+                <ExpandAllButton />
+              </Col>
+            </Row>
+            <AccordionSet>
+              {charge?.chargeStatus?.value === 'invoiced' && (
+                <ChargeInvoice
+                  charge={charge}
+                  invoice={invoice}
+                  invoiceLine={invoiceLine}
+                />
+              )}
+              <PaymentSplit charge={charge} />
+            </AccordionSet>
+          </AccordionStatus>
+        </Pane>
+      </HasCommand>
+      <ConfirmationModal
+        confirmLabel={<FormattedMessage id="ui-oa.charge.delete" />}
+        heading={<FormattedMessage id="ui-oa.charge.deleteCharge" />}
+        message={<FormattedMessage id="ui-oa.charge.deleteChargeMessage" />}
+        onCancel={() => setShowDeleteConfirmModal(false)}
+        onConfirm={() => handleDelete()}
+        open={showDeleteConfirmModal}
+      />
+      <ConfirmationModal
+        confirmLabel={<FormattedMessage id="ui-oa.charge.invoice.unlink" />}
+        heading={<FormattedMessage id="ui-oa.charge.invoice.unlinkInvoice" />}
+        message={
+          <FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceMessage" />
+        }
+        onCancel={() => setShowUnlinkConfirmModal(false)}
+        onConfirm={() => {
+          handleUnlink();
+          setShowUnlinkConfirmModal(false);
+        }}
+        open={showUnlinkConfirmModal}
+      />
+    </>
   );
 };
 
