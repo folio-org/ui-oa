@@ -123,6 +123,11 @@ const ChargeView = ({
           defaultWidth={PANE_DEFAULT_WIDTH}
           dismissible
           onClose={handleClose}
+          paneSub={
+            request?.publicationTitle
+              ? request?.requestNumber + ', ' + request?.publicationTitle
+              : request?.requestNumber
+          }
           paneTitle={
             <FormattedMessage id="ui-oa.charge.publicationRequestCharge" />
           }

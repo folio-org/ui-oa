@@ -9,28 +9,15 @@ import {
 import { Col, KeyValue, Row, Headline } from '@folio/stripes/components';
 
 const propTypes = {
-  request: PropTypes.object,
   charge: PropTypes.object,
 };
 
-const ChargeInfo = ({ request, charge }) => {
+const ChargeInfo = ({ charge }) => {
   return (
     <>
       <Headline margin="large" size="x-large" tag="h2">
         <FormattedMessage id="ui-oa.charge.chargeInformation" />
       </Headline>
-      <Row>
-        <Col xs={12}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.publicationRequest" />}
-            value={
-              request?.publicationTitle
-                ? request?.requestNumber + ' : ' + request?.publicationTitle
-                : request?.requestNumber
-            }
-          />
-        </Col>
-      </Row>
       <Row>
         <Col xs={3}>
           <KeyValue
