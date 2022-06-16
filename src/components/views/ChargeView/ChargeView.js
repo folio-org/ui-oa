@@ -2,24 +2,20 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { AppIcon } from '@folio/stripes/core';
-import { Link } from 'react-router-dom';
 
 import {
   Pane,
   Button,
   Icon,
   ConfirmationModal,
-  Card,
-  Row,
   HasCommand,
   checkScope,
 } from '@folio/stripes/components';
 
 import { ChargeInfo, PaymentSplit } from '../../ChargeSections';
-import { InvoiceInfo, InvoiceLineInfo } from '../../InvoiceSections';
-import urls from '../../../util/urls';
 import { useInvoice, useInvoiceLine } from '../../../hooks/invoiceHooks';
 import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
+import ChargeInvoice from '../../ChargeSections/ChargeInvoice';
 
 const propTypes = {
   charge: PropTypes.object,
@@ -135,51 +131,14 @@ const ChargeView = ({
           open={showUnlinkConfirmModal}
         />
         <ChargeInfo charge={charge} request={request} />
+        {charge?.chargeStatus?.value === 'invoiced' && (
+          <ChargeInvoice
+            charge={charge}
+            invoice={invoice}
+            invoiceLine={invoiceLine}
+          />
+        )}
         <PaymentSplit charge={charge} />
-        {invoice && (
-          <Row>
-            <Card
-              cardStyle="positive"
-              headerStart={
-                <AppIcon app="invoice" size="small">
-                  <Link to={urls?.invoice(charge?.invoiceReference)}>
-                    <strong>{invoice?.vendorInvoiceNo}</strong>
-                  </Link>
-                </AppIcon>
-              }
-              roundedBorder
-            >
-              <InvoiceInfo charge={charge} invoice={invoice} />
-            </Card>
-          </Row>
-        )}
-        {invoiceLine && (
-          <Row>
-            <Card
-              cardStyle="positive"
-              headerStart={
-                <AppIcon app="invoice" size="small">
-                  <strong>
-                    <Link
-                      to={urls?.invoiceLine(
-                        charge?.invoiceReference,
-                        charge?.invoiceLineItemReference
-                      )}
-                    >
-                      {invoiceLine?.invoiceLineNumber}
-                      {invoiceLine?.description?.length > 50
-                        ? ', ' + invoiceLine?.description.substr(0, 49) + '...'
-                        : ', ' + invoiceLine?.description}
-                    </Link>
-                  </strong>
-                </AppIcon>
-              }
-              roundedBorder
-            >
-              <InvoiceLineInfo invoiceLine={invoiceLine} />
-            </Card>
-          </Row>
-        )}
       </Pane>
     </HasCommand>
   );

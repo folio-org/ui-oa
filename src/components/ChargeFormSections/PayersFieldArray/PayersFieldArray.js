@@ -9,6 +9,7 @@ import { ARRAY_ERROR } from 'final-form';
 
 import {
   Accordion,
+  Badge,
   Button,
   Col,
   IconButton,
@@ -133,6 +134,7 @@ PayersField.propTypes = {
 
 const PayersFieldArray = () => {
   const { values, errors } = useFormState();
+  const { items } = useKiwtFieldArray('payers');
 
   const estimatedInvoicePrice = getEstimatedInvoicePrice(values);
 
@@ -141,8 +143,16 @@ const PayersFieldArray = () => {
       return a + (Number(b.payerAmount) || 0);
     }, 0) || 0;
 
+  const renderBadge = (payers) => {
+    return payers ? <Badge>{payers?.length}</Badge> : <Badge>0</Badge>;
+  };
+
   return (
-    <Accordion label={<FormattedMessage id="ui-oa.charge.payers" />}>
+    <Accordion
+      displayWhenClosed={renderBadge(items)}
+      displayWhenOpen={renderBadge(items)}
+      label={<FormattedMessage id="ui-oa.charge.payers" />}
+    >
       <Row>
         <Col xs={12}>
           <FormattedMessage

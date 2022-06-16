@@ -273,6 +273,8 @@
   "charge.estimatedAmount": "Estimated amount inc. discounts and tax",
   "charge.estimatedPriceLocal": "Estimated price ({localCurrency})",
   "charge.estimatedPriceSpecified": "Estimated price ({specifiedCurrency})",
+  "charge.invoice": "Invoice",
+  "charge.invoiceNotLinked": "No invoice linked to this charge",
   "charge.invoice.newInvoice": "New Invoice",
   "charge.invoice.invoiceDate": "Invoice date",
   "charge.invoice.status": "Status",
