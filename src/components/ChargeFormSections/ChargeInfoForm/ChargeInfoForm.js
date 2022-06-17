@@ -140,6 +140,7 @@ const ChargeInfoForm = () => {
         <Col xs={3}>
           <Field
             component={TextField}
+            disabled={values?.amount?.baseCurrency === stripes?.currency}
             label={<FormattedMessage id="ui-oa.charge.exchangeRate" />}
             name="exchangeRate.coefficient"
             required
@@ -157,7 +158,10 @@ const ChargeInfoForm = () => {
           </Label>
           <Button
             buttonStyle="primary"
-            disabled={!exchangeRate}
+            disabled={
+              !exchangeRate ||
+              values?.amount?.baseCurrency === stripes?.currency
+            }
             onClick={() => {
               refetch().then(
                 change('exchangeRate.coefficient', truncateNumber(exchangeRate))
@@ -183,7 +187,9 @@ const ChargeInfoForm = () => {
           <Field
             name="discountType.id"
             render={() => (
-              <KeyValue label={<FormattedMessage id="ui-oa.charge.discountType" />}>
+              <KeyValue
+                label={<FormattedMessage id="ui-oa.charge.discountType" />}
+              >
                 <ButtonGroup fullWidth>
                   {discountTypeValues.map((discountType) => (
                     <Button
