@@ -2,7 +2,7 @@ import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { useHistory, useParams } from 'react-router-dom';
 import { useOkapiKy, useStripes } from '@folio/stripes/core';
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import ChargeForm from '../../components/views/ChargeForm';
 import useOARefdata from '../../util/useOARefdata';
 import urls from '../../util/urls';
@@ -35,6 +35,11 @@ const ChargeCreateRoute = () => {
         })
   );
 
+  const { data: request } = useQuery(
+    ['ui-oa', 'ChargeRoute', 'getPublicationRequest', id],
+    () => ky(`oa/publicationRequest/${id}`).json()
+  );
+
   const submitCharge = async (values) => {
     const submitValues = {
       ...values,
@@ -65,6 +70,7 @@ const ChargeCreateRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit,
             }}
+            request={request}
           />
         </form>
       )}

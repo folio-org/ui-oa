@@ -1,4 +1,4 @@
-import React from 'react';
+import { createRef } from 'react';
 
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
@@ -50,7 +50,7 @@ const PublicationRequest = ({
 }) => {
   const history = useHistory();
   const params = useParams();
-  const accordionStatusRef = React.createRef();
+  const accordionStatusRef = createRef();
 
   const handleEdit = () => {
     history.push(`${urls.publicationRequestEdit(params?.id)}`);

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedDisplayName, FormattedMessage } from 'react-intl';
 import { Field, useFormState, useForm } from 'react-final-form';
 
 import {
@@ -12,6 +12,7 @@ import {
   Button,
   KeyValue,
   Label,
+  Tooltip,
 } from '@folio/stripes/components';
 import {
   requiredValidator,
@@ -85,8 +86,39 @@ const ChargeInfoForm = () => {
       <Row>
         <Col xs={3}>
           <Field
+            component={Select}
+            dataOptions={[{ value: '', label: '' }, ...categoryValues]}
+            label={<FormattedMessage id="ui-oa.charge.category" />}
+            name="category.id"
+            required
+            validate={requiredValidator}
+          />
+        </Col>
+        <Col xs={3}>
+          <Field
+            component={Select}
+            dataOptions={[{ value: '', label: '' }, ...statusValues]}
+            label={<FormattedMessage id="ui-oa.charge.status" />}
+            name="chargeStatus.id"
+            required
+            validate={requiredValidator}
+          />
+        </Col>
+        <Col xs={6}>
+          <Field
+            component={TextArea}
+            fullWidth
+            label={<FormattedMessage id="ui-oa.charge.chargeDescription" />}
+            name="description"
+            parse={(v) => v}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={3}>
+          <Field
             component={TextField}
-            label={<FormattedMessage id="ui-oa.charge.amount" />}
+            label={<FormattedMessage id="ui-oa.charge.netAmount" />}
             name="amount.value"
             required
             type="number"
@@ -109,6 +141,7 @@ const ChargeInfoForm = () => {
         <Col xs={3}>
           <Field
             component={TextField}
+            disabled={values?.amount?.baseCurrency === stripes?.currency}
             label={<FormattedMessage id="ui-oa.charge.exchangeRate" />}
             name="exchangeRate.coefficient"
             required
@@ -124,17 +157,53 @@ const ChargeInfoForm = () => {
           <Label>
             <FormattedMessage id="ui-oa.charge.refreshExchangeRate" />
           </Label>
-          <Button
-            buttonStyle="primary"
-            disabled={!exchangeRate}
-            onClick={() => {
-              refetch().then(
-                change('exchangeRate.coefficient', truncateNumber(exchangeRate))
-              );
-            }}
-          >
-            <FormattedMessage id="ui-oa.charge.updateExchangeRate" />
-          </Button>
+          {!exchangeRate ? (
+            <Tooltip
+              id="charge-disabled-button-tooltip"
+              text={
+                <FormattedMessage
+                  id="ui-oa.charge.updateExchangeRate.disabledToolTip"
+                  values={{
+                    exchangeCurrency: (
+                      <FormattedDisplayName
+                        type="currency"
+                        value={values?.amount?.baseCurrency}
+                      />
+                    ),
+                  }}
+                />
+              }
+            >
+              {({ ref, ariaIds }) => (
+                <Button
+                  ref={ref}
+                  aria-describedby={ariaIds.sub}
+                  aria-labelledby={ariaIds.text}
+                  buttonStyle="danger"
+                >
+                  <FormattedMessage id="ui-oa.charge.updateExchangeRate" />
+                </Button>
+              )}
+            </Tooltip>
+          ) : (
+            <Button
+              buttonStyle="primary"
+              disabled={
+                !exchangeRate ||
+                values?.amount?.baseCurrency === stripes?.currency
+              }
+              onClick={() => {
+                refetch().then(
+                  change(
+                    'exchangeRate.coefficient',
+                    truncateNumber(exchangeRate)
+                  )
+                );
+              }}
+            >
+              <FormattedMessage id="ui-oa.charge.updateExchangeRate" />
+            </Button>
+          )}
         </Col>
       </Row>
       <Row>
@@ -152,7 +221,9 @@ const ChargeInfoForm = () => {
           <Field
             name="discountType.id"
             render={() => (
-              <KeyValue label={<FormattedMessage id="ui-oa.charge.type" />}>
+              <KeyValue
+                label={<FormattedMessage id="ui-oa.charge.discountType" />}
+              >
                 <ButtonGroup fullWidth>
                   {discountTypeValues.map((discountType) => (
                     <Button
@@ -167,7 +238,7 @@ const ChargeInfoForm = () => {
                       }}
                     >
                       <FormattedMessage
-                        id={`ui-oa.charge.type.${discountType.label}`}
+                        id={`ui-oa.charge.discountType.${discountType.label}`}
                         values={{
                           currency: (
                             <CurrencySymbol
@@ -206,39 +277,6 @@ const ChargeInfoForm = () => {
               validateNotLessThanZero,
               validateAsDecimal
             )}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={3}>
-          <Field
-            component={Select}
-            dataOptions={[{ value: '', label: '' }, ...categoryValues]}
-            label={<FormattedMessage id="ui-oa.charge.category" />}
-            name="category.id"
-            required
-            validate={requiredValidator}
-          />
-        </Col>
-        <Col xs={3}>
-          <Field
-            component={Select}
-            dataOptions={[{ value: '', label: '' }, ...statusValues]}
-            label={<FormattedMessage id="ui-oa.charge.status" />}
-            name="chargeStatus.id"
-            required
-            validate={requiredValidator}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={12}>
-          <Field
-            component={TextArea}
-            fullWidth
-            label={<FormattedMessage id="ui-oa.charge.description" />}
-            name="description"
-            parse={(v) => v}
           />
         </Col>
       </Row>

@@ -14,6 +14,7 @@ import {
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 import {
+  InvoiceHelper,
   InvoiceTypedownForm,
   InvoiceLineTypedownForm,
 } from '../../InvoiceFormSections';
@@ -40,7 +41,7 @@ const LinkInvoiceForm = ({ handlers: { onClose, onSubmit }, charge }) => {
   };
 
   const renderPaneTitle = () => (
-    <FormattedMessage id="ui-oa.charge.invoice.linkInvoice" />
+    <FormattedMessage id="ui-oa.charge.invoice.linkInvoiceLineToCharge" />
   );
   const renderFirstMenu = () => {
     return (
@@ -104,10 +105,11 @@ const LinkInvoiceForm = ({ handlers: { onClose, onSubmit }, charge }) => {
           id="pane.oa.invoice.form"
           paneTitle={renderPaneTitle()}
         >
-          <InvoiceTypedownForm {...getSectionProps('invoiceTypedown')} />
+          <InvoiceHelper {...getSectionProps('invoice-helper')} />
+          <InvoiceTypedownForm {...getSectionProps('invoice-typedown')} />
           {values?.selectedInvoice && (
             <InvoiceLineTypedownForm
-              {...getSectionProps('invoiceLineTypedown')}
+              {...getSectionProps('invoice-line-typedown')}
             />
           )}
         </Pane>

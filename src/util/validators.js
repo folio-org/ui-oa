@@ -1,5 +1,5 @@
 import { FormattedMessage } from 'react-intl';
-import getEstimatedInvoicePrice from './getEstimatedInvoicePrice';
+import { getEstimatedInvoicePrice } from './chargeUtils';
 
 const validateNotNegative = (value) => {
   return !value || value > 0 ? undefined : (
@@ -51,11 +51,15 @@ const validateURL = (value) => {
 
 const validateMoreThanTotal = (values, allValues) => {
   if (
-    getEstimatedInvoicePrice(allValues)
-    - values?.reduce((a, b) => { return a + (Number(b.payerAmount) || 0); }, 0)
-    < 0
+    getEstimatedInvoicePrice(allValues) -
+      values?.reduce((a, b) => {
+        return a + (Number(b.payerAmount) || 0);
+      }, 0) <
+    0
   ) {
-    return <FormattedMessage id="ui-oa.charge.payers.amountsMoreThanChargeTotal" />;
+    return (
+      <FormattedMessage id="ui-oa.charge.payers.amountsMoreThanChargeTotal" />
+    );
   }
   return undefined;
 };

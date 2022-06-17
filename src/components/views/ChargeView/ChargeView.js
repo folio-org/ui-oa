@@ -1,25 +1,30 @@
-import { useState } from 'react';
+import { useState, createRef } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { AppIcon } from '@folio/stripes/core';
-import { Link } from 'react-router-dom';
 
 import {
+  AccordionSet,
+  AccordionStatus,
   Pane,
   Button,
+  Col,
+  collapseAllSections,
   Icon,
   ConfirmationModal,
-  Card,
+  ExpandAllButton,
+  expandAllSections,
   Row,
   HasCommand,
+  MetaSection,
   checkScope,
 } from '@folio/stripes/components';
 
 import { ChargeInfo, PaymentSplit } from '../../ChargeSections';
-import { InvoiceInfo, InvoiceLineInfo } from '../../InvoiceSections';
-import urls from '../../../util/urls';
 import { useInvoice, useInvoiceLine } from '../../../hooks/invoiceHooks';
 import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
+import ChargeInvoice from '../../ChargeSections/ChargeInvoice';
+import Agreement from '../../PublicationRequestSections/Agreement/Agreement';
 
 const propTypes = {
   charge: PropTypes.object,
@@ -43,11 +48,20 @@ const ChargeView = ({
 
   const invoice = useInvoice(charge?.invoiceReference);
   const invoiceLine = useInvoiceLine(charge?.invoiceLineItemReference);
+  const accordionStatusRef = createRef();
 
   const shortcuts = [
     {
       name: 'edit',
       handler: () => handleEdit(),
+    },
+    {
+      name: 'expandAllSections',
+      handler: (e) => expandAllSections(e, accordionStatusRef),
+    },
+    {
+      name: 'collapseAllSections',
+      handler: (e) => collapseAllSections(e, accordionStatusRef),
     },
   ];
 
@@ -98,90 +112,76 @@ const ChargeView = ({
   };
 
   return (
-    <HasCommand
-      commands={shortcuts}
-      isWithinScope={checkScope}
-      scope={document.body}
-    >
-      <Pane
-        actionMenu={renderActionMenu}
-        appIcon={<AppIcon app="oa" iconKey="app" size="small" />}
-        defaultWidth={PANE_DEFAULT_WIDTH}
-        dismissible
-        onClose={handleClose}
-        paneTitle={
-          <FormattedMessage id="ui-oa.charge.publicationRequestCharge" />
-        }
+    <>
+      <HasCommand
+        commands={shortcuts}
+        isWithinScope={checkScope}
+        scope={document.body}
       >
-        <ConfirmationModal
-          confirmLabel={<FormattedMessage id="ui-oa.charge.delete" />}
-          heading={<FormattedMessage id="ui-oa.charge.deleteCharge" />}
-          message={<FormattedMessage id="ui-oa.charge.deleteChargeMessage" />}
-          onCancel={() => setShowDeleteConfirmModal(false)}
-          onConfirm={() => handleDelete()}
-          open={showDeleteConfirmModal}
-        />
-        <ConfirmationModal
-          confirmLabel={<FormattedMessage id="ui-oa.charge.invoice.unlink" />}
-          heading={<FormattedMessage id="ui-oa.charge.invoice.unlinkInvoice" />}
-          message={
-            <FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceMessage" />
+        <Pane
+          actionMenu={renderActionMenu}
+          appIcon={<AppIcon app="oa" iconKey="app" size="small" />}
+          defaultWidth={PANE_DEFAULT_WIDTH}
+          dismissible
+          onClose={handleClose}
+          paneSub={
+            request?.publicationTitle
+              ? request?.requestNumber + ', ' + request?.publicationTitle
+              : request?.requestNumber
           }
-          onCancel={() => setShowUnlinkConfirmModal(false)}
-          onConfirm={() => {
-            handleUnlink();
-            setShowUnlinkConfirmModal(false);
-          }}
-          open={showUnlinkConfirmModal}
-        />
-        <ChargeInfo charge={charge} request={request} />
-        <PaymentSplit charge={charge} />
-        {invoice && (
-          <Row>
-            <Card
-              cardStyle="positive"
-              headerStart={
-                <AppIcon app="invoice" size="small">
-                  <Link to={urls?.invoice(charge?.invoiceReference)}>
-                    <strong>{invoice?.vendorInvoiceNo}</strong>
-                  </Link>
-                </AppIcon>
-              }
-              roundedBorder
-            >
-              <InvoiceInfo charge={charge} invoice={invoice} />
-            </Card>
-          </Row>
-        )}
-        {invoiceLine && (
-          <Row>
-            <Card
-              cardStyle="positive"
-              headerStart={
-                <AppIcon app="invoice" size="small">
-                  <strong>
-                    <Link
-                      to={urls?.invoiceLine(
-                        charge?.invoiceReference,
-                        charge?.invoiceLineItemReference
-                      )}
-                    >
-                      {invoiceLine?.invoiceLineNumber}
-                      {invoiceLine?.description?.length > 50
-                        ? ', ' + invoiceLine?.description.substr(0, 49) + '...'
-                        : ', ' + invoiceLine?.description}
-                    </Link>
-                  </strong>
-                </AppIcon>
-              }
-              roundedBorder
-            >
-              <InvoiceLineInfo invoiceLine={invoiceLine} />
-            </Card>
-          </Row>
-        )}
-      </Pane>
-    </HasCommand>
+          paneTitle={
+            <FormattedMessage id="ui-oa.charge.publicationRequestCharge" />
+          }
+        >
+          <MetaSection
+            contentId="chargeMetaContent"
+            createdDate={charge?.dateCreated}
+            hideSource
+            lastUpdatedDate={charge?.lastUpdated}
+          />
+          <ChargeInfo charge={charge} request={request} />
+          <AccordionStatus ref={accordionStatusRef}>
+            <Row end="xs">
+              <Col xs>
+                <ExpandAllButton />
+              </Col>
+            </Row>
+            <AccordionSet>
+              {charge?.chargeStatus?.value === 'invoiced' && (
+                <ChargeInvoice
+                  charge={charge}
+                  invoice={invoice}
+                  invoiceLine={invoiceLine}
+                />
+              )}
+              <PaymentSplit charge={charge} />
+              <Agreement request={request} />
+            </AccordionSet>
+          </AccordionStatus>
+        </Pane>
+      </HasCommand>
+      <ConfirmationModal
+        confirmLabel={<FormattedMessage id="ui-oa.charge.delete" />}
+        heading={<FormattedMessage id="ui-oa.charge.deleteCharge" />}
+        message={<FormattedMessage id="ui-oa.charge.deleteChargeMessage" />}
+        onCancel={() => setShowDeleteConfirmModal(false)}
+        onConfirm={() => handleDelete()}
+        open={showDeleteConfirmModal}
+      />
+      <ConfirmationModal
+        confirmLabel={<FormattedMessage id="ui-oa.charge.invoice.unlink" />}
+        heading={<FormattedMessage id="ui-oa.charge.invoice.unlinkInvoice" />}
+        message={
+          <FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceMessage" />
+        }
+        onCancel={() => setShowUnlinkConfirmModal(false)}
+        onConfirm={() => {
+          handleUnlink();
+          setShowUnlinkConfirmModal(false);
+        }}
+        open={showUnlinkConfirmModal}
+      />
+    </>
   );
 };
 
