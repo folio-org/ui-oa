@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedDisplayName, FormattedMessage } from 'react-intl';
 import { Field, useFormState, useForm } from 'react-final-form';
 
 import {
@@ -12,6 +12,7 @@ import {
   Button,
   KeyValue,
   Label,
+  Tooltip,
 } from '@folio/stripes/components';
 import {
   requiredValidator,
@@ -156,20 +157,53 @@ const ChargeInfoForm = () => {
           <Label>
             <FormattedMessage id="ui-oa.charge.refreshExchangeRate" />
           </Label>
-          <Button
-            buttonStyle="primary"
-            disabled={
-              !exchangeRate ||
-              values?.amount?.baseCurrency === stripes?.currency
-            }
-            onClick={() => {
-              refetch().then(
-                change('exchangeRate.coefficient', truncateNumber(exchangeRate))
-              );
-            }}
-          >
-            <FormattedMessage id="ui-oa.charge.updateExchangeRate" />
-          </Button>
+          {!exchangeRate ? (
+            <Tooltip
+              id="charge-disabled-button-tooltip"
+              text={
+                <FormattedMessage
+                  id="ui-oa.charge.updateExchangeRate.disabledToolTip"
+                  values={{
+                    exchangeCurrency: (
+                      <FormattedDisplayName
+                        type="currency"
+                        value={values?.amount?.baseCurrency}
+                      />
+                    ),
+                  }}
+                />
+              }
+            >
+              {({ ref, ariaIds }) => (
+                <Button
+                  ref={ref}
+                  aria-describedby={ariaIds.sub}
+                  aria-labelledby={ariaIds.text}
+                  buttonStyle="danger"
+                >
+                  <FormattedMessage id="ui-oa.charge.updateExchangeRate" />
+                </Button>
+              )}
+            </Tooltip>
+          ) : (
+            <Button
+              buttonStyle="primary"
+              disabled={
+                !exchangeRate ||
+                values?.amount?.baseCurrency === stripes?.currency
+              }
+              onClick={() => {
+                refetch().then(
+                  change(
+                    'exchangeRate.coefficient',
+                    truncateNumber(exchangeRate)
+                  )
+                );
+              }}
+            >
+              <FormattedMessage id="ui-oa.charge.updateExchangeRate" />
+            </Button>
+          )}
         </Col>
       </Row>
       <Row>

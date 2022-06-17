@@ -231,6 +231,7 @@
   "charge.publicationRequestCharge": "Publication request charge",
   "charge.publicationRequest": "Publication request",
   "charge.updateExchangeRate": "Update to current exchange rate",
+  "charge.updateExchangeRate.disabledToolTip": "Exchange rate for {exchangeCurrency} is not known, Please enter manually",
   "charge.refreshExchangeRate": "Refresh exchange rate",
   "charge.title": "Charge",
   "charge.discountNote": "Discount note",
