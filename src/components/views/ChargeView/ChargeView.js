@@ -24,6 +24,7 @@ import { ChargeInfo, PaymentSplit } from '../../ChargeSections';
 import { useInvoice, useInvoiceLine } from '../../../hooks/invoiceHooks';
 import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
 import ChargeInvoice from '../../ChargeSections/ChargeInvoice';
+import Agreement from '../../PublicationRequestSections/Agreement/Agreement';
 
 const propTypes = {
   charge: PropTypes.object,
@@ -154,6 +155,7 @@ const ChargeView = ({
                 />
               )}
               <PaymentSplit charge={charge} />
+              <Agreement request={request} />
             </AccordionSet>
           </AccordionStatus>
         </Pane>
