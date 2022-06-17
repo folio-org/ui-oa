@@ -33,48 +33,68 @@ const ChargeInvoice = ({ charge, invoice, invoiceLine }) => {
     return (
       <>
         {invoiceLine && (
-          <Row>
-            <Card
-              cardStyle="positive"
-              headerStart={
-                <AppIcon app="invoice" size="small">
-                  <strong>
-                    <Link
-                      to={urls?.invoiceLine(
-                        charge?.invoiceReference,
-                        charge?.invoiceLineItemReference
-                      )}
-                    >
-                      {invoiceLine?.invoiceLineNumber}
-                      {invoiceLine?.description?.length > 50
-                        ? ', ' + invoiceLine?.description.substr(0, 49) + '...'
-                        : ', ' + invoiceLine?.description}
-                    </Link>
-                  </strong>
-                </AppIcon>
-              }
-              roundedBorder
-            >
-              <InvoiceLineInfo invoiceLine={invoiceLine} />
-            </Card>
-          </Row>
+          <>
+            <br />
+            <Row>
+              <strong>
+                <FormattedMessage id="ui-oa.charge.invoiceLine" />
+              </strong>
+            </Row>
+            <br />
+            <Row>
+              <Card
+                cardStyle="positive"
+                headerStart={
+                  <AppIcon app="invoice" size="small">
+                    <strong>
+                      <Link
+                        to={urls?.invoiceLine(
+                          charge?.invoiceReference,
+                          charge?.invoiceLineItemReference
+                        )}
+                      >
+                        {invoiceLine?.invoiceLineNumber}
+                        {invoiceLine?.description?.length > 50
+                          ? ', ' +
+                            invoiceLine?.description.substr(0, 49) +
+                            '...'
+                          : ', ' + invoiceLine?.description}
+                      </Link>
+                    </strong>
+                  </AppIcon>
+                }
+                roundedBorder
+              >
+                <InvoiceLineInfo invoiceLine={invoiceLine} />
+              </Card>
+            </Row>
+          </>
         )}
         {invoice && (
-          <Row>
-            <Card
-              cardStyle="positive"
-              headerStart={
-                <AppIcon app="invoice" size="small">
-                  <Link to={urls?.invoice(charge?.invoiceReference)}>
-                    <strong>{invoice?.vendorInvoiceNo}</strong>
-                  </Link>
-                </AppIcon>
-              }
-              roundedBorder
-            >
-              <InvoiceInfo charge={charge} invoice={invoice} />
-            </Card>
-          </Row>
+          <>
+            <br />
+            <Row>
+              <strong>
+                <FormattedMessage id="ui-oa.charge.invoice" />
+              </strong>
+            </Row>
+            <br />
+            <Row>
+              <Card
+                cardStyle="positive"
+                headerStart={
+                  <AppIcon app="invoice" size="small">
+                    <Link to={urls?.invoice(charge?.invoiceReference)}>
+                      <strong>{invoice?.vendorInvoiceNo}</strong>
+                    </Link>
+                  </AppIcon>
+                }
+                roundedBorder
+              >
+                <InvoiceInfo charge={charge} invoice={invoice} />
+              </Card>
+            </Row>
+          </>
         )}
       </>
     );

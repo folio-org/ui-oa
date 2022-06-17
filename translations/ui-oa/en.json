@@ -288,6 +288,7 @@
   "charge.invoice.vendorOrganisation": "Vendor organisation",
   "charge.invoice.paymentMethod": "Payment method",
   "charge.invoice.batchGroup": "Batch group",
+  "charge.invoice.linkInvoiceLineToCharge": "Link invoice line to charge",
   "charge.invoice.linkInvoice": "Link invoice",
   "charge.invoice.unlinkInvoice": "Unlink invoice",
   "charge.invoice.unlinkInvoiceMessage": "The associated invoice will be unlinked from this charge.",
@@ -296,6 +297,7 @@
 
   "charge.invoice.addInvoice": "Add invoice",
   "charge.invoice.removeInvoice": "Remove invoice",
+  "charge.invoiceLine": "Invoice line",
   "charge.invoiceLine.noNewInvoiceLine": "You cannot generate new invoice lines for invoices which are approved, cancelled or paid",
   "charge.invoiceLine.addInvoiceLine": "Add invoice line",
   "charge.invoiceLine.removeInvoiceLine": "Remove invoice line",

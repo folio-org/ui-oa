@@ -41,7 +41,7 @@ const LinkInvoiceForm = ({ handlers: { onClose, onSubmit }, charge }) => {
   };
 
   const renderPaneTitle = () => (
-    <FormattedMessage id="ui-oa.charge.invoice.linkInvoice" />
+    <FormattedMessage id="ui-oa.charge.invoice.linkInvoiceLineToCharge" />
   );
   const renderFirstMenu = () => {
     return (
