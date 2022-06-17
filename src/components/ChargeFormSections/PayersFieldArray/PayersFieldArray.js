@@ -33,7 +33,10 @@ import {
 
 import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
-import { getEstimatedInvoicePrice, getTotalPayersAmount } from '../../../util/chargeUtils';
+import {
+  getEstimatedInvoicePrice,
+  getTotalPayersAmount,
+} from '../../../util/chargeUtils';
 
 import css from './PayersFieldArray.css';
 
@@ -42,6 +45,9 @@ const PayersField = ({ fields: { name } }) => {
   const [optionsInUse, setOptionsInUse] = useState([]);
   const { items, onAddField, onDeleteField } = useKiwtFieldArray(name);
   const payerNameValues = selectifyRefdata(useOARefdata('Payer.Payer'));
+
+  const estimatedInvoicePrice = getEstimatedInvoicePrice(values);
+  const totalPayersAmount = getTotalPayersAmount(values?.payers);
 
   useEffect(() => {
     setOptionsInUse(
@@ -118,7 +124,8 @@ const PayersField = ({ fields: { name } }) => {
       })}
       <Button
         disabled={items?.length >= payerNameValues?.length}
-        onClick={() => onAddField({})}
+        onClick={() => onAddField({ payerAmount: estimatedInvoicePrice - totalPayersAmount })
+        }
       >
         <FormattedMessage id="ui-oa.charge.addPayer" />
       </Button>
