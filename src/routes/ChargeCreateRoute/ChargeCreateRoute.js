@@ -2,9 +2,12 @@ import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { useHistory, useParams } from 'react-router-dom';
 import { useOkapiKy, useStripes } from '@folio/stripes/core';
-import { useMutation } from 'react-query';
+import { useAppSettings } from '@k-int/stripes-kint-components';
+import { useMutation, useQuery } from 'react-query';
+
 import ChargeForm from '../../components/views/ChargeForm';
 import useOARefdata from '../../util/useOARefdata';
+import urls from '../../util/urls';
 
 const ChargeCreateRoute = () => {
   const stripes = useStripes();
@@ -16,28 +19,43 @@ const ChargeCreateRoute = () => {
     (e) => e.label === 'percentage'
   );
 
-  const handleClose = () => {
-    history.push(`/oa/publicationRequests/${id}`);
+  const defaultTax = useAppSettings({
+    endpoint: 'oa/settings/appSettings',
+    sectionName: 'PublicationRequests',
+    keyName: 'default_tax',
+  });
+
+  const handleClose = (chargeId) => {
+    if (chargeId) {
+      history.push(urls.publicationRequestChargeView(id, chargeId));
+    } else {
+      history.push(urls.publicationRequest(id));
+    }
   };
 
   const { mutateAsync: postCharge } = useMutation(
     ['ui-oa', 'ChargeCreateRoute', 'postCharge'],
-    (data) => ky.put(`oa/publicationRequest/${id}`, { json: data }).then(() => {
-        handleClose();
-      })
+    (data) => ky
+        .post('oa/charges', { json: data })
+        .json()
+        .then((res) => {
+          handleClose(res?.id);
+        })
+  );
+
+  const { data: request } = useQuery(
+    ['ui-oa', 'ChargeRoute', 'getPublicationRequest', id],
+    () => ky(`oa/publicationRequest/${id}`).json()
   );
 
   const submitCharge = async (values) => {
     const submitValues = {
-      charges: [
-        {
-          ...values,
-          exchangeRate: {
-            ...values.exchangeRate,
-            toCurrency: stripes?.currency,
-          },
-        },
-      ],
+      ...values,
+      exchangeRate: {
+        ...values.exchangeRate,
+        toCurrency: stripes?.currency,
+      },
+      owner: { id },
     };
     await postCharge(submitValues);
   };
@@ -45,6 +63,7 @@ const ChargeCreateRoute = () => {
   return (
     <Form
       initialValues={{
+        tax: defaultTax?.value,
         discountType: { id: perecentage?.id },
         exchangeRate: { coefficient: 1 },
         amount: { baseCurrency: stripes?.currency },
@@ -60,6 +79,7 @@ const ChargeCreateRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit,
             }}
+            request={request}
           />
         </form>
       )}

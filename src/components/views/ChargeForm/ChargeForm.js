@@ -15,7 +15,8 @@ import {
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 
-import ChargeInfoForm from '../../ChargeFormSections/ChargeInfoForm';
+import { ChargeInfoForm, PayersFieldArray } from '../../ChargeFormSections';
+import Agreement from '../../PublicationRequestSections/Agreement/Agreement';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -24,9 +25,10 @@ const propTypes = {
   }).isRequired,
   isLoading: PropTypes.bool,
   charge: PropTypes.object,
+  request: PropTypes.object,
 };
 
-const ChargeForm = ({ handlers: { onClose, onSubmit }, isLoading, charge }) => {
+const ChargeForm = ({ handlers: { onClose, onSubmit }, isLoading, charge, request }) => {
   const { pristine, submitting } = useFormState();
 
   const renderPaneTitle = () => (charge ? (
@@ -107,6 +109,8 @@ const ChargeForm = ({ handlers: { onClose, onSubmit }, isLoading, charge }) => {
           paneTitle={renderPaneTitle()}
         >
           <ChargeInfoForm />
+          <PayersFieldArray />
+          <Agreement request={request} />
         </Pane>
       </Paneset>
     </HasCommand>
