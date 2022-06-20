@@ -175,14 +175,15 @@ const ChargeInfoForm = () => {
               }
             >
               {({ ref, ariaIds }) => (
-                <Button
+                <div
                   ref={ref}
                   aria-describedby={ariaIds.sub}
                   aria-labelledby={ariaIds.text}
-                  buttonStyle="danger"
                 >
-                  <FormattedMessage id="ui-oa.charge.updateExchangeRate" />
-                </Button>
+                  <Button disabled>
+                    <FormattedMessage id="ui-oa.charge.updateExchangeRate" />
+                  </Button>
+                </div>
               )}
             </Tooltip>
           ) : (
