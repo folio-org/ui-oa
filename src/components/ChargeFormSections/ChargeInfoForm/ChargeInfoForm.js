@@ -1,5 +1,10 @@
+/* eslint-disable react/style-prop-object */
 import { useState, useEffect } from 'react';
-import { FormattedDisplayName, FormattedMessage } from 'react-intl';
+import {
+  FormattedDisplayName,
+  FormattedMessage,
+  FormattedNumber,
+} from 'react-intl';
 import { Field, useFormState, useForm } from 'react-final-form';
 
 import {
@@ -25,9 +30,12 @@ import {
   validateAsDecimal,
   validateNotLessThanZero,
 } from '../../../util/validators';
+import { getEstimatedInvoicePrice } from '../../../util/chargeUtils';
 import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
 import useExchangeRateValue from '../../../hooks/useExchangeRateValue';
+
+import css from './ChargeInfoForm.css';
 
 const [CHARGE_CATEGORY, CHARGE_STATUS, CHARGE_DISCOUNT_TYPE] = [
   'Charge.Category',
@@ -60,6 +68,8 @@ const ChargeInfoForm = () => {
     refdataValues,
     CHARGE_DISCOUNT_TYPE
   );
+
+  const estimatedInvoicePrice = getEstimatedInvoicePrice(values);
 
   const truncateNumber = (number) => {
     return number
@@ -175,14 +185,15 @@ const ChargeInfoForm = () => {
               }
             >
               {({ ref, ariaIds }) => (
-                <Button
+                <div
                   ref={ref}
                   aria-describedby={ariaIds.sub}
                   aria-labelledby={ariaIds.text}
-                  buttonStyle="danger"
                 >
-                  <FormattedMessage id="ui-oa.charge.updateExchangeRate" />
-                </Button>
+                  <Button disabled>
+                    <FormattedMessage id="ui-oa.charge.updateExchangeRate" />
+                  </Button>
+                </div>
               )}
             </Tooltip>
           ) : (
@@ -278,6 +289,37 @@ const ChargeInfoForm = () => {
               validateAsDecimal
             )}
           />
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={6}>
+          <section className={css.container}>
+            <Row>
+              <Col xs={12}>
+                <div className={css.header}>
+                  <strong>
+                    <FormattedMessage id="ui-oa.charge.amountToCalculated" />
+                  </strong>
+                </div>
+                <div className={css.info}>
+                  <FormattedNumber
+                    currency={values?.amount?.baseCurrency}
+                    style="currency"
+                    value={estimatedInvoicePrice}
+                  />
+                </div>
+                <div className={css.info}>
+                  <FormattedNumber
+                    currency={stripes?.currency}
+                    style="currency"
+                    value={
+                      estimatedInvoicePrice * values?.exchangeRate?.coefficient
+                    }
+                  />
+                </div>
+              </Col>
+            </Row>
+          </section>
         </Col>
       </Row>
     </>
