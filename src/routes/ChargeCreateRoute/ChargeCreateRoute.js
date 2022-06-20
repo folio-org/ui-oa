@@ -2,7 +2,9 @@ import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { useHistory, useParams } from 'react-router-dom';
 import { useOkapiKy, useStripes } from '@folio/stripes/core';
+import { useAppSettings } from '@k-int/stripes-kint-components';
 import { useMutation, useQuery } from 'react-query';
+
 import ChargeForm from '../../components/views/ChargeForm';
 import useOARefdata from '../../util/useOARefdata';
 import urls from '../../util/urls';
@@ -16,6 +18,12 @@ const ChargeCreateRoute = () => {
   const perecentage = useOARefdata('Charge.DiscountType').find(
     (e) => e.label === 'percentage'
   );
+
+  const defaultTax = useAppSettings({
+    endpoint: 'oa/settings/appSettings',
+    sectionName: 'PublicationRequests',
+    keyName: 'default_tax',
+  });
 
   const handleClose = (chargeId) => {
     if (chargeId) {
@@ -55,6 +63,7 @@ const ChargeCreateRoute = () => {
   return (
     <Form
       initialValues={{
+        tax: defaultTax?.value,
         discountType: { id: perecentage?.id },
         exchangeRate: { coefficient: 1 },
         amount: { baseCurrency: stripes?.currency },
