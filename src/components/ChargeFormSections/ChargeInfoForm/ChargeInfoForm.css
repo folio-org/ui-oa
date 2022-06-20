@@ -1,0 +1,17 @@
+@import "@folio/stripes-components/lib/variables.css";
+
+.container {
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--color-border);
+    background-color: #00000008;
+    margin-bottom: 1rem;
+}
+
+.info {
+    margin-bottom: 0.5rem;
+}
+
+.header {
+    margin-bottom: 0.75rem;
+}
