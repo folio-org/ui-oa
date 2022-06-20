@@ -8,6 +8,10 @@
   "settings.no-current-value": "No current value",
   "settingName.settingLoading": "Loading",
 
+  "settings.settingsSection.publicationRequests": "Publication requests",
+  "settings.publicationRequests.hridPrefix": "HRID prefix",
+  "settings.publicationRequests.defaultTax": "Default tax",
+
   "settings.refdata.picklistValues": "Pick list values",
   "settings.refdata.picklist": "Pick list",
 
