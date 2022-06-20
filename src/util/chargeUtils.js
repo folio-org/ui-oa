@@ -17,4 +17,12 @@ const getEstimatedInvoicePrice = (values) => {
   }
 };
 
-export default getEstimatedInvoicePrice;
+const getTotalPayersAmount = (payers) => {
+  return (
+    payers?.reduce((a, b) => {
+      return a + (Number(b.payerAmount) || 0);
+    }, 0) || 0
+  );
+};
+
+export { getTotalPayersAmount, getEstimatedInvoicePrice };

@@ -47,7 +47,7 @@ const InvoiceInfo = ({ invoice, charge }) => {
         </Col>
         <Col xs={3}>
           <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.currency" />}
+            label={<FormattedMessage id="ui-oa.charge.invoice.currency" />}
             value={invoice?.currency}
           />
         </Col>
@@ -55,7 +55,6 @@ const InvoiceInfo = ({ invoice, charge }) => {
           <ExchangeRateValue
             exchangeFrom={invoice?.currency}
             exchangeTo={charge?.exchangeRate?.toCurrency}
-            label={<FormattedMessage id="ui-oa.charge.currency" />}
             manualExchangeRate={invoice?.exchangeRate}
           />
         </Col>

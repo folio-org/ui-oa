@@ -1,31 +1,23 @@
+/* eslint-disable react/style-prop-object */
 import PropTypes from 'prop-types';
 
-import { FormattedMessage } from 'react-intl';
+import {
+  FormattedMessage,
+  FormattedNumber,
+  FormattedDisplayName,
+} from 'react-intl';
 import { Col, KeyValue, Row, Headline } from '@folio/stripes/components';
 
 const propTypes = {
-  request: PropTypes.object,
   charge: PropTypes.object,
 };
 
-const ChargeInfo = ({ request, charge }) => {
+const ChargeInfo = ({ charge }) => {
   return (
     <>
       <Headline margin="large" size="x-large" tag="h2">
         <FormattedMessage id="ui-oa.charge.chargeInformation" />
       </Headline>
-      <Row>
-        <Col xs={12}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.publicationRequest" />}
-            value={
-              request?.publicationTitle
-                ? request?.requestNumber + ' : ' + request?.publicationTitle
-                : request?.requestNumber
-            }
-          />
-        </Col>
-      </Row>
       <Row>
         <Col xs={3}>
           <KeyValue
@@ -39,24 +31,47 @@ const ChargeInfo = ({ request, charge }) => {
             value={charge?.chargeStatus?.label}
           />
         </Col>
+        <Col xs={6}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.charge.chargeDescription" />}
+            value={charge?.description}
+          />
+        </Col>
       </Row>
       <Row>
         <Col xs={3}>
           <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.amount" />}
-            value={charge?.amount?.value}
+            label={<FormattedMessage id="ui-oa.charge.calculatedAmount" />}
+            value={
+              <FormattedNumber
+                currency={charge?.estimatedInvoicePrice?.baseCurrency}
+                style="currency"
+                value={charge?.estimatedInvoicePrice?.value}
+              />
+            }
           />
         </Col>
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.currency" />}
-            value={charge?.amount?.baseCurrency}
+            value={
+              <FormattedDisplayName
+                type="currency"
+                value={charge?.amount?.baseCurrency}
+              />
+            }
           />
         </Col>
         <Col xs={3}>
           <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.exchangeRate" />}
+            label={<FormattedMessage id="ui-oa.charge.exchangeRateApplied" />}
             value={charge?.exchangeRate?.coefficient}
+          />
+        </Col>
+        <Col xs={3}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.charge.tax" />}
+            value={charge?.tax + '%'}
           />
         </Col>
       </Row>
@@ -75,22 +90,6 @@ const ChargeInfo = ({ request, charge }) => {
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.discountNote" />}
             value={charge?.discountNote}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={3}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.tax" />}
-            value={charge?.tax + '%'}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={12}>
-          <KeyValue
-            label={<FormattedMessage id="ui-oa.charge.description" />}
-            value={charge?.description}
           />
         </Col>
       </Row>

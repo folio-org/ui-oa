@@ -99,7 +99,7 @@ const CreateInvoiceForm = ({ batchGroups, charge }) => {
             component={Selection}
             dataOptions={currencyOptions}
             id="invoice-currency"
-            label={<FormattedMessage id="ui-oa.charge.currency" />}
+            label={<FormattedMessage id="ui-oa.charge.invoice.currency" />}
             name="currency"
             required
           />

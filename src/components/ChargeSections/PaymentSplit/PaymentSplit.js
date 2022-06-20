@@ -9,12 +9,19 @@ import {
   Row,
 } from '@folio/stripes/components';
 import getSortedItems from '../../../util/getSortedItems';
+import {
+  getEstimatedInvoicePrice,
+  getTotalPayersAmount,
+} from '../../../util/chargeUtils';
 
 const propTypes = {
   charge: PropTypes.object,
 };
 
 const PaymentSplit = ({ charge }) => {
+  const estimatedInvoicePrice = getEstimatedInvoicePrice(charge);
+  const totalPayersAmount = getTotalPayersAmount(charge?.payers);
+
   const sortedFundings = getSortedItems(charge?.payers, null, {
     column: 'payer.value',
     direction: 'asc',
@@ -50,6 +57,25 @@ const PaymentSplit = ({ charge }) => {
       displayWhenOpen={renderBadge(charge?.payers)}
       label={<FormattedMessage id="ui-oa.charge.paymentSplit" />}
     >
+      <br />
+      <Row>
+        <Col xs={12}>
+          <FormattedMessage
+            id="ui-oa.charge.payers.remainingAmount"
+            values={{
+              amount: (
+                <FormattedNumber
+                  currency={charge?.amount?.baseCurrency}
+                  // eslint-disable-next-line react/style-prop-object
+                  style="currency"
+                  value={estimatedInvoicePrice - totalPayersAmount}
+                />
+              ),
+            }}
+          />
+        </Col>
+      </Row>
+      <br />
       <Row>
         <Col xs={12}>
           <MultiColumnList

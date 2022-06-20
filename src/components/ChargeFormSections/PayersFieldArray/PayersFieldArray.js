@@ -9,6 +9,7 @@ import { ARRAY_ERROR } from 'final-form';
 
 import {
   Accordion,
+  Badge,
   Button,
   Col,
   IconButton,
@@ -32,7 +33,10 @@ import {
 
 import useOARefdata from '../../../util/useOARefdata';
 import selectifyRefdata from '../../../util/selectifyRefdata';
-import getEstimatedInvoicePrice from '../../../util/getEstimatedInvoicePrice';
+import {
+  getEstimatedInvoicePrice,
+  getTotalPayersAmount,
+} from '../../../util/chargeUtils';
 
 import css from './PayersFieldArray.css';
 
@@ -41,6 +45,9 @@ const PayersField = ({ fields: { name } }) => {
   const [optionsInUse, setOptionsInUse] = useState([]);
   const { items, onAddField, onDeleteField } = useKiwtFieldArray(name);
   const payerNameValues = selectifyRefdata(useOARefdata('Payer.Payer'));
+
+  const estimatedInvoicePrice = getEstimatedInvoicePrice(values);
+  const totalPayersAmount = getTotalPayersAmount(values?.payers);
 
   useEffect(() => {
     setOptionsInUse(
@@ -117,7 +124,8 @@ const PayersField = ({ fields: { name } }) => {
       })}
       <Button
         disabled={items?.length >= payerNameValues?.length}
-        onClick={() => onAddField({})}
+        onClick={() => onAddField({ payerAmount: estimatedInvoicePrice - totalPayersAmount })
+        }
       >
         <FormattedMessage id="ui-oa.charge.addPayer" />
       </Button>
@@ -133,16 +141,21 @@ PayersField.propTypes = {
 
 const PayersFieldArray = () => {
   const { values, errors } = useFormState();
+  const { items } = useKiwtFieldArray('payers');
 
   const estimatedInvoicePrice = getEstimatedInvoicePrice(values);
+  const totalPayersAmount = getTotalPayersAmount(values?.payers);
 
-  const totalPayersAmount =
-    values?.payers?.reduce((a, b) => {
-      return a + (Number(b.payerAmount) || 0);
-    }, 0) || 0;
+  const renderBadge = (payers) => {
+    return payers ? <Badge>{payers?.length}</Badge> : <Badge>0</Badge>;
+  };
 
   return (
-    <Accordion label={<FormattedMessage id="ui-oa.charge.payers" />}>
+    <Accordion
+      displayWhenClosed={renderBadge(items)}
+      displayWhenOpen={renderBadge(items)}
+      label={<FormattedMessage id="ui-oa.charge.payers" />}
+    >
       <Row>
         <Col xs={12}>
           <FormattedMessage
