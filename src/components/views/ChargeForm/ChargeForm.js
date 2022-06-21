@@ -137,7 +137,7 @@ const ChargeForm = ({
                 <ExpandAllButton />
               </Col>
             </Row>
-            <AccordionSet>
+            <AccordionSet initialStatus={{ 'agreement-accordion': true }}>
               <PayersFieldArray />
               <Agreement request={request} />
             </AccordionSet>

@@ -110,6 +110,7 @@ const Agreement = ({ request }) => {
       closedByDefault
       displayWhenClosed={renderBadge(request?.agreement)}
       displayWhenOpen={renderBadge(request?.agreement)}
+      id="agreement-accordion"
       label={<FormattedMessage id="ui-oa.publicationRequest.agreement" />}
     >
       {request?.agreement ? (
