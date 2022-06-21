@@ -299,7 +299,7 @@
   "charge.invoice.unlinkInvoice": "Unlink invoice",
   "charge.invoice.unlinkInvoiceMessage": "The associated invoice will be unlinked from this charge.",
   "charge.invoice.unlink": "Unlink",
-  "charge.invoice.invoiceHelperMessage": "The charge can be linked to an existing invoice and invoice line, or new records can be immediately added to the Invoices app using the options 'New invoice' and 'New invoice line'. Please note, removing an Invoice or Invoice line via this screen will not delete the record from the Invoices app, it will only remove the link between the record and the charge.",
+  "charge.invoice.invoiceHelperMessage": "The charge can be linked to an existing invoice and invoice line, or new records can be immediately added to the Invoices app using the options 'New invoice' and 'New invoice line'. Removing an Invoice or Invoice line via this screen will not delete the record from the Invoices app.",
 
   "charge.invoice.addInvoice": "Add invoice",
   "charge.invoice.removeInvoice": "Remove invoice",
