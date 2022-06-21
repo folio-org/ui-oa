@@ -84,7 +84,7 @@ const ChargeView = ({
             onClick={handleLink}
           >
             <Icon icon="link">
-              <FormattedMessage id="ui-oa.charge.invoice.linkInvoice" />
+              <FormattedMessage id="ui-oa.charge.invoice.linkInvoiceLine" />
             </Icon>
           </Button>
         ) : (
@@ -94,7 +94,7 @@ const ChargeView = ({
             onClick={() => setShowUnlinkConfirmModal(true)}
           >
             <Icon icon="unlink">
-              <FormattedMessage id="ui-oa.charge.invoice.unlinkInvoice" />
+              <FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceLine" />
             </Icon>
           </Button>
         )}
@@ -170,9 +170,9 @@ const ChargeView = ({
       />
       <ConfirmationModal
         confirmLabel={<FormattedMessage id="ui-oa.charge.invoice.unlink" />}
-        heading={<FormattedMessage id="ui-oa.charge.invoice.unlinkInvoice" />}
+        heading={<FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceLine" />}
         message={
-          <FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceMessage" />
+          <FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceLineMessage" />
         }
         onCancel={() => setShowUnlinkConfirmModal(false)}
         onConfirm={() => {
