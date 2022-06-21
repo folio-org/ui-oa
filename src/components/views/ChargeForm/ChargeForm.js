@@ -1,3 +1,4 @@
+import { createRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useFormState } from 'react-final-form';
 import PropTypes from 'prop-types';
@@ -12,6 +13,13 @@ import {
   LoadingView,
   HasCommand,
   checkScope,
+  expandAllSections,
+  ExpandAllButton,
+  collapseAllSections,
+  Row,
+  Col,
+  AccordionSet,
+  AccordionStatus,
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 
@@ -28,8 +36,14 @@ const propTypes = {
   request: PropTypes.object,
 };
 
-const ChargeForm = ({ handlers: { onClose, onSubmit }, isLoading, charge, request }) => {
+const ChargeForm = ({
+  handlers: { onClose, onSubmit },
+  isLoading,
+  charge,
+  request,
+}) => {
   const { pristine, submitting } = useFormState();
+  const accordionStatusRef = createRef();
 
   const renderPaneTitle = () => (charge ? (
     <FormattedMessage id="ui-oa.charge.editCharge" />
@@ -86,6 +100,14 @@ const ChargeForm = ({ handlers: { onClose, onSubmit }, isLoading, charge, reques
       name: 'save',
       handler: onSubmit,
     },
+    {
+      name: 'expandAllSections',
+      handler: (e) => expandAllSections(e, accordionStatusRef),
+    },
+    {
+      name: 'collapseAllSections',
+      handler: (e) => collapseAllSections(e, accordionStatusRef),
+    },
   ];
 
   if (isLoading) {
@@ -109,8 +131,17 @@ const ChargeForm = ({ handlers: { onClose, onSubmit }, isLoading, charge, reques
           paneTitle={renderPaneTitle()}
         >
           <ChargeInfoForm />
-          <PayersFieldArray />
-          <Agreement request={request} />
+          <AccordionStatus ref={accordionStatusRef}>
+            <Row end="xs">
+              <Col xs>
+                <ExpandAllButton />
+              </Col>
+            </Row>
+            <AccordionSet>
+              <PayersFieldArray />
+              <Agreement request={request} />
+            </AccordionSet>
+          </AccordionStatus>
         </Pane>
       </Paneset>
     </HasCommand>
