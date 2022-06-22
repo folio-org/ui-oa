@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { useFormState } from 'react-final-form';
@@ -14,10 +15,12 @@ import {
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 import {
-  InvoiceHelper,
   InvoiceTypedownForm,
   InvoiceLineTypedownForm,
+  InvoiceHelper,
 } from '../../InvoiceFormSections';
+
+import { ChargeInfo } from '../../ChargeSections';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -32,6 +35,7 @@ const propTypes = {
 
 const LinkInvoiceForm = ({ handlers: { onClose, onSubmit }, charge }) => {
   const { values, pristine, submitting } = useFormState();
+  const [lineGenerated, setLineGenerated] = useState(false);
 
   const getSectionProps = (name) => {
     return {
@@ -105,11 +109,17 @@ const LinkInvoiceForm = ({ handlers: { onClose, onSubmit }, charge }) => {
           id="pane.oa.invoice.form"
           paneTitle={renderPaneTitle()}
         >
-          <InvoiceHelper {...getSectionProps('invoice-helper')} />
-          <InvoiceTypedownForm {...getSectionProps('invoice-typedown')} />
+          <InvoiceHelper />
+          <ChargeInfo {...getSectionProps('invoice-charge-info')} />
+          <InvoiceTypedownForm
+            {...getSectionProps('invoice-typedown')}
+            setLineGenerated={setLineGenerated}
+          />
           {values?.selectedInvoice && (
             <InvoiceLineTypedownForm
               {...getSectionProps('invoice-line-typedown')}
+              lineGenerated={lineGenerated}
+              setLineGenerated={setLineGenerated}
             />
           )}
         </Pane>

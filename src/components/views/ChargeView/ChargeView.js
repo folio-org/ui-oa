@@ -18,6 +18,7 @@ import {
   HasCommand,
   MetaSection,
   checkScope,
+  Headline,
 } from '@folio/stripes/components';
 
 import { ChargeInfo, PaymentSplit } from '../../ChargeSections';
@@ -84,7 +85,7 @@ const ChargeView = ({
             onClick={handleLink}
           >
             <Icon icon="link">
-              <FormattedMessage id="ui-oa.charge.invoice.linkInvoice" />
+              <FormattedMessage id="ui-oa.charge.invoice.linkInvoiceLine" />
             </Icon>
           </Button>
         ) : (
@@ -94,7 +95,7 @@ const ChargeView = ({
             onClick={() => setShowUnlinkConfirmModal(true)}
           >
             <Icon icon="unlink">
-              <FormattedMessage id="ui-oa.charge.invoice.unlinkInvoice" />
+              <FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceLine" />
             </Icon>
           </Button>
         )}
@@ -139,6 +140,9 @@ const ChargeView = ({
             hideSource
             lastUpdatedDate={charge?.lastUpdated}
           />
+          <Headline margin="large" size="x-large" tag="h2">
+            <FormattedMessage id="ui-oa.charge.chargeInformation" />
+          </Headline>
           <ChargeInfo charge={charge} request={request} />
           <AccordionStatus ref={accordionStatusRef}>
             <Row end="xs">
@@ -170,9 +174,11 @@ const ChargeView = ({
       />
       <ConfirmationModal
         confirmLabel={<FormattedMessage id="ui-oa.charge.invoice.unlink" />}
-        heading={<FormattedMessage id="ui-oa.charge.invoice.unlinkInvoice" />}
+        heading={
+          <FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceLine" />
+        }
         message={
-          <FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceMessage" />
+          <FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceLineMessage" />
         }
         onCancel={() => setShowUnlinkConfirmModal(false)}
         onConfirm={() => {

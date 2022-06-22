@@ -27,9 +27,10 @@ import { InvoiceInfo } from '../../InvoiceSections';
 
 const propTypes = {
   charge: PropTypes.object,
+  setLineGenerated: PropTypes.func,
 };
 
-const InvoiceTypedownForm = ({ charge }) => {
+const InvoiceTypedownForm = ({ charge, setLineGenerated }) => {
   const { values } = useFormState();
   const { change } = useForm();
   const [showInvoiceModal, setShowInvoiceModal] = useState(false);
@@ -43,6 +44,7 @@ const InvoiceTypedownForm = ({ charge }) => {
     }
     change('selectedInvoice', invoice);
     setShowInvoiceModal(false);
+    setLineGenerated(false);
     queryClient.invalidateQueries(typedownQueryKey(invoicesPath));
   };
 
@@ -100,6 +102,7 @@ const InvoiceTypedownForm = ({ charge }) => {
           if (values?.invoiceLine) {
             change('invoiceLine', null);
           }
+          setLineGenerated(false);
         }}
         path={invoicesPath}
         pathMutator={pathMutator}
