@@ -28,9 +28,11 @@ import { InvoiceLineModal } from '../../Modals';
 
 const propTypes = {
   charge: PropTypes.object,
+  lineGenerated: PropTypes.bool,
+  setLineGenerated: PropTypes.func
 };
 
-const InvoiceLineTypedownForm = ({ charge }) => {
+const InvoiceLineTypedownForm = ({ charge, lineGenerated, setLineGenerated }) => {
   const { values } = useFormState();
   const { change } = useForm();
   const [showInvoiceLineModal, setShowInvoiceLineModal] = useState(false);
@@ -52,6 +54,7 @@ const InvoiceLineTypedownForm = ({ charge }) => {
       );
     }
     setShowInvoiceLineModal(false);
+    setLineGenerated(true);
     queryClient.invalidateQueries(typedownQueryKey(invoiceLinesPath));
     queryClient.invalidateQueries(typedownQueryKey(invoicesPath));
   };
@@ -72,7 +75,7 @@ const InvoiceLineTypedownForm = ({ charge }) => {
       <Layout className="textCentered">
         <Button
           buttonStyle="primary"
-          disabled={!canCreate}
+          disabled={!canCreate || lineGenerated}
           marginBottom0
           onClick={() => setShowInvoiceLineModal(true)}
         >
