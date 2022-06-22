@@ -1,7 +1,7 @@
 /* eslint-disable react/style-prop-object */
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { FormattedMessage, FormattedNumber } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { useHistory } from 'react-router-dom';
 
 import { IfPermission, useStripes } from '@folio/stripes/core';
@@ -15,13 +15,54 @@ import {
   MessageBanner,
   Layout,
   Tooltip,
+  Icon,
 } from '@folio/stripes/components';
 
 import urls from '../../../util/urls';
 import getSortedItems from '../../../util/getSortedItems';
+import { useInvoice, useInvoiceLine } from '../../../hooks/invoiceHooks';
 
-const propTypes = {
+import css from './Charges.css';
+
+const chargesPropTypes = {
   request: PropTypes.object,
+};
+
+const invoiceLineLinkPropTypes = {
+  charge: PropTypes.object,
+};
+
+const InvoiceLineLink = ({ charge }) => {
+  const invoice = useInvoice(charge?.invoiceReference);
+  const invoiceLine = useInvoiceLine(charge?.invoiceLineItemReference);
+  return (
+    <Tooltip
+      id={`charge-${charge.rowIndex + 1}-invoiced-button`}
+      text={
+        <FormattedMessage
+          id="ui-oa.charge.linkToInvoiceLineIndex"
+          values={{ index: charge.rowIndex + 1 }}
+        />
+      }
+    >
+      {({ ref, ariaIds }) => (
+        <a
+          ref={ref}
+          aria-describedby={ariaIds.sub}
+          aria-labelledby={ariaIds.text}
+          href={urls.invoiceLine(
+            charge?.invoiceReference,
+            charge?.invoiceLineItemReference
+          )}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <strong>
+            {invoice?.vendorInvoiceNo}: {invoiceLine?.invoiceLineNumber}
+          </strong>
+        </a>
+      )}
+    </Tooltip>
+  );
 };
 
 const Charges = ({ request }) => {
@@ -35,8 +76,8 @@ const Charges = ({ request }) => {
 
   const sortFormatter = {
     description: ['chargeStatus.value', 'category.value'],
-    amount: ['amount.value'],
-    estimatedPrices: ['estimatedPrice.value', 'estimatedInvoicePrice.value'],
+    netAmount: ['amount.value'],
+    calculatedAmount: ['estimatedPrice.value', 'estimatedInvoicePrice.value'],
   };
 
   const sortedCharges = getSortedItems(
@@ -71,38 +112,6 @@ const Charges = ({ request }) => {
     );
   };
 
-  const renderInvoiceLineLink = (charge) => {
-    return charge?.invoiceLineItemReference &&
-      charge?.chargeStatus?.value === 'invoiced' ? (
-        <Tooltip
-          id={`charge-${charge.rowIndex + 1}-invoiced-button`}
-          text={
-            <FormattedMessage
-              id="ui-oa.charge.linkToInvoiceLineIndex"
-              values={{ index: charge.rowIndex + 1 }}
-            />
-        }
-        >
-          {({ ref, ariaIds }) => (
-            <a
-              ref={ref}
-              aria-describedby={ariaIds.sub}
-              aria-labelledby={ariaIds.text}
-              href={urls.invoiceLine(
-              charge?.invoiceReference,
-              charge?.invoiceLineItemReference
-            )}
-              onClick={(e) => e.stopPropagation()}
-            >
-              {charge?.chargeStatus?.label}
-            </a>
-        )}
-        </Tooltip>
-    ) : (
-      charge?.chargeStatus?.label
-    );
-  };
-
   const formatter = {
     description: (e) => {
       return (
@@ -111,7 +120,7 @@ const Charges = ({ request }) => {
             <strong>
               <FormattedMessage id="ui-oa.charge.status" />:{' '}
             </strong>
-            {renderInvoiceLineLink(e)}
+            {e?.chargeStatus?.label}
           </div>
           <div>
             <strong>
@@ -130,12 +139,13 @@ const Charges = ({ request }) => {
           {e?.payers?.length > 0 && (
             <div>
               <strong>
-                <FormattedMessage id="ui-oa.charge.paymentSplit" />:{' '}
+                <FormattedMessage id="ui-oa.charge.payersBrackets" />:{' '}
               </strong>
               {e.payers.map((i) => {
                 return (
                   <li>
-                    {i?.payer?.label} ({i?.payerAmount})
+                    {i?.payer?.label}: {e?.amount.baseCurrency}
+                    {i?.payerAmount}
                   </li>
                 );
               })}
@@ -144,50 +154,51 @@ const Charges = ({ request }) => {
         </div>
       );
     },
-    estimatedPrices: (e) => {
+    calculatedAmount: (e) => {
       return (
         <div>
           <div>
-            <FormattedNumber
-              currency={e?.estimatedPrice?.baseCurrency}
-              style="currency"
-              value={e?.estimatedPrice?.value}
-            />
+            {e?.estimatedPrice?.baseCurrency}
+            {e?.estimatedPrice?.value}
           </div>
           {e?.estimatedInvoicePrice?.baseCurrency !== stripes?.currency && (
             <div>
-              <FormattedNumber
-                currency={e?.estimatedInvoicePrice?.baseCurrency}
-                style="currency"
-                value={e?.estimatedInvoicePrice?.value}
-              />
+              {e?.estimatedInvoicePrice?.baseCurrency}
+              {e?.estimatedInvoicePrice?.value}
             </div>
           )}
         </div>
       );
     },
-    amount: (e) => {
+    netAmount: (e) => {
       return (
-        <FormattedNumber
-          currency={e?.amount?.baseCurrency}
-          style="currency"
-          value={e?.amount?.value}
-        />
+        <>
+          {e?.amount?.baseCurrency}
+          {e?.amount?.value}
+        </>
       );
     },
-    discount: (e) => {
-      return e?.discountType?.value === 'percentage' ? (
-        e?.discount + '%'
-      ) : (
-        <FormattedNumber
-          currency={e?.amount?.baseCurrency}
-          style="currency"
-          value={e?.discount}
-        />
-      );
-    },
-    tax: (e) => {
-      return e?.tax + '%';
+    invoiceLine: (e) => {
+      if (
+        e?.chargeStatus?.value === 'invoiced' &&
+        e?.invoiceLineItemReference
+      ) {
+        return <InvoiceLineLink charge={e} />;
+      }
+      if (
+        e?.chargeStatus?.value === 'invoiced' &&
+        !e?.invoiceLineItemReference
+      ) {
+        return (
+          <>
+            <Icon icon="exclamation-circle" status="warn" />
+            <div className={css.errorMessage}>
+              <FormattedMessage id="ui-oa.charge.invoiceLineNotLinked" />
+            </div>
+          </>
+        );
+      }
+      return null;
     },
   };
 
@@ -218,12 +229,11 @@ const Charges = ({ request }) => {
             <MultiColumnList
               columnMapping={{
                 description: <FormattedMessage id="ui-oa.charge.description" />,
-                amount: <FormattedMessage id="ui-oa.charge.amount" />,
-                discount: <FormattedMessage id="ui-oa.charge.discount" />,
-                tax: <FormattedMessage id="ui-oa.charge.tax" />,
-                estimatedPrices: (
-                  <FormattedMessage id="ui-oa.charge.estimatedAmount" />
+                netAmount: <FormattedMessage id="ui-oa.charge.netAmount" />,
+                calculatedAmount: (
+                  <FormattedMessage id="ui-oa.charge.calculatedAmount" />
                 ),
+                invoiceLine: <FormattedMessage id="ui-oa.charge.invoiceLine" />,
               }}
               columnWidths={{ description: 300 }}
               contentData={sortedCharges}
@@ -237,10 +247,9 @@ const Charges = ({ request }) => {
               sortedColumn={sortedColumn.column}
               visibleColumns={[
                 'description',
-                'amount',
-                'discount',
-                'tax',
-                'estimatedPrices',
+                'netAmount',
+                'calculatedAmount',
+                'invoiceLine',
               ]}
             />
           </Col>
@@ -256,6 +265,7 @@ const Charges = ({ request }) => {
   );
 };
 
-Charges.propTypes = propTypes;
+Charges.propTypes = chargesPropTypes;
+InvoiceLineLink.propTypes = invoiceLineLinkPropTypes;
 
 export default Charges;
