@@ -250,6 +250,7 @@
   "charge.status": "Status",
   "charge.payer": "Payer",
   "charge.payers": "Payers",
+  "charge.payersBrackets": "Payer(s)",
   "charge.payers.remainingAmount": "<strong>Remaining amount to be split between payers: {amount}</strong>",
   "charge.payers.amountsMoreThanChargeTotal": "The amount(s) should be equal to or less than the charge total amount",
   "charge.payerAmount": "Amount in charge currency",
@@ -283,6 +284,8 @@
   "charge.estimatedAmount": "Estimated amount inc. discounts and tax",
   "charge.estimatedPriceLocal": "Estimated price ({localCurrency})",
   "charge.estimatedPriceSpecified": "Estimated price ({specifiedCurrency})",
+  "charge.invoiceLineNotLinked": "Invoice line not linked",
+
   "charge.invoice": "Invoice",
   "charge.invoice.currency": "Currency",
   "charge.invoiceNotLinked": "No invoice linked to this charge",
@@ -300,9 +303,9 @@
   "charge.invoice.unlinkInvoiceLineMessage": "The associated invoice and invoice line will be unlinked from this charge.",
   "charge.invoice.unlink": "Unlink",
   "charge.invoice.invoiceHelperMessage": "The charge can be linked to an existing invoice and invoice line, or new records can be immediately added to the Invoices app using the options 'New invoice' and 'New invoice line'. Removing an Invoice or Invoice line via this screen will not delete the record from the Invoices app.",
-
   "charge.invoice.addInvoice": "Add invoice",
   "charge.invoice.removeInvoice": "Remove invoice",
+
   "charge.invoiceLine": "Invoice line",
   "charge.invoiceLine.noNewInvoiceLine": "You cannot generate new invoice lines for invoices which are approved, cancelled or paid",
   "charge.invoiceLine.addInvoiceLine": "Add invoice line",
