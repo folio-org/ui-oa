@@ -6,7 +6,7 @@ import {
   FormattedNumber,
   FormattedDisplayName,
 } from 'react-intl';
-import { Col, KeyValue, Row, Headline } from '@folio/stripes/components';
+import { Col, KeyValue, Row } from '@folio/stripes/components';
 
 const propTypes = {
   charge: PropTypes.object,
@@ -15,9 +15,6 @@ const propTypes = {
 const ChargeInfo = ({ charge }) => {
   return (
     <>
-      <Headline margin="large" size="x-large" tag="h2">
-        <FormattedMessage id="ui-oa.charge.chargeInformation" />
-      </Headline>
       <Row>
         <Col xs={3}>
           <KeyValue

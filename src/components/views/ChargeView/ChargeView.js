@@ -18,6 +18,7 @@ import {
   HasCommand,
   MetaSection,
   checkScope,
+  Headline,
 } from '@folio/stripes/components';
 
 import { ChargeInfo, PaymentSplit } from '../../ChargeSections';
@@ -139,6 +140,9 @@ const ChargeView = ({
             hideSource
             lastUpdatedDate={charge?.lastUpdated}
           />
+          <Headline margin="large" size="x-large" tag="h2">
+            <FormattedMessage id="ui-oa.charge.chargeInformation" />
+          </Headline>
           <ChargeInfo charge={charge} request={request} />
           <AccordionStatus ref={accordionStatusRef}>
             <Row end="xs">
@@ -170,7 +174,9 @@ const ChargeView = ({
       />
       <ConfirmationModal
         confirmLabel={<FormattedMessage id="ui-oa.charge.invoice.unlink" />}
-        heading={<FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceLine" />}
+        heading={
+          <FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceLine" />
+        }
         message={
           <FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceLineMessage" />
         }

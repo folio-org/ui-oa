@@ -15,10 +15,12 @@ import {
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 import {
-  InvoiceHelper,
   InvoiceTypedownForm,
   InvoiceLineTypedownForm,
+  InvoiceHelper,
 } from '../../InvoiceFormSections';
+
+import { ChargeInfo } from '../../ChargeSections';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -107,7 +109,8 @@ const LinkInvoiceForm = ({ handlers: { onClose, onSubmit }, charge }) => {
           id="pane.oa.invoice.form"
           paneTitle={renderPaneTitle()}
         >
-          <InvoiceHelper {...getSectionProps('invoice-helper')} />
+          <InvoiceHelper />
+          <ChargeInfo {...getSectionProps('invoice-charge-info')} />
           <InvoiceTypedownForm
             {...getSectionProps('invoice-typedown')}
             setLineGenerated={setLineGenerated}
