@@ -1,10 +1,7 @@
 /* eslint-disable react/style-prop-object */
 import PropTypes from 'prop-types';
 
-import {
-  FormattedMessage,
-  FormattedDisplayName,
-} from 'react-intl';
+import { FormattedMessage, FormattedDisplayName } from 'react-intl';
 import { Col, KeyValue, Row } from '@folio/stripes/components';
 
 const propTypes = {
@@ -41,7 +38,7 @@ const ChargeInfo = ({ charge }) => {
             value={
               <>
                 {charge?.estimatedInvoicePrice?.baseCurrency}
-                {charge?.estimatedInvoicePrice?.value}
+                {charge?.estimatedInvoicePrice?.value?.toFixed(2)}
               </>
             }
           />

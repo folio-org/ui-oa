@@ -25,4 +25,21 @@ const getTotalPayersAmount = (payers) => {
   );
 };
 
-export { getTotalPayersAmount, getEstimatedInvoicePrice };
+const calculateTaxAmount = (tax, netAmount) => {
+  return (tax * netAmount) / 100;
+};
+
+const calculateDiscountAmount = (values, amount, multiplier = 1) => {
+  if (values?.discountType?.value === 'subtracted') {
+    return values?.discount * multiplier || 0;
+  } else {
+    return amount * ((values?.discount || 0) / 100);
+  }
+};
+
+export {
+  getTotalPayersAmount,
+  getEstimatedInvoicePrice,
+  calculateTaxAmount,
+  calculateDiscountAmount,
+};

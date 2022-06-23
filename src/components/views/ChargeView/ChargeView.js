@@ -21,7 +21,7 @@ import {
   Headline,
 } from '@folio/stripes/components';
 
-import { ChargeInfo, Payers } from '../../ChargeSections';
+import { ChargeBreakdown, ChargeInfo, Payers } from '../../ChargeSections';
 import { useInvoice, useInvoiceLine } from '../../../hooks/invoiceHooks';
 import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
 import ChargeInvoice from '../../ChargeSections/ChargeInvoice';
@@ -147,6 +147,7 @@ const ChargeView = ({
             <FormattedMessage id="ui-oa.charge.chargeInformation" />
           </Headline>
           <ChargeInfo charge={charge} request={request} />
+          <ChargeBreakdown charge={charge} />
           <AccordionStatus ref={accordionStatusRef}>
             <Row end="xs">
               <Col xs>
