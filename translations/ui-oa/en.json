@@ -232,7 +232,7 @@
   "publicationStatus.status": "Status",
 
   "charge.chargeInformation": "Charge information",
-  "charge.publicationRequestCharge": "Publication request charge",
+  "charge.publicationRequestCharge": "Charge: request {requestNumber}",
   "charge.publicationRequest": "Publication request",
   "charge.updateExchangeRate": "Update to current exchange rate",
   "charge.updateExchangeRate.disabledToolTip": "Exchange rate for {exchangeCurrency} is not known, Please enter manually",

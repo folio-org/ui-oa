@@ -189,7 +189,7 @@
     "journal.instance.identifier.ns.zdb": "ZDB",
     "publicationRequest.success.callout": "Publication request {requestNumber} successfully created",
     "charge.chargeInformation": "Charge information",
-    "charge.publicationRequestCharge": "Publication request charge",
+    "charge.publicationRequestCharge": "Charge: request {requestNumber}",
     "charge.publicationRequest": "Publication request",
     "charge.discountNote": "Discount note",
     "charge.tax": "Tax",

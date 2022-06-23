@@ -131,7 +131,10 @@ const ChargeView = ({
               : request?.requestNumber
           }
           paneTitle={
-            <FormattedMessage id="ui-oa.charge.publicationRequestCharge" />
+            <FormattedMessage
+              id="ui-oa.charge.publicationRequestCharge"
+              values={{ requestNumber: request?.requestNumber }}
+            />
           }
         >
           <MetaSection
