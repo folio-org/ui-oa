@@ -173,7 +173,11 @@ const PartyTypedownForm = ({ formName }) => {
                 </Tooltip>
               )
             }
-            headerStart={<AppIcon size="small">{renderPartyLink()}</AppIcon>}
+            headerStart={
+              <AppIcon app="oa" iconKey="party" size="small">
+                {renderPartyLink()}
+              </AppIcon>
+            }
             roundedBorder
           >
             <PartyInfo isCard party={values[formName].partyOwner} />

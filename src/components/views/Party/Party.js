@@ -119,7 +119,7 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
             </Icon>
           </Button>
         )}
-        appIcon={<AppIcon iconKey="app" size="small" />}
+        appIcon={<AppIcon app="oa" iconKey="party" size="small" />}
         defaultWidth={PANE_DEFAULT_WIDTH}
         dismissible
         onClose={onClose}

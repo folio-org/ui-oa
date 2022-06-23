@@ -102,7 +102,7 @@ const JournalForm = ({
     >
       <Paneset>
         <Pane
-          appIcon={<AppIcon app="oa" />}
+          appIcon={<AppIcon app="oa" iconKey="journal" size="small" />}
           centerContent
           defaultWidth="100%"
           firstMenu={renderFirstMenu()}
