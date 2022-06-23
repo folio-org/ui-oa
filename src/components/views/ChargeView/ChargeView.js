@@ -21,7 +21,7 @@ import {
   Headline,
 } from '@folio/stripes/components';
 
-import { ChargeInfo, PaymentSplit } from '../../ChargeSections';
+import { ChargeInfo, Payers } from '../../ChargeSections';
 import { useInvoice, useInvoiceLine } from '../../../hooks/invoiceHooks';
 import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
 import ChargeInvoice from '../../ChargeSections/ChargeInvoice';
@@ -158,7 +158,7 @@ const ChargeView = ({
                   invoiceLine={invoiceLine}
                 />
               )}
-              <PaymentSplit charge={charge} />
+              <Payers charge={charge} />
               <Agreement request={request} />
             </AccordionSet>
           </AccordionStatus>
