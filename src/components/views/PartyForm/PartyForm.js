@@ -104,7 +104,7 @@ const PartyForm = ({ handlers: { onClose, onSubmit }, isLoading, party }) => {
     >
       <Paneset>
         <Pane
-          appIcon={<AppIcon />}
+          appIcon={<AppIcon app="oa" iconKey="party" size="small" />}
           centerContent
           defaultWidth="100%"
           firstMenu={renderFirstMenu()}

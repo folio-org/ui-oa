@@ -152,7 +152,11 @@ const PublicationJournal = () => {
                 )}
               </Tooltip>
             }
-            headerStart={<AppIcon size="small">{renderJournalLink()}</AppIcon>}
+            headerStart={
+              <AppIcon app="oa" iconKey="journal" size="small">
+                {renderJournalLink()}
+              </AppIcon>
+            }
             roundedBorder
           >
             <JournalDetails isCard request={{ work: values?.work }} />

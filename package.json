@@ -39,6 +39,16 @@
         "name": "app",
         "alt": "FOLIO app for Open Acces Management",
         "title": "OA"
+      },
+      {
+        "name": "party",
+        "alt": " ",
+        "title": "party"
+      },
+      {
+        "name": "journal",
+        "alt": " ",
+        "title": "journal"
       }
     ],
     "permissionSets": [

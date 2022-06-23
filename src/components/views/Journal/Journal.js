@@ -120,7 +120,7 @@ const Journal = ({ resource: journal, onClose, queryProps: { isLoading } }) => {
     >
       <Pane
         actionMenu={renderActionMenu}
-        appIcon={<AppIcon iconKey="app" size="small" />}
+        appIcon={<AppIcon app="oa" iconKey="journal" size="small" />}
         defaultWidth={PANE_DEFAULT_WIDTH}
         dismissible
         onClose={onClose}

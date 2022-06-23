@@ -66,7 +66,7 @@ const JournalsRoute = ({ path }) => {
 
   const formatter = {
     title: (d) => (
-      <AppIcon iconAlignment="baseline" iconKey="app" size="small">
+      <AppIcon app="oa" iconAlignment="baseline" iconKey="journal" size="small">
         {d?.title}
       </AppIcon>
     ),
@@ -106,7 +106,7 @@ const JournalsRoute = ({ path }) => {
           FilterPaneHeaderComponent={renderHeaderComponent}
           id="journals"
           mainPaneProps={{
-            appIcon: <AppIcon iconKey="app" size="small" />,
+            appIcon: <AppIcon app="oa" iconKey="journal" size="small" />,
             lastMenu: lastpaneMenu,
             paneTitle: <FormattedMessage id="ui-oa.journals" />,
           }}

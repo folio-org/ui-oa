@@ -61,7 +61,7 @@ const PartiesRoute = ({ path }) => {
 
   const formatter = {
     givenNames: (d) => (
-      <AppIcon iconAlignment="baseline" iconKey="app" size="small">
+      <AppIcon app="oa" iconAlignment="baseline" iconKey="party" size="small">
         {d?.givenNames}
       </AppIcon>
     ),
@@ -98,7 +98,7 @@ const PartiesRoute = ({ path }) => {
         FilterPaneHeaderComponent={renderHeaderComponent}
         id="parties"
         mainPaneProps={{
-          appIcon: <AppIcon iconKey="app" size="small" />,
+          appIcon: <AppIcon app="oa" iconKey="party" size="small" />,
           lastMenu: lastpaneMenu,
           paneTitle: <FormattedMessage id="ui-oa.parties.people" />,
         }}
