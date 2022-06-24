@@ -1,7 +1,7 @@
 /* eslint-disable react/style-prop-object */
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage, FormattedNumber } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import { Field, useFormState } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
@@ -162,11 +162,10 @@ const PayersFieldArray = () => {
             id="ui-oa.charge.payers.remainingAmount"
             values={{
               amount: (
-                <FormattedNumber
-                  currency={values?.amount?.baseCurrency}
-                  style="currency"
-                  value={estimatedInvoicePrice - totalPayersAmount}
-                />
+                <>
+                  {values?.amount?.baseCurrency}
+                  {(estimatedInvoicePrice - totalPayersAmount).toFixed(2)}
+                </>
               ),
             }}
           />
