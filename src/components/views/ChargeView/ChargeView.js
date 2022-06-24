@@ -21,7 +21,7 @@ import {
   Headline,
 } from '@folio/stripes/components';
 
-import { ChargeInfo, PaymentSplit } from '../../ChargeSections';
+import { ChargeBreakdown, ChargeInfo, Payers } from '../../ChargeSections';
 import { useInvoice, useInvoiceLine } from '../../../hooks/invoiceHooks';
 import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
 import ChargeInvoice from '../../ChargeSections/ChargeInvoice';
@@ -131,7 +131,10 @@ const ChargeView = ({
               : request?.requestNumber
           }
           paneTitle={
-            <FormattedMessage id="ui-oa.charge.publicationRequestCharge" />
+            <FormattedMessage
+              id="ui-oa.charge.publicationRequestCharge"
+              values={{ requestNumber: request?.requestNumber }}
+            />
           }
         >
           <MetaSection
@@ -144,6 +147,7 @@ const ChargeView = ({
             <FormattedMessage id="ui-oa.charge.chargeInformation" />
           </Headline>
           <ChargeInfo charge={charge} request={request} />
+          <ChargeBreakdown charge={charge} />
           <AccordionStatus ref={accordionStatusRef}>
             <Row end="xs">
               <Col xs>
@@ -158,7 +162,7 @@ const ChargeView = ({
                   invoiceLine={invoiceLine}
                 />
               )}
-              <PaymentSplit charge={charge} />
+              <Payers charge={charge} />
               <Agreement request={request} />
             </AccordionSet>
           </AccordionStatus>

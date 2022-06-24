@@ -18,7 +18,7 @@ const propTypes = {
   charge: PropTypes.object,
 };
 
-const PaymentSplit = ({ charge }) => {
+const Payers = ({ charge }) => {
   const estimatedInvoicePrice = getEstimatedInvoicePrice(charge);
   const totalPayersAmount = getTotalPayersAmount(charge?.payers);
 
@@ -55,7 +55,7 @@ const PaymentSplit = ({ charge }) => {
       closedByDefault
       displayWhenClosed={renderBadge(charge?.payers)}
       displayWhenOpen={renderBadge(charge?.payers)}
-      label={<FormattedMessage id="ui-oa.charge.paymentSplit" />}
+      label={<FormattedMessage id="ui-oa.charge.payers" />}
     >
       <br />
       <Row>
@@ -98,6 +98,6 @@ const PaymentSplit = ({ charge }) => {
   );
 };
 
-PaymentSplit.propTypes = propTypes;
+Payers.propTypes = propTypes;
 
-export default PaymentSplit;
+export default Payers;

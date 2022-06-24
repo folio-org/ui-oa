@@ -1,11 +1,7 @@
 /* eslint-disable react/style-prop-object */
 import PropTypes from 'prop-types';
 
-import {
-  FormattedMessage,
-  FormattedNumber,
-  FormattedDisplayName,
-} from 'react-intl';
+import { FormattedMessage, FormattedDisplayName } from 'react-intl';
 import { Col, KeyValue, Row } from '@folio/stripes/components';
 
 const propTypes = {
@@ -40,11 +36,10 @@ const ChargeInfo = ({ charge }) => {
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.calculatedAmount" />}
             value={
-              <FormattedNumber
-                currency={charge?.estimatedInvoicePrice?.baseCurrency}
-                style="currency"
-                value={charge?.estimatedInvoicePrice?.value}
-              />
+              <>
+                {charge?.estimatedInvoicePrice?.baseCurrency}
+                {charge?.estimatedInvoicePrice?.value?.toFixed(2)}
+              </>
             }
           />
         </Col>
