@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import {
   FormattedDisplayName,
   FormattedMessage,
-  FormattedNumber,
 } from 'react-intl';
 import { Field, useFormState, useForm } from 'react-final-form';
 
@@ -302,20 +301,12 @@ const ChargeInfoForm = () => {
                   </strong>
                 </div>
                 <div className={css.info}>
-                  <FormattedNumber
-                    currency={values?.amount?.baseCurrency}
-                    style="currency"
-                    value={estimatedInvoicePrice}
-                  />
+                  {values?.amount?.baseCurrency}
+                  {estimatedInvoicePrice?.toFixed(2)}
                 </div>
                 <div className={css.info}>
-                  <FormattedNumber
-                    currency={stripes?.currency}
-                    style="currency"
-                    value={
-                      estimatedInvoicePrice * values?.exchangeRate?.coefficient
-                    }
-                  />
+                  {stripes?.currency}
+                  {(estimatedInvoicePrice * values?.exchangeRate?.coefficient)?.toFixed(2)}
                 </div>
               </Col>
             </Row>
