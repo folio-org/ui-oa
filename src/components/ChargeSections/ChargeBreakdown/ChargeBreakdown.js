@@ -11,14 +11,14 @@ const propTypes = {
 };
 
 const ChargeBreakdown = ({ charge }) => {
+  const exchangeRate = charge?.exchangeRate?.coefficient;
   const chargeDiscountAmount = calculateDiscountAmount(
     charge,
     charge?.amount?.value
   );
-  const localDiscountAmount = calculateDiscountAmount(
-    charge,
-    charge?.amount?.value * charge?.exchangeRate?.coefficient,
-    charge?.exchangeRate?.coefficient
+  const chargeTaxAmount = calculateTaxAmount(
+    charge?.tax,
+    charge?.amount?.value - chargeDiscountAmount
   );
 
   const breakdownArray = [
@@ -33,7 +33,7 @@ const ChargeBreakdown = ({ charge }) => {
       localAmount: (
         <>
           {charge?.exchangeRate?.toCurrency}
-          {(charge?.amount?.value * charge?.exchangeRate?.coefficient)?.toFixed(2)}
+          {(charge?.amount?.value * exchangeRate)?.toFixed(2)}
         </>
       ),
     },
@@ -48,7 +48,7 @@ const ChargeBreakdown = ({ charge }) => {
       localAmount: (
         <>
           {charge?.exchangeRate?.toCurrency}
-          {localDiscountAmount?.toFixed(2)}
+          {(chargeDiscountAmount * exchangeRate)?.toFixed(2)}
         </>
       ),
     },
@@ -57,13 +57,13 @@ const ChargeBreakdown = ({ charge }) => {
       chargeAmount: (
         <>
           {charge?.amount?.baseCurrency}
-          {calculateTaxAmount(charge?.tax, charge?.amount?.value - chargeDiscountAmount)?.toFixed(2)}
+          {chargeTaxAmount?.toFixed(2)}
         </>
       ),
       localAmount: (
         <>
           {charge?.exchangeRate?.toCurrency}
-          {calculateTaxAmount(charge?.tax, charge?.amount?.value * charge?.exchangeRate?.coefficient - localDiscountAmount)?.toFixed(2)}
+          {(chargeTaxAmount * exchangeRate)?.toFixed(2)}
         </>
       ),
     },
