@@ -57,6 +57,7 @@ const ChargeEditRoute = () => {
   return (
     <Form
       initialValues={getInitialValues()}
+      keepDirtyOnReinitialize
       mutators={arrayMutators}
       onSubmit={submitCharge}
     >
