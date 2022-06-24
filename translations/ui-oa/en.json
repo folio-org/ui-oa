@@ -248,6 +248,7 @@
   "charge.category": "Category",
   "charge.linkToInvoiceLineIndex": "View invoice line for charge {index}",
   "charge.status": "Status",
+  "charge.chargeBreakdown": "Charge breakdown",
   "charge.payer": "Payer",
   "charge.payers": "Payers",
   "charge.payersBrackets": "Payer(s)",

@@ -89,29 +89,40 @@ const ChargeBreakdown = ({ charge }) => {
   ];
 
   return (
-    <Row>
-      <Col xs={12}>
-        <MultiColumnList
-          columnMapping={{
-            description: <FormattedMessage id="ui-oa.charge.description" />,
-            chargeAmount: (
-              <FormattedMessage
-                id="ui-oa.charge.amountCurrency"
-                values={{ currency: charge?.amount?.baseCurrency }}
-              />
-            ),
-            localAmount: (
-              <FormattedMessage
-                id="ui-oa.charge.amountCurrency"
-                values={{ currency: charge?.exchangeRate?.toCurrency }}
-              />
-            ),
-          }}
-          contentData={breakdownArray}
-          visibleColumns={['description', 'chargeAmount', 'localAmount']}
-        />
-      </Col>
-    </Row>
+    <>
+      <Row>
+        <Col xs={12}>
+          <br />
+          <strong>
+            <FormattedMessage id="ui-oa.charge.chargeBreakdown" />
+          </strong>
+        </Col>
+      </Row>
+      <br />
+      <Row>
+        <Col xs={12}>
+          <MultiColumnList
+            columnMapping={{
+              description: <FormattedMessage id="ui-oa.charge.description" />,
+              chargeAmount: (
+                <FormattedMessage
+                  id="ui-oa.charge.amountCurrency"
+                  values={{ currency: charge?.amount?.baseCurrency }}
+                />
+              ),
+              localAmount: (
+                <FormattedMessage
+                  id="ui-oa.charge.amountCurrency"
+                  values={{ currency: charge?.exchangeRate?.toCurrency }}
+                />
+              ),
+            }}
+            contentData={breakdownArray}
+            visibleColumns={['description', 'chargeAmount', 'localAmount']}
+          />
+        </Col>
+      </Row>
+    </>
   );
 };
 
