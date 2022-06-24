@@ -1,9 +1,6 @@
 /* eslint-disable react/style-prop-object */
 import { useState, useEffect } from 'react';
-import {
-  FormattedDisplayName,
-  FormattedMessage,
-} from 'react-intl';
+import { FormattedDisplayName, FormattedMessage } from 'react-intl';
 import { Field, useFormState, useForm } from 'react-final-form';
 
 import {
@@ -51,9 +48,7 @@ const ChargeInfoForm = () => {
     stripes?.currency
   );
 
-  const [isEdit, setIsEdit] = useState(
-    !!initialValues?.exchangeRate?.coefficient
-  );
+  const [isEdit, setIsEdit] = useState(!!initialValues);
 
   const refdataValues = useOARefdata([
     CHARGE_CATEGORY,
@@ -306,7 +301,9 @@ const ChargeInfoForm = () => {
                 </div>
                 <div className={css.info}>
                   {stripes?.currency}
-                  {(estimatedInvoicePrice * values?.exchangeRate?.coefficient)?.toFixed(2)}
+                  {(
+                    estimatedInvoicePrice * values?.exchangeRate?.coefficient
+                  )?.toFixed(2)}
                 </div>
               </Col>
             </Row>
