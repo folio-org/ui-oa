@@ -79,18 +79,19 @@ const LinkAgreementForm = () => {
         </Col>
       </Row>
       <br />
-      {!values.withoutAgreement && LookupComponent ? (
-        <Field
-          component={LookupComponent}
-          name="agreement.remoteId"
-          onResourceSelected={handleAgreementSelected}
-          resource={agreement}
-        />
-      ) : (
-        <MessageBanner type="error">
-          <FormattedMessage id="ui-oa.publicationRequest.agreementsNotWorking" />
-        </MessageBanner>
-      )}
+      {!values.withoutAgreement &&
+        (LookupComponent ? (
+          <Field
+            component={LookupComponent}
+            name="agreement.remoteId"
+            onResourceSelected={handleAgreementSelected}
+            resource={agreement}
+          />
+        ) : (
+          <MessageBanner type="error">
+            <FormattedMessage id="ui-oa.publicationRequest.agreementsNotWorking" />
+          </MessageBanner>
+        ))}
     </Accordion>
   );
 };
