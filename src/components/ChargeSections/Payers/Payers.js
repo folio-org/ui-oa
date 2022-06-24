@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { FormattedMessage, FormattedNumber } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import {
   Accordion,
   MultiColumnList,
@@ -37,12 +37,10 @@ const Payers = ({ charge }) => {
     },
     payerAmount: (e) => {
       return (
-        <FormattedNumber
-          currency={charge?.amount?.baseCurrency}
-          // eslint-disable-next-line react/style-prop-object
-          style="currency"
-          value={e?.payerAmount}
-        />
+        <>
+          {charge?.amount?.baseCurrency}
+          {e?.payerAmount?.toFixed(2)}
+        </>
       );
     },
     payerNote: (e) => {
@@ -64,12 +62,10 @@ const Payers = ({ charge }) => {
             id="ui-oa.charge.payers.remainingAmount"
             values={{
               amount: (
-                <FormattedNumber
-                  currency={charge?.amount?.baseCurrency}
-                  // eslint-disable-next-line react/style-prop-object
-                  style="currency"
-                  value={estimatedInvoicePrice - totalPayersAmount}
-                />
+                <>
+                  {charge?.amount?.baseCurrency}
+                  {(estimatedInvoicePrice - totalPayersAmount)?.toFixed(2)}
+                </>
               ),
             }}
           />
