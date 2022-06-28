@@ -12,6 +12,7 @@ import {
   MultiColumnList,
   Row,
   Card,
+  Headline,
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes-core';
 import { JournalDetails, BookDetails } from '../PublicationType';
@@ -203,6 +204,9 @@ const Publication = ({ request }) => {
       {isJournal(request) && (
         <>
           <br />
+          <Headline margin="small" size="large" tag="h5">
+            <FormattedMessage id="ui-oa.publicationRequest.journalDetails" />
+          </Headline>
           <Card
             cardStyle="positive"
             headerStart={
