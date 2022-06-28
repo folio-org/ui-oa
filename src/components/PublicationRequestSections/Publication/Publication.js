@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 
 import {
   Accordion,
@@ -10,11 +11,15 @@ import {
   Label,
   MultiColumnList,
   Row,
+  Card,
+  Headline,
 } from '@folio/stripes/components';
+import { AppIcon } from '@folio/stripes-core';
 import { JournalDetails, BookDetails } from '../PublicationType';
 import { publicationRequestFields } from '../../../constants';
 import ExternalLink from '../../ExternalLink';
 import getSortedItems from '../../../util/getSortedItems';
+import urls from '../../../util/urls';
 
 const propTypes = {
   request: PropTypes.object,
@@ -196,7 +201,31 @@ const Publication = ({ request }) => {
           </Col>
         </Row>
       )}
-      {isJournal(request) && <JournalDetails request={request} />}
+      {isJournal(request) && (
+        <>
+          <br />
+          <Headline margin="small" size="large" tag="h5">
+            <FormattedMessage id="ui-oa.publicationRequest.journalDetails" />
+          </Headline>
+          <Card
+            cardStyle="positive"
+            headerStart={
+              <AppIcon app="oa" iconKey="journal" size="small">
+                {request.work?.id ? (
+                  <Link to={urls.journal(request.work.id)}>
+                    <strong>{request?.work?.title}</strong>
+                  </Link>
+                ) : (
+                  <strong>{request?.work?.title}</strong>
+                )}
+              </AppIcon>
+            }
+            roundedBorder
+          >
+            <JournalDetails isCard request={request} />
+          </Card>
+        </>
+      )}
       {isBook(request) && <BookDetails request={request} />}
     </Accordion>
   );

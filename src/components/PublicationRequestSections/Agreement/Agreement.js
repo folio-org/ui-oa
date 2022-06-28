@@ -14,7 +14,7 @@ import {
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 import { Registry } from '@folio/handler-stripes-registry';
-import { CustomPropertiesList } from '@folio/stripes-erm-components';
+import { CustomPropertyCard } from '@k-int/stripes-kint-components';
 
 import css from './Agreement.css';
 
@@ -98,10 +98,18 @@ const Agreement = ({ request }) => {
       .map((cp) => cp[0]?.type);
 
     return (
-      <CustomPropertiesList
-        customProperties={openAccessProperties}
-        resource={request?.agreement?.remoteId_object}
-      />
+      <>
+        {openAccessProperties.map((cp) => {
+          return (
+            <CustomPropertyCard
+              ctx="OpenAccess"
+              customProperty={customProperties?.[cp.name]?.[0]}
+              customPropertyDefinition={cp}
+              labelOverrides={{}}
+            />
+          );
+        })}
+      </>
     );
   };
 

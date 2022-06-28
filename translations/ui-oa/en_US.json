@@ -224,9 +224,6 @@
     "charge.invoice.vendorOrganisation": "Vendor organisation",
     "charge.invoice.paymentMethod": "Payment method",
     "charge.invoice.batchGroup": "Batch group",
-    "charge.invoice.linkInvoiceLine": "Link invoice line",
-    "charge.invoice.unlinkInvoiceLine": "Unlink invoice line",
-    "charge.invoice.unlinkInvoiceLineMessage": "The associated invoice and invoice line will be unlinked from this charge.",
     "charge.invoice.unlink": "Unlink",
     "charge.invoice.addInvoice": "Add invoice",
     "charge.invoiceLine.addInvoiceLine": "Add invoice line",
@@ -295,7 +292,6 @@
     "publicationRequest.agreementsNotWorking": "<strong>Error :</strong> Agreements is currently unavailable, please try again later or contact your system administrator",
     "charge.payers": "Payers",
     "charge.payerAmount": "Amount in charge currency",
-    "charge.payers.isEmptyMessage": "There are no payers associated with this charge",
     "charge.addPayer": "Add payer",
     "charge.removePayerIndex": "Remove payer {index}",
     "charge.payers.remainingAmount": "<strong>Remaining amount to be split between payers: {amount}</strong>",
@@ -318,5 +314,13 @@
     "settings.settingsSection.publicationRequests": "Publication requests",
     "settings.publicationRequests.hridPrefix": "HRID prefix",
     "settings.publicationRequests.defaultTax": "Default tax",
-    "charge.amountToCalculated": "Amount to pay, with tax and discount applied"
+    "charge.amountToCalculated": "Amount to pay, with tax and discount applied",
+    "charge.invoice.linkInvoiceLine": "Link invoice line",
+    "charge.invoice.unlinkInvoiceLine": "Unlink invoice line",
+    "charge.invoice.unlinkInvoiceLineMessage": "The associated invoice and invoice line will be unlinked from this charge.",
+    "charge.payersBrackets": "Payer(s)",
+    "charge.invoiceLineNotLinked": "Invoice line not linked",
+    "charge.chargeBreakdown": "Charge breakdown",
+    "charge.payers.isEmptyMessage": "There are no payers associated with this charge",
+    "charge.amountCurrency": "Amount ({currency})"
 }
