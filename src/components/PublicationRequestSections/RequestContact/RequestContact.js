@@ -2,16 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 
-import {
-  Accordion,
-  Badge,
-} from '@folio/stripes/components';
+import { Accordion, Badge, Card } from '@folio/stripes/components';
+import { AppIcon } from '@folio/stripes-core';
 
 import PartyInfo from '../../PartySections/PartyInfo';
 
+import urls from '../../../util/urls';
+
 const propTypes = {
-  request: PropTypes.object
+  request: PropTypes.object,
 };
 
 const renderBadge = (requestContact) => {
@@ -26,9 +27,23 @@ const RequestContact = ({ request }) => {
       displayWhenOpen={renderBadge(request?.requestContact)}
       label={<FormattedMessage id="ui-oa.publicationRequest.requestContact" />}
     >
-      <PartyInfo
-        party={request?.requestContact?.partyOwner}
-      />
+      <Card
+        cardStyle="positive"
+        headerStart={
+          <AppIcon app="oa" iconKey="party" size="small">
+            {request.requestContact?.partyOwner?.id ? (
+              <Link to={urls.party(request.requestContact.partyOwner.id)}>
+                <strong>{request?.requestContact?.partyOwner?.fullName}</strong>
+              </Link>
+            ) : (
+              <strong>{request?.requestContact?.partyOwner?.fullName}</strong>
+            )}
+          </AppIcon>
+        }
+        roundedBorder
+      >
+        <PartyInfo isCard party={request?.requestContact?.partyOwner} />
+      </Card>
     </Accordion>
   );
 };

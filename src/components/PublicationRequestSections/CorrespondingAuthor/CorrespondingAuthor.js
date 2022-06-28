@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 
 import {
   Accordion,
@@ -10,9 +11,13 @@ import {
   Label,
   MultiColumnList,
   Row,
+  Card,
 } from '@folio/stripes/components';
+import { AppIcon } from '@folio/stripes-core';
 
 import PartyInfo from '../../PartySections/PartyInfo';
+
+import urls from '../../../util/urls';
 
 const propTypes = {
   request: PropTypes.object,
@@ -32,9 +37,23 @@ const CorrespondingAuthor = ({ request }) => {
         <FormattedMessage id="ui-oa.publicationRequest.correspondingAuthor" />
       }
     >
-      <PartyInfo
-        party={request?.correspondingAuthor?.partyOwner}
-      />
+      <Card
+        cardStyle="positive"
+        headerStart={
+          <AppIcon app="oa" iconKey="party" size="small">
+            {request.correspondingAuthor?.partyOwner?.id ? (
+              <Link to={urls.party(request.correspondingAuthor.partyOwner.id)}>
+                <strong>{request?.correspondingAuthor?.partyOwner?.fullName}</strong>
+              </Link>
+            ) : (
+              <strong>{request?.correspondingAuthor?.partyOwner?.fullName}</strong>
+            )}
+          </AppIcon>
+        }
+        roundedBorder
+      >
+        <PartyInfo isCard party={request?.correspondingAuthor?.partyOwner} />
+      </Card>
       {request?.correspondingAuthor?.affiliations && (
         <Row>
           <Col xs={12}>
