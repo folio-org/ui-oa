@@ -1,18 +1,22 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
 import { Accordion } from '@folio/stripes-testing';
+import { MemoryRouter } from 'react-router-dom';
 import translationsProperties from '../../../../test/helpers';
 import CorrespondingAuthor from './CorrespondingAuthor';
+import publicationRequestResource from '../../../../test/resources/publicationRequestsResources';
 
 let renderComponent;
 
 jest.mock('../../PartySections/PartyInfo', () => () => <div>PartyInfo</div>);
 
 describe('CorrespondingAuthor', () => {
-  describe('renders components with no values', () => {
+  describe('renders components', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <CorrespondingAuthor request={null} />,
+        <MemoryRouter>
+          <CorrespondingAuthor request={publicationRequestResource} />
+        </MemoryRouter>,
         translationsProperties
       );
     });
