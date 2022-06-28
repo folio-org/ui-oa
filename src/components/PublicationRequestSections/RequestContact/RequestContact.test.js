@@ -3,6 +3,7 @@ import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers'
 import { Accordion } from '@folio/stripes-testing';
 import translationsProperties from '../../../../test/helpers';
 import RequestContact from './RequestContact';
+import { publicationRequest } from '../../../../test/resources/publicationRequestsResources';
 
 let renderComponent;
 
@@ -12,7 +13,7 @@ describe('RequestContact', () => {
   describe('renders components', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <RequestContact />,
+        <RequestContact request={publicationRequest} />,
         translationsProperties
       );
     });
