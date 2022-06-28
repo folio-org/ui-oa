@@ -1,8 +1,4 @@
-const publicationRequestSubmitHandler = (
-  values,
-  journalArticleId,
-  generationSequenceId
-) => {
+const publicationRequestSubmitHandler = (values, journalArticleId) => {
   const submitValues = { ...values };
   const unsetValueArray = [
     'publicationType',
@@ -62,8 +58,10 @@ const publicationRequestSubmitHandler = (
     submitValues.agreement = null;
   }
 
-  if (generationSequenceId) {
-    submitValues.requestNumber = generationSequenceId;
+  if (values?.requestNumber) {
+    submitValues.requestNumber = values.requestNumber;
+  } else {
+    submitValues.requestNumber = null;
   }
 
   return submitValues;
