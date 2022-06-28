@@ -58,6 +58,12 @@ const publicationRequestSubmitHandler = (values, journalArticleId) => {
     submitValues.agreement = null;
   }
 
+  if (values?.requestNumber) {
+    submitValues.requestNumber = values.requestNumber;
+  } else {
+    submitValues.requestNumber = null;
+  }
+
   return submitValues;
 };
 

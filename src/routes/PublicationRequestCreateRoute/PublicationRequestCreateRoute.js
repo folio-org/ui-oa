@@ -8,6 +8,7 @@ import { useMutation } from 'react-query';
 import { FormattedMessage } from 'react-intl';
 
 import { useOkapiKy, CalloutContext } from '@folio/stripes/core';
+import { useGenerateNumber } from '@folio/service-interaction';
 
 import PublicationRequestForm from '../../components/views/PublicationRequestForm';
 import publicationRequestSubmitHandler from '../../util/publicationRequestSubmitHandler';
@@ -21,65 +22,77 @@ const PublicationRequestCreateRoute = () => {
   const ky = useOkapiKy();
   const callout = useContext(CalloutContext);
   const focusOnError = createDecorator();
-
   const refdataValues = useOARefdata([PUBLICATION_TYPE]);
-
   const journalArticleId = getRDVId(
     refdataValues,
     PUBLICATION_TYPE,
     'journal_article'
   );
+
+  const { generate } = useGenerateNumber({
+    callback: (string) => {
+      return string;
+    },
+    generator: 'openAccess',
+    sequence: 'requestSequence',
+  });
+
   const handleClose = (id) => {
     let path = '/oa/publicationRequests';
     if (id) path += `/${id}`;
     history.push(path);
   };
 
-  const { mutateAsync: postPublicationRequest } =
-    useMutation(
-      ['ui-oa', 'PublicationRequestCreateRoute', 'postPublicationRequest'],
-      (data) => ky
-          .post('oa/publicationRequest', { json: data })
-          .json()
-          .then((res) => {
-            const requestNumber = res.requestNumber;
-            callout.sendCallout({
-              message: (
-                <FormattedMessage
-                  id="ui-oa.publicationRequest.success.callout"
-                  values={{ requestNumber }}
-                />
-              ),
-            });
-            handleClose(res.id);
-          })
-    );
+  const { mutateAsync: postPublicationRequest } = useMutation(
+    ['ui-oa', 'PublicationRequestCreateRoute', 'postPublicationRequest'],
+    (data) => ky
+        .post('oa/publicationRequest', { json: data })
+        .json()
+        .then((res) => {
+          const requestNumber = res.requestNumber;
+          callout.sendCallout({
+            message: (
+              <FormattedMessage
+                id="ui-oa.publicationRequest.success.callout"
+                values={{ requestNumber }}
+              />
+            ),
+          });
+          handleClose(res.id);
+        })
+  );
 
   const submitRequest = async (values) => {
+    const generatedString = await generate();
     const submitValues = publicationRequestSubmitHandler(
-      values,
+      {
+        ...values,
+        requestNumber: generatedString?.data,
+      },
       journalArticleId
     );
     await postPublicationRequest(submitValues);
   };
 
   return (
-    <Form
-      decorators={[focusOnError]}
-      mutators={arrayMutators}
-      onSubmit={submitRequest}
-    >
-      {({ handleSubmit }) => (
-        <form onSubmit={handleSubmit}>
-          <PublicationRequestForm
-            handlers={{
-              onClose: handleClose,
-              onSubmit: handleSubmit,
-            }}
-          />
-        </form>
-      )}
-    </Form>
+    <>
+      <Form
+        decorators={[focusOnError]}
+        mutators={arrayMutators}
+        onSubmit={submitRequest}
+      >
+        {({ handleSubmit }) => (
+          <form onSubmit={handleSubmit}>
+            <PublicationRequestForm
+              handlers={{
+                onClose: handleClose,
+                onSubmit: handleSubmit,
+              }}
+            />
+          </form>
+        )}
+      </Form>
+    </>
   );
 };
 
