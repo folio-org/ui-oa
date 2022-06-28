@@ -79,9 +79,7 @@ const PublicationRequestCreateRoute = () => {
       <Form
         decorators={[focusOnError]}
         mutators={arrayMutators}
-        onSubmit={(values) => {
-          generate().then((res) => submitRequest(values, res.data));
-        }}
+        onSubmit={submitRequest}
       >
         {({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
