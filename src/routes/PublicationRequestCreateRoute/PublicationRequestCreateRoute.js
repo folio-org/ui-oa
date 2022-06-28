@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import createDecorator from 'final-form-focus';
@@ -8,7 +8,7 @@ import { useMutation } from 'react-query';
 import { FormattedMessage } from 'react-intl';
 
 import { useOkapiKy, CalloutContext } from '@folio/stripes/core';
-import { NumberGeneratorModal } from '@folio/service-interaction';
+import { useGenerateNumber } from '@folio/service-interaction';
 
 import PublicationRequestForm from '../../components/views/PublicationRequestForm';
 import publicationRequestSubmitHandler from '../../util/publicationRequestSubmitHandler';
@@ -22,16 +22,21 @@ const PublicationRequestCreateRoute = () => {
   const ky = useOkapiKy();
   const callout = useContext(CalloutContext);
   const focusOnError = createDecorator();
-  const [showGeneratorModal, setShowGeneratorModal] = useState(false);
-  const [formData, setFormData] = useState({});
-
   const refdataValues = useOARefdata([PUBLICATION_TYPE]);
-
   const journalArticleId = getRDVId(
     refdataValues,
     PUBLICATION_TYPE,
     'journal_article'
   );
+
+  const { generate } = useGenerateNumber({
+    callback: (string) => {
+      return string;
+    },
+    generator: 'openAccess',
+    sequence: 'requestSequence',
+  });
+
   const handleClose = (id) => {
     let path = '/oa/publicationRequests';
     if (id) path += `/${id}`;
@@ -57,16 +62,11 @@ const PublicationRequestCreateRoute = () => {
         })
   );
 
-  const handleGeneration = (values) => {
-    setFormData(values);
-    setShowGeneratorModal(true);
-  };
-
-  const submitRequest = async (values, generationSequenceId) => {
+  const submitRequest = async (values, generatedString) => {
     const submitValues = publicationRequestSubmitHandler(
       values,
       journalArticleId,
-      generationSequenceId
+      generatedString
     );
     await postPublicationRequest(submitValues);
   };
@@ -76,7 +76,9 @@ const PublicationRequestCreateRoute = () => {
       <Form
         decorators={[focusOnError]}
         mutators={arrayMutators}
-        onSubmit={handleGeneration}
+        onSubmit={(values) => {
+          generate().then((res) => submitRequest(values, res.data));
+        }}
       >
         {({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
@@ -89,15 +91,6 @@ const PublicationRequestCreateRoute = () => {
           </form>
         )}
       </Form>
-      <NumberGeneratorModal
-        callback={(generation) => {
-          setShowGeneratorModal(false);
-          submitRequest(formData, generation);
-        }}
-        dismissible
-        onClose={() => setShowGeneratorModal(false)}
-        open={showGeneratorModal}
-      />
     </>
   );
 };
