@@ -41,7 +41,7 @@ const CorrespondingAuthor = ({ request }) => {
         cardStyle="positive"
         headerStart={
           <AppIcon app="oa" iconKey="party" size="small">
-            {request.correspondingAuthor?.partyOwner?.id ? (
+            {request?.correspondingAuthor?.partyOwner?.id ? (
               <Link to={urls.party(request.correspondingAuthor.partyOwner.id)}>
                 <strong>{request?.correspondingAuthor?.partyOwner?.fullName}</strong>
               </Link>
