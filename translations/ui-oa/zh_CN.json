@@ -302,7 +302,7 @@
     "charge.discountType.percentage": "%",
     "charge.discountType.subtracted": "{currency}",
     "charge.calculatedAmount": "Calculated amount",
-    "charge.netAmount": "Net amount",
+    "charge.netAmount": "净额",
     "charge.exchangeRateApplied": "Exchange rate applied",
     "charge.chargeDescription": "Charge description",
     "charge.invoice": "Invoice",
