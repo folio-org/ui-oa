@@ -16,7 +16,7 @@ const ChargeEditRoute = () => {
     history.push(urls.publicationRequestChargeView(prId, chId));
   };
 
-  const { data: charge, isLoading, refetch } = useQuery(
+  const { data: charge, isFetching } = useQuery(
     ['ui-oa', 'publicationEditRoute', 'publicationRequest', prId],
     () => ky(`oa/charges/${chId}`).json()
   );
@@ -30,7 +30,6 @@ const ChargeEditRoute = () => {
     ['ui-oa', 'ChargeEditRoute', 'postCharge'],
     (data) => ky.put(`oa/charges/${chId}`, { json: data }).then(() => {
         handleClose();
-        refetch();
       })
   );
 
@@ -70,7 +69,7 @@ const ChargeEditRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit,
             }}
-            isLoading={isLoading}
+            isFetching={isFetching}
             request={request}
           />
         </form>
