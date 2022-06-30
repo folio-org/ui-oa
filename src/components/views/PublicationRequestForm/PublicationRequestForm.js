@@ -38,13 +38,13 @@ const propTypes = {
     onClose: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
   }).isRequired,
-  isLoading: PropTypes.bool,
+  isFetching: PropTypes.bool,
   publicationRequest: PropTypes.object,
 };
 
 const PublicationRequestForm = ({
   handlers: { onClose, onSubmit },
-  isLoading,
+  isFetching,
   publicationRequest,
 }) => {
   const { values, pristine, submitting } = useFormState();
@@ -129,7 +129,7 @@ const PublicationRequestForm = ({
     );
   };
 
-  if (isLoading) {
+  if (isFetching) {
     return <LoadingView />;
   }
 

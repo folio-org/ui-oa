@@ -56,7 +56,6 @@ const ChargeRoute = () => {
     ['ui-oa', 'ChargeView', 'unlinkInvoice'],
     (data) => ky.put(`oa/charges/${charge?.id}`, { json: data }).then(() => {
         refetchCharge();
-        // setShowUnlinkConfirmModal(false);
       })
   );
 

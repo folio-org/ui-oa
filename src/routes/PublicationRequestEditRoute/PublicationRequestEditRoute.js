@@ -34,8 +34,7 @@ const PublicationRequestEditRoute = () => {
 
   const {
     data: publicationRequest,
-    isLoading,
-    refetch,
+    isFetching,
   } = useQuery(
     ['ui-oa', 'publicationEditRoute', 'publicationRequest', id],
     () => ky(`oa/publicationRequest/${id}`).json()
@@ -43,11 +42,11 @@ const PublicationRequestEditRoute = () => {
 
   const { mutateAsync: putPublicationRequest } = useMutation(
     ['ui-oa', 'PublicationRequestEditRoute', 'putPublicationRequest'],
-    (data) => ky.put(`oa/publicationRequest/${data.id}`, { json: data }).then(() => {
-        // Added refetch so that if the form is edited again after, the old values arent displayed breifly
-        refetch();
+    (data) => {
+      ky.put(`oa/publicationRequest/${data.id}`, { json: data }).then(() => {
         handleClose();
-      })
+      });
+    }
   );
 
   const submitRequest = async (values) => {
@@ -89,7 +88,7 @@ const PublicationRequestEditRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit,
             }}
-            isLoading={isLoading}
+            isFetching={isFetching}
             publicationRequest={publicationRequest}
           />
         </form>
