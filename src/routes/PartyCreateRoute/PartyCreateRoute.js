@@ -9,6 +9,8 @@ import { useOkapiKy, CalloutContext } from '@folio/stripes/core';
 
 import PartyForm from '../../components/views/PartyForm';
 import getPartyErrorMessage from '../../util/getPartyErrorMessage';
+import urls from '../../util/urls';
+import { PARTIES_ENDPOINT } from '../../constants/endpoints';
 
 const PartyCreateRoute = () => {
   const history = useHistory();
@@ -17,16 +19,16 @@ const PartyCreateRoute = () => {
 
   const handleClose = (id) => {
     if (id) {
-      history.push(`/oa/people/${id}`);
+      history.push(urls.party(id));
     } else {
-      history.push('/oa/people/');
+      history.push(urls.parties());
     }
   };
 
   const { mutateAsync: postParty } = useMutation(
     ['ui-oa', 'PartyCreateRoute', 'postParty'],
     (data) => ky
-        .post('oa/party', { json: data })
+        .post(PARTIES_ENDPOINT, { json: data })
         .json()
         .then((res) => {
           const createdParty =

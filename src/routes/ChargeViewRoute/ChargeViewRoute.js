@@ -8,8 +8,9 @@ import ChargeView from '../../components/views/ChargeView';
 import { PANE_DEFAULT_WIDTH } from '../../constants/config';
 import urls from '../../util/urls';
 import useOARefdata from '../../util/useOARefdata';
+import { PUBLICATION_REQUEST_ENDPOINT, CHARGE_ENDPOINT } from '../../constants/endpoints';
 
-const ChargeRoute = () => {
+const ChargeViewRoute = () => {
   const ky = useOkapiKy();
   const history = useHistory();
 
@@ -23,41 +24,39 @@ const ChargeRoute = () => {
     data: charge,
     isLoading,
     refetch: refetchCharge,
-  } = useQuery(['ui-oa', 'ChargeRoute', 'getCharge', chId], () => ky(`oa/charges/${chId}`).json());
+  } = useQuery(['ui-oa', 'ChargeRoute', 'getCharge', chId], () => ky(CHARGE_ENDPOINT(chId)).json());
 
   const { data: request, refetch: refetchRequest } = useQuery(
     ['ui-oa', 'ChargeRoute', 'getPublicationRequest', prId],
-    () => ky(`oa/publicationRequest/${prId}`).json()
+    () => ky(PUBLICATION_REQUEST_ENDPOINT(prId)).json()
   );
 
   const handleClose = () => {
-    history.push(urls.publicationRequest(request?.id));
+    history.push(urls.publicationRequest(prId));
   };
 
   const handleEdit = () => {
-    history.push(urls.publicationRequestChargeEdit(request?.id, charge?.id));
+    history.push(urls.publicationRequestChargeEdit(prId, chId));
   };
 
   const handleLink = () => {
-    history.push(
-      `${urls.publicationRequestChargeLinkInvoice(request.id, charge.id)}`
-    );
+    history.push(`${urls.publicationRequestChargeLinkInvoice(prId, chId)}`);
   };
 
   const { mutateAsync: deleteCharge } = useMutation(
     ['ui-oa', 'ChargeView', 'deleteCharge'],
-    () => ky.delete(`oa/charges/${charge?.id}`).then(() => {
-        refetchRequest();
-        handleClose();
-      })
+    () => {
+      ky.delete(CHARGE_ENDPOINT(chId));
+    }
   );
 
   const { mutateAsync: unlinkInvoice } = useMutation(
     ['ui-oa', 'ChargeView', 'unlinkInvoice'],
-    (data) => ky.put(`oa/charges/${charge?.id}`, { json: data }).then(() => {
+    (data) => {
+      ky.put(CHARGE_ENDPOINT(chId), { json: data }).then(() => {
         refetchCharge();
-        // setShowUnlinkConfirmModal(false);
-      })
+      });
+    }
   );
 
   const handleUnlink = () => {
@@ -68,6 +67,12 @@ const ChargeRoute = () => {
       chargeStatus: expectedStatusRefData,
     };
     unlinkInvoice(submitValues);
+  };
+
+  const handleDelete = async () => {
+    await deleteCharge(chId);
+    await refetchRequest();
+    history.push(urls.publicationRequest(prId));
   };
 
   if (isLoading) {
@@ -88,11 +93,11 @@ const ChargeRoute = () => {
         handleEdit,
         handleLink,
         handleUnlink,
-        handleDelete: deleteCharge,
+        handleDelete,
       }}
       request={request}
     />
   );
 };
 
-export default ChargeRoute;
+export default ChargeViewRoute;

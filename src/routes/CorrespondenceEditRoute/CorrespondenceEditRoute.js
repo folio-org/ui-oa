@@ -7,27 +7,30 @@ import { useOkapiKy } from '@folio/stripes/core';
 
 import CorrespondenceForm from '../../components/views/CorrespondenceForm';
 
+import urls from '../../util/urls';
+import { CORRESPONDENCE_ENDPOINT } from '../../constants/endpoints';
+
 const CorrespondenceEditRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
   const { prId, cId } = useParams();
 
   const handleClose = () => {
-    history.push(`/oa/publicationRequests/${prId}/correspondence/${cId}`);
+    history.push(urls.publicationRequestCorrespondenceView(prId, cId));
   };
 
-  const { data: correspondence, isLoading, refetch } = useQuery(
+  const { data: correspondence, isFetching } = useQuery(
     ['ui-oa', 'CorrespondenceEditRoute', 'correspondence', cId],
-    () => ky(`oa/correspondence/${cId}`).json()
+    () => ky(CORRESPONDENCE_ENDPOINT(cId)).json()
   );
 
   const { mutateAsync: putCorrespondence } = useMutation(
     ['ui-oa', 'CorrespondenceEditRoute', 'putCorrespondence'],
-    (data) => ky.put(`oa/correspondence/${cId}`, { json: data }).then(() => {
-        // Added refetch so that if the form is edited again after, the old values arent displayed breifly
-        refetch();
+    (data) => {
+      ky.put(CORRESPONDENCE_ENDPOINT(cId), { json: data }).then(() => {
         handleClose();
-      })
+      });
+    }
   );
   const submitCorrespondence = async (values) => {
     const { category, ...submitValues } = { ...values };
@@ -54,7 +57,7 @@ const CorrespondenceEditRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit,
             }}
-            isLoading={isLoading}
+            isFetching={isFetching}
           />
         </form>
       )}

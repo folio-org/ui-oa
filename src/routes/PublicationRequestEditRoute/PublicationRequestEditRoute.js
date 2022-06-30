@@ -11,6 +11,8 @@ import PublicationRequestForm from '../../components/views/PublicationRequestFor
 import publicationRequestSubmitHandler from '../../util/publicationRequestSubmitHandler';
 import useOARefdata from '../../util/useOARefdata';
 import getRDVId from '../../util/getRDVId';
+import urls from '../../util/urls';
+import { PUBLICATION_REQUEST_ENDPOINT } from '../../constants/endpoints';
 
 const [PUBLICATION_TYPE] = ['PublicationRequest.PublicationType'];
 
@@ -29,25 +31,21 @@ const PublicationRequestEditRoute = () => {
   );
 
   const handleClose = () => {
-    history.push(`/oa/publicationRequests/${id}`);
+    history.push(urls.publicationRequest(id));
   };
 
-  const {
-    data: publicationRequest,
-    isLoading,
-    refetch,
-  } = useQuery(
+  const { data: publicationRequest, isFetching } = useQuery(
     ['ui-oa', 'publicationEditRoute', 'publicationRequest', id],
-    () => ky(`oa/publicationRequest/${id}`).json()
+    () => ky(PUBLICATION_REQUEST_ENDPOINT(id)).json()
   );
 
   const { mutateAsync: putPublicationRequest } = useMutation(
     ['ui-oa', 'PublicationRequestEditRoute', 'putPublicationRequest'],
-    (data) => ky.put(`oa/publicationRequest/${data.id}`, { json: data }).then(() => {
-        // Added refetch so that if the form is edited again after, the old values arent displayed breifly
-        refetch();
+    (data) => {
+      ky.put(PUBLICATION_REQUEST_ENDPOINT(data.id), { json: data }).then(() => {
         handleClose();
-      })
+      });
+    }
   );
 
   const submitRequest = async (values) => {
@@ -89,7 +87,7 @@ const PublicationRequestEditRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit,
             }}
-            isLoading={isLoading}
+            isFetching={isFetching}
             publicationRequest={publicationRequest}
           />
         </form>

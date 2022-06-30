@@ -18,6 +18,7 @@ import PartyInfo from '../../PartySections';
 import RelatedRequests from '../../RelatedRequests';
 import urls from '../../../util/urls';
 import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
+import { PUBLICATION_REQUESTS_ENDPOINT } from '../../../constants/endpoints';
 
 const propTypes = {
   onClose: PropTypes.func.isRequired,
@@ -34,7 +35,7 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
   const { data: publicationRequests } = useQuery(
     ['ui-oa', 'party', 'publicationRequests', party.id],
     () => ky(
-        `oa/publicationRequest?filters=correspondingAuthor.partyOwner.id==${party.id}`
+        `${PUBLICATION_REQUESTS_ENDPOINT}?filters=correspondingAuthor.partyOwner.id==${party.id}`
       ).json()
   );
 

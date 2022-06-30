@@ -18,6 +18,7 @@ import JournalInstances from '../../JournalSections';
 import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
 import urls from '../../../util/urls';
 import RelatedRequests from '../../RelatedRequests';
+import { PUBLICATION_REQUESTS_ENDPOINT } from '../../../constants/endpoints';
 
 const propTypes = {
   onClose: PropTypes.func.isRequired,
@@ -31,7 +32,7 @@ const Journal = ({ resource: journal, onClose, queryProps: { isLoading } }) => {
 
   const { data: publicationRequests } = useQuery(
     ['ui-oa', 'party', 'publicationRequests', journal.id],
-    () => ky(`oa/publicationRequest?filters=work.id==${journal.id}`).json()
+    () => ky(`${PUBLICATION_REQUESTS_ENDPOINT}?filters=work.id==${journal.id}`).json()
   );
 
   const getSectionProps = (name) => {

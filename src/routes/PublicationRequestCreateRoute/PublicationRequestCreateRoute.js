@@ -14,6 +14,8 @@ import PublicationRequestForm from '../../components/views/PublicationRequestFor
 import publicationRequestSubmitHandler from '../../util/publicationRequestSubmitHandler';
 import useOARefdata from '../../util/useOARefdata';
 import getRDVId from '../../util/getRDVId';
+import { PUBLICATION_REQUESTS_ENDPOINT } from '../../constants/endpoints';
+import urls from '../../util/urls';
 
 const [PUBLICATION_TYPE] = ['PublicationRequest.PublicationType'];
 
@@ -37,16 +39,18 @@ const PublicationRequestCreateRoute = () => {
     sequence: 'requestSequence',
   });
 
-  const handleClose = (id) => {
-    let path = '/oa/publicationRequests';
-    if (id) path += `/${id}`;
-    history.push(path);
+  const handleClose = (prId) => {
+    if (prId) {
+      history.push(urls.publicationRequest(prId));
+    } else {
+      history.push(urls.publicationRequests());
+    }
   };
 
   const { mutateAsync: postPublicationRequest } = useMutation(
     ['ui-oa', 'PublicationRequestCreateRoute', 'postPublicationRequest'],
     (data) => ky
-        .post('oa/publicationRequest', { json: data })
+        .post(PUBLICATION_REQUESTS_ENDPOINT, { json: data })
         .json()
         .then((res) => {
           const requestNumber = res.requestNumber;

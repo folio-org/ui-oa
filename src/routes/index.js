@@ -11,5 +11,5 @@ export { default as JournalsRoute } from './JournalsRoute';
 export { default as JournalEditRoute } from './JournalEditRoute';
 export { default as ChargeCreateRoute } from './ChargeCreateRoute';
 export { default as ChargeEditRoute } from './ChargeEditRoute';
-export { default as ChargeRoute } from './ChargeRoute';
+export { default as ChargeViewRoute } from './ChargeViewRoute';
 export { default as LinkInvoiceRoute } from './LinkInvoiceRoute';

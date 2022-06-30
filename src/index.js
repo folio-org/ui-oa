@@ -32,7 +32,7 @@ import {
   JournalEditRoute,
   ChargeCreateRoute,
   ChargeEditRoute,
-  ChargeRoute,
+  ChargeViewRoute,
   LinkInvoiceRoute,
 } from './routes';
 
@@ -144,7 +144,7 @@ const App = (props) => {
               <JournalsRoute path={`${path}/journals`} />
               <PublicationRequestsRoute path={`${path}/publicationRequests`}>
                 <Route
-                  component={ChargeRoute}
+                  component={ChargeViewRoute}
                   path={`${path}/publicationRequests/:prId/charge/:chId`}
                 />
                 <Route

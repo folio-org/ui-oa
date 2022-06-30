@@ -25,6 +25,7 @@ import PartyInfo from '../../PartySections/PartyInfo';
 import urls from '../../../util/urls';
 import css from './PartyTypedownForm.css';
 import { PartyModal } from '../../Modals';
+import { PARTIES_ENDPOINT } from '../../../constants/endpoints';
 
 const propTypes = {
   formName: PropTypes.string.isRequired,
@@ -139,7 +140,7 @@ const PartyTypedownForm = ({ formName }) => {
                 <FormattedMessage id="ui-oa.publicationRequest.addPerson" />
               }
               name={`${formName}.partyOwner`}
-              path="oa/party"
+              path={PARTIES_ENDPOINT}
               pathMutator={pathMutator}
               renderFooter={renderFooter}
               renderListItem={renderListItem}

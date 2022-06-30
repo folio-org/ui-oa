@@ -6,6 +6,8 @@ import { useMutation, useQuery } from 'react-query';
 import { useOkapiKy } from '@folio/stripes/core';
 
 import JournalForm from '../../components/views/JournalForm';
+import urls from '../../util/urls';
+import { WORK_ENDPOINT } from '../../constants/endpoints';
 
 const JournalEditRoute = () => {
   const history = useHistory();
@@ -13,19 +15,21 @@ const JournalEditRoute = () => {
   const { id } = useParams();
 
   const handleClose = () => {
-    history.push(`/oa/journals/${id}`);
+    history.push(urls.journal(id));
   };
 
   const { data: journal, isLoading } = useQuery(
     ['ui-oa', 'JournalEditRoute', 'journal', id],
-    () => ky(`oa/works/${id}`).json()
+    () => ky(WORK_ENDPOINT(id)).json()
   );
 
   const { mutateAsync: putJournal } = useMutation(
     ['ui-oa', 'JournalEditRoute', 'putJournal'],
-    (data) => ky.put(`oa/works/${id}`, { json: data }).then(() => {
+    (data) => {
+      ky.put(WORK_ENDPOINT(id), { json: data }).then(() => {
         handleClose();
-      })
+      });
+    }
   );
   const submitJournal = async (values) => {
     const { ...submitValues } = { ...values };

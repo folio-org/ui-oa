@@ -5,6 +5,7 @@ import { useQuery, useMutation } from 'react-query';
 import { checkScope, HasCommand } from '@folio/stripes/components';
 import urls from '../../util/urls';
 import CorrespondenceView from '../../components/views/CorrespondenceView';
+import { CORRESPONDENCE_ENDPOINT } from '../../constants/endpoints';
 
 const CorrespondenceViewRoute = () => {
   const history = useHistory();
@@ -13,22 +14,21 @@ const CorrespondenceViewRoute = () => {
 
   const { data: correspondence, isLoading } = useQuery(
     ['ui-oa', 'correspondenceViewRoute', 'correspondence', cId],
-    () => ky(`oa/correspondence/${cId}`).json()
+    () => ky(CORRESPONDENCE_ENDPOINT(cId)).json()
   );
 
   const { mutateAsync: deleteCorrespondence } = useMutation(
     ['ui-oa', 'CorrespondenceViewRoute', 'deleteCorrespondence'],
-    () => ky.delete(`oa/correspondence/${cId}`)
+    () => ky.delete(CORRESPONDENCE_ENDPOINT(cId))
   );
 
   const handleClose = () => {
-    history.push(`/oa/publicationRequests/${prId}`);
+    history.push(urls.publicationRequest(prId));
   };
 
-  const handleDelete = () => {
-    deleteCorrespondence(cId).then(() => {
-      history.push(`/oa/publicationRequests/${prId}`);
-    });
+  const handleDelete = async () => {
+    await deleteCorrespondence(cId);
+    history.push(urls.publicationRequest(prId));
   };
 
   const handleEdit = () => {

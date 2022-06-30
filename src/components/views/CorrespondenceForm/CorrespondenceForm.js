@@ -22,13 +22,13 @@ const propTypes = {
     onClose: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
   }).isRequired,
-  isLoading: PropTypes.bool,
+  isFetching: PropTypes.bool,
   correspondence: PropTypes.object,
 };
 
 const CorrespondenceForm = ({
   handlers: { onClose, onSubmit },
-  isLoading,
+  isFetching,
   correspondence,
 }) => {
   const { pristine, submitting } = useFormState();
@@ -90,7 +90,7 @@ const CorrespondenceForm = ({
     },
   ];
 
-  if (isLoading) {
+  if (isFetching) {
     return <LoadingView />;
   }
 

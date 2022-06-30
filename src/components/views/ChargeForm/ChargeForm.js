@@ -31,14 +31,14 @@ const propTypes = {
     onClose: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
   }).isRequired,
-  isLoading: PropTypes.bool,
+  isFetching: PropTypes.bool,
   charge: PropTypes.object,
   request: PropTypes.object,
 };
 
 const ChargeForm = ({
   handlers: { onClose, onSubmit },
-  isLoading,
+  isFetching,
   charge,
   request,
 }) => {
@@ -110,7 +110,7 @@ const ChargeForm = ({
     },
   ];
 
-  if (isLoading) {
+  if (isFetching) {
     return <LoadingView />;
   }
 
