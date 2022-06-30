@@ -7,13 +7,15 @@ import { useOkapiKy } from '@folio/stripes/core';
 
 import CorrespondenceForm from '../../components/views/CorrespondenceForm';
 
+import urls from '../../util/urls';
+
 const CorrespondenceEditRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
   const { prId, cId } = useParams();
 
   const handleClose = () => {
-    history.push(`/oa/publicationRequests/${prId}/correspondence/${cId}`);
+    history.push(urls.publicationRequestCorrespondenceView(prId, cId));
   };
 
   const { data: correspondence, isFetching } = useQuery(
@@ -23,9 +25,11 @@ const CorrespondenceEditRoute = () => {
 
   const { mutateAsync: putCorrespondence } = useMutation(
     ['ui-oa', 'CorrespondenceEditRoute', 'putCorrespondence'],
-    (data) => ky.put(`oa/correspondence/${cId}`, { json: data }).then(() => {
+    (data) => {
+      ky.put(`oa/correspondence/${cId}`, { json: data }).then(() => {
         handleClose();
-      })
+      });
+    }
   );
   const submitCorrespondence = async (values) => {
     const { category, ...submitValues } = { ...values };

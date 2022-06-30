@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useMutation } from 'react-query';
 import CorrespondenceForm from '../../components/views/CorrespondenceForm';
+import urls from '../../util/urls';
 
 const CorrespondenceCreateRoute = () => {
   const history = useHistory();
@@ -12,20 +13,21 @@ const CorrespondenceCreateRoute = () => {
 
   const handleClose = (cId) => {
     if (cId) {
-      history.push(`/oa/publicationRequests/${id}/correspondence/${cId}`);
+      history.push(urls.publicationRequestCorrespondenceView(id, cId));
     } else {
-      history.push(`/oa/publicationRequests/${id}`);
+      history.push(urls.publicationRequest(id));
     }
   };
 
   const { mutateAsync: postCorrespondence } = useMutation(
     ['ui-oa', 'CorrespondenceCreateRoute', 'postCorrespondence'],
-    (data) => ky
-        .post('oa/correspondence', { json: data })
+    (data) => {
+      ky.post('oa/correspondence', { json: data })
         .json()
         .then((res) => {
           handleClose(res?.id);
-        })
+        });
+    }
   );
   const submitCorrespondence = async (values) => {
     const submitValues = { ...values, owner: { id } };

@@ -9,6 +9,7 @@ import { useOkapiKy, CalloutContext } from '@folio/stripes/core';
 
 import PartyForm from '../../components/views/PartyForm';
 import getPartyErrorMessage from '../../util/getPartyErrorMessage';
+import urls from '../../util/urls';
 
 const PartyEditRoute = () => {
   const history = useHistory();
@@ -17,7 +18,7 @@ const PartyEditRoute = () => {
   const { id } = useParams();
 
   const handleClose = () => {
-    history.push(`/oa/people/${id}`);
+    history.push(urls.party(id));
   };
 
   const {

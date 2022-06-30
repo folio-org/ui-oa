@@ -22,13 +22,12 @@ const CorrespondenceViewRoute = () => {
   );
 
   const handleClose = () => {
-    history.push(`/oa/publicationRequests/${prId}`);
+    history.push(urls.publicationRequest(prId));
   };
 
-  const handleDelete = () => {
-    deleteCorrespondence(cId).then(() => {
-      history.push(`/oa/publicationRequests/${prId}`);
-    });
+  const handleDelete = async () => {
+    await deleteCorrespondence(cId);
+    history.push(urls.publicationRequest(prId));
   };
 
   const handleEdit = () => {

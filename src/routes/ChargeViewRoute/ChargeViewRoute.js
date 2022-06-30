@@ -9,7 +9,7 @@ import { PANE_DEFAULT_WIDTH } from '../../constants/config';
 import urls from '../../util/urls';
 import useOARefdata from '../../util/useOARefdata';
 
-const ChargeRoute = () => {
+const ChargeViewRoute = () => {
   const ky = useOkapiKy();
   const history = useHistory();
 
@@ -31,32 +31,31 @@ const ChargeRoute = () => {
   );
 
   const handleClose = () => {
-    history.push(urls.publicationRequest(request?.id));
+    history.push(urls.publicationRequest(prId));
   };
 
   const handleEdit = () => {
-    history.push(urls.publicationRequestChargeEdit(request?.id, charge?.id));
+    history.push(urls.publicationRequestChargeEdit(prId, chId));
   };
 
   const handleLink = () => {
-    history.push(
-      `${urls.publicationRequestChargeLinkInvoice(request.id, charge.id)}`
-    );
+    history.push(`${urls.publicationRequestChargeLinkInvoice(prId, chId)}`);
   };
 
   const { mutateAsync: deleteCharge } = useMutation(
     ['ui-oa', 'ChargeView', 'deleteCharge'],
-    () => ky.delete(`oa/charges/${charge?.id}`).then(() => {
-        refetchRequest();
-        handleClose();
-      })
+    () => {
+      ky.delete(`oa/charges/${chId}`);
+    }
   );
 
   const { mutateAsync: unlinkInvoice } = useMutation(
     ['ui-oa', 'ChargeView', 'unlinkInvoice'],
-    (data) => ky.put(`oa/charges/${charge?.id}`, { json: data }).then(() => {
+    (data) => {
+      ky.put(`oa/charges/${chId}`, { json: data }).then(() => {
         refetchCharge();
-      })
+      });
+    }
   );
 
   const handleUnlink = () => {
@@ -67,6 +66,12 @@ const ChargeRoute = () => {
       chargeStatus: expectedStatusRefData,
     };
     unlinkInvoice(submitValues);
+  };
+
+  const handleDelete = async () => {
+    await deleteCharge(chId);
+    await refetchRequest();
+    history.push(urls.publicationRequest(prId));
   };
 
   if (isLoading) {
@@ -87,11 +92,11 @@ const ChargeRoute = () => {
         handleEdit,
         handleLink,
         handleUnlink,
-        handleDelete: deleteCharge,
+        handleDelete,
       }}
       request={request}
     />
   );
 };
 
-export default ChargeRoute;
+export default ChargeViewRoute;

@@ -11,6 +11,7 @@ import PublicationRequestForm from '../../components/views/PublicationRequestFor
 import publicationRequestSubmitHandler from '../../util/publicationRequestSubmitHandler';
 import useOARefdata from '../../util/useOARefdata';
 import getRDVId from '../../util/getRDVId';
+import urls from '../../util/urls';
 
 const [PUBLICATION_TYPE] = ['PublicationRequest.PublicationType'];
 
@@ -29,7 +30,7 @@ const PublicationRequestEditRoute = () => {
   );
 
   const handleClose = () => {
-    history.push(`/oa/publicationRequests/${id}`);
+    history.push(urls.publicationRequest(id));
   };
 
   const {
