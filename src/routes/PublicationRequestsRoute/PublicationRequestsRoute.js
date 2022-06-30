@@ -21,12 +21,13 @@ import {
   PublicationRequestsFilters,
   OAFilterHeaderComponent,
 } from '../../components/SearchAndFilter';
+import { PUBLICATION_REQUESTS_ENDPOINT } from '../../constants/endpoints';
 
 const PublicationRequestsRoute = ({ children, path }) => {
   const history = useHistory();
 
   const fetchParameters = {
-    endpoint: 'oa/publicationRequest',
+    endpoint: PUBLICATION_REQUESTS_ENDPOINT,
     SASQ_MAP: {
       searchKey:
         'publicationTitle,requestNumber,correspondingAuthor.partyOwner.fullName,requestContact.partyOwner.fullName,externalRequestIds.externalId',

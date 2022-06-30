@@ -12,6 +12,7 @@ import publicationRequestSubmitHandler from '../../util/publicationRequestSubmit
 import useOARefdata from '../../util/useOARefdata';
 import getRDVId from '../../util/getRDVId';
 import urls from '../../util/urls';
+import { PUBLICATION_REQUEST_ENDPOINT } from '../../constants/endpoints';
 
 const [PUBLICATION_TYPE] = ['PublicationRequest.PublicationType'];
 
@@ -33,18 +34,15 @@ const PublicationRequestEditRoute = () => {
     history.push(urls.publicationRequest(id));
   };
 
-  const {
-    data: publicationRequest,
-    isFetching,
-  } = useQuery(
+  const { data: publicationRequest, isFetching } = useQuery(
     ['ui-oa', 'publicationEditRoute', 'publicationRequest', id],
-    () => ky(`oa/publicationRequest/${id}`).json()
+    () => ky(PUBLICATION_REQUEST_ENDPOINT(id)).json()
   );
 
   const { mutateAsync: putPublicationRequest } = useMutation(
     ['ui-oa', 'PublicationRequestEditRoute', 'putPublicationRequest'],
     (data) => {
-      ky.put(`oa/publicationRequest/${data.id}`, { json: data }).then(() => {
+      ky.put(PUBLICATION_REQUEST_ENDPOINT(data.id), { json: data }).then(() => {
         handleClose();
       });
     }

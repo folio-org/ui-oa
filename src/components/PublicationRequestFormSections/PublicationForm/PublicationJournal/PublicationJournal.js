@@ -29,6 +29,7 @@ import useOARefdata from '../../../../util/useOARefdata';
 import selectifyRefdata from '../../../../util/selectifyRefdata';
 import urls from '../../../../util/urls';
 import css from './PublicationJournal.css';
+import { WORKS_ENDPOINT } from '../../../../constants/endpoints';
 
 const [YES_NO, OA_STATUS] = ['Global.Yes_No', 'Work.OaStatus'];
 
@@ -122,7 +123,7 @@ const PublicationJournal = () => {
             }
             name="work"
             onChange={(e) => handleWorkChange(e)}
-            path="oa/works"
+            path={WORKS_ENDPOINT}
             pathMutator={pathMutator}
             renderFooter={renderFooter}
             renderListItem={renderListItem}

@@ -16,6 +16,7 @@ import { OAFilterHeaderComponent } from '../../components/SearchAndFilter';
 import Party from '../../components/views/Party';
 import urls from '../../util/urls';
 import focusSASQSearchField from '../../util/focusSASQSearchField';
+import { PARTIES_ENDPOINT } from '../../constants/endpoints';
 
 const PartiesRoute = ({ path }) => {
   const history = useHistory();
@@ -24,7 +25,7 @@ const PartiesRoute = ({ path }) => {
   };
 
   const fetchParameters = {
-    endpoint: 'oa/party',
+    endpoint: PARTIES_ENDPOINT,
     SASQ_MAP: {
       searchKey: 'mainEmail,givenNames,familyName,orcidId',
       filterKeys: {},

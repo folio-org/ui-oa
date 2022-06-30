@@ -18,6 +18,7 @@ import Journal from '../../components/views/Journal';
 import { JournalModal } from '../../components/Modals';
 import urls from '../../util/urls';
 import focusSASQSearchField from '../../util/focusSASQSearchField';
+import { WORKS_ENDPOINT } from '../../constants/endpoints';
 
 const JournalsRoute = ({ path }) => {
   const history = useHistory();
@@ -37,7 +38,7 @@ const JournalsRoute = ({ path }) => {
   };
 
   const fetchParameters = {
-    endpoint: 'oa/works',
+    endpoint: WORKS_ENDPOINT,
     SASQ_MAP: {
       searchKey: 'instances.identifiers.identifier.value,title',
       filterKeys: {},

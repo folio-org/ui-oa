@@ -5,6 +5,7 @@ import { useOkapiKy } from '@folio/stripes/core';
 import { useMutation } from 'react-query';
 import CorrespondenceForm from '../../components/views/CorrespondenceForm';
 import urls from '../../util/urls';
+import { CORRESPONDENCES_ENDPOINT } from '../../constants/endpoints';
 
 const CorrespondenceCreateRoute = () => {
   const history = useHistory();
@@ -22,7 +23,7 @@ const CorrespondenceCreateRoute = () => {
   const { mutateAsync: postCorrespondence } = useMutation(
     ['ui-oa', 'CorrespondenceCreateRoute', 'postCorrespondence'],
     (data) => {
-      ky.post('oa/correspondence', { json: data })
+      ky.post(CORRESPONDENCES_ENDPOINT, { json: data })
         .json()
         .then((res) => {
           handleClose(res?.id);

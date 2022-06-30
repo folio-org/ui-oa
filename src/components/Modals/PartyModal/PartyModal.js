@@ -10,6 +10,7 @@ import { MessageBanner } from '@folio/stripes/components';
 
 import { PartyInfoForm } from '../../PartyFormSections';
 import getPartyErrorMessage from '../../../util/getPartyErrorMessage';
+import { PARTIES_ENDPOINT } from '../../../constants/endpoints';
 
 const propTypes = {
   showModal: PropTypes.bool,
@@ -29,7 +30,7 @@ const PartyModal = ({ showModal, setShowModal, handlePartyChange }) => {
 
   const { mutateAsync: postParty } = useMutation(
     ['ui-oa', 'PartyModal', 'postParty'],
-    (data) => ky.post('oa/party', { json: data }).json()
+    (data) => ky.post(PARTIES_ENDPOINT, { json: data }).json()
   );
 
   const submitParty = async (values, form) => {

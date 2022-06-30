@@ -8,6 +8,7 @@ import ChargeView from '../../components/views/ChargeView';
 import { PANE_DEFAULT_WIDTH } from '../../constants/config';
 import urls from '../../util/urls';
 import useOARefdata from '../../util/useOARefdata';
+import { PUBLICATION_REQUEST_ENDPOINT, CHARGE_ENDPOINT } from '../../constants/endpoints';
 
 const ChargeViewRoute = () => {
   const ky = useOkapiKy();
@@ -23,11 +24,11 @@ const ChargeViewRoute = () => {
     data: charge,
     isLoading,
     refetch: refetchCharge,
-  } = useQuery(['ui-oa', 'ChargeRoute', 'getCharge', chId], () => ky(`oa/charges/${chId}`).json());
+  } = useQuery(['ui-oa', 'ChargeRoute', 'getCharge', chId], () => ky(CHARGE_ENDPOINT(chId)).json());
 
   const { data: request, refetch: refetchRequest } = useQuery(
     ['ui-oa', 'ChargeRoute', 'getPublicationRequest', prId],
-    () => ky(`oa/publicationRequest/${prId}`).json()
+    () => ky(PUBLICATION_REQUEST_ENDPOINT(prId)).json()
   );
 
   const handleClose = () => {
@@ -45,14 +46,14 @@ const ChargeViewRoute = () => {
   const { mutateAsync: deleteCharge } = useMutation(
     ['ui-oa', 'ChargeView', 'deleteCharge'],
     () => {
-      ky.delete(`oa/charges/${chId}`);
+      ky.delete(CHARGE_ENDPOINT(chId));
     }
   );
 
   const { mutateAsync: unlinkInvoice } = useMutation(
     ['ui-oa', 'ChargeView', 'unlinkInvoice'],
     (data) => {
-      ky.put(`oa/charges/${chId}`, { json: data }).then(() => {
+      ky.put(CHARGE_ENDPOINT(chId), { json: data }).then(() => {
         refetchCharge();
       });
     }

@@ -6,6 +6,7 @@ import { useQuery, useMutation } from 'react-query';
 import LinkInvoiceForm from '../../components/views/LinkInvoiceForm';
 import urls from '../../util/urls';
 import useOARefdata from '../../util/useOARefdata';
+import { CHARGE_ENDPOINT } from '../../constants/endpoints';
 
 const LinkInvoiceRoute = () => {
   const history = useHistory();
@@ -21,12 +22,12 @@ const LinkInvoiceRoute = () => {
 
   const { data: charge } = useQuery(
     ['ui-oa', 'LinkInvoiceRoute', 'charge'],
-    () => ky(`oa/charges/${chId}`).json()
+    () => ky(CHARGE_ENDPOINT(chId)).json()
   );
 
   const { mutateAsync: linkInvoice } = useMutation(
     ['ui-oa', 'LinkInvoiceRoute', 'linkInvoice'],
-    (data) => ky.put(`oa/charges/${chId}`, { json: data }).then(() => {
+    (data) => ky.put(CHARGE_ENDPOINT(chId), { json: data }).then(() => {
         handleClose();
       })
   );

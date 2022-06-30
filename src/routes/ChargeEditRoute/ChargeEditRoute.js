@@ -6,6 +6,7 @@ import { useMutation, useQuery } from 'react-query';
 import { orderBy } from 'lodash';
 import ChargeForm from '../../components/views/ChargeForm';
 import urls from '../../util/urls';
+import { CHARGE_ENDPOINT, PUBLICATION_REQUEST_ENDPOINT } from '../../constants/endpoints';
 
 const ChargeEditRoute = () => {
   const history = useHistory();
@@ -18,17 +19,17 @@ const ChargeEditRoute = () => {
 
   const { data: charge, isFetching } = useQuery(
     ['ui-oa', 'publicationEditRoute', 'publicationRequest', prId],
-    () => ky(`oa/charges/${chId}`).json()
+    () => ky(CHARGE_ENDPOINT(chId)).json()
   );
 
   const { data: request } = useQuery(
     ['ui-oa', 'ChargeRoute', 'getPublicationRequest', prId],
-    () => ky(`oa/publicationRequest/${prId}`).json()
+    () => ky(PUBLICATION_REQUEST_ENDPOINT(prId)).json()
   );
 
   const { mutateAsync: putCharge } = useMutation(
     ['ui-oa', 'ChargeEditRoute', 'postCharge'],
-    (data) => ky.put(`oa/charges/${chId}`, { json: data }).then(() => {
+    (data) => ky.put(CHARGE_ENDPOINT(chId), { json: data }).then(() => {
         handleClose();
       })
   );

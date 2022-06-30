@@ -8,6 +8,7 @@ import { useMutation, useQuery } from 'react-query';
 import ChargeForm from '../../components/views/ChargeForm';
 import useOARefdata from '../../util/useOARefdata';
 import urls from '../../util/urls';
+import { CHARGES_ENDPOINT, PUBLICATION_REQUEST_ENDPOINT } from '../../constants/endpoints';
 
 const ChargeCreateRoute = () => {
   const stripes = useStripes();
@@ -36,7 +37,7 @@ const ChargeCreateRoute = () => {
   const { mutateAsync: postCharge } = useMutation(
     ['ui-oa', 'ChargeCreateRoute', 'postCharge'],
     (data) => ky
-        .post('oa/charges', { json: data })
+        .post(CHARGES_ENDPOINT, { json: data })
         .json()
         .then((res) => {
           handleClose(res?.id);
@@ -45,7 +46,7 @@ const ChargeCreateRoute = () => {
 
   const { data: request } = useQuery(
     ['ui-oa', 'ChargeRoute', 'getPublicationRequest', id],
-    () => ky(`oa/publicationRequest/${id}`).json()
+    () => ky(PUBLICATION_REQUEST_ENDPOINT(id)).json()
   );
 
   const submitCharge = async (values) => {

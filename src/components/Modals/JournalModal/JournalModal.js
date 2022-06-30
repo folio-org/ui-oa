@@ -9,6 +9,7 @@ import { MessageBanner } from '@folio/stripes/components';
 import { FormModal } from '@k-int/stripes-kint-components';
 
 import JournalInfoForm from '../../JournalFormSections/JournalInfoForm';
+import { WORK_CITATION_ENDPOINT } from '../../../constants/endpoints';
 
 const propTypes = {
   showModal: PropTypes.bool,
@@ -28,7 +29,7 @@ const JournalModal = ({ showModal, setShowModal, handleJournalChange }) => {
 
   const { mutateAsync: postJournal, isError } = useMutation(
     ['ui-oa', 'JournalModal', 'postJournal'],
-    (data) => ky.post('oa/works/citation', { json: data }).json()
+    (data) => ky.post(WORK_CITATION_ENDPOINT, { json: data }).json()
   );
 
   const submitJournal = async (values, form) => {
