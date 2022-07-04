@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { Pane, Select } from '@folio/stripes/components';
 import { EditableRefdataList } from '@k-int/stripes-kint-components';
 import useOARefdata from '../../util/useOARefdata';
-import { REFDATA_ENDPOINT } from '../../constants';
+import { REFDATA_ENDPOINT } from '../../constants/endpoints';
 
 const PickListValues = () => {
   const rdcOptions = useOARefdata()?.map((rdv) => ({

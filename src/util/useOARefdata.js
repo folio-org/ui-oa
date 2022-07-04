@@ -1,7 +1,7 @@
 import orderBy from 'lodash/orderBy';
 import { useRefdata, refdataOptions } from '@k-int/stripes-kint-components';
 
-import { REFDATA_ENDPOINT } from '../constants';
+import { REFDATA_ENDPOINT } from '../constants/endpoints';
 
 const useOARefdata = (desc) => {
   const refdata = useRefdata({

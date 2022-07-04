@@ -14,3 +14,7 @@ export const WORK_CITATION_ENDPOINT = `${WORKS_ENDPOINT}/citation`;
 export const CORRESPONDENCES_ENDPOINT = 'oa/correspondence';
 export const CORRESPONDENCE_ENDPOINT = (correspondenceId) => `${CORRESPONDENCES_ENDPOINT}/${correspondenceId}`;
 
+export const REFDATA_ENDPOINT = 'oa/refdata';
+export const SETTINGS_ENDPOINT = 'oa/settings/appSettings';
+
+
