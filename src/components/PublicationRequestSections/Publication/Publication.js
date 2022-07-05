@@ -16,7 +16,7 @@ import {
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes-core';
 import { JournalDetails, BookDetails } from '../PublicationType';
-import { publicationRequestFields } from '../../../constants';
+import publicationRequestFields from '../../../constants/publicationRequestFields';
 import ExternalLink from '../../ExternalLink';
 import getSortedItems from '../../../util/getSortedItems';
 import urls from '../../../util/urls';

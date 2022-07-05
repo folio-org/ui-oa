@@ -8,7 +8,7 @@ import { useStripes } from '@folio/stripes/core';
 import { useSettings } from '@k-int/stripes-kint-components';
 
 import { PickListValues } from './settingsComponents';
-import { REFDATA_ENDPOINT, SETTINGS_ENDPOINT } from '../constants';
+import { REFDATA_ENDPOINT, SETTINGS_ENDPOINT } from '../constants/endpoints';
 
 const propTypes = {
   resources: PropTypes.shape({

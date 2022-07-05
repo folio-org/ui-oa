@@ -1,35 +1,41 @@
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { useHistory, useParams } from 'react-router-dom';
+import { LoadingView } from '@folio/stripes/components';
 import { useOkapiKy } from '@folio/stripes/core';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { orderBy } from 'lodash';
 import ChargeForm from '../../components/views/ChargeForm';
 import urls from '../../util/urls';
-import { CHARGE_ENDPOINT, PUBLICATION_REQUEST_ENDPOINT } from '../../constants/endpoints';
+import {
+  CHARGE_ENDPOINT,
+  PUBLICATION_REQUEST_ENDPOINT,
+} from '../../constants/endpoints';
 
 const ChargeEditRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
   const { prId, chId } = useParams();
+  const queryClient = useQueryClient();
 
   const handleClose = () => {
     history.push(urls.publicationRequestChargeView(prId, chId));
   };
 
-  const { data: charge, isFetching } = useQuery(
-    ['ui-oa', 'publicationEditRoute', 'publicationRequest', prId],
+  const { data: charge, isLoading } = useQuery(
+    [chId],
     () => ky(CHARGE_ENDPOINT(chId)).json()
   );
 
   const { data: request } = useQuery(
-    ['ui-oa', 'ChargeRoute', 'getPublicationRequest', prId],
+    ['ui-oa', 'ChargeRoute', 'fetchPublicationRequest', prId],
     () => ky(PUBLICATION_REQUEST_ENDPOINT(prId)).json()
   );
 
   const { mutateAsync: putCharge } = useMutation(
-    ['ui-oa', 'ChargeEditRoute', 'postCharge'],
+    ['ui-oa', 'ChargeEditRoute', 'putCharge'],
     (data) => ky.put(CHARGE_ENDPOINT(chId), { json: data }).then(() => {
+        queryClient.invalidateQueries(chId);
         handleClose();
       })
   );
@@ -48,12 +54,13 @@ const ChargeEditRoute = () => {
   const getInitialValues = () => {
     return {
       ...charge,
-      payers: orderBy(
-        charge?.payers,
-        'payer.value'
-      ),
+      payers: orderBy(charge?.payers, 'payer.value'),
     };
   };
+
+  if (isLoading) {
+    return <LoadingView dismissible onClose={handleClose} />;
+  }
 
   return (
     <Form
@@ -70,7 +77,6 @@ const ChargeEditRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit,
             }}
-            isFetching={isFetching}
             request={request}
           />
         </form>

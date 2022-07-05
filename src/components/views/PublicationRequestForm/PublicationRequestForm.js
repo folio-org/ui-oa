@@ -21,7 +21,6 @@ import {
   Paneset,
   PaneMenu,
   Row,
-  LoadingView,
 } from '@folio/stripes/components';
 
 import {
@@ -38,13 +37,11 @@ const propTypes = {
     onClose: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
   }).isRequired,
-  isFetching: PropTypes.bool,
   publicationRequest: PropTypes.object,
 };
 
 const PublicationRequestForm = ({
   handlers: { onClose, onSubmit },
-  isFetching,
   publicationRequest,
 }) => {
   const { values, pristine, submitting } = useFormState();
@@ -128,10 +125,6 @@ const PublicationRequestForm = ({
       </PaneMenu>
     );
   };
-
-  if (isFetching) {
-    return <LoadingView />;
-  }
 
   return (
     <HasCommand

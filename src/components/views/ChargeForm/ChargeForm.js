@@ -10,7 +10,6 @@ import {
   Paneset,
   PaneMenu,
   IconButton,
-  LoadingView,
   HasCommand,
   checkScope,
   expandAllSections,
@@ -31,14 +30,12 @@ const propTypes = {
     onClose: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
   }).isRequired,
-  isFetching: PropTypes.bool,
   charge: PropTypes.object,
   request: PropTypes.object,
 };
 
 const ChargeForm = ({
   handlers: { onClose, onSubmit },
-  isFetching,
   charge,
   request,
 }) => {
@@ -109,10 +106,6 @@ const ChargeForm = ({
       handler: (e) => collapseAllSections(e, accordionStatusRef),
     },
   ];
-
-  if (isFetching) {
-    return <LoadingView />;
-  }
 
   return (
     <HasCommand

@@ -2,20 +2,18 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useQuery, useMutation } from 'react-query';
 
-import { checkScope, HasCommand } from '@folio/stripes/components';
+import { checkScope, HasCommand, LoadingPane } from '@folio/stripes/components';
 import urls from '../../util/urls';
 import CorrespondenceView from '../../components/views/CorrespondenceView';
 import { CORRESPONDENCE_ENDPOINT } from '../../constants/endpoints';
+import { PANE_DEFAULT_WIDTH } from '../../constants/config';
 
 const CorrespondenceViewRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
   const { prId, cId } = useParams();
 
-  const { data: correspondence, isLoading } = useQuery(
-    ['ui-oa', 'correspondenceViewRoute', 'correspondence', cId],
-    () => ky(CORRESPONDENCE_ENDPOINT(cId)).json()
-  );
+  const { data: correspondence, isLoading } = useQuery([cId], () => ky(CORRESPONDENCE_ENDPOINT(cId)).json());
 
   const { mutateAsync: deleteCorrespondence } = useMutation(
     ['ui-oa', 'CorrespondenceViewRoute', 'deleteCorrespondence'],
@@ -41,6 +39,16 @@ const CorrespondenceViewRoute = () => {
       handler: () => handleEdit(),
     },
   ];
+
+  if (isLoading) {
+    return (
+      <LoadingPane
+        defaultWidth={PANE_DEFAULT_WIDTH}
+        dismissible
+        onClose={handleClose}
+      />
+    );
+  }
 
   return (
     <HasCommand

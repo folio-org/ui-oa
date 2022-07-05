@@ -1,8 +1,9 @@
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { useHistory, useParams } from 'react-router-dom';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 
+import { LoadingView } from '@folio/stripes/components';
 import { useOkapiKy } from '@folio/stripes/core';
 
 import JournalForm from '../../components/views/JournalForm';
@@ -12,21 +13,20 @@ import { WORK_ENDPOINT } from '../../constants/endpoints';
 const JournalEditRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
+  const queryClient = useQueryClient();
   const { id } = useParams();
 
   const handleClose = () => {
     history.push(urls.journal(id));
   };
 
-  const { data: journal, isLoading } = useQuery(
-    ['ui-oa', 'JournalEditRoute', 'journal', id],
-    () => ky(WORK_ENDPOINT(id)).json()
-  );
+  const { data: journal, isLoading } = useQuery([id], () => ky(WORK_ENDPOINT(id)).json());
 
   const { mutateAsync: putJournal } = useMutation(
     ['ui-oa', 'JournalEditRoute', 'putJournal'],
     (data) => {
       ky.put(WORK_ENDPOINT(id), { json: data }).then(() => {
+        queryClient.invalidateQueries(id);
         handleClose();
       });
     }
@@ -46,6 +46,10 @@ const JournalEditRoute = () => {
     await putJournal(submitValues);
   };
 
+  if (isLoading) {
+    return <LoadingView dismissible onClose={handleClose} />;
+  }
+
   return (
     <Form
       initialValues={journal}
@@ -59,7 +63,6 @@ const JournalEditRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit,
             }}
-            isLoading={isLoading}
             journal={journal}
           />
         </form>
