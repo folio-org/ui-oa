@@ -10,7 +10,6 @@ import {
   Button,
   Icon,
   ConfirmationModal,
-  LoadingPane,
 } from '@folio/stripes/components';
 import { AppIcon, IfPermission } from '@folio/stripes/core';
 import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
@@ -19,7 +18,6 @@ const propTypes = {
   onClose: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool,
   correspondence: PropTypes.object,
 };
 
@@ -27,7 +25,6 @@ const CorrespondenceView = ({
   onClose,
   onDelete,
   onEdit,
-  isLoading,
   correspondence,
 }) => {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
@@ -68,16 +65,6 @@ const CorrespondenceView = ({
       </>
     );
   };
-
-  if (isLoading) {
-    return (
-      <LoadingPane
-        defaultWidth={PANE_DEFAULT_WIDTH}
-        dismissible
-        onClose={onClose}
-      />
-    );
-  }
 
   return (
     <Pane

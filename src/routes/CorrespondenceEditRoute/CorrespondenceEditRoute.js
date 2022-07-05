@@ -1,8 +1,9 @@
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { useHistory, useParams } from 'react-router-dom';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 
+import { LoadingView } from '@folio/stripes/components';
 import { useOkapiKy } from '@folio/stripes/core';
 
 import CorrespondenceForm from '../../components/views/CorrespondenceForm';
@@ -13,21 +14,20 @@ import { CORRESPONDENCE_ENDPOINT } from '../../constants/endpoints';
 const CorrespondenceEditRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
+  const queryClient = useQueryClient();
   const { prId, cId } = useParams();
 
   const handleClose = () => {
     history.push(urls.publicationRequestCorrespondenceView(prId, cId));
   };
 
-  const { data: correspondence, isFetching } = useQuery(
-    ['ui-oa', 'CorrespondenceEditRoute', 'correspondence', cId],
-    () => ky(CORRESPONDENCE_ENDPOINT(cId)).json()
-  );
+  const { data: correspondence, isLoading } = useQuery([cId], () => ky(CORRESPONDENCE_ENDPOINT(cId)).json());
 
   const { mutateAsync: putCorrespondence } = useMutation(
     ['ui-oa', 'CorrespondenceEditRoute', 'putCorrespondence'],
     (data) => {
       ky.put(CORRESPONDENCE_ENDPOINT(cId), { json: data }).then(() => {
+        queryClient.invalidateQueries(cId);
         handleClose();
       });
     }
@@ -41,6 +41,10 @@ const CorrespondenceEditRoute = () => {
     }
     await putCorrespondence(submitValues);
   };
+
+  if (isLoading) {
+    return <LoadingView dismissible onClose={handleClose} />;
+  }
 
   return (
     <Form
@@ -57,7 +61,6 @@ const CorrespondenceEditRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit,
             }}
-            isFetching={isFetching}
           />
         </form>
       )}

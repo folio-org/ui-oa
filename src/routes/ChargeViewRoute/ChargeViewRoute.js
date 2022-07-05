@@ -1,6 +1,6 @@
 import { useParams, useHistory } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
-import { useQuery, useMutation } from 'react-query';
+import { useQuery, useMutation, useQueryClient } from 'react-query';
 
 import { LoadingPane } from '@folio/stripes/components';
 
@@ -8,11 +8,15 @@ import ChargeView from '../../components/views/ChargeView';
 import { PANE_DEFAULT_WIDTH } from '../../constants/config';
 import urls from '../../util/urls';
 import useOARefdata from '../../util/useOARefdata';
-import { PUBLICATION_REQUEST_ENDPOINT, CHARGE_ENDPOINT } from '../../constants/endpoints';
+import {
+  PUBLICATION_REQUEST_ENDPOINT,
+  CHARGE_ENDPOINT,
+} from '../../constants/endpoints';
 
 const ChargeViewRoute = () => {
   const ky = useOkapiKy();
   const history = useHistory();
+  const queryClient = useQueryClient();
 
   const { prId, chId } = useParams();
 
@@ -20,16 +24,9 @@ const ChargeViewRoute = () => {
     (e) => e.value === 'expected'
   );
 
-  const {
-    data: charge,
-    isLoading,
-    refetch: refetchCharge,
-  } = useQuery(['ui-oa', 'ChargeRoute', 'getCharge', chId], () => ky(CHARGE_ENDPOINT(chId)).json());
+  const { data: charge, isLoading } = useQuery([chId], () => ky(CHARGE_ENDPOINT(chId)).json());
 
-  const { data: request, refetch: refetchRequest } = useQuery(
-    ['ui-oa', 'ChargeRoute', 'getPublicationRequest', prId],
-    () => ky(PUBLICATION_REQUEST_ENDPOINT(prId)).json()
-  );
+  const { data: request } = useQuery([prId], () => ky(PUBLICATION_REQUEST_ENDPOINT(prId)).json());
 
   const handleClose = () => {
     history.push(urls.publicationRequest(prId));
@@ -54,7 +51,7 @@ const ChargeViewRoute = () => {
     ['ui-oa', 'ChargeView', 'unlinkInvoice'],
     (data) => {
       ky.put(CHARGE_ENDPOINT(chId), { json: data }).then(() => {
-        refetchCharge();
+        queryClient.invalidateQueries(chId);
       });
     }
   );
@@ -71,7 +68,7 @@ const ChargeViewRoute = () => {
 
   const handleDelete = async () => {
     await deleteCharge(chId);
-    await refetchRequest();
+    queryClient.invalidateQueries(prId);
     history.push(urls.publicationRequest(prId));
   };
 

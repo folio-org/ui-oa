@@ -9,7 +9,6 @@ import {
   Paneset,
   PaneMenu,
   IconButton,
-  LoadingView,
   HasCommand,
   checkScope,
 } from '@folio/stripes/components';
@@ -22,13 +21,11 @@ const propTypes = {
     onClose: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
   }).isRequired,
-  isFetching: PropTypes.bool,
   correspondence: PropTypes.object,
 };
 
 const CorrespondenceForm = ({
   handlers: { onClose, onSubmit },
-  isFetching,
   correspondence,
 }) => {
   const { pristine, submitting } = useFormState();
@@ -89,10 +86,6 @@ const CorrespondenceForm = ({
       handler: onSubmit,
     },
   ];
-
-  if (isFetching) {
-    return <LoadingView />;
-  }
 
   return (
     <HasCommand
