@@ -71,7 +71,7 @@ const IdentifiersField = ({ fields: { name } }) => {
                     aria-labelledby={ariaIds.text}
                     icon="trash"
                     onClick={() => onDeleteField(index, identifier)}
-                    style={{ 'padding-top': '25px' }}
+                    style={{ 'paddingTop': '25px' }}
                   />
                 )}
               </Tooltip>
