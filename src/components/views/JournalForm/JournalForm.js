@@ -9,7 +9,6 @@ import {
   Paneset,
   PaneMenu,
   IconButton,
-  LoadingView,
   HasCommand,
   checkScope,
 } from '@folio/stripes/components';
@@ -22,13 +21,11 @@ const propTypes = {
     onClose: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
   }).isRequired,
-  isLoading: PropTypes.bool,
   journal: PropTypes.object,
 };
 
 const JournalForm = ({
   handlers: { onClose, onSubmit },
-  isLoading,
   journal,
 }) => {
   const { pristine, submitting } = useFormState();
@@ -89,10 +86,6 @@ const JournalForm = ({
       />
     );
   };
-
-  if (isLoading) {
-    return <LoadingView />;
-  }
 
   return (
     <HasCommand

@@ -9,7 +9,6 @@ import {
   PaneFooter,
   Paneset,
   PaneMenu,
-  LoadingView,
   HasCommand,
   checkScope,
 } from '@folio/stripes/components';
@@ -26,13 +25,12 @@ const propTypes = {
     onClose: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
   }).isRequired,
-  isLoading: PropTypes.bool,
   party: PropTypes.object,
 };
 
 // TODO Replace StreetAddress with StreetAddresses when domain model supports multiple street addresses
 
-const PartyForm = ({ handlers: { onClose, onSubmit }, isLoading, party }) => {
+const PartyForm = ({ handlers: { onClose, onSubmit }, party }) => {
   const { pristine, submitting } = useFormState();
 
   const renderPaneTitle = () => (party ? (
@@ -91,10 +89,6 @@ const PartyForm = ({ handlers: { onClose, onSubmit }, isLoading, party }) => {
       handler: onSubmit,
     },
   ];
-
-  if (isLoading) {
-    return <LoadingView />;
-  }
 
   return (
     <HasCommand

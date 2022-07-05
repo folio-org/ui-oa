@@ -3,8 +3,9 @@ import arrayMutators from 'final-form-arrays';
 import createDecorator from 'final-form-focus';
 
 import { useHistory, useParams } from 'react-router-dom';
+import { LoadingView } from '@folio/stripes/components';
 import { useOkapiKy } from '@folio/stripes/core';
-import { useQuery, useMutation } from 'react-query';
+import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { orderBy } from 'lodash';
 import PublicationRequestForm from '../../components/views/PublicationRequestForm';
 
@@ -19,6 +20,7 @@ const [PUBLICATION_TYPE] = ['PublicationRequest.PublicationType'];
 const PublicationRequestEditRoute = () => {
   const focusOnError = createDecorator();
   const history = useHistory();
+  const queryClient = useQueryClient();
   const ky = useOkapiKy();
   const { id } = useParams();
 
@@ -34,15 +36,13 @@ const PublicationRequestEditRoute = () => {
     history.push(urls.publicationRequest(id));
   };
 
-  const { data: publicationRequest, isFetching } = useQuery(
-    ['ui-oa', 'publicationEditRoute', 'publicationRequest', id],
-    () => ky(PUBLICATION_REQUEST_ENDPOINT(id)).json()
-  );
+  const { data: publicationRequest, isLoading } = useQuery([id], () => ky(PUBLICATION_REQUEST_ENDPOINT(id)).json());
 
   const { mutateAsync: putPublicationRequest } = useMutation(
     ['ui-oa', 'PublicationRequestEditRoute', 'putPublicationRequest'],
     (data) => {
-      ky.put(PUBLICATION_REQUEST_ENDPOINT(data.id), { json: data }).then(() => {
+      ky.put(PUBLICATION_REQUEST_ENDPOINT(id), { json: data }).then(() => {
+        queryClient.invalidateQueries(id);
         handleClose();
       });
     }
@@ -72,6 +72,10 @@ const PublicationRequestEditRoute = () => {
     };
   };
 
+  if (isLoading) {
+    return <LoadingView dismissible onClose={handleClose} />;
+  }
+
   return (
     <Form
       decorators={[focusOnError]}
@@ -87,7 +91,6 @@ const PublicationRequestEditRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit,
             }}
-            isFetching={isFetching}
             publicationRequest={publicationRequest}
           />
         </form>

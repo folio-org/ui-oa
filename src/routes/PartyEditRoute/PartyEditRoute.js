@@ -2,9 +2,10 @@ import { useContext } from 'react';
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { useHistory, useParams } from 'react-router-dom';
-import { useQuery, useMutation } from 'react-query';
+import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { FormattedMessage } from 'react-intl';
 
+import { LoadingView } from '@folio/stripes/components';
 import { useOkapiKy, CalloutContext } from '@folio/stripes/core';
 
 import PartyForm from '../../components/views/PartyForm';
@@ -15,6 +16,7 @@ import { PARTY_ENDPOINT } from '../../constants/endpoints';
 const PartyEditRoute = () => {
   const history = useHistory();
   const ky = useOkapiKy();
+  const queryClient = useQueryClient();
   const callout = useContext(CalloutContext);
   const { id } = useParams();
 
@@ -25,8 +27,7 @@ const PartyEditRoute = () => {
   const {
     data: party,
     isLoading,
-    refetch,
-  } = useQuery(['ui-oa', 'PartyEditRoute', 'party', id], () => ky(PARTY_ENDPOINT(id)).json());
+  } = useQuery([id], () => ky(PARTY_ENDPOINT(id)).json());
 
   const { mutateAsync: putParty } = useMutation(
     ['ui-oa', 'PartyEditRoute', 'putParty'],
@@ -48,8 +49,7 @@ const PartyEditRoute = () => {
             ),
             type: 'success',
           });
-          // Added refetch so that if the form is edited again after, the old values arent displayed breifly
-          refetch();
+          queryClient.invalidateQueries(id);
           handleClose();
         })
         .catch((err) => {
@@ -74,6 +74,10 @@ const PartyEditRoute = () => {
     await putParty(values);
   };
 
+  if (isLoading) {
+    return <LoadingView dismissible onClose={handleClose} />;
+  }
+
   return (
     <Form
       initialValues={party}
@@ -88,7 +92,6 @@ const PartyEditRoute = () => {
               onClose: handleClose,
               onSubmit: handleSubmit,
             }}
-            isLoading={isLoading}
             party={party}
           />
         </form>
