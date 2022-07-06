@@ -7,4 +7,3 @@ buildNPM {
     runSonarqube = 'true'
     runTest = 'yes'
   }
-
