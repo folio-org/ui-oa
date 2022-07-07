@@ -3,14 +3,14 @@ import { Form } from 'react-final-form';
 import { Pane } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes-core';
 import { FormattedMessage } from 'react-intl';
-import WorkflowForm from './WorkflowForm';
-import testCriteria from './testCriteria';
+import ChecklistForm from './ChecklistForm';
+import testChecklist from './testChecklist';
 
 const propTypes = {
   onToggle: PropTypes.func,
 };
 
-const Workflow = ({ onToggle }) => {
+const Checklist = ({ onToggle }) => {
   const testSubmit = (_values) => {
   };
 
@@ -20,12 +20,12 @@ const Workflow = ({ onToggle }) => {
       defaultWidth="20%"
       dismissible
       onClose={onToggle}
-      paneTitle={<FormattedMessage id="ui-oa.workflow.checklist" />}
+      paneTitle={<FormattedMessage id="ui-oa.checklist" />}
     >
-      <Form initialValues={testCriteria} onSubmit={testSubmit}>
+      <Form initialValues={testChecklist} onSubmit={testSubmit}>
         {({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
-            <WorkflowForm checklist={testCriteria} />
+            <ChecklistForm checklist={testChecklist} />
           </form>
         )}
       </Form>
@@ -33,6 +33,6 @@ const Workflow = ({ onToggle }) => {
   );
 };
 
-Workflow.propTypes = propTypes;
+Checklist.propTypes = propTypes;
 
-export default Workflow;
+export default Checklist;

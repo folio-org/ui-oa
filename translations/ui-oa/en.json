@@ -178,7 +178,7 @@
   "publicationRequest.requestDate": "Request date",
   "publicationRequest.requestTitle": "Request number - {number}",
   "publicationRequest.selectedJournal": "Journal",
-  "publicationRequest.showWorkflow": "Show workflow",
+  "publicationRequest.showChecklist": "Show checklist",
   "publicationRequest.success.callout": "Publication request {requestNumber} successfully created",
   "publicationRequest.status": "Status",
   "publicationRequest.statusDate": "Status date",
@@ -351,5 +351,5 @@
   "correspondence.showMore": "Show more",
   "correspondence.showLess": "Show less",
 
-  "workflow.checklist": "Checklist"
+  "checklist": "Checklist"
 }

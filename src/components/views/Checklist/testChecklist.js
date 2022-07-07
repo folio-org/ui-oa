@@ -1,4 +1,4 @@
-const criteria = {
+const testChecklist = {
   name: 'PublicationRequest1',
   items: {
     authorAffiliated: {
@@ -41,4 +41,4 @@ const criteria = {
   },
 };
 
-export default criteria;
+export default testChecklist;

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { IconButton } from '@folio/stripes/components';
 import { useHelperApp } from '@k-int/stripes-kint-components';
 import { FormattedMessage } from 'react-intl';
-import Workflow from '../components/views/Workflow';
+import Checklist from '../components/views/Checklist';
 
 const propTypes = {
   onClick: PropTypes.func,
@@ -10,20 +10,20 @@ const propTypes = {
 
 const useOAHelperApp = () => {
   const { HelperComponent, helperToggleFunctions, isOpen } = useHelperApp({
-    workflow: Workflow,
+    checklist: Checklist,
   });
 
-  const WorkflowButton = ({ onClick = () => null }) => {
+  const ChecklistButton = ({ onClick = () => null }) => {
     return (
-      <FormattedMessage id="ui-oa.publicationRequest.showWorkflow">
+      <FormattedMessage id="ui-oa.publicationRequest.showChecklist">
         {(ariaLabel) => (
           <IconButton
             ariaLabel={ariaLabel[0]}
             icon="check-circle"
-            id="clickable-show-worflow"
+            id="clickable-show-checklist"
             onClick={() => {
-              helperToggleFunctions.workflow();
-              onClick({ open: isOpen('workflow') });
+              helperToggleFunctions.checklist();
+              onClick({ open: isOpen('checklist') });
             }}
           />
         )}
@@ -31,9 +31,9 @@ const useOAHelperApp = () => {
     );
   };
 
-  WorkflowButton.propTypes = propTypes;
+  ChecklistButton.propTypes = propTypes;
 
-  return { HelperComponent, WorkflowButton, isOpen };
+  return { HelperComponent, ChecklistButton, isOpen };
 };
 
 export default useOAHelperApp;

@@ -53,7 +53,7 @@ const PublicationRequest = ({
   const history = useHistory();
   const params = useParams();
   const accordionStatusRef = createRef();
-  const { HelperComponent, WorkflowButton, isOpen } = useOAHelperApp();
+  const { HelperComponent, ChecklistButton, isOpen } = useOAHelperApp();
 
   const handleEdit = () => {
     history.push(`${urls.publicationRequestEdit(params?.id)}`);
@@ -111,7 +111,7 @@ const PublicationRequest = ({
         dismissible
         lastMenu={
           <PaneMenu>
-            <WorkflowButton />
+            <ChecklistButton />
           </PaneMenu>
         }
         onClose={onClose}

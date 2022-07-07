@@ -4,12 +4,12 @@ import { orderBy } from 'lodash';
 import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
 
-import css from './WorkflowForm.css';
+import css from './ChecklistForm.css';
 
 const propTypes = {
   checklist: PropTypes.arrayOf(PropTypes.object),
 };
-const WorkflowForm = ({ checklist }) => {
+const ChecklistForm = ({ checklist }) => {
   const buttonOptions = [
     {
       icon: 'default',
@@ -65,5 +65,5 @@ const WorkflowForm = ({ checklist }) => {
   );
 };
 
-WorkflowForm.propTypes = propTypes;
-export default WorkflowForm;
+ChecklistForm.propTypes = propTypes;
+export default ChecklistForm;
