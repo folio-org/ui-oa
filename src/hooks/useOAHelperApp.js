@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { IconButton } from '@folio/stripes/components';
 import { useHelperApp } from '@k-int/stripes-kint-components';
 import { FormattedMessage } from 'react-intl';
-import Workflow from '../components/Workflow';
+import Workflow from '../components/views/Workflow';
 
 const propTypes = {
   onClick: PropTypes.func,
