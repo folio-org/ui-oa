@@ -168,7 +168,7 @@ const InstanceIdentifiersFieldArray = ({ instanceId }) => {
                           aria-labelledby={ariaIds.text}
                           icon="trash"
                           onClick={() => fields.remove(index)}
-                          style={{ 'padding-top': '25px' }}
+                          style={{ 'paddingTop': '25px' }}
                         />
                       )}
                     </Tooltip>
