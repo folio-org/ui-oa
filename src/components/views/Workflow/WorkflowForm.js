@@ -1,4 +1,4 @@
-import { Col, Headline, Row, InfoPopover } from '@folio/stripes/components';
+import { Col, Row, InfoPopover } from '@folio/stripes/components';
 import { IconSelect } from '@k-int/stripes-kint-components';
 import { orderBy } from 'lodash';
 import PropTypes from 'prop-types';
