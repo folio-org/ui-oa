@@ -3,7 +3,6 @@ import {
   Headline,
   Row,
   InfoPopover,
-  Dropdown,
 } from '@folio/stripes/components';
 import { IconSelect } from '@k-int/stripes-kint-components';
 import { orderBy } from 'lodash';
@@ -39,7 +38,7 @@ const WorkflowForm = ({ checklist }) => {
             <Row>
               <Col xs={10}>
                 <Headline>
-                  <Dropdown label={item.label} />
+                  {item.label}
                   <InfoPopover content={item?.description} />
                 </Headline>
               </Col>
