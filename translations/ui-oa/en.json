@@ -351,5 +351,7 @@
   "correspondence.showMore": "Show more",
   "correspondence.showLess": "Show less",
 
-  "checklist": "Checklist"
+  "checklist": "Checklist",
+  "checklist.updated": "Updated: {date} {time}",
+  "checklist.created": "Created: {date} {time}"
 }

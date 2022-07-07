@@ -6,7 +6,7 @@ const testChecklist = {
       description: 'Affiliate an author with this request',
       outcome: 'not_done',
       status: 'required',
-      dateCreated: '2022-07-07T09:22:59Z',
+      dateCreated: '2022-07-07T10:52:08Z',
       lastUpdated: '2022-07-07T10:52:08Z',
       weight: 0,
       notes: [

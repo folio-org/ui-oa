@@ -3,6 +3,7 @@ import { IconSelect } from '@k-int/stripes-kint-components';
 import { orderBy } from 'lodash';
 import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
+import { FormattedDate, FormattedMessage, FormattedTime } from 'react-intl';
 
 import css from './ChecklistForm.css';
 
@@ -48,6 +49,27 @@ const ChecklistForm = ({ checklist }) => {
                   name={`items[${name}].outcome`}
                   options={buttonOptions}
                 />
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12}>
+                {item.dateCreated === item.lastUpdated ? (
+                  <FormattedMessage
+                    id="ui-oa.checklist.created"
+                    values={{
+                      date: <FormattedDate value={item.dateCreated} />,
+                      time: <FormattedTime value={item.dateCreated} />,
+                    }}
+                  />
+                ) : (
+                  <FormattedMessage
+                    id="ui-oa.checklist.updated"
+                    values={{
+                      date: <FormattedDate value={item.lastUpdated} />,
+                      time: <FormattedTime value={item.lastUpdated} />,
+                    }}
+                  />
+                )}
               </Col>
             </Row>
             <Row>
