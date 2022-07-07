@@ -20,6 +20,7 @@ import {
   Pane,
   Row,
   LoadingPane,
+  PaneMenu,
 } from '@folio/stripes/components';
 
 import {
@@ -35,6 +36,7 @@ import {
 } from '../../PublicationRequestSections';
 
 import urls from '../../../util/urls';
+import useOAHelperApp from '../../../hooks/useOAHelperApp';
 import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
 
 const propTypes = {
@@ -51,6 +53,7 @@ const PublicationRequest = ({
   const history = useHistory();
   const params = useParams();
   const accordionStatusRef = createRef();
+  const { HelperComponent, WorkflowButton, isOpen } = useOAHelperApp();
 
   const handleEdit = () => {
     history.push(`${urls.publicationRequestEdit(params?.id)}`);
@@ -106,6 +109,11 @@ const PublicationRequest = ({
         appIcon={<AppIcon app="oa" iconKey="app" size="small" />}
         defaultWidth={PANE_DEFAULT_WIDTH}
         dismissible
+        lastMenu={
+          <PaneMenu>
+            <WorkflowButton />
+          </PaneMenu>
+        }
         onClose={onClose}
         paneSub={request?.publicationTitle}
         paneTitle={
@@ -150,6 +158,7 @@ const PublicationRequest = ({
           </AccordionSet>
         </AccordionStatus>
       </Pane>
+      <HelperComponent isOpen={isOpen} />
     </HasCommand>
   );
 };
