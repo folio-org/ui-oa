@@ -79,6 +79,44 @@ const ChecklistForm = ({ checklist }) => {
                   : sortedNotes[0].note.substring(0, 75) + '...'}
               </Col>
             </Row>
+            <Row>
+              <Col xs={12}>
+                {sortedNotes[0].dateCreated ===
+                sortedNotes[0].lastUpdated ? (
+                  <FormattedMessage
+                    id="ui-oa.checklist.created"
+                    values={{
+                      date: (
+                        <FormattedDate
+                          value={sortedNotes[0].dateCreated}
+                        />
+                      ),
+                      time: (
+                        <FormattedTime
+                          value={sortedNotes[0].dateCreated}
+                        />
+                      ),
+                    }}
+                  />
+                ) : (
+                  <FormattedMessage
+                    id="ui-oa.checklist.updated"
+                    values={{
+                      date: (
+                        <FormattedDate
+                          value={sortedNotes[0].lastUpdated}
+                        />
+                      ),
+                      time: (
+                        <FormattedTime
+                          value={sortedNotes[0].lastUpdated}
+                        />
+                      ),
+                    }}
+                  />
+                )}
+              </Col>
+            </Row>
             <br />
           </div>
         );
