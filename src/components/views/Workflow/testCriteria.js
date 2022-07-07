@@ -4,7 +4,7 @@ const criteria = {
     authorAffiliated: {
       label: 'Author affiliated',
       description: 'Affiliate an author with this request',
-      outcome: 'not_set',
+      outcome: 'not_done',
       status: 'required',
       dateCreated: '2022-07-07T09:22:59Z',
       lastUpdated: '2022-07-07T10:52:08Z',
