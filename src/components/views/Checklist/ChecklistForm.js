@@ -1,4 +1,10 @@
-import { Col, Row, InfoPopover, KeyValue } from '@folio/stripes/components';
+import {
+  Col,
+  Row,
+  InfoPopover,
+  KeyValue,
+  IconButton,
+} from '@folio/stripes/components';
 import { IconSelect } from '@k-int/stripes-kint-components';
 import { orderBy } from 'lodash';
 import PropTypes from 'prop-types';
@@ -114,6 +120,12 @@ const ChecklistForm = ({ checklist }) => {
                     }}
                   />
                 )}
+              </Col>
+            </Row>
+            <br />
+            <Row>
+              <Col xs={12}>
+                <IconButton badgeCount={item.notes.length} icon="document" />
               </Col>
             </Row>
           </div>
