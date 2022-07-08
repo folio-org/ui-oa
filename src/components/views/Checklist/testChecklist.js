@@ -38,6 +38,15 @@ const testChecklist = {
         },
       ],
     },
+    requestInvoiced: {
+      label: 'Request invoiced',
+      description: 'Invoice the charges for the request',
+      outcome: 'other',
+      status: 'required',
+      dateCreated: '2027-01-07T09:22:59Z',
+      lastUpdated: '2028-01-07T10:52:08Z',
+      weight: 0,
+    },
   },
 };
 

@@ -86,59 +86,69 @@ const ChecklistForm = ({ checklist }) => {
                 />
               </Col>
             </Row>
-            <Row>
-              <Col xs={12}>
-                <KeyValue
-                  label={<FormattedMessage id="ui-oa.checklist.latestNote" />}
-                  value={
-                    sortedNotes[0].note.length < 50
-                      ? sortedNotes[0].note
-                      : sortedNotes[0].note.substring(0, 75) + '...'
-                  }
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={12}>
-                {sortedNotes[0].dateCreated === sortedNotes[0].lastUpdated ? (
-                  <FormattedMessage
-                    className={css.meta}
-                    id="ui-oa.checklist.created"
-                    values={{
-                      date: (
-                        <FormattedDate value={sortedNotes[0].dateCreated} />
-                      ),
-                      time: (
-                        <FormattedTime value={sortedNotes[0].dateCreated} />
-                      ),
-                    }}
-                  >
-                    {(txt) => <span className={css.meta}>{txt}</span>}
-                  </FormattedMessage>
-                ) : (
-                  <FormattedMessage
-                    className={css.meta}
-                    id="ui-oa.checklist.updated"
-                    values={{
-                      date: (
-                        <FormattedDate value={sortedNotes[0].lastUpdated} />
-                      ),
-                      time: (
-                        <FormattedTime value={sortedNotes[0].lastUpdated} />
-                      ),
-                    }}
-                  >
-                    {(txt) => <span className={css.meta}>{txt}</span>}
-                  </FormattedMessage>
-                )}
-              </Col>
-            </Row>
-            <br />
-            <Row>
-              <Col xs={12}>
-                <IconButton badgeCount={item.notes.length} icon="document" />
-              </Col>
-            </Row>
+            {item?.notes?.length > 0 && (
+              <>
+                <Row>
+                  <Col xs={12}>
+                    <KeyValue
+                      label={
+                        <FormattedMessage id="ui-oa.checklist.latestNote" />
+                      }
+                      value={
+                        sortedNotes[0].note.length < 50
+                          ? sortedNotes[0].note
+                          : sortedNotes[0].note.substring(0, 75) + '...'
+                      }
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={12}>
+                    {sortedNotes[0].dateCreated ===
+                    sortedNotes[0].lastUpdated ? (
+                      <FormattedMessage
+                        className={css.meta}
+                        id="ui-oa.checklist.created"
+                        values={{
+                          date: (
+                            <FormattedDate value={sortedNotes[0].dateCreated} />
+                          ),
+                          time: (
+                            <FormattedTime value={sortedNotes[0].dateCreated} />
+                          ),
+                        }}
+                      >
+                        {(txt) => <span className={css.meta}>{txt}</span>}
+                      </FormattedMessage>
+                    ) : (
+                      <FormattedMessage
+                        className={css.meta}
+                        id="ui-oa.checklist.updated"
+                        values={{
+                          date: (
+                            <FormattedDate value={sortedNotes[0].lastUpdated} />
+                          ),
+                          time: (
+                            <FormattedTime value={sortedNotes[0].lastUpdated} />
+                          ),
+                        }}
+                      >
+                        {(txt) => <span className={css.meta}>{txt}</span>}
+                      </FormattedMessage>
+                    )}
+                  </Col>
+                </Row>
+                <br />
+                <Row>
+                  <Col xs={12}>
+                    <IconButton
+                      badgeCount={item.notes.length}
+                      icon="document"
+                    />
+                  </Col>
+                </Row>
+              </>
+            )}
           </div>
         );
       })}
