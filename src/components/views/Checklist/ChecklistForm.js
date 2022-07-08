@@ -44,7 +44,7 @@ const ChecklistForm = ({ checklist }) => {
         const sortedNotes = orderBy(item.notes, 'dateCreated', 'desc');
         return (
           <div className={css.container}>
-            <Row marginBottom0>
+            <Row>
               <Col xs={10}>
                 <KeyValue
                   label={
