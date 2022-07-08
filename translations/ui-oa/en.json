@@ -353,5 +353,6 @@
 
   "checklist": "Checklist",
   "checklist.updated": "Updated: {date} {time}",
-  "checklist.created": "Created: {date} {time}"
+  "checklist.created": "Created: {date} {time}",
+  "checklist.latestNote": "Latest note"
 }

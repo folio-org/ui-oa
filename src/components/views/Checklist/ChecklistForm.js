@@ -1,4 +1,4 @@
-import { Col, Row, InfoPopover } from '@folio/stripes/components';
+import { Col, Row, InfoPopover, KeyValue } from '@folio/stripes/components';
 import { IconSelect } from '@k-int/stripes-kint-components';
 import { orderBy } from 'lodash';
 import PropTypes from 'prop-types';
@@ -38,10 +38,34 @@ const ChecklistForm = ({ checklist }) => {
         const sortedNotes = orderBy(item.notes, 'dateCreated', 'desc');
         return (
           <div className={css.container}>
-            <Row>
+            <Row marginBottom0>
               <Col xs={10}>
-                <strong>{item.label}</strong>
-                <InfoPopover content={item?.description} />
+                <KeyValue
+                  label={
+                    <>
+                      {item.label} <InfoPopover content={item?.description} />
+                    </>
+                  }
+                  value={
+                    item.dateCreated === item.lastUpdated ? (
+                      <FormattedMessage
+                        id="ui-oa.checklist.created"
+                        values={{
+                          date: <FormattedDate value={item.dateCreated} />,
+                          time: <FormattedTime value={item.dateCreated} />,
+                        }}
+                      />
+                    ) : (
+                      <FormattedMessage
+                        id="ui-oa.checklist.updated"
+                        values={{
+                          date: <FormattedDate value={item.lastUpdated} />,
+                          time: <FormattedTime value={item.lastUpdated} />,
+                        }}
+                      />
+                    )
+                  }
+                />
               </Col>
               <Col xs={2}>
                 <Field
@@ -53,48 +77,27 @@ const ChecklistForm = ({ checklist }) => {
             </Row>
             <Row>
               <Col xs={12}>
-                {item.dateCreated === item.lastUpdated ? (
-                  <FormattedMessage
-                    id="ui-oa.checklist.created"
-                    values={{
-                      date: <FormattedDate value={item.dateCreated} />,
-                      time: <FormattedTime value={item.dateCreated} />,
-                    }}
-                  />
-                ) : (
-                  <FormattedMessage
-                    id="ui-oa.checklist.updated"
-                    values={{
-                      date: <FormattedDate value={item.lastUpdated} />,
-                      time: <FormattedTime value={item.lastUpdated} />,
-                    }}
-                  />
-                )}
+                <KeyValue
+                  label={<FormattedMessage id="ui-oa.checklist.latestNote" />}
+                  value={
+                    sortedNotes[0].note.length < 50
+                      ? sortedNotes[0].note
+                      : sortedNotes[0].note.substring(0, 75) + '...'
+                  }
+                />
               </Col>
             </Row>
             <Row>
               <Col xs={12}>
-                {sortedNotes[0].note.length < 50
-                  ? sortedNotes[0].note
-                  : sortedNotes[0].note.substring(0, 75) + '...'}
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={12}>
-                {sortedNotes[0].dateCreated ===
-                sortedNotes[0].lastUpdated ? (
+                {sortedNotes[0].dateCreated === sortedNotes[0].lastUpdated ? (
                   <FormattedMessage
                     id="ui-oa.checklist.created"
                     values={{
                       date: (
-                        <FormattedDate
-                          value={sortedNotes[0].dateCreated}
-                        />
+                        <FormattedDate value={sortedNotes[0].dateCreated} />
                       ),
                       time: (
-                        <FormattedTime
-                          value={sortedNotes[0].dateCreated}
-                        />
+                        <FormattedTime value={sortedNotes[0].dateCreated} />
                       ),
                     }}
                   />
@@ -103,21 +106,16 @@ const ChecklistForm = ({ checklist }) => {
                     id="ui-oa.checklist.updated"
                     values={{
                       date: (
-                        <FormattedDate
-                          value={sortedNotes[0].lastUpdated}
-                        />
+                        <FormattedDate value={sortedNotes[0].lastUpdated} />
                       ),
                       time: (
-                        <FormattedTime
-                          value={sortedNotes[0].lastUpdated}
-                        />
+                        <FormattedTime value={sortedNotes[0].lastUpdated} />
                       ),
                     }}
                   />
                 )}
               </Col>
             </Row>
-            <br />
           </div>
         );
       })}
