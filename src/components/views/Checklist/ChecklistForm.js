@@ -60,15 +60,20 @@ const ChecklistForm = ({ checklist }) => {
                           date: <FormattedDate value={item.dateCreated} />,
                           time: <FormattedTime value={item.dateCreated} />,
                         }}
-                      />
+                      >
+                        {(txt) => <span className={css.meta}>{txt}</span>}
+                      </FormattedMessage>
                     ) : (
                       <FormattedMessage
+                        className={css.meta}
                         id="ui-oa.checklist.updated"
                         values={{
                           date: <FormattedDate value={item.lastUpdated} />,
                           time: <FormattedTime value={item.lastUpdated} />,
                         }}
-                      />
+                      >
+                        {(txt) => <span className={css.meta}>{txt}</span>}
+                      </FormattedMessage>
                     )
                   }
                 />
@@ -97,6 +102,7 @@ const ChecklistForm = ({ checklist }) => {
               <Col xs={12}>
                 {sortedNotes[0].dateCreated === sortedNotes[0].lastUpdated ? (
                   <FormattedMessage
+                    className={css.meta}
                     id="ui-oa.checklist.created"
                     values={{
                       date: (
@@ -106,9 +112,12 @@ const ChecklistForm = ({ checklist }) => {
                         <FormattedTime value={sortedNotes[0].dateCreated} />
                       ),
                     }}
-                  />
+                  >
+                    {(txt) => <span className={css.meta}>{txt}</span>}
+                  </FormattedMessage>
                 ) : (
                   <FormattedMessage
+                    className={css.meta}
                     id="ui-oa.checklist.updated"
                     values={{
                       date: (
@@ -118,7 +127,9 @@ const ChecklistForm = ({ checklist }) => {
                         <FormattedTime value={sortedNotes[0].lastUpdated} />
                       ),
                     }}
-                  />
+                  >
+                    {(txt) => <span className={css.meta}>{txt}</span>}
+                  </FormattedMessage>
                 )}
               </Col>
             </Row>
