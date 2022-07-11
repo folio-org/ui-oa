@@ -143,21 +143,21 @@ const ChecklistForm = ({ checklist }) => {
                   </Col>
                 </Row>
                 <br />
-                <Row>
-                  <Col xs={12}>
-                    <IconButton
-                      badgeCount={item.notes.length}
-                      icon="document"
-                      onClick={() => setShowNotesModal(true)}
-                    />
-                  </Col>
-                </Row>
               </>
             )}
+            <Row>
+              <Col xs={12}>
+                <IconButton
+                  badgeCount={item?.notes?.length || 0}
+                  icon="document"
+                  onClick={() => setShowNotesModal(item?.label)}
+                />
+              </Col>
+            </Row>
             <ChecklistNotesModal
               item={item}
               setShowModal={setShowNotesModal}
-              showModal={showNotesModal}
+              showModal={showNotesModal === item?.label}
             />
           </div>
         );

@@ -19,8 +19,9 @@ const ChecklistNotesModal = ({ showModal, setShowModal, item }) => {
 
   return (
     <FormModal
-      dismissible
+      initialValues={item}
       modalProps={{
+        dismissible: 'dismissible',
         onClose: handleClose,
         open: showModal,
         label: (
