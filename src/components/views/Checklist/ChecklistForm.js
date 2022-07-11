@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Col,
   Row,
@@ -10,6 +11,7 @@ import { orderBy } from 'lodash';
 import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
 import { FormattedDate, FormattedMessage, FormattedTime } from 'react-intl';
+import ChecklistNotesModal from './ChecklistNotesModal';
 
 import css from './ChecklistForm.css';
 
@@ -17,14 +19,16 @@ const propTypes = {
   checklist: PropTypes.arrayOf(PropTypes.object),
 };
 const ChecklistForm = ({ checklist }) => {
+  const [showNotesModal, setShowNotesModal] = useState(false);
+
   const buttonOptions = [
     {
-      icon: 'default',
+      icon: 'check-circle',
       value: 'done',
       label: 'Done',
     },
     {
-      icon: 'times',
+      icon: 'times-circle-solid',
       value: 'not_done',
       label: 'Not done',
     },
@@ -144,11 +148,17 @@ const ChecklistForm = ({ checklist }) => {
                     <IconButton
                       badgeCount={item.notes.length}
                       icon="document"
+                      onClick={() => setShowNotesModal(true)}
                     />
                   </Col>
                 </Row>
               </>
             )}
+            <ChecklistNotesModal
+              item={item}
+              setShowModal={setShowNotesModal}
+              showModal={showNotesModal}
+            />
           </div>
         );
       })}

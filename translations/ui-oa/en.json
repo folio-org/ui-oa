@@ -1,6 +1,6 @@
 {
   "meta.title": "Open Access",
-  
+
   "appMenu.keyboardShortcuts": "Keyboards shortcuts",
 
   "settings.edit": "Edit",
@@ -267,7 +267,7 @@
   "charge.amountToCalculated": "Amount to pay, with tax and discount applied",
   "charge.calculatedAmount": "Calculated amount",
   "charge.netAmount": "Net amount",
-  "charge.currency":"Charge currency",
+  "charge.currency": "Charge currency",
   "charge.exchangeRate": "Exchange rate",
   "charge.exchangeRateApplied": "Exchange rate applied",
   "charge.coefficient": "Coefficient",
@@ -354,5 +354,6 @@
   "checklist": "Checklist",
   "checklist.updated": "Updated: {date} {time}",
   "checklist.created": "Created: {date} {time}",
-  "checklist.latestNote": "Latest note"
+  "checklist.latestNote": "Latest note",
+  "checklist.notesForItem": "Notes for {item}"
 }

@@ -11,8 +11,7 @@ const propTypes = {
 };
 
 const Checklist = ({ onToggle }) => {
-  const testSubmit = (_values) => {
-  };
+  const testSubmit = (_values) => {};
 
   return (
     <Pane
