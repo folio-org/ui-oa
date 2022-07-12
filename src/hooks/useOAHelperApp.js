@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { IconButton } from '@folio/stripes/components';
 import { useHelperApp } from '@k-int/stripes-kint-components';
 import { FormattedMessage } from 'react-intl';
-import Checklist from '../components/views/Checklist';
+import Checklist from '../components/Checklist';
 
 const propTypes = {
   onClick: PropTypes.func,
