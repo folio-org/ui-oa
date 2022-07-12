@@ -10,10 +10,11 @@ import { IconSelect } from '@k-int/stripes-kint-components';
 import { orderBy } from 'lodash';
 import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
-import { FormattedDate, FormattedMessage, FormattedTime } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import ChecklistNotesModal from './ChecklistNotesModal';
 
 import css from './ChecklistForm.css';
+import ChecklistMeta from './ChecklistMeta';
 
 const propTypes = {
   checklist: PropTypes.arrayOf(PropTypes.object),
@@ -57,28 +58,10 @@ const ChecklistForm = ({ checklist }) => {
                     </>
                   }
                   value={
-                    item.dateCreated === item.lastUpdated ? (
-                      <FormattedMessage
-                        id="ui-oa.checklist.created"
-                        values={{
-                          date: <FormattedDate value={item.dateCreated} />,
-                          time: <FormattedTime value={item.dateCreated} />,
-                        }}
-                      >
-                        {(txt) => <span className={css.meta}>{txt}</span>}
-                      </FormattedMessage>
-                    ) : (
-                      <FormattedMessage
-                        className={css.meta}
-                        id="ui-oa.checklist.updated"
-                        values={{
-                          date: <FormattedDate value={item.lastUpdated} />,
-                          time: <FormattedTime value={item.lastUpdated} />,
-                        }}
-                      >
-                        {(txt) => <span className={css.meta}>{txt}</span>}
-                      </FormattedMessage>
-                    )
+                    <ChecklistMeta
+                      dateCreated={item?.dateCreated}
+                      lastUpdated={item?.lastUpdated}
+                    />
                   }
                 />
               </Col>
@@ -108,38 +91,10 @@ const ChecklistForm = ({ checklist }) => {
                 </Row>
                 <Row>
                   <Col xs={12}>
-                    {sortedNotes[0].dateCreated ===
-                    sortedNotes[0].lastUpdated ? (
-                      <FormattedMessage
-                        className={css.meta}
-                        id="ui-oa.checklist.created"
-                        values={{
-                          date: (
-                            <FormattedDate value={sortedNotes[0].dateCreated} />
-                          ),
-                          time: (
-                            <FormattedTime value={sortedNotes[0].dateCreated} />
-                          ),
-                        }}
-                      >
-                        {(txt) => <span className={css.meta}>{txt}</span>}
-                      </FormattedMessage>
-                    ) : (
-                      <FormattedMessage
-                        className={css.meta}
-                        id="ui-oa.checklist.updated"
-                        values={{
-                          date: (
-                            <FormattedDate value={sortedNotes[0].lastUpdated} />
-                          ),
-                          time: (
-                            <FormattedTime value={sortedNotes[0].lastUpdated} />
-                          ),
-                        }}
-                      >
-                        {(txt) => <span className={css.meta}>{txt}</span>}
-                      </FormattedMessage>
-                    )}
+                    <ChecklistMeta
+                      dateCreated={sortedNotes[0]?.dateCreated}
+                      lastUpdated={sortedNotes[0]?.lastUpdated}
+                    />
                   </Col>
                 </Row>
                 <br />
