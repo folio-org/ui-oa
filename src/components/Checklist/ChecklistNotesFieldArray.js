@@ -39,7 +39,7 @@ const ChecklistNotesField = ({ fields: { name } }) => {
           >
             <FormattedMessage id="ui-oa.checklist.save" />
           </Button>
-          {items.length > 1 && (
+          {(items.length > 1 || note?.id) && (
             <Button
               key={`cancel[${note.label}]`}
               data-type-button="cancel"
@@ -81,8 +81,8 @@ const ChecklistNotesField = ({ fields: { name } }) => {
         if (note.id === editing || (!note.id && editing === 'NEW_NOTE')) {
           return (
             <>
-              <Row>
-                <Col xs={10}>
+              <Row middle="xs">
+                <Col xs={9}>
                   <Field
                     component={TextArea}
                     fullWidth
@@ -91,7 +91,7 @@ const ChecklistNotesField = ({ fields: { name } }) => {
                     style={{ height: '150px' }}
                   />
                 </Col>
-                <Col xs={2}> {renderNoteActions(note, index)}</Col>
+                <Col xs={3}> {renderNoteActions(note, index)}</Col>
               </Row>
               <hr />
             </>
@@ -100,7 +100,7 @@ const ChecklistNotesField = ({ fields: { name } }) => {
         return (
           <>
             <div className={css.container}>
-              <Row>
+              <Row middle="xs">
                 <Col xs={10}>{note.note}</Col>
                 <Col xs={2}> {renderNoteActions(note, index)}</Col>
               </Row>
