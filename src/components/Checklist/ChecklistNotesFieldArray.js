@@ -84,18 +84,20 @@ const ChecklistNotesField = ({ fields: { name } }) => {
         if (note.id === editing || (!note.id && editing === 'NEW_NOTE')) {
           return (
             <>
-              <Row middle="xs">
-                <Col xs={9}>
-                  <Field
-                    component={TextArea}
-                    fullWidth
-                    name={`${name}[${index}].note`}
-                    // TODO Place styling in external css
-                    style={{ height: '150px' }}
-                  />
-                </Col>
-                <Col xs={3}> {renderNoteActions(note, index)}</Col>
-              </Row>
+              <div className={css.container}>
+                <Row middle="xs">
+                  <Col xs={9}>
+                    <Field
+                      component={TextArea}
+                      fullWidth
+                      name={`${name}[${index}].note`}
+                      // TODO Place styling in external css
+                      style={{ height: '150px' }}
+                    />
+                  </Col>
+                  <Col xs={3}> {renderNoteActions(note, index)}</Col>
+                </Row>
+              </div>
               <hr />
             </>
           );
