@@ -11,6 +11,10 @@ const propTypes = {
 };
 
 const ChecklistNotesModal = ({ showModal, setShowModal, item }) => {
+  const labelOverrides = {
+    save: <FormattedMessage id="ui-oa.checklist.close" />,
+  };
+
   const handleClose = () => {
     setShowModal(false);
   };
@@ -20,6 +24,7 @@ const ChecklistNotesModal = ({ showModal, setShowModal, item }) => {
   return (
     <FormModal
       initialValues={item}
+      labelOverrides={labelOverrides}
       modalProps={{
         dismissible: 'dismissible',
         onClose: handleClose,

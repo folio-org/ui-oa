@@ -32,21 +32,23 @@ const ChecklistNotesField = ({ fields: { name } }) => {
           >
             <FormattedMessage id="ui-oa.checklist.save" />
           </Button>
-          <Button
-            key={`cancel[${note.label}]`}
-            data-type-button="cancel"
-            marginBottom0
-            onClick={() => {
-              if (!note.id && editing === 'NEW_ROW') {
-                onDeleteField(index, note);
-                setEditing(null);
-              } else {
-                setEditing(null);
-              }
-            }}
-          >
-            <FormattedMessage id="ui-oa.checklist.cancel" />
-          </Button>
+          {items.length > 1 && (
+            <Button
+              key={`cancel[${note.label}]`}
+              data-type-button="cancel"
+              marginBottom0
+              onClick={() => {
+                if (!note.id && editing === 'NEW_ROW') {
+                  onDeleteField(index, note);
+                  setEditing(null);
+                } else {
+                  setEditing(null);
+                }
+              }}
+            >
+              <FormattedMessage id="ui-oa.checklist.cancel" />
+            </Button>
+          )}
         </div>
       );
     }
@@ -78,6 +80,7 @@ const ChecklistNotesField = ({ fields: { name } }) => {
                     component={TextArea}
                     fullWidth
                     name={`${name}[${index}].note`}
+                    style={{ height: '150px' }}
                   />
                 </Col>
                 <Col xs={2}> {renderNoteActions(note, index)}</Col>

@@ -358,5 +358,6 @@
   "checklist.notesForItem": "Notes for {item}",
   "checklist.addNote": "Add note",
   "checklist.save": "Save",
-  "checklist.cancel": "Cancel"
+  "checklist.cancel": "Cancel",
+  "checklist.close": "Close"
 }
