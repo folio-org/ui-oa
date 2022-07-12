@@ -34,6 +34,7 @@ const ChecklistNotesModal = ({ showModal, setShowModal, item }) => {
     }
     return item;
   };
+
   return (
     <FormModal
       initialValues={getInitialValues()}
@@ -52,7 +53,7 @@ const ChecklistNotesModal = ({ showModal, setShowModal, item }) => {
       mutators={arrayMutators}
       onSubmit={submitNotes}
     >
-      <ChecklistNotesFieldArray />
+      <ChecklistNotesFieldArray handleSubmit={submitNotes} />
     </FormModal>
   );
 };

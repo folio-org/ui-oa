@@ -9,7 +9,7 @@ const testChecklist = {
       status: 'required',
       dateCreated: '2022-07-07T10:52:08Z',
       lastUpdated: '2022-07-07T10:52:08Z',
-      weight: 2,
+      weight: 1,
       notes: [
         {
           id: '2c9180b381f018c60181f01cef98002a',
@@ -33,7 +33,7 @@ const testChecklist = {
       status: 'required',
       dateCreated: '2022-09-07T09:22:59Z',
       lastUpdated: '2022-09-07T10:52:08Z',
-      weight: 1,
+      weight: 2,
       notes: [
         {
           id: '2c9180b381f018c60181f01cef98002a',

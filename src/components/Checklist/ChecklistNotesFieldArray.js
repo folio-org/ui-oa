@@ -16,8 +16,8 @@ import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
 import css from './CheckListNotesFieldArray.css';
 import ChecklistMeta from './ChecklistMeta';
 
-const ChecklistNotesField = ({ fields: { name } }) => {
-  const { initialValues } = useFormState();
+const ChecklistNotesField = ({ fields: { name }, handleSubmit }) => {
+  const { initialValues, values } = useFormState();
   const { items, onAddField, onDeleteField } = useKiwtFieldArray(name);
   const [editing, setEditing] = useState(() => {
     if (initialValues?.notes[0]?.id) {
@@ -35,9 +35,13 @@ const ChecklistNotesField = ({ fields: { name } }) => {
             key={`save[${note.label}]`}
             buttonStyle="primary"
             disabled={
-              !note?.note || initialValues.notes[index].note === note?.note
+              !note?.note || initialValues?.notes[index]?.note === note?.note
             }
             marginBottom0
+            onClick={() => {
+              handleSubmit(values);
+              setEditing(null);
+            }}
             type="submit"
           >
             <FormattedMessage id="ui-oa.checklist.save" />
@@ -143,14 +147,23 @@ ChecklistNotesField.propTypes = {
   fields: PropTypes.shape({
     name: PropTypes.string,
   }),
+  handleSubmit: PropTypes.func,
 };
 
-const ChecklistNotesFieldArray = () => {
+const ChecklistNotesFieldArray = ({ handleSubmit }) => {
   return (
     <>
-      <FieldArray component={ChecklistNotesField} name="notes" />
+      <FieldArray
+        component={ChecklistNotesField}
+        handleSubmit={handleSubmit}
+        name="notes"
+      />
     </>
   );
+};
+
+ChecklistNotesFieldArray.propTypes = {
+  handleSubmit: PropTypes.func,
 };
 
 export default ChecklistNotesFieldArray;
