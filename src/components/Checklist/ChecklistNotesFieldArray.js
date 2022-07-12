@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import { Button, Col, Row } from '@folio/stripes/components';
-import { FormattedMessage, FormattedDate, FormattedTime } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { FieldArray } from 'react-final-form-arrays';
 import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
 import css from './CheckListNotesFieldArray.css';
+import ChecklistMeta from './ChecklistMeta';
 
 const ChecklistNotesField = ({ fields: { name } }) => {
   const { items, onAddField } = useKiwtFieldArray(name);
@@ -19,29 +20,10 @@ const ChecklistNotesField = ({ fields: { name } }) => {
               <br />
               <Row>
                 <Col xs={12}>
-                  {note.dateCreated === note.lastUpdated ? (
-                    <FormattedMessage
-                      className={css.meta}
-                      id="ui-oa.checklist.created"
-                      values={{
-                        date: <FormattedDate value={note.dateCreated} />,
-                        time: <FormattedTime value={note.dateCreated} />,
-                      }}
-                    >
-                      {(txt) => <span className={css.meta}>{txt}</span>}
-                    </FormattedMessage>
-                  ) : (
-                    <FormattedMessage
-                      className={css.meta}
-                      id="ui-oa.checklist.updated"
-                      values={{
-                        date: <FormattedDate value={note.lastUpdated} />,
-                        time: <FormattedTime value={note.lastUpdated} />,
-                      }}
-                    >
-                      {(txt) => <span className={css.meta}>{txt}</span>}
-                    </FormattedMessage>
-                  )}
+                  <ChecklistMeta
+                    dateCreated={note?.dateCreated}
+                    lastUpdate={note?.lastUpdated}
+                  />
                 </Col>
               </Row>
             </div>

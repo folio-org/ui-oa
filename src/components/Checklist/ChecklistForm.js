@@ -10,10 +10,12 @@ import { IconSelect } from '@k-int/stripes-kint-components';
 import { orderBy } from 'lodash';
 import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
-import { FormattedDate, FormattedMessage, FormattedTime } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import ChecklistNotesModal from './ChecklistNotesModal';
+import StatusSelect from './StatusSelect';
 
 import css from './ChecklistForm.css';
+import ChecklistMeta from './ChecklistMeta';
 
 const propTypes = {
   checklist: PropTypes.arrayOf(PropTypes.object),
@@ -21,7 +23,7 @@ const propTypes = {
 const ChecklistForm = ({ checklist }) => {
   const [showNotesModal, setShowNotesModal] = useState(false);
 
-  const buttonOptions = [
+  const outcomeOptions = [
     {
       icon: 'check-circle',
       value: 'done',
@@ -39,6 +41,19 @@ const ChecklistForm = ({ checklist }) => {
     },
   ];
 
+  const statusOptions = [
+    {
+      icon: 'eye-open',
+      value: 'required',
+      label: 'Required',
+    },
+    {
+      icon: 'eye-closed',
+      value: 'not_required',
+      label: 'Not required',
+    },
+  ];
+
   const checklistItemNames = Object.keys(checklist?.items);
 
   return (
@@ -49,44 +64,28 @@ const ChecklistForm = ({ checklist }) => {
         return (
           <div className={css.container}>
             <Row>
+              <Col xs={12}>
+                <strong>{item.label}</strong>
+                <Field
+                  component={StatusSelect}
+                  name={`items[${name}].status`}
+                  options={statusOptions}
+                />
+                <InfoPopover content={item?.description} />
+              </Col>
+            </Row>
+            <Row>
               <Col xs={10}>
-                <KeyValue
-                  label={
-                    <>
-                      {item.label} <InfoPopover content={item?.description} />
-                    </>
-                  }
-                  value={
-                    item.dateCreated === item.lastUpdated ? (
-                      <FormattedMessage
-                        id="ui-oa.checklist.created"
-                        values={{
-                          date: <FormattedDate value={item.dateCreated} />,
-                          time: <FormattedTime value={item.dateCreated} />,
-                        }}
-                      >
-                        {(txt) => <span className={css.meta}>{txt}</span>}
-                      </FormattedMessage>
-                    ) : (
-                      <FormattedMessage
-                        className={css.meta}
-                        id="ui-oa.checklist.updated"
-                        values={{
-                          date: <FormattedDate value={item.lastUpdated} />,
-                          time: <FormattedTime value={item.lastUpdated} />,
-                        }}
-                      >
-                        {(txt) => <span className={css.meta}>{txt}</span>}
-                      </FormattedMessage>
-                    )
-                  }
+                <ChecklistMeta
+                  dateCreated={item?.dateCreated}
+                  lastUpdated={item?.lastUpdated}
                 />
               </Col>
               <Col xs={2}>
                 <Field
                   component={IconSelect}
                   name={`items[${name}].outcome`}
-                  options={buttonOptions}
+                  options={outcomeOptions}
                 />
               </Col>
             </Row>
@@ -108,38 +107,10 @@ const ChecklistForm = ({ checklist }) => {
                 </Row>
                 <Row>
                   <Col xs={12}>
-                    {sortedNotes[0].dateCreated ===
-                    sortedNotes[0].lastUpdated ? (
-                      <FormattedMessage
-                        className={css.meta}
-                        id="ui-oa.checklist.created"
-                        values={{
-                          date: (
-                            <FormattedDate value={sortedNotes[0].dateCreated} />
-                          ),
-                          time: (
-                            <FormattedTime value={sortedNotes[0].dateCreated} />
-                          ),
-                        }}
-                      >
-                        {(txt) => <span className={css.meta}>{txt}</span>}
-                      </FormattedMessage>
-                    ) : (
-                      <FormattedMessage
-                        className={css.meta}
-                        id="ui-oa.checklist.updated"
-                        values={{
-                          date: (
-                            <FormattedDate value={sortedNotes[0].lastUpdated} />
-                          ),
-                          time: (
-                            <FormattedTime value={sortedNotes[0].lastUpdated} />
-                          ),
-                        }}
-                      >
-                        {(txt) => <span className={css.meta}>{txt}</span>}
-                      </FormattedMessage>
-                    )}
+                    <ChecklistMeta
+                      dateCreated={sortedNotes[0].dateCreated}
+                      lastUpdated={sortedNotes[0].lastUpdated}
+                    />
                   </Col>
                 </Row>
                 <br />
