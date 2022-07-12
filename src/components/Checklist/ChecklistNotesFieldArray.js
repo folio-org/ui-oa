@@ -80,6 +80,7 @@ const ChecklistNotesField = ({ fields: { name } }) => {
                     component={TextArea}
                     fullWidth
                     name={`${name}[${index}].note`}
+                    // TODO Place styling in external css
                     style={{ height: '150px' }}
                   />
                 </Col>
