@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import arrayMutators from 'final-form-arrays';
 import { FormattedMessage } from 'react-intl';
+import { Button } from '@folio/stripes/components';
 import { FormModal } from '@k-int/stripes-kint-components';
 import ChecklistNotesFieldArray from './ChecklistNotesFieldArray';
 
@@ -11,12 +12,18 @@ const propTypes = {
 };
 
 const ChecklistNotesModal = ({ showModal, setShowModal, item }) => {
-  const labelOverrides = {
-    save: <FormattedMessage id="ui-oa.checklist.close" />,
-  };
-
   const handleClose = () => {
     setShowModal(false);
+  };
+
+  const renderFooter = () => {
+    return (
+      <>
+        <Button marginBottom0 onClick={() => handleClose()}>
+          <FormattedMessage id="ui-oa.checklist.close" />
+        </Button>
+      </>
+    );
   };
 
   const submitNotes = (_values) => {};
@@ -30,9 +37,9 @@ const ChecklistNotesModal = ({ showModal, setShowModal, item }) => {
   return (
     <FormModal
       initialValues={getInitialValues()}
-      labelOverrides={labelOverrides}
       modalProps={{
         dismissible: 'dismissible',
+        footer: renderFooter,
         onClose: handleClose,
         open: showModal,
         label: (
