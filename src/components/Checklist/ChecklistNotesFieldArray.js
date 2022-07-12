@@ -34,7 +34,9 @@ const ChecklistNotesField = ({ fields: { name } }) => {
           <Button
             key={`save[${note.label}]`}
             buttonStyle="primary"
-            disabled={!note?.note}
+            disabled={
+              !note?.note || initialValues.notes[index].note === note?.note
+            }
             marginBottom0
             type="submit"
           >
