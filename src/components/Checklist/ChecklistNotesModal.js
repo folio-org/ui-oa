@@ -21,9 +21,15 @@ const ChecklistNotesModal = ({ showModal, setShowModal, item }) => {
 
   const submitNotes = (_values) => {};
 
+  const getInitialValues = () => {
+    if (!item.notes) {
+      return { ...item, notes: [{ note: '' }] };
+    }
+    return item;
+  };
   return (
     <FormModal
-      initialValues={item}
+      initialValues={getInitialValues()}
       labelOverrides={labelOverrides}
       modalProps={{
         dismissible: 'dismissible',

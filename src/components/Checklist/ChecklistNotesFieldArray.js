@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { Field } from 'react-final-form';
+import { Field, useFormState } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
 
 import {
@@ -17,11 +17,18 @@ import css from './CheckListNotesFieldArray.css';
 import ChecklistMeta from './ChecklistMeta';
 
 const ChecklistNotesField = ({ fields: { name } }) => {
+  const { initialValues } = useFormState();
   const { items, onAddField, onDeleteField } = useKiwtFieldArray(name);
-  const [editing, setEditing] = useState(false);
+  const [editing, setEditing] = useState(() => {
+    if (initialValues?.notes[0]?.id) {
+      return false;
+    } else {
+      return 'NEW_NOTE';
+    }
+  });
 
   const renderNoteActions = (note, index) => {
-    if (note.id === editing || (!note.id && editing === 'NEW_ROW')) {
+    if (note.id === editing || (!note.id && editing === 'NEW_NOTE')) {
       return (
         <div>
           <Button
@@ -38,7 +45,7 @@ const ChecklistNotesField = ({ fields: { name } }) => {
               data-type-button="cancel"
               marginBottom0
               onClick={() => {
-                if (!note.id && editing === 'NEW_ROW') {
+                if (!note.id && editing === 'NEW_NOTE') {
                   onDeleteField(index, note);
                   setEditing(null);
                 } else {
@@ -71,7 +78,7 @@ const ChecklistNotesField = ({ fields: { name } }) => {
   return (
     <>
       {items.map((note, index) => {
-        if (note.id === editing || (!note.id && editing === 'NEW_ROW')) {
+        if (note.id === editing || (!note.id && editing === 'NEW_NOTE')) {
           return (
             <>
               <Row>
@@ -116,7 +123,7 @@ const ChecklistNotesField = ({ fields: { name } }) => {
         <Button
           disabled={editing}
           onClick={() => {
-            setEditing('NEW_ROW');
+            setEditing('NEW_NOTE');
             onAddField({});
           }}
         >
