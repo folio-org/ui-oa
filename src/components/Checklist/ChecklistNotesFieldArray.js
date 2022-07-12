@@ -37,7 +37,6 @@ const ChecklistNotesField = ({ fields: { name }, handleSubmit }) => {
             disabled={
               !note?.note || initialValues?.notes[index]?.note === note?.note
             }
-            marginBottom0
             onClick={() => {
               handleSubmit(values);
               setEditing(null);
@@ -50,7 +49,6 @@ const ChecklistNotesField = ({ fields: { name }, handleSubmit }) => {
             <Button
               key={`cancel[${note.label}]`}
               data-type-button="cancel"
-              marginBottom0
               onClick={() => {
                 if (!note.id && editing === 'NEW_NOTE') {
                   onDeleteField(index, note);

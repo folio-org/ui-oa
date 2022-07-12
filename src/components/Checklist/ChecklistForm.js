@@ -17,7 +17,7 @@ import css from './ChecklistForm.css';
 import ChecklistMeta from './ChecklistMeta';
 
 const propTypes = {
-  checklist: PropTypes.arrayOf(PropTypes.object),
+  checklist: PropTypes.object,
 };
 const ChecklistForm = ({ checklist }) => {
   const [showNotesModal, setShowNotesModal] = useState(false);
@@ -48,7 +48,7 @@ const ChecklistForm = ({ checklist }) => {
         const item = checklist?.items[name];
         const sortedNotes = orderBy(item.notes, 'dateCreated', 'desc');
         return (
-          <div className={css.container}>
+          <div key={item?.id} className={css.container}>
             <Row>
               <Col xs={10}>
                 <KeyValue
