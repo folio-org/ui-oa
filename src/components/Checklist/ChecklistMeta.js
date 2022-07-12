@@ -8,33 +8,36 @@ const propTypes = {
 };
 
 const ChecklistMeta = ({ dateCreated, lastUpdated }) => {
-  return (
-    <>
-      {dateCreated === lastUpdated ? (
-        <FormattedMessage
-          className={css.meta}
-          id="ui-oa.checklist.created"
-          values={{
-            date: <FormattedDate value={dateCreated} />,
-            time: <FormattedTime value={dateCreated} />,
-          }}
-        >
-          {(txt) => <span className={css.meta}>{txt}</span>}
-        </FormattedMessage>
-      ) : (
-        <FormattedMessage
-          className={css.meta}
-          id="ui-oa.checklist.updated"
-          values={{
-            date: <FormattedDate value={lastUpdated} />,
-            time: <FormattedTime value={lastUpdated} />,
-          }}
-        >
-          {(txt) => <span className={css.meta}>{txt}</span>}
-        </FormattedMessage>
-      )}
-    </>
-  );
+  if (dateCreated && lastUpdated) {
+    return (
+      <>
+        {dateCreated === lastUpdated ? (
+          <FormattedMessage
+            className={css.meta}
+            id="ui-oa.checklist.created"
+            values={{
+              date: <FormattedDate value={dateCreated} />,
+              time: <FormattedTime value={dateCreated} />,
+            }}
+          >
+            {(txt) => <span className={css.meta}>{txt}</span>}
+          </FormattedMessage>
+        ) : (
+          <FormattedMessage
+            className={css.meta}
+            id="ui-oa.checklist.updated"
+            values={{
+              date: <FormattedDate value={lastUpdated} />,
+              time: <FormattedTime value={lastUpdated} />,
+            }}
+          >
+            {(txt) => <span className={css.meta}>{txt}</span>}
+          </FormattedMessage>
+        )}
+      </>
+    );
+  }
+  return <></>;
 };
 
 ChecklistMeta.propTypes = propTypes;
