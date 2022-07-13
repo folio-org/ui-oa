@@ -7,7 +7,7 @@ import { useStripes } from '@folio/stripes/core';
 
 import { useSettings } from '@k-int/stripes-kint-components';
 
-import { PickListValues } from './settingsComponents';
+import { ChecklistItemDefinitions, PickListValues } from './settingsComponents';
 import { REFDATA_ENDPOINT, SETTINGS_ENDPOINT } from '../constants/endpoints';
 
 const propTypes = {
@@ -33,6 +33,12 @@ const OASettings = (props) => {
       route: 'pick-list-values',
     });
   }
+
+  persistentPages.push({
+    component: ChecklistItemDefinitions,
+    label: intl.formatMessage({ id: 'ui-oa.settings.checklistItemDefinitions' }),
+    route: 'checklist-items',
+  });
 
   const { isLoading, SettingsComponent } = useSettings({
     dynamicPageExclusions: [],
