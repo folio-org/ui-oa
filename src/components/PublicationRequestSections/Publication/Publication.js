@@ -164,21 +164,24 @@ const Publication = ({ request }) => {
           />
         </Col>
       </Row>
+
       {request?.work && (
-        <Row>
-          <Col xs={6}>
-            <KeyValue
-              label={<FormattedMessage id="ui-oa.journal.journalDOAJ" />}
-              value={request?.workIndexedInDOAJ?.label}
-            />
-          </Col>
-          <Col xs={6}>
-            <KeyValue
-              label={<FormattedMessage id="ui-oa.journal.journalOAStatus" />}
-              value={request?.workOAStatus?.label}
-            />
-          </Col>
-        </Row>
+        <>
+          <Row>
+            <Col xs={6}>
+              <KeyValue
+                label={<FormattedMessage id="ui-oa.journal.journalDOAJ" />}
+                value={request?.workIndexedInDOAJ?.label}
+              />
+            </Col>
+            <Col xs={6}>
+              <KeyValue
+                label={<FormattedMessage id="ui-oa.journal.journalOAStatus" />}
+                value={request?.workOAStatus?.label}
+              />
+            </Col>
+          </Row>
+        </>
       )}
       {request?.identifiers?.length > 0 && (
         <Row>
