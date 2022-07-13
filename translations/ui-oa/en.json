@@ -359,5 +359,8 @@
   "checklist.addNote": "Add note",
   "checklist.save": "Save",
   "checklist.cancel": "Cancel",
-  "checklist.close": "Close"
+  "checklist.close": "Close",
+  "checklist.required": "Required",
+  "checklist.notRequired": "Not required"
+
 }
