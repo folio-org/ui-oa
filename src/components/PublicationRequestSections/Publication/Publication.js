@@ -141,7 +141,7 @@ const Publication = ({ request }) => {
       </Row>
 
       <Row>
-        <Col xs={3}>
+        <Col xs={6}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.publicationRequest.doi" />}
             value={
@@ -155,7 +155,7 @@ const Publication = ({ request }) => {
             }
           />
         </Col>
-        <Col xs={3}>
+        <Col xs={6}>
           <KeyValue
             label={
               <FormattedMessage id="ui-oa.publicationRequest.localReference" />
@@ -163,23 +163,26 @@ const Publication = ({ request }) => {
             value={request?.localReference}
           />
         </Col>
-        {request?.work && (
-          <>
-            <Col xs={3}>
+      </Row>
+
+      {request?.work && (
+        <>
+          <Row>
+            <Col xs={6}>
               <KeyValue
                 label={<FormattedMessage id="ui-oa.journal.journalDOAJ" />}
                 value={request?.workIndexedInDOAJ?.label}
               />
             </Col>
-            <Col xs={3}>
+            <Col xs={6}>
               <KeyValue
                 label={<FormattedMessage id="ui-oa.journal.journalOAStatus" />}
                 value={request?.workOAStatus?.label}
               />
             </Col>
-          </>
-        )}
-      </Row>
+          </Row>
+        </>
+      )}
       {request?.identifiers?.length > 0 && (
         <Row>
           <Col xs={12}>
