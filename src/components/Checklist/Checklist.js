@@ -1,17 +1,32 @@
 import PropTypes from 'prop-types';
-import { Form } from 'react-final-form';
 import { Pane } from '@folio/stripes/components';
-import { AppIcon } from '@folio/stripes-core';
+import { useMutation, useQueryClient } from 'react-query';
+import { AppIcon, useNamespace, useOkapiKy } from '@folio/stripes-core';
 import { FormattedMessage } from 'react-intl';
 import ChecklistForm from './ChecklistForm';
-import testChecklist from './testChecklist';
+import { PUBLICATION_REQUEST_ENDPOINT } from '../../constants/endpoints';
 
 const propTypes = {
   onToggle: PropTypes.func,
+  resource: PropTypes.object,
 };
 
-const Checklist = ({ onToggle }) => {
-  const testSubmit = (_values) => {};
+const Checklist = ({ onToggle, resource }) => {
+  const [namespace] = useNamespace();
+  const queryClient = useQueryClient();
+  const ky = useOkapiKy();
+
+  const { mutateAsync: putChecklist } = useMutation(
+    ['Checklist', 'putChecklist'],
+    (data) => {
+      ky.put(PUBLICATION_REQUEST_ENDPOINT(resource.id), { json: data });
+    }
+  );
+  const handleSubmit = async (values, item) => {
+    const submitValues = { checklist: [{ ...item, ...values }] };
+    await putChecklist(submitValues);
+    queryClient.invalidateQueries([namespace, 'data', 'view', resource?.id]);
+  };
 
   return (
     <Pane
@@ -21,13 +36,11 @@ const Checklist = ({ onToggle }) => {
       onClose={onToggle}
       paneTitle={<FormattedMessage id="ui-oa.checklist" />}
     >
-      <Form initialValues={testChecklist} onSubmit={testSubmit}>
-        {({ handleSubmit }) => (
-          <form onSubmit={handleSubmit}>
-            <ChecklistForm checklist={testChecklist} />
-          </form>
-        )}
-      </Form>
+      <ChecklistForm
+        checklist={resource.checklist}
+        handleSubmit={handleSubmit}
+        ownerId={resource.id}
+      />
     </Pane>
   );
 };

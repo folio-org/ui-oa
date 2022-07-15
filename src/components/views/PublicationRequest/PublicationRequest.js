@@ -158,7 +158,7 @@ const PublicationRequest = ({
           </AccordionSet>
         </AccordionStatus>
       </Pane>
-      <HelperComponent isOpen={isOpen} />
+      <HelperComponent isOpen={isOpen} resource={request} />
     </HasCommand>
   );
 };

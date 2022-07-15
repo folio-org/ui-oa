@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { Field, useFormState } from 'react-final-form';
-import { FieldArray } from 'react-final-form-arrays';
+import { Field, Form } from 'react-final-form';
 
 import {
   Button,
@@ -11,51 +10,34 @@ import {
   Row,
   TextArea,
 } from '@folio/stripes/components';
-import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
 
 import css from './CheckListNotesFieldArray.css';
 import ChecklistMeta from './ChecklistMeta';
 
-const ChecklistNotesField = ({ fields: { name }, handleSubmit }) => {
-  const { initialValues, values } = useFormState();
-  const { items, onAddField, onDeleteField } = useKiwtFieldArray(name);
-  const [editing, setEditing] = useState(() => {
-    if (initialValues?.notes[0]?.id) {
-      return false;
-    } else {
-      return 'NEW_NOTE';
-    }
-  });
+const ChecklistNotesField = ({ notes, submitNotes, handleDelete }) => {
+  const [editing, setEditing] = useState(false);
 
-  const renderNoteActions = (note, index) => {
+  const renderNoteActions = (note, handleSubmit) => {
     if (note.id === editing || (!note.id && editing === 'NEW_NOTE')) {
       return (
         <div>
           <Button
             key={`save[${note.label}]`}
             buttonStyle="primary"
-            disabled={
-              !note?.note || initialValues?.notes[index]?.note === note?.note
-            }
             onClick={() => {
-              handleSubmit(values);
+              handleSubmit(note?.id);
               setEditing(null);
             }}
             type="submit"
           >
             <FormattedMessage id="ui-oa.checklist.save" />
           </Button>
-          {(items.length > 1 || note?.id) && (
+          {(notes?.length > 1 || note?.id) && (
             <Button
               key={`cancel[${note.label}]`}
               data-type-button="cancel"
               onClick={() => {
-                if (!note.id && editing === 'NEW_NOTE') {
-                  onDeleteField(index, note);
-                  setEditing(null);
-                } else {
-                  setEditing(null);
-                }
+                setEditing(null);
               }}
             >
               <FormattedMessage id="ui-oa.checklist.cancel" />
@@ -74,7 +56,7 @@ const ChecklistNotesField = ({ fields: { name }, handleSubmit }) => {
         <IconButton
           disabled={editing}
           icon="trash"
-          onClick={() => onDeleteField(index, note)}
+          onClick={() => handleDelete(note)}
         />
       </>
     );
@@ -82,24 +64,32 @@ const ChecklistNotesField = ({ fields: { name }, handleSubmit }) => {
 
   return (
     <>
-      {items.map((note, index) => {
+      {notes.map((note, index) => {
         if (note.id === editing || (!note.id && editing === 'NEW_NOTE')) {
           return (
             <>
-              <div className={css.container}>
-                <Row middle="xs">
-                  <Col xs={9}>
-                    <Field
-                      component={TextArea}
-                      fullWidth
-                      name={`${name}[${index}].note`}
-                      // TODO Place styling in external css
-                      style={{ height: '150px' }}
-                    />
-                  </Col>
-                  <Col xs={3}> {renderNoteActions(note, index)}</Col>
-                </Row>
-              </div>
+              <Form initialValues={note} onSubmit={submitNotes}>
+                {({ handleSubmit }) => (
+                  <form onSubmit={handleSubmit}>
+                    <div className={css.container}>
+                      <Row middle="xs">
+                        <Col xs={9}>
+                          <Field
+                            component={TextArea}
+                            fullWidth
+                            name="note"
+                            // TODO Place styling in external css
+                            style={{ height: '150px' }}
+                          />
+                        </Col>
+                        <Col xs={3}>
+                          {renderNoteActions(note, handleSubmit)}
+                        </Col>
+                      </Row>
+                    </div>
+                  </form>
+                )}
+              </Form>
               <hr />
             </>
           );
@@ -131,7 +121,7 @@ const ChecklistNotesField = ({ fields: { name }, handleSubmit }) => {
           disabled={editing}
           onClick={() => {
             setEditing('NEW_NOTE');
-            onAddField({});
+            notes.push({});
           }}
         >
           <FormattedMessage id="ui-oa.checklist.addNote" />
@@ -142,26 +132,9 @@ const ChecklistNotesField = ({ fields: { name }, handleSubmit }) => {
 };
 
 ChecklistNotesField.propTypes = {
-  fields: PropTypes.shape({
-    name: PropTypes.string,
-  }),
-  handleSubmit: PropTypes.func,
+  submitNotes: PropTypes.func,
+  handleDelete: PropTypes.func,
+  notes: PropTypes.arrayOf(PropTypes.object),
 };
 
-const ChecklistNotesFieldArray = ({ handleSubmit }) => {
-  return (
-    <>
-      <FieldArray
-        component={ChecklistNotesField}
-        handleSubmit={handleSubmit}
-        name="notes"
-      />
-    </>
-  );
-};
-
-ChecklistNotesFieldArray.propTypes = {
-  handleSubmit: PropTypes.func,
-};
-
-export default ChecklistNotesFieldArray;
+export default ChecklistNotesField;

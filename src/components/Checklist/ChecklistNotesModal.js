@@ -1,19 +1,46 @@
 import PropTypes from 'prop-types';
-import arrayMutators from 'final-form-arrays';
 import { FormattedMessage } from 'react-intl';
-import { Button } from '@folio/stripes/components';
-import { FormModal } from '@k-int/stripes-kint-components';
-import ChecklistNotesFieldArray from './ChecklistNotesFieldArray';
+import { useMutation, useQueryClient } from 'react-query';
+import { useNamespace, useOkapiKy } from '@folio/stripes-core';
+import { Button, Modal } from '@folio/stripes/components';
+import ChecklistNotesField from './ChecklistNotesFieldArray';
+import { PUBLICATION_REQUEST_ENDPOINT } from '../../constants/endpoints';
 
 const propTypes = {
   showModal: PropTypes.bool,
   setShowModal: PropTypes.func,
   item: PropTypes.object,
+  ownerId: PropTypes.string,
 };
 
-const ChecklistNotesModal = ({ showModal, setShowModal, item }) => {
+const ChecklistNotesModal = ({ ownerId, showModal, setShowModal, item }) => {
+  const queryClient = useQueryClient();
+  const ky = useOkapiKy();
+  const [namespace] = useNamespace();
+
+  const { mutateAsync: putNotes } = useMutation(
+    ['ChecklistNotesModal', 'putNotes'],
+    (data) => {
+      ky.put(PUBLICATION_REQUEST_ENDPOINT(ownerId), { json: data });
+    }
+  );
+
   const handleClose = () => {
     setShowModal(false);
+  };
+
+  const submitNotes = async (values) => {
+    const submitValues = { checklist: [{ ...item, notes: [values] }] };
+    await putNotes(submitValues);
+    queryClient.invalidateQueries([namespace, 'data', 'view', ownerId]);
+  };
+
+  const handleDelete = async (values) => {
+    const submitValues = {
+      checklist: [{ ...item, notes: [{ ...values, _delete: true }] }],
+    };
+    await putNotes(submitValues);
+    queryClient.invalidateQueries([namespace, 'data', 'view', ownerId]);
   };
 
   const renderFooter = () => {
@@ -26,35 +53,25 @@ const ChecklistNotesModal = ({ showModal, setShowModal, item }) => {
     );
   };
 
-  const submitNotes = (_values) => {};
-
-  const getInitialValues = () => {
-    if (!item.notes) {
-      return { ...item, notes: [{ note: '' }] };
-    }
-    return item;
-  };
-
   return (
-    <FormModal
-      initialValues={getInitialValues()}
-      modalProps={{
-        dismissible: true,
-        footer: renderFooter,
-        onClose: handleClose,
-        open: showModal,
-        label: (
-          <FormattedMessage
-            id="ui-oa.checklist.notesForItem"
-            values={{ item: item?.label }}
-          />
-        ),
-      }}
-      mutators={arrayMutators}
-      onSubmit={submitNotes}
+    <Modal
+      dismissible
+      footer={renderFooter}
+      label={
+        <FormattedMessage
+          id="ui-oa.checklist.notesForItem"
+          values={{ item: item?.definition?.label }}
+        />
+      }
+      onClose={handleClose}
+      open={showModal}
     >
-      <ChecklistNotesFieldArray handleSubmit={submitNotes} />
-    </FormModal>
+      <ChecklistNotesField
+        handleDelete={handleDelete}
+        notes={item.notes}
+        submitNotes={submitNotes}
+      />
+    </Modal>
   );
 };
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Col,
   Row,
@@ -11,32 +11,59 @@ import {
   Icon,
 } from '@folio/stripes/components';
 import { IconSelect } from '@k-int/stripes-kint-components';
-import { orderBy } from 'lodash';
+import orderBy from 'lodash/orderBy';
+import isEqual from 'lodash/isEqual';
+import differenceWith from 'lodash/differenceWith';
+
 import PropTypes from 'prop-types';
-import { Field, useForm } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';
 import ChecklistNotesModal from './ChecklistNotesModal';
+import useChecklistItemDefinitions from '../../hooks/useChecklistItemDefinitions';
 
 import css from './ChecklistForm.css';
 import ChecklistMeta from './ChecklistMeta';
 
 const propTypes = {
   checklist: PropTypes.object,
+  handleSubmit: PropTypes.func,
+  ownerId: PropTypes.string,
 };
-const ChecklistForm = ({ checklist }) => {
-  const { change } = useForm();
+const ChecklistForm = ({ ownerId, checklist, handleSubmit }) => {
+  const itemDefinitions = useChecklistItemDefinitions();
   const [showNotesModal, setShowNotesModal] = useState(false);
+  const [checklistItems, setChecklistItems] = useState([]);
+
+  useEffect(() => {
+    const itemList = itemDefinitions.map((definition) => ({ definition }));
+    const output = [];
+    itemList.forEach((item) => {
+      const relevantItem = checklist.find(
+        (ci) => ci.definition.name === item.definition.name
+      );
+      if (relevantItem) {
+        output.push(relevantItem);
+      } else {
+        output.push(item);
+      }
+    });
+    if (
+      differenceWith(checklistItems, output, isEqual)?.length === 0 &&
+      !isEqual(checklistItems, output)
+    ) {
+      setChecklistItems(output);
+    }
+  }, [checklist, itemDefinitions, checklistItems]);
 
   const buttonOptions = [
     {
       icon: 'check-circle',
-      value: 'done',
-      label: 'Done',
+      value: 'met',
+      label: 'Met',
     },
     {
       icon: 'times-circle-solid',
-      value: 'not_done',
-      label: 'Not done',
+      value: 'not_met',
+      label: 'Not met',
     },
     {
       icon: 'question-mark',
@@ -45,12 +72,9 @@ const ChecklistForm = ({ checklist }) => {
     },
   ];
 
-  const checklistItemNames = Object.keys(checklist?.items);
-
   return (
     <>
-      {checklistItemNames.map((name) => {
-        const item = checklist?.items[name];
+      {checklistItems.map((item) => {
         const sortedNotes = orderBy(item.notes, 'dateCreated', 'desc');
 
         const renderMenu = ({ onToggle }) => {
@@ -59,7 +83,7 @@ const ChecklistForm = ({ checklist }) => {
               <Button
                 buttonStyle="dropdownItem"
                 onClick={() => {
-                  change(`items[${name}].status`, 'required');
+                  handleSubmit({ status: 'required' }, item);
                   onToggle();
                 }}
               >
@@ -70,7 +94,7 @@ const ChecklistForm = ({ checklist }) => {
               <Button
                 buttonStyle="dropdownItem"
                 onClick={() => {
-                  change(`items[${name}].status`, 'not_required');
+                  handleSubmit({ status: 'not_required' }, item);
                   onToggle();
                 }}
               >
@@ -88,7 +112,7 @@ const ChecklistForm = ({ checklist }) => {
                 <KeyValue
                   label={
                     <>
-                      {item.label}
+                      {item.definition.label}
                       <Dropdown
                         hasPadding
                         renderMenu={renderMenu}
@@ -110,22 +134,28 @@ const ChecklistForm = ({ checklist }) => {
                           />
                         )}
                       />
-                      <InfoPopover content={item?.description} />
+                      <InfoPopover content={item?.definition?.description} />
                     </>
                   }
                   value={
                     <ChecklistMeta
-                      dateCreated={item?.dateCreated}
-                      lastUpdated={item?.lastUpdated}
+                      dateCreated={
+                        item?.dateCreated || item?.definition.dateCreated
+                      }
+                      lastUpdated={
+                        item?.lastUpdated || item?.definition.lastUpdated
+                      }
                     />
                   }
                 />
               </Col>
               <Col xs={2}>
-                <Field
-                  component={IconSelect}
-                  name={`items[${name}].outcome`}
+                <IconSelect
+                  onChange={(_e, value) => {
+                    handleSubmit({ outcome: value }, item);
+                  }}
                   options={buttonOptions}
+                  value={item?.outcome?.value || null}
                 />
               </Col>
             </Row>
@@ -161,14 +191,15 @@ const ChecklistForm = ({ checklist }) => {
                 <IconButton
                   badgeCount={item?.notes?.length || 0}
                   icon="document"
-                  onClick={() => setShowNotesModal(item?.label)}
+                  onClick={() => setShowNotesModal(item?.definition?.label)}
                 />
               </Col>
             </Row>
             <ChecklistNotesModal
               item={item}
+              ownerId={ownerId}
               setShowModal={setShowNotesModal}
-              showModal={showNotesModal === item?.label}
+              showModal={showNotesModal === item?.definition?.label}
             />
           </div>
         );
