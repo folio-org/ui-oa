@@ -131,6 +131,7 @@ const ChecklistItemDefinitions = () => {
           name: () => false
         }}
         createCallback={(data) => createChecklistItemDefinition(data)}
+        defaultNewObject={{ weight: 0 }}
         editableFields={{
           name: () => false
         }}
