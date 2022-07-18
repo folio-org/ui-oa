@@ -322,5 +322,17 @@
     "charge.invoiceLineNotLinked": "发票行未链接",
     "charge.chargeBreakdown": "收费明细",
     "charge.payers.isEmptyMessage": "没有与此收费相关的付款人",
-    "charge.amountCurrency": "金额（ {currency} ）"
+    "charge.amountCurrency": "金额（ {currency} ）",
+    "edit": "Edit",
+    "delete": "Delete",
+    "settings.checklistItemDefinitions": "Checklist items",
+    "settings.checklistItemDefinitions.name": "Name",
+    "settings.checklistItemDefinitions.label": "Label",
+    "settings.checklistItemDefinitions.description": "Description",
+    "settings.checklistItemDefinitions.weight": "Weight",
+    "settings.checklistItemDefinitions.deleteAriaLabel": "Delete checklist item {label}",
+    "settings.checklistItemDefinitions.editAriaLabel": "Edit checklist item {label}",
+    "settings.checklistItemDefinitions.deleteDefinition.confirmMessage": "Checklist item <strong>{label}</strong> will be <strong>deleted</strong>",
+    "settings.checklistItemDefinitions.deleteDefinition.errorMessage": "<strong>Error: {label}</strong> was not deleted. {error}",
+    "settings.checklistItemDefinitions.deleteHeading": "Delete checklist item"
 }
