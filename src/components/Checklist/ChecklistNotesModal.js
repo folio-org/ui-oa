@@ -26,7 +26,7 @@ const ChecklistNotesModal = ({ ownerId, showModal, setShowModal, item }) => {
   );
 
   const handleClose = () => {
-    if (!item?.notes?.pop()) {
+    if (!item.notes.slice(-1)[0].id) {
       item.notes.pop();
     }
     setShowModal(false);
