@@ -191,7 +191,7 @@ const ChecklistForm = ({ ownerId, checklist, handleSubmit }) => {
                 <IconButton
                   badgeCount={item?.notes?.length || 0}
                   icon="document"
-                  onClick={() => setShowNotesModal(item?.definition?.label)}
+                  onClick={() => setShowNotesModal(item?.definition?.id)}
                 />
               </Col>
             </Row>
@@ -199,7 +199,7 @@ const ChecklistForm = ({ ownerId, checklist, handleSubmit }) => {
               item={item}
               ownerId={ownerId}
               setShowModal={setShowNotesModal}
-              showModal={showNotesModal === item?.definition?.label}
+              showModal={showNotesModal === item?.definition?.id}
             />
           </div>
         );
