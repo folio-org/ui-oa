@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { useMutation, useQueryClient } from 'react-query';
 import { useNamespace, useOkapiKy } from '@folio/stripes-core';
 import { Button, Modal } from '@folio/stripes/components';
-import ChecklistNotesField from './ChecklistNotesFieldArray';
+import ChecklistNotesForm from './ChecklistNotesForm';
 import { PUBLICATION_REQUEST_ENDPOINT } from '../../constants/endpoints';
 
 const propTypes = {
@@ -66,7 +66,7 @@ const ChecklistNotesModal = ({ ownerId, showModal, setShowModal, item }) => {
       onClose={handleClose}
       open={showModal}
     >
-      <ChecklistNotesField
+      <ChecklistNotesForm
         handleDelete={handleDelete}
         notes={item.notes}
         submitNotes={submitNotes}
