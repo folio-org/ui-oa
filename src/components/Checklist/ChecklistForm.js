@@ -168,9 +168,9 @@ const ChecklistForm = ({ ownerId, checklist, handleSubmit }) => {
                         <FormattedMessage id="ui-oa.checklist.latestNote" />
                       }
                       value={
-                        sortedNotes[0]?.note?.length < 50
+                        sortedNotes[0]?.note?.length < 100
                           ? sortedNotes[0]?.note
-                          : sortedNotes[0]?.note?.substring(0, 75) + '...'
+                          : sortedNotes[0]?.note?.substring(0, 100) + '...'
                       }
                     />
                   </Col>
