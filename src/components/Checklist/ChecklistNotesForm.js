@@ -24,13 +24,14 @@ const ChecklistNotesForm = ({ notes, submitNotes, handleDelete }) => {
     }
   }, [notes]);
 
-  const renderNoteActions = (note, handleSubmit) => {
+  const renderNoteActions = (note, handleSubmit, pristine, submitting) => {
     if (note.id === editing || (!note.id && editing === 'NEW_NOTE')) {
       return (
         <div>
           <Button
             key={`save[${note.label}]`}
             buttonStyle="primary"
+            disabled={pristine || submitting}
             onClick={() => {
               handleSubmit(note?.id);
               setEditing(null);
@@ -81,7 +82,7 @@ const ChecklistNotesForm = ({ notes, submitNotes, handleDelete }) => {
           return (
             <>
               <Form initialValues={note} onSubmit={submitNotes}>
-                {({ handleSubmit }) => (
+                {({ handleSubmit, pristine, submitting }) => (
                   <form onSubmit={handleSubmit}>
                     <div className={css.container}>
                       <Row middle="xs">
@@ -95,7 +96,12 @@ const ChecklistNotesForm = ({ notes, submitNotes, handleDelete }) => {
                           />
                         </Col>
                         <Col xs={3}>
-                          {renderNoteActions(note, handleSubmit)}
+                          {renderNoteActions(
+                            note,
+                            handleSubmit,
+                            pristine,
+                            submitting
+                          )}
                         </Col>
                       </Row>
                     </div>
