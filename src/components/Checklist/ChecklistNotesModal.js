@@ -21,7 +21,9 @@ const ChecklistNotesModal = ({ ownerId, showModal, setShowModal, item }) => {
   const { mutateAsync: putNotes } = useMutation(
     ['ChecklistNotesModal', 'putNotes'],
     (data) => {
-      ky.put(PUBLICATION_REQUEST_ENDPOINT(ownerId), { json: data });
+      ky.put(PUBLICATION_REQUEST_ENDPOINT(ownerId), { json: data }).then(() => {
+        queryClient.invalidateQueries([namespace, 'data', 'view', ownerId]);
+      });
     }
   );
 
@@ -35,7 +37,6 @@ const ChecklistNotesModal = ({ ownerId, showModal, setShowModal, item }) => {
   const submitNotes = async (values) => {
     const submitValues = { checklist: [{ ...item, notes: [values] }] };
     await putNotes(submitValues);
-    queryClient.invalidateQueries([namespace, 'data', 'view', ownerId]);
   };
 
   const handleDelete = async (values) => {
@@ -43,7 +44,6 @@ const ChecklistNotesModal = ({ ownerId, showModal, setShowModal, item }) => {
       checklist: [{ ...item, notes: [{ ...values, _delete: true }] }],
     };
     await putNotes(submitValues);
-    queryClient.invalidateQueries([namespace, 'data', 'view', ownerId]);
   };
 
   const renderFooter = () => {
