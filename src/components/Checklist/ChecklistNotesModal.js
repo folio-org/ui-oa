@@ -26,6 +26,9 @@ const ChecklistNotesModal = ({ ownerId, showModal, setShowModal, item }) => {
   );
 
   const handleClose = () => {
+    if (!item?.notes?.pop()) {
+      item.notes.pop();
+    }
     setShowModal(false);
   };
 
@@ -56,7 +59,7 @@ const ChecklistNotesModal = ({ ownerId, showModal, setShowModal, item }) => {
   return (
     <Modal
       dismissible
-      footer={renderFooter}
+      footer={renderFooter()}
       label={
         <FormattedMessage
           id="ui-oa.checklist.notesForItem"

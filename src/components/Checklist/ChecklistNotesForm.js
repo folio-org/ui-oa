@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Field, Form } from 'react-final-form';
@@ -16,6 +16,13 @@ import ChecklistMeta from './ChecklistMeta';
 
 const ChecklistNotesForm = ({ notes, submitNotes, handleDelete }) => {
   const [editing, setEditing] = useState(false);
+
+  useEffect(() => {
+    if (notes?.length < 1) {
+      setEditing('NEW_NOTE');
+      notes.push({});
+    }
+  }, [notes]);
 
   const renderNoteActions = (note, handleSubmit) => {
     if (note.id === editing || (!note.id && editing === 'NEW_NOTE')) {
@@ -37,7 +44,12 @@ const ChecklistNotesForm = ({ notes, submitNotes, handleDelete }) => {
               key={`cancel[${note.label}]`}
               data-type-button="cancel"
               onClick={() => {
-                setEditing(null);
+                if (note?.id) {
+                  setEditing(false);
+                } else {
+                  notes.pop();
+                  setEditing(false);
+                }
               }}
             >
               <FormattedMessage id="ui-oa.checklist.cancel" />
