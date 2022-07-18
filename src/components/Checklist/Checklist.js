@@ -19,13 +19,16 @@ const Checklist = ({ onToggle, resource }) => {
   const { mutateAsync: putChecklist } = useMutation(
     ['Checklist', 'putChecklist'],
     (data) => {
-      ky.put(PUBLICATION_REQUEST_ENDPOINT(resource.id), { json: data });
+      ky.put(PUBLICATION_REQUEST_ENDPOINT(resource.id), { json: data })
+        .then(() => {
+          queryClient.invalidateQueries([namespace, 'data', 'view', resource?.id]);
+        });
     }
   );
+
   const handleSubmit = async (values, item) => {
     const submitValues = { checklist: [{ ...item, ...values }] };
     await putChecklist(submitValues);
-    queryClient.invalidateQueries([namespace, 'data', 'view', resource?.id]);
   };
 
   return (
