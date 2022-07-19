@@ -5,10 +5,6 @@ import {
   InfoPopover,
   KeyValue,
   IconButton,
-  Dropdown,
-  DropdownMenu,
-  Button,
-  Icon,
 } from '@folio/stripes/components';
 import { IconSelect } from '@k-int/stripes-kint-components';
 import orderBy from 'lodash/orderBy';
@@ -77,34 +73,35 @@ const ChecklistForm = ({ ownerId, checklist, handleSubmit }) => {
       {checklistItems.map((item) => {
         const sortedNotes = orderBy(item.notes, 'dateCreated', 'desc');
 
-        const renderMenu = ({ onToggle }) => {
-          return (
-            <DropdownMenu>
-              <Button
-                buttonStyle="dropdownItem"
-                onClick={() => {
-                  handleSubmit({ status: 'required' }, item);
-                  onToggle();
-                }}
-              >
-                <Icon icon="eye-open">
-                  <FormattedMessage id="ui-oa.checklist.required" />
-                </Icon>
-              </Button>
-              <Button
-                buttonStyle="dropdownItem"
-                onClick={() => {
-                  handleSubmit({ status: 'not_required' }, item);
-                  onToggle();
-                }}
-              >
-                <Icon icon="eye-closed">
-                  <FormattedMessage id="ui-oa.checklist.notRequired" />
-                </Icon>
-              </Button>
-            </DropdownMenu>
-          );
-        };
+        // Removed for future use
+        // const renderMenu = ({ onToggle }) => {
+        //   return (
+        //     <DropdownMenu>
+        //       <Button
+        //         buttonStyle="dropdownItem"
+        //         onClick={() => {
+        //           handleSubmit({ status: 'required' }, item);
+        //           onToggle();
+        //         }}
+        //       >
+        //         <Icon icon="eye-open">
+        //           <FormattedMessage id="ui-oa.checklist.required" />
+        //         </Icon>
+        //       </Button>
+        //       <Button
+        //         buttonStyle="dropdownItem"
+        //         onClick={() => {
+        //           handleSubmit({ status: 'not_required' }, item);
+        //           onToggle();
+        //         }}
+        //       >
+        //         <Icon icon="eye-closed">
+        //           <FormattedMessage id="ui-oa.checklist.notRequired" />
+        //         </Icon>
+        //       </Button>
+        //     </DropdownMenu>
+        //   );
+        // };
         return (
           <div key={item?.id} className={css.container}>
             <Row>
@@ -113,7 +110,8 @@ const ChecklistForm = ({ ownerId, checklist, handleSubmit }) => {
                   label={
                     <>
                       {item.definition.label}
-                      <Dropdown
+                      {/* Removed for future use potentially */}
+                      {/* <Dropdown
                         hasPadding
                         renderMenu={renderMenu}
                         renderTrigger={({
@@ -133,7 +131,7 @@ const ChecklistForm = ({ ownerId, checklist, handleSubmit }) => {
                             {...getTriggerProps()}
                           />
                         )}
-                      />
+                      /> */}
                       <InfoPopover content={item?.definition?.description} />
                     </>
                   }
