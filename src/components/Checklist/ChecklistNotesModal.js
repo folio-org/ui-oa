@@ -28,7 +28,7 @@ const ChecklistNotesModal = ({ ownerId, showModal, setShowModal, item }) => {
   );
 
   const handleClose = () => {
-    if (!item.notes.slice(-1)[0].id) {
+    if (!item?.notes?.slice(-1)[0]?.id && item.notes) {
       item.notes.pop();
     }
     setShowModal(false);
@@ -71,7 +71,7 @@ const ChecklistNotesModal = ({ ownerId, showModal, setShowModal, item }) => {
     >
       <ChecklistNotesForm
         handleDelete={handleDelete}
-        notes={item.notes}
+        notes={item?.notes || []}
         submitNotes={submitNotes}
       />
     </Modal>
