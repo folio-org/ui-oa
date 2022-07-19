@@ -90,6 +90,7 @@ const ChecklistNotesForm = ({ notes, submitNotes, handleDelete }) => {
                           <Field
                             component={TextArea}
                             fullWidth
+                            maxLength={255}
                             name="note"
                             // TODO Place styling in external css
                             style={{ height: '150px' }}
