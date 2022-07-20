@@ -7,13 +7,12 @@ import ChecklistNotesForm from './ChecklistNotesForm';
 import { PUBLICATION_REQUEST_ENDPOINT } from '../../constants/endpoints';
 
 const propTypes = {
-  showModal: PropTypes.bool,
-  setShowModal: PropTypes.func,
+  setSelectedNotesItem: PropTypes.func,
   item: PropTypes.object,
   ownerId: PropTypes.string,
 };
 
-const ChecklistNotesModal = ({ ownerId, showModal, setShowModal, item }) => {
+const ChecklistNotesModal = ({ ownerId, setSelectedNotesItem, item }) => {
   const queryClient = useQueryClient();
   const ky = useOkapiKy();
   const [namespace] = useNamespace();
@@ -31,7 +30,7 @@ const ChecklistNotesModal = ({ ownerId, showModal, setShowModal, item }) => {
     if (!item?.notes?.slice(-1)[0]?.id && item.notes) {
       item.notes.pop();
     }
-    setShowModal(false);
+    setSelectedNotesItem(null);
   };
 
   const submitNotes = async (values) => {
@@ -67,7 +66,7 @@ const ChecklistNotesModal = ({ ownerId, showModal, setShowModal, item }) => {
         />
       }
       onClose={handleClose}
-      open={showModal}
+      open={item}
     >
       <ChecklistNotesForm
         handleDelete={handleDelete}
