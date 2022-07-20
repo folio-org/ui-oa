@@ -4,15 +4,20 @@ import { useMutation, useQueryClient } from 'react-query';
 import { useNamespace, useOkapiKy } from '@folio/stripes-core';
 import { Button, Modal } from '@folio/stripes/components';
 import ChecklistNotesForm from './ChecklistNotesForm';
-import { PUBLICATION_REQUEST_ENDPOINT } from '../../constants/endpoints';
 
 const propTypes = {
   setSelectedNotesItem: PropTypes.func,
   item: PropTypes.object,
   ownerId: PropTypes.string,
+  resourceEndpoint: PropTypes.func,
 };
 
-const ChecklistNotesModal = ({ ownerId, setSelectedNotesItem, item }) => {
+const ChecklistNotesModal = ({
+  ownerId,
+  setSelectedNotesItem,
+  item,
+  resourceEndpoint,
+}) => {
   const queryClient = useQueryClient();
   const ky = useOkapiKy();
   const [namespace] = useNamespace();
@@ -20,7 +25,7 @@ const ChecklistNotesModal = ({ ownerId, setSelectedNotesItem, item }) => {
   const { mutateAsync: putNotes } = useMutation(
     ['ChecklistNotesModal', 'putNotes'],
     (data) => {
-      ky.put(PUBLICATION_REQUEST_ENDPOINT(ownerId), { json: data }).then(() => {
+      ky.put(resourceEndpoint(ownerId), { json: data }).then(() => {
         queryClient.invalidateQueries([namespace, 'data', 'view', ownerId]);
       });
     }

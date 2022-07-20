@@ -38,6 +38,7 @@ import {
 import urls from '../../../util/urls';
 import useOAHelperApp from '../../../hooks/useOAHelperApp';
 import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
+import { PUBLICATION_REQUEST_ENDPOINT } from '../../../constants/endpoints';
 
 const propTypes = {
   onClose: PropTypes.func.isRequired,
@@ -158,7 +159,11 @@ const PublicationRequest = ({
           </AccordionSet>
         </AccordionStatus>
       </Pane>
-      <HelperComponent isOpen={isOpen} resource={request} />
+      <HelperComponent
+        isOpen={isOpen}
+        resource={request}
+        resourceEndpoint={PUBLICATION_REQUEST_ENDPOINT}
+      />
     </HasCommand>
   );
 };

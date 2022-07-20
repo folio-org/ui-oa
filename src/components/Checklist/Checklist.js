@@ -9,14 +9,14 @@ import differenceWith from 'lodash/differenceWith';
 import ChecklistItem from './ChecklistItem';
 import ChecklistNotesModal from './ChecklistNotesModal';
 import useChecklistItemDefinitions from '../../hooks/useChecklistItemDefinitions';
-import { PUBLICATION_REQUEST_ENDPOINT } from '../../constants/endpoints';
 
 const propTypes = {
   onToggle: PropTypes.func,
   resource: PropTypes.object,
+  resourceEndpoint: PropTypes.func,
 };
 
-const Checklist = ({ onToggle, resource }) => {
+const Checklist = ({ onToggle, resource, resourceEndpoint }) => {
   const itemDefinitions = useChecklistItemDefinitions();
   const [namespace] = useNamespace();
   const queryClient = useQueryClient();
@@ -49,16 +49,14 @@ const Checklist = ({ onToggle, resource }) => {
   const { mutateAsync: putChecklist } = useMutation(
     ['Checklist', 'putChecklist'],
     (data) => {
-      ky.put(PUBLICATION_REQUEST_ENDPOINT(resource.id), { json: data }).then(
-        () => {
-          queryClient.invalidateQueries([
-            namespace,
-            'data',
-            'view',
-            resource?.id,
-          ]);
-        }
-      );
+      ky.put(resourceEndpoint(resource.id), { json: data }).then(() => {
+        queryClient.invalidateQueries([
+          namespace,
+          'data',
+          'view',
+          resource?.id,
+        ]);
+      });
     }
   );
 
@@ -87,6 +85,7 @@ const Checklist = ({ onToggle, resource }) => {
       <ChecklistNotesModal
         item={selectedNotesItem}
         ownerId={resource.id}
+        resourceEndpoint={resourceEndpoint}
         setSelectedNotesItem={setSelectedNotesItem}
       />
     </Pane>
