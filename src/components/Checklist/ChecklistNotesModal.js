@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient, useQuery } from 'react-query';
 import { useNamespace, useOkapiKy } from '@folio/stripes-core';
-import { Button, Modal } from '@folio/stripes/components';
+import { Button, Modal, Loading } from '@folio/stripes/components';
 import ChecklistNotesForm from './ChecklistNotesForm';
 
 const propTypes = {
@@ -21,12 +21,25 @@ const ChecklistNotesModal = ({
   const queryClient = useQueryClient();
   const ky = useOkapiKy();
   const [namespace] = useNamespace();
+  const { data: resource } = useQuery(
+    [namespace, 'notes', 'checklistNotesModal', ownerId],
+    () => ky(resourceEndpoint(ownerId)).json()
+  );
 
-  const { mutateAsync: putNotes } = useMutation(
+  const notes = resource?.checklist?.find(
+    (element) => element?.id === item?.id
+  )?.notes;
+
+  const { mutateAsync: putNotes, isLoading } = useMutation(
     ['ChecklistNotesModal', 'putNotes'],
     (data) => {
       ky.put(resourceEndpoint(ownerId), { json: data }).then(() => {
-        queryClient.invalidateQueries([namespace, 'data', 'view', ownerId]);
+        queryClient.invalidateQueries([
+          namespace,
+          'notes',
+          'checklistNotesModal',
+          ownerId,
+        ]);
       });
     }
   );
@@ -36,6 +49,7 @@ const ChecklistNotesModal = ({
       item.notes.pop();
     }
     setSelectedNotesItem(null);
+    queryClient.invalidateQueries([namespace, 'data', 'view', ownerId]);
   };
 
   const submitNotes = async (values) => {
@@ -73,11 +87,15 @@ const ChecklistNotesModal = ({
       onClose={handleClose}
       open={item}
     >
-      <ChecklistNotesForm
-        handleDelete={handleDelete}
-        notes={item?.notes || []}
-        submitNotes={submitNotes}
-      />
+      {!isLoading ? (
+        <ChecklistNotesForm
+          handleDelete={handleDelete}
+          notes={notes || []}
+          submitNotes={submitNotes}
+        />
+      ) : (
+        <Loading />
+      )}
     </Modal>
   );
 };
