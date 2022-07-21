@@ -14,13 +14,19 @@ import {
 import css from './ChecklistNotesForm.css';
 import ChecklistMeta from './ChecklistMeta';
 
-const ChecklistNotesForm = ({ notes, submitNotes, handleDelete }) => {
+const ChecklistNotesForm = ({
+  notes,
+  submitNotes,
+  handleDelete,
+}) => {
   const [editing, setEditing] = useState(false);
 
   useEffect(() => {
     if (notes?.length < 1) {
       setEditing('NEW_NOTE');
       notes.push({});
+    } else {
+      setEditing(null);
     }
   }, [notes]);
 
