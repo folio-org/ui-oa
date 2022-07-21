@@ -42,7 +42,7 @@ const ChecklistItem = ({ item, handleSubmit, setSelectedNotesItem }) => {
       },
     },
     {
-      icon: 'question-mark',
+      icon: 'exclamation-circle',
       value: 'other',
       label: 'Other',
       buttonProps: { className: css.other },
