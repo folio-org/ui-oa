@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import orderBy from 'lodash/orderBy';
 import { useMutation, useQueryClient, useQuery } from 'react-query';
 import { useNamespace, useOkapiKy } from '@folio/stripes-core';
 import { Button, Modal, Loading } from '@folio/stripes/components';
@@ -21,16 +22,18 @@ const ChecklistNotesModal = ({
   const queryClient = useQueryClient();
   const ky = useOkapiKy();
   const [namespace] = useNamespace();
-  const { data: resource } = useQuery(
+  const { data: resource, isLoading } = useQuery(
     [namespace, 'notes', 'checklistNotesModal', ownerId],
     () => ky(resourceEndpoint(ownerId)).json()
   );
 
-  const notes = resource?.checklist?.find(
-    (element) => element?.id === item?.id
-  )?.notes;
+  const notes = orderBy(
+    resource?.checklist?.find((element) => element?.id === item?.id)?.notes,
+    'dateCreated',
+    'asc'
+  );
 
-  const { mutateAsync: putNotes, isLoading } = useMutation(
+  const { mutateAsync: putNotes } = useMutation(
     ['ChecklistNotesModal', 'putNotes'],
     (data) => {
       ky.put(resourceEndpoint(ownerId), { json: data }).then(() => {

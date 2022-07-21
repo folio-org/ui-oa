@@ -24,7 +24,14 @@ const ChecklistNotesForm = ({ notes, submitNotes, handleDelete }) => {
     }
   }, [notes]);
 
-  const renderNoteActions = (note, handleSubmit, pristine, submitting) => {
+  const renderNoteActions = (
+    note,
+    index,
+    handleSubmit,
+    pristine,
+    submitting,
+    values
+  ) => {
     if (note.id === editing || (!note.id && editing === 'NEW_NOTE')) {
       return (
         <div>
@@ -33,7 +40,8 @@ const ChecklistNotesForm = ({ notes, submitNotes, handleDelete }) => {
             buttonStyle="primary"
             disabled={pristine || submitting}
             onClick={() => {
-              handleSubmit(note?.id);
+              notes[index] = values;
+              handleSubmit();
               setEditing(null);
             }}
             type="submit"
@@ -82,7 +90,7 @@ const ChecklistNotesForm = ({ notes, submitNotes, handleDelete }) => {
           return (
             <>
               <Form initialValues={note} onSubmit={submitNotes}>
-                {({ handleSubmit, pristine, submitting }) => (
+                {({ handleSubmit, pristine, submitting, values }) => (
                   <form onSubmit={handleSubmit}>
                     <div className={css.container}>
                       <Row middle="xs">
@@ -99,9 +107,11 @@ const ChecklistNotesForm = ({ notes, submitNotes, handleDelete }) => {
                         <Col xs={3}>
                           {renderNoteActions(
                             note,
+                            index,
                             handleSubmit,
                             pristine,
-                            submitting
+                            submitting,
+                            values
                           )}
                         </Col>
                       </Row>
