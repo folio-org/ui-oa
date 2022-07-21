@@ -11,7 +11,7 @@ import orderBy from 'lodash/orderBy';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
-import css from './ChecklistForm.css';
+import css from './ChecklistItem.css';
 import ChecklistMeta from './ChecklistMeta';
 
 const propTypes = {
@@ -27,16 +27,28 @@ const ChecklistItem = ({ item, handleSubmit, setSelectedNotesItem }) => {
       icon: 'check-circle',
       value: 'met',
       label: 'Met',
+      buttonProps: { className: css.met },
+      iconProps: {
+        iconClassName: css.met,
+      },
     },
     {
       icon: 'times-circle-solid',
       value: 'not_met',
       label: 'Not met',
+      buttonProps: { className: css.notMet },
+      iconProps: {
+        iconClassName: css.notMet,
+      },
     },
     {
       icon: 'question-mark',
       value: 'other',
       label: 'Other',
+      buttonProps: { className: css.other },
+      iconProps: {
+        iconClassName: css.other,
+      },
     },
   ];
 
@@ -159,7 +171,6 @@ const ChecklistItem = ({ item, handleSubmit, setSelectedNotesItem }) => {
             />
           </Col>
         </Row>
-
       </div>
     </>
   );
