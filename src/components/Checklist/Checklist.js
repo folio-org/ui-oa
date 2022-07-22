@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Pane } from '@folio/stripes/components';
+import { Accordion, Badge, Pane } from '@folio/stripes/components';
 import { useMutation, useQueryClient } from 'react-query';
 import { AppIcon, useNamespace, useOkapiKy } from '@folio/stripes-core';
 import { FormattedMessage } from 'react-intl';
@@ -65,6 +65,18 @@ const Checklist = ({ onToggle, resource, resourceEndpoint }) => {
     await putChecklist(submitValues);
   };
 
+  const requiredItems = checklistItems.filter(
+    (e) => e?.status?.value !== 'not_required'
+  );
+
+  const notRequiredItems = checklistItems.filter(
+    (e) => e?.status?.value === 'not_required'
+  );
+
+  const renderBadge = () => {
+    return <Badge>{notRequiredItems?.length}</Badge>;
+  };
+
   return (
     <Pane
       appIcon={<AppIcon app="oa" size="small" />}
@@ -73,7 +85,7 @@ const Checklist = ({ onToggle, resource, resourceEndpoint }) => {
       onClose={onToggle}
       paneTitle={<FormattedMessage id="ui-oa.checklist" />}
     >
-      {checklistItems.map((item) => {
+      {requiredItems.map((item) => {
         return (
           <ChecklistItem
             handleSubmit={handleSubmit}
@@ -82,6 +94,24 @@ const Checklist = ({ onToggle, resource, resourceEndpoint }) => {
           />
         );
       })}
+      {notRequiredItems?.length > 0 && (
+        <Accordion
+          displayWhenClosed={renderBadge()}
+          displayWhenOpen={renderBadge()}
+          label={<FormattedMessage id="ui-oa.checklist.hidden" />}
+          separator={false}
+        >
+          {notRequiredItems.map((item) => {
+            return (
+              <ChecklistItem
+                handleSubmit={handleSubmit}
+                item={item}
+                setSelectedNotesItem={setSelectedNotesItem}
+              />
+            );
+          })}
+        </Accordion>
+      )}
       <ChecklistNotesModal
         item={selectedNotesItem}
         ownerId={resource.id}

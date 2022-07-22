@@ -17,7 +17,6 @@
   "settings.refdata.picklistValues": "Pick list values",
   "settings.refdata.picklist": "Pick list",
 
-
   "settings.checklistItemDefinitions": "Checklist items",
   "settings.checklistItemDefinitions.name": "Name",
   "settings.checklistItemDefinitions.label": "Label",
@@ -375,7 +374,5 @@
   "checklist.save": "Save",
   "checklist.cancel": "Cancel",
   "checklist.close": "Close",
-  "checklist.required": "Required",
-  "checklist.notRequired": "Not required"
-
+  "checklist.hidden": "Hidden"
 }

@@ -54,35 +54,6 @@ const ChecklistItem = ({ item, handleSubmit, setSelectedNotesItem }) => {
 
   return (
     <>
-      {/* // Removed for future use
-        // const renderMenu = ({ onToggle }) => {
-        //   return (
-        //     <DropdownMenu>
-        //       <Button
-        //         buttonStyle="dropdownItem"
-        //         onClick={() => {
-        //           handleSubmit({ status: 'required' }, item);
-        //           onToggle();
-        //         }}
-        //       >
-        //         <Icon icon="eye-open">
-        //           <FormattedMessage id="ui-oa.checklist.required" />
-        //         </Icon>
-        //       </Button>
-        //       <Button
-        //         buttonStyle="dropdownItem"
-        //         onClick={() => {
-        //           handleSubmit({ status: 'not_required' }, item);
-        //           onToggle();
-        //         }}
-        //       >
-        //         <Icon icon="eye-closed">
-        //           <FormattedMessage id="ui-oa.checklist.notRequired" />
-        //         </Icon>
-        //       </Button>
-        //     </DropdownMenu>
-        //   );
-        // }; */}
       <div key={item?.id} className={css.container}>
         <Row>
           <Col xs={10}>
@@ -90,28 +61,6 @@ const ChecklistItem = ({ item, handleSubmit, setSelectedNotesItem }) => {
               label={
                 <>
                   {item.definition.label}
-                  {/* Removed for future use potentially */}
-                  {/* <Dropdown
-                        hasPadding
-                        renderMenu={renderMenu}
-                        renderTrigger={({
-                          open,
-                          onToggle,
-                          triggerRef,
-                          keyHandler,
-                          getTriggerProps,
-                        }) => (
-                          <IconButton
-                            ref={triggerRef}
-                            icon={open ? 'caret-up' : 'caret-down'}
-                            marginBottom0
-                            onClick={onToggle}
-                            onKeyDown={keyHandler}
-                            type="button"
-                            {...getTriggerProps()}
-                          />
-                        )}
-                      /> */}
                   <InfoPopover content={item?.definition?.description} />
                 </>
               }
@@ -168,6 +117,20 @@ const ChecklistItem = ({ item, handleSubmit, setSelectedNotesItem }) => {
               badgeCount={item?.notes?.length || 0}
               icon="document"
               onClick={() => setSelectedNotesItem(item)}
+            />
+            <IconButton
+              icon={
+                item?.status?.value === 'not_required'
+                  ? 'eye-open'
+                  : 'eye-closed'
+              }
+              onClick={() => {
+                if (item?.status?.value === 'not_required') {
+                  handleSubmit({ status: 'required' }, item);
+                } else {
+                  handleSubmit({ status: 'not_required' }, item);
+                }
+              }}
             />
           </Col>
         </Row>
