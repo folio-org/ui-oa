@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import { FormattedTime, FormattedDate, FormattedMessage } from 'react-intl';
 
-import css from './Checklist.css';
+import css from '../Checklist.css';
 
 const propTypes = {
   dateCreated: PropTypes.string,

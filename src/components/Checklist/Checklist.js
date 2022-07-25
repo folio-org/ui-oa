@@ -10,7 +10,7 @@ import isEqual from 'lodash/isEqual';
 import differenceWith from 'lodash/differenceWith';
 
 import ChecklistItem from './ChecklistItem';
-import ChecklistNotesModal from './ChecklistNotesModal';
+import { ChecklistNotesModal } from './ChecklistNotes';
 import useChecklistItemDefinitions from '../../hooks/useChecklistItemDefinitions';
 
 const propTypes = {

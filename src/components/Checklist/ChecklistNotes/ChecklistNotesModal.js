@@ -4,7 +4,7 @@ import orderBy from 'lodash/orderBy';
 import { useMutation, useQueryClient, useQuery } from 'react-query';
 import { useNamespace, useOkapiKy } from '@folio/stripes-core';
 import { Button, Modal, Loading } from '@folio/stripes/components';
-import ChecklistNotesForm from './ChecklistNotesForm';
+import ChecklistNotes from './ChecklistNotes';
 
 const propTypes = {
   setSelectedNotesItem: PropTypes.func,
@@ -91,7 +91,7 @@ const ChecklistNotesModal = ({
       open={item}
     >
       {!isLoading ? (
-        <ChecklistNotesForm
+        <ChecklistNotes
           handleDelete={handleDelete}
           notes={notes || []}
           submitNotes={submitNotes}

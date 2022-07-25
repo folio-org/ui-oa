@@ -12,8 +12,8 @@ import { IconSelect } from '@k-int/stripes-kint-components';
 
 import orderBy from 'lodash/orderBy';
 
-import css from './Checklist.css';
-import ChecklistMeta from './ChecklistMeta';
+import css from '../Checklist.css';
+import ChecklistMeta from '../ChecklistMeta';
 
 const propTypes = {
   item: PropTypes.object,

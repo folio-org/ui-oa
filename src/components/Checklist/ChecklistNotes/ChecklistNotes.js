@@ -11,10 +11,10 @@ import {
   TextArea,
 } from '@folio/stripes/components';
 
-import css from './Checklist.css';
-import ChecklistMeta from './ChecklistMeta';
+import css from '../Checklist.css';
+import ChecklistMeta from '../ChecklistMeta';
 
-const ChecklistNotesForm = ({ notes, submitNotes, handleDelete }) => {
+const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
   const [editing, setEditing] = useState(false);
 
   useEffect(() => {
@@ -137,10 +137,10 @@ const ChecklistNotesForm = ({ notes, submitNotes, handleDelete }) => {
   );
 };
 
-ChecklistNotesForm.propTypes = {
+ChecklistNotes.propTypes = {
   submitNotes: PropTypes.func,
   handleDelete: PropTypes.func,
   notes: PropTypes.arrayOf(PropTypes.object),
 };
 
-export default ChecklistNotesForm;
+export default ChecklistNotes;
