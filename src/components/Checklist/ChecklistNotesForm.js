@@ -11,7 +11,7 @@ import {
   TextArea,
 } from '@folio/stripes/components';
 
-import css from './ChecklistNotesForm.css';
+import css from './Checklist.css';
 import ChecklistMeta from './ChecklistMeta';
 
 const ChecklistNotesForm = ({
@@ -98,7 +98,7 @@ const ChecklistNotesForm = ({
               <Form initialValues={note} onSubmit={submitNotes}>
                 {({ handleSubmit, pristine, submitting, values }) => (
                   <form onSubmit={handleSubmit}>
-                    <div className={css.container}>
+                    <div className={css.notesContainer}>
                       <Row middle="xs">
                         <Col xs={9}>
                           <Field
@@ -131,7 +131,7 @@ const ChecklistNotesForm = ({
         }
         return (
           <>
-            <div className={css.container}>
+            <div className={css.notesContainer}>
               <Row middle="xs">
                 <Col xs={10}>{note.note}</Col>
                 <Col xs={2}> {renderNoteActions(note, index)}</Col>
@@ -151,7 +151,7 @@ const ChecklistNotesForm = ({
         );
       })}
       <br />
-      <div className={css.button}>
+      <div className={css.notesButton}>
         <Button
           disabled={editing}
           onClick={() => {

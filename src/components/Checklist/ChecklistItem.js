@@ -11,7 +11,7 @@ import orderBy from 'lodash/orderBy';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
-import css from './ChecklistItem.css';
+import css from './Checklist.css';
 import ChecklistMeta from './ChecklistMeta';
 
 const propTypes = {
@@ -54,7 +54,7 @@ const ChecklistItem = ({ item, handleSubmit, setSelectedNotesItem }) => {
 
   return (
     <>
-      <div key={item?.id} className={css.container}>
+      <div key={item?.id} className={css.checklistContainer}>
         <Row>
           <Col xs={10}>
             <KeyValue

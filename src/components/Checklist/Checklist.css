@@ -1,6 +1,6 @@
 @import "@folio/stripes-components/lib/variables";
 
-.container {
+.checklistContainer {
     padding: 1rem;
     background-color: #ebebeb;
     margin-bottom: 1rem;
@@ -21,4 +21,12 @@
 .other{
     color: #d5600d;
     /* color: var(--warn); */
+}
+
+.notesContainer {
+    padding: 1rem;
+}
+
+.notesButton {
+    padding-left: 1rem;
 }
