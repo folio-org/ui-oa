@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Accordion, Badge, Pane } from '@folio/stripes/components';
 import { useMutation, useQueryClient } from 'react-query';
-import { AppIcon, useNamespace, useOkapiKy } from '@folio/stripes-core';
 import { FormattedMessage } from 'react-intl';
+
+import { Accordion, Badge, Pane } from '@folio/stripes/components';
+import { AppIcon, useNamespace, useOkapiKy } from '@folio/stripes-core';
+
 import isEqual from 'lodash/isEqual';
 import differenceWith from 'lodash/differenceWith';
+
 import ChecklistItem from './ChecklistItem';
 import ChecklistNotesModal from './ChecklistNotesModal';
 import useChecklistItemDefinitions from '../../hooks/useChecklistItemDefinitions';
@@ -18,9 +21,9 @@ const propTypes = {
 
 const Checklist = ({ onToggle, resource, resourceEndpoint }) => {
   const itemDefinitions = useChecklistItemDefinitions();
-  const [namespace] = useNamespace();
   const queryClient = useQueryClient();
   const ky = useOkapiKy();
+  const [namespace] = useNamespace();
 
   const [selectedNotesItem, setSelectedNotesItem] = useState(false);
   const [checklistItems, setChecklistItems] = useState([]);

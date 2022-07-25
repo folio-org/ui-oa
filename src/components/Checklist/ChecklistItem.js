@@ -1,3 +1,6 @@
+import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+
 import {
   Col,
   Row,
@@ -6,10 +9,8 @@ import {
   IconButton,
 } from '@folio/stripes/components';
 import { IconSelect } from '@k-int/stripes-kint-components';
-import orderBy from 'lodash/orderBy';
 
-import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import orderBy from 'lodash/orderBy';
 
 import css from './Checklist.css';
 import ChecklistMeta from './ChecklistMeta';

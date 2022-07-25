@@ -14,11 +14,7 @@ import {
 import css from './Checklist.css';
 import ChecklistMeta from './ChecklistMeta';
 
-const ChecklistNotesForm = ({
-  notes,
-  submitNotes,
-  handleDelete,
-}) => {
+const ChecklistNotesForm = ({ notes, submitNotes, handleDelete }) => {
   const [editing, setEditing] = useState(false);
 
   useEffect(() => {
@@ -29,65 +25,6 @@ const ChecklistNotesForm = ({
       setEditing(null);
     }
   }, [notes]);
-
-  const renderNoteActions = (
-    note,
-    index,
-    handleSubmit,
-    pristine,
-    submitting,
-    values
-  ) => {
-    if (note.id === editing || (!note.id && editing === 'NEW_NOTE')) {
-      return (
-        <div>
-          <Button
-            key={`save[${note.label}]`}
-            buttonStyle="primary"
-            disabled={pristine || submitting}
-            onClick={() => {
-              notes[index] = values;
-              handleSubmit();
-              setEditing(null);
-            }}
-            type="submit"
-          >
-            <FormattedMessage id="ui-oa.checklist.save" />
-          </Button>
-          {(notes?.length > 1 || note?.id) && (
-            <Button
-              key={`cancel[${note.label}]`}
-              data-type-button="cancel"
-              onClick={() => {
-                if (note?.id) {
-                  setEditing(false);
-                } else {
-                  notes.pop();
-                  setEditing(false);
-                }
-              }}
-            >
-              <FormattedMessage id="ui-oa.checklist.cancel" />
-            </Button>
-          )}
-        </div>
-      );
-    }
-    return (
-      <>
-        <IconButton
-          disabled={editing}
-          icon="edit"
-          onClick={() => setEditing(note.id)}
-        />
-        <IconButton
-          disabled={editing}
-          icon="trash"
-          onClick={() => handleDelete(note)}
-        />
-      </>
-    );
-  };
 
   return (
     <>
@@ -110,14 +47,37 @@ const ChecklistNotesForm = ({
                           />
                         </Col>
                         <Col xs={3}>
-                          {renderNoteActions(
-                            note,
-                            index,
-                            handleSubmit,
-                            pristine,
-                            submitting,
-                            values
-                          )}
+                          <div>
+                            <Button
+                              key={`save[${note.label}]`}
+                              buttonStyle="primary"
+                              disabled={pristine || submitting}
+                              onClick={() => {
+                                notes[index] = values;
+                                handleSubmit();
+                                setEditing(null);
+                              }}
+                              type="submit"
+                            >
+                              <FormattedMessage id="ui-oa.checklist.save" />
+                            </Button>
+                            {(notes?.length > 1 || note?.id) && (
+                              <Button
+                                key={`cancel[${note.label}]`}
+                                data-type-button="cancel"
+                                onClick={() => {
+                                  if (note?.id) {
+                                    setEditing(false);
+                                  } else {
+                                    notes.pop();
+                                    setEditing(false);
+                                  }
+                                }}
+                              >
+                                <FormattedMessage id="ui-oa.checklist.cancel" />
+                              </Button>
+                            )}
+                          </div>
                         </Col>
                       </Row>
                     </div>
@@ -133,7 +93,19 @@ const ChecklistNotesForm = ({
             <div className={css.notesContainer}>
               <Row middle="xs">
                 <Col xs={10}>{note.note}</Col>
-                <Col xs={2}> {renderNoteActions(note, index)}</Col>
+                <Col xs={2}>
+                  {' '}
+                  <IconButton
+                    disabled={editing}
+                    icon="edit"
+                    onClick={() => setEditing(note.id)}
+                  />
+                  <IconButton
+                    disabled={editing}
+                    icon="trash"
+                    onClick={() => handleDelete(note)}
+                  />
+                </Col>
               </Row>
               <br />
               <Row>
