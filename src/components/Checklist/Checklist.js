@@ -26,12 +26,15 @@ const Checklist = ({ onToggle, resource, resourceEndpoint }) => {
   const [checklistItems, setChecklistItems] = useState([]);
 
   useEffect(() => {
+    // Assign each item the name of 'definition'
     const itemList = itemDefinitions.map((definition) => ({ definition }));
     const output = [];
+    // Check each item that is already stored alongside the publication request to see if the defintion already exists
     itemList.forEach((item) => {
       const relevantItem = resource.checklist.find(
         (ci) => ci.definition.name === item.definition.name
       );
+      // If the definition already exists, add it to the output, otherwise add the standard defintion
       if (relevantItem) {
         output.push(relevantItem);
       } else {
@@ -39,6 +42,7 @@ const Checklist = ({ onToggle, resource, resourceEndpoint }) => {
       }
     });
     if (
+      // If output is not equal to the current checklistItems stat, update it
       differenceWith(checklistItems, output, isEqual)?.length === 0 &&
       !isEqual(checklistItems, output)
     ) {

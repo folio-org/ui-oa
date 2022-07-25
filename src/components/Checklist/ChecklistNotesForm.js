@@ -106,7 +106,6 @@ const ChecklistNotesForm = ({
                             fullWidth
                             maxLength={255}
                             name="note"
-                            // TODO Place styling in external css
                             style={{ height: '150px' }}
                           />
                         </Col>
