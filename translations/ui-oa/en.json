@@ -1,6 +1,6 @@
 {
   "meta.title": "Open Access",
-  
+
   "appMenu.keyboardShortcuts": "Keyboards shortcuts",
   "edit": "Edit",
   "delete": "Delete",
@@ -16,7 +16,6 @@
 
   "settings.refdata.picklistValues": "Pick list values",
   "settings.refdata.picklist": "Pick list",
-
 
   "settings.checklistItemDefinitions": "Checklist items",
   "settings.checklistItemDefinitions.name": "Name",
@@ -193,6 +192,7 @@
   "publicationRequest.requestDate": "Request date",
   "publicationRequest.requestTitle": "Request number - {number}",
   "publicationRequest.selectedJournal": "Journal",
+  "publicationRequest.showChecklist": "Show checklist",
   "publicationRequest.success.callout": "Publication request {requestNumber} successfully created",
   "publicationRequest.status": "Status",
   "publicationRequest.statusDate": "Status date",
@@ -281,7 +281,7 @@
   "charge.amountToCalculated": "Amount to pay, with tax and discount applied",
   "charge.calculatedAmount": "Calculated amount",
   "charge.netAmount": "Net amount",
-  "charge.currency":"Charge currency",
+  "charge.currency": "Charge currency",
   "charge.exchangeRate": "Exchange rate",
   "charge.exchangeRateApplied": "Exchange rate applied",
   "charge.coefficient": "Coefficient",
@@ -363,5 +363,16 @@
   "correspondence.status.closed": "Closed",
 
   "correspondence.showMore": "Show more",
-  "correspondence.showLess": "Show less"
+  "correspondence.showLess": "Show less",
+
+  "checklist": "Checklist",
+  "checklist.updated": "Updated: {date} {time}",
+  "checklist.created": "Created: {date} {time}",
+  "checklist.latestNote": "Latest note",
+  "checklist.notesForItem": "Notes for {item}",
+  "checklist.addNote": "Add note",
+  "checklist.save": "Save",
+  "checklist.cancel": "Cancel",
+  "checklist.close": "Close",
+  "checklist.hidden": "Hidden"
 }
