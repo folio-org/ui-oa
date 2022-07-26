@@ -7,7 +7,13 @@
 }
 
 .meta {
+    font-size: var(--font-size-small);
     color: #656565;
+}
+
+
+.metaContainer {
+    margin-top: 0.5rem;
 }
 
 .met{
@@ -20,7 +26,6 @@
 
 .other{
     color: #d5600d;
-    /* color: var(--warn); */
 }
 
 .notesContainer {

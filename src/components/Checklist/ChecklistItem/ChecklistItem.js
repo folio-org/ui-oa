@@ -5,8 +5,8 @@ import {
   Col,
   Row,
   InfoPopover,
-  KeyValue,
   IconButton,
+  Headline,
 } from '@folio/stripes/components';
 import { IconSelect } from '@k-int/stripes-kint-components';
 
@@ -32,7 +32,7 @@ const ChecklistItem = ({
   const buttonOptions = [
     {
       icon: 'check-circle',
-      value: 'met',
+      value: 'yes',
       label: 'Yes',
       buttonProps: { className: css.met },
       iconProps: {
@@ -41,7 +41,7 @@ const ChecklistItem = ({
     },
     {
       icon: 'times-circle-solid',
-      value: 'not_met',
+      value: 'no',
       label: 'No',
       buttonProps: { className: css.notMet },
       iconProps: {
@@ -64,20 +64,10 @@ const ChecklistItem = ({
       <div key={item?.id} className={css.checklistContainer}>
         <Row>
           <Col xs={11}>
-            <KeyValue
-              label={
-                <>
-                  {item.definition.label}
-                  <InfoPopover content={item?.definition?.description} />
-                </>
-              }
-              value={
-                <ChecklistMeta
-                  dateCreated={resource?.dateCreated}
-                  lastUpdated={item?.lastUpdated || resource?.dateCreated}
-                />
-              }
-            />
+            <Headline margin="none" size="large" tag="h3">
+              {item.definition.label}
+              <InfoPopover content={item?.definition?.description} />
+            </Headline>
           </Col>
           <Col xs={1}>
             <IconSelect
@@ -89,18 +79,22 @@ const ChecklistItem = ({
             />
           </Col>
         </Row>
+        <Row>
+          <Col xs={12}>
+            <ChecklistMeta
+              dateCreated={resource?.dateCreated}
+              lastUpdated={item?.lastUpdated || resource?.dateCreated}
+            />
+          </Col>
+        </Row>
+        <br />
         {item?.notes?.length > 0 && (
           <>
             <Row>
-              <Col xs={12}>
-                <KeyValue
-                  label={<FormattedMessage id="ui-oa.checklist.latestNote" />}
-                  value={
-                    sortedNotes[0]?.note?.length < 100
-                      ? sortedNotes[0]?.note
-                      : sortedNotes[0]?.note?.substring(0, 100) + '...'
-                  }
-                />
+              <Col style={{ lineHeight: 1.5 }} xs={12}>
+                {sortedNotes[0]?.note?.length < 100
+                  ? sortedNotes[0]?.note
+                  : sortedNotes[0]?.note?.substring(0, 100) + '...'}
               </Col>
             </Row>
             <Row>

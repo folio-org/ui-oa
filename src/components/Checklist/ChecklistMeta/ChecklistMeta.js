@@ -12,10 +12,9 @@ const propTypes = {
 const ChecklistMeta = ({ dateCreated, lastUpdated }) => {
   if (dateCreated && lastUpdated) {
     return (
-      <>
+      <div className={css.metaContainer}>
         {dateCreated === lastUpdated ? (
           <FormattedMessage
-            className={css.meta}
             id="ui-oa.checklist.created"
             values={{
               date: <FormattedDate value={dateCreated} />,
@@ -26,7 +25,6 @@ const ChecklistMeta = ({ dateCreated, lastUpdated }) => {
           </FormattedMessage>
         ) : (
           <FormattedMessage
-            className={css.meta}
             id="ui-oa.checklist.updated"
             values={{
               date: <FormattedDate value={lastUpdated} />,
@@ -36,7 +34,7 @@ const ChecklistMeta = ({ dateCreated, lastUpdated }) => {
             {(txt) => <span className={css.meta}>{txt}</span>}
           </FormattedMessage>
         )}
-      </>
+      </div>
     );
   }
   return <></>;
