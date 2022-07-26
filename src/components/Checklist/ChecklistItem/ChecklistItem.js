@@ -116,11 +116,19 @@ const ChecklistItem = ({
         )}
         <Row>
           <Col xs={12}>
-            <IconButton
-              badgeCount={item?.notes?.length || 0}
-              icon="document"
-              onClick={() => setSelectedNotesItem(item)}
-            />
+            <FormattedMessage
+              id="ui-oa.checklist.notesForItem"
+              values={{ item: item.definition.label }}
+            >
+              {(ariaLabel) => (
+                <IconButton
+                  ariaLabel={ariaLabel}
+                  badgeCount={item?.notes?.length || 0}
+                  icon="document"
+                  onClick={() => setSelectedNotesItem(item)}
+                />
+              )}
+            </FormattedMessage>
             <IconButton
               icon={
                 item?.status?.value === 'not_required'
