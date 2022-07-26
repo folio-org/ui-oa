@@ -33,7 +33,7 @@ const ChecklistItem = ({
     {
       icon: 'check-circle',
       value: 'met',
-      label: 'Met',
+      label: 'Yes',
       buttonProps: { className: css.met },
       iconProps: {
         iconClassName: css.met,
@@ -42,7 +42,7 @@ const ChecklistItem = ({
     {
       icon: 'times-circle-solid',
       value: 'not_met',
-      label: 'Not met',
+      label: 'No',
       buttonProps: { className: css.notMet },
       iconProps: {
         iconClassName: css.notMet,
