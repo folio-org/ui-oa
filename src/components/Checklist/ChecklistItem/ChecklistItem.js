@@ -16,11 +16,17 @@ import css from '../Checklist.css';
 import ChecklistMeta from '../ChecklistMeta';
 
 const propTypes = {
+  resource: PropTypes.object,
   item: PropTypes.object,
   handleSubmit: PropTypes.func,
   setSelectedNotesItem: PropTypes.func,
 };
-const ChecklistItem = ({ item, handleSubmit, setSelectedNotesItem }) => {
+const ChecklistItem = ({
+  resource,
+  item,
+  handleSubmit,
+  setSelectedNotesItem,
+}) => {
   const sortedNotes = orderBy(item.notes, 'dateCreated', 'desc');
 
   const buttonOptions = [
@@ -67,12 +73,8 @@ const ChecklistItem = ({ item, handleSubmit, setSelectedNotesItem }) => {
               }
               value={
                 <ChecklistMeta
-                  dateCreated={
-                    item?.dateCreated || item?.definition.dateCreated
-                  }
-                  lastUpdated={
-                    item?.lastUpdated || item?.definition.lastUpdated
-                  }
+                  dateCreated={resource?.dateCreated}
+                  lastUpdated={item?.lastUpdated || resource?.dateCreated}
                 />
               }
             />

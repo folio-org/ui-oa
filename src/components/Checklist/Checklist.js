@@ -98,6 +98,7 @@ const Checklist = ({ onToggle, resource, resourceEndpoint }) => {
           <ChecklistItem
             handleSubmit={handleSubmit}
             item={item}
+            resource={resource}
             setSelectedNotesItem={setSelectedNotesItem}
           />
         );
@@ -114,6 +115,7 @@ const Checklist = ({ onToggle, resource, resourceEndpoint }) => {
               <ChecklistItem
                 handleSubmit={handleSubmit}
                 item={item}
+                resource={resource}
                 setSelectedNotesItem={setSelectedNotesItem}
               />
             );
