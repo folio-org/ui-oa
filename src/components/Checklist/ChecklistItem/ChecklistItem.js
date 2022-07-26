@@ -57,7 +57,7 @@ const ChecklistItem = ({ item, handleSubmit, setSelectedNotesItem }) => {
     <>
       <div key={item?.id} className={css.checklistContainer}>
         <Row>
-          <Col xs={10}>
+          <Col xs={11}>
             <KeyValue
               label={
                 <>
@@ -77,7 +77,7 @@ const ChecklistItem = ({ item, handleSubmit, setSelectedNotesItem }) => {
               }
             />
           </Col>
-          <Col xs={2}>
+          <Col xs={1}>
             <IconSelect
               onChange={(_e, value) => {
                 handleSubmit({ outcome: value }, item);

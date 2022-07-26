@@ -90,6 +90,7 @@ const Checklist = ({ onToggle, resource, resourceEndpoint }) => {
       defaultWidth="20%"
       dismissible
       onClose={onToggle}
+      padContent={false}
       paneTitle={<FormattedMessage id="ui-oa.checklist" />}
     >
       {requiredItems.map((item) => {
