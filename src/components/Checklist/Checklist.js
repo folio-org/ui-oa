@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useMutation, useQueryClient } from 'react-query';
+import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
-import { Accordion, Badge, Pane } from '@folio/stripes/components';
+import { Accordion, Badge, Pane, Row, Col } from '@folio/stripes/components';
 import { AppIcon, useNamespace, useOkapiKy } from '@folio/stripes-core';
 
 import isEqual from 'lodash/isEqual';
@@ -12,6 +13,7 @@ import differenceWith from 'lodash/differenceWith';
 import ChecklistItem from './ChecklistItem';
 import { ChecklistNotesModal } from './ChecklistNotes';
 import useChecklistItemDefinitions from '../../hooks/useChecklistItemDefinitions';
+import urls from '../../util/urls';
 
 const propTypes = {
   onToggle: PropTypes.func,
@@ -90,9 +92,31 @@ const Checklist = ({ onToggle, resource, resourceEndpoint }) => {
       defaultWidth="20%"
       dismissible
       onClose={onToggle}
-      padContent={false}
+      padContent={checklistItems.length < 1}
       paneTitle={<FormattedMessage id="ui-oa.checklist" />}
     >
+      {/* TODO This section for the empty message section may require some refactoring, was done in a bit of a rush */}
+      {checklistItems.length < 1 && (
+        <>
+          <Row>
+            <Col style={{ marginBottom: '1rem' }} xs={12}>
+              <FormattedMessage id="ui-oa.checklist.emptyMessage" />
+            </Col>
+            <Col xs={12}>
+              <FormattedMessage
+                id="ui-oa.checklist.emptyMessageLink"
+                values={{
+                  link: (
+                    <Link to={urls.settingsChecklistItems}>
+                      <FormattedMessage id="ui-oa.checklist.emptyMessageSettingsLink" />
+                    </Link>
+                  ),
+                }}
+              />
+            </Col>
+          </Row>
+        </>
+      )}
       {requiredItems.map((item) => {
         return (
           <ChecklistItem

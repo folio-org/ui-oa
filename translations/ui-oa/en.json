@@ -374,5 +374,8 @@
   "checklist.save": "Save",
   "checklist.cancel": "Cancel",
   "checklist.close": "Close",
-  "checklist.hidden": "Hidden"
+  "checklist.hidden": "Hidden",
+  "checklist.emptyMessage": "The checklist can be used to manage individual publication requests",
+  "checklist.emptyMessageLink": "To get started please {link} using the Settings app",
+  "checklist.emptyMessageSettingsLink": "add one or more checklist items"
 }
