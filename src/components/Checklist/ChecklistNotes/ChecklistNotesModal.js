@@ -30,7 +30,7 @@ const ChecklistNotesModal = ({
   const notes = orderBy(
     resource?.checklist?.find((element) => element?.id === item?.id)?.notes,
     'dateCreated',
-    'asc'
+    'desc'
   );
 
   const { mutateAsync: putNotes } = useMutation(
@@ -49,7 +49,7 @@ const ChecklistNotesModal = ({
 
   const handleClose = () => {
     if (!item?.notes?.slice(-1)[0]?.id && item.notes) {
-      item.notes.pop();
+      item.notes.shift();
     }
     setSelectedNotesItem(null);
     queryClient.invalidateQueries([namespace, 'data', 'view', ownerId]);

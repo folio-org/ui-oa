@@ -33,5 +33,6 @@
 }
 
 .notesButton {
+    text-align: right;
     padding-left: 1rem;
 }
