@@ -11,13 +11,40 @@
     color: #656565;
 }
 
+.buttonBorder {
+    border-color: #fff;
+    border-width: 2px;
+    border-style: solid;
+}
+
 
 .metaContainer {
     margin-top: 0.5rem;
 }
 
-.met{
+.yesOptionIcon {
     color: var(--success);
+}
+
+.yesOptionButton {
+    color: #fff;
+    background-color: var(--success);
+}
+
+.noOptionIcon {
+
+}
+
+.noOptionButton {
+
+}
+
+.otherOptionIcon {
+
+}
+
+.otherOptionButton {
+
 }
 
 .notMet{

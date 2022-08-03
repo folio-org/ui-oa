@@ -1,19 +1,23 @@
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
+import classNames from 'classnames';
+import orderBy from 'lodash/orderBy';
+
 import {
   Col,
   Row,
   InfoPopover,
   IconButton,
   Headline,
+  Layout,
 } from '@folio/stripes/components';
 import { IconSelect } from '@k-int/stripes-kint-components';
 
-import orderBy from 'lodash/orderBy';
-
 import css from '../Checklist.css';
 import ChecklistMeta from '../ChecklistMeta';
+
+import { CheckFatIcon, CrossFatIcon, DashFatIcon } from '../CustomIcons';
 
 const propTypes = {
   resource: PropTypes.object,
@@ -31,27 +35,27 @@ const ChecklistItem = ({
 
   const buttonOptions = [
     {
-      icon: 'check-circle',
+      icon: CheckFatIcon,
       value: 'yes',
-      label: 'Yes',
-      buttonProps: { className: css.met },
+      label: <FormattedMessage id="ui-oa.checklist.outcome.yes" />,
+      buttonProps: { className: classNames(css.yesOptionButton, css.buttonBorder) },
       iconProps: {
-        iconClassName: css.met,
+        iconClassName: css.yesOptionIcon,
       },
     },
     {
-      icon: 'times-circle-solid',
+      icon: CrossFatIcon,
       value: 'no',
-      label: 'No',
+      label: <FormattedMessage id="ui-oa.checklist.outcome.no" />,
       buttonProps: { className: css.notMet },
       iconProps: {
         iconClassName: css.notMet,
       },
     },
     {
-      icon: 'exclamation-circle',
+      icon: DashFatIcon,
       value: 'other',
-      label: 'Other',
+      label: <FormattedMessage id="ui-oa.checklist.outcome.other" />,
       buttonProps: { className: css.other },
       iconProps: {
         iconClassName: css.other,
@@ -59,26 +63,30 @@ const ChecklistItem = ({
     },
   ];
 
+  const notSet = {
+    icon: 'ellipsis',
+    value: '',
+    label: <FormattedMessage id="ui-oa.checklist.outcome.notSet" />,
+    buttonProps: { className: css.buttonBorder },
+  };
+
   return (
     <>
       <div key={item?.id} className={css.checklistContainer}>
-        <Row>
-          <Col xs={11}>
-            <Headline margin="none" size="large" tag="h3">
-              {item.definition.label}
-              <InfoPopover content={item?.definition?.description} />
-            </Headline>
-          </Col>
-          <Col xs={1}>
-            <IconSelect
-              onChange={(_e, value) => {
-                handleSubmit({ outcome: value }, item);
-              }}
-              options={buttonOptions}
-              value={item?.outcome?.value || null}
-            />
-          </Col>
-        </Row>
+        <Layout className="flex justified">
+          <Headline margin="none" size="large" tag="h3">
+            {item.definition.label}
+            <InfoPopover content={item?.definition?.description} />
+          </Headline>
+          <IconSelect
+            notSet={notSet}
+            onChange={(_e, value) => {
+              handleSubmit({ outcome: value }, item);
+            }}
+            options={buttonOptions}
+            value={item?.outcome?.value || ''}
+          />
+        </Layout>
         <Row>
           <Col xs={12}>
             <ChecklistMeta
