@@ -97,7 +97,7 @@ const LinkInvoiceForm = ({ handlers: { onClose, onSubmit }, charge }) => {
     <HasCommand
       commands={shortcuts}
       isWithinScope={checkScope}
-      scope={document.body}
+      scope={document.getElementById('link-invoice-form')}
     >
       <Paneset>
         <Pane

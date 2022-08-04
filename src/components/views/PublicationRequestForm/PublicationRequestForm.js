@@ -130,7 +130,7 @@ const PublicationRequestForm = ({
     <HasCommand
       commands={shortcuts}
       isWithinScope={checkScope}
-      scope={document.body}
+      scope={document.getElementById('publication-request-form')}
     >
       <Paneset>
         <Pane

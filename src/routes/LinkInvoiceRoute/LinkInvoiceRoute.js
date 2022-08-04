@@ -45,7 +45,7 @@ const LinkInvoiceRoute = () => {
   return (
     <Form mutators={arrayMutators} onSubmit={submitInvoice}>
       {({ handleSubmit }) => (
-        <form onSubmit={handleSubmit}>
+        <form id="link-invoice-form" onSubmit={handleSubmit}>
           <LinkInvoiceForm
             charge={charge}
             handlers={{
