@@ -17,7 +17,7 @@ import { IconSelect } from '@k-int/stripes-kint-components';
 import css from '../Checklist.css';
 import ChecklistMeta from '../ChecklistMeta';
 
-import { CheckFatIcon, CrossFatIcon, DashFatIcon } from '../CustomIcons';
+import { CheckFatIcon, CrossFatIcon, DashFatIcon } from '../../CustomIcons';
 
 const propTypes = {
   resource: PropTypes.object,
@@ -47,18 +47,18 @@ const ChecklistItem = ({
       icon: CrossFatIcon,
       value: 'no',
       label: <FormattedMessage id="ui-oa.checklist.outcome.no" />,
-      buttonProps: { className: css.notMet },
+      buttonProps: { className: classNames(css.noOptionButton, css.buttonBorder) },
       iconProps: {
-        iconClassName: css.notMet,
+        iconClassName: css.noOptionIcon,
       },
     },
     {
       icon: DashFatIcon,
       value: 'other',
       label: <FormattedMessage id="ui-oa.checklist.outcome.other" />,
-      buttonProps: { className: css.other },
+      buttonProps: { className: classNames(css.otherOptionButton, css.buttonBorder) },
       iconProps: {
-        iconClassName: css.other,
+        iconClassName: css.otherOptionIcon,
       },
     },
   ];
