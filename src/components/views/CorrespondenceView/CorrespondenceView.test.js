@@ -1,12 +1,12 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
 import { KeyValue, Button, Modal } from '@folio/stripes-testing';
-import translationsProperties from '../../../../test/helpers';
+import { translationsProperties } from '../../../../test/helpers';
 import CorrespondenceView from './CorrespondenceView';
 import {
   correspondence,
-  handlers,
-} from '../../../../test/resources/correspondenceResources';
+  correspondenceHandlers as handlers
+} from '../../../../test/resources';
 
 describe('CorrespondenceView', () => {
   describe('renders components', () => {

@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { Field } from 'react-final-form';
 
 import { ConfirmationModal, Pane, TextArea, TextField } from '@folio/stripes/components';
-import { useCallout } from '@folio/stripes-core';
+import { useCallout } from '@folio/stripes/core';
 
 import { ActionList, required } from '@k-int/stripes-kint-components';
 

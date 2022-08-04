@@ -20,15 +20,14 @@ import {
   composeValidators,
 } from '@folio/stripes-erm-components';
 import { FieldCurrency, CurrencySymbol } from '@folio/stripes-acq-components';
-import { useStripes } from '@folio/stripes-core';
+import { useStripes } from '@folio/stripes/core';
 import {
   validateNotNegative,
   validateAsDecimal,
   validateNotLessThanZero,
 } from '../../../util/validators';
 import { getEstimatedInvoicePrice } from '../../../util/chargeUtils';
-import useOARefdata from '../../../util/useOARefdata';
-import selectifyRefdata from '../../../util/selectifyRefdata';
+import { useOARefdata, selectifyRefdata } from '../../../util';
 import useExchangeRateValue from '../../../hooks/useExchangeRateValue';
 
 import css from './ChargeInfoForm.css';

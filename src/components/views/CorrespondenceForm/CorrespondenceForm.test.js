@@ -4,12 +4,12 @@ import {
   TestForm,
 } from '@folio/stripes-erm-components/test/jest/helpers';
 import { Button } from '@folio/stripes-testing';
-import translationsProperties from '../../../../test/helpers';
+import { translationsProperties } from '../../../../test/helpers';
 import CorrespondenceForm from './CorrespondenceForm';
 import {
-  handlers,
   correspondence,
-} from '../../../../test/resources/correspondenceResources';
+  correspondenceHandlers as handlers
+} from '../../../../test/resources';
 
 jest.mock(
   '../../CorrespondenceFormSections/CorrespondenceInfoForm/',

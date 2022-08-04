@@ -12,7 +12,7 @@ import { useGenerateNumber } from '@folio/service-interaction';
 
 import PublicationRequestForm from '../../components/views/PublicationRequestForm';
 import publicationRequestSubmitHandler from '../../util/publicationRequestSubmitHandler';
-import useOARefdata from '../../util/useOARefdata';
+import { useOARefdata } from '../../util';
 import getRDVId from '../../util/getRDVId';
 import { PUBLICATION_REQUESTS_ENDPOINT } from '../../constants/endpoints';
 import urls from '../../util/urls';

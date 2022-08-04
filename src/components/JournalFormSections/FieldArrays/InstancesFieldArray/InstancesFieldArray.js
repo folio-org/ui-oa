@@ -18,7 +18,7 @@ import {
 import { requiredValidator } from '@folio/stripes-erm-components';
 
 import { InstanceIdentifiersFieldArray } from '..';
-import useOARefdata from '../../../../util/useOARefdata';
+import { useOARefdata } from '../../../../util';
 
 // TODO: This and InstanceIdentifiersFieldArray requires refactoring
 const InstancesFieldArray = () => {

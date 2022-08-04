@@ -11,7 +11,7 @@ import {
   Row,
 } from '@folio/stripes/components';
 
-import getSortedItems from '../../util/getSortedItems';
+import { getSortedItems } from '../../util';
 
 const propTypes = {
   requests: PropTypes.arrayOf(PropTypes.object),

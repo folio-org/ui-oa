@@ -1,20 +1,23 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl, TestForm } from '@folio/stripes-erm-components/test/jest/helpers';
 import { Datepicker, Select, KeyValue } from '@folio/stripes-testing';
-import translationsProperties from '../../../../test/helpers';
+import { translationsProperties } from '../../../../test/helpers';
 import RequestInfoForm from './RequestInfoForm';
-import { publicationRequest, handlers } from '../../../../test/resources/publicationRequestsResources';
+import { mockRefdata, publicationRequest, publicationRequestHandlers as handlers } from '../../../../test/resources';
 
 jest.mock(
   '../../PublicationRequestFormSections/FieldArrays/ExternalRequestIdFieldArray',
   () => () => <div>ExternalRequestIdFieldArray</div>
 );
 
-jest.mock('../../../util/useOARefdata', () => () => [
-  { id: '2c9180b07e6ade90017e6ae3bd520023', value: 'in_progress', label: 'In progress' },
-  { id: '2c9180b07e6ade90017e6ae3bd4b0022', value: 'closed', label: 'Closed' },
-  { id: '2c9180b07e6ade90017e6ae3bd450021', value: 'new', label: 'New' },
-]);
+jest.mock('../../../util', () => ({
+  ...jest.requireActual('../../../util'),
+  useOARefdata: () => mockRefdata.find(
+    obj => (
+      obj.desc === 'PublicationRequest.RequestStatus'
+    )
+  )?.values,
+}));
 
 describe('RequestInfoForm', () => {
   let renderComponent;
@@ -34,11 +37,11 @@ describe('RequestInfoForm', () => {
     });
 
     test('renders Request date Datepicker Component', async () => {
-      await Datepicker({ id: 'request-date' }).exists();
+      await Datepicker('Request date*').exists();
     });
 
     test('renders Status Select Component', async () => {
-      await Select({ id: 'request-status' }).exists();
+      await Select('Status*').exists();
     });
 
     test('renders ExternalRequestIdFieldArray Component', () => {
@@ -60,11 +63,8 @@ describe('RequestInfoForm', () => {
       await KeyValue('Request number').has({ value: '1' });
     });
 
-    test('renders the expected value in the Request date field', () => {
-      const { getByRole } = renderComponent;
-      expect(getByRole('textbox', { name: 'Request date' })).toHaveDisplayValue(
-        '01/01/2022'
-      );
+    test('renders the expected value in the Request date field', async () => {
+      await Datepicker('Request date*').has({ inputValue: '01/01/2022' });
     });
 
     test('renders the expected value in the Status field', () => {

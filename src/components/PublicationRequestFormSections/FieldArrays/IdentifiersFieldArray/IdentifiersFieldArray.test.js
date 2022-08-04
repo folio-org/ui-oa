@@ -5,27 +5,24 @@ import {
   TestForm,
 } from '@folio/stripes-erm-components/test/jest/helpers';
 import { Button } from '@folio/stripes-testing';
-// import { within } from '@testing-library/react';
-import {
-  handlers,
-} from '../../../../../test/resources/publicationRequestsResources';
+
 import IdentifiersFieldArray from './IdentifiersFieldArray';
 
-import translationsProperties from '../../../../../test/helpers';
+import { translationsProperties } from '../../../../../test/helpers';
+import {
+  mockRefdata,
+  publicationRequestHandlers as handlers,
+} from '../../../../../test/resources';
 
-jest.mock('../../../../util/useOARefdata', () => () => [
-  {
-    id: '2c9180b07eadd1fc017eadd643a70023',
-    desc: 'PublicationIdentifier.Type',
-    internal: true,
-    values: [
-      {
-        label: 'PMID',
-        value: '2c9180b17f055d1b017f056080240037',
-      },
-    ],
-  },
-]);
+
+jest.mock('../../../../util', () => ({
+  ...jest.requireActual('../../../../util'),
+  useOARefdata: () => mockRefdata.filter(
+    obj => (
+      obj.desc === 'PublicationIdentifier.Type'
+    )
+  ),
+}));
 
 describe('IdentifiersFieldArray', () => {
   describe('with empty initial values', () => {

@@ -5,28 +5,24 @@ import {
   TestForm,
 } from '@folio/stripes-erm-components/test/jest/helpers';
 import { Button } from '@folio/stripes-testing';
-// import { within } from '@testing-library/react';
-import {
-  publicationRequest,
-  handlers,
-} from '../../../../../test/resources/publicationRequestsResources';
+
 import PublicationStatusFieldArray from './PublicationStatusFieldArray';
 
-import translationsProperties from '../../../../../test/helpers';
+import { translationsProperties } from '../../../../../test/helpers';
+import {
+  mockRefdata,
+  publicationRequest,
+  publicationRequestHandlers as handlers,
+} from '../../../../../test/resources';
 
-jest.mock('../../../../util/useOARefdata', () => () => [
-  {
-    id: '2c9180b07eadd1fc017eadd643a70023',
-    desc: 'PublicationStatus.PublicationStatus',
-    internal: true,
-    values: [
-      {
-        label: 'Submitted',
-        value: '2c9180b17f055d1b017f0560801c0035',
-      },
-    ],
-  },
-]);
+jest.mock('../../../../util', () => ({
+  ...jest.requireActual('../../../../util'),
+  useOARefdata: () => mockRefdata.filter(
+    obj => (
+      obj.desc === 'PublicationStatus.PublicationStatus'
+    )
+  ),
+}));
 
 describe('PublicationStatusFieldArray', () => {
   describe('with empty initial values', () => {

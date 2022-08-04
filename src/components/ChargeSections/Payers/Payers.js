@@ -8,7 +8,7 @@ import {
   Col,
   Row,
 } from '@folio/stripes/components';
-import getSortedItems from '../../../util/getSortedItems';
+import { getSortedItems } from '../../../util';
 import {
   getEstimatedInvoicePrice,
   getTotalPayersAmount,

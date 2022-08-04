@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
 import { Accordion, Badge, Pane, Row, Col } from '@folio/stripes/components';
-import { AppIcon, useNamespace, useOkapiKy } from '@folio/stripes-core';
+import { AppIcon, useNamespace, useOkapiKy } from '@folio/stripes/core';
 
 import isEqual from 'lodash/isEqual';
 import differenceWith from 'lodash/differenceWith';

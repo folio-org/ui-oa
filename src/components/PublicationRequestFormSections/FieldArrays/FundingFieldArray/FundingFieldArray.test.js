@@ -5,45 +5,26 @@ import {
   TestForm,
 } from '@folio/stripes-erm-components/test/jest/helpers';
 import { Button } from '@folio/stripes-testing';
-import {
-  publicationRequest,
-  handlers,
-} from '../../../../../test/resources/publicationRequestsResources';
+
 import FundingFieldArray from './FundingFieldArray';
 
-import translationsProperties from '../../../../../test/helpers';
+import { translationsProperties } from '../../../../../test/helpers';
 
-jest.mock('../../../../util/useOARefdata', () => () => [
-  {
-    id: '2c9180b07eadd1fc017eadd643a70023',
-    desc: 'Funding.AspectFunded',
-    internal: true,
-    values: [
-      {
-        id: '2c9180b07eadd1fc017eadd643b00025',
-        value: 'publication',
-        label: 'Publication',
-      },
-      {
-        id: '2c9180b07eadd1fc017eadd643aa0024',
-        value: 'research',
-        label: 'Research',
-      },
-    ],
-  },
-  {
-    id: '2c9180b07eadd1fc017eadd643b60026',
-    desc: 'Funding.Funder',
-    internal: false,
-    values: [
-      {
-        id: '2c9180b07eadd1fc017eadd643ba0027',
-        value: 'funder_1',
-        label: 'Funder 1',
-      },
-    ],
-  },
-]);
+import {
+  mockRefdata,
+  publicationRequest,
+  publicationRequestHandlers as handlers,
+} from '../../../../../test/resources';
+
+jest.mock('../../../../util', () => ({
+  ...jest.requireActual('../../../../util'),
+  useOARefdata: () => mockRefdata.filter(
+    obj => (
+      obj.desc === 'Funding.AspectFunded' ||
+      obj.desc === 'Funding.Funder'
+    )
+  ),
+}));
 
 describe('FundingFieldArray', () => {
   describe('with empty initial values', () => {
