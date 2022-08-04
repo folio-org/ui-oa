@@ -2,13 +2,13 @@
 
 .checklistContainer {
     padding: 1rem;
-    background-color: #ebebeb;
+    background-color: var(--bg-hover);
     margin-bottom: 0.5rem;
 }
 
 .meta {
     font-size: var(--font-size-small);
-    color: #656565;
+    color: var(--color-text-p2);
 }
 
 .buttonBorder {
@@ -16,7 +16,6 @@
     border-width: 2px;
     border-style: solid;
 }
-
 
 .metaContainer {
     margin-top: 0.5rem;
@@ -32,27 +31,21 @@
 }
 
 .noOptionIcon {
-
-}
-
-.noOptionButton {
-
-}
-
-.otherOptionIcon {
-
-}
-
-.otherOptionButton {
-
-}
-
-.notMet{
     color: var(--error);
 }
 
-.other{
-    color: #d5600d;
+.noOptionButton {
+    color: #fff;
+    background-color: var(--error);
+}
+
+.otherOptionIcon {
+    color: #e05f02;
+}
+
+.otherOptionButton {
+    color: #fff;
+    background-color: #e05f02;
 }
 
 .notesContainer {
