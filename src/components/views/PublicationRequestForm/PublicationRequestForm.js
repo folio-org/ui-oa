@@ -31,6 +31,7 @@ import {
   LinkAgreementForm,
   PartyTypedownForm,
 } from '../../PublicationRequestFormSections';
+import handleSaveKeyCommand from '../../../util/keyboardShortcutHandlers';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -62,7 +63,10 @@ const PublicationRequestForm = ({
   }, [change, values]);
 
   const shortcuts = [
-    { name: 'save', handler: onSubmit },
+    {
+      name: 'save',
+      handler: (e) => handleSaveKeyCommand(e, onSubmit, pristine, submitting),
+    },
     {
       name: 'expandAllSections',
       handler: (e) => expandAllSections(e, accordionStatusRef),

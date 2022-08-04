@@ -21,6 +21,7 @@ import {
 } from '../../InvoiceFormSections';
 
 import { ChargeInfo } from '../../ChargeSections';
+import handleSaveKeyCommand from '../../../util/keyboardShortcutHandlers';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -91,7 +92,12 @@ const LinkInvoiceForm = ({ handlers: { onClose, onSubmit }, charge }) => {
     );
   };
 
-  const shortcuts = [{ name: 'save', handler: onSubmit }];
+  const shortcuts = [
+    {
+      name: 'save',
+      handler: (e) => handleSaveKeyCommand(e, onSubmit, pristine, submitting),
+    },
+  ];
 
   return (
     <HasCommand
