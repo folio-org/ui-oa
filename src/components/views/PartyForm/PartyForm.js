@@ -19,6 +19,7 @@ import {
   OtherEmailsFieldArray,
   StreetAddress,
 } from '../../PartyFormSections';
+import handleSaveKeyCommand from '../../../util/keyboardShortcutHandlers';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -86,7 +87,7 @@ const PartyForm = ({ handlers: { onClose, onSubmit }, party }) => {
   const shortcuts = [
     {
       name: 'save',
-      handler: onSubmit,
+      handler: (e) => handleSaveKeyCommand(e, onSubmit, pristine, submitting),
     },
   ];
 

@@ -24,6 +24,7 @@ import { AppIcon } from '@folio/stripes/core';
 
 import { ChargeInfoForm, PayersFieldArray } from '../../ChargeFormSections';
 import Agreement from '../../PublicationRequestSections/Agreement/Agreement';
+import handleSaveKeyCommand from '../../../util/keyboardShortcutHandlers';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -34,11 +35,7 @@ const propTypes = {
   request: PropTypes.object,
 };
 
-const ChargeForm = ({
-  handlers: { onClose, onSubmit },
-  charge,
-  request,
-}) => {
+const ChargeForm = ({ handlers: { onClose, onSubmit }, charge, request }) => {
   const { pristine, submitting } = useFormState();
   const accordionStatusRef = createRef();
 
@@ -95,7 +92,7 @@ const ChargeForm = ({
   const shortcuts = [
     {
       name: 'save',
-      handler: onSubmit,
+      handler: (e) => handleSaveKeyCommand(e, onSubmit, pristine, submitting),
     },
     {
       name: 'expandAllSections',

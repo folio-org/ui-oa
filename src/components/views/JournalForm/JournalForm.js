@@ -15,6 +15,7 @@ import {
 import { AppIcon } from '@folio/stripes/core';
 
 import { JournalStatusForm } from '../../JournalFormSections';
+import handleSaveKeyCommand from '../../../util/keyboardShortcutHandlers';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -24,10 +25,7 @@ const propTypes = {
   journal: PropTypes.object,
 };
 
-const JournalForm = ({
-  handlers: { onClose, onSubmit },
-  journal,
-}) => {
+const JournalForm = ({ handlers: { onClose, onSubmit }, journal }) => {
   const { pristine, submitting } = useFormState();
 
   const renderPaneTitle = () => (journal ? (
@@ -56,7 +54,7 @@ const JournalForm = ({
   const shortcuts = [
     {
       name: 'save',
-      handler: onSubmit,
+      handler: (e) => handleSaveKeyCommand(e, onSubmit, pristine, submitting),
     },
   ];
 

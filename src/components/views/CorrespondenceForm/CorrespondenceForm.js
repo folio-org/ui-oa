@@ -15,6 +15,7 @@ import {
 import { AppIcon } from '@folio/stripes/core';
 
 import CorrespondenceInfoForm from '../../CorrespondenceFormSections';
+import handleSaveKeyCommand from '../../../util/keyboardShortcutHandlers';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -83,7 +84,7 @@ const CorrespondenceForm = ({
   const shortcuts = [
     {
       name: 'save',
-      handler: onSubmit,
+      handler: (e) => handleSaveKeyCommand(e, onSubmit, pristine, submitting),
     },
   ];
 

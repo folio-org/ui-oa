@@ -85,7 +85,7 @@ const PublicationRequestEditRoute = () => {
       onSubmit={submitRequest}
     >
       {({ handleSubmit }) => (
-        <form onSubmit={handleSubmit}>
+        <form id="publication-request-form" onSubmit={handleSubmit}>
           <PublicationRequestForm
             handlers={{
               onClose: handleClose,
