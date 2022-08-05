@@ -31,7 +31,7 @@ const ChecklistItem = ({
   handleSubmit,
   setSelectedNotesItem,
 }) => {
-  const sortedNotes = orderBy(item.notes, 'dateCreated', 'desc');
+  const sortedNotes = orderBy(item.notes, 'lastUpdated', 'desc');
 
   const buttonOptions = [
     {
