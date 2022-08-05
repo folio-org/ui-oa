@@ -25,8 +25,7 @@ import { JournalModal } from '../../../Modals';
 import { JournalDetails } from '../../../PublicationRequestSections/PublicationType';
 import { findIssnByNamespace } from '../../../../util/journalUtils';
 
-import useOARefdata from '../../../../util/useOARefdata';
-import selectifyRefdata from '../../../../util/selectifyRefdata';
+import { useOARefdata, selectifyRefdata } from '../../../../util';
 import urls from '../../../../util/urls';
 import css from './PublicationJournal.css';
 import { WORKS_ENDPOINT } from '../../../../constants/endpoints';

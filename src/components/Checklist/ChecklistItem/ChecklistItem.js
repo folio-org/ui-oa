@@ -1,104 +1,108 @@
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
+import classNames from 'classnames';
+import orderBy from 'lodash/orderBy';
+
 import {
   Col,
   Row,
   InfoPopover,
-  KeyValue,
   IconButton,
+  Headline,
+  Layout,
 } from '@folio/stripes/components';
 import { IconSelect } from '@k-int/stripes-kint-components';
-
-import orderBy from 'lodash/orderBy';
 
 import css from '../Checklist.css';
 import ChecklistMeta from '../ChecklistMeta';
 
+import { CheckFatIcon, CrossFatIcon, DashFatIcon } from '../../CustomIcons';
+
 const propTypes = {
+  resource: PropTypes.object,
   item: PropTypes.object,
   handleSubmit: PropTypes.func,
   setSelectedNotesItem: PropTypes.func,
 };
-const ChecklistItem = ({ item, handleSubmit, setSelectedNotesItem }) => {
+const ChecklistItem = ({
+  resource,
+  item,
+  handleSubmit,
+  setSelectedNotesItem,
+}) => {
   const sortedNotes = orderBy(item.notes, 'dateCreated', 'desc');
 
   const buttonOptions = [
     {
-      icon: 'check-circle',
-      value: 'met',
-      label: 'Met',
-      buttonProps: { className: css.met },
+      icon: CheckFatIcon,
+      value: 'yes',
+      label: <FormattedMessage id="ui-oa.checklist.outcome.yes" />,
+      buttonProps: { className: classNames(css.yesOptionButton, css.buttonBorder) },
       iconProps: {
-        iconClassName: css.met,
+        iconClassName: css.yesOptionIcon,
       },
     },
     {
-      icon: 'times-circle-solid',
-      value: 'not_met',
-      label: 'Not met',
-      buttonProps: { className: css.notMet },
+      icon: CrossFatIcon,
+      value: 'no',
+      label: <FormattedMessage id="ui-oa.checklist.outcome.no" />,
+      buttonProps: { className: classNames(css.noOptionButton, css.buttonBorder) },
       iconProps: {
-        iconClassName: css.notMet,
+        iconClassName: css.noOptionIcon,
       },
     },
     {
-      icon: 'exclamation-circle',
+      icon: DashFatIcon,
       value: 'other',
-      label: 'Other',
-      buttonProps: { className: css.other },
+      label: <FormattedMessage id="ui-oa.checklist.outcome.other" />,
+      buttonProps: { className: classNames(css.otherOptionButton, css.buttonBorder) },
       iconProps: {
-        iconClassName: css.other,
+        iconClassName: css.otherOptionIcon,
       },
     },
   ];
 
+  const notSet = {
+    icon: 'ellipsis',
+    value: '',
+    label: <FormattedMessage id="ui-oa.checklist.outcome.notSet" />,
+    buttonProps: { className: css.buttonBorder },
+  };
+
   return (
     <>
       <div key={item?.id} className={css.checklistContainer}>
+        <Layout className="flex justified">
+          <Headline margin="none" size="large" tag="h3">
+            {item.definition.label}
+            <InfoPopover content={item?.definition?.description} />
+          </Headline>
+          <IconSelect
+            notSet={notSet}
+            onChange={(_e, value) => {
+              handleSubmit({ outcome: value }, item);
+            }}
+            options={buttonOptions}
+            value={item?.outcome?.value || ''}
+          />
+        </Layout>
         <Row>
-          <Col xs={10}>
-            <KeyValue
-              label={
-                <>
-                  {item.definition.label}
-                  <InfoPopover content={item?.definition?.description} />
-                </>
-              }
-              value={
-                <ChecklistMeta
-                  dateCreated={
-                    item?.dateCreated || item?.definition.dateCreated
-                  }
-                  lastUpdated={
-                    item?.lastUpdated || item?.definition.lastUpdated
-                  }
-                />
-              }
-            />
-          </Col>
-          <Col xs={2}>
-            <IconSelect
-              onChange={(_e, value) => {
-                handleSubmit({ outcome: value }, item);
-              }}
-              options={buttonOptions}
-              value={item?.outcome?.value || null}
+          <Col xs={12}>
+            <ChecklistMeta
+              dateCreated={resource?.dateCreated}
+              lastUpdated={item?.lastUpdated || resource?.dateCreated}
             />
           </Col>
         </Row>
+        <br />
         {item?.notes?.length > 0 && (
           <>
             <Row>
-              <Col xs={12}>
-                <KeyValue
-                  label={<FormattedMessage id="ui-oa.checklist.latestNote" />}
-                  value={
-                    sortedNotes[0]?.note?.length < 100
-                      ? sortedNotes[0]?.note
-                      : sortedNotes[0]?.note?.substring(0, 100) + '...'
-                  }
-                />
+              <Col style={{ lineHeight: 1.5 }} xs={12}>
+                {sortedNotes[0]?.note?.length < 100
+                  ? sortedNotes[0]?.note
+                  : sortedNotes[0]?.note?.substring(0, 100) + '...'}
               </Col>
             </Row>
             <Row>
@@ -114,11 +118,19 @@ const ChecklistItem = ({ item, handleSubmit, setSelectedNotesItem }) => {
         )}
         <Row>
           <Col xs={12}>
-            <IconButton
-              badgeCount={item?.notes?.length || 0}
-              icon="document"
-              onClick={() => setSelectedNotesItem(item)}
-            />
+            <FormattedMessage
+              id="ui-oa.checklist.notesForItem"
+              values={{ item: item.definition.label }}
+            >
+              {(ariaLabel) => (
+                <IconButton
+                  ariaLabel={ariaLabel}
+                  badgeCount={item?.notes?.length || 0}
+                  icon="document"
+                  onClick={() => setSelectedNotesItem(item)}
+                />
+              )}
+            </FormattedMessage>
             <IconButton
               icon={
                 item?.status?.value === 'not_required'

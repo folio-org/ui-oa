@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { AppContextMenu } from '@folio/stripes-core';
+import { AppContextMenu } from '@folio/stripes/core';
 
 import {
   CommandList,

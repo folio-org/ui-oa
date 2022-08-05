@@ -26,6 +26,8 @@ const urls = {
   publicationRequestChargeCreate: prId => `/oa/publicationRequests/${prId}/charge/create`,
   publicationRequestChargeEdit: (prId, chId) => `/oa/publicationRequests/${prId}/charge/${chId}/edit`,
 
+  settingsChecklistItems: () => '/settings/oa/checklist-items'
+
 };
 
 export default urls;

@@ -5,7 +5,7 @@ import { useOkapiKy } from '@folio/stripes/core';
 import { useQuery, useMutation } from 'react-query';
 import LinkInvoiceForm from '../../components/views/LinkInvoiceForm';
 import urls from '../../util/urls';
-import useOARefdata from '../../util/useOARefdata';
+import { useOARefdata } from '../../util';
 import { CHARGE_ENDPOINT } from '../../constants/endpoints';
 
 const LinkInvoiceRoute = () => {

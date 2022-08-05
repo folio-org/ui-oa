@@ -31,8 +31,7 @@ import {
   validateMoreThanTotal,
 } from '../../../util/validators';
 
-import useOARefdata from '../../../util/useOARefdata';
-import selectifyRefdata from '../../../util/selectifyRefdata';
+import { useOARefdata, selectifyRefdata } from '../../../util';
 import {
   getEstimatedInvoicePrice,
   getTotalPayersAmount,

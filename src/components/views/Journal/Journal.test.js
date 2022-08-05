@@ -1,9 +1,9 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
 import { MemoryRouter } from 'react-router-dom';
-import translationsProperties from '../../../../test/helpers';
+import { translationsProperties } from '../../../../test/helpers';
 import Journal from './Journal';
-import { journal, handlers } from '../../../../test/resources/journalResources';
+import { journal, journalHandlers as handlers } from '../../../../test/resources';
 
 jest.mock('../../JournalSections/JournalInstances', () => () => (
   <div>JournalInstances</div>

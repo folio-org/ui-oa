@@ -1,30 +1,19 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { render } from '@testing-library/react';
-import CorrespondenceCreateRoute from './CorrespondenceCreateRoute';
-import translationsProperties from '../../../test/helpers';
-import StripesHarness from '../../../test/helpers/stripesHarness';
+import { renderWithIntl } from '@folio/stripes-erm-components';
 
-const queryClient = new QueryClient();
+import CorrespondenceCreateRoute from './CorrespondenceCreateRoute';
+import { translationsProperties } from '../../../test/helpers';
 
 jest.mock('../../components/views/CorrespondenceForm', () => () => (
   <div>CorrespondenceForm</div>
 ));
 
-// eslint-disable-next-line react/prop-types
-const wrapper = ({ children }) => (
-  <QueryClientProvider client={queryClient}>
-    <StripesHarness>{children}</StripesHarness>
-  </QueryClientProvider>
-);
-
 describe('ChargeCreateRoute', () => {
   let renderComponent;
 
   beforeEach(() => {
-    renderComponent = render(
+    renderComponent = renderWithIntl(
       <CorrespondenceCreateRoute />,
-      { wrapper },
       translationsProperties
     );
   });

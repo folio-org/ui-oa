@@ -5,9 +5,13 @@ import {
   MultiColumnList,
   MultiColumnListCell,
 } from '@folio/stripes-testing';
-import translationsProperties from '../../../../test/helpers';
 import PublicationStatus from './PublicationStatus';
-import { publicationRequest } from '../../../../test/resources/publicationRequestsResources';
+
+import { translationsProperties } from '../../../../test/helpers';
+
+import {
+  publicationRequest,
+} from '../../../../test/resources';
 
 let renderComponent;
 

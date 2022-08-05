@@ -1,8 +1,8 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl, TestForm } from '@folio/stripes-erm-components/test/jest/helpers';
-import translationsProperties from '../../../../test/helpers';
+import { translationsProperties } from '../../../../test/helpers';
 import PartyInfoForm from './PartyInfoForm';
-import { party, handlers } from '../../../../test/resources/partyResources';
+import { party, partyHandlers as handlers } from '../../../../test/resources';
 
 let renderComponent;
 

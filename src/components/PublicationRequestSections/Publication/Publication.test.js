@@ -6,9 +6,13 @@ import {
   MultiColumnListCell,
   KeyValue,
 } from '@folio/stripes-testing';
-import translationsProperties from '../../../../test/helpers';
 import Publication from './Publication';
-import { publicationRequest } from '../../../../test/resources/publicationRequestsResources';
+
+import { translationsProperties } from '../../../../test/helpers';
+
+import {
+  publicationRequest,
+} from '../../../../test/resources';
 
 let renderComponent;
 jest.mock('../PublicationType/JournalDetails', () => () => (

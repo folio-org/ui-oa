@@ -2,8 +2,7 @@ import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
 import { Col, Row, Select } from '@folio/stripes/components';
 
-import useOARefdata from '../../../util/useOARefdata';
-import selectifyRefdata from '../../../util/selectifyRefdata';
+import { useOARefdata, selectifyRefdata } from '../../../util';
 
 const [YES_NO, OA_STATUS] = ['Global.Yes_No', 'Work.OaStatus'];
 

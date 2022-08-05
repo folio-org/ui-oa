@@ -20,7 +20,7 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
   useEffect(() => {
     if (notes?.length < 1) {
       setEditing('NEW_NOTE');
-      notes.push({});
+      notes.unshift({});
     } else {
       setEditing(null);
     }
@@ -28,10 +28,22 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
 
   return (
     <>
+      <div className={css.notesButton}>
+        <Button
+          disabled={editing}
+          onClick={() => {
+            setEditing('NEW_NOTE');
+            notes.unshift({});
+          }}
+        >
+          <FormattedMessage id="ui-oa.checklist.addNote" />
+        </Button>
+      </div>
       {notes.map((note, index) => {
         if (note.id === editing || (!note.id && editing === 'NEW_NOTE')) {
           return (
             <>
+              <hr />
               <Form initialValues={note} onSubmit={submitNotes}>
                 {({ handleSubmit, pristine, submitting, values }) => (
                   <form onSubmit={handleSubmit}>
@@ -69,7 +81,7 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
                                   if (note?.id) {
                                     setEditing(false);
                                   } else {
-                                    notes.pop();
+                                    notes.shift();
                                     setEditing(false);
                                   }
                                 }}
@@ -84,17 +96,16 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
                   </form>
                 )}
               </Form>
-              <hr />
             </>
           );
         }
         return (
           <>
+            <hr />
             <div className={css.notesContainer}>
               <Row middle="xs">
                 <Col xs={10}>{note.note}</Col>
                 <Col xs={2}>
-                  {' '}
                   <IconButton
                     disabled={editing}
                     icon="edit"
@@ -117,22 +128,10 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
                 </Col>
               </Row>
             </div>
-            <hr />
           </>
         );
       })}
       <br />
-      <div className={css.notesButton}>
-        <Button
-          disabled={editing}
-          onClick={() => {
-            setEditing('NEW_NOTE');
-            notes.push({});
-          }}
-        >
-          <FormattedMessage id="ui-oa.checklist.addNote" />
-        </Button>
-      </div>
     </>
   );
 };

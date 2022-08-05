@@ -2,9 +2,13 @@ import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
 import { Accordion } from '@folio/stripes-testing';
 import { MemoryRouter } from 'react-router-dom';
-import translationsProperties from '../../../../test/helpers';
 import RequestContact from './RequestContact';
-import { publicationRequest } from '../../../../test/resources/publicationRequestsResources';
+
+import { translationsProperties } from '../../../../test/helpers';
+
+import {
+  publicationRequest,
+} from '../../../../test/resources';
 
 let renderComponent;
 

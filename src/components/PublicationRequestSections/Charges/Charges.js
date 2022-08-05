@@ -19,7 +19,7 @@ import {
 } from '@folio/stripes/components';
 
 import urls from '../../../util/urls';
-import getSortedItems from '../../../util/getSortedItems';
+import { getSortedItems } from '../../../util';
 import { useInvoice, useInvoiceLine } from '../../../hooks/invoiceHooks';
 
 import css from './Charges.css';

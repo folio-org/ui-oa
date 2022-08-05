@@ -4,9 +4,9 @@ import {
   TestForm,
 } from '@folio/stripes-erm-components/test/jest/helpers';
 import { Button } from '@folio/stripes-testing';
-import translationsProperties from '../../../../test/helpers';
+import { translationsProperties } from '../../../../test/helpers';
 import PartyForm from './PartyForm';
-import { handlers, party } from '../../../../test/resources/partyResources';
+import { party, partyHandlers as handlers } from '../../../../test/resources';
 
 jest.mock('../../PartyFormSections/PartyInfoForm/PartyInfoForm', () => () => (
   <div>PartyInfoForm</div>
