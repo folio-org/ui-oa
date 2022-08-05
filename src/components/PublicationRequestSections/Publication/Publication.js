@@ -14,11 +14,11 @@ import {
   Card,
   Headline,
 } from '@folio/stripes/components';
-import { AppIcon } from '@folio/stripes-core';
+import { AppIcon } from '@folio/stripes/core';
 import { JournalDetails, BookDetails } from '../PublicationType';
 import publicationRequestFields from '../../../constants/publicationRequestFields';
 import ExternalLink from '../../ExternalLink';
-import getSortedItems from '../../../util/getSortedItems';
+import { getSortedItems } from '../../../util';
 import urls from '../../../util/urls';
 
 const propTypes = {

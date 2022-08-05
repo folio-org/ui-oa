@@ -1,30 +1,40 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { render } from '@testing-library/react';
+import { renderWithIntl } from '@folio/stripes-erm-components';
 import ChargeCreateRoute from './ChargeCreateRoute';
-import translationsProperties from '../../../test/helpers';
-import StripesHarness from '../../../test/helpers/stripesHarness';
+import { translationsProperties } from '../../../test/helpers';
 
-const queryClient = new QueryClient();
+import { mockRefdata } from '../../../test/resources';
+
+jest.mock('../../util', () => ({
+  ...jest.requireActual('../../util'),
+  useOARefdata: () => mockRefdata,
+}));
 
 jest.mock('../../components/views/ChargeForm', () => () => (
   <div>ChargeForm</div>
 ));
 
-// eslint-disable-next-line react/prop-types
-const wrapper = ({ children }) => (
-  <QueryClientProvider client={queryClient}>
-    <StripesHarness>{children}</StripesHarness>
-  </QueryClientProvider>
-);
+/*
+// This is seemingly the only method to override imported __mock__ functions.
+// (This probably means this setup SUCKS and needs changing)
+// It's not necessary anymore here thanks to mocks added in stripes-components
+// but left as commented code for future devs
+
+const useParams = jest.fn(() => ({
+  id: mockPubReq.id,
+}));
+
+// Make sure ReactRouterDom is imported as a module so we can tack onto it here
+
+ReactRouterDom.useParams = useParams;
+*/
 
 describe('ChargeCreateRoute', () => {
   let renderComponent;
 
   beforeEach(() => {
-    renderComponent = render(
+    renderComponent = renderWithIntl(
       <ChargeCreateRoute />,
-      { wrapper },
       translationsProperties
     );
   });

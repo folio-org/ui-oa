@@ -6,7 +6,7 @@ import { useAppSettings } from '@k-int/stripes-kint-components';
 import { useMutation, useQuery } from 'react-query';
 
 import ChargeForm from '../../components/views/ChargeForm';
-import useOARefdata from '../../util/useOARefdata';
+import { useOARefdata } from '../../util';
 import urls from '../../util/urls';
 import { CHARGES_ENDPOINT, PUBLICATION_REQUEST_ENDPOINT } from '../../constants/endpoints';
 

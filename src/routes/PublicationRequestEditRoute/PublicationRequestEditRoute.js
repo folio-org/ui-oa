@@ -10,7 +10,7 @@ import { orderBy } from 'lodash';
 import PublicationRequestForm from '../../components/views/PublicationRequestForm';
 
 import publicationRequestSubmitHandler from '../../util/publicationRequestSubmitHandler';
-import useOARefdata from '../../util/useOARefdata';
+import { useOARefdata } from '../../util';
 import getRDVId from '../../util/getRDVId';
 import urls from '../../util/urls';
 import { PUBLICATION_REQUEST_ENDPOINT } from '../../constants/endpoints';

@@ -13,7 +13,7 @@ import {
   Row,
   Card,
 } from '@folio/stripes/components';
-import { AppIcon } from '@folio/stripes-core';
+import { AppIcon } from '@folio/stripes/core';
 
 import PartyInfo from '../../PartySections/PartyInfo';
 

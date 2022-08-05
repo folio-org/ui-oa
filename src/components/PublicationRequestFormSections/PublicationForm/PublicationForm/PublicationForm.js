@@ -12,8 +12,7 @@ import {
   TextField,
 } from '@folio/stripes/components';
 import { IdentifiersFieldArray } from '../../FieldArrays';
-import useOARefdata from '../../../../util/useOARefdata';
-import selectifyRefdata from '../../../../util/selectifyRefdata';
+import { useOARefdata, selectifyRefdata } from '../../../../util';
 import getRDVId from '../../../../util/getRDVId';
 
 import PublicationJournal from '../PublicationJournal';

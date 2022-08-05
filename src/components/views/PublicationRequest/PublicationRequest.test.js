@@ -1,12 +1,12 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
 import { MemoryRouter } from 'react-router-dom';
-import translationsProperties from '../../../../test/helpers';
+import { translationsProperties } from '../../../../test/helpers';
 import PublicationRequest from './PublicationRequest';
 import {
   publicationRequest,
-  handlers,
-} from '../../../../test/resources/publicationRequestsResources';
+  publicationRequestHandlers as handlers,
+} from '../../../../test/resources';
 
 jest.mock('../../PublicationRequestSections/RequestInfo', () => () => (
   <div>RequestInfo</div>

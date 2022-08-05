@@ -7,7 +7,7 @@ import { LoadingPane } from '@folio/stripes/components';
 import ChargeView from '../../components/views/ChargeView';
 import { PANE_DEFAULT_WIDTH } from '../../constants/config';
 import urls from '../../util/urls';
-import useOARefdata from '../../util/useOARefdata';
+import { useOARefdata } from '../../util';
 import {
   PUBLICATION_REQUEST_ENDPOINT,
   CHARGE_ENDPOINT,

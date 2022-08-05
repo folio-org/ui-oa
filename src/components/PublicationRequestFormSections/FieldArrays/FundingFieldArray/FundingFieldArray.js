@@ -14,8 +14,7 @@ import {
 import { requiredValidator } from '@folio/stripes-erm-components';
 import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
 
-import useOARefdata from '../../../../util/useOARefdata';
-import selectifyRefdata from '../../../../util/selectifyRefdata';
+import { useOARefdata, selectifyRefdata } from '../../../../util';
 
 const [FUNDER, ASPECT_FUNDED] = ['Funding.Funder', 'Funding.AspectFunded'];
 

@@ -4,13 +4,27 @@ import {
   TestForm,
 } from '@folio/stripes-erm-components/test/jest/helpers';
 import { Button } from '@folio/stripes-testing';
-import translationsProperties from '../../../../test/helpers';
+import { translationsProperties } from '../../../../test/helpers';
 import ChargeForm from './ChargeForm';
-import { handlers, charge } from '../../../../test/resources/chargeResources';
+
+import { charge, chargeHandlers as handlers, mockRefdata } from '../../../../test/resources';
 
 jest.mock('../../ChargeFormSections/ChargeInfoForm/', () => () => (
   <div>ChargeInfoForm</div>
 ));
+
+// FIXME Jack -- This is a mock which is relevant only on the interior ChargeInfoForm (Which I think should be named ChargeFormInfo
+// Better approach here would be to check this component renders that one, and unit test that component separately
+jest.mock('../../../util', () => ({
+  ...jest.requireActual('../../../util'),
+  useOARefdata: () => mockRefdata.filter(
+    obj => (
+      obj.desc === 'Charge.Category' ||
+      obj.desc === 'Charge.ChargeStatus' ||
+      obj.desc === 'Charge.DiscountType'
+    )
+  ),
+}));
 
 const onSubmit = jest.fn();
 

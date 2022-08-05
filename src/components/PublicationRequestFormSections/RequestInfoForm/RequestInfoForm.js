@@ -18,8 +18,7 @@ import {
   requiredValidator,
 } from '@folio/stripes-erm-components';
 
-import useOARefdata from '../../../util/useOARefdata';
-import selectifyRefdata from '../../../util/selectifyRefdata';
+import { useOARefdata, selectifyRefdata } from '../../../util';
 
 import { ExternalRequestIdFieldArray } from '../FieldArrays';
 

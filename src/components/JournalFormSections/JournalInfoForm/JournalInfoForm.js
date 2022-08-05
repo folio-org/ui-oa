@@ -4,8 +4,7 @@ import { Col, Row, TextField, Select } from '@folio/stripes/components';
 
 import { requiredValidator } from '@folio/stripes-erm-components';
 import { InstancesFieldArray } from '../FieldArrays';
-import useOARefdata from '../../../util/useOARefdata';
-import selectifyRefdata from '../../../util/selectifyRefdata';
+import { useOARefdata, selectifyRefdata } from '../../../util';
 
 const [YES_NO, OA_STATUS] = ['Global.Yes_No', 'Work.OaStatus'];
 

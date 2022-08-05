@@ -8,7 +8,7 @@ import {
 import { FormattedMessage } from 'react-intl';
 import { DateFilter } from '@folio/stripes-erm-components';
 
-import useOARefdata from '../../../util/useOARefdata';
+import { useOARefdata } from '../../../util';
 
 const propTypes = {
   activeFilters: PropTypes.object,

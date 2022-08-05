@@ -2,25 +2,50 @@
 
 .checklistContainer {
     padding: 1rem;
-    background-color: #ebebeb;
-    margin-bottom: 1rem;
+    background-color: var(--bg-hover);
+    margin-bottom: 0.5rem;
 }
 
 .meta {
-    color: #656565;
+    font-size: var(--font-size-small);
+    color: var(--color-text-p2);
 }
 
-.met{
+.buttonBorder {
+    border-color: #fff;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.metaContainer {
+    margin-top: 0.5rem;
+}
+
+.yesOptionIcon {
     color: var(--success);
 }
 
-.notMet{
+.yesOptionButton {
+    color: #fff;
+    background-color: var(--success);
+}
+
+.noOptionIcon {
     color: var(--error);
 }
 
-.other{
-    color: #d5600d;
-    /* color: var(--warn); */
+.noOptionButton {
+    color: #fff;
+    background-color: var(--error);
+}
+
+.otherOptionIcon {
+    color: #e05f02;
+}
+
+.otherOptionButton {
+    color: #fff;
+    background-color: #e05f02;
 }
 
 .notesContainer {
@@ -28,5 +53,6 @@
 }
 
 .notesButton {
+    text-align: right;
     padding-left: 1rem;
 }

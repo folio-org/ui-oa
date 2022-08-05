@@ -3,8 +3,8 @@ import {
   renderWithIntl,
   TestForm,
 } from '@folio/stripes-erm-components/test/jest/helpers';
-import { book, handlers } from '../../../../../test/resources/bookResources';
-import translationsProperties from '../../../../../test/helpers';
+import { book, bookHandlers as handlers } from '../../../../../test/resources';
+import { translationsProperties } from '../../../../../test/helpers';
 import PublicationBook from './PublicationBook';
 
 describe('PublicationBook', () => {

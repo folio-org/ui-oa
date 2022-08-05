@@ -1,10 +1,13 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
 import { KeyValue } from '@folio/stripes-testing';
-import translationsProperties from '../../../../test/helpers';
 import RequestInfo from './RequestInfo';
-import { publicationRequest } from '../../../../test/resources/publicationRequestsResources';
 
+import { translationsProperties } from '../../../../test/helpers';
+
+import {
+  publicationRequest,
+} from '../../../../test/resources';
 
 
 describe('RequestInfo', () => {

@@ -1,30 +1,29 @@
 import '@folio/stripes-erm-components/test/jest/__mock__';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { render } from '@testing-library/react';
-import PublicationRequestEditRoute from './PublicationRequestEditRoute';
-import translationsProperties from '../../../test/helpers';
-import StripesHarness from '../../../test/helpers/stripesHarness';
+import { renderWithIntl } from '@folio/stripes-erm-components';
 
-const queryClient = new QueryClient();
+import PublicationRequestEditRoute from './PublicationRequestEditRoute';
+import { translationsProperties } from '../../../test/helpers';
+import { mockRefdata } from '../../../test/resources';
 
 jest.mock('../../components/views/PublicationRequestForm', () => () => (
   <div>PublicationRequestForm</div>
 ));
 
-// eslint-disable-next-line react/prop-types
-const wrapper = ({ children }) => (
-  <QueryClientProvider client={queryClient}>
-    <StripesHarness>{children}</StripesHarness>
-  </QueryClientProvider>
-);
+jest.mock('../../util', () => ({
+  ...jest.requireActual('../../util'),
+  useOARefdata: () => mockRefdata.filter(
+    obj => (
+      obj.desc === 'PublicationRequest.PublicationType'
+    )
+  ),
+}));
 
 describe('PublicationRequestEditRoute', () => {
   let renderComponent;
 
   beforeEach(() => {
-    renderComponent = render(
+    renderComponent = renderWithIntl(
       <PublicationRequestEditRoute />,
-      { wrapper },
       translationsProperties
     );
   });

@@ -8,11 +8,11 @@ import { within } from '@testing-library/react';
 import { Button } from '@folio/stripes-testing';
 import {
   publicationRequest,
-  handlers,
-} from '../../../../../test/resources/publicationRequestsResources';
+  publicationRequestHandlers as handlers,
+} from '../../../../../test/resources';
 import ExternalRequestIdFieldArray from './ExternalRequestIdFieldArray';
 
-import translationsProperties from '../../../../../test/helpers';
+import { translationsProperties } from '../../../../../test/helpers';
 
 describe('ExternalRequestIdFieldArray', () => {
   describe('with empty initial values', () => {
