@@ -11,6 +11,7 @@ import isEqual from 'lodash/isEqual';
 import differenceWith from 'lodash/differenceWith';
 
 import ChecklistItem from './ChecklistItem';
+import NotRequiredHeader from './NotRequiredHeader/NotRequiredHeader';
 import { ChecklistNotesModal } from './ChecklistNotes';
 import useChecklistItemDefinitions from '../../hooks/useChecklistItemDefinitions';
 import urls from '../../util/urls';
@@ -131,6 +132,7 @@ const Checklist = ({ onToggle, resource, resourceEndpoint }) => {
         <Accordion
           displayWhenClosed={renderBadge()}
           displayWhenOpen={renderBadge()}
+          header={NotRequiredHeader}
           label={<FormattedMessage id="ui-oa.checklist.hidden" />}
           separator={false}
         >
