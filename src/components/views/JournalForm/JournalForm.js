@@ -1,5 +1,6 @@
 import { FormattedMessage } from 'react-intl';
 import { useFormState } from 'react-final-form';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import {
@@ -11,11 +12,14 @@ import {
   IconButton,
   HasCommand,
   checkScope,
+  Card,
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 
 import { JournalStatusForm } from '../../JournalFormSections';
 import handleSaveKeyCommand from '../../../util/keyboardShortcutHandlers';
+import { JournalDetails } from '../../PublicationRequestSections/PublicationType';
+import urls from '../../../util/urls';
 
 const propTypes = {
   handlers: PropTypes.shape({
@@ -29,7 +33,10 @@ const JournalForm = ({ handlers: { onClose, onSubmit }, journal }) => {
   const { pristine, submitting } = useFormState();
 
   const renderPaneTitle = () => (journal ? (
-    <FormattedMessage id="ui-oa.journal.editJournal" />
+    <FormattedMessage
+      id="ui-oa.journal.editJournal"
+      values={{ title: journal?.title }}
+    />
     ) : (
       <FormattedMessage id="ui-oa.journal.newJournal" />
     ));
@@ -101,6 +108,23 @@ const JournalForm = ({ handlers: { onClose, onSubmit }, journal }) => {
           id="pane-oa-journal-form"
           paneTitle={renderPaneTitle()}
         >
+          <Card
+            cardStyle="positive"
+            headerStart={
+              <AppIcon app="oa" iconKey="journal" size="small">
+                {journal?.id ? (
+                  <Link to={urls.journal(journal.id)}>
+                    <strong>{journal?.title}</strong>
+                  </Link>
+                ) : (
+                  <strong>{journal?.title}</strong>
+                )}
+              </AppIcon>
+            }
+            roundedBorder
+          >
+            <JournalDetails isCard journal={journal} />
+          </Card>
           <JournalStatusForm />
         </Pane>
       </Paneset>

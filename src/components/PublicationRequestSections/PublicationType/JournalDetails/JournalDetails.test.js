@@ -25,7 +25,7 @@ describe('JournalDetails', () => {
 
   describe('renders components with initial values', () => {
     beforeEach(() => {
-      renderWithIntl(<JournalDetails request={{ work: journal }} />, translationsProperties);
+      renderWithIntl(<JournalDetails journal={journal} />, translationsProperties);
     });
     test('renders Title KeyValue', async () => {
       await KeyValue('Title').has({ value: 'Annals of Global Analysis and Geometry' });

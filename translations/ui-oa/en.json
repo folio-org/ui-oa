@@ -92,7 +92,7 @@
   "journal.zdb": "ZDB",
   "journal.issn": "ISSN",
   "journal.newJournal": "New journal",
-  "journal.editJournal": "Edit journal",
+  "journal.editJournal": "Edit - {title}",
   "journal.noResultsFound": "No results found",
   "journal.type": "Type",
   "journal.type.serial": "Serial",
