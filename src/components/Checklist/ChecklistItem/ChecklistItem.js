@@ -38,7 +38,9 @@ const ChecklistItem = ({
       icon: CheckFatIcon,
       value: 'yes',
       label: <FormattedMessage id="ui-oa.checklist.outcome.yes" />,
-      buttonProps: { className: classNames(css.yesOptionButton, css.buttonBorder) },
+      buttonProps: {
+        className: classNames(css.yesOptionButton, css.buttonBorder),
+      },
       iconProps: {
         iconClassName: css.yesOptionIcon,
       },
@@ -47,7 +49,9 @@ const ChecklistItem = ({
       icon: CrossFatIcon,
       value: 'no',
       label: <FormattedMessage id="ui-oa.checklist.outcome.no" />,
-      buttonProps: { className: classNames(css.noOptionButton, css.buttonBorder) },
+      buttonProps: {
+        className: classNames(css.noOptionButton, css.buttonBorder),
+      },
       iconProps: {
         iconClassName: css.noOptionIcon,
       },
@@ -56,7 +60,9 @@ const ChecklistItem = ({
       icon: DashFatIcon,
       value: 'other',
       label: <FormattedMessage id="ui-oa.checklist.outcome.other" />,
-      buttonProps: { className: classNames(css.otherOptionButton, css.buttonBorder) },
+      buttonProps: {
+        className: classNames(css.otherOptionButton, css.buttonBorder),
+      },
       iconProps: {
         iconClassName: css.otherOptionIcon,
       },
@@ -76,7 +82,9 @@ const ChecklistItem = ({
         <Layout className="flex justified">
           <Headline margin="none" size="large" tag="h3">
             {item.definition.label}
-            <InfoPopover content={item?.definition?.description} />
+            {item?.definition?.description && (
+              <InfoPopover content={item?.definition?.description} />
+            )}
           </Headline>
           <IconSelect
             notSet={notSet}
