@@ -352,7 +352,7 @@
     "checklist.outcome.met": "Met",
     "checklist.outcome.notMet": "Not met",
     "checklist.outcome.notSet": "Not set",
-    "checklist.outcome.other": "Other",
-    "checklist.outcome.yes": "Yes",
-    "checklist.outcome.no": "No"
+    "checklist.outcome.other": "Autre",
+    "checklist.outcome.yes": "Oui",
+    "checklist.outcome.no": "Non"
 }
