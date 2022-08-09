@@ -3,7 +3,7 @@ const getIdentifiers = (journal) => {
 };
 
 const findSubtypeByNamespace = (journal, namespace) => {
-  return journal?.instances.find((element) => element?.subType?.value === namespace);
+  return journal?.instances?.find((element) => element?.subType?.value === namespace);
 };
 
 const findIssnByNamespace = (journal, namespace) => {

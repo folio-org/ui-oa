@@ -159,7 +159,7 @@ const PublicationJournal = () => {
             }
             roundedBorder
           >
-            <JournalDetails isCard request={{ work: values?.work }} />
+            <JournalDetails isCard journal={values?.work} />
           </Card>
           <Row>
             <Col xs={3}>

@@ -225,7 +225,7 @@ const Publication = ({ request }) => {
             }
             roundedBorder
           >
-            <JournalDetails isCard request={request} />
+            <JournalDetails isCard journal={request?.work} />
           </Card>
         </>
       )}
