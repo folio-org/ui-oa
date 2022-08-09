@@ -8,6 +8,7 @@ import {
   Headline,
   Row,
   Select,
+  Selection,
   TextArea,
   TextField,
 } from '@folio/stripes/components';
@@ -19,6 +20,7 @@ import PublicationJournal from '../PublicationJournal';
 import PublicationBook from '../PublicationBook';
 import { MAX_CHAR_LONG, MAX_CHAR_SHORT } from '../../../../constants/config';
 import { validateURL } from '../../../../util/validators';
+import filterSelectValues from '../../../../util/filterSelectValues';
 
 const [PUBLICATION_TYPE, PUBLISHER, SUBTYPE, LICENSE] = [
   'PublicationRequest.PublicationType',
@@ -92,10 +94,11 @@ const PublicationForm = () => {
         </Col>
         <Col xs={3}>
           <Field
-            component={Select}
+            component={Selection}
             dataOptions={[{ value: '', label: '' }, ...publisherValues]}
             label={<FormattedMessage id="ui-oa.publicationRequest.publisher" />}
             name="publisher.id"
+            onFilter={filterSelectValues}
             parse={(v) => v}
           />
         </Col>
