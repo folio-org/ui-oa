@@ -55,7 +55,7 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
                             fullWidth
                             maxLength={255}
                             name="note"
-                            style={{ height: '150px' }}
+                            style={{ height: '110px' }}
                           />
                         </Col>
                         <Col xs={3}>
