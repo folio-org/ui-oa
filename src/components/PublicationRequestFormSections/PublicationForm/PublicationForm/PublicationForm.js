@@ -95,7 +95,7 @@ const PublicationForm = () => {
         <Col xs={3}>
           <Field
             component={Selection}
-            dataOptions={[{ value: '', label: '' }, ...publisherValues]}
+            dataOptions={[...publisherValues]}
             label={<FormattedMessage id="ui-oa.publicationRequest.publisher" />}
             name="publisher.id"
             onFilter={filterSelectValues}
