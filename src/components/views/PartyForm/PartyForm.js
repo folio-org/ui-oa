@@ -18,6 +18,7 @@ import {
   PartyInfoForm,
   OtherEmailsFieldArray,
   StreetAddress,
+  AffiliationForm
 } from '../../PartyFormSections';
 import handleSaveKeyCommand from '../../../util/keyboardShortcutHandlers';
 
@@ -108,6 +109,7 @@ const PartyForm = ({ handlers: { onClose, onSubmit }, party }) => {
           paneTitle={renderPaneTitle()}
         >
           <PartyInfoForm />
+          <AffiliationForm />
           {/* <StreetAddressesFieldArray /> */}
           <OtherEmailsFieldArray />
           <StreetAddress />
