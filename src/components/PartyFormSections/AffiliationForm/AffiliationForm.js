@@ -26,6 +26,7 @@ const AffiliationForm = () => {
           label={<FormattedMessage id="ui-oa.party.institutionLevelTwo" />}
           maxLength={MAX_CHAR_LONG}
           name="department"
+          parse={(v) => v}
         />
       </Col>
     </Row>
