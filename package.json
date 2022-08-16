@@ -140,6 +140,7 @@
   },
   "peerDependencies": {
     "@folio/handler-stripes-registry": "^1.1.1",
+    "@folio/stripes-erm-components": "^6.0.0",
     "@folio/service-interaction": "^1.0.0",
     "@folio/stripes": "^7.0.0",
     "moment": "^2.22.2",
