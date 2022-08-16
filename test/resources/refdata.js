@@ -408,6 +408,18 @@ const refdata = [
         label: 'BPC'
       }
     ]
+  },
+  {
+    id: '2c9180b382a457810182a45bddd70036',
+    desc: 'Party.Faculty',
+    internal: false,
+    values: [
+      {
+        id: 'a2cfe840-5394-487c-80bd-fe74968314cc',
+        value: 'faculty_1',
+        label: 'Faculty 1'
+      },
+    ]
   }
 ];
 
