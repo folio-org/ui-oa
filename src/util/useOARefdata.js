@@ -10,7 +10,7 @@ const useOARefdata = (desc) => {
     options: { ...refdataOptions, sort: [{ path: 'desc' }] },
   });
 
-  const sortedRefData = [...refdata || {}];
+  const sortedRefData = [...refdata];
 
   // This may want to be refactored later without the reliance on orderBy
   // If the refdata reteched is in an array, sort the values
