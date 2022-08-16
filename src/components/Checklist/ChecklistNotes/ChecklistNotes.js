@@ -9,6 +9,7 @@ import {
   IconButton,
   Row,
   TextArea,
+  Layout,
 } from '@folio/stripes/components';
 
 import css from '../Checklist.css';
@@ -103,9 +104,9 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
           <>
             <hr />
             <div className={css.notesContainer}>
-              <Row middle="xs">
-                <Col xs={10}>{note.note}</Col>
-                <Col xs={2}>
+              <Layout className="flex justified">
+                <>{note.note}</>
+                <div>
                   <IconButton
                     disabled={editing}
                     icon="edit"
@@ -116,8 +117,8 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
                     icon="trash"
                     onClick={() => handleDelete(note)}
                   />
-                </Col>
-              </Row>
+                </div>
+              </Layout>
               <br />
               <Row>
                 <Col xs={12}>
