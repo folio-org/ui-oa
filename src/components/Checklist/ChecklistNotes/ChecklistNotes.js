@@ -50,34 +50,35 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
                   <form onSubmit={handleSubmit}>
                     <div className={css.notesContainer}>
                       <Row middle="xs">
-                        <Col xs={9}>
+                        <Col xs={10}>
                           <Field
                             component={TextArea}
                             fullWidth
                             maxLength={255}
                             name="note"
-                            style={{ height: '110px' }}
+                            style={{ height: '110px', width: '90%' }}
                           />
                         </Col>
-                        <Col xs={3}>
+                        <Col xs={2}>
                           <div>
-                            <Button
-                              key={`save[${note.label}]`}
-                              buttonStyle="primary"
-                              disabled={pristine || submitting}
-                              onClick={() => {
-                                notes[index] = values;
-                                handleSubmit();
-                                setEditing(null);
-                              }}
-                              type="submit"
-                            >
-                              <FormattedMessage id="ui-oa.checklist.save" />
-                            </Button>
-                            {(notes?.length > 1 || note?.id) && (
+                            <Layout className="flex right">
+                              <Button
+                                key={`save[${note.label}]`}
+                                buttonStyle="primary"
+                                disabled={pristine || submitting}
+                                onClick={() => {
+                                  notes[index] = values;
+                                  handleSubmit();
+                                  setEditing(null);
+                                }}
+                                type="submit"
+                              >
+                                <FormattedMessage id="ui-oa.checklist.save" />
+                              </Button>
                               <Button
                                 key={`cancel[${note.label}]`}
                                 data-type-button="cancel"
+                                disabled={notes?.length < 1 || !note?.id}
                                 onClick={() => {
                                   if (note?.id) {
                                     setEditing(false);
@@ -89,7 +90,7 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
                               >
                                 <FormattedMessage id="ui-oa.checklist.cancel" />
                               </Button>
-                            )}
+                            </Layout>
                           </div>
                         </Col>
                       </Row>
