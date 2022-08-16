@@ -6,11 +6,18 @@ import {
 import { Button } from '@folio/stripes-testing';
 import { translationsProperties } from '../../../../test/helpers';
 import PartyForm from './PartyForm';
-import { party, partyHandlers as handlers } from '../../../../test/resources';
+import { party, partyHandlers as handlers, mockRefdata } from '../../../../test/resources';
 
 jest.mock('../../PartyFormSections/PartyInfoForm/PartyInfoForm', () => () => (
   <div>PartyInfoForm</div>
 ));
+
+jest.mock('../../../util', () => ({
+  ...jest.requireActual('../../../util'),
+  useOARefdata: () => mockRefdata.filter(
+      (obj) => obj.desc === 'Party.Faculty'
+    ),
+}));
 
 const onSubmit = jest.fn();
 

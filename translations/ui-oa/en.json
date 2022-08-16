@@ -82,6 +82,8 @@
   "party.streetAddress.region": "State/Prov./Region",
   "party.streetAddress.country": "Country",
   "party.streetAddress.postalCode": "Zip/Postal code",
+  "party.institutionLevelOne": "Institution level 1",
+  "party.institutionLevelTwo": "Institution level 2",
 
   "journal.new": "New",
   "journal.edit": "Edit",

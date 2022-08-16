@@ -14,6 +14,8 @@ import {
   Col,
   Checkbox,
   Tooltip,
+  Select,
+  TextField,
 } from '@folio/stripes/components';
 import {
   highlightString,
@@ -21,11 +23,14 @@ import {
   QueryTypedown,
 } from '@k-int/stripes-kint-components';
 import { AppIcon } from '@folio/stripes/core';
+import { requiredValidator } from '@folio/stripes-erm-components';
 import PartyInfo from '../../PartySections/PartyInfo';
 import urls from '../../../util/urls';
 import css from './PartyTypedownForm.css';
 import { PartyModal } from '../../Modals';
 import { PARTIES_ENDPOINT } from '../../../constants/endpoints';
+import { MAX_CHAR_LONG } from '../../../constants/config';
+import { useOARefdata, selectifyRefdata } from '../../../util';
 
 const propTypes = {
   formName: PropTypes.string.isRequired,
@@ -35,6 +40,7 @@ const PartyTypedownForm = ({ formName }) => {
   const { values } = useFormState();
   const { change } = useForm();
   const [showPartyModal, setShowPartyModal] = useState(false);
+  const facultyRefData = selectifyRefdata(useOARefdata('Party.Faculty'));
 
   const pathMutator = (input, path) => {
     const query = generateKiwtQuery(
@@ -52,6 +58,10 @@ const PartyTypedownForm = ({ formName }) => {
 
   const handlePartyChange = (party) => {
     change(`${formName}.partyOwner`, party);
+    if (formName === 'correspondingAuthor') {
+      change('correspondingFaculty.id', party?.faculty?.id);
+      change('correspondingDepartment', party?.department);
+    }
   };
 
   const renderFooter = () => {
@@ -140,6 +150,7 @@ const PartyTypedownForm = ({ formName }) => {
                 <FormattedMessage id="ui-oa.publicationRequest.addPerson" />
               }
               name={`${formName}.partyOwner`}
+              onChange={(e) => handlePartyChange(e)}
               path={PARTIES_ENDPOINT}
               pathMutator={pathMutator}
               renderFooter={renderFooter}
@@ -149,40 +160,71 @@ const PartyTypedownForm = ({ formName }) => {
         )}
 
         {values[formName]?.partyOwner && (
-          <Card
-            cardStyle="positive"
-            headerEnd={
-              (!values.useCorrespondingAuthor ||
-                formName === 'correspondingAuthor') && (
-                <Tooltip
-                  id={`${formName}-trash-button-tooltip`}
-                  text={
-                    <FormattedMessage
-                      id={`ui-oa.publicationRequest.removeParty.${formName}`}
-                    />
-                  }
-                >
-                  {({ ref, ariaIds }) => (
-                    <IconButton
-                      ref={ref}
-                      aria-describedby={ariaIds.sub}
-                      aria-labelledby={ariaIds.text}
-                      icon="trash"
-                      onClick={() => handlePartyChange()}
-                    />
-                  )}
-                </Tooltip>
-              )
-            }
-            headerStart={
-              <AppIcon app="oa" iconKey="party" size="small">
-                {renderPartyLink()}
-              </AppIcon>
-            }
-            roundedBorder
-          >
-            <PartyInfo isCard party={values[formName].partyOwner} />
-          </Card>
+          <>
+            <Card
+              cardStyle="positive"
+              headerEnd={
+                (!values.useCorrespondingAuthor ||
+                  formName === 'correspondingAuthor') && (
+                  <Tooltip
+                    id={`${formName}-trash-button-tooltip`}
+                    text={
+                      <FormattedMessage
+                        id={`ui-oa.publicationRequest.removeParty.${formName}`}
+                      />
+                    }
+                  >
+                    {({ ref, ariaIds }) => (
+                      <IconButton
+                        ref={ref}
+                        aria-describedby={ariaIds.sub}
+                        aria-labelledby={ariaIds.text}
+                        icon="trash"
+                        onClick={() => handlePartyChange()}
+                      />
+                    )}
+                  </Tooltip>
+                )
+              }
+              headerStart={
+                <AppIcon app="oa" iconKey="party" size="small">
+                  {renderPartyLink()}
+                </AppIcon>
+              }
+              roundedBorder
+            >
+              <PartyInfo isCard party={values[formName].partyOwner} />
+            </Card>
+            {formName === 'correspondingAuthor' && (
+              <Row>
+                <Col xs={3}>
+                  <Field
+                    component={Select}
+                    dataOptions={[{ value: '', label: '' }, ...facultyRefData]}
+                    id="publication-request-faculty"
+                    label={
+                      <FormattedMessage id="ui-oa.party.institutionLevelOne" />
+                    }
+                    name="correspondingFaculty.id"
+                    required
+                    validate={requiredValidator}
+                  />
+                </Col>
+                <Col xs={3}>
+                  <Field
+                    component={TextField}
+                    id="publication-request-department"
+                    label={
+                      <FormattedMessage id="ui-oa.party.institutionLevelTwo" />
+                    }
+                    maxLength={MAX_CHAR_LONG}
+                    name="correspondingDepartment"
+                    parse={(v) => v}
+                  />
+                </Col>
+              </Row>
+            )}
+          </>
         )}
       </Accordion>
       <PartyModal
