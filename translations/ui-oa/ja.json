@@ -354,5 +354,7 @@
     "checklist.outcome.notSet": "Not set",
     "checklist.outcome.other": "Other",
     "checklist.outcome.yes": "Yes",
-    "checklist.outcome.no": "No"
+    "checklist.outcome.no": "No",
+    "party.institutionLevelOne": "Institution level 1",
+    "party.institutionLevelTwo": "Institution level 2"
 }
