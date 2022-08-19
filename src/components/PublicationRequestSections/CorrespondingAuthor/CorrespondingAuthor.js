@@ -12,6 +12,7 @@ import {
   MultiColumnList,
   Row,
   Card,
+  KeyValue,
 } from '@folio/stripes/components';
 import { AppIcon } from '@folio/stripes/core';
 
@@ -43,10 +44,14 @@ const CorrespondingAuthor = ({ request }) => {
           <AppIcon app="oa" iconKey="party" size="small">
             {request?.correspondingAuthor?.partyOwner?.id ? (
               <Link to={urls.party(request.correspondingAuthor.partyOwner.id)}>
-                <strong>{request?.correspondingAuthor?.partyOwner?.fullName}</strong>
+                <strong>
+                  {request?.correspondingAuthor?.partyOwner?.fullName}
+                </strong>
               </Link>
             ) : (
-              <strong>{request?.correspondingAuthor?.partyOwner?.fullName}</strong>
+              <strong>
+                {request?.correspondingAuthor?.partyOwner?.fullName}
+              </strong>
             )}
           </AppIcon>
         }
@@ -54,6 +59,20 @@ const CorrespondingAuthor = ({ request }) => {
       >
         <PartyInfo isCard party={request?.correspondingAuthor?.partyOwner} />
       </Card>
+      <Row>
+        <Col xs={3}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.party.institutionLevelOne" />}
+            value={request?.correspondingFaculty?.label}
+          />
+        </Col>
+        <Col xs={3}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.party.institutionLevelTwo" />}
+            value={request?.correspondingDepartment}
+          />
+        </Col>
+      </Row>
       {request?.correspondingAuthor?.affiliations && (
         <Row>
           <Col xs={12}>

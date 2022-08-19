@@ -151,7 +151,19 @@ const PartyInfo = ({ party, isCard }) => {
         {renderIdentifiers(party)}
       </Row>
       <Row>
-        <Col xs={12}>
+        <Col xs={3}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.party.institutionLevelOne" />}
+            value={party?.faculty?.label}
+          />
+        </Col>
+        <Col xs={3}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.party.institutionLevelTwo" />}
+            value={party?.department}
+          />
+        </Col>
+        <Col xs={6}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.party.mainEmailAddress" />}
             value={
