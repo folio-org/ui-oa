@@ -17,6 +17,7 @@ import ChecklistMeta from '../ChecklistMeta';
 
 const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
   const [editing, setEditing] = useState(false);
+  console.log(notes);
 
   useEffect(() => {
     if (notes?.length < 1) {
@@ -78,7 +79,7 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
                               <Button
                                 key={`cancel[${note.label}]`}
                                 data-type-button="cancel"
-                                disabled={notes?.length < 1 || !note?.id}
+                                disabled={notes?.length <= 1}
                                 onClick={() => {
                                   if (note?.id) {
                                     setEditing(false);
