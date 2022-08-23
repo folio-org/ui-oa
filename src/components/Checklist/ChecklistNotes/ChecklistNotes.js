@@ -17,7 +17,6 @@ import ChecklistMeta from '../ChecklistMeta';
 
 const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
   const [editing, setEditing] = useState(false);
-  console.log(notes);
 
   useEffect(() => {
     if (notes?.length < 1) {
