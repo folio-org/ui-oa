@@ -40,6 +40,8 @@ const ChecklistNotesModal = ({
       ky.put(resourceEndpoint(ownerId), { json: data })
         .json()
         .then((res) => {
+          // If a checklist item hasnt been changed it will note have an associated ID
+          // This check ensures that when a put is made, the selected item is updated with the new ID
           if (!item?.id) {
             setSelectedNotesItem(
               res?.checklist?.find(
