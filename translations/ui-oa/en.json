@@ -385,5 +385,7 @@
   "checklist.outcome.notSet": "Not set",
   "checklist.outcome.other": "Other",
   "checklist.outcome.yes": "Yes",
-  "checklist.outcome.no": "No"
+  "checklist.outcome.no": "No",
+  "checklist.hideItem": "Hide ''{name}'' item",
+  "checklist.showItem": "Show ''{name}'' item"
 }
