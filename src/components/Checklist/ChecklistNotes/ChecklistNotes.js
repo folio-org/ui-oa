@@ -52,6 +52,7 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
                       <Row middle="xs">
                         <Col xs={10}>
                           <Field
+                            autoFocus
                             component={TextArea}
                             fullWidth
                             maxLength={255}
