@@ -27,23 +27,33 @@ const ChecklistNotesModal = ({
     () => ky(resourceEndpoint(ownerId)).json()
   );
 
-  const notes = orderBy(
-    resource?.checklist?.find((element) => element?.id === item?.id)?.notes,
-    'dateCreated',
-    'desc'
-  );
+  const notes =
+    orderBy(
+      resource?.checklist?.find((element) => element?.id === item?.id)?.notes,
+      'dateCreated',
+      'desc'
+    ) || [];
 
   const { mutateAsync: putNotes } = useMutation(
     ['ChecklistNotesModal', 'putNotes'],
     (data) => {
-      ky.put(resourceEndpoint(ownerId), { json: data }).then(() => {
-        queryClient.invalidateQueries([
-          namespace,
-          'notes',
-          'checklistNotesModal',
-          ownerId,
-        ]);
-      });
+      ky.put(resourceEndpoint(ownerId), { json: data })
+        .json()
+        .then((res) => {
+          if (!item?.id) {
+            setSelectedNotesItem(
+              res?.checklist?.find(
+                (e) => e?.definition?.id === item?.definition?.id
+              )
+            );
+          }
+          queryClient.invalidateQueries([
+            namespace,
+            'notes',
+            'checklistNotesModal',
+            ownerId,
+          ]);
+        });
     }
   );
 
@@ -93,7 +103,7 @@ const ChecklistNotesModal = ({
       {!isLoading ? (
         <ChecklistNotes
           handleDelete={handleDelete}
-          notes={notes || []}
+          notes={notes}
           submitNotes={submitNotes}
         />
       ) : (
