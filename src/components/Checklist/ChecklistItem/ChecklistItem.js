@@ -11,6 +11,7 @@ import {
   IconButton,
   Headline,
   Layout,
+  Tooltip,
 } from '@folio/stripes/components';
 import { IconSelect } from '@k-int/stripes-kint-components';
 
@@ -139,20 +140,42 @@ const ChecklistItem = ({
                 />
               )}
             </FormattedMessage>
-            <IconButton
-              icon={
-                item?.status?.value === 'not_required'
-                  ? 'eye-open'
-                  : 'eye-closed'
+            <Tooltip
+              id="hide-checklist-item-button-tooltip"
+              text={
+                item?.status?.value === 'not_required' ? (
+                  <FormattedMessage
+                    id="ui-oa.checklist.showItem"
+                    values={{ name: item?.definition?.label }}
+                  />
+                ) : (
+                  <FormattedMessage
+                    id="ui-oa.checklist.hideItem"
+                    values={{ name: item?.definition?.label }}
+                  />
+                )
               }
-              onClick={() => {
-                if (item?.status?.value === 'not_required') {
-                  handleSubmit({ status: 'required' }, item);
-                } else {
-                  handleSubmit({ status: 'not_required' }, item);
-                }
-              }}
-            />
+            >
+              {({ ref, ariaIds }) => (
+                <IconButton
+                  ref={ref}
+                  aria-describedby={ariaIds.sub}
+                  aria-labelledby={ariaIds.text}
+                  icon={
+                    item?.status?.value === 'not_required'
+                      ? 'eye-open'
+                      : 'eye-closed'
+                  }
+                  onClick={() => {
+                    if (item?.status?.value === 'not_required') {
+                      handleSubmit({ status: 'required' }, item);
+                    } else {
+                      handleSubmit({ status: 'not_required' }, item);
+                    }
+                  }}
+                />
+              )}
+            </Tooltip>
           </Col>
         </Row>
       </div>
