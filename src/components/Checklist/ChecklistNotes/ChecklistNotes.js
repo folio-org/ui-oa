@@ -105,21 +105,27 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
           <>
             <hr />
             <div className={css.notesContainer}>
-              <Layout className="flex justified">
-                <>{note.note}</>
-                <div>
-                  <IconButton
-                    disabled={editing}
-                    icon="edit"
-                    onClick={() => setEditing(note.id)}
-                  />
-                  <IconButton
-                    disabled={editing}
-                    icon="trash"
-                    onClick={() => handleDelete(note)}
-                  />
-                </div>
-              </Layout>
+              <Row middle="xs">
+                <Col xs={10}>
+                  <>{note.note}</>
+                </Col>
+                <Col xs={2}>
+                  <div>
+                    <Layout className="flex right">
+                      <IconButton
+                        disabled={editing}
+                        icon="edit"
+                        onClick={() => setEditing(note.id)}
+                      />
+                      <IconButton
+                        disabled={editing}
+                        icon="trash"
+                        onClick={() => handleDelete(note)}
+                      />
+                    </Layout>
+                  </div>
+                </Col>
+              </Row>
               <br />
               <Row>
                 <Col xs={12}>
