@@ -130,6 +130,7 @@ const Checklist = ({ onToggle, resource, resourceEndpoint }) => {
       })}
       {notRequiredItems?.length > 0 && (
         <Accordion
+          closedByDefault
           displayWhenClosed={renderBadge()}
           displayWhenOpen={renderBadge()}
           header={NotRequiredHeader}
