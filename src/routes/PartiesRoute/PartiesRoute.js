@@ -9,6 +9,7 @@ import {
   PaneMenu,
   HasCommand,
   checkScope,
+  TextLink,
 } from '@folio/stripes/components';
 
 import { SASQRoute } from '@k-int/stripes-kint-components';
@@ -63,7 +64,7 @@ const PartiesRoute = ({ path }) => {
   const formatter = {
     givenNames: (d) => (
       <AppIcon app="oa" iconAlignment="baseline" iconKey="party" size="small">
-        {d?.givenNames}
+        <TextLink to={urls.party(d?.id)}>{d?.givenNames}</TextLink>
       </AppIcon>
     ),
   };
@@ -103,7 +104,7 @@ const PartiesRoute = ({ path }) => {
           lastMenu: lastpaneMenu,
           paneTitle: <FormattedMessage id="ui-oa.parties.people" />,
         }}
-        mclProps={{ formatter }}
+        mclProps={{ formatter, onRowClick: null }}
         path={path}
         resultColumns={resultColumns}
         sasqProps={{ initialSortState: { sort: 'familyName,givenNames' } }}

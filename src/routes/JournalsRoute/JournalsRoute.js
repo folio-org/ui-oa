@@ -9,6 +9,7 @@ import {
   checkScope,
   HasCommand,
   PaneMenu,
+  TextLink,
 } from '@folio/stripes/components';
 import { SASQRoute } from '@k-int/stripes-kint-components';
 
@@ -68,7 +69,7 @@ const JournalsRoute = ({ path }) => {
   const formatter = {
     title: (d) => (
       <AppIcon app="oa" iconAlignment="baseline" iconKey="journal" size="small">
-        {d?.title}
+        <TextLink to={urls.journal(d?.id)}>{d?.title}</TextLink>
       </AppIcon>
     ),
     printIssn: (d) => renderISSN(d, 'print'),
@@ -111,7 +112,7 @@ const JournalsRoute = ({ path }) => {
             lastMenu: lastpaneMenu,
             paneTitle: <FormattedMessage id="ui-oa.journals" />,
           }}
-          mclProps={{ formatter }}
+          mclProps={{ formatter, onRowClick: null }}
           path={path}
           resultColumns={resultColumns}
           sasqProps={{ initialSortState: { sort: 'title' } }}

@@ -11,6 +11,7 @@ import {
   HasCommand,
   PaneMenu,
   checkScope,
+  TextLink,
 } from '@folio/stripes/components';
 
 import { SASQRoute } from '@k-int/stripes-kint-components';
@@ -80,7 +81,7 @@ const PublicationRequestsRoute = ({ children, path }) => {
   const formatter = {
     requestNumber: (d) => (
       <AppIcon app="oa" iconAlignment="baseline" iconKey="app" size="small">
-        {d?.requestNumber}
+        <TextLink to={urls.publicationRequest(d?.id)}>{d?.requestNumber}</TextLink>
       </AppIcon>
     ),
     requestStatus: (d) => d?.requestStatus?.label,
@@ -127,6 +128,7 @@ const PublicationRequestsRoute = ({ children, path }) => {
         mclProps={{
           formatter,
           columnWidths: { publicationTitle: 500 },
+          onRowClick: null
         }}
         path={path}
         resultColumns={resultColumns}
