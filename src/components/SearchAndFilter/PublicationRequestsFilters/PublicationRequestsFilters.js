@@ -7,8 +7,10 @@ import {
 } from '@folio/stripes/components';
 import { FormattedMessage } from 'react-intl';
 import { DateFilter } from '@folio/stripes-erm-components';
+import ChecklistFilter from '../ChecklistFilter';
 
 import { useOARefdata } from '../../../util';
+import { CHECKLIST_ITEM_DEFINITIONS_ENDPOINT } from '../../../constants/endpoints';
 
 const propTypes = {
   activeFilters: PropTypes.object,
@@ -21,18 +23,8 @@ function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
   const onChangeHandler = (group) => {
     filterHandlers.state({
       ...activeFilters,
-      [group.name]: group.values
+      [group.name]: group.values,
     });
-  };
-
-  const renderRequestDateFilter = () => {
-    return <DateFilter
-      accordionLabel={<FormattedMessage id="ui-oa.publicationRequest.requestDate" />}
-      activeFilters={activeFilters}
-      filterHandlers={filterHandlers}
-      hideNoDateSetCheckbox
-      name="requestDate"
-    />;
   };
 
   return (
@@ -43,7 +35,9 @@ function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
           header={FilterAccordionHeader}
           id="filter-accordion-status"
           label={<FormattedMessage id="ui-oa.publicationRequest.status" />}
-          onClearFilter={() => { filterHandlers.clearGroup('requestStatus'); }}
+          onClearFilter={() => {
+            filterHandlers.clearGroup('requestStatus');
+          }}
           separator={false}
         >
           <CheckboxFilter
@@ -53,7 +47,18 @@ function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
             selectedValues={activeFilters?.requestStatus || []}
           />
         </Accordion>
-        {renderRequestDateFilter()}
+        <DateFilter
+          accordionLabel={
+            <FormattedMessage id="ui-oa.publicationRequest.requestDate" />
+          }
+          activeFilters={activeFilters}
+          filterHandlers={filterHandlers}
+          hideNoDateSetCheckbox
+          name="requestDate"
+        />
+        <ChecklistFilter
+          checklistItemDefinitionsEndpoint={CHECKLIST_ITEM_DEFINITIONS_ENDPOINT}
+        />
       </AccordionSet>
     </>
   );

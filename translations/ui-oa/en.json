@@ -33,6 +33,10 @@
   "searchAndFilter.people": "People",
   "searchAndFilter.requests": "Requests",
 
+  "checklistFilter.checklistItems": "Checklist items",
+  "checklistFilter.editChecklistFilters": "Edit checklist filters",
+  "checklistFilter.filterBuilder": "Filter builder",
+
   "parties.people": "People",
   "parties.givenNames": "Given names",
   "parties.familyName": "Family name",
