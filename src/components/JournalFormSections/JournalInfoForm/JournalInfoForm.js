@@ -17,6 +17,7 @@ const JournalInfoForm = () => {
       <Row>
         <Col xs={12}>
           <Field
+            autoFocus
             component={TextField}
             label={<FormattedMessage id="ui-oa.journal.title" />}
             maxLength={2047}

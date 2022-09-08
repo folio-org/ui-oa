@@ -66,7 +66,7 @@ const ExternalRequestIdField = ({ fields: { name } }) => {
           </div>
         );
       })}
-      <Button autoFocus onClick={() => onAddField({})}>
+      <Button onClick={() => onAddField({})}>
         <FormattedMessage id="ui-oa.publicationRequest.addExternalRequestId" />
       </Button>
     </>
