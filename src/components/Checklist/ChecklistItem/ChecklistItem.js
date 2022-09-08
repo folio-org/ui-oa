@@ -81,7 +81,12 @@ const ChecklistItem = ({
     <>
       <div key={item?.id} className={css.checklistContainer}>
         <Layout className="flex justified">
-          <Headline margin="none" size="large" tag="h3">
+          <Headline
+            className={css.itemLabel}
+            margin="none"
+            size="large"
+            tag="h3"
+          >
             {item.definition.label}
             {item?.definition?.description && (
               <InfoPopover content={item?.definition?.description} />
