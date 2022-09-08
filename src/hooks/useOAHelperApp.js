@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { IconButton } from '@folio/stripes/components';
+import { IconButton, Tooltip } from '@folio/stripes/components';
 import { useHelperApp } from '@k-int/stripes-kint-components';
 import { FormattedMessage } from 'react-intl';
 import Checklist from '../components/Checklist';
@@ -16,10 +16,21 @@ const useOAHelperApp = () => {
 
   const ChecklistButton = ({ onClick = () => null }) => {
     return (
-      <FormattedMessage id="ui-oa.publicationRequest.showChecklist">
-        {(ariaLabel) => (
+      <Tooltip
+        id="checklist-helper-toggle-button"
+        text={
+          isOpen('checklist') === true ? (
+            <FormattedMessage id="ui-oa.checklist.closeChecklistPane" />
+          ) : (
+            <FormattedMessage id="ui-oa.checklist.openChecklistPane" />
+          )
+        }
+      >
+        {({ ref, ariaIds }) => (
           <IconButton
-            ariaLabel={ariaLabel[0]}
+            ref={ref}
+            aria-describedby={ariaIds.sub}
+            aria-labelledby={ariaIds.text}
             icon={ChecklistIcon}
             id="clickable-show-checklist"
             onClick={() => {
@@ -28,7 +39,7 @@ const useOAHelperApp = () => {
             }}
           />
         )}
-      </FormattedMessage>
+      </Tooltip>
     );
   };
 

@@ -368,6 +368,8 @@
   "correspondence.showLess": "Show less",
 
   "checklist": "Checklist",
+  "checklist.openChecklistPane": "Open checklist pane",
+  "checklist.closeChecklistPane": "Close checklist pane",
   "checklist.updated": "Updated: {date} {time}",
   "checklist.created": "Created: {date} {time}",
   "checklist.latestNote": "Latest note",
