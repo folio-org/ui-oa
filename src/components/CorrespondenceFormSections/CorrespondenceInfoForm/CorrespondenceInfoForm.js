@@ -38,6 +38,7 @@ const CorrespondenceInfoForm = () => {
       <Row start="xs">
         <Col xs={3}>
           <Field
+            autoFocus
             component={TextField}
             label={<FormattedMessage id="ui-oa.correspondence.correspondent" />}
             maxLength={MAX_CHAR_LONG}

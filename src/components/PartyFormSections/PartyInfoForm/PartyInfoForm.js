@@ -11,6 +11,7 @@ const PartyInfoForm = () => {
       <Row>
         <Col xs={3}>
           <Field
+            autoFocus
             component={TextField}
             id="party-title"
             label={<FormattedMessage id="ui-oa.party.title" />}
