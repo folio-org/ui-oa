@@ -3,7 +3,7 @@ import { IconButton } from '@folio/stripes/components';
 import { useHelperApp } from '@k-int/stripes-kint-components';
 import { FormattedMessage } from 'react-intl';
 import Checklist from '../components/Checklist';
-import { CheckFatIcon } from '../components/CustomIcons';
+import { ChecklistIcon } from '../components/CustomIcons';
 
 const propTypes = {
   onClick: PropTypes.func,
@@ -20,7 +20,7 @@ const useOAHelperApp = () => {
         {(ariaLabel) => (
           <IconButton
             ariaLabel={ariaLabel[0]}
-            icon={CheckFatIcon}
+            icon={ChecklistIcon}
             id="clickable-show-checklist"
             onClick={() => {
               helperToggleFunctions.checklist();
