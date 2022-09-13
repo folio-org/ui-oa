@@ -10,7 +10,6 @@ import { DateFilter } from '@folio/stripes-erm-components';
 import ChecklistFilter from '../ChecklistFilter';
 
 import { useOARefdata } from '../../../util';
-import { CHECKLIST_ITEM_DEFINITIONS_ENDPOINT } from '../../../constants/endpoints';
 
 const propTypes = {
   activeFilters: PropTypes.object,
@@ -57,7 +56,8 @@ function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
           name="requestDate"
         />
         <ChecklistFilter
-          checklistItemDefinitionsEndpoint={CHECKLIST_ITEM_DEFINITIONS_ENDPOINT}
+          activeFilters={activeFilters}
+          filterHandlers={filterHandlers}
         />
       </AccordionSet>
     </>
