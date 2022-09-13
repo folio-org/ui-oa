@@ -26,25 +26,27 @@ const ChecklistFilterFieldArray = ({ checklistItems }) => {
                 <Card
                   key={`checklist-filter-card[${index}]`}
                   headerEnd={
-                    <Tooltip
-                      id={`checklist-filter-card-delete-[${index}]-tooltip`}
-                      text={
-                        <FormattedMessage
-                          id="ui-oa.checklistFilter.deleteFilterIndex"
-                          values={{ number: index + 1 }}
-                        />
-                      }
-                    >
-                      {({ ref, ariaIds }) => (
-                        <IconButton
-                          ref={ref}
-                          aria-labelledby={ariaIds.text}
-                          icon="trash"
-                          id={`checklist-filter-card-delete-[${index}]`}
-                          onClick={() => fields.remove(index)}
-                        />
-                      )}
-                    </Tooltip>
+                    fields?.length > 1 ? (
+                      <Tooltip
+                        id={`checklist-filter-card-delete-[${index}]-tooltip`}
+                        text={
+                          <FormattedMessage
+                            id="ui-oa.checklistFilter.deleteFilterIndex"
+                            values={{ number: index + 1 }}
+                          />
+                        }
+                      >
+                        {({ ref, ariaIds }) => (
+                          <IconButton
+                            ref={ref}
+                            aria-labelledby={ariaIds.text}
+                            icon="trash"
+                            id={`checklist-filter-card-delete-[${index}]`}
+                            onClick={() => fields.remove(index)}
+                          />
+                        )}
+                      </Tooltip>
+                    ) : null
                   }
                   headerStart={
                     <strong>
