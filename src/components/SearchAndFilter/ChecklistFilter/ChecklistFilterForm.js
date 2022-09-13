@@ -7,6 +7,7 @@ import ChecklistFilterFieldArray from './ChecklistFilterFieldArray';
 
 const ChecklistFilterForm = ({
   editingFilters,
+  filters,
   checklistItems,
   handlers: { openEditModal, closeEditModal },
   onSubmit,
@@ -17,6 +18,9 @@ const ChecklistFilterForm = ({
         <FormattedMessage id="ui-oa.checklistFilter.editChecklistFilters" />
       </Button>
       <FormModal
+        initialValues={{
+          filters: filters?.length ? filters : [{ rules: [{}] }],
+        }}
         modalProps={{
           dismissible: true,
           enforceFocus: false,
@@ -36,6 +40,7 @@ const ChecklistFilterForm = ({
 
 ChecklistFilterForm.propTypes = {
   editingFilters: PropTypes.bool,
+  filters: PropTypes.arrayOf(PropTypes.object),
   checklistItems: PropTypes.arrayOf(PropTypes.object),
   handlers: PropTypes.shape({
     closeEditModal: PropTypes.func.isRequired,

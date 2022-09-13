@@ -29,15 +29,17 @@ const ChecklistFilterRule = ({
     CHECKLIST_ITEM_OUTCOME,
     CHECKLIST_ITEM_STATUS,
   ]);
-  const outcomeValues = selectifyRefdata(refdataValues, CHECKLIST_ITEM_OUTCOME);
-  const statusValues = selectifyRefdata(refdataValues, CHECKLIST_ITEM_STATUS);
+  const outcomeValues = selectifyRefdata(refdataValues, CHECKLIST_ITEM_OUTCOME, 'value');
+  const statusValues = selectifyRefdata(refdataValues, CHECKLIST_ITEM_STATUS, 'value');
 
   const operators = [
+    { label: '', value: '' },
     { label: 'Is', value: '==' },
     { label: 'Is not', value: '!=' },
   ];
 
   const attributes = [
+    { label: '', value: '' },
     { label: 'Outcome', value: 'outcome' },
     { label: 'Status', value: 'status' },
   ];
@@ -57,7 +59,6 @@ const ChecklistFilterRule = ({
               aria-labelledby={`${ariaLabelledby}-rule-column-header-attribute`}
               dataOptions={attributes}
               error={meta?.touched && meta?.error}
-              placeholder=" "
               required
             />
           )}
@@ -71,7 +72,6 @@ const ChecklistFilterRule = ({
               aria-labelledby={`${ariaLabelledby}-rule-column-header-comparator`}
               dataOptions={operators}
               error={meta?.touched && meta?.error}
-              placeholder=" "
               required
             />
           )}
@@ -85,11 +85,11 @@ const ChecklistFilterRule = ({
               aria-labelledby={`${ariaLabelledby}-rule-column-header-value`}
               dataOptions={
                 value?.attribute === 'outcome'
-                  ? [...outcomeValues]
-                  : [...statusValues]
+                  ? [{ label: '', value: '' }, ...outcomeValues]
+                  : [{ label: '', value: '' }, ...statusValues]
               }
+              disabled={!value?.attribute}
               error={meta?.touched && meta?.error}
-              placeholder=" "
               required
             />
           )}
