@@ -6,10 +6,7 @@ import useChecklistItemDefinitions from '../../../hooks/useChecklistItemDefiniti
 
 import ChecklistFilterForm from './ChecklistFilterForm';
 
-const ChecklistFilter = ({
-  activeFilters,
-  filterHandlers,
-}) => {
+const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
   const checklistItems = useChecklistItemDefinitions();
   const [editingFilters, setEditingFilters] = useState(false);
   const openEditModal = () => setEditingFilters(true);
@@ -17,6 +14,8 @@ const ChecklistFilter = ({
 
   const handleSubmit = (values) => {
     console.log(values);
+    filterHandlers.state({ ...activeFilters, checklistItems: [] });
+    setEditingFilters(false);
   };
 
   return (

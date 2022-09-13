@@ -8,7 +8,6 @@ import ChecklistFilterRule from './ChecklistFilterRule';
 
 const ChecklistFilterField = ({ checklistItems, index, name, fields }) => {
   const {
-    change,
     mutators: { push },
   } = useForm();
   const { values } = useFormState();
@@ -26,7 +25,7 @@ const ChecklistFilterField = ({ checklistItems, index, name, fields }) => {
               <option value=""> </option>
               {checklistItems.map((v) => {
                 return (
-                  <option key={v.id} value={v.value}>
+                  <option key={v.id} value={v.name}>
                     {v.label}
                   </option>
                 );
@@ -62,8 +61,6 @@ const ChecklistFilterField = ({ checklistItems, index, name, fields }) => {
           <ChecklistFilterRule
             key={ruleFieldName}
             ariaLabelledby={`selected-checklist-item-name-${index}`}
-            clearRuleValue={() => change(`filters[${index}].rules[${ruleFieldIndex}].value`, '')
-              }
             index={ruleFieldIndex}
             name={ruleFieldName}
             onDelete={() => ruleFields.remove(ruleFieldIndex)}
