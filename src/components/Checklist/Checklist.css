@@ -1,58 +1,62 @@
-@import "@folio/stripes-components/lib/variables";
+@import '@folio/stripes-components/lib/variables';
 
 .checklistContainer {
-    padding: 1rem;
-    background-color: #ebebeb;
-    margin-bottom: 0.5rem;
+  padding: 1rem;
+  background-color: #f7f7f7;
+  margin-bottom: 0.3rem;
+}
+
+.itemLabel {
+  font-size: 1.2rem;
 }
 
 .meta {
-    font-size: var(--font-size-small);
-    color: var(--color-text-p2);
+  font-size: var(--font-size-small);
+  color: var(--color-text-p2);
 }
 
 .buttonBorder {
-    border-color: #fff;
-    border-width: 2px;
-    border-style: solid;
+  border-color: #fff;
+  border-width: 2px;
+  border-style: solid;
 }
 
 .metaContainer {
-    margin-top: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .yesOptionIcon {
-    color: var(--success);
+  color: var(--success);
 }
 
 .yesOptionButton {
-    color: #fff;
-    background-color: var(--success);
+  color: #fff;
+  background-color: var(--success);
 }
 
 .noOptionIcon {
-    color: var(--error);
+  color: var(--error);
 }
 
 .noOptionButton {
-    color: #fff;
-    background-color: var(--error);
+  color: #fff;
+  background-color: var(--error);
 }
 
 .otherOptionIcon {
-    color: #e05f02;
+  color: #e05f02;
 }
 
 .otherOptionButton {
-    color: #fff;
-    background-color: #e05f02;
+  color: #fff;
+  background-color: #e05f02;
 }
 
 .notesContainer {
-    padding: 1rem;
+  padding: 1rem;
 }
 
 .notesButton {
-    text-align: right;
-    padding-left: 1rem;
+  text-align: right;
+  padding-left: 1rem;
 }

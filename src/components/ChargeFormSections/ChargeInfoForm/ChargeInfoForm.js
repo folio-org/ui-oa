@@ -89,6 +89,7 @@ const ChargeInfoForm = () => {
       <Row>
         <Col xs={3}>
           <Field
+            autoFocus
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...categoryValues]}
             label={<FormattedMessage id="ui-oa.charge.category" />}

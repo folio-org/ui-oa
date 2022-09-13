@@ -52,6 +52,7 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
                       <Row middle="xs">
                         <Col xs={10}>
                           <Field
+                            autoFocus
                             component={TextArea}
                             fullWidth
                             maxLength={255}
@@ -78,7 +79,7 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
                               <Button
                                 key={`cancel[${note.label}]`}
                                 data-type-button="cancel"
-                                disabled={notes?.length < 1 || !note?.id}
+                                disabled={notes?.length <= 1}
                                 onClick={() => {
                                   if (note?.id) {
                                     setEditing(false);
@@ -105,21 +106,27 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
           <>
             <hr />
             <div className={css.notesContainer}>
-              <Layout className="flex justified">
-                <>{note.note}</>
-                <div>
-                  <IconButton
-                    disabled={editing}
-                    icon="edit"
-                    onClick={() => setEditing(note.id)}
-                  />
-                  <IconButton
-                    disabled={editing}
-                    icon="trash"
-                    onClick={() => handleDelete(note)}
-                  />
-                </div>
-              </Layout>
+              <Row middle="xs">
+                <Col xs={10}>
+                  <>{note.note}</>
+                </Col>
+                <Col xs={2}>
+                  <div>
+                    <Layout className="flex right">
+                      <IconButton
+                        disabled={editing}
+                        icon="edit"
+                        onClick={() => setEditing(note.id)}
+                      />
+                      <IconButton
+                        disabled={editing}
+                        icon="trash"
+                        onClick={() => handleDelete(note)}
+                      />
+                    </Layout>
+                  </div>
+                </Col>
+              </Row>
               <br />
               <Row>
                 <Col xs={12}>

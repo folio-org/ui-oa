@@ -57,7 +57,7 @@ const ExternalRequestIdField = ({ fields: { name } }) => {
                       aria-labelledby={ariaIds.text}
                       icon="trash"
                       onClick={() => onDeleteField(index, externalRequestId)}
-                      style={{ 'paddingTop': '25px' }}
+                      style={{ paddingTop: '25px' }}
                     />
                   )}
                 </Tooltip>

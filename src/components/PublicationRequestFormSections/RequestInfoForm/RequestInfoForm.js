@@ -39,6 +39,7 @@ const RequestInfoForm = ({ request }) => {
         </Col>
         <Col xs={3}>
           <Field
+            autoFocus
             backendDateStandard="YYYY-MM-DD"
             component={Datepicker}
             id="request-date"
