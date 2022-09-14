@@ -358,5 +358,7 @@
     "party.institutionLevelOne": "机构级别1",
     "party.institutionLevelTwo": "机构级别2",
     "checklist.hideItem": "隐藏“ {name} ”单件",
-    "checklist.showItem": "显示 '' {name} ''单件"
+    "checklist.showItem": "显示 '' {name} ''单件",
+    "checklist.openChecklistPane": "Open checklist pane",
+    "checklist.closeChecklistPane": "Close checklist pane"
 }
