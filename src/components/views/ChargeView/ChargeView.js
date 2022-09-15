@@ -155,7 +155,7 @@ const ChargeView = ({
               </Col>
             </Row>
             <AccordionSet>
-              {charge?.chargeStatus?.value === 'invoiced' && (
+              {!!invoice && (
                 <ChargeInvoice
                   charge={charge}
                   invoice={invoice}
