@@ -146,7 +146,7 @@ const ChecklistItem = ({
               )}
             </FormattedMessage>
             <Tooltip
-              id="hide-checklist-item-button-tooltip"
+              id={`hide-checklist-item-${item?.definition?.name}-button-tooltip`}
               text={
                 item?.status?.value === 'not_required' ? (
                   <FormattedMessage
