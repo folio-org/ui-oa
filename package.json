@@ -31,6 +31,10 @@
     "okapiInterfaces": {
       "oa": "1.0"
     },
+    "optionalOkapiInterfaces": {
+      "invoice": "7.0",
+      "erm": "5.0"
+    },
     "stripesDeps": [
       "@folio/stripes-erm-components",
       "@k-int/stripes-kint-components"
