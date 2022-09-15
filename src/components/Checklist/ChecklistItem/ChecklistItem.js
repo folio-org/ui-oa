@@ -51,6 +51,7 @@ const ChecklistItem = ({
       value: 'no',
       label: <FormattedMessage id="ui-oa.checklist.outcome.no" />,
       buttonProps: {
+        id: `${item?.definition?.name}-outcome-no-button`,
         className: classNames(css.noOptionButton, css.buttonBorder),
       },
       iconProps: {
@@ -93,6 +94,10 @@ const ChecklistItem = ({
             )}
           </Headline>
           <IconSelect
+            id={`${item?.definition?.name}-icon-select`}
+            input={{
+              name: 'outcome',
+            }}
             notSet={notSet}
             onChange={(_e, value) => {
               handleSubmit({ outcome: value }, item);
