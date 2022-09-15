@@ -29,10 +29,14 @@ import { InvoiceLineModal } from '../../Modals';
 const propTypes = {
   charge: PropTypes.object,
   lineGenerated: PropTypes.bool,
-  setLineGenerated: PropTypes.func
+  setLineGenerated: PropTypes.func,
 };
 
-const InvoiceLineTypedownForm = ({ charge, lineGenerated, setLineGenerated }) => {
+const InvoiceLineTypedownForm = ({
+  charge,
+  lineGenerated,
+  setLineGenerated,
+}) => {
   const { values } = useFormState();
   const { change } = useForm();
   const [showInvoiceLineModal, setShowInvoiceLineModal] = useState(false);
@@ -114,6 +118,7 @@ const InvoiceLineTypedownForm = ({ charge, lineGenerated, setLineGenerated }) =>
           component={QueryTypedown}
           dataFormatter={(data) => data?.invoiceLines}
           endOfList={renderEndOFList()}
+          id="invoice-line-typedown"
           label={
             <FormattedMessage id="ui-oa.charge.invoiceLine.addInvoiceLine" />
           }

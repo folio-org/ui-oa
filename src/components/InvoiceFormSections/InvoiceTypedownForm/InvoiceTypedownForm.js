@@ -96,6 +96,7 @@ const InvoiceTypedownForm = ({ charge, setLineGenerated }) => {
         component={QueryTypedown}
         dataFormatter={(data) => data?.invoices}
         endOfList={renderEndOFList()}
+        id="invoice-typedown"
         label={<FormattedMessage id="ui-oa.charge.invoice.addInvoice" />}
         name="selectedInvoice"
         onChange={() => {

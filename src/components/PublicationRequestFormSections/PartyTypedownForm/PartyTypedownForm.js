@@ -146,6 +146,7 @@ const PartyTypedownForm = ({ formName }) => {
             <Field
               component={QueryTypedown}
               endOfList={renderEndOFList()}
+              id={`${formName}-typedown`}
               label={
                 <FormattedMessage id="ui-oa.publicationRequest.addPerson" />
               }
