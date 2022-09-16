@@ -105,7 +105,6 @@ const Agreement = ({ request }) => {
               ctx="OpenAccess"
               customProperty={customProperties?.[cp.name]?.[0]}
               customPropertyDefinition={cp}
-              labelOverrides={{}}
             />
           );
         })}

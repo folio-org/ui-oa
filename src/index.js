@@ -3,6 +3,8 @@ import { FormattedMessage } from 'react-intl';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import { useIntlKeyStore } from '@k-int/stripes-kint-components';
+
 import { AppContextMenu } from '@folio/stripes/core';
 
 import {
@@ -50,6 +52,9 @@ const App = (props) => {
       </Suspense>
     );
   }
+
+  const addKey = useIntlKeyStore(state => state.addKey);
+  addKey('ui-oa');
 
   const keyboardShortcuts = importShortcuts([
     'new',
