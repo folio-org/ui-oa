@@ -34,7 +34,7 @@
     "optionalOkapiInterfaces": {
       "invoice": "7.0",
       "erm": "5.0",
-      "organizations-storage.interfaces": "2.0"
+      "organizations.organizations": "1.0"
     },
     "stripesDeps": [
       "@folio/stripes-erm-components",
