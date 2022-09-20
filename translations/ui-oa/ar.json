@@ -358,5 +358,7 @@
     "party.institutionLevelOne": "مستوى المؤسسة 1",
     "party.institutionLevelTwo": "مستوى المؤسسة 2",
     "checklist.hideItem": "إخفاء عنصر ''{name}''",
-    "checklist.showItem": "إظهار عنصر ''{name}''"
+    "checklist.showItem": "إظهار عنصر ''{name}''",
+    "checklist.openChecklistPane": "فتح قسم القائمة المرجعية",
+    "checklist.closeChecklistPane": "إغلاق قسم القائمة المرجعية"
 }

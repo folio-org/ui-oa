@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
@@ -27,7 +28,7 @@ const JournalInstances = ({ journal }) => {
   };
 
   return journal?.instances ? (
-    <>
+    <div tabIndex={0}>
       {orderBy(journal.instances, 'subType.value').map((instance, index) => {
         const ezbIdentifier = findIdentifierByNamespace(instance, 'ezb');
         const zdbIdentifier = findIdentifierByNamespace(instance, 'zdb');
@@ -94,7 +95,7 @@ const JournalInstances = ({ journal }) => {
           </div>
         );
       })}
-    </>
+    </div>
   ) : (
     renderEmpty()
   );
