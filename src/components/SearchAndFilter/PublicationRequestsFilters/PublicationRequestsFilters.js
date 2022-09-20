@@ -21,38 +21,50 @@ function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
   const onChangeHandler = (group) => {
     filterHandlers.state({
       ...activeFilters,
-      [group.name]: group.values
+      [group.name]: group.values,
     });
   };
 
   const renderRequestDateFilter = () => {
-    return <DateFilter
-      accordionLabel={<FormattedMessage id="ui-oa.publicationRequest.requestDate" />}
-      activeFilters={activeFilters}
-      filterHandlers={filterHandlers}
-      hideNoDateSetCheckbox
-      name="requestDate"
-    />;
+    return (
+      <DateFilter
+        accordionLabel={
+          <FormattedMessage id="ui-oa.publicationRequest.requestDate" />
+        }
+        activeFilters={activeFilters}
+        filterHandlers={filterHandlers}
+        hideNoDateSetCheckbox
+        name="requestDate"
+      />
+    );
+  };
+
+  const renderRequestStatusFilter = () => {
+    return (
+      <Accordion
+        displayClearButton={activeFilters?.requestStatus?.length > 0}
+        header={FilterAccordionHeader}
+        id="filter-accordion-status"
+        label={<FormattedMessage id="ui-oa.publicationRequest.status" />}
+        onClearFilter={() => {
+          filterHandlers.clearGroup('requestStatus');
+        }}
+        separator={false}
+      >
+        <CheckboxFilter
+          dataOptions={requestStatusValues}
+          name="requestStatus"
+          onChange={onChangeHandler}
+          selectedValues={activeFilters?.requestStatus || []}
+        />
+      </Accordion>
+    );
   };
 
   return (
     <>
       <AccordionSet>
-        <Accordion
-          displayClearButton={activeFilters?.requestStatus?.length > 0}
-          header={FilterAccordionHeader}
-          id="filter-accordion-status"
-          label={<FormattedMessage id="ui-oa.publicationRequest.status" />}
-          onClearFilter={() => { filterHandlers.clearGroup('requestStatus'); }}
-          separator={false}
-        >
-          <CheckboxFilter
-            dataOptions={requestStatusValues}
-            name="requestStatus"
-            onChange={onChangeHandler}
-            selectedValues={activeFilters?.requestStatus || []}
-          />
-        </Accordion>
+        {renderRequestStatusFilter()}
         {renderRequestDateFilter()}
       </AccordionSet>
     </>
