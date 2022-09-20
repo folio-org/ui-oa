@@ -9,15 +9,12 @@ import {
   RadioButton,
   Select,
   useCurrencyOptions,
-  Selection
+  Selection,
 } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
-import {
-  FieldSelectFinal,
-  FieldOrganization,
-  PAYMENT_METHOD_OPTIONS,
-} from '@folio/stripes-acq-components';
+import { FieldOrganization } from '@folio/stripes-acq-components';
 
+import usePaymentOptions from '../../../constants/paymentOptions';
 import getBatchGroupsOptions from '../../../util/getBatchGroupsOptions';
 
 const propTypes = {
@@ -28,6 +25,7 @@ const propTypes = {
 const CreateInvoiceForm = ({ batchGroups, charge }) => {
   const { values } = useFormState();
   const { change } = useForm();
+  const paymentOptions = usePaymentOptions();
 
   const handleVendorChange = (vendor) => {
     change('paymentMethod', vendor.paymentMethod);
@@ -71,8 +69,9 @@ const CreateInvoiceForm = ({ batchGroups, charge }) => {
           {/* Change to registry when it becomes available */}
         </Col>
         <Col xs={4}>
-          <FieldSelectFinal
-            dataOptions={PAYMENT_METHOD_OPTIONS}
+          <Field
+            component={Select}
+            dataOptions={[{ value: '', label: '' }, ...paymentOptions]}
             label={<FormattedMessage id="ui-oa.charge.invoice.paymentMethod" />}
             name="paymentMethod"
             required
