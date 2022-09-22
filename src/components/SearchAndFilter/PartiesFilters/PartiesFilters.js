@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { CheckboxFilter } from '@folio/stripes/smart-components';
+import { MultiSelectionFilter } from '@folio/stripes/smart-components';
 import {
   Accordion,
   AccordionSet,
@@ -37,7 +37,7 @@ const PartiesFilters = ({ activeFilters, filterHandlers }) => {
         }}
         separator={false}
       >
-        <CheckboxFilter
+        <MultiSelectionFilter
           dataOptions={institutionLevelOneValues}
           name="institutionLevelOne"
           onChange={onChangeHandler}

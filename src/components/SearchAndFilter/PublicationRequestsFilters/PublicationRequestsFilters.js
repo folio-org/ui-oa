@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types';
-import { CheckboxFilter, MultiSelectionFilter } from '@folio/stripes/smart-components';
+import {
+  CheckboxFilter,
+  MultiSelectionFilter,
+} from '@folio/stripes/smart-components';
 import {
   Accordion,
   AccordionSet,
@@ -25,6 +28,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
   const workOAStatusValues = useOARefdata('Work.OaStatus');
   const publisherValues = useOARefdata('PublicationRequest.Publisher');
   const chargePayersValues = useOARefdata('Payer.Payer');
+  const correspondingInstitutionLevelOneValues = useOARefdata('Party.Faculty');
 
   const onChangeHandler = (group) => {
     filterHandlers.state({
@@ -66,6 +70,30 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
         hideNoDateSetCheckbox
         name="requestDate"
       />
+    );
+  };
+
+  const renderCorrespondingInstitutionLevelOneFilter = () => {
+    return (
+      <Accordion
+        displayClearButton={
+          activeFilters?.correspondingInstitutionLevelOne?.length > 0
+        }
+        header={FilterAccordionHeader}
+        id="corresponding-institution-level-one-filter-accordion"
+        label={<FormattedMessage id="ui-oa.party.institutionLevelOne" />}
+        onClearFilter={() => {
+          filterHandlers.clearGroup('correspondingInstitutionLevelOne');
+        }}
+        separator={false}
+      >
+        <MultiSelectionFilter
+          dataOptions={correspondingInstitutionLevelOneValues}
+          name="correspondingInstitutionLevelOne"
+          onChange={onChangeHandler}
+          selectedValues={activeFilters?.correspondingInstitutionLevelOne || []}
+        />
+      </Accordion>
     );
   };
 
@@ -171,7 +199,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
         }}
         separator={false}
       >
-        <CheckboxFilter
+        <MultiSelectionFilter
           dataOptions={chargePayersValues}
           name="chargePayers"
           onChange={onChangeHandler}
@@ -189,6 +217,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
         </Headline>
         {renderRequestStatusFilter()}
         {renderRequestDateFilter()}
+        {renderCorrespondingInstitutionLevelOneFilter()}
         <hr />
         <Headline faded margin="none" size="large">
           <FormattedMessage id="ui-oa.searchAndFilter.publicationFilters" />
