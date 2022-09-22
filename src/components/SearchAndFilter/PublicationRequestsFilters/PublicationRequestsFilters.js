@@ -18,6 +18,7 @@ const propTypes = {
 function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
   const requestStatusValues = useOARefdata('PublicationRequest.RequestStatus');
   const chargeStatusValues = useOARefdata('Charge.ChargeStatus');
+  const publicationTypeValues = useOARefdata('PublicationRequest.PublicationType');
 
   const onChangeHandler = (group) => {
     filterHandlers.state({
@@ -85,12 +86,36 @@ function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
     );
   };
 
+  const renderPublicationTypeFilter = () => {
+    return (
+      <Accordion
+        closedByDefault
+        displayClearButton={activeFilters?.publicationType?.length > 0}
+        header={FilterAccordionHeader}
+        id="publication-type-filter-accordion"
+        label={<FormattedMessage id="ui-oa.publicationRequest.publicationType" />}
+        onClearFilter={() => {
+          filterHandlers.clearGroup('publicationType');
+        }}
+        separator={false}
+      >
+        <CheckboxFilter
+          dataOptions={publicationTypeValues}
+          name="publicationType"
+          onChange={onChangeHandler}
+          selectedValues={activeFilters?.publicationType || []}
+        />
+      </Accordion>
+    );
+  };
+
   return (
     <>
       <AccordionSet>
         {renderRequestStatusFilter()}
         {renderRequestDateFilter()}
         {renderChargeStatusFitler()}
+        {renderPublicationTypeFilter()}
       </AccordionSet>
     </>
   );
