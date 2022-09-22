@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { CheckboxFilter } from '@folio/stripes/smart-components';
+import { CheckboxFilter, MultiSelectionFilter } from '@folio/stripes/smart-components';
 import {
   Accordion,
   AccordionSet,
@@ -149,7 +149,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
         }}
         separator={false}
       >
-        <CheckboxFilter
+        <MultiSelectionFilter
           dataOptions={publisherValues}
           name="publisher"
           onChange={onChangeHandler}
