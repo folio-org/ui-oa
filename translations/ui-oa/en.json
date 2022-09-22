@@ -48,6 +48,7 @@
   "searchAndFilter.chargeFilters": "Charge filters",
   "searchAndFilter.publicationFilters": "Publication filters",
   "searchAndFilter.journalFilters": "Journal filters",
+  "searchAndFilter.peopleFilters": "People filters",
 
   "parties.people": "People",
   "parties.givenNames": "Given names",
