@@ -18,8 +18,11 @@ const propTypes = {
 function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
   const requestStatusValues = useOARefdata('PublicationRequest.RequestStatus');
   const chargeStatusValues = useOARefdata('Charge.ChargeStatus');
-  const publicationTypeValues = useOARefdata('PublicationRequest.PublicationType');
+  const publicationTypeValues = useOARefdata(
+    'PublicationRequest.PublicationType'
+  );
   const workOAStatusValues = useOARefdata('Work.OaStatus');
+  const publisherValues = useOARefdata('PublicationRequest.Publisher');
 
   const onChangeHandler = (group) => {
     filterHandlers.state({
@@ -94,7 +97,9 @@ function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
         displayClearButton={activeFilters?.publicationType?.length > 0}
         header={FilterAccordionHeader}
         id="publication-type-filter-accordion"
-        label={<FormattedMessage id="ui-oa.publicationRequest.publicationType" />}
+        label={
+          <FormattedMessage id="ui-oa.publicationRequest.publicationType" />
+        }
         onClearFilter={() => {
           filterHandlers.clearGroup('publicationType');
         }}
@@ -133,6 +138,29 @@ function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
     );
   };
 
+  const renderPublisherFilter = () => {
+    return (
+      <Accordion
+        closedByDefault
+        displayClearButton={activeFilters?.publisher?.length > 0}
+        header={FilterAccordionHeader}
+        id="publisher-filter-accordion"
+        label={<FormattedMessage id="ui-oa.publicationRequest.publisher" />}
+        onClearFilter={() => {
+          filterHandlers.clearGroup('publisher');
+        }}
+        separator={false}
+      >
+        <CheckboxFilter
+          dataOptions={publisherValues}
+          name="publisher"
+          onChange={onChangeHandler}
+          selectedValues={activeFilters?.publisher || []}
+        />
+      </Accordion>
+    );
+  };
+
   return (
     <>
       <AccordionSet>
@@ -141,6 +169,7 @@ function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
         {renderChargeStatusFitler()}
         {renderPublicationTypeFilter()}
         {renderOAStatusFilter()}
+        {renderPublisherFilter()}
       </AccordionSet>
     </>
   );
