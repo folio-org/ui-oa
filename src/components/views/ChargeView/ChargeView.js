@@ -1,7 +1,7 @@
 import { useState, createRef } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { AppIcon } from '@folio/stripes/core';
+import { AppIcon, IfInterface } from '@folio/stripes/core';
 
 import {
   AccordionSet,
@@ -78,27 +78,29 @@ const ChargeView = ({
             <FormattedMessage id="ui-oa.charge.edit" />
           </Icon>
         </Button>
-        {!charge?.invoiceReference ? (
-          <Button
-            buttonStyle="dropdownItem"
-            id="link-invoice-button"
-            onClick={handleLink}
-          >
-            <Icon icon="link">
-              <FormattedMessage id="ui-oa.charge.invoice.linkInvoiceLine" />
-            </Icon>
-          </Button>
-        ) : (
-          <Button
-            buttonStyle="dropdownItem"
-            id="unlink-invoice-button"
-            onClick={() => setShowUnlinkConfirmModal(true)}
-          >
-            <Icon icon="unlink">
-              <FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceLine" />
-            </Icon>
-          </Button>
-        )}
+        <IfInterface name="invoice">
+          {!charge?.invoiceReference ? (
+            <Button
+              buttonStyle="dropdownItem"
+              id="link-invoice-button"
+              onClick={handleLink}
+            >
+              <Icon icon="link">
+                <FormattedMessage id="ui-oa.charge.invoice.linkInvoiceLine" />
+              </Icon>
+            </Button>
+          ) : (
+            <Button
+              buttonStyle="dropdownItem"
+              id="unlink-invoice-button"
+              onClick={() => setShowUnlinkConfirmModal(true)}
+            >
+              <Icon icon="unlink">
+                <FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceLine" />
+              </Icon>
+            </Button>
+          )}
+        </IfInterface>
         <Button
           buttonStyle="dropdownItem"
           id="charge-delete-button"
@@ -155,7 +157,7 @@ const ChargeView = ({
               </Col>
             </Row>
             <AccordionSet>
-              {charge?.chargeStatus?.value === 'invoiced' && (
+              {!!invoice && (
                 <ChargeInvoice
                   charge={charge}
                   invoice={invoice}

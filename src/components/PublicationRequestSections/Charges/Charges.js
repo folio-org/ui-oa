@@ -183,10 +183,7 @@ const Charges = ({ request }) => {
       );
     },
     invoiceLine: (e) => {
-      if (
-        e?.chargeStatus?.value === 'invoiced' &&
-        e?.invoiceLineItemReference
-      ) {
+      if (e?.invoiceLineItemReference) {
         return <InvoiceLineLink charge={e} />;
       }
       if (

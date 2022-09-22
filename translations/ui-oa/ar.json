@@ -360,5 +360,13 @@
     "checklist.hideItem": "إخفاء عنصر ''{name}''",
     "checklist.showItem": "إظهار عنصر ''{name}''",
     "checklist.openChecklistPane": "فتح قسم القائمة المرجعية",
-    "checklist.closeChecklistPane": "إغلاق قسم القائمة المرجعية"
+    "checklist.closeChecklistPane": "إغلاق قسم القائمة المرجعية",
+    "charge.paymentMethod.cash": "نقدًا",
+    "charge.paymentMethod.card": "بطاقة ائتمان",
+    "charge.paymentMethod.eft": "EFT",
+    "charge.paymentMethod.depAccount": "حساب الإيداع",
+    "charge.paymentMethod.physicalCheck": "شيك",
+    "charge.paymentMethod.bankDraft": "مسودة بنكية",
+    "charge.paymentMethod.internalTransfer": "تحويل داخلي",
+    "charge.paymentMethod.other": "أخرى"
 }

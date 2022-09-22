@@ -360,5 +360,13 @@
     "checklist.hideItem": "Hide ''{name}'' item",
     "checklist.showItem": "Show ''{name}'' item",
     "checklist.openChecklistPane": "Open checklist pane",
-    "checklist.closeChecklistPane": "Close checklist pane"
+    "checklist.closeChecklistPane": "Close checklist pane",
+    "charge.paymentMethod.cash": "Cash",
+    "charge.paymentMethod.card": "Credit card",
+    "charge.paymentMethod.eft": "EFT",
+    "charge.paymentMethod.depAccount": "Deposit account",
+    "charge.paymentMethod.physicalCheck": "Physical check",
+    "charge.paymentMethod.bankDraft": "Bank draft",
+    "charge.paymentMethod.internalTransfer": "Internal transfer",
+    "charge.paymentMethod.other": "Other"
 }
