@@ -42,6 +42,7 @@
   "searchAndFilter.journals": "Journals",
   "searchAndFilter.people": "People",
   "searchAndFilter.requests": "Requests",
+  "searchAndFilter.chargeStatus": "Charge status",
 
   "parties.people": "People",
   "parties.givenNames": "Given names",

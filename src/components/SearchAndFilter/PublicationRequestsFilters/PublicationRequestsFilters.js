@@ -17,6 +17,7 @@ const propTypes = {
 
 function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
   const requestStatusValues = useOARefdata('PublicationRequest.RequestStatus');
+  const chargeStatusValues = useOARefdata('Charge.ChargeStatus');
 
   const onChangeHandler = (group) => {
     filterHandlers.state({
@@ -25,26 +26,12 @@ function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
     });
   };
 
-  const renderRequestDateFilter = () => {
-    return (
-      <DateFilter
-        accordionLabel={
-          <FormattedMessage id="ui-oa.publicationRequest.requestDate" />
-        }
-        activeFilters={activeFilters}
-        filterHandlers={filterHandlers}
-        hideNoDateSetCheckbox
-        name="requestDate"
-      />
-    );
-  };
-
   const renderRequestStatusFilter = () => {
     return (
       <Accordion
         displayClearButton={activeFilters?.requestStatus?.length > 0}
         header={FilterAccordionHeader}
-        id="filter-accordion-status"
+        id="request-status-filter-accordion"
         label={<FormattedMessage id="ui-oa.publicationRequest.status" />}
         onClearFilter={() => {
           filterHandlers.clearGroup('requestStatus');
@@ -61,11 +48,49 @@ function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
     );
   };
 
+  const renderRequestDateFilter = () => {
+    return (
+      <DateFilter
+        accordionLabel={
+          <FormattedMessage id="ui-oa.publicationRequest.requestDate" />
+        }
+        activeFilters={activeFilters}
+        filterHandlers={filterHandlers}
+        hideNoDateSetCheckbox
+        name="requestDate"
+      />
+    );
+  };
+
+  const renderChargeStatusFitler = () => {
+    return (
+      <Accordion
+        closedByDefault
+        displayClearButton={activeFilters?.chargeStatus?.length > 0}
+        header={FilterAccordionHeader}
+        id="charge-status-filter-accordion"
+        label={<FormattedMessage id="ui-oa.searchAndFilter.chargeStatus" />}
+        onClearFilter={() => {
+          filterHandlers.clearGroup('chargeStatus');
+        }}
+        separator={false}
+      >
+        <CheckboxFilter
+          dataOptions={chargeStatusValues}
+          name="chargeStatus"
+          onChange={onChangeHandler}
+          selectedValues={activeFilters?.chargeStatus || []}
+        />
+      </Accordion>
+    );
+  };
+
   return (
     <>
       <AccordionSet>
         {renderRequestStatusFilter()}
         {renderRequestDateFilter()}
+        {renderChargeStatusFitler()}
       </AccordionSet>
     </>
   );

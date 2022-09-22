@@ -33,6 +33,7 @@ const PublicationRequestsRoute = ({ children, path }) => {
         'publicationTitle,requestNumber,correspondingAuthor.partyOwner.fullName,requestContact.partyOwner.fullName,externalRequestIds.externalId,doi,localReference,identifiers.publicationIdentifier',
       filterKeys: {
         requestStatus: 'requestStatus.value',
+        chargeStatus: 'charges.chargeStatus.value'
       },
     },
   };
