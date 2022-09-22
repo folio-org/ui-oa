@@ -7,10 +7,20 @@
   "appMenu.keyboardShortcuts": "Keyboards shortcuts",
   "edit": "Edit",
   "delete": "Delete",
+  "new": "New",
+  "actions": "Actions",
+
+  "found#Values": "Found {total} requests",
+  "save": "Save",
+  "saveAndClose": "Save & close",
+  "cancel": "Cancel",
+
+  "refdata.label": "Label",
+  "refdata.value": "Value",
 
   "settings.edit": "Edit",
   "settings.finish-editing": "Save",
-  "settings.no-current-value": "No current value",
+  "settings.noCurrentValue": "No current value",
   "settingName.settingLoading": "Loading",
 
   "settings.settingsSection.publicationRequests": "Publication requests",
