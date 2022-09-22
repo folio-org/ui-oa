@@ -30,9 +30,15 @@ const PublicationRequestsRoute = ({ children, path }) => {
     endpoint: PUBLICATION_REQUESTS_ENDPOINT,
     SASQ_MAP: {
       searchKey:
-        'publicationTitle,requestNumber,correspondingAuthor.partyOwner.fullName,requestContact.partyOwner.fullName,externalRequestIds.externalId',
+        'publicationTitle,requestNumber,correspondingAuthor.partyOwner.fullName,requestContact.partyOwner.fullName,externalRequestIds.externalId,doi,localReference,identifiers.publicationIdentifier',
       filterKeys: {
         requestStatus: 'requestStatus.value',
+        chargeStatus: 'charges.chargeStatus.value',
+        publicationType: 'publicationType.value',
+        workOAStatus: 'workOAStatus.value',
+        publisher: 'publisher.value',
+        chargePayers: 'charges.payers.payer.value',
+        correspondingInstitutionLevelOne: 'correspondingFaculty.value'
       },
     },
   };
@@ -43,7 +49,10 @@ const PublicationRequestsRoute = ({ children, path }) => {
 
   const shortcuts = [
     { name: 'new', handler: () => handleCreate() },
-    { name: 'search', handler: () => focusSASQSearchField('publication-requests') },
+    {
+      name: 'search',
+      handler: () => focusSASQSearchField('publication-requests'),
+    },
   ];
 
   const renderHeaderComponent = () => {

@@ -12,7 +12,7 @@ import {
 } from '@folio/stripes/components';
 import { SASQRoute } from '@k-int/stripes-kint-components';
 
-import { OAFilterHeaderComponent } from '../../components/SearchAndFilter';
+import { OAFilterHeaderComponent, JournalsFilters } from '../../components/SearchAndFilter';
 import { findIssnByNamespace } from '../../util/journalUtils';
 import Journal from '../../components/views/Journal';
 import { JournalModal } from '../../components/Modals';
@@ -41,7 +41,10 @@ const JournalsRoute = ({ path }) => {
     endpoint: WORKS_ENDPOINT,
     SASQ_MAP: {
       searchKey: 'instances.identifiers.identifier.value,title',
-      filterKeys: {},
+      filterKeys: {
+        oaStatus: 'oaStatus.value',
+        indexedInDOAJ: 'indexedInDOAJ.value',
+      },
     },
   };
 
@@ -104,6 +107,7 @@ const JournalsRoute = ({ path }) => {
       >
         <SASQRoute
           fetchParameters={fetchParameters}
+          FilterComponent={JournalsFilters}
           FilterPaneHeaderComponent={renderHeaderComponent}
           id="journals"
           mainPaneProps={{

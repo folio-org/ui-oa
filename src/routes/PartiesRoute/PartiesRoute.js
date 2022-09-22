@@ -12,7 +12,10 @@ import {
 } from '@folio/stripes/components';
 
 import { SASQRoute } from '@k-int/stripes-kint-components';
-import { OAFilterHeaderComponent } from '../../components/SearchAndFilter';
+import {
+  OAFilterHeaderComponent,
+  PartiesFilters,
+} from '../../components/SearchAndFilter';
 import Party from '../../components/views/Party';
 import urls from '../../util/urls';
 import focusSASQSearchField from '../../util/focusSASQSearchField';
@@ -28,7 +31,7 @@ const PartiesRoute = ({ path }) => {
     endpoint: PARTIES_ENDPOINT,
     SASQ_MAP: {
       searchKey: 'mainEmail,givenNames,familyName,orcidId',
-      filterKeys: {},
+      filterKeys: { institutionLevelOne: 'faculty.value' },
     },
   };
 
@@ -96,6 +99,7 @@ const PartiesRoute = ({ path }) => {
     >
       <SASQRoute
         fetchParameters={fetchParameters}
+        FilterComponent={PartiesFilters}
         FilterPaneHeaderComponent={renderHeaderComponent}
         id="parties"
         mainPaneProps={{
