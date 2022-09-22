@@ -117,6 +117,7 @@ const PublicationJournal = () => {
           <Field
             component={QueryTypedown}
             endOfList={renderEndOFList()}
+            id="journal-typedown"
             label={
               <FormattedMessage id="ui-oa.publicationRequest.addJournal" />
             }

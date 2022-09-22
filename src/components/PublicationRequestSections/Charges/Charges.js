@@ -16,6 +16,7 @@ import {
   Layout,
   Tooltip,
   Icon,
+  TextLink,
 } from '@folio/stripes/components';
 
 import urls from '../../../util/urls';
@@ -46,20 +47,23 @@ const InvoiceLineLink = ({ charge }) => {
       }
     >
       {({ ref, ariaIds }) => (
-        <a
+        <div
           ref={ref}
           aria-describedby={ariaIds.sub}
           aria-labelledby={ariaIds.text}
-          href={urls.invoiceLine(
-            charge?.invoiceReference,
-            charge?.invoiceLineItemReference
-          )}
-          onClick={(e) => e.stopPropagation()}
         >
           <strong>
-            {invoice?.vendorInvoiceNo}: {invoiceLine?.invoiceLineNumber}
+            <TextLink
+              onClick={(e) => e.stopPropagation()}
+              to={urls.invoiceLine(
+                charge?.invoiceReference,
+                charge?.invoiceLineItemReference
+              )}
+            >
+              {invoice?.vendorInvoiceNo}: {invoiceLine?.invoiceLineNumber}
+            </TextLink>
           </strong>
-        </a>
+        </div>
       )}
     </Tooltip>
   );
@@ -179,10 +183,7 @@ const Charges = ({ request }) => {
       );
     },
     invoiceLine: (e) => {
-      if (
-        e?.chargeStatus?.value === 'invoiced' &&
-        e?.invoiceLineItemReference
-      ) {
+      if (e?.invoiceLineItemReference) {
         return <InvoiceLineLink charge={e} />;
       }
       if (

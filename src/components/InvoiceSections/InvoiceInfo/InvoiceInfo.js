@@ -55,6 +55,7 @@ const InvoiceInfo = ({ invoice, charge }) => {
           <ExchangeRateValue
             exchangeFrom={invoice?.currency}
             exchangeTo={charge?.exchangeRate?.toCurrency}
+            labelId="ui-oa.charge.exchangeRate"
             manualExchangeRate={invoice?.exchangeRate}
           />
         </Col>

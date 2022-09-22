@@ -356,5 +356,9 @@
     "checklist.outcome.yes": "Oui",
     "checklist.outcome.no": "Non",
     "party.institutionLevelOne": "Institution level 1",
-    "party.institutionLevelTwo": "Institution level 2"
+    "party.institutionLevelTwo": "Institution level 2",
+    "checklist.hideItem": "Hide ''{name}'' item",
+    "checklist.showItem": "Show ''{name}'' item",
+    "checklist.openChecklistPane": "Open checklist pane",
+    "checklist.closeChecklistPane": "Close checklist pane"
 }

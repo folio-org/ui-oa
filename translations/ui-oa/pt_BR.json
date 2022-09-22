@@ -333,7 +333,7 @@
     "settings.checklistItemDefinitions.deleteAriaLabel": "Excluir item da lista de verificação {label}",
     "settings.checklistItemDefinitions.editAriaLabel": "Editar item da lista de verificação {label}",
     "settings.checklistItemDefinitions.deleteDefinition.confirmMessage": "O item da lista de verificação <strong>{label}</strong> será <strong>excluído</strong>",
-    "settings.checklistItemDefinitions.deleteDefinition.errorMessage": "<strong>Erro: {label}</strong> não foi excluído. {erro}",
+    "settings.checklistItemDefinitions.deleteDefinition.errorMessage": "<strong>Erro: {label}</strong> não foi excluído. {error}",
     "settings.checklistItemDefinitions.deleteHeading": "Excluir item da lista de verificação",
     "publicationRequest.showChecklist": "Mostrar lista de verificação",
     "checklist": "Lista de verificação",
@@ -356,5 +356,9 @@
     "checklist.outcome.yes": "Sim",
     "checklist.outcome.no": "Não",
     "party.institutionLevelOne": "Institution level 1",
-    "party.institutionLevelTwo": "Institution level 2"
+    "party.institutionLevelTwo": "Institution level 2",
+    "checklist.hideItem": "Hide ''{name}'' item",
+    "checklist.showItem": "Show ''{name}'' item",
+    "checklist.openChecklistPane": "Open checklist pane",
+    "checklist.closeChecklistPane": "Close checklist pane"
 }

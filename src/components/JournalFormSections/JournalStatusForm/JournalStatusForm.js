@@ -15,6 +15,7 @@ const JournalStatusForm = () => {
       <Row>
         <Col xs={3}>
           <Field
+            autoFocus
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...yesNoValues]}
             label={<FormattedMessage id="ui-oa.journal.inDOAJ" />}
