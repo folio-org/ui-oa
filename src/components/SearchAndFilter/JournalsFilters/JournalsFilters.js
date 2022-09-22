@@ -15,7 +15,7 @@ const propTypes = {
   filterHandlers: PropTypes.object,
 };
 
-const JournalFilters = ({ activeFilters, filterHandlers }) => {
+const JournalsFilters = ({ activeFilters, filterHandlers }) => {
   const oaStatusValues = useOARefdata('Work.OaStatus');
   const indexedInDOAJ = useOARefdata('Global.Yes_No');
 
@@ -83,6 +83,6 @@ const JournalFilters = ({ activeFilters, filterHandlers }) => {
   );
 };
 
-JournalFilters.propTypes = propTypes;
+JournalsFilters.propTypes = propTypes;
 
-export default JournalFilters;
+export default JournalsFilters;

@@ -12,14 +12,13 @@ import {
 } from '@folio/stripes/components';
 import { SASQRoute } from '@k-int/stripes-kint-components';
 
-import { OAFilterHeaderComponent } from '../../components/SearchAndFilter';
+import { OAFilterHeaderComponent, JournalsFilters } from '../../components/SearchAndFilter';
 import { findIssnByNamespace } from '../../util/journalUtils';
 import Journal from '../../components/views/Journal';
 import { JournalModal } from '../../components/Modals';
 import urls from '../../util/urls';
 import focusSASQSearchField from '../../util/focusSASQSearchField';
 import { WORKS_ENDPOINT } from '../../constants/endpoints';
-import JournalFilters from '../../components/SearchAndFilter/JournalsFilters/JournalsFilters';
 
 const JournalsRoute = ({ path }) => {
   const history = useHistory();
@@ -108,7 +107,7 @@ const JournalsRoute = ({ path }) => {
       >
         <SASQRoute
           fetchParameters={fetchParameters}
-          FilterComponent={JournalFilters}
+          FilterComponent={JournalsFilters}
           FilterPaneHeaderComponent={renderHeaderComponent}
           id="journals"
           mainPaneProps={{
