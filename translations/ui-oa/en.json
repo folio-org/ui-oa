@@ -43,6 +43,7 @@
   "searchAndFilter.people": "People",
   "searchAndFilter.requests": "Requests",
   "searchAndFilter.chargeStatus": "Charge status",
+  "searchAndFilter.chargePayers": "Charge Payers",
 
   "parties.people": "People",
   "parties.givenNames": "Given names",

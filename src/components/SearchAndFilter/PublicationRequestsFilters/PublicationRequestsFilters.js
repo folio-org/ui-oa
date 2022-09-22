@@ -23,6 +23,7 @@ function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
   );
   const workOAStatusValues = useOARefdata('Work.OaStatus');
   const publisherValues = useOARefdata('PublicationRequest.Publisher');
+  const chargePayersValues = useOARefdata('Payer.Payer');
 
   const onChangeHandler = (group) => {
     filterHandlers.state({
@@ -161,6 +162,29 @@ function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
     );
   };
 
+  const renderChargePayersFilter = () => {
+    return (
+      <Accordion
+        closedByDefault
+        displayClearButton={activeFilters?.chargePayers?.length > 0}
+        header={FilterAccordionHeader}
+        id="charge-payers-filter-accordion"
+        label={<FormattedMessage id="ui-oa.searchAndFilter.chargePayers" />}
+        onClearFilter={() => {
+          filterHandlers.clearGroup('chargePayers');
+        }}
+        separator={false}
+      >
+        <CheckboxFilter
+          dataOptions={chargePayersValues}
+          name="chargePayers"
+          onChange={onChangeHandler}
+          selectedValues={activeFilters?.chargePayers || []}
+        />
+      </Accordion>
+    );
+  };
+
   return (
     <>
       <AccordionSet>
@@ -170,6 +194,7 @@ function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
         {renderPublicationTypeFilter()}
         {renderOAStatusFilter()}
         {renderPublisherFilter()}
+        {renderChargePayersFilter()}
       </AccordionSet>
     </>
   );

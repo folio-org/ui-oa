@@ -37,6 +37,7 @@ const PublicationRequestsRoute = ({ children, path }) => {
         publicationType: 'publicationType.value',
         workOAStatus: 'workOAStatus.value',
         publisher: 'publisher.value',
+        chargePayers: 'charges.payers.payer.value'
       },
     },
   };
