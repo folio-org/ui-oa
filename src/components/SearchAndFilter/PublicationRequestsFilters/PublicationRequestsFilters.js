@@ -19,6 +19,7 @@ function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
   const requestStatusValues = useOARefdata('PublicationRequest.RequestStatus');
   const chargeStatusValues = useOARefdata('Charge.ChargeStatus');
   const publicationTypeValues = useOARefdata('PublicationRequest.PublicationType');
+  const workOAStatusValues = useOARefdata('Work.OaStatus');
 
   const onChangeHandler = (group) => {
     filterHandlers.state({
@@ -109,6 +110,29 @@ function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
     );
   };
 
+  const renderOAStatusFilter = () => {
+    return (
+      <Accordion
+        closedByDefault
+        displayClearButton={activeFilters?.workOAStatus?.length > 0}
+        header={FilterAccordionHeader}
+        id="work-oa-status-filter-accordion"
+        label={<FormattedMessage id="ui-oa.journal.oaStatus" />}
+        onClearFilter={() => {
+          filterHandlers.clearGroup('workOAStatus');
+        }}
+        separator={false}
+      >
+        <CheckboxFilter
+          dataOptions={workOAStatusValues}
+          name="workOAStatus"
+          onChange={onChangeHandler}
+          selectedValues={activeFilters?.workOAStatus || []}
+        />
+      </Accordion>
+    );
+  };
+
   return (
     <>
       <AccordionSet>
@@ -116,6 +140,7 @@ function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
         {renderRequestDateFilter()}
         {renderChargeStatusFitler()}
         {renderPublicationTypeFilter()}
+        {renderOAStatusFilter()}
       </AccordionSet>
     </>
   );
