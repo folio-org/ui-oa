@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { useHistory, useParams, Link } from 'react-router-dom';
@@ -34,7 +35,8 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
   // Filter publication requests in which the corresponding author matches the current party
   const { data: publicationRequests } = useQuery(
     ['ui-oa', 'party', 'publicationRequests', party.id],
-    () => ky(
+    () =>
+      ky(
         `${PUBLICATION_REQUESTS_ENDPOINT}?filters=correspondingAuthor.partyOwner.id==${party.id}`
       ).json()
   );
@@ -65,7 +67,8 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
       translation: (
         <FormattedMessage id="ui-oa.publicationRequest.requestDate" />
       ),
-      format: (d) => (d?.requestDate ? <FormattedUTCDate value={d.requestDate} /> : ''),
+      format: (d) =>
+        d?.requestDate ? <FormattedUTCDate value={d.requestDate} /> : '',
     },
     {
       name: 'requestStatus',
@@ -134,14 +137,16 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
           />
         }
       >
-        <PartyInfo {...getSectionProps('partyInfo')} />
-        {!!publicationRequests?.length && (
-          <RelatedRequests
-            requests={publicationRequests}
-            requestsFormatter={requestsFormatter}
-            sortFormatter={sortFormatter}
-          />
-        )}
+        <div tabIndex={0}>
+          <PartyInfo {...getSectionProps('partyInfo')} />
+          {!!publicationRequests?.length && (
+            <RelatedRequests
+              requests={publicationRequests}
+              requestsFormatter={requestsFormatter}
+              sortFormatter={sortFormatter}
+            />
+          )}
+        </div>
       </Pane>
     </HasCommand>
   );
