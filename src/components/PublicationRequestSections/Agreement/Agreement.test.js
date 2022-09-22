@@ -7,6 +7,11 @@ import { publicationRequest } from '../../../../test/resources';
 
 let renderComponent;
 
+jest.mock('@k-int/stripes-kint-components', () => ({
+  ...jest.requireActual('@k-int/stripes-kint-components'),
+  CustomPropertyCard: () => <div>CustomPropertyCard</div>,
+}));
+
 describe('Agreement', () => {
   describe('renders components with no values', () => {
     beforeEach(() => {
