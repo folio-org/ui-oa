@@ -44,6 +44,10 @@
   "searchAndFilter.requests": "Requests",
   "searchAndFilter.chargeStatus": "Charge status",
   "searchAndFilter.chargePayers": "Charge Payers",
+  "searchAndFilter.requestFilters": "Request filters",
+  "searchAndFilter.chargeFilters": "Charge filters",
+  "searchAndFilter.publicationFilters": "Publication filters",
+  "searchAndFilter.journalFilters": "Journal filters",
 
   "parties.people": "People",
   "parties.givenNames": "Given names",

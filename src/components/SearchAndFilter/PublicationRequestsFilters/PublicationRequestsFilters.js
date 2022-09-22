@@ -4,6 +4,7 @@ import {
   Accordion,
   AccordionSet,
   FilterAccordionHeader,
+  Headline,
 } from '@folio/stripes/components';
 import { FormattedMessage } from 'react-intl';
 import { DateFilter } from '@folio/stripes-erm-components';
@@ -15,7 +16,7 @@ const propTypes = {
   filterHandlers: PropTypes.object,
 };
 
-function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
+const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
   const requestStatusValues = useOARefdata('PublicationRequest.RequestStatus');
   const chargeStatusValues = useOARefdata('Charge.ChargeStatus');
   const publicationTypeValues = useOARefdata(
@@ -71,7 +72,6 @@ function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
   const renderChargeStatusFitler = () => {
     return (
       <Accordion
-        closedByDefault
         displayClearButton={activeFilters?.chargeStatus?.length > 0}
         header={FilterAccordionHeader}
         id="charge-status-filter-accordion"
@@ -94,7 +94,6 @@ function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
   const renderPublicationTypeFilter = () => {
     return (
       <Accordion
-        closedByDefault
         displayClearButton={activeFilters?.publicationType?.length > 0}
         header={FilterAccordionHeader}
         id="publication-type-filter-accordion"
@@ -119,7 +118,6 @@ function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
   const renderOAStatusFilter = () => {
     return (
       <Accordion
-        closedByDefault
         displayClearButton={activeFilters?.workOAStatus?.length > 0}
         header={FilterAccordionHeader}
         id="work-oa-status-filter-accordion"
@@ -142,7 +140,6 @@ function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
   const renderPublisherFilter = () => {
     return (
       <Accordion
-        closedByDefault
         displayClearButton={activeFilters?.publisher?.length > 0}
         header={FilterAccordionHeader}
         id="publisher-filter-accordion"
@@ -165,7 +162,6 @@ function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
   const renderChargePayersFilter = () => {
     return (
       <Accordion
-        closedByDefault
         displayClearButton={activeFilters?.chargePayers?.length > 0}
         header={FilterAccordionHeader}
         id="charge-payers-filter-accordion"
@@ -188,17 +184,28 @@ function PublicationRequestsFilters({ activeFilters, filterHandlers }) {
   return (
     <>
       <AccordionSet>
+        <Headline faded margin="none" size="large">
+          <FormattedMessage id="ui-oa.searchAndFilter.requestFilters" />
+        </Headline>
         {renderRequestStatusFilter()}
         {renderRequestDateFilter()}
-        {renderChargeStatusFitler()}
+        <hr />
+        <Headline faded margin="none" size="large">
+          <FormattedMessage id="ui-oa.searchAndFilter.publicationFilters" />
+        </Headline>
         {renderPublicationTypeFilter()}
-        {renderOAStatusFilter()}
         {renderPublisherFilter()}
+        {renderOAStatusFilter()}
+        <hr />
+        <Headline faded margin="none" size="large">
+          <FormattedMessage id="ui-oa.searchAndFilter.chargeFilters" />
+        </Headline>
+        {renderChargeStatusFitler()}
         {renderChargePayersFilter()}
       </AccordionSet>
     </>
   );
-}
+};
 
 PublicationRequestsFilters.propTypes = propTypes;
 

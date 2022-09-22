@@ -19,6 +19,7 @@ import { JournalModal } from '../../components/Modals';
 import urls from '../../util/urls';
 import focusSASQSearchField from '../../util/focusSASQSearchField';
 import { WORKS_ENDPOINT } from '../../constants/endpoints';
+import JournalFilters from '../../components/SearchAndFilter/JournalsFilters/JournalsFilters';
 
 const JournalsRoute = ({ path }) => {
   const history = useHistory();
@@ -41,7 +42,10 @@ const JournalsRoute = ({ path }) => {
     endpoint: WORKS_ENDPOINT,
     SASQ_MAP: {
       searchKey: 'instances.identifiers.identifier.value,title',
-      filterKeys: {},
+      filterKeys: {
+        oaStatus: 'oaStatus.value',
+        indexedInDOAJ: 'indexedInDOAJ.value',
+      },
     },
   };
 
@@ -104,6 +108,7 @@ const JournalsRoute = ({ path }) => {
       >
         <SASQRoute
           fetchParameters={fetchParameters}
+          FilterComponent={JournalFilters}
           FilterPaneHeaderComponent={renderHeaderComponent}
           id="journals"
           mainPaneProps={{
