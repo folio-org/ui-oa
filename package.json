@@ -60,21 +60,56 @@
     "permissionSets": [
       {
         "permissionName": "module.oa.enabled",
-        "displayName": "UI: ui-oa module is enabled"
+        "displayName": "UI: ui-oa module is enabled",
+        "subPermissions": [
+          "oa.scholarlyWork.view",
+          "oa.party.view"
+        ],
+        "visible":true
       },
       {
         "permissionName": "settings.oa.enabled",
         "displayName": "Settings (OA): display list of settings pages",
         "subPermissions": [
           "settings.enabled"
-        ]
+        ],
+        "visible": false
       },
       {
         "permissionName": "settings.oa.picklists.manage",
         "displayName": "Settings (Open Access): Manage pick lists and values",
         "subPermissions": [
           "settings.oa.enabled"
-        ]
+        ],
+        "visible":true
+      },
+      {
+        "permissionName": "module.oa.editor",
+        "displayName": "Open Access Requests: Edit all",
+        "subPermissions": [
+          "oa.settings.write",
+          "oa.scholarlyWork.manage",
+          "oa.party.manage"
+        ],
+        "visible":true
+      },
+      {
+        "permissionName": "module.oa.view",
+        "displayName": "(Open Access): View pick lists and values",
+        "subPermissions": [
+          "oa.scholarlyWork.view",
+          "oa.party.view"
+        ],
+        "visible":true
+      },
+      {
+        "permissionName": "module.oa.manage",
+        "displayName": "(Open Access): Manage pick lists and values",
+        "subPermissions": [
+          "oa.scholarlyWork.manage",
+          "oa.party.manage"
+        ],
+        "visible":true
       }
     ]
   },
