@@ -126,5 +126,44 @@
     "react-intl": "^5.8.1",
     "react-query": "^3.9.0",
     "react-router-dom": "^5.2.0"
-  }
+  },
+  "permissionSets": [
+    {
+      "permissionName": "module.oa.enabled",
+      "displayName": "Inventory: Module is enabled",
+      "subPermissions": [
+        "oa.scholarlyWork.view",
+        "oa.party.view"
+      ],
+      "visible":true
+    },
+    {
+      "permissionName": "module.oa.editor",
+      "displayName": "Open Access Requests: Edit all",
+      "subPermissions": [
+        "oa.settings.write",
+        "oa.scholarlyWork.manage",
+        "oa.party.manage"
+      ],
+      "visible":true
+    },
+    {
+      "permissionName": "module.oa.view",
+      "displayName": "(Open Access): View pick lists and values",
+      "subPermissions": [
+        "oa.scholarlyWork.view",
+        "oa.party.view"
+      ],
+      "visible":true
+    },
+    {
+      "permissionName": "module.oa.manage",
+      "displayName": "(Open Access): Manage pick lists and values",
+      "subPermissions": [
+        "oa.scholarlyWork.manage",
+        "oa.party.manage"
+      ],
+      "visible":true
+    }
+  ]
 }
