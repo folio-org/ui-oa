@@ -64,6 +64,17 @@ const validateMoreThanTotal = (values, allValues) => {
   return undefined;
 };
 
+const validateYear = (value) => {
+  const regexp = /^\\d{4}(-((0[0-9])|(1[0-2]))(-(([0-2][0-9])|3[0-1]))?)?\$/;
+  if (!value) {
+    return undefined;
+  } else {
+    return value && !regexp.test(value) ? (
+      <FormattedMessage id="ui-oa.charge.validate.fourDigits" />
+    ) : undefined;
+  }
+};
+
 export {
   validateNotNegative,
   validateAsDecimal,
@@ -71,4 +82,5 @@ export {
   validateDateFormat,
   validateURL,
   validateMoreThanTotal,
+  validateYear
 };
