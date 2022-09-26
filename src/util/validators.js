@@ -65,7 +65,7 @@ const validateMoreThanTotal = (values, allValues) => {
 };
 
 const validateYear = (value) => {
-  const regexp = /^\\d{4}(-((0[0-9])|(1[0-2]))(-(([0-2][0-9])|3[0-1]))?)?\$/;
+  const regexp = /^([0-9]{4})?$/;
   if (!value) {
     return undefined;
   } else {
@@ -82,5 +82,5 @@ export {
   validateDateFormat,
   validateURL,
   validateMoreThanTotal,
-  validateYear
+  validateYear,
 };

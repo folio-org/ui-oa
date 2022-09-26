@@ -285,8 +285,6 @@ const ChargeInfoForm = () => {
             )}
           />
         </Col>
-      </Row>
-      <Row>
         <Col xs={3}>
           <Field
             component={TextField}
