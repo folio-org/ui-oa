@@ -119,6 +119,7 @@ const JournalsRoute = ({ path }) => {
           path={path}
           resultColumns={resultColumns}
           sasqProps={{ initialSortState: { sort: 'title' } }}
+          searchFieldAriaLabel="journals-search-field"
           ViewComponent={Journal}
         />
       </HasCommand>

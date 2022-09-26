@@ -38,7 +38,7 @@ const PublicationRequestsRoute = ({ children, path }) => {
         workOAStatus: 'workOAStatus.value',
         publisher: 'publisher.value',
         chargePayers: 'charges.payers.payer.value',
-        correspondingInstitutionLevelOne: 'correspondingFaculty.value'
+        correspondingInstitutionLevelOne: 'correspondingFaculty.value',
       },
     },
   };
@@ -140,6 +140,7 @@ const PublicationRequestsRoute = ({ children, path }) => {
         path={path}
         resultColumns={resultColumns}
         sasqProps={{ initialSortState: { sort: 'requestNumber' } }}
+        searchFieldAriaLabel="publication-requests-search-field"
         ViewComponent={PublicationRequest}
       >
         {children}

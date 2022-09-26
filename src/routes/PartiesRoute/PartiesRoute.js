@@ -111,6 +111,7 @@ const PartiesRoute = ({ path }) => {
         path={path}
         resultColumns={resultColumns}
         sasqProps={{ initialSortState: { sort: 'familyName,givenNames' } }}
+        searchFieldAriaLabel="parties-search-field"
         ViewComponent={Party}
       />
     </HasCommand>
