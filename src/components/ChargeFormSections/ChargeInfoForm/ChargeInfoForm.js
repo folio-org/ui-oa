@@ -25,6 +25,7 @@ import {
   validateNotNegative,
   validateAsDecimal,
   validateNotLessThanZero,
+  validateYear,
 } from '../../../util/validators';
 import { getEstimatedInvoicePrice } from '../../../util/chargeUtils';
 import { useOARefdata, selectifyRefdata } from '../../../util';
@@ -282,6 +283,16 @@ const ChargeInfoForm = () => {
               validateNotLessThanZero,
               validateAsDecimal
             )}
+          />
+        </Col>
+        <Col xs={3}>
+          <Field
+            component={TextField}
+            label={<FormattedMessage id="ui-oa.charge.paymentPeriod" />}
+            name="paymentPeriod"
+            parse={(v) => v}
+            type="number"
+            validate={validateYear}
           />
         </Col>
       </Row>
