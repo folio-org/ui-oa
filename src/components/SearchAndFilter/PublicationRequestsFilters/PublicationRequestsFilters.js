@@ -88,7 +88,10 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
         separator={false}
       >
         <MultiSelectionFilter
+          ariaLabel="institution-level-one-filter"
+          ariaLabelledBy="corresponding-institution-level-one-filter"
           dataOptions={correspondingInstitutionLevelOneValues}
+          id="corresponding-institution-level-one-filter"
           name="correspondingInstitutionLevelOne"
           onChange={onChangeHandler}
           selectedValues={activeFilters?.correspondingInstitutionLevelOne || []}
@@ -178,7 +181,10 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
         separator={false}
       >
         <MultiSelectionFilter
+          ariaLabel="publisher-filter"
+          ariaLabelledBy="publisher-filter-accordion"
           dataOptions={publisherValues}
+          id="publisher-filter"
           name="publisher"
           onChange={onChangeHandler}
           selectedValues={activeFilters?.publisher || []}
@@ -200,7 +206,10 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
         separator={false}
       >
         <MultiSelectionFilter
+          ariaLabel="charge-payers-filter"
+          ariaLabelledBy="charge-payers-filter-accordion"
           dataOptions={chargePayersValues}
+          id="charge-payers-filter"
           name="chargePayers"
           onChange={onChangeHandler}
           selectedValues={activeFilters?.chargePayers || []}
