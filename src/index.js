@@ -45,6 +45,9 @@ const App = (props) => {
     match: { path },
   } = props;
 
+  const addKey = useIntlKeyStore(state => state.addKey);
+  addKey('ui-oa');
+
   if (actAs === 'settings') {
     return (
       <Suspense fallback={null}>
@@ -52,9 +55,6 @@ const App = (props) => {
       </Suspense>
     );
   }
-
-  const addKey = useIntlKeyStore(state => state.addKey);
-  addKey('ui-oa');
 
   const keyboardShortcuts = importShortcuts([
     'new',

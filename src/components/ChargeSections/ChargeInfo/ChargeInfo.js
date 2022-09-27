@@ -78,10 +78,16 @@ const ChargeInfo = ({ charge }) => {
             }
           />
         </Col>
-        <Col xs={9}>
+        <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.charge.discountNote" />}
             value={charge?.discountNote}
+          />
+        </Col>
+        <Col xs={3}>
+          <KeyValue
+            label={<FormattedMessage id="ui-oa.charge.paymentPeriod" />}
+            value={charge?.paymentPeriod}
           />
         </Col>
       </Row>
