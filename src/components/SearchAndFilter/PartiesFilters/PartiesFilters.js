@@ -38,7 +38,9 @@ const PartiesFilters = ({ activeFilters, filterHandlers }) => {
         separator={false}
       >
         <MultiSelectionFilter
+          ariaLabelledBy="institution-level-one-filter"
           dataOptions={institutionLevelOneValues}
+          id="institution-level-one-filter"
           name="institutionLevelOne"
           onChange={onChangeHandler}
           selectedValues={activeFilters?.institutionLevelOne || []}

@@ -88,7 +88,6 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
         separator={false}
       >
         <MultiSelectionFilter
-          ariaLabel="institution-level-one-filter"
           ariaLabelledBy="corresponding-institution-level-one-filter"
           dataOptions={correspondingInstitutionLevelOneValues}
           id="corresponding-institution-level-one-filter"
@@ -181,7 +180,6 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
         separator={false}
       >
         <MultiSelectionFilter
-          ariaLabel="publisher-filter"
           ariaLabelledBy="publisher-filter-accordion"
           dataOptions={publisherValues}
           id="publisher-filter"
@@ -206,7 +204,6 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
         separator={false}
       >
         <MultiSelectionFilter
-          ariaLabel="charge-payers-filter"
           ariaLabelledBy="charge-payers-filter-accordion"
           dataOptions={chargePayersValues}
           id="charge-payers-filter"
