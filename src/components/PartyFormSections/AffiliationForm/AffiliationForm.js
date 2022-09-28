@@ -6,14 +6,14 @@ import { MAX_CHAR_LONG } from '../../../constants/config';
 import { useOARefdata, selectifyRefdata } from '../../../util';
 
 const AffiliationForm = () => {
-  const institutionLevelOneRefdata = selectifyRefdata(useOARefdata('Party.institutionLevel1'));
+  const institutionLevel1Refdata = selectifyRefdata(useOARefdata('Party.institutionLevel1'));
 
   return (
     <Row>
       <Col xs={3}>
         <Field
           component={Select}
-          dataOptions={[{ value: '', label: '' }, ...institutionLevelOneRefdata]}
+          dataOptions={[{ value: '', label: '' }, ...institutionLevel1Refdata]}
           id="party-institution-level-one"
           label={<FormattedMessage id="ui-oa.party.institutionLevelOne" />}
           name="institutionLevel1.id"

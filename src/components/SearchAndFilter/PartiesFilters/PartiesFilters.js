@@ -16,7 +16,7 @@ const propTypes = {
 };
 
 const PartiesFilters = ({ activeFilters, filterHandlers }) => {
-  const institutionLevelOneValues = useOARefdata('Party.InstitutionLevel1');
+  const institutionLevel1Values = useOARefdata('Party.InstitutionLevel1');
 
   const onChangeHandler = (group) => {
     filterHandlers.state({
@@ -25,25 +25,25 @@ const PartiesFilters = ({ activeFilters, filterHandlers }) => {
     });
   };
 
-  const renderInstitutionLevelOneFilter = () => {
+  const renderInstitutionLevel1Filter = () => {
     return (
       <Accordion
-        displayClearButton={activeFilters?.institutionLevelOne?.length > 0}
+        displayClearButton={activeFilters?.institutionLevel1?.length > 0}
         header={FilterAccordionHeader}
         id="institution-level-one-filter-accordion"
         label={<FormattedMessage id="ui-oa.party.institutionLevelOne" />}
         onClearFilter={() => {
-          filterHandlers.clearGroup('institutionLevelOne');
+          filterHandlers.clearGroup('institutionLevel1');
         }}
         separator={false}
       >
         <MultiSelectionFilter
           ariaLabelledBy="institution-level-one-filter"
-          dataOptions={institutionLevelOneValues}
+          dataOptions={institutionLevel1Values}
           id="institution-level-one-filter"
-          name="institutionLevelOne"
+          name="institutionLevel1"
           onChange={onChangeHandler}
-          selectedValues={activeFilters?.institutionLevelOne || []}
+          selectedValues={activeFilters?.institutionLevel1 || []}
         />
       </Accordion>
     );
@@ -55,7 +55,7 @@ const PartiesFilters = ({ activeFilters, filterHandlers }) => {
         <Headline faded margin="none" size="large">
           <FormattedMessage id="ui-oa.searchAndFilter.peopleFilters" />
         </Headline>
-        {renderInstitutionLevelOneFilter()}
+        {renderInstitutionLevel1Filter()}
       </AccordionSet>
     </>
   );
