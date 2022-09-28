@@ -16,7 +16,7 @@ const propTypes = {
 };
 
 const PartiesFilters = ({ activeFilters, filterHandlers }) => {
-  const institutionLevelOneValues = useOARefdata('Party.Faculty');
+  const institutionLevelOneValues = useOARefdata('Party.InstitutionLevel1');
 
   const onChangeHandler = (group) => {
     filterHandlers.state({

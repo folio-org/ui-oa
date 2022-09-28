@@ -38,7 +38,7 @@ const PublicationRequestsRoute = ({ children, path }) => {
         workOAStatus: 'workOAStatus.value',
         publisher: 'publisher.value',
         chargePayers: 'charges.payers.payer.value',
-        correspondingInstitutionLevelOne: 'correspondingFaculty.value',
+        correspondingInstitutionLevelOne: 'correspondingInstitutionLevel1.value',
       },
     },
   };

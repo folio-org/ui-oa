@@ -411,7 +411,7 @@ const refdata = [
   },
   {
     id: '2c9180b382a457810182a45bddd70036',
-    desc: 'Party.Faculty',
+    desc: 'Party.InstitutionLevel1',
     internal: false,
     values: [
       {

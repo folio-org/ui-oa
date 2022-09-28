@@ -15,7 +15,7 @@ let renderComponent;
 jest.mock('../../../util', () => ({
   ...jest.requireActual('../../../util'),
   useOARefdata: () => mockRefdata.filter(
-      (obj) => obj.desc === 'Party.Faculty'
+      (obj) => obj.desc === 'Party.InstitutionLevel1'
     ),
 }));
 

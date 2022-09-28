@@ -63,13 +63,13 @@ const CorrespondingAuthor = ({ request }) => {
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.party.institutionLevelOne" />}
-            value={request?.correspondingFaculty?.label}
+            value={request?.correspondingInstitutionLevel1?.label}
           />
         </Col>
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.party.institutionLevelTwo" />}
-            value={request?.correspondingDepartment}
+            value={request?.correspondingInstitutionLevel2}
           />
         </Col>
       </Row>

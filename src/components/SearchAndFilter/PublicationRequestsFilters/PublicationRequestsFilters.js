@@ -28,7 +28,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
   const workOAStatusValues = useOARefdata('Work.OaStatus');
   const publisherValues = useOARefdata('PublicationRequest.Publisher');
   const chargePayersValues = useOARefdata('Payer.Payer');
-  const correspondingInstitutionLevelOneValues = useOARefdata('Party.Faculty');
+  const correspondingInstitutionLevelOneValues = useOARefdata('Party.InstitutionLevel1');
 
   const onChangeHandler = (group) => {
     filterHandlers.state({
