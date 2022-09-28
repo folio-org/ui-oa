@@ -31,7 +31,7 @@ const PartiesRoute = ({ path }) => {
     endpoint: PARTIES_ENDPOINT,
     SASQ_MAP: {
       searchKey: 'mainEmail,givenNames,familyName,orcidId',
-      filterKeys: { institutionLevelOne: 'faculty.value' },
+      filterKeys: { institutionLevel1: 'institutionLevel1.value' },
     },
   };
 
