@@ -6,7 +6,7 @@ import { MAX_CHAR_LONG } from '../../../constants/config';
 import { useOARefdata, selectifyRefdata } from '../../../util';
 
 const AffiliationForm = () => {
-  const institutionLevel1Refdata = selectifyRefdata(useOARefdata('Party.institutionLevel1'));
+  const institutionLevel1Refdata = selectifyRefdata(useOARefdata('Party.InstitutionLevel1'));
 
   return (
     <Row>
