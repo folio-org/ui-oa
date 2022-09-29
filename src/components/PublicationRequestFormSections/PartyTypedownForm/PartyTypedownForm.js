@@ -40,7 +40,7 @@ const PartyTypedownForm = ({ formName }) => {
   const { values } = useFormState();
   const { change } = useForm();
   const [showPartyModal, setShowPartyModal] = useState(false);
-  const facultyRefData = selectifyRefdata(useOARefdata('Party.Faculty'));
+  const institutionLevel1Refdata = selectifyRefdata(useOARefdata('Party.InstitutionLevel1'));
 
   const pathMutator = (input, path) => {
     const query = generateKiwtQuery(
@@ -59,8 +59,8 @@ const PartyTypedownForm = ({ formName }) => {
   const handlePartyChange = (party) => {
     change(`${formName}.partyOwner`, party);
     if (formName === 'correspondingAuthor') {
-      change('correspondingFaculty.id', party?.faculty?.id);
-      change('correspondingDepartment', party?.department);
+      change('correspondingInstitutionLevel1.id', party?.correspondingInstitutionLevel1?.id);
+      change('correspondingInstitutionLevel2', party?.correspondingInstitutionLevel2);
     }
   };
 
@@ -201,12 +201,12 @@ const PartyTypedownForm = ({ formName }) => {
                 <Col xs={3}>
                   <Field
                     component={Select}
-                    dataOptions={[{ value: '', label: '' }, ...facultyRefData]}
-                    id="publication-request-faculty"
+                    dataOptions={[{ value: '', label: '' }, ...institutionLevel1Refdata]}
+                    id="publication-request-corresponding-institution-level-1"
                     label={
                       <FormattedMessage id="ui-oa.party.institutionLevelOne" />
                     }
-                    name="correspondingFaculty.id"
+                    name="correspondingInstitutionLevel1.id"
                     required
                     validate={requiredValidator}
                   />
@@ -214,12 +214,12 @@ const PartyTypedownForm = ({ formName }) => {
                 <Col xs={3}>
                   <Field
                     component={TextField}
-                    id="publication-request-department"
+                    id="publication-request-corresponding-institution-level-2"
                     label={
                       <FormattedMessage id="ui-oa.party.institutionLevelTwo" />
                     }
                     maxLength={MAX_CHAR_LONG}
-                    name="correspondingDepartment"
+                    name="correspondingInstitutionLevel2"
                     parse={(v) => v}
                   />
                 </Col>

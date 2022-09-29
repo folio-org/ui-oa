@@ -154,13 +154,13 @@ const PartyInfo = ({ party, isCard }) => {
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.party.institutionLevelOne" />}
-            value={party?.faculty?.label}
+            value={party?.institutionLevel1?.label}
           />
         </Col>
         <Col xs={3}>
           <KeyValue
             label={<FormattedMessage id="ui-oa.party.institutionLevelTwo" />}
-            value={party?.department}
+            value={party?.institutionLevel2}
           />
         </Col>
         <Col xs={6}>

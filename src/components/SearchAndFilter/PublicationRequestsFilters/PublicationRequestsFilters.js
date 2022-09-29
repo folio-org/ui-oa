@@ -28,7 +28,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
   const workOAStatusValues = useOARefdata('Work.OaStatus');
   const publisherValues = useOARefdata('PublicationRequest.Publisher');
   const chargePayersValues = useOARefdata('Payer.Payer');
-  const correspondingInstitutionLevelOneValues = useOARefdata('Party.Faculty');
+  const correspondingInstitutionLevel1Values = useOARefdata('Party.InstitutionLevel1');
 
   const onChangeHandler = (group) => {
     filterHandlers.state({
@@ -73,27 +73,27 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
     );
   };
 
-  const renderCorrespondingInstitutionLevelOneFilter = () => {
+  const renderCorrespondingInstitutionLevel1Filter = () => {
     return (
       <Accordion
         displayClearButton={
-          activeFilters?.correspondingInstitutionLevelOne?.length > 0
+          activeFilters?.correspondingInstitutionLevel1?.length > 0
         }
         header={FilterAccordionHeader}
         id="corresponding-institution-level-one-filter-accordion"
         label={<FormattedMessage id="ui-oa.party.institutionLevelOne" />}
         onClearFilter={() => {
-          filterHandlers.clearGroup('correspondingInstitutionLevelOne');
+          filterHandlers.clearGroup('correspondingInstitutionLevel1');
         }}
         separator={false}
       >
         <MultiSelectionFilter
           ariaLabelledBy="corresponding-institution-level-one-filter"
-          dataOptions={correspondingInstitutionLevelOneValues}
+          dataOptions={correspondingInstitutionLevel1Values}
           id="corresponding-institution-level-one-filter"
-          name="correspondingInstitutionLevelOne"
+          name="correspondingInstitutionLevel1"
           onChange={onChangeHandler}
-          selectedValues={activeFilters?.correspondingInstitutionLevelOne || []}
+          selectedValues={activeFilters?.correspondingInstitutionLevel1 || []}
         />
       </Accordion>
     );
@@ -223,7 +223,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
         </Headline>
         {renderRequestStatusFilter()}
         {renderRequestDateFilter()}
-        {renderCorrespondingInstitutionLevelOneFilter()}
+        {renderCorrespondingInstitutionLevel1Filter()}
         <hr />
         <Headline faded margin="none" size="large">
           <FormattedMessage id="ui-oa.searchAndFilter.publicationFilters" />
