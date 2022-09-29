@@ -10,9 +10,21 @@ import {
 import { Field } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';
 import { requiredValidator } from '@folio/stripes-erm-components';
+import { useOARefdata, selectifyRefdata } from '../../../util';
 import { validateYear } from '../../../util/validators';
 
 const ReportingInfoForm = ({ institutionName }) => {
+  // Refactor to use category from selectify - im an idiot
+  const chargeStatusesValues = selectifyRefdata(
+    useOARefdata('Charge.ChargeStatus'),
+    null,
+    'value'
+  );
+  const chargeCategoriesValues = selectifyRefdata(
+    useOARefdata('Charge.Category'),
+    null,
+    'value'
+  );
   const insututionDataOptions = [institutionName];
 
   return (
@@ -52,6 +64,7 @@ const ReportingInfoForm = ({ institutionName }) => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.report.paymentPeriod" />}
             name="paymentPeriod"
+            type="number"
             validate={validateYear}
           />
         </Col>
@@ -60,6 +73,7 @@ const ReportingInfoForm = ({ institutionName }) => {
         <Col xs={6}>
           <Field
             component={MultiSelection}
+            dataOptions={chargeStatusesValues}
             label={<FormattedMessage id="ui-oa.report.chargeCategories" />}
             name="chargeCategories"
           />
@@ -67,6 +81,7 @@ const ReportingInfoForm = ({ institutionName }) => {
         <Col xs={6}>
           <Field
             component={MultiSelection}
+            dataOptions={chargeCategoriesValues}
             label={<FormattedMessage id="ui-oa.report.chargeStatuses" />}
             name="chargeStatuses"
           />
