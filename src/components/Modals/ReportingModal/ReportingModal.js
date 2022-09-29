@@ -16,15 +16,17 @@ const ReportingModal = ({ showModal, setShowModal }) => {
     console.log(values);
   };
 
-  const renderFooter = () => {
+  const renderFooter = ({ formState, handleSubmit }) => {
+    const { invalid, pristine, submitting } = formState;
     return (
       <>
         <ModalFooter>
           <Button
             buttonStyle="primary"
+            disabled={submitting || invalid || pristine}
             id="clickable-run-and download-report"
             marginBottom0
-            onClick={() => setShowModal(false)}
+            onClick={handleSubmit}
           >
             <FormattedMessage id="ui-oa.report.runReportAndDownload" />
           </Button>
