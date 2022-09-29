@@ -5,7 +5,11 @@ import { FormattedMessage } from 'react-intl';
 import { Button, ModalFooter } from '@folio/stripes/components';
 import { FormModal } from '@k-int/stripes-kint-components';
 
+import ReportingInfoForm from '../../ReportingFormSections';
+import { useOARefdata } from '../../../util';
+
 const ReportingModal = ({ showModal, setShowModal }) => {
+  const institutionName = useOARefdata('Funding.Funder')[0];
   const handleClose = () => setShowModal(false);
 
   const submitReport = (values) => {
@@ -22,7 +26,7 @@ const ReportingModal = ({ showModal, setShowModal }) => {
             marginBottom0
             onClick={() => setShowModal(false)}
           >
-            <FormattedMessage id="ui-oa.publicationRequest.runReportAndDownload" />
+            <FormattedMessage id="ui-oa.report.runReportAndDownload" />
           </Button>
           <Button
             id="clickable-cancel-report"
@@ -38,18 +42,21 @@ const ReportingModal = ({ showModal, setShowModal }) => {
 
   return (
     <FormModal
+      initialValues={{
+        institutionName,
+        reportFormat: { value: 'openapc_apc', label: 'OpenAPC APC' },
+      }}
       modalProps={{
+        dismissible: true,
         footer: renderFooter,
         onClose: handleClose,
         open: showModal,
-        label: (
-          <FormattedMessage id="ui-oa.publicationRequest.runOpenAPCChargesReport" />
-        ),
+        label: <FormattedMessage id="ui-oa.report.runOpenAPCChargesReport" />,
       }}
       mutators={arrayMutators}
       onSubmit={submitReport}
     >
-      <></>
+      <ReportingInfoForm institutionName={institutionName} />
     </FormModal>
   );
 };
