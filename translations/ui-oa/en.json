@@ -210,6 +210,8 @@
   "publicationRequest.requestNumber": "Request number",
   "publicationRequest.requestDate": "Request date",
   "publicationRequest.requestTitle": "Request number - {number}",
+  "publicationRequest.runOpenAPCChargesReport": "Run OpenAPC charges report",
+  "publicationRequest.runReportAndDownload": "Run report and download",
   "publicationRequest.selectedJournal": "Journal",
   "publicationRequest.showChecklist": "Show checklist",
   "publicationRequest.success.callout": "Publication request {requestNumber} successfully created",
