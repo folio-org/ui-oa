@@ -14,7 +14,6 @@ import { useOARefdata, selectifyRefdata } from '../../../util';
 import { validateYear } from '../../../util/validators';
 
 const ReportingInfoForm = ({ institutionName }) => {
-  // Refactor to use category from selectify - im an idiot
   const chargeStatusesValues = selectifyRefdata(
     useOARefdata('Charge.ChargeStatus'),
     null,
@@ -54,7 +53,11 @@ const ReportingInfoForm = ({ institutionName }) => {
         </Col>
       </Row>
       <Label
-        style={{ marginBottom: '1rem', marginTop: '1.5rem', fontSize: 'large' }}
+        style={{
+          marginBottom: '1rem',
+          marginTop: '1.5rem',
+          fontSize: '1.2rem',
+        }}
       >
         <FormattedMessage id="ui-oa.report.reportParameters" />
       </Label>
@@ -73,7 +76,7 @@ const ReportingInfoForm = ({ institutionName }) => {
         <Col xs={6}>
           <Field
             component={MultiSelection}
-            dataOptions={chargeStatusesValues}
+            dataOptions={chargeCategoriesValues}
             label={<FormattedMessage id="ui-oa.report.chargeCategories" />}
             name="chargeCategories"
           />
@@ -81,7 +84,7 @@ const ReportingInfoForm = ({ institutionName }) => {
         <Col xs={6}>
           <Field
             component={MultiSelection}
-            dataOptions={chargeCategoriesValues}
+            dataOptions={chargeStatusesValues}
             label={<FormattedMessage id="ui-oa.report.chargeStatuses" />}
             name="chargeStatuses"
           />

@@ -9,8 +9,7 @@ import ReportingInfoForm from '../../ReportingFormSections';
 import { useOARefdata } from '../../../util';
 
 const ReportingModal = ({ showModal, setShowModal }) => {
-  // Change to institutionName when backend changes go through
-  const institutionName = useOARefdata('Funding.Funder')[0];
+  const institutionName = useOARefdata('InstitutionName')[0];
   const handleClose = () => setShowModal(false);
 
   const submitReport = (values) => {
