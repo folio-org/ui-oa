@@ -35,7 +35,7 @@
       "invoice": "7.0",
       "erm": "5.0",
       "organizations": "1.0",
-      "finance.exchange-rate": "1.2"
+      "finance.exchange-rate": "1.0"
     },
     "stripesDeps": [
       "@folio/stripes-erm-components",
