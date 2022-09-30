@@ -118,6 +118,7 @@ const ChargeBreakdown = ({ charge }) => {
               ),
             }}
             contentData={breakdownArray}
+            interactive={false}
             visibleColumns={['description', 'chargeAmount', 'localAmount']}
           />
         </Col>
