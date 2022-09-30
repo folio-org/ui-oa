@@ -34,7 +34,8 @@
     "optionalOkapiInterfaces": {
       "invoice": "7.0",
       "erm": "5.0",
-      "organizations.organizations": "1.0"
+      "organizations": "1.0",
+      "finance.exchange-rate": "1.2"
     },
     "stripesDeps": [
       "@folio/stripes-erm-components",
