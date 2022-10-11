@@ -10,7 +10,7 @@ import { useOARefdata } from '../../../util';
 import useGenerateReport from '../../../hooks/useGenerateReport';
 
 const ReportingModal = ({ showModal, setShowModal }) => {
-  const { generate } = useGenerateReport();
+  const { generate, queryObject } = useGenerateReport();
   const institution = useOARefdata('InstitutionName')[0];
 
   const handleClose = () => setShowModal(false);
@@ -49,7 +49,6 @@ const ReportingModal = ({ showModal, setShowModal }) => {
     <FormModal
       initialValues={{
         institution,
-        reportFormat: { value: 'openapc_apc', label: 'OpenAPC APC' },
       }}
       modalProps={{
         dismissible: true,
@@ -61,7 +60,11 @@ const ReportingModal = ({ showModal, setShowModal }) => {
       mutators={arrayMutators}
       onSubmit={submitReport}
     >
-      <ReportingInfoForm institution={institution} />
+      {queryObject.isFetching ? (
+        <></>
+      ) : (
+        <ReportingInfoForm institution={institution} />
+      )}
     </FormModal>
   );
 };

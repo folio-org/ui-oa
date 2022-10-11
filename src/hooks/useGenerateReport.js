@@ -21,21 +21,20 @@ const useGenerateReport = (queryOptions) => {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${values?.paymentPeriod}_${values?.institution?.value}_OpenAPC_Charges_Report.csv`;
+    a.download = `${values?.paymentPeriod}_${values?.institution?.value}_${values?.reportFormat}.csv`;
     document.body.appendChild(a);
     a.click();
     a.remove();
     setValues();
   };
 
-  const path = `${REPORT_ENDPOINT('openApcChargesReport')}?${queryParams.join('&')}`;
+  const path = `${REPORT_ENDPOINT(
+    values?.reportFormat
+  )}?${queryParams.join('&')}`;
 
   const queryObject = useQuery(
     [values, path, 'ui-oa', 'useGenerateReport'],
-    () => ky
-        .get(path)
-        .blob()
-        .then(downloadBlob()),
+    () => ky.get(path).blob().then(downloadBlob()),
     {
       enabled: !!values,
       cacheTime: 0,

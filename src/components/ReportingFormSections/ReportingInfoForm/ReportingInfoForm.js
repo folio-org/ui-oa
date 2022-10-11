@@ -1,11 +1,5 @@
 import PropTypes from 'prop-types';
-import {
-  Col,
-  Label,
-  Row,
-  Select,
-  TextField,
-} from '@folio/stripes/components';
+import { Col, Label, Row, Select, TextField } from '@folio/stripes/components';
 import { Field } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';
 import { requiredValidator } from '@folio/stripes-erm-components';
@@ -42,8 +36,11 @@ const ReportingInfoForm = ({ institution }) => {
         <Col xs={6}>
           <Field
             component={Select}
-            dataOptions={[{ value: 'openapc_apc', label: 'OpenAPC APC' }]}
-            disabled
+            dataOptions={[
+              { value: '', label: '' },
+              { value: 'openApcChargesReport', label: 'OpenAPC APC' },
+              { value: 'openApcBcpReport', label: 'OpenAPC BPC' },
+            ]}
             label={<FormattedMessage id="ui-oa.report.reportFormat" />}
             name="reportFormat"
             required
