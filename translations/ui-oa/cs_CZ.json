@@ -384,11 +384,11 @@
     "searchAndFilter.publicationFilters": "Filtry publikací",
     "searchAndFilter.journalFilters": "Filtry časopisu",
     "searchAndFilter.peopleFilters": "Filtry lidí",
-    "charge.paymentPeriod": "Payment period",
-    "charge.validate.fourDigits": "Must be a 4 digit number",
-    "refdata.deleteRefdataValue": "Delete refdata value",
-    "refdata.deleteRefdataValue.confirmMessage": "<strong>{name}</strong> will be deleted.",
-    "refdata.deleteRefdataValue.errorMessage": "<strong>Error: {label}</strong> was not deleted. {error}",
-    "refdata.editAriaLabel": "Edit value {label}",
-    "refdata.deleteAriaLabel": "Delete value {label}"
+    "charge.paymentPeriod": "Platební lhůta",
+    "charge.validate.fourDigits": "Musí to být čtyřmístné číslo",
+    "refdata.deleteRefdataValue": "Smazat hodnotu referenčních údajů",
+    "refdata.deleteRefdataValue.confirmMessage": "<strong>{name}</strong> bude smazáno.",
+    "refdata.deleteRefdataValue.errorMessage": "<strong>Chyba: {label}</strong> nebyl smazán. {error}",
+    "refdata.editAriaLabel": "Upravit hodnotu {label}",
+    "refdata.deleteAriaLabel": "Smazat hodnotu {label}"
 }
