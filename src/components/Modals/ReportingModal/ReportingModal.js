@@ -10,14 +10,13 @@ import { useOARefdata } from '../../../util';
 import useGenerateReport from '../../../hooks/useGenerateReport';
 
 const ReportingModal = ({ showModal, setShowModal }) => {
-  const { generate, setValues } = useGenerateReport();
+  const { generate } = useGenerateReport();
   const institution = useOARefdata('InstitutionName')[0];
 
   const handleClose = () => setShowModal(false);
 
   const submitReport = (values) => {
-    setValues(values);
-    generate();
+    generate(values);
   };
 
   const renderFooter = ({ formState, handleSubmit }) => {

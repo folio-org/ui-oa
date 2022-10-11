@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 import { REPORT_ENDPOINT } from '../constants/endpoints';
 
 const useGenerateReport = (queryOptions) => {
-  const [values, setValues] = useState({});
+  const [values, setValues] = useState();
   const ky = useOkapiKy();
 
   const paramMap = {
@@ -25,23 +25,26 @@ const useGenerateReport = (queryOptions) => {
     document.body.appendChild(a);
     a.click();
     a.remove();
+    setValues();
   };
 
   const path = `${REPORT_ENDPOINT('openApcChargesReport')}?${queryParams.join('&')}`;
 
   const queryObject = useQuery(
     [values, path, 'ui-oa', 'useGenerateReport'],
-    () => ky.get(path).blob().then(downloadBlob()),
+    () => ky
+        .get(path)
+        .blob()
+        .then(downloadBlob()),
     {
-      enabled: false,
+      enabled: !!values,
       cacheTime: 0,
       ...queryOptions,
     }
   );
 
   return {
-    generate: queryObject.refetch,
-    setValues,
+    generate: setValues,
     queryObject,
   };
 };
