@@ -383,5 +383,12 @@
     "searchAndFilter.chargeFilters": "Charge filters",
     "searchAndFilter.publicationFilters": "Publication filters",
     "searchAndFilter.journalFilters": "Journal filters",
-    "searchAndFilter.peopleFilters": "People filters"
+    "searchAndFilter.peopleFilters": "People filters",
+    "charge.paymentPeriod": "Payment period",
+    "charge.validate.fourDigits": "Must be a 4 digit number",
+    "refdata.deleteRefdataValue": "Delete refdata value",
+    "refdata.deleteRefdataValue.confirmMessage": "<strong>{name}</strong> will be deleted.",
+    "refdata.deleteRefdataValue.errorMessage": "<strong>Error: {label}</strong> was not deleted. {error}",
+    "refdata.editAriaLabel": "Edit value {label}",
+    "refdata.deleteAriaLabel": "Delete value {label}"
 }

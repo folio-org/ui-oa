@@ -180,7 +180,7 @@
     "journal.instance.subtype": "Sottotipo",
     "journal.instance.subType.electronic": "Elettronico",
     "journal.instance.subType.print": "Stampa",
-    "journal.instance.identifier.addIdentifier": "Aggiungi identificativo",
+    "journal.instance.identifier.addIdentifier": "Aggiungi identificatore",
     "journal.instance.identifier.nameSpace": "Namespace",
     "journal.instance.identifier.id": "ID",
     "journal.instance.identifier.ns.issn": "ISSN",
@@ -383,5 +383,12 @@
     "searchAndFilter.chargeFilters": "Charge filters",
     "searchAndFilter.publicationFilters": "Publication filters",
     "searchAndFilter.journalFilters": "Journal filters",
-    "searchAndFilter.peopleFilters": "People filters"
+    "searchAndFilter.peopleFilters": "People filters",
+    "charge.paymentPeriod": "Payment period",
+    "charge.validate.fourDigits": "Must be a 4 digit number",
+    "refdata.deleteRefdataValue": "Eliminare il valore refdata",
+    "refdata.deleteRefdataValue.confirmMessage": "<strong> {name} </strong> verrà eliminato.",
+    "refdata.deleteRefdataValue.errorMessage": "<strong> Errore: {label} </strong> non è stato eliminato. {error}",
+    "refdata.editAriaLabel": "Modificare il valore {label}",
+    "refdata.deleteAriaLabel": "Cancella il valore {label}"
 }
