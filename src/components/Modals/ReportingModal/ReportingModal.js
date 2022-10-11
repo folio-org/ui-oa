@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 import arrayMutators from 'final-form-arrays';
 import { FormattedMessage } from 'react-intl';
@@ -11,13 +10,13 @@ import { useOARefdata } from '../../../util';
 import useGenerateReport from '../../../hooks/useGenerateReport';
 
 const ReportingModal = ({ showModal, setShowModal }) => {
-  const [params, setParams] = useState({});
-  const { generate } = useGenerateReport(params);
-  const handleClose = () => setShowModal(false);
+  const { generate, setValues } = useGenerateReport();
   const institution = useOARefdata('InstitutionName')[0];
 
-  const submitReport = async (values) => {
-    setParams(values);
+  const handleClose = () => setShowModal(false);
+
+  const submitReport = (values) => {
+    setValues(values);
     generate();
   };
 

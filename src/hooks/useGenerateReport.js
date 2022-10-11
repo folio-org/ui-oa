@@ -1,16 +1,18 @@
 import { useOkapiKy } from '@folio/stripes/core';
 import { generateKiwtQueryParams } from '@k-int/stripes-kint-components';
+import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { REPORT_ENDPOINT } from '../constants/endpoints';
 
-const useGenerateReport = (values, queryOptions) => {
+const useGenerateReport = (queryOptions) => {
+  const [values, setValues] = useState({});
   const ky = useOkapiKy();
 
   const paramMap = {
     institution: values?.institution?.value,
     paymentPeriod: values?.paymentPeriod,
-    chargeCategory: values?.chargeCategories,
-    chargeStatus: values?.chargeStatuses,
+    chargeCategory: values?.chargeCategory,
+    chargeStatus: values?.chargeStatus,
   };
 
   const queryParams = generateKiwtQueryParams(paramMap, {});
@@ -28,7 +30,7 @@ const useGenerateReport = (values, queryOptions) => {
   const path = `${REPORT_ENDPOINT('openApcChargesReport')}?${queryParams.join('&')}`;
 
   const queryObject = useQuery(
-    [path, 'ui-oa', 'useGenerateReport'],
+    [values, path, 'ui-oa', 'useGenerateReport'],
     () => ky.get(path).blob().then(downloadBlob()),
     {
       enabled: false,
@@ -39,6 +41,7 @@ const useGenerateReport = (values, queryOptions) => {
 
   return {
     generate: queryObject.refetch,
+    setValues,
     queryObject,
   };
 };

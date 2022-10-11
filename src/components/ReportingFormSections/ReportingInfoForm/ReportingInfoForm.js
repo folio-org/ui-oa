@@ -77,7 +77,7 @@ const ReportingInfoForm = ({ institution }) => {
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...chargeCategoriesValues]}
             label={<FormattedMessage id="ui-oa.report.chargeCategories" />}
-            name="chargeCategories"
+            name="chargeCategory"
           />
         </Col>
         <Col xs={6}>
@@ -85,7 +85,7 @@ const ReportingInfoForm = ({ institution }) => {
             component={Select}
             dataOptions={[{ value: '', label: '' }, ...chargeStatusesValues]}
             label={<FormattedMessage id="ui-oa.report.chargeStatuses" />}
-            name="chargeStatuses"
+            name="chargeStatus"
           />
         </Col>
       </Row>
