@@ -5,7 +5,6 @@ import {
   Row,
   Select,
   TextField,
-  MultiSelection,
 } from '@folio/stripes/components';
 import { Field } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';
@@ -13,7 +12,7 @@ import { requiredValidator } from '@folio/stripes-erm-components';
 import { useOARefdata, selectifyRefdata } from '../../../util';
 import { validateYear } from '../../../util/validators';
 
-const ReportingInfoForm = ({ institutionName }) => {
+const ReportingInfoForm = ({ institution }) => {
   const chargeStatusesValues = selectifyRefdata(
     useOARefdata('Charge.ChargeStatus'),
     null,
@@ -24,7 +23,7 @@ const ReportingInfoForm = ({ institutionName }) => {
     null,
     'value'
   );
-  const insututionDataOptions = [institutionName];
+  const insututionDataOptions = [institution];
 
   return (
     <>
@@ -35,7 +34,7 @@ const ReportingInfoForm = ({ institutionName }) => {
             dataOptions={insututionDataOptions}
             disabled
             label={<FormattedMessage id="ui-oa.report.institution" />}
-            name="institutionName"
+            name="institution"
             required
             validate={requiredValidator}
           />
@@ -75,16 +74,16 @@ const ReportingInfoForm = ({ institutionName }) => {
       <Row>
         <Col xs={6}>
           <Field
-            component={MultiSelection}
-            dataOptions={chargeCategoriesValues}
+            component={Select}
+            dataOptions={[{ value: '', label: '' }, ...chargeCategoriesValues]}
             label={<FormattedMessage id="ui-oa.report.chargeCategories" />}
             name="chargeCategories"
           />
         </Col>
         <Col xs={6}>
           <Field
-            component={MultiSelection}
-            dataOptions={chargeStatusesValues}
+            component={Select}
+            dataOptions={[{ value: '', label: '' }, ...chargeStatusesValues]}
             label={<FormattedMessage id="ui-oa.report.chargeStatuses" />}
             name="chargeStatuses"
           />
@@ -95,7 +94,7 @@ const ReportingInfoForm = ({ institutionName }) => {
 };
 
 ReportingInfoForm.propTypes = {
-  institutionName: PropTypes.object,
+  institution: PropTypes.object,
 };
 
 export default ReportingInfoForm;

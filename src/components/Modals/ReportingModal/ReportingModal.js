@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import arrayMutators from 'final-form-arrays';
 import { FormattedMessage } from 'react-intl';
@@ -7,13 +8,17 @@ import { FormModal } from '@k-int/stripes-kint-components';
 
 import ReportingInfoForm from '../../ReportingFormSections';
 import { useOARefdata } from '../../../util';
+import useGenerateReport from '../../../hooks/useGenerateReport';
 
 const ReportingModal = ({ showModal, setShowModal }) => {
-  const institutionName = useOARefdata('InstitutionName')[0];
+  const [params, setParams] = useState({});
+  const { generate } = useGenerateReport(params);
   const handleClose = () => setShowModal(false);
+  const institution = useOARefdata('InstitutionName')[0];
 
-  const submitReport = (values) => {
-    console.log(values);
+  const submitReport = async (values) => {
+    setParams(values);
+    generate();
   };
 
   const renderFooter = ({ formState, handleSubmit }) => {
@@ -45,7 +50,7 @@ const ReportingModal = ({ showModal, setShowModal }) => {
   return (
     <FormModal
       initialValues={{
-        institutionName,
+        institution,
         reportFormat: { value: 'openapc_apc', label: 'OpenAPC APC' },
       }}
       modalProps={{
@@ -58,14 +63,14 @@ const ReportingModal = ({ showModal, setShowModal }) => {
       mutators={arrayMutators}
       onSubmit={submitReport}
     >
-      <ReportingInfoForm institutionName={institutionName} />
+      <ReportingInfoForm institution={institution} />
     </FormModal>
   );
 };
 
 ReportingModal.propTypes = {
   showModal: PropTypes.bool,
-  setShowModal: PropTypes.bool,
+  setShowModal: PropTypes.func,
 };
 
 export default ReportingModal;
