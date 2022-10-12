@@ -1,51 +1,15 @@
 import { useOkapiKy } from '@folio/stripes/core';
-import { generateKiwtQueryParams } from '@k-int/stripes-kint-components';
-import { useState } from 'react';
-import { useQuery } from 'react-query';
-import { REPORT_ENDPOINT } from '../constants/endpoints';
+import { useMutation } from 'react-query';
 
-const useGenerateReport = (queryOptions) => {
-  const [values, setValues] = useState();
+const useGenerateReport = () => {
   const ky = useOkapiKy();
 
-  const paramMap = {
-    institution: values?.institution?.value,
-    paymentPeriod: values?.paymentPeriod,
-    chargeCategory: values?.chargeCategory,
-    chargeStatus: values?.chargeStatus,
-  };
-
-  const queryParams = generateKiwtQueryParams(paramMap, {});
-
-  const downloadBlob = () => (blob) => {
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${values?.paymentPeriod}_${values?.institution?.value}_${values?.reportFormat}.csv`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    setValues();
-  };
-
-  const path = `${REPORT_ENDPOINT(
-    values?.reportFormat
-  )}?${queryParams.join('&')}`;
-
-  const queryObject = useQuery(
-    [values, path, 'ui-oa', 'useGenerateReport'],
-    () => ky.get(path).blob().then(downloadBlob()),
-    {
-      enabled: !!values,
-      cacheTime: 0,
-      ...queryOptions,
-    }
+  const { mutateAsync: generateReport } = useMutation(
+    ['ui-oa', 'useGenerateReport', 'generateReport'],
+    (path) => ky.get(path)
   );
 
-  return {
-    generate: setValues,
-    queryObject,
-  };
+  return generateReport;
 };
 
 export default useGenerateReport;

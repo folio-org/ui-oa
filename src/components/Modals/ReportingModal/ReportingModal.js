@@ -3,20 +3,52 @@ import arrayMutators from 'final-form-arrays';
 import { FormattedMessage } from 'react-intl';
 
 import { Button, ModalFooter } from '@folio/stripes/components';
-import { FormModal } from '@k-int/stripes-kint-components';
+import {
+  FormModal,
+  generateKiwtQueryParams,
+} from '@k-int/stripes-kint-components';
 
 import ReportingInfoForm from '../../ReportingFormSections';
 import { useOARefdata } from '../../../util';
 import useGenerateReport from '../../../hooks/useGenerateReport';
+import { REPORT_ENDPOINT } from '../../../constants/endpoints';
 
 const ReportingModal = ({ showModal, setShowModal }) => {
-  const { generate, queryObject } = useGenerateReport();
+  const generateReport = useGenerateReport();
   const institution = useOARefdata('InstitutionName')[0];
 
   const handleClose = () => setShowModal(false);
 
+  const downloadBlob = (blob, values) => {
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${values?.paymentPeriod}_${values?.institution?.value}_${values?.reportFormat}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  };
+
   const submitReport = (values) => {
-    generate(values);
+    const paramMap = {
+      institution: values?.institution?.value,
+      paymentPeriod: values?.paymentPeriod,
+      chargeCategory: values?.chargeCategory,
+      chargeStatus: values?.chargeStatus,
+    };
+
+    const queryParams = generateKiwtQueryParams(paramMap, {});
+
+    const path = `${REPORT_ENDPOINT(values?.reportFormat)}?${queryParams.join(
+      '&'
+    )}`;
+
+    generateReport(path).then((res) => {
+      res.blob().then((blob) => {
+        downloadBlob(blob, values);
+        handleClose();
+      });
+    });
   };
 
   const renderFooter = ({ formState, handleSubmit }) => {
@@ -60,11 +92,7 @@ const ReportingModal = ({ showModal, setShowModal }) => {
       mutators={arrayMutators}
       onSubmit={submitReport}
     >
-      {queryObject.isFetching ? (
-        <></>
-      ) : (
-        <ReportingInfoForm institution={institution} />
-      )}
+      <ReportingInfoForm institution={institution} />
     </FormModal>
   );
 };
