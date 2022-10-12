@@ -1,8 +1,10 @@
+import { useContext } from 'react';
 import PropTypes from 'prop-types';
 import arrayMutators from 'final-form-arrays';
 import { FormattedMessage } from 'react-intl';
 
 import { Button, ModalFooter } from '@folio/stripes/components';
+import { CalloutContext } from '@folio/stripes/core';
 import {
   FormModal,
   generateKiwtQueryParams,
@@ -15,6 +17,7 @@ import { REPORT_ENDPOINT } from '../../../constants/endpoints';
 
 const ReportingModal = ({ showModal, setShowModal }) => {
   const generateReport = useGenerateReport();
+  const callout = useContext(CalloutContext);
   const institution = useOARefdata('InstitutionName')[0];
 
   const handleClose = () => setShowModal(false);
@@ -45,6 +48,15 @@ const ReportingModal = ({ showModal, setShowModal }) => {
 
     generateReport(path).then((res) => {
       res.blob().then((blob) => {
+        callout.sendCallout({
+          message: (
+            <FormattedMessage
+              id="ui-oa.report.reportCreated"
+              values={{ reportFormat: values?.reportFormat }}
+            />
+          ),
+          type: 'success',
+        });
         downloadBlob(blob, values);
         handleClose();
       });
