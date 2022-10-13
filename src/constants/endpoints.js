@@ -18,3 +18,5 @@ export const REFDATA_ENDPOINT = 'oa/refdata';
 export const SETTINGS_ENDPOINT = 'oa/settings/appSettings';
 
 export const CHECKLIST_ITEM_DEFINITIONS_ENDPOINT = 'oa/checklistItems';
+
+export const REPORT_ENDPOINT = (reportName) => `oa/reports/${reportName}`;

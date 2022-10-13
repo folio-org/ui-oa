@@ -421,5 +421,15 @@
   "checklist.outcome.yes": "Yes",
   "checklist.outcome.no": "No",
   "checklist.hideItem": "Hide ''{name}'' item",
-  "checklist.showItem": "Show ''{name}'' item"
+  "checklist.showItem": "Show ''{name}'' item",
+
+  "report.runOpenAPCChargesReport": "Run OpenAPC charges report",
+  "report.runReportAndDownload": "Run report and download",
+  "report.reportFormat": "Report format",
+  "report.institution": "Institution",
+  "report.reportParameters": "Report parameters",
+  "report.paymentPeriod": "Payment period",
+  "report.chargeCategories": "Charge categories",
+  "report.chargeStatuses": "Charge statuses",
+  "report.reportCreated": "<strong>Report created:</strong> {reportFormat} report. The file will automatically download."
 }
