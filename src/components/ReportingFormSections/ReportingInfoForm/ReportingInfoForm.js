@@ -3,7 +3,7 @@ import { Col, Label, Row, Select, TextField } from '@folio/stripes/components';
 import { Field } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';
 import { requiredValidator } from '@folio/stripes-erm-components';
-import { useOARefdata, selectifyRefdata } from '../../../util';
+import { useOARefdata } from '../../../util';
 import { validateYear } from '../../../util/validators';
 
 const ReportingInfoForm = ({ institution }) => {

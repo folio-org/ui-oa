@@ -32,7 +32,7 @@ const ReportingModal = ({ showModal, setShowModal }) => {
     a.remove();
   };
 
-  const submitReport = async (values) => {
+  const submitReport = async (values, form) => {
     const paramMap = {
       institution: values?.institution?.label,
       paymentPeriod: values?.paymentPeriod,
@@ -59,6 +59,7 @@ const ReportingModal = ({ showModal, setShowModal }) => {
         });
         downloadBlob(blob, values);
         handleClose();
+        form.restart();
       });
     });
   };
