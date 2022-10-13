@@ -32,9 +32,9 @@ const ReportingModal = ({ showModal, setShowModal }) => {
     a.remove();
   };
 
-  const submitReport = (values) => {
+  const submitReport = async (values) => {
     const paramMap = {
-      institution: values?.institution?.value,
+      institution: values?.institution?.label,
       paymentPeriod: values?.paymentPeriod,
       chargeCategory: values?.chargeCategory,
       chargeStatus: values?.chargeStatus,
@@ -46,7 +46,7 @@ const ReportingModal = ({ showModal, setShowModal }) => {
       '&'
     )}`;
 
-    generateReport(path).then((res) => {
+    await generateReport(path).then((res) => {
       res.blob().then((blob) => {
         callout.sendCallout({
           message: (

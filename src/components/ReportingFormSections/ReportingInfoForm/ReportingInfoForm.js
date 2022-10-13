@@ -7,16 +7,8 @@ import { useOARefdata, selectifyRefdata } from '../../../util';
 import { validateYear } from '../../../util/validators';
 
 const ReportingInfoForm = ({ institution }) => {
-  const chargeStatusesValues = selectifyRefdata(
-    useOARefdata('Charge.ChargeStatus'),
-    null,
-    'value'
-  );
-  const chargeCategoriesValues = selectifyRefdata(
-    useOARefdata('Charge.Category'),
-    null,
-    'value'
-  );
+  const chargeStatusesValues = useOARefdata('Charge.ChargeStatus');
+  const chargeCategoriesValues = useOARefdata('Charge.Category');
   const insututionDataOptions = [institution];
 
   return (
