@@ -14,6 +14,11 @@
 
   "refdata.label": "Label",
   "refdata.value": "Value",
+  "refdata.deleteRefdataValue": "Delete refdata value",
+  "refdata.deleteRefdataValue.confirmMessage": "<strong>{name}</strong> will be deleted.",
+  "refdata.deleteRefdataValue.errorMessage": "<strong>Error: {label}</strong> was not deleted. {error}",
+  "refdata.editAriaLabel": "Edit value {label}",
+  "refdata.deleteAriaLabel": "Delete value {label}",
 
   "settings.edit": "Edit",
   "settings.finish-editing": "Save",
