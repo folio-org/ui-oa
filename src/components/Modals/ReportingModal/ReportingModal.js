@@ -33,14 +33,16 @@ const ReportingModal = ({ showModal, setShowModal }) => {
   };
 
   const submitReport = async (values, form) => {
-    const chargeCategories = values?.chargeCategory?.map(e => e.value)?.join(',');
-    const chargeStatuses = values?.chargeStatus?.map(e => e.value)?.join(',');
+    const chargeCategory = values?.chargeCategory
+      ?.map((e) => e.value)
+      ?.join(',');
+    const chargeStatus = values?.chargeStatus?.map((e) => e.value)?.join(',');
 
     const paramMap = {
       institution: values?.institution?.label,
-      paymentPeriod: values?.paymentPeriod || null,
-      chargeCategory: chargeCategories || null,
-      chargeStatus: chargeStatuses || null,
+      ...(!!values?.paymentPeriod && { paymentPeriod: values?.paymentPeriod }),
+      ...(!!chargeCategory && { chargeCategory }),
+      ...(!!chargeStatus && { chargeStatus }),
     };
 
     const queryParams = generateKiwtQueryParams(paramMap, {});
