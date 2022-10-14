@@ -26,16 +26,14 @@ const ReportingModal = ({ showModal, setShowModal }) => {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${values?.paymentPeriod}_${values?.institution?.value}_${values?.reportFormat}.csv`;
+    a.download = `${values.paymentPeriod ? values?.paymentPeriod + '_' : ''}${values?.institution?.value}_${values?.reportFormat}.csv`;
     document.body.appendChild(a);
     a.click();
     a.remove();
   };
 
   const submitReport = async (values, form) => {
-    const chargeCategory = values?.chargeCategory
-      ?.map((e) => e.value)
-      ?.join(',');
+    const chargeCategory = values?.chargeCategory?.map((e) => e.value)?.join(',');
     const chargeStatus = values?.chargeStatus?.map((e) => e.value)?.join(',');
 
     const paramMap = {
