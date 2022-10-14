@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Col, Label, Row, Select, TextField } from '@folio/stripes/components';
+import { Col, Label, MultiSelection, Row, Select, TextField } from '@folio/stripes/components';
 import { Field } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';
 import { requiredValidator } from '@folio/stripes-erm-components';
@@ -63,16 +63,16 @@ const ReportingInfoForm = ({ institution }) => {
       <Row>
         <Col xs={6}>
           <Field
-            component={Select}
-            dataOptions={[{ value: '', label: '' }, ...chargeCategoriesValues]}
+            component={MultiSelection}
+            dataOptions={[...chargeCategoriesValues]}
             label={<FormattedMessage id="ui-oa.report.chargeCategories" />}
             name="chargeCategory"
           />
         </Col>
         <Col xs={6}>
           <Field
-            component={Select}
-            dataOptions={[{ value: '', label: '' }, ...chargeStatusesValues]}
+            component={MultiSelection}
+            dataOptions={[...chargeStatusesValues]}
             label={<FormattedMessage id="ui-oa.report.chargeStatuses" />}
             name="chargeStatus"
           />
