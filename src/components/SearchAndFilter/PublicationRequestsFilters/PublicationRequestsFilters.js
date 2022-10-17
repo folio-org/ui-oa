@@ -28,7 +28,9 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
   const workOAStatusValues = useOARefdata('Work.OaStatus');
   const publisherValues = useOARefdata('PublicationRequest.Publisher');
   const chargePayersValues = useOARefdata('Payer.Payer');
-  const correspondingInstitutionLevel1Values = useOARefdata('Party.InstitutionLevel1');
+  const correspondingInstitutionLevel1Values = useOARefdata(
+    'Party.InstitutionLevel1'
+  );
 
   const onChangeHandler = (group) => {
     filterHandlers.state({
@@ -66,6 +68,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
           <FormattedMessage id="ui-oa.publicationRequest.requestDate" />
         }
         activeFilters={activeFilters}
+        closedByDefault={false}
         filterHandlers={filterHandlers}
         hideNoDateSetCheckbox
         name="requestDate"
