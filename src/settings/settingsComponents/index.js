@@ -1,2 +1,3 @@
 export { default as PickListValues } from './PickListValues';
-export { default as ChecklistItemDefinitions } from './ChecklistItemDefinitions';
+export { ChecklistItemDefinitions } from './ChecklistItemDefinitions';
+export { ChecklistItemDefinitionsForm } from './ChecklistItemDefinitions';
