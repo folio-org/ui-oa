@@ -31,6 +31,7 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
     <>
       <div className={css.notesButton}>
         <Button
+          buttonStyle="primary"
           disabled={editing}
           onClick={() => {
             setEditing('NEW_NOTE');
