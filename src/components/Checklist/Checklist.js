@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation } from 'react-query';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
 import { Accordion, Badge, Pane, Row, Col } from '@folio/stripes/components';
-import { AppIcon, useNamespace, useOkapiKy } from '@folio/stripes/core';
+import { AppIcon, useOkapiKy } from '@folio/stripes/core';
+import { useSASQQueryMeta } from '@k-int/stripes-kint-components';
 
 import isEqual from 'lodash/isEqual';
 import differenceWith from 'lodash/differenceWith';
@@ -24,9 +25,8 @@ const propTypes = {
 
 const Checklist = ({ onToggle, resource, resourceEndpoint }) => {
   const itemDefinitions = useChecklistItemDefinitions();
-  const queryClient = useQueryClient();
+  const { invalidateViewQuery } = useSASQQueryMeta('publication-requests');
   const ky = useOkapiKy();
-  const [namespace] = useNamespace();
 
   const [selectedNotesItem, setSelectedNotesItem] = useState(false);
   const [checklistItems, setChecklistItems] = useState([]);
@@ -60,12 +60,7 @@ const Checklist = ({ onToggle, resource, resourceEndpoint }) => {
     ['Checklist', 'putChecklist'],
     (data) => {
       ky.put(resourceEndpoint(resource.id), { json: data }).then(() => {
-        queryClient.invalidateQueries([
-          namespace,
-          'data',
-          'view',
-          resource?.id,
-        ]);
+        invalidateViewQuery(resource?.id);
       });
     }
   );
