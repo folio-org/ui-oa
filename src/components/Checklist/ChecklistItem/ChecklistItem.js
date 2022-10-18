@@ -80,7 +80,7 @@ const ChecklistItem = ({
 
   return (
     <>
-      <div key={item?.id} className={css.checklistContainer}>
+      <div className={css.checklistContainer}>
         <Layout className="flex justified">
           <Headline
             className={css.itemLabel}

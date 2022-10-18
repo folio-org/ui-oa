@@ -120,12 +120,14 @@ const Checklist = ({ onToggle, resource, resourceEndpoint }) => {
       )}
       {requiredItems.map((item) => {
         return (
-          <ChecklistItem
-            handleSubmit={handleSubmit}
-            item={item}
-            resource={resource}
-            setSelectedNotesItem={setSelectedNotesItem}
-          />
+          <div key={item?.id}>
+            <ChecklistItem
+              handleSubmit={handleSubmit}
+              item={item}
+              resource={resource}
+              setSelectedNotesItem={setSelectedNotesItem}
+            />
+          </div>
         );
       })}
       {notRequiredItems?.length > 0 && (
@@ -139,12 +141,14 @@ const Checklist = ({ onToggle, resource, resourceEndpoint }) => {
         >
           {notRequiredItems.map((item) => {
             return (
-              <ChecklistItem
-                handleSubmit={handleSubmit}
-                item={item}
-                resource={resource}
-                setSelectedNotesItem={setSelectedNotesItem}
-              />
+              <div key={item?.id}>
+                <ChecklistItem
+                  handleSubmit={handleSubmit}
+                  item={item}
+                  resource={resource}
+                  setSelectedNotesItem={setSelectedNotesItem}
+                />
+              </div>
             );
           })}
         </Accordion>
