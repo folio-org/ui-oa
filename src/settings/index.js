@@ -45,6 +45,7 @@ const OASettings = (props) => {
     intlKey: 'ui-oa',
     persistentPages,
     refdataEndpoint: REFDATA_ENDPOINT,
+    renderWithActionList: true,
     settingEndpoint: SETTINGS_ENDPOINT
   });
 

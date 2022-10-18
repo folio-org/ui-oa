@@ -18,16 +18,33 @@
   "refdata.deleteRefdataValue.confirmMessage": "<strong>{name}</strong> will be deleted.",
   "refdata.deleteRefdataValue.errorMessage": "<strong>Error: {label}</strong> was not deleted. {error}",
   "refdata.editAriaLabel": "Edit value {label}",
+  "refdata.saveAriaLabel": "Save value {label}",
+  "refdata.cancelAriaLabel": "Don't save changes to value {label}",
   "refdata.deleteAriaLabel": "Delete value {label}",
 
   "settings.edit": "Edit",
   "settings.finish-editing": "Save",
   "settings.noCurrentValue": "No current value",
   "settingName.settingLoading": "Loading",
+  "settings.valueFor": "Value for {name}",
+
+  "settings.default": "Default",
+
+  "settings.name": "Name",
+  "settings.value": "Value",
+
+  "settings.settingsSection.test": "Test settings",
+  "settings.test.testRefdata1": "Test refdata setting 1",
+  "settings.test.testRefdata2": "Test refdata setting 2",
+  "settings.test.testPassword1": "Test password setting 1",
 
   "settings.settingsSection.publicationRequests": "Publication requests",
   "settings.publicationRequests.hridPrefix": "HRID prefix",
   "settings.publicationRequests.defaultTax": "Default tax",
+
+  "settings.editAriaLabel": "Edit app setting {name}",
+  "settings.saveAriaLabel": "Save app setting {name}",
+  "settings.cancelAriaLabel": "Don't save changes to app setting {name}",
 
   "settings.refdata.picklistValues": "Pick list values",
   "settings.refdata.picklist": "Pick list",
