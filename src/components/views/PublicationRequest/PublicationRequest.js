@@ -155,7 +155,7 @@ const PublicationRequest = ({
               <Agreement {...getSectionProps('agreement')} />
             )}
             <Correspondence {...getSectionProps('correspondences')} />
-            <Charges {...getSectionProps('correspondences')} />
+            <Charges {...getSectionProps('charges')} />
           </AccordionSet>
         </AccordionStatus>
       </Pane>
