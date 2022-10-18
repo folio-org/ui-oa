@@ -1,5 +1,5 @@
 {
-  "meta.title": "Open Access",
+  "meta.title": "Open access",
 
   "appMenu.keyboardShortcuts": "Keyboards shortcuts",
   "edit": "Edit",
@@ -50,10 +50,13 @@
   "settings.refdata.picklist": "Pick list",
 
   "settings.checklistItemDefinitions": "Checklist items",
+  "settings.checklistItemDefinitions.newChecklistItem": "New checklist item",
+  "settings.checklistItemDefinitions.editChecklistItem": "Edit checklist item",
   "settings.checklistItemDefinitions.name": "Name",
   "settings.checklistItemDefinitions.label": "Label",
   "settings.checklistItemDefinitions.description": "Description",
   "settings.checklistItemDefinitions.weight": "Weight",
+  "settings.checklistItemDefinitions.weightPopover": "Item order weight, higher value means lower placement",
 
   "settings.checklistItemDefinitions.deleteAriaLabel": "Delete checklist item {label}",
   "settings.checklistItemDefinitions.editAriaLabel": "Edit checklist item {label}",
@@ -438,5 +441,15 @@
   "checklist.outcome.yes": "Yes",
   "checklist.outcome.no": "No",
   "checklist.hideItem": "Hide ''{name}'' item",
-  "checklist.showItem": "Show ''{name}'' item"
+  "checklist.showItem": "Show ''{name}'' item",
+
+  "report.runOpenAPCChargesReport": "Run OpenAPC charges report",
+  "report.runReportAndDownload": "Run report and download",
+  "report.reportFormat": "Report format",
+  "report.institution": "Institution",
+  "report.reportParameters": "Report parameters",
+  "report.paymentPeriod": "Payment period",
+  "report.chargeCategories": "Charge categories",
+  "report.chargeStatuses": "Charge statuses",
+  "report.reportCreated": "<strong>Report created:</strong> {reportFormat} report. The file will automatically download."
 }
