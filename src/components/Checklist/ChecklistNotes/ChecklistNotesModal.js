@@ -62,7 +62,6 @@ const ChecklistNotesModal = ({
       item.notes.shift();
     }
     setSelectedNotesItem(null);
-    queryClient.invalidateQueries([namespace, 'data', 'view', ownerId]);
   };
 
   const submitNotes = async (values) => {
