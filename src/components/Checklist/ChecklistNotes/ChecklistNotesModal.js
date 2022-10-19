@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import orderBy from 'lodash/orderBy';
-import { useMutation, useQueryClient, useQuery } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { useNamespace, useOkapiKy } from '@folio/stripes/core';
-import { Button, Modal, Loading } from '@folio/stripes/components';
+import { Button, Modal } from '@folio/stripes/components';
 import ChecklistNotes from './ChecklistNotes';
 
 const propTypes = {
   setSelectedNotesItem: PropTypes.func,
   item: PropTypes.object,
   ownerId: PropTypes.string,
+  resource: PropTypes.object,
   resourceEndpoint: PropTypes.func,
 };
 
@@ -17,15 +18,12 @@ const ChecklistNotesModal = ({
   ownerId,
   setSelectedNotesItem,
   item,
+  resource,
   resourceEndpoint,
 }) => {
   const queryClient = useQueryClient();
   const ky = useOkapiKy();
   const [namespace] = useNamespace();
-  const { data: resource, isLoading } = useQuery(
-    [namespace, 'notes', 'checklistNotesModal', ownerId],
-    () => ky(resourceEndpoint(ownerId)).json()
-  );
 
   const notes =
     orderBy(
@@ -51,8 +49,8 @@ const ChecklistNotesModal = ({
           }
           queryClient.invalidateQueries([
             namespace,
-            'notes',
-            'checklistNotesModal',
+            'resource',
+            'Checklist',
             ownerId,
           ]);
         });
@@ -102,15 +100,11 @@ const ChecklistNotesModal = ({
       onClose={handleClose}
       open={item}
     >
-      {!isLoading ? (
-        <ChecklistNotes
-          handleDelete={handleDelete}
-          notes={notes}
-          submitNotes={submitNotes}
-        />
-      ) : (
-        <Loading />
-      )}
+      <ChecklistNotes
+        handleDelete={handleDelete}
+        notes={notes}
+        submitNotes={submitNotes}
+      />
     </Modal>
   );
 };

@@ -161,7 +161,7 @@ const PublicationRequest = ({
       </Pane>
       <HelperComponent
         isOpen={isOpen}
-        resource={request}
+        ownerId={request?.id}
         resourceEndpoint={PUBLICATION_REQUEST_ENDPOINT}
       />
     </HasCommand>
