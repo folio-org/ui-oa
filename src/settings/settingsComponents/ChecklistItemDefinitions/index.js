@@ -1,2 +1,1 @@
-export { default as ChecklistItemDefinitions } from './ChecklistItemDefinitions';
-export { default as ChecklistItemDefinitionForm } from './ChecklistItemDefinitionForm';
+export { default } from './ChecklistItemDefinitions';

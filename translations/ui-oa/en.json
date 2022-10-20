@@ -425,6 +425,7 @@
   "checklist.outcome.no": "No",
   "checklist.hideItem": "Hide ''{name}'' item",
   "checklist.showItem": "Show ''{name}'' item",
+  "checklist.itemOutcome": "Outcome is {outcome} for {itemName} item",
 
   "report.runOpenAPCChargesReport": "Run OpenAPC charges report",
   "report.runReportAndDownload": "Run report and download",

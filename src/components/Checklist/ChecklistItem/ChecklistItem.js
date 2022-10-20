@@ -80,7 +80,7 @@ const ChecklistItem = ({
 
   return (
     <>
-      <div key={item?.id} className={css.checklistContainer}>
+      <div className={css.checklistContainer}>
         <Layout className="flex justified">
           <Headline
             className={css.itemLabel}
@@ -93,18 +93,29 @@ const ChecklistItem = ({
               <InfoPopover content={item?.definition?.description} />
             )}
           </Headline>
-          <IconSelect
-            id={`${item?.definition?.name}-icon-select`}
-            input={{
-              name: 'outcome',
+          <FormattedMessage
+            id="ui-oa.checklist.itemOutcome"
+            values={{
+              outcome: item?.outcome?.value,
+              itemName: item?.definition?.label,
             }}
-            notSet={notSet}
-            onChange={(_e, value) => {
-              handleSubmit({ outcome: value }, item);
-            }}
-            options={buttonOptions}
-            value={item?.outcome?.value || ''}
-          />
+          >
+            {([ariaLabel]) => (
+              <IconSelect
+                ariaLabel={ariaLabel}
+                id={`${item?.definition?.name}-icon-select`}
+                input={{
+                  name: 'outcome',
+                }}
+                notSet={notSet}
+                onChange={(_e, value) => {
+                  handleSubmit({ outcome: value }, item);
+                }}
+                options={buttonOptions}
+                value={item?.outcome?.value || ''}
+              />
+            )}
+          </FormattedMessage>
         </Layout>
         <Row>
           <Col xs={12}>
