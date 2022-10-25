@@ -31,6 +31,7 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
     <>
       <div className={css.notesButton}>
         <Button
+          buttonStyle="primary"
           disabled={editing}
           onClick={() => {
             setEditing('NEW_NOTE');
@@ -43,7 +44,7 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
       {notes.map((note, index) => {
         if (note.id === editing || (!note.id && editing === 'NEW_NOTE')) {
           return (
-            <>
+            <div key={note?.id || index}>
               <hr />
               <Form initialValues={note} onSubmit={submitNotes}>
                 {({ handleSubmit, pristine, submitting, values }) => (
@@ -99,7 +100,7 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
                   </form>
                 )}
               </Form>
-            </>
+            </div>
           );
         }
         return (

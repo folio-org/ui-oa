@@ -35,8 +35,7 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
   // Filter publication requests in which the corresponding author matches the current party
   const { data: publicationRequests } = useQuery(
     ['ui-oa', 'party', 'publicationRequests', party.id],
-    () =>
-      ky(
+    () => ky(
         `${PUBLICATION_REQUESTS_ENDPOINT}?filters=correspondingAuthor.partyOwner.id==${party.id}`
       ).json()
   );
@@ -67,8 +66,7 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
       translation: (
         <FormattedMessage id="ui-oa.publicationRequest.requestDate" />
       ),
-      format: (d) =>
-        d?.requestDate ? <FormattedUTCDate value={d.requestDate} /> : '',
+      format: (d) => (d?.requestDate ? <FormattedUTCDate value={d.requestDate} /> : ''),
     },
     {
       name: 'requestStatus',
