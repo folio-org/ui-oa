@@ -83,7 +83,7 @@
     "publicationRequest.editPublicationRequest": "Edit publication request - {id}",
     "settings.refdata.picklistValues": "Valeurs de la liste de sélection",
     "publicationJournal.title": "Titre",
-    "publicationJournal.typedown": "Titre : {title} - ISSN : {issn}",
+    "publicationJournal.typedown": "Title: {title} · Print ISSN: {printIssn} · Electronic ISSN: {electronicIssn} ",
     "publicationRequest.selectedJournal": "Journal",
     "publicationRequest.agreement": "Accord",
     "publicationRequest.noAgreement": "Request has no agreement",

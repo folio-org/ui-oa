@@ -269,7 +269,7 @@
     "charge.invoiceLine.removeInvoiceLine": "Remove invoice line",
     "charge.linkToInvoiceLineIndex": "View invoice line for charge {index}",
     "charge.estimatedAmount": "Estimated amount inc. discounts and tax",
-    "charge.invoiceLine.currencyDifferenceMessage": "Attenzione: <strong>Conflitto di valute</strong>. La valuta dell'addebito richiesto è {valutaaddebito}. Questa riga di fattura verrà creata utilizzando la valuta della fattura: {valutaFattura}.",
+    "charge.invoiceLine.currencyDifferenceMessage": "Attenzione: <strong>Conflitto di valute</strong>. La valuta dell'addebito richiesto è {chargeCurrency}. Questa riga di fattura verrà creata utilizzando la valuta della fattura: {invoiceCurrency}.",
     "publicationRequest.emptyFundings": "No funding for this request",
     "publicationRequest.emptyPublicationStatuses": "No publication statuses for this request",
     "publicationRequest.emptyCorrespondence": "No correspondence for this request",
