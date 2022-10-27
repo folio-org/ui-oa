@@ -110,6 +110,9 @@ const JournalsRoute = ({ path }) => {
           FilterComponent={JournalsFilters}
           FilterPaneHeaderComponent={renderHeaderComponent}
           id="journals"
+          labelOverrides={{
+            foundValues: 'ui-oa.journals.found#Journals',
+          }}
           mainPaneProps={{
             appIcon: <AppIcon app="oa" iconKey="journal" size="small" />,
             lastMenu: lastpaneMenu,
