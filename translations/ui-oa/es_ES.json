@@ -1,5 +1,5 @@
 {
-    "meta.title": "Open Access",
+    "meta.title": "Open access",
     "settings.edit": "Edit",
     "settings.finish-editing": "Save",
     "settingName.settingLoading": "Loading",
@@ -158,7 +158,7 @@
     "party.newPerson": "New person",
     "publicationRequest.newPerson": "Nueva persona",
     "publicationRequest.addCharge": "Add charge",
-    "publicationRequest.charges": "Charges",
+    "publicationRequest.charges": "cargos",
     "charge.newCharge": "New charge",
     "charge.editCharge": "Edit charge",
     "charge.amount": "Amount",
@@ -390,5 +390,18 @@
     "refdata.deleteRefdataValue.confirmMessage": "<strong>{name}</strong> will be deleted.",
     "refdata.deleteRefdataValue.errorMessage": "<strong>Error: {label}</strong> was not deleted. {error}",
     "refdata.editAriaLabel": "Edit value {label}",
-    "refdata.deleteAriaLabel": "Delete value {label}"
+    "refdata.deleteAriaLabel": "Delete value {label}",
+    "report.runOpenAPCChargesReport": "Run OpenAPC charges report",
+    "report.runReportAndDownload": "Run report and download",
+    "report.reportFormat": "Report format",
+    "report.institution": "Institution",
+    "report.reportParameters": "Report parameters",
+    "report.paymentPeriod": "Payment period",
+    "report.chargeCategories": "Charge categories",
+    "report.chargeStatuses": "Charge statuses",
+    "report.reportCreated": "<strong>Report created:</strong> {reportFormat} report. The file will automatically download.",
+    "settings.checklistItemDefinitions.newChecklistItem": "New checklist item",
+    "settings.checklistItemDefinitions.editChecklistItem": "Edit checklist item",
+    "settings.checklistItemDefinitions.weightPopover": "Item order weight, higher value means lower placement",
+    "checklist.itemOutcome": "Outcome is {outcome} for {itemName} item"
 }
