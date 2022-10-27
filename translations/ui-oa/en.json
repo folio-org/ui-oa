@@ -7,10 +7,15 @@
   "new": "New",
   "actions": "Actions",
 
+  "valueOrValues": "Value(s)",
   "found#Values": "Found {total} requests",
   "save": "Save",
   "saveAndClose": "Save & close",
   "cancel": "Cancel",
+  "customProperties.internalNote": "Internal note",
+  "customProperties.visibility": "Visibility",
+  "customProperties.internalFalse": "Public",
+  "customProperties.publicNote": "Public note",
 
   "refdata.label": "Label",
   "refdata.value": "Value",
