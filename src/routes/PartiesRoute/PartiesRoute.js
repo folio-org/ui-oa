@@ -102,6 +102,9 @@ const PartiesRoute = ({ path }) => {
         FilterComponent={PartiesFilters}
         FilterPaneHeaderComponent={renderHeaderComponent}
         id="parties"
+        labelOverrides={{
+          foundValues: 'ui-oa.parties.found#People',
+        }}
         mainPaneProps={{
           appIcon: <AppIcon app="oa" iconKey="party" size="small" />,
           lastMenu: lastpaneMenu,

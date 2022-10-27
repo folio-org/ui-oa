@@ -59,6 +59,7 @@
   "searchAndFilter.peopleFilters": "People filters",
 
   "parties.people": "People",
+  "parties.found#People": "Found {total} people",
   "parties.givenNames": "Given names",
   "parties.familyName": "Family name",
   "parties.orcidId": "ORCID iD",
@@ -66,6 +67,7 @@
   "parties.createPersonRecord": "New person record",
 
   "journals": "Journals",
+  "journals.found#Journals": "Found {total} journals",
   "journals.title": "Title",
   "journals.printIssn": "ISSN (Print)",
   "journals.electronicIssn": "ISSN (Electronic)",
