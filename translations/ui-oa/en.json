@@ -7,10 +7,15 @@
   "new": "New",
   "actions": "Actions",
 
+  "valueOrValues": "Value(s)",
   "found#Values": "Found {total} requests",
   "save": "Save",
   "saveAndClose": "Save & close",
   "cancel": "Cancel",
+  "customProperties.internalNote": "Internal note",
+  "customProperties.visibility": "Visibility",
+  "customProperties.internalFalse": "Public",
+  "customProperties.publicNote": "Public note",
 
   "refdata.label": "Label",
   "refdata.value": "Value",
@@ -76,6 +81,7 @@
   "searchAndFilter.peopleFilters": "People filters",
 
   "parties.people": "People",
+  "parties.found#People": "Found {total} people",
   "parties.givenNames": "Given names",
   "parties.familyName": "Family name",
   "parties.orcidId": "ORCID iD",
@@ -83,6 +89,7 @@
   "parties.createPersonRecord": "New person record",
 
   "journals": "Journals",
+  "journals.found#Journals": "Found {total} journals",
   "journals.title": "Title",
   "journals.printIssn": "ISSN (Print)",
   "journals.electronicIssn": "ISSN (Electronic)",
