@@ -286,7 +286,7 @@
     "journal.subtypePopover": "O valor do subtipo selecionado afetará as opções disponíveis no campo Namespace. Por exemplo, 'EZB' só está disponível para o subtipo 'Eletrônico'.",
     "publicationRequest.validate.publicationURL": "Favor inserir um URL válido (incluindo 'http' ou 'https')",
     "journal.edit": "Editar",
-    "journal.editJournal": "Editar revista",
+    "journal.editJournal": "Editar - {title}",
     "appMenu.keyboardShortcuts": "Atalhos do teclado",
     "publicationRequest.agreementsNotWorking": "<strong> Erro: </strong> A app de Contratos não está disponível no momento. Tente novamente mais tarde ou entre em contato com o administrador do sistema",
     "charge.payers": "Pagadores",
@@ -402,6 +402,13 @@
     "report.reportCreated": "<strong> Relatório criado: </strong> relatório {reportFormat} . O arquivo será baixado automaticamente.",
     "settings.checklistItemDefinitions.newChecklistItem": "Novo item na lista de verificação",
     "settings.checklistItemDefinitions.editChecklistItem": "Editar item na lista de verificação",
-    "settings.checklistItemDefinitions.weightPopover": "Item order weight, higher value means lower placement",
-    "checklist.itemOutcome": "O resultado é {outcome} para o item {itemName}"
+    "settings.checklistItemDefinitions.weightPopover": "Pontuação do pedido do item, maior valor significa menor colocação",
+    "checklist.itemOutcome": "O resultado é {outcome} para o item {itemName}",
+    "parties.found#People": "{total} pessoas encontradas",
+    "journals.found#Journals": "{total} periódicos encontrados",
+    "valueOrValues": "Valor(es)",
+    "customProperties.internalNote": "Nota interna",
+    "customProperties.visibility": "Visibilidade",
+    "customProperties.internalFalse": "Público",
+    "customProperties.publicNote": "Nota pública"
 }
