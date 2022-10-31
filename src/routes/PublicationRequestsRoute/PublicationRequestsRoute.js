@@ -150,17 +150,24 @@ const PublicationRequestsRoute = ({ children, path }) => {
           fetchParameters={fetchParameters}
           FilterComponent={PublicationRequestsFilters}
           FilterPaneHeaderComponent={renderHeaderComponent}
+          filterPaneProps={{
+            id: 'oa-main-filter-pane'
+          }}
           id="publication-requests"
           mainPaneProps={{
             appIcon: <AppIcon app="oa" iconKey="app" size="small" />,
             actionMenu: renderActionMenu,
             paneTitle: <FormattedMessage id="ui-oa.publicationRequests" />,
+            id: 'oa-main-pane'
           }}
           mclProps={{
             formatter,
             columnWidths: { publicationTitle: 500 },
           }}
           path={path}
+          persistedPanesetProps={{
+            id: 'oa-main-paneset'
+          }}
           resultColumns={resultColumns}
           sasqProps={{ initialSortState: { sort: 'requestNumber' } }}
           searchFieldAriaLabel="publication-requests-search-field"

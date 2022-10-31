@@ -109,6 +109,9 @@ const JournalsRoute = ({ path }) => {
           fetchParameters={fetchParameters}
           FilterComponent={JournalsFilters}
           FilterPaneHeaderComponent={renderHeaderComponent}
+          filterPaneProps={{
+            id: 'oa-main-filter-pane'
+          }}
           id="journals"
           labelOverrides={{
             foundValues: 'ui-oa.journals.found#Journals',
@@ -117,9 +120,13 @@ const JournalsRoute = ({ path }) => {
             appIcon: <AppIcon app="oa" iconKey="journal" size="small" />,
             lastMenu: lastpaneMenu,
             paneTitle: <FormattedMessage id="ui-oa.journals" />,
+            id: 'oa-main-pane'
           }}
           mclProps={{ formatter }}
           path={path}
+          persistedPanesetProps={{
+            id: 'oa-main-paneset'
+          }}
           resultColumns={resultColumns}
           sasqProps={{ initialSortState: { sort: 'title' } }}
           searchFieldAriaLabel="journals-search-field"

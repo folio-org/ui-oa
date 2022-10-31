@@ -101,6 +101,9 @@ const PartiesRoute = ({ path }) => {
         fetchParameters={fetchParameters}
         FilterComponent={PartiesFilters}
         FilterPaneHeaderComponent={renderHeaderComponent}
+        filterPaneProps={{
+          id: 'oa-main-filter-pane'
+        }}
         id="parties"
         labelOverrides={{
           foundValues: 'ui-oa.parties.found#People',
@@ -109,9 +112,13 @@ const PartiesRoute = ({ path }) => {
           appIcon: <AppIcon app="oa" iconKey="party" size="small" />,
           lastMenu: lastpaneMenu,
           paneTitle: <FormattedMessage id="ui-oa.parties.people" />,
+          id: 'oa-main-pane'
         }}
         mclProps={{ formatter }}
         path={path}
+        persistedPanesetProps={{
+          id: 'oa-main-paneset'
+        }}
         resultColumns={resultColumns}
         sasqProps={{ initialSortState: { sort: 'familyName,givenNames' } }}
         searchFieldAriaLabel="parties-search-field"
