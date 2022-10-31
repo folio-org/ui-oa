@@ -403,5 +403,12 @@
     "settings.checklistItemDefinitions.newChecklistItem": "新建清单项目",
     "settings.checklistItemDefinitions.editChecklistItem": "编辑清单项目",
     "settings.checklistItemDefinitions.weightPopover": "单件订单重量，较高值意味着较低放置",
-    "checklist.itemOutcome": "{itemName}项的结果是{outcome}"
+    "checklist.itemOutcome": "{itemName}项的结果是{outcome}",
+    "parties.found#People": "Found {total} people",
+    "journals.found#Journals": "Found {total} journals",
+    "valueOrValues": "Value(s)",
+    "customProperties.internalNote": "Internal note",
+    "customProperties.visibility": "Visibility",
+    "customProperties.internalFalse": "Public",
+    "customProperties.publicNote": "Public note"
 }
