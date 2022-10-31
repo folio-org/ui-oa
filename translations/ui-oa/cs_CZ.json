@@ -403,5 +403,12 @@
     "settings.checklistItemDefinitions.newChecklistItem": "Nová jednotka kontrolního seznamu",
     "settings.checklistItemDefinitions.editChecklistItem": "Upravit jednotku kontrolního seznamu",
     "settings.checklistItemDefinitions.weightPopover": "Hmotnost objednávky jednotky, vyšší hodnota znamená nižší umístění",
-    "checklist.itemOutcome": "Výsledek je {outcome} pro jednotku {itemName}"
+    "checklist.itemOutcome": "Výsledek je {outcome} pro jednotku {itemName}",
+    "parties.found#People": "Found {total} people",
+    "journals.found#Journals": "Found {total} journals",
+    "valueOrValues": "Value(s)",
+    "customProperties.internalNote": "Internal note",
+    "customProperties.visibility": "Visibility",
+    "customProperties.internalFalse": "Public",
+    "customProperties.publicNote": "Public note"
 }
