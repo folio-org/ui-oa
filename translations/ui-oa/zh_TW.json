@@ -403,5 +403,12 @@
     "settings.checklistItemDefinitions.newChecklistItem": "New checklist item",
     "settings.checklistItemDefinitions.editChecklistItem": "Edit checklist item",
     "settings.checklistItemDefinitions.weightPopover": "Item order weight, higher value means lower placement",
-    "checklist.itemOutcome": "Outcome is {outcome} for {itemName} item"
+    "checklist.itemOutcome": "Outcome is {outcome} for {itemName} item",
+    "parties.found#People": "Found {total} people",
+    "journals.found#Journals": "Found {total} journals",
+    "valueOrValues": "Value(s)",
+    "customProperties.internalNote": "Internal note",
+    "customProperties.visibility": "Visibility",
+    "customProperties.internalFalse": "Public",
+    "customProperties.publicNote": "Public note"
 }
