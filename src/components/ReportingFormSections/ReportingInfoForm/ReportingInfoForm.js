@@ -1,15 +1,21 @@
-import PropTypes from 'prop-types';
-import { Col, Label, MultiSelection, Row, Select, TextField } from '@folio/stripes/components';
+import {
+  Col,
+  Label,
+  MultiSelection,
+  Row,
+  Select,
+  TextField,
+} from '@folio/stripes/components';
 import { Field } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';
 import { requiredValidator } from '@folio/stripes-erm-components';
 import { useOARefdata } from '../../../util';
 import { validateYear } from '../../../util/validators';
 
-const ReportingInfoForm = ({ institution }) => {
+const ReportingInfoForm = () => {
   const chargeStatusesValues = useOARefdata('Charge.ChargeStatus');
   const chargeCategoriesValues = useOARefdata('Charge.Category');
-  const insututionDataOptions = [institution];
+  const institutionsValues = useOARefdata('InstitutionName');
 
   return (
     <>
@@ -17,8 +23,8 @@ const ReportingInfoForm = ({ institution }) => {
         <Col xs={6}>
           <Field
             component={Select}
-            dataOptions={insututionDataOptions}
-            disabled
+            dataOptions={[{ value: '', label: '' }, ...institutionsValues]}
+            disabled={institutionsValues.length < 2}
             label={<FormattedMessage id="ui-oa.report.institution" />}
             name="institution"
             required
@@ -80,10 +86,6 @@ const ReportingInfoForm = ({ institution }) => {
       </Row>
     </>
   );
-};
-
-ReportingInfoForm.propTypes = {
-  institution: PropTypes.object,
 };
 
 export default ReportingInfoForm;
