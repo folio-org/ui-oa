@@ -237,6 +237,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
         {renderRequestStatusFilter()}
         {renderRequestDateFilter()}
         {renderCorrespondingInstitutionLevel1Filter()}
+        {renderChecklistFilter()}
         <hr />
         <Headline faded margin="none" size="large">
           <FormattedMessage id="ui-oa.searchAndFilter.publicationFilters" />
@@ -251,7 +252,6 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
         {renderChargeStatusFitler()}
         {renderChargePayersFilter()}
       </AccordionSet>
-      {renderChecklistFilter()}
     </>
   );
 };
