@@ -1,4 +1,4 @@
-const jestConf = require('@folio/stripes-erm-components/jest.config');
+const jestConf = require('@folio/stripes-erm-testing/jest.config');
 const path = require('path');
 
 module.exports = {
