@@ -2,4 +2,8 @@
 
 ## 1.0.0 (In Progress)
 
-* Upgrade `@folio/react-intl-safe-html` for compatibility with `@folio/stripes` `v7`. UIOA-25
+* Added Requests, Parties and Jourals list views
+* Added Request, Party and Journal detail view
+* Added Correspondence and Charges views to requests
+* Added Invoice linking to request charges
+* Added Checklist view for requests workflow

@@ -1,5 +1,5 @@
 {
-  "meta.title": "Open Access",
+  "meta.title": "Open access",
 
   "OR": "OR",
   "AND": "AND",
@@ -10,13 +10,23 @@
   "new": "New",
   "actions": "Actions",
 
+  "valueOrValues": "Value(s)",
   "found#Values": "Found {total} requests",
   "save": "Save",
   "saveAndClose": "Save & close",
   "cancel": "Cancel",
+  "customProperties.internalNote": "Internal note",
+  "customProperties.visibility": "Visibility",
+  "customProperties.internalFalse": "Public",
+  "customProperties.publicNote": "Public note",
 
   "refdata.label": "Label",
   "refdata.value": "Value",
+  "refdata.deleteRefdataValue": "Delete refdata value",
+  "refdata.deleteRefdataValue.confirmMessage": "<strong>{name}</strong> will be deleted.",
+  "refdata.deleteRefdataValue.errorMessage": "<strong>Error: {label}</strong> was not deleted. {error}",
+  "refdata.editAriaLabel": "Edit value {label}",
+  "refdata.deleteAriaLabel": "Delete value {label}",
 
   "settings.edit": "Edit",
   "settings.finish-editing": "Save",
@@ -31,10 +41,13 @@
   "settings.refdata.picklist": "Pick list",
 
   "settings.checklistItemDefinitions": "Checklist items",
+  "settings.checklistItemDefinitions.newChecklistItem": "New checklist item",
+  "settings.checklistItemDefinitions.editChecklistItem": "Edit checklist item",
   "settings.checklistItemDefinitions.name": "Name",
   "settings.checklistItemDefinitions.label": "Label",
   "settings.checklistItemDefinitions.description": "Description",
   "settings.checklistItemDefinitions.weight": "Weight",
+  "settings.checklistItemDefinitions.weightPopover": "Item order weight, higher value means lower placement",
 
   "settings.checklistItemDefinitions.deleteAriaLabel": "Delete checklist item {label}",
   "settings.checklistItemDefinitions.editAriaLabel": "Edit checklist item {label}",
@@ -45,6 +58,13 @@
   "searchAndFilter.journals": "Journals",
   "searchAndFilter.people": "People",
   "searchAndFilter.requests": "Requests",
+  "searchAndFilter.chargeStatus": "Charge status",
+  "searchAndFilter.chargePayers": "Charge Payers",
+  "searchAndFilter.requestFilters": "Request filters",
+  "searchAndFilter.chargeFilters": "Charge filters",
+  "searchAndFilter.publicationFilters": "Publication filters",
+  "searchAndFilter.journalFilters": "Journal filters",
+  "searchAndFilter.peopleFilters": "People filters",
 
   "checklistFilter.checklistItems": "Checklist items",
   "checklistFilter.checklistItem": "Checklist item",
@@ -61,6 +81,7 @@
 
 
   "parties.people": "People",
+  "parties.found#People": "Found {total} people",
   "parties.givenNames": "Given names",
   "parties.familyName": "Family name",
   "parties.orcidId": "ORCID iD",
@@ -68,6 +89,7 @@
   "parties.createPersonRecord": "New person record",
 
   "journals": "Journals",
+  "journals.found#Journals": "Found {total} journals",
   "journals.title": "Title",
   "journals.printIssn": "ISSN (Print)",
   "journals.electronicIssn": "ISSN (Electronic)",
@@ -317,11 +339,13 @@
   "charge.discount": "Discount",
   "charge.description": "Description",
   "charge.chargeDescription": "Charge description",
+  "charge.paymentPeriod": "Payment period",
   "charge.currency.gbp": "GBP",
   "charge.currency.usd": "USD",
   "charge.validate.notLessThanZero": "Cannot be less than zero",
   "charge.validate.notNegative": "Cannot be negative",
   "charge.validate.maxDigits": "Maximum 10 digits either side",
+  "charge.validate.fourDigits": "Must be a 4 digit number",
   "charge.edit": "Edit",
   "charge.delete": "Delete",
   "charge.deleteCharge": "Delete charge",
@@ -424,5 +448,16 @@
   "checklist.outcome.yes": "Yes",
   "checklist.outcome.no": "No",
   "checklist.hideItem": "Hide ''{name}'' item",
-  "checklist.showItem": "Show ''{name}'' item"
+  "checklist.showItem": "Show ''{name}'' item",
+  "checklist.itemOutcome": "Outcome is {outcome} for {itemName} item",
+
+  "report.runOpenAPCChargesReport": "Run OpenAPC charges report",
+  "report.runReportAndDownload": "Run report and download",
+  "report.reportFormat": "Report format",
+  "report.institution": "Institution",
+  "report.reportParameters": "Report parameters",
+  "report.paymentPeriod": "Payment period",
+  "report.chargeCategories": "Charge categories",
+  "report.chargeStatuses": "Charge statuses",
+  "report.reportCreated": "<strong>Report created:</strong> {reportFormat} report. The file will automatically download."
 }

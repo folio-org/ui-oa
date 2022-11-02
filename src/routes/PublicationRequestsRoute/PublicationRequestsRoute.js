@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
@@ -9,11 +10,12 @@ import {
   Button,
   FormattedUTCDate,
   HasCommand,
-  PaneMenu,
   checkScope,
+  Icon,
 } from '@folio/stripes/components';
 
 import { SASQRoute } from '@k-int/stripes-kint-components';
+import { ReportingModal } from '../../components/Modals';
 import PublicationRequest from '../../components/views/PublicationRequest';
 import urls from '../../util/urls';
 import focusSASQSearchField from '../../util/focusSASQSearchField';
@@ -25,14 +27,21 @@ import { PUBLICATION_REQUESTS_ENDPOINT } from '../../constants/endpoints';
 
 const PublicationRequestsRoute = ({ children, path }) => {
   const history = useHistory();
+  const [showModal, setShowModal] = useState(false);
 
   const fetchParameters = {
     endpoint: PUBLICATION_REQUESTS_ENDPOINT,
     SASQ_MAP: {
       searchKey:
-        'publicationTitle,requestNumber,correspondingAuthor.partyOwner.fullName,requestContact.partyOwner.fullName,externalRequestIds.externalId',
+        'publicationTitle,requestNumber,correspondingAuthor.partyOwner.fullName,requestContact.partyOwner.fullName,externalRequestIds.externalId,doi,localReference,identifiers.publicationIdentifier',
       filterKeys: {
         requestStatus: 'requestStatus.value',
+        chargeStatus: 'charges.chargeStatus.value',
+        publicationType: 'publicationType.value',
+        workOAStatus: 'workOAStatus.value',
+        publisher: 'publisher.value',
+        chargePayers: 'charges.payers.payer.value',
+        correspondingInstitutionLevel1: 'correspondingInstitutionLevel1.value',
       },
     },
   };
@@ -43,7 +52,10 @@ const PublicationRequestsRoute = ({ children, path }) => {
 
   const shortcuts = [
     { name: 'new', handler: () => handleCreate() },
-    { name: 'search', handler: () => focusSASQSearchField('publication-requests') },
+    {
+      name: 'search',
+      handler: () => focusSASQSearchField('publication-requests'),
+    },
   ];
 
   const renderHeaderComponent = () => {
@@ -88,54 +100,77 @@ const PublicationRequestsRoute = ({ children, path }) => {
     correspondingAuthor: (d) => d.correspondingAuthor?.partyOwner?.fullName,
   };
 
-  const lastpaneMenu = (
-    <IfPermission perm="oa.publicationRequest.edit">
-      <PaneMenu>
-        <FormattedMessage id="ui-oa.publicationRequest.createPublicationRequest">
+  const renderActionMenu = () => {
+    return (
+      <>
+        <IfPermission perm="oa.publicationRequest.edit">
+          <FormattedMessage id="ui-oa.publicationRequest.createPublicationRequest">
+            {(ariaLabel) => (
+              <Button
+                aria-label={ariaLabel}
+                buttonStyle="dropdownItem"
+                id="clickable-new-publication-request"
+                marginBottom0
+                onClick={() => handleCreate()}
+              >
+                <Icon icon="edit">
+                  <FormattedMessage id="ui-oa.new" />
+                </Icon>
+              </Button>
+            )}
+          </FormattedMessage>
+        </IfPermission>
+        <FormattedMessage id="ui-oa.report.runOpenAPCChargesReport">
           {(ariaLabel) => (
             <Button
               aria-label={ariaLabel}
-              buttonStyle="primary"
-              id="clickable-new-publication-request"
+              buttonStyle="dropdownItem"
+              id="clickable-run-openapc-charges-report"
               marginBottom0
-              onClick={() => handleCreate()}
+              onClick={() => setShowModal(true)}
             >
-              <FormattedMessage id="stripes-smart-components.new" />
+              <Icon icon="report">
+                <FormattedMessage id="ui-oa.report.runOpenAPCChargesReport" />
+              </Icon>
             </Button>
           )}
         </FormattedMessage>
-      </PaneMenu>
-    </IfPermission>
-  );
+      </>
+    );
+  };
 
   return (
-    <HasCommand
-      commands={shortcuts}
-      isWithinScope={checkScope}
-      scope={document.body}
-    >
-      <SASQRoute
-        fetchParameters={fetchParameters}
-        FilterComponent={PublicationRequestsFilters}
-        FilterPaneHeaderComponent={renderHeaderComponent}
-        id="publication-requests"
-        mainPaneProps={{
-          appIcon: <AppIcon app="oa" iconKey="app" size="small" />,
-          lastMenu: lastpaneMenu,
-          paneTitle: <FormattedMessage id="ui-oa.publicationRequests" />,
-        }}
-        mclProps={{
-          formatter,
-          columnWidths: { publicationTitle: 500 },
-        }}
-        path={path}
-        resultColumns={resultColumns}
-        sasqProps={{ initialSortState: { sort: 'requestNumber' } }}
-        ViewComponent={PublicationRequest}
+    <>
+      <HasCommand
+        commands={shortcuts}
+        isWithinScope={checkScope}
+        scope={document.body}
       >
-        {children}
-      </SASQRoute>
-    </HasCommand>
+        <SASQRoute
+          fetchParameters={fetchParameters}
+          FilterComponent={PublicationRequestsFilters}
+          FilterPaneHeaderComponent={renderHeaderComponent}
+          id="publication-requests"
+          mainPaneProps={{
+            appIcon: <AppIcon app="oa" iconKey="app" size="small" />,
+            actionMenu: renderActionMenu,
+            paneTitle: <FormattedMessage id="ui-oa.publicationRequests" />,
+          }}
+          mclProps={{
+            formatter,
+            columnWidths: { publicationTitle: 500 },
+          }}
+          path={path}
+          resultColumns={resultColumns}
+          sasqProps={{ initialSortState: { sort: 'requestNumber' } }}
+          searchFieldAriaLabel="publication-requests-search-field"
+          ViewComponent={PublicationRequest}
+        >
+          {children}
+        </SASQRoute>
+      </HasCommand>
+      <ReportingModal setShowModal={setShowModal} showModal={showModal} />
+    </>
   );
 };
 

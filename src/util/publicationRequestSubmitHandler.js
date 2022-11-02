@@ -8,7 +8,7 @@ const publicationRequestSubmitHandler = (values, journalArticleId) => {
     'workIndexedInDOAJ',
     'workOAStatus',
     'work',
-    'correspondingFaculty',
+    'correspondingInstitutionLevel1',
   ];
   // For all ref data selects within the publicationrequest create page, allows for the unsetting of values
   // If the specified refdata does not have an id, then the entire property is set to null

@@ -155,13 +155,13 @@ const PublicationRequest = ({
               <Agreement {...getSectionProps('agreement')} />
             )}
             <Correspondence {...getSectionProps('correspondences')} />
-            <Charges {...getSectionProps('correspondences')} />
+            <Charges {...getSectionProps('charges')} />
           </AccordionSet>
         </AccordionStatus>
       </Pane>
       <HelperComponent
         isOpen={isOpen}
-        resource={request}
+        ownerId={request?.id}
         resourceEndpoint={PUBLICATION_REQUEST_ENDPOINT}
       />
     </HasCommand>

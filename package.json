@@ -34,7 +34,8 @@
     "optionalOkapiInterfaces": {
       "invoice": "7.0",
       "erm": "5.0",
-      "organizations.organizations": "1.0"
+      "organizations": "1.0",
+      "finance.exchange-rate": "1.0"
     },
     "stripesDeps": [
       "@folio/stripes-erm-components",
@@ -60,21 +61,63 @@
     "permissionSets": [
       {
         "permissionName": "module.oa.enabled",
-        "displayName": "UI: ui-oa module is enabled"
+        "displayName": "UI: ui-oa module is enabled",
+        "visible": false
       },
       {
         "permissionName": "settings.oa.enabled",
         "displayName": "Settings (OA): display list of settings pages",
         "subPermissions": [
           "settings.enabled"
-        ]
+        ],
+        "visible": false
       },
       {
-        "permissionName": "settings.oa.picklists.manage",
-        "displayName": "Settings (Open Access): Manage pick lists and values",
+        "permissionName": "ui-oa.allSettings.manage",
+        "displayName": "Settings (Open Access): Manage all Open Access settings",
+        "description": "Grants permission to view and edit all the Open Access settings",
         "subPermissions": [
-          "settings.oa.enabled"
-        ]
+          "settings.oa.enabled",
+          "oa.checklistItems.manage",
+          "oa.refdata.manage",
+          "oa.settings.write"
+        ],
+        "visible": true
+      },
+      {
+        "permissionName": "ui-oa.oa.view",
+        "displayName": "Open Access Requests: Search & view all",
+        "description": "A user with this permission can search and view existing Open Access publication requests and related information including checklists. This includes the permission to see and access the OA app in the Folio interface",
+        "subPermissions": [
+          "module.oa.enabled",
+          "oa.publicationRequest.view",
+          "oa.scholarlyWork.view",
+          "oa.works.view",
+          "oa.titleInstances.view",
+          "oa.correspondence.view",
+          "oa.party.view",
+          "oa.charges.view",
+          "oa.checklistItems.view",
+          "oa.refdata.read"
+        ],
+        "visible": true
+      },
+      {
+        "permissionName": "ui-oa.oa.manage",
+        "displayName": "Open Access Requests: Edit all",
+        "description": "A user with this permission can search, view and edit Open Access publication requests and related information including checklists. This includes the permission to create and edit new requests, parties (people), works, charges as well as to change the status and visibility of checklist items on a request",
+        "subPermissions": [
+          "oa.publicationRequest.manage",
+          "oa.scholarlyWork.manage",
+          "oa.works.manage",
+          "oa.titleInstances.manage",
+          "oa.correspondence.manage",
+          "oa.party.manage",
+          "oa.charges.manage",
+          "oa.checklistItems.manage",
+          "oa.refdata.read"
+        ],
+        "visible": true
       }
     ]
   },
@@ -93,7 +136,7 @@
     "@babel/preset-typescript": "^7.18.6",
     "@folio/eslint-config-stripes": "^6.1.0",
     "@folio/handler-stripes-registry": "^1.1.1",
-    "@folio/stripes-erm-components": "^6.2.0",
+    "@folio/stripes-erm-components": "^7.0.0",
     "@folio/service-interaction": "^1.0.0",
     "@folio/stripes": "^7.2.0",
     "@folio/stripes-cli": "^2.6.0",
@@ -131,7 +174,7 @@
   },
   "dependencies": {
     "@folio/stripes-acq-components": "^3.1.0",
-    "@k-int/stripes-kint-components": "^3.0.0",
+    "@k-int/stripes-kint-components": "^3.0.4",
     "classnames": "^2.2.6",
     "compose-function": "^3.0.3",
     "final-form": "^4.18.5",
@@ -145,7 +188,7 @@
   },
   "peerDependencies": {
     "@folio/handler-stripes-registry": "^1.1.1",
-    "@folio/stripes-erm-components": "^6.2.0",
+    "@folio/stripes-erm-components": "^7.0.0",
     "@folio/service-interaction": "^1.0.0",
     "@folio/stripes": "^7.0.0",
     "moment": "^2.22.2",
