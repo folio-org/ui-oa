@@ -18,7 +18,7 @@ import { REPORT_ENDPOINT } from '../../../constants/endpoints';
 const ReportingModal = ({ showModal, setShowModal }) => {
   const generateReport = useGenerateReport();
   const callout = useContext(CalloutContext);
-  const institution = useOARefdata('InstitutionName')[0];
+  const institutions = useOARefdata('InstitutionName');
 
   const handleClose = () => setShowModal(false);
 
@@ -26,18 +26,22 @@ const ReportingModal = ({ showModal, setShowModal }) => {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${values.paymentPeriod ? values?.paymentPeriod + '_' : ''}${values?.institution?.value}_${values?.reportFormat}.csv`;
+    a.download = `${values.paymentPeriod ? values?.paymentPeriod + '_' : ''}${
+      values?.institution
+    }_${values?.reportFormat}.csv`;
     document.body.appendChild(a);
     a.click();
     a.remove();
   };
 
   const submitReport = async (values, form) => {
-    const chargeCategory = values?.chargeCategory?.map((e) => e.value)?.join(',');
+    const chargeCategory = values?.chargeCategory
+      ?.map((e) => e.value)
+      ?.join(',');
     const chargeStatus = values?.chargeStatus?.map((e) => e.value)?.join(',');
 
     const paramMap = {
-      institution: values?.institution?.label,
+      institution: values?.institution,
       ...(!!values?.paymentPeriod && { paymentPeriod: values?.paymentPeriod }),
       ...(!!chargeCategory && { chargeCategory }),
       ...(!!chargeStatus && { chargeStatus }),
@@ -96,7 +100,7 @@ const ReportingModal = ({ showModal, setShowModal }) => {
   return (
     <FormModal
       initialValues={{
-        institution,
+        institution: institutions.length > 1 ? null : institutions[0]?.value,
       }}
       modalProps={{
         dismissible: true,
@@ -108,7 +112,7 @@ const ReportingModal = ({ showModal, setShowModal }) => {
       mutators={arrayMutators}
       onSubmit={submitReport}
     >
-      <ReportingInfoForm institution={institution} />
+      <ReportingInfoForm />
     </FormModal>
   );
 };
