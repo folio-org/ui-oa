@@ -20,6 +20,12 @@ import urls from '../../util/urls';
 import focusSASQSearchField from '../../util/focusSASQSearchField';
 import { WORKS_ENDPOINT } from '../../constants/endpoints';
 
+import {
+  MAIN_FILTER_PANE_CONFIG,
+  MAIN_PANE_ID,
+  MAIN_PANESET_CONFIG
+} from '../../constants/panesetConfigs';
+
 const JournalsRoute = ({ path }) => {
   const history = useHistory();
   const [showModal, setShowModal] = useState(false);
@@ -109,6 +115,7 @@ const JournalsRoute = ({ path }) => {
           fetchParameters={fetchParameters}
           FilterComponent={JournalsFilters}
           FilterPaneHeaderComponent={renderHeaderComponent}
+          filterPaneProps={MAIN_FILTER_PANE_CONFIG}
           id="journals"
           labelOverrides={{
             foundValues: 'ui-oa.journals.found#Journals',
@@ -117,9 +124,11 @@ const JournalsRoute = ({ path }) => {
             appIcon: <AppIcon app="oa" iconKey="journal" size="small" />,
             lastMenu: lastpaneMenu,
             paneTitle: <FormattedMessage id="ui-oa.journals" />,
+            id: MAIN_PANE_ID,
           }}
           mclProps={{ formatter }}
           path={path}
+          persistedPanesetProps={MAIN_PANESET_CONFIG}
           resultColumns={resultColumns}
           sasqProps={{ initialSortState: { sort: 'title' } }}
           searchFieldAriaLabel="journals-search-field"
