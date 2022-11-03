@@ -25,6 +25,12 @@ import {
 } from '../../components/SearchAndFilter';
 import { PUBLICATION_REQUESTS_ENDPOINT } from '../../constants/endpoints';
 
+import {
+  MAIN_FILTER_PANE_CONFIG,
+  MAIN_PANE_ID,
+  MAIN_PANESET_CONFIG
+} from '../../constants/panesetConfigs';
+
 const PublicationRequestsRoute = ({ children, path }) => {
   const history = useHistory();
   const [showModal, setShowModal] = useState(false);
@@ -150,24 +156,20 @@ const PublicationRequestsRoute = ({ children, path }) => {
           fetchParameters={fetchParameters}
           FilterComponent={PublicationRequestsFilters}
           FilterPaneHeaderComponent={renderHeaderComponent}
-          filterPaneProps={{
-            id: 'oa-main-filter-pane'
-          }}
+          filterPaneProps={MAIN_FILTER_PANE_CONFIG}
           id="publication-requests"
           mainPaneProps={{
             appIcon: <AppIcon app="oa" iconKey="app" size="small" />,
             actionMenu: renderActionMenu,
             paneTitle: <FormattedMessage id="ui-oa.publicationRequests" />,
-            id: 'oa-main-pane'
+            id: MAIN_PANE_ID,
           }}
           mclProps={{
             formatter,
             columnWidths: { publicationTitle: 500 },
           }}
           path={path}
-          persistedPanesetProps={{
-            id: 'oa-main-paneset'
-          }}
+          persistedPanesetProps={MAIN_PANESET_CONFIG}
           resultColumns={resultColumns}
           sasqProps={{ initialSortState: { sort: 'requestNumber' } }}
           searchFieldAriaLabel="publication-requests-search-field"
