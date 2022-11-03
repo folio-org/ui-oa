@@ -20,7 +20,6 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
 
   return (
     <Accordion
-      closedByDefault
       header={FilterAccordionHeader}
       id="clickable-checklist-filter"
       label={<FormattedMessage id="ui-oa.checklistFilter.checklistItems" />}
