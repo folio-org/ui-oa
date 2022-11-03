@@ -98,7 +98,8 @@
           "oa.party.view",
           "oa.charges.view",
           "oa.checklistItems.view",
-          "oa.refdata.read"
+          "oa.refdata.read",
+          "oa.reports.get"
         ],
         "visible": true
       },
@@ -115,7 +116,8 @@
           "oa.party.manage",
           "oa.charges.manage",
           "oa.checklistItems.manage",
-          "oa.refdata.read"
+          "oa.refdata.read",
+          "oa.reports.get"
         ],
         "visible": true
       }
