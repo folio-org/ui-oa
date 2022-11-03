@@ -103,6 +103,7 @@ const ChecklistItem = ({
             {([ariaLabel]) => (
               <IconSelect
                 ariaLabel={ariaLabel}
+                disabled
                 id={`${item?.definition?.name}-icon-select`}
                 input={{
                   name: 'outcome',
