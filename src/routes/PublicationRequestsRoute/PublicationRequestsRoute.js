@@ -109,7 +109,7 @@ const PublicationRequestsRoute = ({ children, path }) => {
   const renderActionMenu = () => {
     return (
       <>
-        <IfPermission perm="oa.publicationRequest.edit">
+        <IfPermission perm="oa.publicationRequest.manage">
           <FormattedMessage id="ui-oa.publicationRequest.createPublicationRequest">
             {(ariaLabel) => (
               <Button
