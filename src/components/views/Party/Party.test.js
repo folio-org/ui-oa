@@ -29,8 +29,6 @@ describe('Party', () => {
     });
 
     test('renders button components', async () => {
-      await Button('Actions').exists();
-      await Button('Actions').click();
       await Button('Edit').exists();
       await Button('Edit').click();
     });
