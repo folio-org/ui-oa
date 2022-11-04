@@ -27,10 +27,5 @@ describe('Party', () => {
       const { getByText } = renderComponent;
       expect(getByText('PartyInfo')).toBeInTheDocument();
     });
-
-    test('renders button components', async () => {
-      await Button('Edit').exists();
-      await Button('Edit').click();
-    });
   });
 });
