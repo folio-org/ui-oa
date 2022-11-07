@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import { useHistory, useParams, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
-import { AppIcon, useOkapiKy } from '@folio/stripes/core';
+import { AppIcon, useOkapiKy, useStripes } from '@folio/stripes/core';
 import {
   Pane,
   Button,
@@ -31,6 +31,7 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
   const ky = useOkapiKy();
   const history = useHistory();
   const params = useParams();
+  const stripes = useStripes();
 
   // Filter publication requests in which the corresponding author matches the current party
   const { data: publicationRequests } = useQuery(
@@ -93,6 +94,22 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
     },
   ];
 
+  const renderActionMenu = () => {
+    const buttons = [];
+    if (stripes.hasPerm('oa.party.manage')) {
+      <Button
+        buttonStyle="dropdownItem"
+        id="clickable-dropdown-edit-party"
+        onClick={handleEdit}
+      >
+        <Icon icon="edit">
+          <FormattedMessage id="ui-oa.party.edit" />
+        </Icon>
+      </Button>;
+    }
+    return buttons.length ? buttons : null;
+  };
+
   if (isLoading) {
     return (
       <LoadingPane
@@ -110,17 +127,7 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
       scope={document.body}
     >
       <Pane
-        actionMenu={() => (
-          <Button
-            buttonStyle="dropdownItem"
-            id="clickable-dropdown-edit-party"
-            onClick={handleEdit}
-          >
-            <Icon icon="edit">
-              <FormattedMessage id="ui-oa.party.edit" />
-            </Icon>
-          </Button>
-        )}
+        actionMenu={renderActionMenu}
         appIcon={<AppIcon app="oa" iconKey="party" size="small" />}
         defaultWidth={PANE_DEFAULT_WIDTH}
         dismissible

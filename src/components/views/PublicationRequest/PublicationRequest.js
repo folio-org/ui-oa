@@ -3,7 +3,7 @@ import { createRef } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { useHistory, useParams } from 'react-router-dom';
-import { AppIcon } from '@folio/stripes/core';
+import { AppIcon, useStripes } from '@folio/stripes/core';
 
 import {
   AccordionSet,
@@ -55,6 +55,7 @@ const PublicationRequest = ({
   const params = useParams();
   const accordionStatusRef = createRef();
   const { HelperComponent, ChecklistButton, isOpen } = useOAHelperApp();
+  const stripes = useStripes();
 
   const handleEdit = () => {
     history.push(`${urls.publicationRequestEdit(params?.id)}`);
@@ -79,6 +80,22 @@ const PublicationRequest = ({
     },
   ];
 
+  const renderActionMenu = () => {
+    const buttons = [];
+    if (stripes.hasPerm('oa.publicationRequest.manage')) {
+      <Button
+        buttonStyle="dropdownItem"
+        id="clickable-dropdown-edit-publication-request"
+        onClick={handleEdit}
+      >
+        <Icon icon="edit">
+          <FormattedMessage id="ui-oa.publicationRequest.edit" />
+        </Icon>
+      </Button>;
+    }
+    return buttons.length ? buttons : null;
+  };
+
   if (isLoading) {
     return (
       <LoadingPane
@@ -96,17 +113,7 @@ const PublicationRequest = ({
       scope={document.body}
     >
       <Pane
-        actionMenu={() => (
-          <Button
-            buttonStyle="dropdownItem"
-            id="clickable-dropdown-edit-publication-request"
-            onClick={handleEdit}
-          >
-            <Icon icon="edit">
-              <FormattedMessage id="ui-oa.publicationRequest.edit" />
-            </Icon>
-          </Button>
-        )}
+        actionMenu={renderActionMenu}
         appIcon={<AppIcon app="oa" iconKey="app" size="small" />}
         defaultWidth={PANE_DEFAULT_WIDTH}
         dismissible
