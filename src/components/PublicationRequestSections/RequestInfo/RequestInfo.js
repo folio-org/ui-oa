@@ -48,10 +48,10 @@ const RequestInfo = ({ request }) => {
           <KeyValue
             label={
               <>
-                <FormattedMessage id="ui-oa.publicationRequest.retrospectiveOA" />
+                <FormattedMessage id="ui-oa.publicationRequest.retrospectiveOpenAccess" />
                 <InfoPopover
                   content={
-                    <FormattedMessage id="ui-oa.publicationRequest.retrospectiveOA.viewTooltip" />
+                    <FormattedMessage id="ui-oa.publicationRequest.retrospectiveOpenAccess.viewTooltip" />
                   }
                 />
               </>
