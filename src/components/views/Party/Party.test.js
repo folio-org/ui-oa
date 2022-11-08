@@ -1,6 +1,4 @@
-import '@folio/stripes-erm-components/test/jest/__mock__';
-
-import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
+import { renderWithIntl } from '@folio/stripes-erm-testing';
 
 import translationsProperties from '../../../../test/helpers/translationsProperties';
 import Party from './Party';
