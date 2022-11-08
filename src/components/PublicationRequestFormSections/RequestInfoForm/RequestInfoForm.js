@@ -2,7 +2,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 
-import { Field, useForm, useFormState } from 'react-final-form';
+import { Field, useForm } from 'react-final-form';
 
 import {
   Col,
@@ -12,6 +12,7 @@ import {
   Select,
   Checkbox,
   Label,
+  InfoPopover,
 } from '@folio/stripes/components';
 
 import { requiredValidator } from '@folio/stripes-erm-components';
@@ -25,7 +26,6 @@ const propTypes = {
 };
 
 const RequestInfoForm = ({ request }) => {
-  const { values } = useFormState();
   const { change } = useForm();
   const requestStatusValues = useOARefdata('PublicationRequest.RequestStatus');
 
@@ -72,9 +72,15 @@ const RequestInfoForm = ({ request }) => {
         <Col xs={3}>
           <Label>
             <FormattedMessage id="ui-oa.publicationRequest.retrospectiveOA" />
+            <InfoPopover
+              content={
+                <FormattedMessage id="ui-oa.publicationRequest.retrospectiveOA.tooltip" />
+              }
+              id="retrospective-oa-tooltip"
+            />
           </Label>
+
           <Field
-            checked={values.withoutAgreement}
             component={Checkbox}
             name="retrospectiveOA"
             onChange={(e) => {
