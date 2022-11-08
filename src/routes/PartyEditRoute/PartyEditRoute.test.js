@@ -1,5 +1,5 @@
 
-import { renderWithIntl } from '@folio/stripes-erm-components';
+import { renderWithIntl } from '@folio/stripes-erm-testing';
 
 import PartyEditRoute from './PartyEditRoute';
 import { translationsProperties } from '../../../test/helpers';

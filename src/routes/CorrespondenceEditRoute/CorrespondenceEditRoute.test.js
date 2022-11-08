@@ -1,5 +1,5 @@
 
-import { renderWithIntl } from '@folio/stripes-erm-components';
+import { renderWithIntl } from '@folio/stripes-erm-testing';
 
 import CorrespondenceEditRoute from './CorrespondenceEditRoute';
 import { translationsProperties } from '../../../test/helpers';

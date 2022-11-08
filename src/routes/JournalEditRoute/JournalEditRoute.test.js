@@ -1,5 +1,5 @@
 
-import { renderWithIntl } from '@folio/stripes-erm-components';
+import { renderWithIntl } from '@folio/stripes-erm-testing';
 
 import JournalEditRoute from './JournalEditRoute';
 import { translationsProperties } from '../../../test/helpers';
