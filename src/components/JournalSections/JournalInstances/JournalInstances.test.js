@@ -1,5 +1,5 @@
-import '@folio/stripes-erm-components/test/jest/__mock__';
-import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
+
+import { renderWithIntl } from '@folio/stripes-erm-testing';
 import { within } from '@testing-library/react';
 import { translationsProperties } from '../../../../test/helpers';
 import JournalInstances from './JournalInstances';

@@ -1,4 +1,4 @@
-import '@folio/stripes-erm-components/test/jest/__mock__';
+
 import { renderWithIntl } from '@folio/stripes-erm-components';
 
 import PartyEditRoute from './PartyEditRoute';
