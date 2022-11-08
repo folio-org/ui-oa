@@ -225,6 +225,7 @@
   "publicationRequest.requestNumber": "Request number",
   "publicationRequest.requestDate": "Request date",
   "publicationRequest.requestTitle": "Request number - {number}",
+  "publicationRequest.retrospectiveOA": "Request is for retrospective open access",
   "publicationRequest.selectedJournal": "Journal",
   "publicationRequest.showChecklist": "Show checklist",
   "publicationRequest.success.callout": "Publication request {requestNumber} successfully created",
