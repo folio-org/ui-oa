@@ -98,15 +98,17 @@ const Journal = ({ resource: journal, onClose, queryProps: { isLoading } }) => {
   const renderActionMenu = () => {
     const buttons = [];
     if (stripes.hasPerm('oa.works.manage')) {
-      <Button
-        buttonStyle="dropdownItem"
-        id="journal-edit-button"
-        onClick={handleEdit}
-      >
-        <Icon icon="edit">
-          <FormattedMessage id="ui-oa.journal.edit" />
-        </Icon>
-      </Button>;
+      buttons.push(
+        <Button
+          buttonStyle="dropdownItem"
+          id="journal-edit-button"
+          onClick={handleEdit}
+        >
+          <Icon icon="edit">
+            <FormattedMessage id="ui-oa.journal.edit" />
+          </Icon>
+        </Button>
+      );
     }
     return buttons.length ? buttons : null;
   };
