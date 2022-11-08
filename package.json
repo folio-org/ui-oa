@@ -98,7 +98,8 @@
           "oa.party.view",
           "oa.charges.view",
           "oa.checklistItems.view",
-          "oa.refdata.read"
+          "oa.refdata.read",
+          "oa.reports.get"
         ],
         "visible": true
       },
@@ -115,7 +116,8 @@
           "oa.party.manage",
           "oa.charges.manage",
           "oa.checklistItems.manage",
-          "oa.refdata.read"
+          "oa.refdata.read",
+          "oa.reports.get"
         ],
         "visible": true
       }
@@ -174,7 +176,7 @@
   },
   "dependencies": {
     "@folio/stripes-acq-components": "^3.1.0",
-    "@k-int/stripes-kint-components": "^3.0.4",
+    "@k-int/stripes-kint-components": "^3.1.0",
     "classnames": "^2.2.6",
     "compose-function": "^3.0.3",
     "final-form": "^4.18.5",
