@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import {
   Col,
   FormattedUTCDate,
+  InfoPopover,
   KeyValue,
   Row,
 } from '@folio/stripes/components';
@@ -43,7 +44,27 @@ const RequestInfo = ({ request }) => {
             value={request?.requestStatus?.label}
           />
         </Col>
-        <Col xs={3} />
+        <Col xs={3}>
+          <KeyValue
+            label={
+              <>
+                <FormattedMessage id="ui-oa.publicationRequest.retrospectiveOA" />
+                <InfoPopover
+                  content={
+                    <FormattedMessage id="ui-oa.publicationRequest.retrospectiveOA.viewTooltip" />
+                  }
+                />
+              </>
+            }
+            value={
+              request?.retrospectiveOA ? (
+                <FormattedMessage id="ui-oa.yes" />
+              ) : (
+                <FormattedMessage id="ui-oa.no" />
+              )
+            }
+          />
+        </Col>
       </Row>
       {request?.externalRequestIds?.length > 0 && (
         <Row start="xs">

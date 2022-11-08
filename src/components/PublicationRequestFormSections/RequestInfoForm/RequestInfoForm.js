@@ -74,7 +74,7 @@ const RequestInfoForm = ({ request }) => {
             <FormattedMessage id="ui-oa.publicationRequest.retrospectiveOA" />
             <InfoPopover
               content={
-                <FormattedMessage id="ui-oa.publicationRequest.retrospectiveOA.tooltip" />
+                <FormattedMessage id="ui-oa.publicationRequest.retrospectiveOA.formTooltip" />
               }
               id="retrospective-oa-tooltip"
             />

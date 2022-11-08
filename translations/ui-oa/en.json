@@ -6,6 +6,8 @@
   "delete": "Delete",
   "new": "New",
   "actions": "Actions",
+  "yes": "Yes",
+  "no": "No",
 
   "valueOrValues": "Value(s)",
   "found#Values": "Found {total} requests",
@@ -226,7 +228,8 @@
   "publicationRequest.requestDate": "Request date",
   "publicationRequest.requestTitle": "Request number - {number}",
   "publicationRequest.retrospectiveOA": "Retrospective OA",
-  "publicationRequest.retrospectiveOA.tooltip": "Check this box if this request is to retrospectively convert an existing closed access publication to open access",
+  "publicationRequest.retrospectiveOA.formTooltip": "Check this box if this request is to retrospectively convert an existing closed access publication to open access",
+  "publicationRequest.retrospectiveOA.viewTooltip": "Is the existing closed access publication being retrospectively converted to open access",
   "publicationRequest.selectedJournal": "Journal",
   "publicationRequest.showChecklist": "Show checklist",
   "publicationRequest.success.callout": "Publication request {requestNumber} successfully created",
