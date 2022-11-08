@@ -83,15 +83,17 @@ const PublicationRequest = ({
   const renderActionMenu = () => {
     const buttons = [];
     if (stripes.hasPerm('oa.publicationRequest.manage')) {
-      <Button
-        buttonStyle="dropdownItem"
-        id="clickable-dropdown-edit-publication-request"
-        onClick={handleEdit}
-      >
-        <Icon icon="edit">
-          <FormattedMessage id="ui-oa.publicationRequest.edit" />
-        </Icon>
-      </Button>;
+      buttons.push(
+        <Button
+          buttonStyle="dropdownItem"
+          id="clickable-dropdown-edit-publication-request"
+          onClick={handleEdit}
+        >
+          <Icon icon="edit">
+            <FormattedMessage id="ui-oa.publicationRequest.edit" />
+          </Icon>
+        </Button>
+      );
     }
     return buttons.length ? buttons : null;
   };

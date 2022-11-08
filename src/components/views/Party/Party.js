@@ -97,15 +97,17 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
   const renderActionMenu = () => {
     const buttons = [];
     if (stripes.hasPerm('oa.party.manage')) {
-      <Button
-        buttonStyle="dropdownItem"
-        id="clickable-dropdown-edit-party"
-        onClick={handleEdit}
-      >
-        <Icon icon="edit">
-          <FormattedMessage id="ui-oa.party.edit" />
-        </Icon>
-      </Button>;
+      buttons.push(
+        <Button
+          buttonStyle="dropdownItem"
+          id="clickable-dropdown-edit-party"
+          onClick={handleEdit}
+        >
+          <Icon icon="edit">
+            <FormattedMessage id="ui-oa.party.edit" />
+          </Icon>
+        </Button>
+      );
     }
     return buttons.length ? buttons : null;
   };
