@@ -2,7 +2,7 @@
 import {
   renderWithIntl,
   TestForm,
-} from '@folio/stripes-erm-components/test/jest/helpers';
+} from '@folio/stripes-erm-testing';
 import { book, bookHandlers as handlers } from '../../../../../test/resources';
 import { translationsProperties } from '../../../../../test/helpers';
 import PublicationBook from './PublicationBook';

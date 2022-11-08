@@ -3,7 +3,7 @@ import React from 'react';
 import {
   renderWithIntl,
   TestForm,
-} from '@folio/stripes-erm-components/test/jest/helpers';
+} from '@folio/stripes-erm-testing';
 import { Button } from '@folio/stripes-testing';
 
 import IdentifiersFieldArray from './IdentifiersFieldArray';
