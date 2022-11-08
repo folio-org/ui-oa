@@ -12,9 +12,57 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
   const openEditModal = () => setEditingFilters(true);
   const closeEditModal = () => setEditingFilters(false);
 
+  //   {
+  //     "filters": [
+  //         {
+  //             "rules": [
+  //                 {
+  //                     "attribute": "outcome",
+  //                     "operator": "==",
+  //                     "value": "no"
+  //                 },
+  //                 {
+  //                     "attribute": "status",
+  //                     "operator": "!=",
+  //                     "value": "required"
+  //                 }
+  //             ],
+  //             "checklistItem": "test"
+  //         },
+  //         {
+  //             "rules": [
+  //                 {
+  //                     "attribute": "status",
+  //                     "operator": "!=",
+  //                     "value": "not_required"
+  //                 }
+  //             ],
+  //             "checklistItem": "test"
+  //         }
+  //     ]
+  // }
+
   const handleSubmit = (values) => {
-    console.log(values);
-    filterHandlers.state({ ...activeFilters, checklistItems: [] });
+    const filterStrings = values.filters.map((e) => {
+      const rulesString = e.rules.map((r) => {
+        return `checklist.${r.attribute}.value${r.operator + r.value}`;
+      });
+      if (values?.filters.length > 1) {
+        return `(checklist.definition.name==${
+          e?.checklistItem
+        }&&(${rulesString.join('||')}))`;
+      } else {
+        return `checklist.definition.name==${
+          e?.checklistItem
+        }&&(${rulesString.join('||')})`;
+      }
+    });
+    // Example output
+    // checklist.definition.name==new&&(checklist.outcome.value==yes||checklist.status.value==required)&&checklist.definition.name==test&&(checklist.outcome.value==no)
+    filterHandlers.state({
+      ...activeFilters,
+      checklistItems: [filterStrings.join('&&')],
+    });
     setEditingFilters(false);
   };
 
