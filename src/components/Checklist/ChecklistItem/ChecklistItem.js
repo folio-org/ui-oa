@@ -14,6 +14,7 @@ import {
   Tooltip,
 } from '@folio/stripes/components';
 import { IconSelect } from '@k-int/stripes-kint-components';
+import { useStripes } from '@folio/stripes/core';
 
 import css from '../Checklist.css';
 import ChecklistMeta from '../ChecklistMeta';
@@ -32,6 +33,7 @@ const ChecklistItem = ({
   handleSubmit,
   setSelectedNotesItem,
 }) => {
+  const stripes = useStripes();
   const sortedNotes = orderBy(item.notes, 'lastUpdated', 'desc');
 
   const buttonOptions = [
@@ -156,6 +158,10 @@ const ChecklistItem = ({
                 <IconButton
                   ariaLabel={ariaLabel}
                   badgeCount={item?.notes?.length || 0}
+                  disabled={
+                    !stripes.hasPerm('oa.checklistItems.manage') &&
+                    !item?.notes?.length
+                  }
                   icon="document"
                   onClick={() => setSelectedNotesItem(item)}
                 />
@@ -182,6 +188,7 @@ const ChecklistItem = ({
                   ref={ref}
                   aria-describedby={ariaIds.sub}
                   aria-labelledby={ariaIds.text}
+                  disabled={!stripes.hasPerm('oa.checklistItems.manage')}
                   icon={
                     item?.status?.value === 'not_required'
                       ? 'eye-open'

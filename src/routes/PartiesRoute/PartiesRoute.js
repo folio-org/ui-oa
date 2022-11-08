@@ -21,6 +21,12 @@ import urls from '../../util/urls';
 import focusSASQSearchField from '../../util/focusSASQSearchField';
 import { PARTIES_ENDPOINT } from '../../constants/endpoints';
 
+import {
+  MAIN_FILTER_PANE_CONFIG,
+  MAIN_PANE_ID,
+  MAIN_PANESET_CONFIG
+} from '../../constants/panesetConfigs';
+
 const PartiesRoute = ({ path }) => {
   const history = useHistory();
   const renderHeaderComponent = () => {
@@ -101,6 +107,7 @@ const PartiesRoute = ({ path }) => {
         fetchParameters={fetchParameters}
         FilterComponent={PartiesFilters}
         FilterPaneHeaderComponent={renderHeaderComponent}
+        filterPaneProps={MAIN_FILTER_PANE_CONFIG}
         id="parties"
         labelOverrides={{
           foundValues: 'ui-oa.parties.found#People',
@@ -109,9 +116,11 @@ const PartiesRoute = ({ path }) => {
           appIcon: <AppIcon app="oa" iconKey="party" size="small" />,
           lastMenu: lastpaneMenu,
           paneTitle: <FormattedMessage id="ui-oa.parties.people" />,
+          id: MAIN_PANE_ID,
         }}
         mclProps={{ formatter }}
         path={path}
+        persistedPanesetProps={MAIN_PANESET_CONFIG}
         resultColumns={resultColumns}
         sasqProps={{ initialSortState: { sort: 'familyName,givenNames' } }}
         searchFieldAriaLabel="parties-search-field"

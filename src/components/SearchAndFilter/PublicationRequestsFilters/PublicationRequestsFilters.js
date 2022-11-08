@@ -32,6 +32,11 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
     'Party.InstitutionLevel1'
   );
 
+  const retrospectiveOAValues = [
+    { label: <FormattedMessage id="ui-oa.yes" />, value: 'true' },
+    { label: <FormattedMessage id="ui-oa.no" />, value: 'false' },
+  ];
+
   const onChangeHandler = (group) => {
     filterHandlers.state({
       ...activeFilters,
@@ -73,6 +78,30 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
         hideNoDateSetCheckbox
         name="requestDate"
       />
+    );
+  };
+
+  const renderRetrospectiveOAFilter = () => {
+    return (
+      <Accordion
+        displayClearButton={activeFilters?.retrospectiveOA?.length > 0}
+        header={FilterAccordionHeader}
+        id="retrospective-open-access-filter-accordion"
+        label={
+          <FormattedMessage id="ui-oa.publicationRequest.retrospectiveOpenAccess" />
+        }
+        onClearFilter={() => {
+          filterHandlers.clearGroup('retrospectiveOA');
+        }}
+        separator={false}
+      >
+        <CheckboxFilter
+          dataOptions={retrospectiveOAValues}
+          name="retrospectiveOA"
+          onChange={onChangeHandler}
+          selectedValues={activeFilters?.retrospectiveOA || []}
+        />
+      </Accordion>
     );
   };
 
@@ -226,6 +255,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
         </Headline>
         {renderRequestStatusFilter()}
         {renderRequestDateFilter()}
+        {renderRetrospectiveOAFilter()}
         {renderCorrespondingInstitutionLevel1Filter()}
         <hr />
         <Headline faded margin="none" size="large">
