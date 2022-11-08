@@ -58,7 +58,7 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
       }
     });
     // Example output
-    // checklist.definition.name==new&&(checklist.outcome.value==yes||checklist.status.value==required)&&checklist.definition.name==test&&(checklist.outcome.value==no)
+    // (checklist.definition.name==new&&(checklist.outcome.value==yes||checklist.status.value==required))&&(checklist.definition.name==test&&(checklist.outcome.value==no))
     filterHandlers.state({
       ...activeFilters,
       checklistItems: [filterStrings.join('&&')],
