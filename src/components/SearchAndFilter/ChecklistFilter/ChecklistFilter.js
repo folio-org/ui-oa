@@ -22,54 +22,23 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
         ?.replace(/checklist.definition.|checklist.|.value/g, '')
         ?.split(/&&/);
       const rules = [];
-      rulesString.split('||')?.forEach((rule) => {
-        const [attribute, operator, value] = rule.split(/(==|!=)/);
+      rulesString?.split('||')?.forEach((rule) => {
+        const [attribute, operator, value] = rule?.split(/(==|!=)/);
         rules?.push({ attribute, operator, value });
       });
-      filters.push({
+      filters?.push({
         checklistItem: checklistItemString?.replace('name==', ''),
         rules,
       });
     });
-    console.log('Output: %o', filters);
     return filters;
   };
 
-  const parsedFilterData = parseQueryString(activeFilters?.checklistItems[0]);
-  console.log(parsedFilterData);
-  // Example Input
-  //   {
-  //     "filters": [
-  //         {
-  //             "rules": [
-  //                 {
-  //                     "attribute": "outcome",
-  //                     "operator": "==",
-  //                     "value": "no"
-  //                 },
-  //                 {
-  //                     "attribute": "status",
-  //                     "operator": "!=",
-  //                     "value": "required"
-  //                 }
-  //             ],
-  //             "checklistItem": "test"
-  //         },
-  //         {
-  //             "rules": [
-  //                 {
-  //                     "attribute": "status",
-  //                     "operator": "!=",
-  //                     "value": "not_required"
-  //                 }
-  //             ],
-  //             "checklistItem": "test"
-  //         }
-  //     ]
-  // }
+  const parsedFilterData = parseQueryString(
+    activeFilters?.checklistItems ? activeFilters?.checklistItems[0] : null
+  );
 
   const handleSubmit = (values) => {
-    console.log('Input: %o', values);
     const filterStrings = values.filters.map((e) => {
       const rulesString = e.rules.map((r) => {
         return `checklist.${r.attribute}.value${r.operator + r.value}`;
@@ -89,13 +58,7 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
       ...activeFilters,
       checklistItems: [filterStrings.join('&&')],
     });
-
-    // Example output
-    // (checklist.definition.name==new&&(checklist.outcome.value==yes||checklist.status.value==required))&&(checklist.definition.name==test&&(checklist.outcome.value==no))
-
     setEditingFilters(false);
-
-    // parseQueryString(filterStrings.join('&&'));
   };
 
   return (
@@ -108,6 +71,7 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
       <ChecklistFilterForm
         checklistItems={checklistItems}
         editingFilters={editingFilters}
+        filters={parsedFilterData}
         handlers={{
           closeEditModal,
           openEditModal,
