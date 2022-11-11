@@ -12,18 +12,24 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
   const openEditModal = () => setEditingFilters(true);
   const closeEditModal = () => setEditingFilters(false);
 
+  // Due to how filters are handled within SearchAndSortQuery the filter string needs to be parsed back into a usual object
   const parseQueryString = (string) => {
     const filters = [];
     const splitFilters = string
       ?.split(')&&(')
+      // Seperate filter string into indiviual filters
       ?.map((e) => e.replace(/[()]/g, ''));
+      // Remove brackets from filter string
     splitFilters?.forEach((filter) => {
       const [checklistItemString, rulesString] = filter
         ?.replace(/checklist.definition.|checklist.|.value/g, '')
+        // For each filter remove additional property values
         ?.split(/&&/);
+        // Split filter into checklistItem and rules
       const rules = [];
       rulesString?.split('||')?.forEach((rule) => {
         const [attribute, operator, value] = rule?.split(/(==|!=)/);
+        // Split all rules into attribute, operator and value
         rules?.push({ attribute, operator, value });
       });
       filters?.push({
