@@ -1,8 +1,9 @@
-import '@folio/stripes-erm-components/test/jest/__mock__';
-import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
+import { renderWithIntl } from '@folio/stripes-erm-testing';
+
 import { KeyValue } from '@folio/stripes-testing';
 import { MemoryRouter } from 'react-router-dom';
 import { translationsProperties } from '../../../../test/helpers';
+
 import PartyInfo from './PartyInfo';
 import { party } from '../../../../test/resources';
 

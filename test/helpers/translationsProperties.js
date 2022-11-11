@@ -1,3 +1,9 @@
+import { translationsProperties as coreTranslations } from '@folio/stripes-erm-testing';
+
+// Direct import is a bit gross, but so is exposing the translations file...
+// no super great way to do this so this will do for now.
+import ermTranslations from '@folio/stripes-erm-components/translations/stripes-erm-components/en.json';
+
 import translations from '../../translations/ui-oa/en';
 
 const translationsProperties = [
@@ -6,28 +12,10 @@ const translationsProperties = [
     translations,
   },
   {
-    prefix: 'stripes-core',
-    translations: {
-      'label.missingRequiredField': 'Please fill this in to continue',
-      'button.save': 'Save',
-    }
+    prefix: 'stripes-erm-components',
+    translations: ermTranslations
   },
-  {
-    prefix: 'stripes-components',
-    translations: {
-      'saveAndClose': 'Save and close',
-      'cancel': 'Cancel',
-      'paneMenuActionsToggleLabel': 'Actions',
-      'noValue.noValueSet': 'No value set',
-      'collapseAll': 'Collapse all',
-      'button.edit': 'Edit',
-      'tableEmpty': 'The list contains no items',
-      'metaSection.recordCreated': 'Record created: {date} {time}',
-      'metaSection.recordCreatedNoData': 'Record created: Unknown',
-      'metaSection.recordLastUpdated': 'Record last updated: {date} {time}',
-      'metaSection.recordLastUpdatedNoData': 'Record last updated: Unknown',
-    },
-  }
+  ...coreTranslations
 ];
 
 export default translationsProperties;
