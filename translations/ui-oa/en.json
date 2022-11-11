@@ -1,6 +1,9 @@
 {
   "meta.title": "Open access",
 
+  "OR": "OR",
+  "AND": "AND",
+
   "appMenu.keyboardShortcuts": "Keyboards shortcuts",
   "edit": "Edit",
   "delete": "Delete",
@@ -64,6 +67,21 @@
   "searchAndFilter.publicationFilters": "Publication filters",
   "searchAndFilter.journalFilters": "Journal filters",
   "searchAndFilter.peopleFilters": "People filters",
+
+  "checklistFilter.filtersApplied": "{filtersLength} checklist filters applied",
+  "checklistFilter.checklistItems": "Checklist items",
+  "checklistFilter.checklistItem": "Checklist item",
+  "checklistFilter.editChecklistFilters": "Edit checklist filters",
+  "checklistFilter.filterBuilder": "Filter builder",
+  "checklistFilter.addFilter": "Add filter",
+  "checklistFilter.addRule": "Add rule",
+  "checklistFilter.deleteFilterIndex": "Delete filter {number}",
+  "checklistFilter.checklistFilterIndex": "Checklist filter {number}",
+  "checklistFilter.removeRule": "Remove rule {number}",
+  "checklistFilter.attribute": "Attribute",
+  "checklistFilter.comparator": "Comparator",
+  "checklistFilter.value": "Value",
+
 
   "parties.people": "People",
   "parties.found#People": "Found {total} people",
