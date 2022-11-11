@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { Accordion, FilterAccordionHeader } from '@folio/stripes/components';
+import {
+  Accordion,
+  FilterAccordionHeader,
+  Layout,
+} from '@folio/stripes/components';
 import { FormattedMessage } from 'react-intl';
 import useChecklistItemDefinitions from '../../../hooks/useChecklistItemDefinitions';
 
@@ -19,13 +23,13 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
       ?.split(')&&(')
       // Seperate filter string into indiviual filters
       ?.map((e) => e.replace(/[()]/g, ''));
-      // Remove brackets from filter string
+    // Remove brackets from filter string
     splitFilters?.forEach((filter) => {
       const [checklistItemString, rulesString] = filter
         ?.replace(/checklist.definition.|checklist.|.value/g, '')
         // For each filter remove additional property values
         ?.split(/&&/);
-        // Split filter into checklistItem and rules
+      // Split filter into checklistItem and rules
       const rules = [];
       rulesString?.split('||')?.forEach((rule) => {
         const [attribute, operator, value] = rule?.split(/(==|!=)/);
@@ -69,11 +73,22 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
 
   return (
     <Accordion
+      displayClearButton={parsedFilterData?.length}
       header={FilterAccordionHeader}
       id="clickable-checklist-filter"
       label={<FormattedMessage id="ui-oa.checklistFilter.checklistItems" />}
+      onClearFilter={() => filterHandlers.state({ ...activeFilters, checklistItems: [] })
+      }
       separator={false}
     >
+      {!!parsedFilterData?.length && (
+        <Layout className="padding-bottom-gutter">
+          <FormattedMessage
+            id="ui-oa.checklistFilter.filtersApplied"
+            values={{ filtersLength: parsedFilterData?.length }}
+          />
+        </Layout>
+      )}
       <ChecklistFilterForm
         checklistItems={checklistItems}
         editingFilters={editingFilters}

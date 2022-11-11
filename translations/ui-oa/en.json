@@ -68,6 +68,7 @@
   "searchAndFilter.journalFilters": "Journal filters",
   "searchAndFilter.peopleFilters": "People filters",
 
+  "checklistFilter.filtersApplied": "{filtersLength} checklist filters applied",
   "checklistFilter.checklistItems": "Checklist items",
   "checklistFilter.checklistItem": "Checklist item",
   "checklistFilter.editChecklistFilters": "Edit checklist filters",
