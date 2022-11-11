@@ -11,6 +11,7 @@ import {
 } from '@folio/stripes/components';
 import { FormattedMessage } from 'react-intl';
 import { DateFilter } from '@folio/stripes-erm-components';
+import ChecklistFilter from '../ChecklistFilter';
 
 import { useOARefdata } from '../../../util';
 
@@ -42,6 +43,15 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
       ...activeFilters,
       [group.name]: group.values,
     });
+  };
+
+  const renderChecklistFilter = () => {
+    return (
+      <ChecklistFilter
+        activeFilters={activeFilters}
+        filterHandlers={filterHandlers}
+      />
+    );
   };
 
   const renderRequestStatusFilter = () => {
@@ -257,6 +267,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
         {renderRequestDateFilter()}
         {renderRetrospectiveOAFilter()}
         {renderCorrespondingInstitutionLevel1Filter()}
+        {renderChecklistFilter()}
         <hr />
         <Headline faded margin="none" size="large">
           <FormattedMessage id="ui-oa.searchAndFilter.publicationFilters" />
