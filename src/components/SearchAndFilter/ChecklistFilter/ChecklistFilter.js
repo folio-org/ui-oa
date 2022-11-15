@@ -17,10 +17,9 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
   const closeEditModal = () => setEditingFilters(false);
 
   // Due to how filters are handled within SearchAndSortQuery the filter string needs to be parsed back into a usual object
-  const parseQueryString = (string) => {
+  const parseQueryString = (filterArray) => {
     const filters = [];
-    const splitFilters = string
-      ?.split(')&&(')
+    const splitFilters = filterArray
       // Seperate filter string into indiviual filters
       ?.map((e) => e.replace(/[()]/g, ''));
     // Remove brackets from filter string
@@ -45,7 +44,7 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
   };
 
   const parsedFilterData = parseQueryString(
-    activeFilters?.checklistItems ? activeFilters?.checklistItems[0] : null
+    activeFilters?.checklistItems || null
   );
 
   const handleSubmit = (values) => {
@@ -53,20 +52,14 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
       const rulesString = e.rules.map((r) => {
         return `checklist.${r.attribute}.value${r.operator + r.value}`;
       });
-      if (values?.filters.length > 1) {
-        return `(checklist.definition.name==${
-          e?.checklistItem
-        }&&(${rulesString.join('||')}))`;
-      } else {
-        return `checklist.definition.name==${
-          e?.checklistItem
-        }&&(${rulesString.join('||')})`;
-      }
-    });
 
+      return `checklist.definition.name==${
+        e?.checklistItem
+      }&&(${rulesString.join('||')})`;
+    });
     filterHandlers.state({
       ...activeFilters,
-      checklistItems: [filterStrings.join('&&')],
+      checklistItems: [...filterStrings],
     });
     setEditingFilters(false);
   };
