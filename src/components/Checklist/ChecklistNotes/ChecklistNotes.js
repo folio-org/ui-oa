@@ -11,11 +11,13 @@ import {
   TextArea,
   Layout,
 } from '@folio/stripes/components';
+import { useStripes } from '@folio/stripes/core';
 
 import css from '../Checklist.css';
 import ChecklistMeta from '../ChecklistMeta';
 
 const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
+  const stripes = useStripes();
   const [editing, setEditing] = useState(false);
 
   useEffect(() => {
@@ -32,7 +34,7 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
       <div className={css.notesButton}>
         <Button
           buttonStyle="primary"
-          disabled={editing}
+          disabled={editing || !stripes.hasPerm('oa.checklistItems.manage')}
           onClick={() => {
             setEditing('NEW_NOTE');
             notes.unshift({});
@@ -115,12 +117,18 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
                   <div>
                     <Layout className="flex right">
                       <IconButton
-                        disabled={editing}
+                        disabled={
+                          editing ||
+                          !stripes.hasPerm('oa.checklistItems.manage')
+                        }
                         icon="edit"
                         onClick={() => setEditing(note.id)}
                       />
                       <IconButton
-                        disabled={editing}
+                        disabled={
+                          editing ||
+                          !stripes.hasPerm('oa.checklistItems.manage')
+                        }
                         icon="trash"
                         onClick={() => handleDelete(note)}
                       />

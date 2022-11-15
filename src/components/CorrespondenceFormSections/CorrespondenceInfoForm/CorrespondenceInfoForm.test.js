@@ -1,8 +1,7 @@
-import '@folio/stripes-erm-components/test/jest/__mock__';
 import {
   renderWithIntl,
   TestForm,
-} from '@folio/stripes-erm-components/test/jest/helpers';
+} from '@folio/stripes-erm-testing';
 import { Datepicker, Select, TextArea, TextField } from '@folio/stripes-testing';
 import { translationsProperties } from '../../../../test/helpers';
 import CorrespondenceInfoForm from './CorrespondenceInfoForm';

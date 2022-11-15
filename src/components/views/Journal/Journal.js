@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { useHistory, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
-import { AppIcon, useOkapiKy } from '@folio/stripes/core';
+import { AppIcon, useStripes, useOkapiKy } from '@folio/stripes/core';
 
 import {
   Pane,
@@ -29,10 +29,13 @@ const propTypes = {
 const Journal = ({ resource: journal, onClose, queryProps: { isLoading } }) => {
   const ky = useOkapiKy();
   const history = useHistory();
+  const stripes = useStripes();
 
   const { data: publicationRequests } = useQuery(
     ['ui-oa', 'party', 'publicationRequests', journal.id],
-    () => ky(`${PUBLICATION_REQUESTS_ENDPOINT}?filters=work.id==${journal.id}`).json()
+    () => ky(
+        `${PUBLICATION_REQUESTS_ENDPOINT}?filters=work.id==${journal.id}`
+      ).json()
   );
 
   const getSectionProps = (name) => {
@@ -93,17 +96,21 @@ const Journal = ({ resource: journal, onClose, queryProps: { isLoading } }) => {
   }
 
   const renderActionMenu = () => {
-    return (
-      <Button
-        buttonStyle="dropdownItem"
-        id="journal-edit-button"
-        onClick={handleEdit}
-      >
-        <Icon icon="edit">
-          <FormattedMessage id="ui-oa.journal.edit" />
-        </Icon>
-      </Button>
-    );
+    const buttons = [];
+    if (stripes.hasPerm('oa.works.manage')) {
+      buttons.push(
+        <Button
+          buttonStyle="dropdownItem"
+          id="journal-edit-button"
+          onClick={handleEdit}
+        >
+          <Icon icon="edit">
+            <FormattedMessage id="ui-oa.journal.edit" />
+          </Icon>
+        </Button>
+      );
+    }
+    return buttons.length ? buttons : null;
   };
 
   const shortcuts = [

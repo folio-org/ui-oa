@@ -1,7 +1,4 @@
-import '@folio/stripes-erm-components/test/jest/__mock__';
-
-import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
-import { Button } from '@folio/stripes-testing';
+import { renderWithIntl } from '@folio/stripes-erm-testing';
 
 import translationsProperties from '../../../../test/helpers/translationsProperties';
 import Party from './Party';
@@ -26,13 +23,6 @@ describe('Party', () => {
     test('renders PartyInfo Component', () => {
       const { getByText } = renderComponent;
       expect(getByText('PartyInfo')).toBeInTheDocument();
-    });
-
-    test('renders button components', async () => {
-      await Button('Actions').exists();
-      await Button('Actions').click();
-      await Button('Edit').exists();
-      await Button('Edit').click();
     });
   });
 });

@@ -11,6 +11,7 @@ import {
 } from '@folio/stripes/components';
 import { FormattedMessage } from 'react-intl';
 import { DateFilter } from '@folio/stripes-erm-components';
+import ChecklistFilter from '../ChecklistFilter';
 
 import { useOARefdata, selectifyRefdata } from '../../../util';
 
@@ -80,11 +81,25 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
     'value'
   );
 
+  const retrospectiveOAValues = [
+    { label: <FormattedMessage id="ui-oa.yes" />, value: 'true' },
+    { label: <FormattedMessage id="ui-oa.no" />, value: 'false' },
+  ];
+
   const onChangeHandler = (group) => {
     filterHandlers.state({
       ...activeFilters,
       [group.name]: group.values,
     });
+  };
+
+  const renderChecklistFilter = () => {
+    return (
+      <ChecklistFilter
+        activeFilters={activeFilters}
+        filterHandlers={filterHandlers}
+      />
+    );
   };
 
   const renderRequestStatusFilter = () => {
@@ -121,6 +136,30 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
         hideNoDateSetCheckbox
         name="requestDate"
       />
+    );
+  };
+
+  const renderRetrospectiveOAFilter = () => {
+    return (
+      <Accordion
+        displayClearButton={activeFilters?.retrospectiveOA?.length > 0}
+        header={FilterAccordionHeader}
+        id="retrospective-open-access-filter-accordion"
+        label={
+          <FormattedMessage id="ui-oa.publicationRequest.retrospectiveOpenAccess" />
+        }
+        onClearFilter={() => {
+          filterHandlers.clearGroup('retrospectiveOA');
+        }}
+        separator={false}
+      >
+        <CheckboxFilter
+          dataOptions={retrospectiveOAValues}
+          name="retrospectiveOA"
+          onChange={onChangeHandler}
+          selectedValues={activeFilters?.retrospectiveOA || []}
+        />
+      </Accordion>
     );
   };
 
@@ -274,7 +313,9 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
         </Headline>
         {renderRequestStatusFilter()}
         {renderRequestDateFilter()}
+        {renderRetrospectiveOAFilter()}
         {renderCorrespondingInstitutionLevel1Filter()}
+        {renderChecklistFilter()}
         <hr />
         <Headline faded margin="none" size="large">
           <FormattedMessage id="ui-oa.searchAndFilter.publicationFilters" />
