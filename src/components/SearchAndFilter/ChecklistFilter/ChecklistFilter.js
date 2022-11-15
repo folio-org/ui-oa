@@ -16,12 +16,15 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
   const openEditModal = () => setEditingFilters(true);
   const closeEditModal = () => setEditingFilters(false);
 
+  // Example query for searching if an outcome != no, not set or if the checklist item hasnt been touched
+  // NIGHTMARE FUEL
+  // (checklist.definition.name==test&&checklist.outcome isNull)||(checklist.definition.name==test&&checklist.outcome.value!=no)||!(checklist.definition.name==test)
+
   // Due to how filters are handled within SearchAndSortQuery the filter string needs to be parsed back into a usual object
   const parseQueryString = (filterArray) => {
+    console.log(filterArray);
     const filters = [];
-    const splitFilters = filterArray
-      // Seperate filter string into indiviual filters
-      ?.map((e) => e.replace(/[()]/g, ''));
+    const splitFilters = filterArray?.map((e) => e.replace(/[()]/g, ''));
     // Remove brackets from filter string
     splitFilters?.forEach((filter) => {
       const [checklistItemString, rulesString] = filter
@@ -50,12 +53,32 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
   const handleSubmit = (values) => {
     const filterStrings = values.filters.map((e) => {
       const rulesString = e.rules.map((r) => {
-        return `checklist.${r.attribute}.value${r.operator + r.value}`;
+        if (
+          (r.attribute === 'outcome' &&
+            r.operator === '!=' &&
+            r.value !== 'notSet') ||
+          (r.attribute === 'status' &&
+            ((r.operator === '==' && r.value === 'required') ||
+              (r.operator === '!=' && r.value === 'not_required')))
+        ) {
+          return `(checklist.definition.name==${
+            e.checklistItem
+          }&&checklist.${r.attribute} isNull)||(checklist.${r.attribute}.value${
+            r.operator + r.value
+          })||!(checklist.definition.name==${e.checklistItem})`;
+        }
+        if (r.operator === '==' && r.value === 'notSet') {
+          return `(checklist.definition.name==${e.checklistItem}&&checklist.outcome isNull)||!(checklist.definition.name==${e.checklistItem})`;
+        }
+        if (r.operator === '!=' && r.value === 'notSet') {
+          return `(checklist.definition.name==${e.checklistItem}&&checklist.outcome isNotNull)`;
+        }
+        return `(checklist.definition.name==${e.checklistItem}&&(checklist.${
+          r.attribute
+        }.value${r.operator + r.value}))`;
       });
 
-      return `checklist.definition.name==${
-        e?.checklistItem
-      }&&(${rulesString.join('||')})`;
+      return rulesString.join('||');
     });
     filterHandlers.state({
       ...activeFilters,
@@ -70,7 +93,8 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
       header={FilterAccordionHeader}
       id="clickable-checklist-filter"
       label={<FormattedMessage id="ui-oa.checklistFilter.checklistItems" />}
-      onClearFilter={() => filterHandlers.state({ ...activeFilters, checklistItems: [] })
+      onClearFilter={() =>
+        filterHandlers.state({ ...activeFilters, checklistItems: [] })
       }
       separator={false}
     >
