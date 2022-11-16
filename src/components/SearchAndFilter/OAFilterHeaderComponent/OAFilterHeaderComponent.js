@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+
+import { ResponsiveButtonGroup } from '@k-int/stripes-kint-components';
+
 import {
-  ButtonGroup,
   Button,
 } from '@folio/stripes/components';
 import urls from '../../../util/urls';
@@ -11,30 +13,49 @@ const propTypes = {
 };
 
 const OAFilterHeaderComponent = ({ primary }) => {
+  let selectedIndex;
+
+  switch (primary) {
+    case 'publicationRequests':
+      selectedIndex = 0;
+      break;
+    case 'people':
+      selectedIndex = 1;
+      break;
+    case 'journals':
+      selectedIndex = 2;
+      break;
+    default:
+      break;
+  }
+
   return (
-    <ButtonGroup fullWidth>
+    <ResponsiveButtonGroup
+      fullWidth
+      selectedIndex={selectedIndex}
+    >
       <Button
-        buttonStyle={primary === 'publicationRequests' ? 'primary' : 'default'}
+        key="clickable-nav-oa-publication-requests"
         id="clickable-nav-oa-publication-requests"
         to={primary === 'publicationRequests' ? null : urls.publicationRequests()}
       >
         <FormattedMessage id="ui-oa.searchAndFilter.requests" />
       </Button>
       <Button
-        buttonStyle={primary === 'people' ? 'primary' : 'default'}
+        key="clickable-nav-oa-people"
         id="clickable-nav-oa-people"
         to={primary === 'people' ? null : urls.parties()}
       >
         <FormattedMessage id="ui-oa.searchAndFilter.people" />
       </Button>
       <Button
-        buttonStyle={primary === 'journals' ? 'primary' : 'default'}
+        key="clickable-nav-oa-journals"
         id="clickable-nav-oa-journals"
         to={primary === 'journals' ? null : urls.journals()}
       >
         <FormattedMessage id="ui-oa.searchAndFilter.journals" />
       </Button>
-    </ButtonGroup>
+    </ResponsiveButtonGroup>
   );
 };
 
