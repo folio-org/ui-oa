@@ -56,6 +56,7 @@
   "settings.checklistItemDefinitions.deleteDefinition.confirmMessage": "Checklist item <strong>{label}</strong> will be <strong>deleted</strong>",
   "settings.checklistItemDefinitions.deleteDefinition.errorMessage": "<strong>Error: {label}</strong> was not deleted. {error}",
   "settings.checklistItemDefinitions.deleteHeading": "Delete checklist item",
+  "settings.checklistItemDefinitions.validateNoSpecial": "Cannot include special characters",
 
   "searchAndFilter.journals": "Journals",
   "searchAndFilter.people": "People",
