@@ -17,13 +17,18 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
   const closeEditModal = () => setEditingFilters(false);
 
   // Example query for searching if an outcome != no, not set or if the checklist item hasnt been touched
-  // NIGHTMARE FUEL
   // (checklist.definition.name==test&&checklist.outcome isNull)||(checklist.definition.name==test&&checklist.outcome.value!=no)||!(checklist.definition.name==test)
+
+  // TODO Refactor handleSubmit and ParseQueryString
 
   // Due to how filters are handled within SearchAndSortQuery the filter string needs to be parsed back into a usual object
   const parseQueryString = (filterArray) => {
     const filters = [];
-    const splitFilters = filterArray?.map((e) => e.replace(/[()]/g, ''));
+    // Remove isNull, isNotNull and !checklist.definition.name querys
+    const removedIsNull = filterArray?.map((filter) => {
+      return filter.split(/(\)\|\|\(|\)\|\|!)/g).pop();
+    });
+    const splitFilters = removedIsNull?.map((e) => e.replace(/[()]/g, ''));
     // Remove brackets from filter string
     splitFilters?.forEach((filter) => {
       const [checklistItemString, rulesString] = filter
