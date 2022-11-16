@@ -148,13 +148,13 @@ const PublicationRequestForm = ({
           )}
         >
           <AccordionStatus ref={accordionStatusRef}>
+            <RequestInfoForm request={publicationRequest} />
             <Row end="xs">
               <Col xs>
                 <ExpandAllButton />
               </Col>
             </Row>
             <AccordionSet>
-              <RequestInfoForm request={publicationRequest} />
               <PartyTypedownForm formName="correspondingAuthor" />
               <PartyTypedownForm formName="requestContact" />
               <PublicationForm />
