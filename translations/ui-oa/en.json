@@ -1,11 +1,16 @@
 {
   "meta.title": "Open access",
 
+  "OR": "OR",
+  "AND": "AND",
+
   "appMenu.keyboardShortcuts": "Keyboards shortcuts",
   "edit": "Edit",
   "delete": "Delete",
   "new": "New",
   "actions": "Actions",
+  "yes": "Yes",
+  "no": "No",
 
   "valueOrValues": "Value(s)",
   "found#Values": "Found {total} requests",
@@ -62,6 +67,21 @@
   "searchAndFilter.publicationFilters": "Publication filters",
   "searchAndFilter.journalFilters": "Journal filters",
   "searchAndFilter.peopleFilters": "People filters",
+
+  "checklistFilter.filtersApplied": "{filtersLength} checklist filters applied",
+  "checklistFilter.checklistItems": "Checklist items",
+  "checklistFilter.checklistItem": "Checklist item",
+  "checklistFilter.editChecklistFilters": "Edit checklist filters",
+  "checklistFilter.filterBuilder": "Filter builder",
+  "checklistFilter.addFilter": "Add filter",
+  "checklistFilter.addRule": "Add rule",
+  "checklistFilter.deleteFilterIndex": "Delete filter {number}",
+  "checklistFilter.checklistFilterIndex": "Checklist filter {number}",
+  "checklistFilter.removeRule": "Remove rule {number}",
+  "checklistFilter.attribute": "Attribute",
+  "checklistFilter.comparator": "Comparator",
+  "checklistFilter.value": "Value",
+
 
   "parties.people": "People",
   "parties.found#People": "Found {total} people",
@@ -225,6 +245,9 @@
   "publicationRequest.requestNumber": "Request number",
   "publicationRequest.requestDate": "Request date",
   "publicationRequest.requestTitle": "Request number - {number}",
+  "publicationRequest.retrospectiveOpenAccess": "Retrospective open access",
+  "publicationRequest.retrospectiveOpenAccess.formTooltip": "Check this box if this request is to retrospectively convert an existing closed access publication to open access",
+  "publicationRequest.retrospectiveOpenAccess.viewTooltip": "Is the existing closed access publication being retrospectively converted to open access",
   "publicationRequest.selectedJournal": "Journal",
   "publicationRequest.showChecklist": "Show checklist",
   "publicationRequest.success.callout": "Publication request {requestNumber} successfully created",

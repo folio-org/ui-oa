@@ -4,8 +4,7 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
-import { Accordion, Badge, Pane, Row, Col } from '@folio/stripes/components';
-import { LoadingPane } from '@folio/stripes-erm-components';
+import { Accordion, LoadingPane, Badge, Pane, Row, Col } from '@folio/stripes/components';
 import { AppIcon, useOkapiKy, useNamespace } from '@folio/stripes/core';
 
 import isEqual from 'lodash/isEqual';

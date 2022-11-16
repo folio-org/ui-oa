@@ -105,6 +105,7 @@ const ChecklistItem = ({
             {([ariaLabel]) => (
               <IconSelect
                 ariaLabel={ariaLabel}
+                disabled={!stripes.hasPerm('oa.checklistItems.manage')}
                 id={`${item?.definition?.name}-icon-select`}
                 input={{
                   name: 'outcome',

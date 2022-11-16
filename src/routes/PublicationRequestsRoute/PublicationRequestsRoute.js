@@ -28,7 +28,7 @@ import { PUBLICATION_REQUESTS_ENDPOINT } from '../../constants/endpoints';
 import {
   MAIN_FILTER_PANE_CONFIG,
   MAIN_PANE_ID,
-  MAIN_PANESET_CONFIG
+  MAIN_PANESET_CONFIG,
 } from '../../constants/panesetConfigs';
 
 const PublicationRequestsRoute = ({ children, path }) => {
@@ -48,6 +48,7 @@ const PublicationRequestsRoute = ({ children, path }) => {
         publisher: 'publisher.value',
         chargePayers: 'charges.payers.payer.value',
         correspondingInstitutionLevel1: 'correspondingInstitutionLevel1.value',
+        retrospectiveOA: 'retrospectiveOA',
       },
     },
   };

@@ -1,5 +1,5 @@
-import '@folio/stripes-erm-components/test/jest/__mock__';
-import { renderWithIntl, TestForm } from '@folio/stripes-erm-components/test/jest/helpers';
+
+import { renderWithIntl, TestForm } from '@folio/stripes-erm-testing';
 import { translationsProperties } from '../../../../test/helpers';
 import PartyInfoForm from './PartyInfoForm';
 import { party, partyHandlers as handlers } from '../../../../test/resources';
