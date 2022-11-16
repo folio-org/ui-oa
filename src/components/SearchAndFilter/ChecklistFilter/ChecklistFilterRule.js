@@ -29,8 +29,16 @@ const ChecklistFilterRule = ({
     CHECKLIST_ITEM_OUTCOME,
     CHECKLIST_ITEM_STATUS,
   ]);
-  const outcomeValues = selectifyRefdata(refdataValues, CHECKLIST_ITEM_OUTCOME, 'value');
-  const statusValues = selectifyRefdata(refdataValues, CHECKLIST_ITEM_STATUS, 'value');
+  const outcomeValues = selectifyRefdata(
+    refdataValues,
+    CHECKLIST_ITEM_OUTCOME,
+    'value'
+  );
+  const statusValues = selectifyRefdata(
+    refdataValues,
+    CHECKLIST_ITEM_STATUS,
+    'value'
+  );
 
   const operators = [
     { label: '', value: '' },
@@ -85,7 +93,11 @@ const ChecklistFilterRule = ({
               aria-labelledby={`${ariaLabelledby}-rule-column-header-value`}
               dataOptions={
                 value?.attribute === 'outcome'
-                  ? [{ label: '', value: '' }, ...outcomeValues]
+                  ? [
+                      { label: '', value: '' },
+                      { label: 'Not set', value: 'notSet' },
+                      ...outcomeValues,
+                    ]
                   : [{ label: '', value: '' }, ...statusValues]
               }
               disabled={!value?.attribute}
