@@ -84,7 +84,7 @@ const Checklist = ({ onToggle, ownerId, resourceEndpoint }) => {
   );
 
   const hiddenItems = checklistItems.filter(
-    (e) => e?.status?.value === 'visible'
+    (e) => e?.status?.value === 'hidden'
   );
 
   const renderBadge = () => {
