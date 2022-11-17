@@ -70,8 +70,8 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
       const rulesString = e.rules.map((r) => {
         if (
           r.attribute === 'status' &&
-          ((r.operator === '==' && r.value === 'required') ||
-            (r.operator === '!=' && r.value === 'not_required'))
+          ((r.operator === '==' && r.value === 'visible') ||
+            (r.operator === '!=' && r.value === 'hidden'))
         ) {
           statusIsNull = generateIsNullString(e.checklistItem, r.attribute);
           return `checklist.${r.attribute}.value${r.operator + r.value}`;

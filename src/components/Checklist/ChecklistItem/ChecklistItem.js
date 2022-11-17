@@ -171,7 +171,7 @@ const ChecklistItem = ({
             <Tooltip
               id={`hide-checklist-item-${item?.definition?.name}-button-tooltip`}
               text={
-                item?.status?.value === 'not_required' ? (
+                item?.status?.value === 'hidden' ? (
                   <FormattedMessage
                     id="ui-oa.checklist.showItem"
                     values={{ name: item?.definition?.label }}
@@ -191,15 +191,15 @@ const ChecklistItem = ({
                   aria-labelledby={ariaIds.text}
                   disabled={!stripes.hasPerm('oa.checklistItems.manage')}
                   icon={
-                    item?.status?.value === 'not_required'
+                    item?.status?.value === 'hidden'
                       ? 'eye-open'
                       : 'eye-closed'
                   }
                   onClick={() => {
-                    if (item?.status?.value === 'not_required') {
-                      handleSubmit({ status: 'required' }, item);
+                    if (item?.status?.value === 'hidden') {
+                      handleSubmit({ status: 'visible' }, item);
                     } else {
-                      handleSubmit({ status: 'not_required' }, item);
+                      handleSubmit({ status: 'hidden' }, item);
                     }
                   }}
                 />
