@@ -38,7 +38,7 @@ const PartiesFilters = ({ activeFilters, filterHandlers }) => {
         separator={false}
       >
         <MultiSelectionFilter
-          ariaLabelledBy="institution-level-one-filter"
+          ariaLabelledBy="institution-level-one-filter-accordion"
           dataOptions={institutionLevel1Values}
           id="institution-level-one-filter"
           name="institutionLevel1"
