@@ -49,7 +49,7 @@ const ChecklistFilterRule = ({
   const attributes = [
     { label: '', value: '' },
     { label: 'Outcome', value: 'outcome' },
-    { label: 'Status', value: 'status' },
+    { label: 'Visibility', value: 'status' },
   ];
 
   return (
@@ -78,7 +78,14 @@ const ChecklistFilterRule = ({
             <Select
               {...input}
               aria-labelledby={`${ariaLabelledby}-rule-column-header-comparator`}
-              dataOptions={operators}
+              dataOptions={
+                value?.attribute === 'status'
+                  ? [
+                      { label: '', value: '' },
+                      { label: 'Is', value: '==' },
+                    ]
+                  : operators
+              }
               error={meta?.touched && meta?.error}
               required
             />
