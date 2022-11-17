@@ -95,15 +95,11 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
         return `checklist.${r.attribute}.value${r.operator + r.value}`;
       });
       const isString = `${statusIsNull}${outcomeIsNull}${outcomeIsNotNull}`;
-      if (isString) {
-        return `${isString}(checklist.definition.name==${
-          e?.checklistItem
-        }&&(${rulesString.join('||')}))`;
-      } else {
-        return `checklist.definition.name==${
-          e?.checklistItem
-        }&&(${rulesString.join('||')})`;
-      }
+      return `${isString}(checklist.definition.name==${e?.checklistItem}&&${
+        rulesString.length > 1
+          ? '(' + rulesString.join('||') + ')'
+          : rulesString.join('||')
+      })`;
     });
     filterHandlers.state({
       ...activeFilters,
