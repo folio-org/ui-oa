@@ -49,7 +49,7 @@ const ChecklistFilterRule = ({
   const attributes = [
     { label: '', value: '' },
     { label: 'Outcome', value: 'outcome' },
-    { label: 'Status', value: 'status' },
+    { label: 'Visibility', value: 'status' },
   ];
 
   return (
