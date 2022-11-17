@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
@@ -33,8 +34,12 @@ const ChecklistItem = ({
   handleSubmit,
   setSelectedNotesItem,
 }) => {
+  const triggerRef = useRef(false);
   const stripes = useStripes();
   const sortedNotes = orderBy(item.notes, 'lastUpdated', 'desc');
+  useEffect(() => {
+    triggerRef?.current?.focus();
+  }, []);
 
   const buttonOptions = [
     {
@@ -102,8 +107,9 @@ const ChecklistItem = ({
               itemName: item?.definition?.label,
             }}
           >
-            {([ariaLabel]) => (
+            {({ ariaLabel }) => (
               <IconSelect
+                ref={triggerRef}
                 ariaLabel={ariaLabel}
                 disabled={!stripes.hasPerm('oa.checklistItems.manage')}
                 id={`${item?.definition?.name}-icon-select`}
@@ -183,19 +189,21 @@ const ChecklistItem = ({
                   />
                 )
               }
+              triggerRef={triggerRef}
             >
               {({ ref, ariaIds }) => (
                 <IconButton
                   ref={ref}
                   aria-describedby={ariaIds.sub}
                   aria-labelledby={ariaIds.text}
+                  autoFocus={false}
                   disabled={!stripes.hasPerm('oa.checklistItems.manage')}
                   icon={
                     item?.status?.value === 'not_required'
                       ? 'eye-open'
                       : 'eye-closed'
                   }
-                  onClick={() => {
+                  onClick={(_e) => {
                     if (item?.status?.value === 'not_required') {
                       handleSubmit({ status: 'required' }, item);
                     } else {
