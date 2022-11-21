@@ -9,13 +9,37 @@ import {
 import { Field } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';
 import { requiredValidator } from '@folio/stripes-erm-components';
-import { useOARefdata } from '../../../util';
+import { useOARefdata, selectifyRefdata } from '../../../util';
 import { validateYear } from '../../../util/validators';
 
+const [CHARGE_CATEGORY, CHARGE_STATUS, INSTITUTION_NAME] = [
+  'Charge.Category',
+  'Charge.ChargeStatus',
+  'InstitutionName',
+];
+
 const ReportingInfoForm = () => {
-  const chargeStatusesValues = useOARefdata('Charge.ChargeStatus');
-  const chargeCategoriesValues = useOARefdata('Charge.Category');
-  const institutionsValues = useOARefdata('InstitutionName');
+  const refdataValues = useOARefdata([
+    CHARGE_CATEGORY,
+    CHARGE_STATUS,
+    INSTITUTION_NAME,
+  ]);
+
+  const chargeStatusesValues = selectifyRefdata(
+    refdataValues,
+    CHARGE_STATUS,
+    'value'
+  );
+  const chargeCategoriesValues = selectifyRefdata(
+    refdataValues,
+    CHARGE_CATEGORY,
+    'value'
+  );
+  const institutionsValues = selectifyRefdata(
+    refdataValues,
+    INSTITUTION_NAME,
+    'value'
+  );
 
   return (
     <>

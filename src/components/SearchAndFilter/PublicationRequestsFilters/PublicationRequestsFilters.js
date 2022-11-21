@@ -13,7 +13,7 @@ import { FormattedMessage } from 'react-intl';
 import { DateFilter } from '@folio/stripes-erm-components';
 import ChecklistFilter from '../ChecklistFilter';
 
-import { useOARefdata } from '../../../util';
+import { useOARefdata, selectifyRefdata } from '../../../util';
 
 const propTypes = {
   activeFilters: PropTypes.object,
@@ -21,16 +21,64 @@ const propTypes = {
 };
 
 const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
-  const requestStatusValues = useOARefdata('PublicationRequest.RequestStatus');
-  const chargeStatusValues = useOARefdata('Charge.ChargeStatus');
-  const publicationTypeValues = useOARefdata(
-    'PublicationRequest.PublicationType'
+  const [
+    REQUEST_STATUS,
+    CHARGE_STATUS,
+    PUBLICATION_TYPE,
+    OA_STATUS,
+    PUBLISHERS,
+    CHARGE_PAYERS,
+    CORRESPONDING_INSTITUTE,
+  ] = [
+    'PublicationRequest.RequestStatus',
+    'Charge.ChargeStatus',
+    'PublicationRequest.PublicationType',
+    'Work.OaStatus',
+    'PublicationRequest.Publisher',
+    'Payer.Payer',
+    'Party.InstitutionLevel1',
+  ];
+
+  const refdataValues = useOARefdata([
+    REQUEST_STATUS,
+    CHARGE_STATUS,
+    PUBLICATION_TYPE,
+    OA_STATUS,
+    PUBLISHERS,
+    CHARGE_PAYERS,
+    CORRESPONDING_INSTITUTE,
+  ]);
+
+  const requestStatusValues = selectifyRefdata(
+    refdataValues,
+    REQUEST_STATUS,
+    'value'
   );
-  const workOAStatusValues = useOARefdata('Work.OaStatus');
-  const publisherValues = useOARefdata('PublicationRequest.Publisher');
-  const chargePayersValues = useOARefdata('Payer.Payer');
-  const correspondingInstitutionLevel1Values = useOARefdata(
-    'Party.InstitutionLevel1'
+  const chargeStatusValues = selectifyRefdata(
+    refdataValues,
+    CHARGE_STATUS,
+    'value'
+  );
+  const publicationTypeValues = selectifyRefdata(
+    refdataValues,
+    PUBLICATION_TYPE,
+    'value'
+  );
+  const workOAStatusValues = selectifyRefdata(
+    refdataValues,
+    OA_STATUS,
+    'value'
+  );
+  const publisherValues = selectifyRefdata(refdataValues, PUBLISHERS, 'value');
+  const chargePayersValues = selectifyRefdata(
+    refdataValues,
+    CHARGE_PAYERS,
+    'value'
+  );
+  const correspondingInstitutionLevel1Values = selectifyRefdata(
+    refdataValues,
+    CORRESPONDING_INSTITUTE,
+    'value'
   );
 
   const retrospectiveOAValues = [
