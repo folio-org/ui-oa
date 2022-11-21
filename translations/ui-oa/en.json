@@ -82,6 +82,11 @@
   "checklistFilter.attribute": "Attribute",
   "checklistFilter.comparator": "Comparator",
   "checklistFilter.value": "Value",
+  "checklistFilter.operator.is": "Is",
+  "checklistFilter.operator.isNot": "Is not",
+  "checklistFilter.attribute.outcome": "Outcome",
+  "checklistFilter.attribute.visibility": "Visibility",
+  "checklistFilter.value.notSet": "Not set",
 
 
   "parties.people": "People",
