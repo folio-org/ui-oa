@@ -11,7 +11,7 @@ import isEqual from 'lodash/isEqual';
 
 import ChecklistItem from './ChecklistItem';
 import { ChecklistNotesModal } from './ChecklistNotes';
-import NotRequiredHeader from './NotRequiredHeader/NotRequiredHeader';
+import HiddenHeader from './HiddenHeader/HiddenHeader';
 import useChecklistItemDefinitions from '../../hooks/useChecklistItemDefinitions';
 import { PANE_DEFAULT_WIDTH } from '../../constants/config';
 import urls from '../../util/urls';
@@ -79,16 +79,16 @@ const Checklist = ({ onToggle, ownerId, resourceEndpoint }) => {
     await putChecklist(submitValues);
   };
 
-  const requiredItems = checklistItems.filter(
-    (e) => e?.status?.value !== 'not_required'
+  const visibleItems = checklistItems.filter(
+    (e) => e?.status?.value !== 'hidden'
   );
 
-  const notRequiredItems = checklistItems.filter(
-    (e) => e?.status?.value === 'not_required'
+  const hiddenItems = checklistItems.filter(
+    (e) => e?.status?.value === 'hidden'
   );
 
   const renderBadge = () => {
-    return <Badge>{notRequiredItems?.length}</Badge>;
+    return <Badge>{hiddenItems?.length}</Badge>;
   };
 
   if (isLoading) {
@@ -132,7 +132,7 @@ const Checklist = ({ onToggle, ownerId, resourceEndpoint }) => {
           </Row>
         </>
       )}
-      {requiredItems.map((item) => {
+      {visibleItems.map((item) => {
         return (
           <div key={item?.id}>
             <ChecklistItem
@@ -144,16 +144,16 @@ const Checklist = ({ onToggle, ownerId, resourceEndpoint }) => {
           </div>
         );
       })}
-      {notRequiredItems?.length > 0 && (
+      {hiddenItems?.length > 0 && (
         <Accordion
           closedByDefault
           displayWhenClosed={renderBadge()}
           displayWhenOpen={renderBadge()}
-          header={NotRequiredHeader}
+          header={HiddenHeader}
           label={<FormattedMessage id="ui-oa.checklist.hidden" />}
           separator={false}
         >
-          {notRequiredItems.map((item) => {
+          {hiddenItems.map((item) => {
             return (
               <div key={item?.id}>
                 <ChecklistItem

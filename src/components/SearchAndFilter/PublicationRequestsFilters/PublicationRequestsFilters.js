@@ -178,7 +178,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
         separator={false}
       >
         <MultiSelectionFilter
-          ariaLabelledBy="corresponding-institution-level-one-filter"
+          ariaLabelledBy="corresponding-institution-level-one-filter-accordion"
           dataOptions={correspondingInstitutionLevel1Values}
           id="corresponding-institution-level-one-filter"
           name="correspondingInstitutionLevel1"

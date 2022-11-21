@@ -16,13 +16,19 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
   const openEditModal = () => setEditingFilters(true);
   const closeEditModal = () => setEditingFilters(false);
 
+  // Example query for searching if an outcome != no, not set or if the checklist item hasnt been touched
+  // (checklist.definition.name==test&&checklist.outcome isNull)||(checklist.definition.name==test&&checklist.outcome.value!=no)||!(checklist.definition.name==test)
+
+  // TODO Refactor handleSubmit and ParseQueryString
+
   // Due to how filters are handled within SearchAndSortQuery the filter string needs to be parsed back into a usual object
-  const parseQueryString = (string) => {
+  const parseQueryString = (filterArray) => {
     const filters = [];
-    const splitFilters = string
-      ?.split(')&&(')
-      // Seperate filter string into indiviual filters
-      ?.map((e) => e.replace(/[()]/g, ''));
+    // Remove isNull, isNotNull and !checklist.definition.name querys
+    const removedIsNull = filterArray?.map((filter) => {
+      return filter.split(/(\)\|\|\(|\)\|\|!)/g).pop();
+    });
+    const splitFilters = removedIsNull?.map((e) => e.replace(/[()]/g, ''));
     // Remove brackets from filter string
     splitFilters?.forEach((filter) => {
       const [checklistItemString, rulesString] = filter
@@ -45,28 +51,59 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
   };
 
   const parsedFilterData = parseQueryString(
-    activeFilters?.checklistItems ? activeFilters?.checklistItems[0] : null
+    activeFilters?.checklistItems || null
   );
 
   const handleSubmit = (values) => {
+    const generateIsNullString = (checklistItem, attribute) => {
+      return `(checklist.definition.name==${checklistItem}&&checklist.${attribute} isNull)||!(checklist.definition.name==${checklistItem})||`;
+    };
+
+    const generateIsNotNullString = (checklistItem) => {
+      return `(checklist.definition.name==${checklistItem}&&checklist.outcome isNotNull)||`;
+    };
     const filterStrings = values.filters.map((e) => {
+      let statusIsNull = '';
+      let outcomeIsNull = '';
+      let outcomeIsNotNull = '';
+
       const rulesString = e.rules.map((r) => {
+        if (
+          r.attribute === 'status' &&
+          ((r.operator === '==' && r.value === 'visible') ||
+            (r.operator === '!=' && r.value === 'hidden'))
+        ) {
+          statusIsNull = generateIsNullString(e.checklistItem, r.attribute);
+          return `checklist.${r.attribute}.value${r.operator + r.value}`;
+        }
+
+        if (
+          r.attribute === 'outcome' &&
+          r.operator === '!=' &&
+          r.value !== 'notSet'
+        ) {
+          outcomeIsNull = generateIsNullString(e.checklistItem, r.attribute);
+          return `checklist.${r.attribute}.value${r.operator + r.value}`;
+        }
+
+        if (r.operator === '==' && r.value === 'notSet') {
+          outcomeIsNull = generateIsNullString(e.checklistItem, r.attribute);
+        }
+        if (r.operator === '!=' && r.value === 'notSet') {
+          outcomeIsNotNull = generateIsNotNullString(e.checklistItem);
+        }
         return `checklist.${r.attribute}.value${r.operator + r.value}`;
       });
-      if (values?.filters.length > 1) {
-        return `(checklist.definition.name==${
-          e?.checklistItem
-        }&&(${rulesString.join('||')}))`;
-      } else {
-        return `checklist.definition.name==${
-          e?.checklistItem
-        }&&(${rulesString.join('||')})`;
-      }
+      const isString = `${statusIsNull}${outcomeIsNull}${outcomeIsNotNull}`;
+      return `${isString}(checklist.definition.name==${e?.checklistItem}&&${
+        rulesString.length > 1
+          ? '(' + rulesString.join('||') + ')'
+          : rulesString.join('||')
+      })`;
     });
-
     filterHandlers.state({
       ...activeFilters,
-      checklistItems: [filterStrings.join('&&')],
+      checklistItems: [...filterStrings],
     });
     setEditingFilters(false);
   };

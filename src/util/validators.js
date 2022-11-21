@@ -75,6 +75,17 @@ const validateYear = (value) => {
   }
 };
 
+const validateNoSpecialCharacters = (value) => {
+  const regexp = /^[A-Za-z0-9 ]*$/;
+  if (!value) {
+    return undefined;
+  } else {
+    return value && !regexp.test(value) ? (
+      <FormattedMessage id="ui-oa.settings.checklistItemDefinitions.validateNoSpecial" />
+      ) : undefined;
+  }
+};
+
 export {
   validateNotNegative,
   validateAsDecimal,
@@ -83,4 +94,5 @@ export {
   validateURL,
   validateMoreThanTotal,
   validateYear,
+  validateNoSpecialCharacters
 };
