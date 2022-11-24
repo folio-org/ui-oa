@@ -246,7 +246,7 @@
   "publicationRequest.publicationDate": "Date of publication",
   "publicationRequest.publicationYear.validate": "Please enter a date in the format YYYY, YYYY-MM or YYYY-MM-DD",
   "publicationRequest.publisher": "Publisher",
-  "publicationRequest.rejectionReason": "Reason for rejection",
+  "publicationRequest.closureReason": "Reason for closure",
   "publicationRequest.requestContact": "Request contact",
   "publicationRequest.requestNumber": "Request number",
   "publicationRequest.requestDate": "Request date",
