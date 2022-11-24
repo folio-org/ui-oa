@@ -1,6 +1,7 @@
 const publicationRequestSubmitHandler = (values, journalArticleId) => {
   const submitValues = { ...values };
   const unsetValueArray = [
+    'closureReason',
     'publicationType',
     'publisher',
     'subtype',
@@ -64,7 +65,7 @@ const publicationRequestSubmitHandler = (values, journalArticleId) => {
   } else {
     submitValues.requestNumber = null;
   }
-
+  submitValues.requestStatus = values?.requestStatus?.value;
   return submitValues;
 };
 

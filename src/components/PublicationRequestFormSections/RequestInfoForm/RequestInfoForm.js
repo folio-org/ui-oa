@@ -2,7 +2,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 
-import { Field, useForm } from 'react-final-form';
+import { Field, useForm, useFormState } from 'react-final-form';
 
 import {
   Col,
@@ -25,21 +25,19 @@ const propTypes = {
   request: PropTypes.object,
 };
 
+const [REQUEST_STATSUS, CLOSURE_REASON] = [
+  'PublicationRequest.RequestStatus',
+  'PublicationRequest.RejectionReason',
+];
+
 const RequestInfoForm = ({ request }) => {
+  const { values } = useFormState();
   const { change } = useForm();
-  const requestStatusValues = useOARefdata('PublicationRequest.RequestStatus');
+  const refdataValues = useOARefdata([REQUEST_STATSUS, CLOSURE_REASON]);
 
   return (
     <>
       <Row start="xs">
-        <Col xs={3}>
-          <KeyValue
-            label={
-              <FormattedMessage id="ui-oa.publicationRequest.requestNumber" />
-            }
-            value={request?.requestNumber}
-          />
-        </Col>
         <Col xs={3}>
           <Field
             autoFocus
@@ -56,17 +54,46 @@ const RequestInfoForm = ({ request }) => {
           />
         </Col>
         <Col xs={3}>
+          <Field name="requestStatus.value" validate={requiredValidator}>
+            {({ input }) => {
+              return (
+                <Select
+                  {...input}
+                  dataOptions={[
+                    { value: '', label: '' },
+                    ...selectifyRefdata(
+                      refdataValues,
+                      REQUEST_STATSUS,
+                      'value'
+                    ),
+                  ]}
+                  id="request-status"
+                  label={
+                    <FormattedMessage id="ui-oa.publicationRequest.status" />
+                  }
+                  onChange={(e) => {
+                    input.onChange(e);
+                    change('closureReason', null);
+                  }}
+                  required
+                />
+              );
+            }}
+          </Field>
+        </Col>
+        <Col xs={3}>
           <Field
             component={Select}
             dataOptions={[
               { value: '', label: '' },
-              ...selectifyRefdata(requestStatusValues),
+              ...selectifyRefdata(refdataValues, CLOSURE_REASON),
             ]}
-            id="request-status"
-            label={<FormattedMessage id="ui-oa.publicationRequest.status" />}
-            name="requestStatus.id"
-            required
-            validate={requiredValidator}
+            disabled={values?.requestStatus?.value !== 'closed'}
+            id="closure-reason"
+            label={
+              <FormattedMessage id="ui-oa.publicationRequest.closureReason" />
+            }
+            name="closureReason.id"
           />
         </Col>
         <Col xs={3}>
@@ -87,6 +114,16 @@ const RequestInfoForm = ({ request }) => {
               change('retrospectiveOA', e.target.checked);
             }}
             type="checkbox"
+          />
+        </Col>
+      </Row>
+      <Row start="xs">
+        <Col xs={3}>
+          <KeyValue
+            label={
+              <FormattedMessage id="ui-oa.publicationRequest.requestNumber" />
+            }
+            value={request?.requestNumber}
           />
         </Col>
       </Row>

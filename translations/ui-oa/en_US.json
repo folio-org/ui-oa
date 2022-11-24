@@ -38,7 +38,7 @@
     "publicationRequest.publicationUrl": "Publication URL",
     "publicationRequest.publicationYear": "Year of publication",
     "publicationRequest.publisher": "Publisher",
-    "publicationRequest.rejectionReason": "Reason for rejection",
+    "publicationRequest.closureReason": "Reason for closure",
     "publicationRequest.requestContact": "Request contact",
     "publicationRequest.requestNumber": "Request number",
     "publicationRequest.requestDate": "Request date",
