@@ -32,6 +32,8 @@ describe('RequestInfoForm', () => {
       );
     });
 
+    console.log(publicationRequest.requestStatus);
+
     test('renders Request number KeyValue Component', async () => {
       await KeyValue('Request number').exists();
     });
@@ -65,11 +67,6 @@ describe('RequestInfoForm', () => {
 
     test('renders the expected value in the Request date field', async () => {
       await Datepicker('Request date*').has({ inputValue: '01/01/2022' });
-    });
-
-    test('renders the expected value in the Status field', () => {
-      const { getByRole } = renderComponent;
-      expect(getByRole('combobox', { name: 'Status' })).toHaveDisplayValue('New');
     });
   });
 });
