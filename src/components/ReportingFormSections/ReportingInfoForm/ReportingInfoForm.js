@@ -1,40 +1,18 @@
-import {
-  Col,
-  Label,
-  MultiSelection,
-  Row,
-  Select,
-  TextField,
-} from '@folio/stripes/components';
-import { Field } from 'react-final-form';
+import { Col, Label, Row, Select } from '@folio/stripes/components';
+import { Field, useFormState } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';
 import { requiredValidator } from '@folio/stripes-erm-components';
 import { useOARefdata, selectifyRefdata } from '../../../util';
-import { validateYear } from '../../../util/validators';
 
-const [CHARGE_CATEGORY, CHARGE_STATUS, INSTITUTION_NAME] = [
-  'Charge.Category',
-  'Charge.ChargeStatus',
-  'InstitutionName',
-];
+import ReportingChargeForm from '../ReportingChargeForm';
+import ReportingAgreementForm from '../ReportingAgreementForm';
+
+const [INSTITUTION_NAME] = ['InstitutionName'];
 
 const ReportingInfoForm = () => {
-  const refdataValues = useOARefdata([
-    CHARGE_CATEGORY,
-    CHARGE_STATUS,
-    INSTITUTION_NAME,
-  ]);
+  const { values } = useFormState();
 
-  const chargeStatusesValues = selectifyRefdata(
-    refdataValues,
-    CHARGE_STATUS,
-    'value'
-  );
-  const chargeCategoriesValues = selectifyRefdata(
-    refdataValues,
-    CHARGE_CATEGORY,
-    'value'
-  );
+  const refdataValues = useOARefdata([INSTITUTION_NAME]);
   const institutionsValues = selectifyRefdata(
     refdataValues,
     INSTITUTION_NAME,
@@ -62,6 +40,10 @@ const ReportingInfoForm = () => {
               { value: '', label: '' },
               { value: 'openApcChargesReport', label: 'OpenAPC APC' },
               { value: 'openApcBcpReport', label: 'OpenAPC BPC' },
+              {
+                value: 'openApcTransformativeAgreementReport',
+                label: 'OpenAPC Transformative Agreement',
+              },
             ]}
             label={<FormattedMessage id="ui-oa.report.reportFormat" />}
             name="reportFormat"
@@ -70,44 +52,35 @@ const ReportingInfoForm = () => {
           />
         </Col>
       </Row>
-      <Label
-        style={{
-          marginBottom: '1rem',
-          marginTop: '1.5rem',
-          fontSize: '1.2rem',
-        }}
-      >
-        <FormattedMessage id="ui-oa.report.reportParameters" />
-      </Label>
-      <Row>
-        <Col xs={3}>
-          <Field
-            component={TextField}
-            label={<FormattedMessage id="ui-oa.report.paymentPeriod" />}
-            name="paymentPeriod"
-            type="number"
-            validate={validateYear}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={6}>
-          <Field
-            component={MultiSelection}
-            dataOptions={[...chargeCategoriesValues]}
-            label={<FormattedMessage id="ui-oa.report.chargeCategories" />}
-            name="chargeCategory"
-          />
-        </Col>
-        <Col xs={6}>
-          <Field
-            component={MultiSelection}
-            dataOptions={[...chargeStatusesValues]}
-            label={<FormattedMessage id="ui-oa.report.chargeStatuses" />}
-            name="chargeStatus"
-          />
-        </Col>
-      </Row>
+      {values?.reportFormat ===
+        ('openApcChargesReport' || 'openApcBcpReport') && (
+        <>
+          <Label
+            style={{
+              marginBottom: '1rem',
+              marginTop: '1.5rem',
+              fontSize: '1.2rem',
+            }}
+          >
+            <FormattedMessage id="ui-oa.report.reportParameters" />
+          </Label>
+          <ReportingChargeForm />
+        </>
+      )}
+      {values?.reportFormat === 'openApcTransformativeAgreementReport' && (
+        <>
+          <Label
+            style={{
+              marginBottom: '1rem',
+              marginTop: '1.5rem',
+              fontSize: '1.2rem',
+            }}
+          >
+            <FormattedMessage id="ui-oa.report.reportParameters" />
+          </Label>
+          <ReportingAgreementForm />
+        </>
+      )}
     </>
   );
 };
