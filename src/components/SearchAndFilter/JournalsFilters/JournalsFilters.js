@@ -8,16 +8,19 @@ import {
 } from '@folio/stripes/components';
 import { FormattedMessage } from 'react-intl';
 
-import { useOARefdata } from '../../../util';
+import { selectifyRefdata, useOARefdata } from '../../../util';
 
 const propTypes = {
   activeFilters: PropTypes.object,
   filterHandlers: PropTypes.object,
 };
 
+const [OA_STATUS, YES_NO] = ['Work.OaStatus', 'Global.Yes_No'];
+
 const JournalsFilters = ({ activeFilters, filterHandlers }) => {
-  const oaStatusValues = useOARefdata('Work.OaStatus');
-  const indexedInDOAJ = useOARefdata('Global.Yes_No');
+  const refdataValues = useOARefdata([OA_STATUS, YES_NO]);
+  const oaStatusValues = selectifyRefdata(refdataValues, OA_STATUS, 'value');
+  const indexedInDOAJ = selectifyRefdata(refdataValues, YES_NO, 'value');
 
   const onChangeHandler = (group) => {
     filterHandlers.state({

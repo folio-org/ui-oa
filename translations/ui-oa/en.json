@@ -73,6 +73,7 @@
   "settings.checklistItemDefinitions.deleteDefinition.confirmMessage": "Checklist item <strong>{label}</strong> will be <strong>deleted</strong>",
   "settings.checklistItemDefinitions.deleteDefinition.errorMessage": "<strong>Error: {label}</strong> was not deleted. {error}",
   "settings.checklistItemDefinitions.deleteHeading": "Delete checklist item",
+  "settings.checklistItemDefinitions.validateNoSpecial": "Cannot include special characters",
 
   "searchAndFilter.journals": "Journals",
   "searchAndFilter.people": "People",
@@ -98,6 +99,11 @@
   "checklistFilter.attribute": "Attribute",
   "checklistFilter.comparator": "Comparator",
   "checklistFilter.value": "Value",
+  "checklistFilter.operator.is": "Is",
+  "checklistFilter.operator.isNot": "Is not",
+  "checklistFilter.attribute.outcome": "Outcome",
+  "checklistFilter.attribute.visibility": "Visibility",
+  "checklistFilter.value.notSet": "Not set",
 
 
   "parties.people": "People",
@@ -257,7 +263,7 @@
   "publicationRequest.publicationDate": "Date of publication",
   "publicationRequest.publicationYear.validate": "Please enter a date in the format YYYY, YYYY-MM or YYYY-MM-DD",
   "publicationRequest.publisher": "Publisher",
-  "publicationRequest.rejectionReason": "Reason for rejection",
+  "publicationRequest.closureReason": "Reason for closure",
   "publicationRequest.requestContact": "Request contact",
   "publicationRequest.requestNumber": "Request number",
   "publicationRequest.requestDate": "Request date",

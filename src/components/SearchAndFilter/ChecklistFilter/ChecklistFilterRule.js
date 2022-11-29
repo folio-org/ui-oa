@@ -9,7 +9,7 @@ import {
   Layout,
   Select,
 } from '@folio/stripes/components';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Field } from 'react-final-form';
 import { requiredValidator } from '@folio/stripes-erm-components';
 import { useOARefdata, selectifyRefdata } from '../../../util';
@@ -21,6 +21,8 @@ const ChecklistFilterRule = ({
   onDelete,
   value,
 }) => {
+  const intl = useIntl();
+
   const [CHECKLIST_ITEM_OUTCOME, CHECKLIST_ITEM_STATUS] = [
     'ChecklistItem.Outcome',
     'ChecklistItem.Status',
@@ -42,14 +44,30 @@ const ChecklistFilterRule = ({
 
   const operators = [
     { label: '', value: '' },
-    { label: 'Is', value: '==' },
-    { label: 'Is not', value: '!=' },
+    {
+      label: intl.formatMessage({ id: 'ui-oa.checklistFilter.operator.is' }),
+      value: '==',
+    },
+    {
+      label: intl.formatMessage({ id: 'ui-oa.checklistFilter.operator.isNot' }),
+      value: '!=',
+    },
   ];
 
   const attributes = [
     { label: '', value: '' },
-    { label: 'Outcome', value: 'outcome' },
-    { label: 'Status', value: 'status' },
+    {
+      label: intl.formatMessage({
+        id: 'ui-oa.checklistFilter.attribute.outcome',
+      }),
+      value: 'outcome',
+    },
+    {
+      label: intl.formatMessage({
+        id: 'ui-oa.checklistFilter.attribute.visibility',
+      }),
+      value: 'status',
+    },
   ];
 
   return (
@@ -78,7 +96,19 @@ const ChecklistFilterRule = ({
             <Select
               {...input}
               aria-labelledby={`${ariaLabelledby}-rule-column-header-comparator`}
-              dataOptions={operators}
+              dataOptions={
+                value?.attribute === 'status'
+                  ? [
+                      { labe: '', value: '' },
+                      {
+                        label: intl.formatMessage({
+                          id: 'ui-oa.checklistFilter.operator.is',
+                        }),
+                        value: '==',
+                      },
+                    ]
+                  : operators
+              }
               error={meta?.touched && meta?.error}
               required
             />
@@ -95,7 +125,12 @@ const ChecklistFilterRule = ({
                 value?.attribute === 'outcome'
                   ? [
                       { label: '', value: '' },
-                      { label: 'Not set', value: 'notSet' },
+                      {
+                        label: intl.formatMessage({
+                          id: 'ui-oa.checklistFilter.value.notSet',
+                        }),
+                        value: 'notSet',
+                      },
                       ...outcomeValues,
                     ]
                   : [{ label: '', value: '' }, ...statusValues]

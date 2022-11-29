@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Headline, Icon } from '@folio/stripes/components';
-import css from './NotRequiredHeader.css';
+import css from './HiddenHeader.css';
 
 const propTypes = {
   autoFocus: PropTypes.bool,
@@ -27,7 +27,7 @@ const defaultProps = {
 // The accordion component does not allow styling changes to only header so an entirely new header needs to be created
 // This accordion header is a copy of the default accordion header with slight styling changes
 
-const NotRequiredHeader = (props) => {
+const HiddenHeader = (props) => {
   function handleHeaderClick(e) {
     const { id, label } = props;
     props.onToggle({ id, label });
@@ -99,7 +99,7 @@ const NotRequiredHeader = (props) => {
   );
 };
 
-NotRequiredHeader.propTypes = propTypes;
-NotRequiredHeader.defaultProps = defaultProps;
+HiddenHeader.propTypes = propTypes;
+HiddenHeader.defaultProps = defaultProps;
 
-export default NotRequiredHeader;
+export default HiddenHeader;
