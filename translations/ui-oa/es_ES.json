@@ -38,7 +38,6 @@
     "publicationRequest.publicationUrl": "Publication URL",
     "publicationRequest.publicationYear": "Año de publicación",
     "publicationRequest.publisher": "Publisher",
-    "publicationRequest.rejectionReason": "Reason for rejection",
     "publicationRequest.requestContact": "Request contact",
     "publicationRequest.requestNumber": "Request number",
     "publicationRequest.requestDate": "Request date",
@@ -427,9 +426,15 @@
     "checklistFilter.addRule": "Agregar la regla",
     "checklistFilter.deleteFilterIndex": "Eliminar el filtro",
     "checklistFilter.checklistFilterIndex": "Filtro de la lista de control",
-    "checklistFilter.removeRule": "Remover regla",
+    "checklistFilter.removeRule": "Remover regla {number}",
     "checklistFilter.attribute": "Atributo",
     "checklistFilter.comparator": "Comparador",
     "checklistFilter.value": "Valor",
-    "settings.checklistItemDefinitions.validateNoSpecial": "Cannot include special characters"
+    "settings.checklistItemDefinitions.validateNoSpecial": "Cannot include special characters",
+    "checklistFilter.operator.is": "Es",
+    "checklistFilter.operator.isNot": "No es",
+    "checklistFilter.attribute.outcome": "Resultado",
+    "checklistFilter.attribute.visibility": "Visibilidad",
+    "checklistFilter.value.notSet": "No se ha establecido",
+    "publicationRequest.closureReason": "Reason for closure"
 }
