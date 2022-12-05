@@ -49,6 +49,7 @@ const PublicationRequestsRoute = ({ children, path }) => {
         chargePayers: 'charges.payers.payer.value',
         correspondingInstitutionLevel1: 'correspondingInstitutionLevel1.value',
         retrospectiveOA: 'retrospectiveOA',
+        correspondenceStatus: 'correspondences.status.value'
       },
     },
   };
