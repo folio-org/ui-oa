@@ -45,6 +45,7 @@ const ReportingModal = ({ showModal, setShowModal }) => {
       ...(!!values?.paymentPeriod && { paymentPeriod: values?.paymentPeriod }),
       ...(!!chargeCategory && { chargeCategory }),
       ...(!!chargeStatus && { chargeStatus }),
+      ...(!!values?.agreementId && { agreementId: values?.agreementId }),
     };
 
     const queryParams = generateKiwtQueryParams(paramMap, {});

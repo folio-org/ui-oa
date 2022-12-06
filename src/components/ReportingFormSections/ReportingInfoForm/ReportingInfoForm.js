@@ -11,6 +11,7 @@ const [INSTITUTION_NAME] = ['InstitutionName'];
 
 const ReportingInfoForm = () => {
   const { values } = useFormState();
+  console.log(values?.reportFormat);
 
   const refdataValues = useOARefdata([INSTITUTION_NAME]);
   const institutionsValues = selectifyRefdata(
@@ -39,7 +40,7 @@ const ReportingInfoForm = () => {
             dataOptions={[
               { value: '', label: '' },
               { value: 'openApcChargesReport', label: 'OpenAPC APC' },
-              { value: 'openApcBcpReport', label: 'OpenAPC BPC' },
+              { value: 'openApcBpcReport', label: 'OpenAPC BPC' },
               {
                 value: 'openApcTransformativeAgreementReport',
                 label: 'OpenAPC Transformative Agreement',
@@ -52,8 +53,7 @@ const ReportingInfoForm = () => {
           />
         </Col>
       </Row>
-      {values?.reportFormat ===
-        ('openApcChargesReport' || 'openApcBcpReport') && (
+      {values?.reportFormat !== 'openApcTransformativeAgreementReport' && (
         <>
           <Label
             style={{

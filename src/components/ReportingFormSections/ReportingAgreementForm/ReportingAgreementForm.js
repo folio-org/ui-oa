@@ -11,6 +11,7 @@ import {
   MessageBanner,
 } from '@folio/stripes/components';
 import { Registry } from '@folio/handler-stripes-registry';
+import { requiredValidator } from '@folio/stripes-erm-components';
 
 import { useOARefdata, selectifyRefdata } from '../../../util';
 import { validateYear } from '../../../util/validators';
@@ -65,7 +66,9 @@ const ReportingAgreementForm = () => {
           component={LookupComponent}
           name="agreementId"
           onResourceSelected={handleAgreementSelected}
+          required
           resource={agreement}
+          validate={requiredValidator}
         />
       ) : (
         <MessageBanner type="error">
