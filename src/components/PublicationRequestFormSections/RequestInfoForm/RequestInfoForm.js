@@ -27,7 +27,7 @@ const propTypes = {
 
 const [REQUEST_STATSUS, CLOSURE_REASON] = [
   'PublicationRequest.RequestStatus',
-  'PublicationRequest.RejectionReason',
+  'PublicationRequest.ClosureReason',
 ];
 
 const RequestInfoForm = ({ request }) => {
