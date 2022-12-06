@@ -11,7 +11,6 @@ const [INSTITUTION_NAME] = ['InstitutionName'];
 
 const ReportingInfoForm = () => {
   const { values } = useFormState();
-  console.log(values?.reportFormat);
 
   const refdataValues = useOARefdata([INSTITUTION_NAME]);
   const institutionsValues = selectifyRefdata(
