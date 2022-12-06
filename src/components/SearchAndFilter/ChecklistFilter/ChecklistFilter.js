@@ -70,8 +70,8 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
       const rulesString = e.rules.map((r) => {
         if (
           r.attribute === 'status' &&
-          ((r.operator === '==' && r.value === 'required') ||
-            (r.operator === '!=' && r.value === 'not_required'))
+          ((r.operator === '==' && r.value === 'visible') ||
+            (r.operator === '!=' && r.value === 'hidden'))
         ) {
           statusIsNull = generateIsNullString(e.checklistItem, r.attribute);
           return `checklist.${r.attribute}.value${r.operator + r.value}`;
@@ -95,15 +95,11 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
         return `checklist.${r.attribute}.value${r.operator + r.value}`;
       });
       const isString = `${statusIsNull}${outcomeIsNull}${outcomeIsNotNull}`;
-      if (isString) {
-        return `${isString}(checklist.definition.name==${
-          e?.checklistItem
-        }&&(${rulesString.join('||')}))`;
-      } else {
-        return `checklist.definition.name==${
-          e?.checklistItem
-        }&&(${rulesString.join('||')})`;
-      }
+      return `${isString}(checklist.definition.name==${e?.checklistItem}&&${
+        rulesString.length > 1
+          ? '(' + rulesString.join('||') + ')'
+          : rulesString.join('||')
+      })`;
     });
     filterHandlers.state({
       ...activeFilters,

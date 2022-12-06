@@ -38,7 +38,6 @@
     "publicationRequest.publicationUrl": "عنوان URL للنشر",
     "publicationRequest.publicationYear": "سنة النشر",
     "publicationRequest.publisher": "الناشر",
-    "publicationRequest.rejectionReason": "سبب الرفض",
     "publicationRequest.requestContact": "جهة اتصال الطلب",
     "publicationRequest.requestNumber": "رقم الطلب",
     "publicationRequest.requestDate": "تاريخ الطلب",
@@ -431,5 +430,11 @@
     "checklistFilter.attribute": "Attribute",
     "checklistFilter.comparator": "Comparator",
     "checklistFilter.value": "Value",
-    "settings.checklistItemDefinitions.validateNoSpecial": "Cannot include special characters"
+    "settings.checklistItemDefinitions.validateNoSpecial": "Cannot include special characters",
+    "checklistFilter.operator.is": "Is",
+    "checklistFilter.operator.isNot": "Is not",
+    "checklistFilter.attribute.outcome": "Outcome",
+    "checklistFilter.attribute.visibility": "Visibility",
+    "checklistFilter.value.notSet": "Not set",
+    "publicationRequest.closureReason": "Reason for closure"
 }

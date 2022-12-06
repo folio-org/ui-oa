@@ -38,7 +38,6 @@
     "publicationRequest.publicationUrl": "Publication URL",
     "publicationRequest.publicationYear": "Year of publication",
     "publicationRequest.publisher": "Publisher",
-    "publicationRequest.rejectionReason": "Reason for rejection",
     "publicationRequest.requestContact": "Request Contact",
     "publicationRequest.requestNumber": "Request number",
     "publicationRequest.requestDate": "Request date",
@@ -431,5 +430,11 @@
     "checklistFilter.attribute": "Attribute",
     "checklistFilter.comparator": "Comparator",
     "checklistFilter.value": "Value",
-    "settings.checklistItemDefinitions.validateNoSpecial": "Cannot include special characters"
+    "settings.checklistItemDefinitions.validateNoSpecial": "Cannot include special characters",
+    "checklistFilter.operator.is": "Is",
+    "checklistFilter.operator.isNot": "Is not",
+    "checklistFilter.attribute.outcome": "Outcome",
+    "checklistFilter.attribute.visibility": "Visibility",
+    "checklistFilter.value.notSet": "Not set",
+    "publicationRequest.closureReason": "Reason for closure"
 }

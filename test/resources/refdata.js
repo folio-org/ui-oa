@@ -28,13 +28,13 @@ const refdata = [
     values: [
       {
         id: '2c9180b382668a1a0182668e6bda0008',
-        value: 'not_required',
-        label: 'Not required'
+        value: 'hidden',
+        label: 'Hidden'
       },
       {
         id: '2c9180b382668a1a0182668e6bd20007',
-        value: 'required',
-        label: 'Required'
+        value: 'visible',
+        label: 'Visible'
       }
     ]
   },
@@ -115,7 +115,7 @@ const refdata = [
   },
   {
     id: '2c9180b382668a1a0182668e6c290016',
-    desc: 'PublicationRequest.RejectionReason',
+    desc: 'PublicationRequest.ClosureReason',
     internal: true,
     values: [
       {

@@ -44,6 +44,38 @@ const RequestInfo = ({ request }) => {
             value={request?.requestStatus?.label}
           />
         </Col>
+        {request?.closureReason && (
+          <Col xs={3}>
+            <KeyValue
+              label={
+                <FormattedMessage id="ui-oa.publicationRequest.closureReason" />
+              }
+              value={request?.closureReason?.label}
+            />
+          </Col>
+        )}
+      </Row>
+      <Row start="xs">
+        <Col xs={3}>
+          <KeyValue
+            label={
+              <FormattedMessage id="ui-oa.publicationRequest.externalRequestIds" />
+            }
+            value={
+              request?.externalRequestIds?.length > 0 ? (
+                <ul>
+                  {request?.externalRequestIds
+                    ?.sort((a, b) => {
+                      return a?.externalId < b?.externalId ? -1 : 1;
+                    })
+                    ?.map((requestId) => (
+                      <li key={requestId?.id}>{requestId?.externalId}</li>
+                    ))}
+                </ul>
+              ) : null
+            }
+          />
+        </Col>
         <Col xs={3}>
           <KeyValue
             label={
@@ -66,28 +98,6 @@ const RequestInfo = ({ request }) => {
           />
         </Col>
       </Row>
-      {request?.externalRequestIds?.length > 0 && (
-        <Row start="xs">
-          <Col xs={12}>
-            <KeyValue
-              label={
-                <FormattedMessage id="ui-oa.publicationRequest.externalRequestIds" />
-              }
-              value={
-                <ul>
-                  {request?.externalRequestIds
-                    ?.sort((a, b) => {
-                      return a?.externalId < b?.externalId ? -1 : 1;
-                    })
-                    ?.map((requestId) => (
-                      <li key={requestId?.id}>{requestId?.externalId}</li>
-                    ))}
-                </ul>
-              }
-            />
-          </Col>
-        </Row>
-      )}
     </>
   );
 };
