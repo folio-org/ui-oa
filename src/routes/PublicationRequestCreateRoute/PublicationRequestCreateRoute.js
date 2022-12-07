@@ -44,7 +44,7 @@ const PublicationRequestCreateRoute = () => {
     if (prId) {
       history.push(`${urls.publicationRequest(prId)}${location.search}`);
     } else {
-      history.push(`${urls.publicationRequest()}${location.search}`);
+      history.push(`${urls.publicationRequests()}${location.search}`);
     }
   };
 
