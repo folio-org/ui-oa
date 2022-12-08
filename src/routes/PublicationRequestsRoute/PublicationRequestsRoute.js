@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import { AppIcon, IfPermission } from '@folio/stripes/core';
 
@@ -33,6 +33,7 @@ import {
 
 const PublicationRequestsRoute = ({ children, path }) => {
   const history = useHistory();
+  const location = useLocation();
   const [showModal, setShowModal] = useState(false);
 
   const fetchParameters = {
@@ -49,13 +50,13 @@ const PublicationRequestsRoute = ({ children, path }) => {
         chargePayers: 'charges.payers.payer.value',
         correspondingInstitutionLevel1: 'correspondingInstitutionLevel1.value',
         retrospectiveOA: 'retrospectiveOA',
-        correspondenceStatus: 'correspondences.status.value'
+        correspondenceStatus: 'correspondences.status.value',
       },
     },
   };
 
   const handleCreate = () => {
-    history.push(urls.publicationRequestCreate());
+    history.push(`${urls.publicationRequestCreate()}${location.search}`);
   };
 
   const shortcuts = [

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import { AppIcon, IfPermission } from '@folio/stripes/core';
 import {
@@ -29,6 +29,7 @@ import {
 
 const PartiesRoute = ({ path }) => {
   const history = useHistory();
+  const location = useLocation();
   const renderHeaderComponent = () => {
     return <OAFilterHeaderComponent primary="people" />;
   };
@@ -61,7 +62,7 @@ const PartiesRoute = ({ path }) => {
   ];
 
   const handleCreate = () => {
-    history.push(urls.partyCreate());
+    history.push(`${urls.partyCreate()}${location.search}`);
   };
 
   const shortcuts = [

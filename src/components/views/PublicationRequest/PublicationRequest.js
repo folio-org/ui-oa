@@ -2,7 +2,7 @@ import { createRef } from 'react';
 
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { AppIcon, useStripes } from '@folio/stripes/core';
 
 import {
@@ -52,13 +52,14 @@ const PublicationRequest = ({
   queryProps: { isLoading },
 }) => {
   const history = useHistory();
+  const location = useLocation();
   const params = useParams();
   const accordionStatusRef = createRef();
   const { HelperComponent, ChecklistButton, isOpen } = useOAHelperApp();
   const stripes = useStripes();
 
   const handleEdit = () => {
-    history.push(`${urls.publicationRequestEdit(params?.id)}`);
+    history.push(`${urls.publicationRequestEdit(params?.id)}${location.search}`);
   };
 
   const getSectionProps = (name) => {

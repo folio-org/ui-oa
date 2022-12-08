@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { useHistory, useParams, Link } from 'react-router-dom';
+import { useHistory, useParams, Link, useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
 import { AppIcon, useOkapiKy, useStripes } from '@folio/stripes/core';
@@ -30,6 +30,7 @@ const propTypes = {
 const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
   const ky = useOkapiKy();
   const history = useHistory();
+  const location = useLocation();
   const params = useParams();
   const stripes = useStripes();
 
@@ -84,7 +85,7 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
   ];
 
   const handleEdit = () => {
-    history.push(`${urls.partyEdit(params?.id)}`);
+    history.push(`${urls.partyEdit(params?.id)}${location.search}`);
   };
 
   const shortcuts = [
