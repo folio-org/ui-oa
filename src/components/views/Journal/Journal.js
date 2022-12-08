@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory, Link, useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
 import { AppIcon, useStripes, useOkapiKy } from '@folio/stripes/core';
@@ -29,6 +29,7 @@ const propTypes = {
 const Journal = ({ resource: journal, onClose, queryProps: { isLoading } }) => {
   const ky = useOkapiKy();
   const history = useHistory();
+  const location = useLocation();
   const stripes = useStripes();
 
   const { data: publicationRequests } = useQuery(
@@ -82,7 +83,7 @@ const Journal = ({ resource: journal, onClose, queryProps: { isLoading } }) => {
   };
 
   const handleEdit = () => {
-    history.push(urls.journalEdit(journal?.id));
+    history.push(`${urls.journalEdit(journal?.id)}${location.search}`);
   };
 
   if (isLoading) {

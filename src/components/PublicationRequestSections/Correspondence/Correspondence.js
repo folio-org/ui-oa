@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import classnames from 'classnames';
 
 import { IfPermission } from '@folio/stripes/core';
@@ -24,6 +24,7 @@ const propTypes = {
 
 const Correspondence = ({ request }) => {
   const history = useHistory();
+  const location = useLocation();
   const [contentExpanded, setContentExpanded] = useState({});
 
   const handleRowClick = (_e, correspondence) => {
@@ -31,7 +32,7 @@ const Correspondence = ({ request }) => {
       `${urls.publicationRequestCorrespondenceView(
         request?.id,
         correspondence?.id
-      )}`
+      )}${location.search}`
     );
   };
 
@@ -41,7 +42,7 @@ const Correspondence = ({ request }) => {
       `${urls.publicationRequestCorrespondenceEdit(
         request?.id,
         correspondence?.id
-      )}`
+      )}${location.search}`
     );
   };
 
@@ -64,7 +65,9 @@ const Correspondence = ({ request }) => {
         <IfPermission perm="oa.publicationRequest.edit">
           <Button
             id="add-correspondence-button"
-            to={`${urls.publicationRequestCorrespondenceCreate(request?.id)}`}
+            to={`${urls.publicationRequestCorrespondenceCreate(request?.id)}${
+              location.search
+            }`}
           >
             <FormattedMessage id="ui-oa.publicationRequest.addCorrespondence" />
           </Button>
