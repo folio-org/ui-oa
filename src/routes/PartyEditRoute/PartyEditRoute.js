@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, useLocation } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { FormattedMessage } from 'react-intl';
 
@@ -15,13 +15,14 @@ import { PARTY_ENDPOINT } from '../../constants/endpoints';
 
 const PartyEditRoute = () => {
   const history = useHistory();
+  const location = useLocation();
   const ky = useOkapiKy();
   const queryClient = useQueryClient();
   const callout = useContext(CalloutContext);
   const { id } = useParams();
 
   const handleClose = () => {
-    history.push(urls.party(id));
+    history.push(`${urls.party(id)}${location.search}`);
   };
 
   const {

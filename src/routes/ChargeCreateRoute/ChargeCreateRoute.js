@@ -1,6 +1,6 @@
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { useOkapiKy, useStripes } from '@folio/stripes/core';
 import { useAppSettings } from '@k-int/stripes-kint-components';
 import { useMutation, useQuery } from 'react-query';
@@ -8,11 +8,15 @@ import { useMutation, useQuery } from 'react-query';
 import ChargeForm from '../../components/views/ChargeForm';
 import { useOARefdata } from '../../util';
 import urls from '../../util/urls';
-import { CHARGES_ENDPOINT, PUBLICATION_REQUEST_ENDPOINT } from '../../constants/endpoints';
+import {
+  CHARGES_ENDPOINT,
+  PUBLICATION_REQUEST_ENDPOINT,
+} from '../../constants/endpoints';
 
 const ChargeCreateRoute = () => {
   const stripes = useStripes();
   const history = useHistory();
+  const location = useLocation();
   const ky = useOkapiKy();
   const { id } = useParams();
 
@@ -28,9 +32,11 @@ const ChargeCreateRoute = () => {
 
   const handleClose = (chargeId) => {
     if (chargeId) {
-      history.push(urls.publicationRequestChargeView(id, chargeId));
+      history.push(
+        `${urls.publicationRequestChargeView(id, chargeId)}${location.search}`
+      );
     } else {
-      history.push(urls.publicationRequest(id));
+      history.push(`${urls.publicationRequest(id)}${location.search}`);
     }
   };
 

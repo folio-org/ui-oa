@@ -1,6 +1,6 @@
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useQuery, useMutation } from 'react-query';
 import LinkInvoiceForm from '../../components/views/LinkInvoiceForm';
@@ -10,6 +10,7 @@ import { CHARGE_ENDPOINT } from '../../constants/endpoints';
 
 const LinkInvoiceRoute = () => {
   const history = useHistory();
+  const location = useLocation();
   const ky = useOkapiKy();
   const { prId, chId } = useParams();
   const invoicedRefData = useOARefdata('Charge.ChargeStatus').find(
@@ -17,7 +18,7 @@ const LinkInvoiceRoute = () => {
   );
 
   const handleClose = () => {
-    history.push(urls.publicationRequestChargeView(prId, chId));
+    history.push(`${urls.publicationRequestChargeView(prId, chId)}${location.search}`);
   };
 
   const { data: charge } = useQuery(

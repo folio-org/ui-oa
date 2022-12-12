@@ -1,4 +1,4 @@
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, useLocation } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useQuery, useMutation } from 'react-query';
 
@@ -10,6 +10,7 @@ import { PANE_DEFAULT_WIDTH } from '../../constants/config';
 
 const CorrespondenceViewRoute = () => {
   const history = useHistory();
+  const location = useLocation();
   const ky = useOkapiKy();
   const { prId, cId } = useParams();
 
@@ -21,16 +22,20 @@ const CorrespondenceViewRoute = () => {
   );
 
   const handleClose = () => {
-    history.push(urls.publicationRequest(prId));
+    history.push(`${urls.publicationRequest(prId)}${location.search}`);
   };
 
   const handleDelete = async () => {
     await deleteCorrespondence(cId);
-    history.push(urls.publicationRequest(prId));
+    history.push(`${urls.publicationRequest(prId)}${location.search}`);
   };
 
   const handleEdit = () => {
-    history.push(`${urls.publicationRequestCorrespondenceEdit(prId, cId)}`);
+    history.push(
+      `${urls.publicationRequestCorrespondenceEdit(prId, cId)}${
+        location.search
+      }`
+    );
   };
 
   const shortcuts = [

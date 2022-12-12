@@ -3,7 +3,7 @@ import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import createDecorator from 'final-form-focus';
 
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { FormattedMessage } from 'react-intl';
 
@@ -21,6 +21,7 @@ const [PUBLICATION_TYPE] = ['PublicationRequest.PublicationType'];
 
 const PublicationRequestCreateRoute = () => {
   const history = useHistory();
+  const location = useLocation();
   const ky = useOkapiKy();
   const callout = useContext(CalloutContext);
   const focusOnError = createDecorator();
@@ -41,9 +42,9 @@ const PublicationRequestCreateRoute = () => {
 
   const handleClose = (prId) => {
     if (prId) {
-      history.push(urls.publicationRequest(prId));
+      history.push(`${urls.publicationRequest(prId)}${location.search}`);
     } else {
-      history.push(urls.publicationRequests());
+      history.push(`${urls.publicationRequests()}${location.search}`);
     }
   };
 

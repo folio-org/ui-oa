@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import { IfPermission, useStripes } from '@folio/stripes/core';
 import {
@@ -72,6 +72,7 @@ const InvoiceLineLink = ({ charge }) => {
 const Charges = ({ request }) => {
   const stripes = useStripes();
   const history = useHistory();
+  const location = useLocation();
 
   const [sortedColumn, setSortedColumn] = useState({
     column: 'description',
@@ -96,7 +97,7 @@ const Charges = ({ request }) => {
 
   const handleRowClick = (_e, charge) => {
     history.push(
-      `${urls.publicationRequestChargeView(request?.id, charge?.id)}`
+      `${urls.publicationRequestChargeView(request?.id, charge?.id)}${location.search}`
     );
   };
 
@@ -107,7 +108,7 @@ const Charges = ({ request }) => {
           <Button
             disabled={!stripes?.currency}
             id="add-charge-button"
-            to={`${urls.publicationRequestChargeCreate(request?.id)}`}
+            to={`${urls.publicationRequestChargeCreate(request?.id)}${location.search}`}
           >
             <FormattedMessage id="ui-oa.publicationRequest.addCharge" />
           </Button>

@@ -2,7 +2,7 @@ import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import createDecorator from 'final-form-focus';
 
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, useLocation } from 'react-router-dom';
 import { LoadingView } from '@folio/stripes/components';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
@@ -18,6 +18,7 @@ import { PUBLICATION_REQUEST_ENDPOINT } from '../../constants/endpoints';
 const [PUBLICATION_TYPE] = ['PublicationRequest.PublicationType'];
 
 const PublicationRequestEditRoute = () => {
+  const location = useLocation();
   const focusOnError = createDecorator();
   const history = useHistory();
   const queryClient = useQueryClient();
@@ -33,7 +34,7 @@ const PublicationRequestEditRoute = () => {
   );
 
   const handleClose = () => {
-    history.push(urls.publicationRequest(id));
+    history.push(`${urls.publicationRequest(id)}${location.search}`);
   };
 
   const { data: publicationRequest, isLoading } = useQuery([id], () => ky(PUBLICATION_REQUEST_ENDPOINT(id)).json());

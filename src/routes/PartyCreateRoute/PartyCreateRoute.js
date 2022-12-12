@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useMutation } from 'react-query';
 import { FormattedMessage } from 'react-intl';
 
@@ -14,14 +14,15 @@ import { PARTIES_ENDPOINT } from '../../constants/endpoints';
 
 const PartyCreateRoute = () => {
   const history = useHistory();
+  const location = useLocation();
   const ky = useOkapiKy();
   const callout = useContext(CalloutContext);
 
   const handleClose = (id) => {
     if (id) {
-      history.push(urls.party(id));
+      history.push(`${urls.party(id)}${location.search}`);
     } else {
-      history.push(urls.parties());
+      history.push(`${urls.parties()}${location.search}`);
     }
   };
 

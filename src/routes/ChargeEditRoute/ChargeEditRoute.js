@@ -1,6 +1,6 @@
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { LoadingView } from '@folio/stripes/components';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
@@ -14,18 +14,18 @@ import {
 
 const ChargeEditRoute = () => {
   const history = useHistory();
+  const location = useLocation();
   const ky = useOkapiKy();
   const { prId, chId } = useParams();
   const queryClient = useQueryClient();
 
   const handleClose = () => {
-    history.push(urls.publicationRequestChargeView(prId, chId));
+    history.push(
+      `${urls.publicationRequestChargeView(prId, chId)}${location.search}`
+    );
   };
 
-  const { data: charge, isLoading } = useQuery(
-    [chId],
-    () => ky(CHARGE_ENDPOINT(chId)).json()
-  );
+  const { data: charge, isLoading } = useQuery([chId], () => ky(CHARGE_ENDPOINT(chId)).json());
 
   const { data: request } = useQuery(
     ['ui-oa', 'ChargeRoute', 'fetchPublicationRequest', prId],

@@ -1,6 +1,6 @@
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, useLocation } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useMutation } from 'react-query';
 import CorrespondenceForm from '../../components/views/CorrespondenceForm';
@@ -9,14 +9,19 @@ import { CORRESPONDENCES_ENDPOINT } from '../../constants/endpoints';
 
 const CorrespondenceCreateRoute = () => {
   const history = useHistory();
+  const location = useLocation();
   const ky = useOkapiKy();
   const { id } = useParams();
 
   const handleClose = (cId) => {
     if (cId) {
-      history.push(urls.publicationRequestCorrespondenceView(id, cId));
+      history.push(
+        `${urls.publicationRequestCorrespondenceView(id, cId)}${
+          location.search
+        }`
+      );
     } else {
-      history.push(urls.publicationRequest(id));
+      history.push(`${urls.publicationRequest(id)}${location.search}`);
     }
   };
 
