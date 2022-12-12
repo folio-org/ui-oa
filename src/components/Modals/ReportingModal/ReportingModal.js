@@ -109,7 +109,7 @@ const ReportingModal = ({ showModal, setShowModal }) => {
         footer: renderFooter,
         onClose: closeModal,
         open: showModal,
-        label: <FormattedMessage id="ui-oa.report.generateReport" />,
+        label: <FormattedMessage id="ui-oa.report.runOpenApcReport" />,
       }}
       mutators={arrayMutators}
       onSubmit={submitReport}

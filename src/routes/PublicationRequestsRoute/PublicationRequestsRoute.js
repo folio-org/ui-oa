@@ -129,7 +129,7 @@ const PublicationRequestsRoute = ({ children, path }) => {
             )}
           </FormattedMessage>
         </IfPermission>
-        <FormattedMessage id="ui-oa.report.generateReport">
+        <FormattedMessage id="ui-oa.report.runOpenApcReport">
           {(ariaLabel) => (
             <Button
               aria-label={ariaLabel}
@@ -139,7 +139,7 @@ const PublicationRequestsRoute = ({ children, path }) => {
               onClick={() => setShowModal(true)}
             >
               <Icon icon="report">
-                <FormattedMessage id="ui-oa.report.generateReport" />
+                <FormattedMessage id="ui-oa.report.runOpenApcReport" />
               </Icon>
             </Button>
           )}
