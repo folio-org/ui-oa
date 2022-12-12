@@ -62,34 +62,21 @@ const ReportingInfoForm = () => {
           </Field>
         </Col>
       </Row>
-      {(values?.reportFormat === 'openApcChargesReport' ||
-        values?.reportFormat === 'openApcBpcReport') && (
-        <>
-          <Label
-            style={{
-              marginBottom: '1rem',
-              marginTop: '1.5rem',
-              fontSize: '1.2rem',
-            }}
-          >
-            <FormattedMessage id="ui-oa.report.reportParameters" />
-          </Label>
-          <ReportingChargeForm />
-        </>
+      {!!values?.reportFormat && (
+        <Label
+          style={{
+            marginBottom: '1rem',
+            marginTop: '1.5rem',
+            fontSize: '1.2rem',
+          }}
+        >
+          <FormattedMessage id="ui-oa.report.reportParameters" />
+        </Label>
       )}
+      {(values?.reportFormat === 'openApcChargesReport' ||
+        values?.reportFormat === 'openApcBpcReport') && <ReportingChargeForm />}
       {values?.reportFormat === 'openApcTransformativeAgreementReport' && (
-        <>
-          <Label
-            style={{
-              marginBottom: '1rem',
-              marginTop: '1.5rem',
-              fontSize: '1.2rem',
-            }}
-          >
-            <FormattedMessage id="ui-oa.report.reportParameters" />
-          </Label>
-          <ReportingAgreementForm />
-        </>
+        <ReportingAgreementForm />
       )}
     </>
   );
