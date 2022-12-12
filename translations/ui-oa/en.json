@@ -473,5 +473,8 @@
   "report.paymentPeriod": "Payment period",
   "report.chargeCategories": "Charge categories",
   "report.chargeStatuses": "Charge statuses",
-  "report.reportCreated": "<strong>Report created:</strong> {reportFormat} report. The file will automatically download."
+  "report.reportCreated": "<strong>Report created:</strong> {reportFormat} report. The file will automatically download.",
+  "report.reportFormat.openApc": "OpenAPC APC",
+  "report.reportFormat.openApcBpc": "OpenAPC BPC",
+  "report.reportFormat.openApcTransformativeAgreement": "OpenAPC Transformative Agreement"
 }

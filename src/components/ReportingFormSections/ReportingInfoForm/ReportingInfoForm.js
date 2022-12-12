@@ -1,6 +1,6 @@
 import { Col, Label, Row, Select } from '@folio/stripes/components';
 import { Field, useForm, useFormState } from 'react-final-form';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { requiredValidator } from '@folio/stripes-erm-components';
 import { useOARefdata, selectifyRefdata } from '../../../util';
 
@@ -12,6 +12,7 @@ const [INSTITUTION_NAME] = ['InstitutionName'];
 const ReportingInfoForm = () => {
   const { values } = useFormState();
   const { reset } = useForm();
+  const intl = useIntl();
 
   const refdataValues = useOARefdata([INSTITUTION_NAME]);
   const institutionsValues = selectifyRefdata(
@@ -42,11 +43,23 @@ const ReportingInfoForm = () => {
                   {...input}
                   dataOptions={[
                     { value: '', label: '' },
-                    { value: 'openApcChargesReport', label: 'OpenAPC APC' },
-                    { value: 'openApcBpcReport', label: 'OpenAPC BPC' },
+                    {
+                      value: 'openApcChargesReport',
+                      label: intl.formatMessage({
+                        id: 'ui-oa.report.reportFormat.openApc',
+                      }),
+                    },
+                    {
+                      value: 'openApcBpcReport',
+                      label: intl.formatMessage({
+                        id: 'ui-oa.report.reportFormat.openApcBpc',
+                      }),
+                    },
                     {
                       value: 'openApcTransformativeAgreementReport',
-                      label: 'OpenAPC Transformative Agreement',
+                      label: intl.formatMessage({
+                        id: 'ui-oa.report.reportFormat.openApcTransformativeAgreement',
+                      }),
                     },
                   ]}
                   label={<FormattedMessage id="ui-oa.report.reportFormat" />}
