@@ -465,7 +465,7 @@
   "checklist.showItem": "Show ''{name}'' item",
   "checklist.itemOutcome": "Outcome is {outcome} for {itemName} item",
 
-  "report.runOpenAPCChargesReport": "Run OpenAPC charges report",
+  "report.generateReport": "Generate report",
   "report.runReportAndDownload": "Run report and download",
   "report.reportFormat": "Report format",
   "report.institution": "Institution",
