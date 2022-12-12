@@ -61,20 +61,25 @@ const ReportingAgreementForm = () => {
         </Col>
       </Row>
       <br />
-      {LookupComponent ? (
-        <Field
-          component={LookupComponent}
-          name="agreementId"
-          onResourceSelected={handleAgreementSelected}
-          required
-          resource={agreement}
-          validate={requiredValidator}
-        />
-      ) : (
-        <MessageBanner type="error">
-          <FormattedMessage id="ui-oa.publicationRequest.agreementsNotWorking" />
-        </MessageBanner>
-      )}
+      <Field name="agreementId" validate={requiredValidator}>
+        {({ input }) => {
+          if (LookupComponent) {
+            return (
+              <LookupComponent
+                input={input}
+                onResourceSelected={handleAgreementSelected}
+                resource={agreement}
+              />
+            );
+          } else {
+            return (
+              <MessageBanner type="error">
+                <FormattedMessage id="ui-oa.publicationRequest.agreementsNotWorking" />
+              </MessageBanner>
+            );
+          }
+        }}
+      </Field>
     </>
   );
 };
