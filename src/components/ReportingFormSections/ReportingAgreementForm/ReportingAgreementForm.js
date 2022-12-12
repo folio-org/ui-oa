@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Field, useForm } from 'react-final-form';
+import { Field, useForm, useFormState } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';
 
 import {
@@ -11,7 +11,10 @@ import {
   MessageBanner,
 } from '@folio/stripes/components';
 import { Registry } from '@folio/handler-stripes-registry';
-import { requiredValidator } from '@folio/stripes-erm-components';
+import {
+  composeValidators,
+  requiredValidator,
+} from '@folio/stripes-erm-components';
 
 import { useOARefdata, selectifyRefdata } from '../../../util';
 import { validateYear } from '../../../util/validators';
@@ -19,9 +22,11 @@ import { validateYear } from '../../../util/validators';
 const [PUBLICATION_STATUS] = ['PublicationStatus.PublicationStatus'];
 
 const ReportingAgreementForm = () => {
+  const { values } = useFormState();
   const { change } = useForm();
   const refdataValues = useOARefdata([PUBLICATION_STATUS]);
   const [agreement, setAgreement] = useState({});
+  console.log(values);
 
   const resourceReg = Registry.getResource('agreement');
   const LookupComponent = resourceReg?.getLookupComponent() ?? null;
@@ -45,8 +50,13 @@ const ReportingAgreementForm = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.report.paymentPeriod" />}
             name="paymentPeriod"
+            required={!!values?.publicationStatus || !!values?.paymentPeriod}
             type="number"
-            validate={validateYear}
+            validate={
+              values?.publicationStatus || values?.paymentPeriod
+                ? composeValidators(requiredValidator, validateYear)
+                : null
+            }
           />
         </Col>
         <Col xs={6}>
@@ -57,6 +67,12 @@ const ReportingAgreementForm = () => {
               <FormattedMessage id="ui-oa.publicationRequest.publicationStatus" />
             }
             name="publicationStatus"
+            required={!!values?.paymentPeriod || !!values?.publicationStatus}
+            validate={
+              values?.publicationStatus || values?.paymentPeriod
+                ? requiredValidator
+                : null
+            }
           />
         </Col>
       </Row>
