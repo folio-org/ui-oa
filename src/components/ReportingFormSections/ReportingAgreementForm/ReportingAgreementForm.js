@@ -26,7 +26,6 @@ const ReportingAgreementForm = () => {
   const { change } = useForm();
   const refdataValues = useOARefdata([PUBLICATION_STATUS]);
   const [agreement, setAgreement] = useState({});
-  console.log(values);
 
   const resourceReg = Registry.getResource('agreement');
   const LookupComponent = resourceReg?.getLookupComponent() ?? null;
