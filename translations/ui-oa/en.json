@@ -89,6 +89,7 @@
   "checklistFilter.attribute.outcome": "Outcome",
   "checklistFilter.attribute.visibility": "Visibility",
   "checklistFilter.value.notSet": "Not set",
+  "checklistFilter.reapplyFilters": "Reapply filters",
 
 
   "parties.people": "People",
