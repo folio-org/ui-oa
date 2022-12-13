@@ -3,19 +3,21 @@ import { useState } from 'react';
 import {
   Accordion,
   FilterAccordionHeader,
+  IconButton,
   Layout,
 } from '@folio/stripes/components';
 import { FormattedMessage } from 'react-intl';
+import { useQueryClient } from 'react-query';
 import useChecklistItemDefinitions from '../../../hooks/useChecklistItemDefinitions';
 
 import ChecklistFilterForm from './ChecklistFilterForm';
 
 const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
+  const queryClient = useQueryClient();
   const checklistItems = useChecklistItemDefinitions();
   const [editingFilters, setEditingFilters] = useState(false);
   const openEditModal = () => setEditingFilters(true);
   const closeEditModal = () => setEditingFilters(false);
-
   // Example query for searching if an outcome != no, not set or if the checklist item hasnt been touched
   // (checklist.definition.name==test&&checklist.outcome isNull)||(checklist.definition.name==test&&checklist.outcome.value!=no)||!(checklist.definition.name==test)
 
@@ -108,9 +110,37 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
     setEditingFilters(false);
   };
 
+  const renderRefreshButton = () => {
+    return (
+      <>
+        {!!parsedFilterData.length && (
+          <FormattedMessage id="ui-oa.checklistFilter.reapplyFilters">
+            {(ariaLabel) => (
+              <IconButton
+                ariaLabel={ariaLabel}
+                icon="refresh"
+                iconSize="small"
+                onClick={() => queryClient.invalidateQueries([
+                    '@folio/oa',
+                    'SASQ',
+                    'publication-requests',
+                    'viewAll',
+                  ])
+                }
+                size="small"
+              />
+            )}
+          </FormattedMessage>
+        )}
+      </>
+    );
+  };
+
   return (
     <Accordion
       displayClearButton={parsedFilterData?.length}
+      displayWhenClosed={renderRefreshButton()}
+      displayWhenOpen={renderRefreshButton()}
       header={FilterAccordionHeader}
       id="clickable-checklist-filter"
       label={<FormattedMessage id="ui-oa.checklistFilter.checklistItems" />}
