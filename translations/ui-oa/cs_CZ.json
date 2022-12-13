@@ -390,7 +390,6 @@
     "refdata.deleteRefdataValue.errorMessage": "<strong>Chyba: {label}</strong> nebyl smazán. {error}",
     "refdata.editAriaLabel": "Upravit hodnotu {label}",
     "refdata.deleteAriaLabel": "Smazat hodnotu {label}",
-    "report.runOpenAPCChargesReport": "Spusťte přehled poplatků OpenAPC",
     "report.runReportAndDownload": "Spustit přehled a stáhnout",
     "report.reportFormat": "Formát přehledu",
     "report.institution": "Instituce",
@@ -436,5 +435,13 @@
     "checklistFilter.attribute.outcome": "Výsledek",
     "checklistFilter.attribute.visibility": "Viditelnost",
     "checklistFilter.value.notSet": "Nenastaveno",
-    "publicationRequest.closureReason": "Důvod závěru"
+    "publicationRequest.closureReason": "Důvod závěru",
+    "searchAndFilter.correspondenceStatus": "Stav korespondence",
+    "searchAndFilter.correspondenceFilters": "Filtr korespondence",
+    "report.runOpenApcReport": "Spustit přehled OpenAPC",
+    "report.reportFormat.openApc": "OpenAPC APC",
+    "report.reportFormat.openApcBpc": "OpenAPC BPC",
+    "report.reportFormat.openApcTransformativeAgreement": "Transformační smlouva OpenAPC",
+    "report.reportParams.inPeriodAffix": "(v období)",
+    "checklistFilter.reapplyFilters": "Reapply filters"
 }
