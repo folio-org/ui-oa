@@ -390,7 +390,6 @@
     "refdata.deleteRefdataValue.errorMessage": "<strong> Erro: {label} </strong> não foi excluído. {error}",
     "refdata.editAriaLabel": "Editar valor {label}",
     "refdata.deleteAriaLabel": "Excluir valor {label}",
-    "report.runOpenAPCChargesReport": "Executar relatório de cobrança do OpenAPC",
     "report.runReportAndDownload": "Executar relatório e baixar",
     "report.reportFormat": "Formato de relatório",
     "report.institution": "Instituição",
@@ -436,5 +435,13 @@
     "checklistFilter.attribute.outcome": "Resultado",
     "checklistFilter.attribute.visibility": "Visibilidade",
     "checklistFilter.value.notSet": "Não definido",
-    "publicationRequest.closureReason": "Razão para o encerramento"
+    "publicationRequest.closureReason": "Razão para o encerramento",
+    "searchAndFilter.correspondenceStatus": "Status de correspondência",
+    "searchAndFilter.correspondenceFilters": "Filtros de correspondência",
+    "report.runOpenApcReport": "Run OpenAPC report",
+    "report.reportFormat.openApc": "OpenAPC APC",
+    "report.reportFormat.openApcBpc": "OpenAPC BPC",
+    "report.reportFormat.openApcTransformativeAgreement": "OpenAPC Transformative Agreement",
+    "report.reportParams.inPeriodAffix": " (in period)",
+    "checklistFilter.reapplyFilters": "Reapply filters"
 }
