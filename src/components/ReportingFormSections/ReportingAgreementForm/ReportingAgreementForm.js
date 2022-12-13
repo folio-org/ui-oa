@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { Field, useForm, useFormState } from 'react-final-form';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import {
   Col,
@@ -24,6 +24,7 @@ const [PUBLICATION_STATUS] = ['PublicationStatus.PublicationStatus'];
 const ReportingAgreementForm = () => {
   const { values } = useFormState();
   const { change } = useForm();
+  const intl = useIntl();
   const refdataValues = useOARefdata([PUBLICATION_STATUS]);
   const [agreement, setAgreement] = useState({});
 
@@ -34,7 +35,14 @@ const ReportingAgreementForm = () => {
     refdataValues,
     PUBLICATION_STATUS,
     'value'
-  );
+  ).map((e) => {
+    return {
+      label: `${e.label}${intl.formatMessage({
+        id: 'ui-oa.report.reportParams.inPeriodAffix',
+      })}`,
+      value: e.value,
+    };
+  });
 
   const handleAgreementSelected = (a) => {
     setAgreement(a);
@@ -53,7 +61,11 @@ const ReportingAgreementForm = () => {
             type="number"
             validate={(value, allValues, meta) => {
               if (allValues?.publicationStatus || value) {
-                return composeValidators(requiredValidator, validateYear)(value, allValues, meta);
+                return composeValidators(requiredValidator, validateYear)(
+                  value,
+                  allValues,
+                  meta
+                );
               } else {
                 return null;
               }
