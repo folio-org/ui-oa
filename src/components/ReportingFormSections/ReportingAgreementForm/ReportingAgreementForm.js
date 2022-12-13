@@ -51,11 +51,13 @@ const ReportingAgreementForm = () => {
             name="paymentPeriod"
             required={!!values?.publicationStatus || !!values?.paymentPeriod}
             type="number"
-            validate={
-              values?.publicationStatus || values?.paymentPeriod
-                ? composeValidators(requiredValidator, validateYear)
-                : null
-            }
+            validate={(value, allValues, meta) => {
+              if (allValues?.publicationStatus || value) {
+                return composeValidators(requiredValidator, validateYear)(value, allValues, meta);
+              } else {
+                return null;
+              }
+            }}
           />
         </Col>
         <Col xs={6}>
@@ -67,11 +69,13 @@ const ReportingAgreementForm = () => {
             }
             name="publicationStatus"
             required={!!values?.paymentPeriod || !!values?.publicationStatus}
-            validate={
-              values?.publicationStatus || values?.paymentPeriod
-                ? requiredValidator
-                : null
-            }
+            validate={(value, allValues, meta) => {
+              if (allValues?.paymentPeriod || value) {
+                return requiredValidator(value, allValues, meta);
+              } else {
+                return null;
+              }
+            }}
           />
         </Col>
       </Row>
