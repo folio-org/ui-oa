@@ -45,7 +45,9 @@ const ReportingModal = ({ showModal, setShowModal }) => {
       ...(!!values?.paymentPeriod && { paymentPeriod: values?.paymentPeriod }),
       ...(!!chargeCategory && { chargeCategory }),
       ...(!!chargeStatus && { chargeStatus }),
-      ...(!!values?.publicationStatus && { publicationStatus: values?.publicationStatus }),
+      ...(!!values?.publicationStatus && {
+        publicationStatus: values?.publicationStatus,
+      }),
       ...(!!values?.agreementId && { agreementId: values?.agreementId }),
     };
 
@@ -61,7 +63,11 @@ const ReportingModal = ({ showModal, setShowModal }) => {
           message: (
             <FormattedMessage
               id="ui-oa.report.reportCreated"
-              values={{ reportFormat: values?.reportFormat }}
+              values={{
+                fileName: `${
+                  values.paymentPeriod ? values?.paymentPeriod + '_' : ''
+                }${values?.institution}_${values?.reportFormat}.csv`,
+              }}
             />
           ),
           type: 'success',
