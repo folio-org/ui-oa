@@ -59,8 +59,8 @@ const PartyTypedownForm = ({ formName }) => {
   const handlePartyChange = (party) => {
     change(`${formName}.partyOwner`, party);
     if (formName === 'correspondingAuthor') {
-      change('correspondingInstitutionLevel1.id', party?.correspondingInstitutionLevel1?.id);
-      change('correspondingInstitutionLevel2', party?.correspondingInstitutionLevel2);
+      change('correspondingInstitutionLevel1.id', party?.institutionLevel1?.id);
+      change('correspondingInstitutionLevel2', party?.institutionLevel2);
     }
   };
 

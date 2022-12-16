@@ -1,6 +1,6 @@
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, useLocation } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 
 import { LoadingView } from '@folio/stripes/components';
@@ -12,12 +12,13 @@ import { WORK_ENDPOINT } from '../../constants/endpoints';
 
 const JournalEditRoute = () => {
   const history = useHistory();
+  const location = useLocation();
   const ky = useOkapiKy();
   const queryClient = useQueryClient();
   const { id } = useParams();
 
   const handleClose = () => {
-    history.push(urls.journal(id));
+    history.push(`${urls.journal(id)}${location.search}`);
   };
 
   const { data: journal, isLoading } = useQuery([id], () => ky(WORK_ENDPOINT(id)).json());

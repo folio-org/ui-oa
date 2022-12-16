@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import { AppIcon, IfPermission } from '@folio/stripes/core';
 import {
@@ -28,10 +28,11 @@ import {
 
 const JournalsRoute = ({ path }) => {
   const history = useHistory();
+  const location = useLocation();
   const [showModal, setShowModal] = useState(false);
 
   const handleJournalChange = (journal) => {
-    history.push(urls.journal(journal.id));
+    history.push(`${urls.journal(journal.id)}${location.search}`);
   };
 
   const renderISSN = (d, namespace) => {

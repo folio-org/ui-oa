@@ -29,6 +29,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
     PUBLISHERS,
     CHARGE_PAYERS,
     CORRESPONDING_INSTITUTE,
+    CORRESPONDENCE_STATUS
   ] = [
     'PublicationRequest.RequestStatus',
     'Charge.ChargeStatus',
@@ -37,6 +38,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
     'PublicationRequest.Publisher',
     'Payer.Payer',
     'Party.InstitutionLevel1',
+    'Correspondence.Status'
   ];
 
   const refdataValues = useOARefdata([
@@ -47,6 +49,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
     PUBLISHERS,
     CHARGE_PAYERS,
     CORRESPONDING_INSTITUTE,
+    CORRESPONDENCE_STATUS,
   ]);
 
   const requestStatusValues = selectifyRefdata(
@@ -78,6 +81,12 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
   const correspondingInstitutionLevel1Values = selectifyRefdata(
     refdataValues,
     CORRESPONDING_INSTITUTE,
+    'value'
+  );
+
+  const correspondenceStatusValues = selectifyRefdata(
+    refdataValues,
+    CORRESPONDENCE_STATUS,
     'value'
   );
 
@@ -305,6 +314,32 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
     );
   };
 
+  const renderCorrespondenceStatusFilter = () => {
+    return (
+      <Accordion
+        displayClearButton={activeFilters?.correspondenceStatus?.length > 0}
+        header={FilterAccordionHeader}
+        id="correspondence-status-filter-accordion"
+        label={
+          <FormattedMessage id="ui-oa.searchAndFilter.correspondenceStatus" />
+        }
+        onClearFilter={() => {
+          filterHandlers.clearGroup('correspondenceStatus');
+        }}
+        separator={false}
+      >
+        <MultiSelectionFilter
+          ariaLabelledBy="correspondence-status-filter-accordion"
+          dataOptions={correspondenceStatusValues}
+          id="correspondence-status-filter"
+          name="correspondenceStatus"
+          onChange={onChangeHandler}
+          selectedValues={activeFilters?.correspondenceStatus || []}
+        />
+      </Accordion>
+    );
+  };
+
   return (
     <>
       <AccordionSet>
@@ -323,6 +358,11 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
         {renderPublicationTypeFilter()}
         {renderPublisherFilter()}
         {renderOAStatusFilter()}
+        <hr />
+        <Headline faded margin="none" size="large">
+          <FormattedMessage id="ui-oa.searchAndFilter.correspondenceFilters" />
+        </Headline>
+        {renderCorrespondenceStatusFilter()}
         <hr />
         <Headline faded margin="none" size="large">
           <FormattedMessage id="ui-oa.searchAndFilter.chargeFilters" />

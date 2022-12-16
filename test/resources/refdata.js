@@ -115,7 +115,7 @@ const refdata = [
   },
   {
     id: '2c9180b382668a1a0182668e6c290016',
-    desc: 'PublicationRequest.RejectionReason',
+    desc: 'PublicationRequest.ClosureReason',
     internal: true,
     values: [
       {

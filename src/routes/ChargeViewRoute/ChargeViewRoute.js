@@ -1,4 +1,4 @@
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
 import { useOkapiKy } from '@folio/stripes/core';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 
@@ -16,6 +16,7 @@ import {
 const ChargeViewRoute = () => {
   const ky = useOkapiKy();
   const history = useHistory();
+  const location = useLocation();
   const queryClient = useQueryClient();
 
   const { prId, chId } = useParams();
@@ -29,15 +30,15 @@ const ChargeViewRoute = () => {
   const { data: request } = useQuery([prId], () => ky(PUBLICATION_REQUEST_ENDPOINT(prId)).json());
 
   const handleClose = () => {
-    history.push(urls.publicationRequest(prId));
+    history.push(`${urls.publicationRequest(prId)}${location.search}`);
   };
 
   const handleEdit = () => {
-    history.push(urls.publicationRequestChargeEdit(prId, chId));
+    history.push(`${urls.publicationRequestChargeEdit(prId, chId)}${location.search}`);
   };
 
   const handleLink = () => {
-    history.push(`${urls.publicationRequestChargeLinkInvoice(prId, chId)}`);
+    history.push(`${urls.publicationRequestChargeLinkInvoice(prId, chId)}${location.search}`);
   };
 
   const { mutateAsync: deleteCharge } = useMutation(
@@ -69,7 +70,7 @@ const ChargeViewRoute = () => {
   const handleDelete = async () => {
     await deleteCharge(chId);
     queryClient.invalidateQueries(prId);
-    history.push(urls.publicationRequest(prId));
+    history.push(`${urls.publicationRequest(prId)}${location.search}`);
   };
 
   if (isLoading) {

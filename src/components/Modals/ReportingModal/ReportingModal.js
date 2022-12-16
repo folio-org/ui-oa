@@ -20,7 +20,7 @@ const ReportingModal = ({ showModal, setShowModal }) => {
   const callout = useContext(CalloutContext);
   const institutions = useOARefdata('InstitutionName');
 
-  const handleClose = () => setShowModal(false);
+  const closeModal = () => setShowModal(false);
 
   const downloadBlob = (blob, values) => {
     const url = window.URL.createObjectURL(blob);
@@ -45,6 +45,10 @@ const ReportingModal = ({ showModal, setShowModal }) => {
       ...(!!values?.paymentPeriod && { paymentPeriod: values?.paymentPeriod }),
       ...(!!chargeCategory && { chargeCategory }),
       ...(!!chargeStatus && { chargeStatus }),
+      ...(!!values?.publicationStatus && {
+        publicationStatus: values?.publicationStatus,
+      }),
+      ...(!!values?.agreementId && { agreementId: values?.agreementId }),
     };
 
     const queryParams = generateKiwtQueryParams(paramMap, {});
@@ -59,19 +63,23 @@ const ReportingModal = ({ showModal, setShowModal }) => {
           message: (
             <FormattedMessage
               id="ui-oa.report.reportCreated"
-              values={{ reportFormat: values?.reportFormat }}
+              values={{
+                fileName: `${
+                  values.paymentPeriod ? values?.paymentPeriod + '_' : ''
+                }${values?.institution}_${values?.reportFormat}.csv`,
+              }}
             />
           ),
           type: 'success',
         });
         downloadBlob(blob, values);
-        handleClose();
+        closeModal();
         form.restart();
       });
     });
   };
 
-  const renderFooter = ({ formState, handleSubmit }) => {
+  const renderFooter = ({ formState, handleSubmit, handleClose }) => {
     const { invalid, pristine, submitting } = formState;
     return (
       <>
@@ -88,7 +96,7 @@ const ReportingModal = ({ showModal, setShowModal }) => {
           <Button
             id="clickable-cancel-report"
             marginBottom0
-            onClick={() => setShowModal(false)}
+            onClick={handleClose}
           >
             <FormattedMessage id="ui-oa.cancel" />
           </Button>
@@ -105,9 +113,9 @@ const ReportingModal = ({ showModal, setShowModal }) => {
       modalProps={{
         dismissible: true,
         footer: renderFooter,
-        onClose: handleClose,
+        onClose: closeModal,
         open: showModal,
-        label: <FormattedMessage id="ui-oa.report.runOpenAPCChargesReport" />,
+        label: <FormattedMessage id="ui-oa.report.runOpenApcReport" />,
       }}
       mutators={arrayMutators}
       onSubmit={submitReport}

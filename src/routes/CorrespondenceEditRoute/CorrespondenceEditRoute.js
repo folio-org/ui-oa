@@ -1,6 +1,6 @@
 import { Form } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 
 import { LoadingView } from '@folio/stripes/components';
@@ -13,12 +13,17 @@ import { CORRESPONDENCE_ENDPOINT } from '../../constants/endpoints';
 
 const CorrespondenceEditRoute = () => {
   const history = useHistory();
+  const location = useLocation();
   const ky = useOkapiKy();
   const queryClient = useQueryClient();
   const { prId, cId } = useParams();
 
   const handleClose = () => {
-    history.push(urls.publicationRequestCorrespondenceView(prId, cId));
+    history.push(
+      `${urls.publicationRequestCorrespondenceView(prId, cId)}${
+        location.search
+      }`
+    );
   };
 
   const { data: correspondence, isLoading } = useQuery([cId], () => ky(CORRESPONDENCE_ENDPOINT(cId)).json());
