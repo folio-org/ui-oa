@@ -397,7 +397,7 @@
     "report.paymentPeriod": "Platební lhůta",
     "report.chargeCategories": "Kategorie poplatků",
     "report.chargeStatuses": "Stavy poplatků",
-    "report.reportCreated": "<strong>Vytvořený přehled:</strong> přehled {reportFormat}. Soubor se automaticky stáhne.",
+    "report.reportCreated": "<strong>Vytvořený přehled:</strong> {fileName}, soubor se automaticky stáhne.",
     "settings.checklistItemDefinitions.newChecklistItem": "Nová jednotka kontrolního seznamu",
     "settings.checklistItemDefinitions.editChecklistItem": "Upravit jednotku kontrolního seznamu",
     "settings.checklistItemDefinitions.weightPopover": "Hmotnost objednávky jednotky, vyšší hodnota znamená nižší umístění",
@@ -443,5 +443,5 @@
     "report.reportFormat.openApcBpc": "OpenAPC BPC",
     "report.reportFormat.openApcTransformativeAgreement": "Transformační smlouva OpenAPC",
     "report.reportParams.inPeriodAffix": "(v období)",
-    "checklistFilter.reapplyFilters": "Reapply filters"
+    "checklistFilter.reapplyFilters": "Znovu použít filtry"
 }
