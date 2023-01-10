@@ -1,5 +1,7 @@
 # Change history for ui-oa
 
+## 1.1.0 In progress
+
 ## 1.0.0 2023-01-10
 
 * Add Request, Parties, Journals, Charges and Correspondence Forms
