@@ -390,7 +390,6 @@
     "refdata.deleteRefdataValue.errorMessage": "<strong>错误： {label} </strong>未被删除。 {error}",
     "refdata.editAriaLabel": "编辑值{label}",
     "refdata.deleteAriaLabel": "删除值{label}",
-    "report.runOpenAPCChargesReport": "运行OpenAPC收费报告",
     "report.runReportAndDownload": "运行报告并下载",
     "report.reportFormat": "报告格式",
     "report.institution": "机构",
@@ -436,5 +435,13 @@
     "checklistFilter.attribute.outcome": "结果",
     "checklistFilter.attribute.visibility": "可见性",
     "checklistFilter.value.notSet": "未设置",
-    "publicationRequest.closureReason": "关闭原因"
+    "publicationRequest.closureReason": "关闭原因",
+    "searchAndFilter.correspondenceStatus": "Correspondence status",
+    "searchAndFilter.correspondenceFilters": "Correspondence filters",
+    "report.runOpenApcReport": "Run OpenAPC report",
+    "report.reportFormat.openApc": "OpenAPC APC",
+    "report.reportFormat.openApcBpc": "OpenAPC BPC",
+    "report.reportFormat.openApcTransformativeAgreement": "OpenAPC Transformative Agreement",
+    "report.reportParams.inPeriodAffix": " (in period)",
+    "checklistFilter.reapplyFilters": "Reapply filters"
 }
