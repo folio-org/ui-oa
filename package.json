@@ -164,7 +164,6 @@
     "react-dom": "^17.0.2",
     "react-intl": "^5.8.1",
     "react-query": "^3.9.0",
-    "react-redux": "^7.0.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.0",
@@ -175,7 +174,7 @@
     "typescript": "^2.8.0"
   },
   "dependencies": {
-    "@folio/stripes-acq-components": "^3.3.0",
+    "@folio/stripes-acq-components": "^4.0.0",
     "@k-int/stripes-kint-components": "^4.2.0",
     "classnames": "^2.2.6",
     "compose-function": "^3.0.3",
