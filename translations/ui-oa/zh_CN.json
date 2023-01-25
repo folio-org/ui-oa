@@ -397,7 +397,7 @@
     "report.paymentPeriod": "付款期",
     "report.chargeCategories": "收费类别",
     "report.chargeStatuses": "收费状态",
-    "report.reportCreated": "<strong>已创建报告： </strong> {reportFormat}报告。该文件将自动下载。",
+    "report.reportCreated": "<strong> 报告已创建： </strong> {fileName} ，文件会自动下载。",
     "settings.checklistItemDefinitions.newChecklistItem": "新建清单项目",
     "settings.checklistItemDefinitions.editChecklistItem": "编辑清单项目",
     "settings.checklistItemDefinitions.weightPopover": "单件订单重量，较高值意味着较低放置",
@@ -436,12 +436,12 @@
     "checklistFilter.attribute.visibility": "可见性",
     "checklistFilter.value.notSet": "未设置",
     "publicationRequest.closureReason": "关闭原因",
-    "searchAndFilter.correspondenceStatus": "Correspondence status",
-    "searchAndFilter.correspondenceFilters": "Correspondence filters",
-    "report.runOpenApcReport": "Run OpenAPC report",
+    "searchAndFilter.correspondenceStatus": "对应关系状态",
+    "searchAndFilter.correspondenceFilters": "对应关系筛选",
+    "report.runOpenApcReport": "运行OpenAPC报告",
     "report.reportFormat.openApc": "OpenAPC APC",
     "report.reportFormat.openApcBpc": "OpenAPC BPC",
-    "report.reportFormat.openApcTransformativeAgreement": "OpenAPC Transformative Agreement",
-    "report.reportParams.inPeriodAffix": " (in period)",
-    "checklistFilter.reapplyFilters": "Reapply filters"
+    "report.reportFormat.openApcTransformativeAgreement": "OpenAPC转换协议",
+    "report.reportParams.inPeriodAffix": "（期间）",
+    "checklistFilter.reapplyFilters": "重新应用筛选"
 }
