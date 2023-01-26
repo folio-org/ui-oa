@@ -1,6 +1,7 @@
 # Change history for ui-oa
 
-## 1.1.0 In progress
+## 2.0.0 In progress
+* Upgrade `stripes-acq-components` to `v4` and remove unneeded `react-redux`. Refs UIOA-204.
 
 ## 1.0.0 2023-01-10
 
