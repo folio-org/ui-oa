@@ -397,7 +397,7 @@
     "report.paymentPeriod": "Período de pagamento",
     "report.chargeCategories": "Categorias de cobrança",
     "report.chargeStatuses": "Cobrança",
-    "report.reportCreated": "<strong> Relatório criado: </strong> relatório {reportFormat} . O arquivo será baixado automaticamente.",
+    "report.reportCreated": "<strong> Relatório criado: </strong> {fileName} , o arquivo será baixado automaticamente.",
     "settings.checklistItemDefinitions.newChecklistItem": "Novo item na lista de verificação",
     "settings.checklistItemDefinitions.editChecklistItem": "Editar item na lista de verificação",
     "settings.checklistItemDefinitions.weightPopover": "Pontuação do pedido do item, maior valor significa menor colocação",
@@ -438,10 +438,10 @@
     "publicationRequest.closureReason": "Razão para o encerramento",
     "searchAndFilter.correspondenceStatus": "Status de correspondência",
     "searchAndFilter.correspondenceFilters": "Filtros de correspondência",
-    "report.runOpenApcReport": "Run OpenAPC report",
+    "report.runOpenApcReport": "Executar relatório OpenAPC",
     "report.reportFormat.openApc": "OpenAPC APC",
     "report.reportFormat.openApcBpc": "OpenAPC BPC",
-    "report.reportFormat.openApcTransformativeAgreement": "OpenAPC Transformative Agreement",
-    "report.reportParams.inPeriodAffix": " (in period)",
-    "checklistFilter.reapplyFilters": "Reapply filters"
+    "report.reportFormat.openApcTransformativeAgreement": "Acordo Transformador OpenAPC",
+    "report.reportParams.inPeriodAffix": " (no período)",
+    "checklistFilter.reapplyFilters": "Reaplicar filtros"
 }
