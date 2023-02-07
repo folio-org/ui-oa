@@ -77,8 +77,8 @@ const PublicationJournal = () => {
         id="ui-oa.publicationJournal.typedown"
         values={{
           title: highlightString(input, work.title),
-          printIssn: printIssn?.value || '',
-          electronicIssn: electronicIssn?.value || '',
+          printIssn: highlightString(input, printIssn?.value || ''),
+          electronicIssn: highlightString(input, electronicIssn?.value || ''),
         }}
       />
     );
