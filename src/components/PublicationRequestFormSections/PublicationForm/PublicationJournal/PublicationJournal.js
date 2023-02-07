@@ -42,7 +42,7 @@ const PublicationJournal = () => {
 
   const pathMutator = (input, path) => {
     const query = generateKiwtQuery(
-      { searchKey: 'title', stats: false },
+      { searchKey: 'instances.identifiers.identifier.value,title', stats: false },
       { query: input, sort: 'title' }
     );
     return `${path}${query}`;
