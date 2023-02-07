@@ -4,6 +4,7 @@
 * Upgrade `stripes-acq-components` to `v4` and remove unneeded `react-redux`. Refs UIOA-204.
 * Added enabled option to invoice hooks to prevent fetches with undefined values
 * Updated max length props for mainEmail and alternateEmails from 36 characters to 255 to reflect database data type. Refs UIOA-205/206
+* Added ability for journal typedown to be searched by matching ISSNs. Refs UIOA-210.
 
 
 ## 1.0.0 2023-01-10
