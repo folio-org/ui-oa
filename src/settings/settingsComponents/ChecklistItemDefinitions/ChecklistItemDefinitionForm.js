@@ -12,11 +12,9 @@ import {
 } from '@folio/stripes/components';
 import {
   requiredValidator,
-  composeValidators,
 } from '@folio/stripes-erm-components';
 
 import { MAX_CHAR_LONG } from '../../../constants/config';
-import { validateNoSpecialCharacters } from '../../../util/validators';
 
 const propTypes = {
   definition: PropTypes.object,
@@ -47,10 +45,7 @@ const ChecklistItemDefinitionForm = ({ definition }) => {
             maxLength={MAX_CHAR_LONG}
             name="label"
             required
-            validate={composeValidators(
-              requiredValidator,
-              validateNoSpecialCharacters
-            )}
+            validate={requiredValidator}
           />
         </Col>
         <Col xs={6}>
