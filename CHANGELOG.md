@@ -6,6 +6,7 @@
 * Updated max length props for mainEmail and alternateEmails from 36 characters to 255 to reflect database data type. Refs UIOA-205/206
 * Added ability for journal typedown to be searched by matching ISSNs. Refs UIOA-210.
 * Upgraded 'stripes-kint-components' to 'v 4.4.0' 
+* Removed validateNoSpecialCharacters validation from checklist item definition label field. Refs UIOA-211
 
 
 ## 1.0.0 2023-01-10
