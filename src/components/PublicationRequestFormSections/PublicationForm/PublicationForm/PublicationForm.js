@@ -120,7 +120,7 @@ const PublicationForm = () => {
             label={
               <FormattedMessage id="ui-oa.publicationRequest.publicationTitle" />
             }
-            maxLength={MAX_CHAR_LONG}
+            maxLength={4096}
             name="publicationTitle"
             parse={(v) => v}
           />
