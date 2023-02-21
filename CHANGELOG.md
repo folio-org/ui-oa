@@ -7,6 +7,7 @@
 * Added ability for journal typedown to be searched by matching ISSNs. Refs UIOA-210.
 * Upgraded 'stripes-kint-components' to 'v 4.4.0' 
 * Removed validateNoSpecialCharacters validation from checklist item definition label field. Refs UIOA-211
+* Changed publication title fields max length to 4096. Refs UIOA-212
 
 
 ## 1.0.0 2023-01-10
