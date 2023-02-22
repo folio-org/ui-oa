@@ -14,7 +14,7 @@ import {
 } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
 import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
-import { MAX_CHAR_SHORT } from '../../../constants/config';
+import { MAX_CHAR_LONG } from '../../../constants/config';
 
 const OtherEmailsField = ({ fields: { name } }) => {
   const { items, onAddField, onDeleteField } = useKiwtFieldArray(name);
@@ -28,11 +28,11 @@ const OtherEmailsField = ({ fields: { name } }) => {
       {items.map((email, index) => {
         return (
           <Row key={email}>
-            <Col xs={9}>
+            <Col xs={3}>
               <Field
                 component={TextField}
                 label={<FormattedMessage id="ui-oa.party.emailAddress" />}
-                maxLength={MAX_CHAR_SHORT}
+                maxLength={MAX_CHAR_LONG}
                 name={`${name}[${index}].email`}
                 required
                 validate={requiredValidator}

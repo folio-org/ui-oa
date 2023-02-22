@@ -3,7 +3,7 @@ import { Field } from 'react-final-form';
 
 import { Col, Row, TextField } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
-import { MAX_CHAR_SHORT } from '../../../constants/config';
+import { MAX_CHAR_LONG, MAX_CHAR_SHORT } from '../../../constants/config';
 
 const PartyInfoForm = () => {
   return (
@@ -55,7 +55,7 @@ const PartyInfoForm = () => {
           <Field
             component={TextField}
             label={<FormattedMessage id="ui-oa.party.mainEmailAddress" />}
-            maxLength={MAX_CHAR_SHORT}
+            maxLength={MAX_CHAR_LONG}
             name="mainEmail"
             parse={(v) => v}
           />
