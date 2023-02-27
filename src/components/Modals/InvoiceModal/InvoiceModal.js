@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import { useOkapiKy } from '@folio/stripes/core';
 import { FormModal } from '@k-int/stripes-kint-components';
 
-import { CreateInvoiceForm } from '../../InvoiceFormSections';
+import CreateInvoiceForm from '../../InvoiceFormSections/CreateInvoiceForm';
 
 const propTypes = {
   showModal: PropTypes.bool,
