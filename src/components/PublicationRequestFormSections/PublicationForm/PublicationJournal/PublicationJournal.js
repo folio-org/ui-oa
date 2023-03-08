@@ -36,6 +36,7 @@ const [YES_NO, OA_STATUS] = ['Global.Yes_No', 'Work.OaStatus'];
 const PublicationJournal = () => {
   const { values } = useFormState();
   const { change } = useForm();
+  const [exactTitleMatch, setExactTitleMatch] = useState(false);
   const [showJournalModal, setShowJournalModal] = useState(false);
   const refdataValues = useOARefdata([YES_NO, OA_STATUS]);
   const yesNoValues = selectifyRefdata(refdataValues, YES_NO);
@@ -63,8 +64,15 @@ const PublicationJournal = () => {
       <Layout className="display-flex flex-align-items-start">
         <Layout style={{ 'padding-right': '30%' }}>
           <fieldset>
-            <Layout style={{ 'padding-right': '5px', display: 'inline' }}>
-              <Checkbox id="my-external-label" />
+            <Layout style={{ 'padding-right': '10px', display: 'inline' }}>
+              <Checkbox
+                checked={exactTitleMatch}
+                id="my-external-label"
+                onChange={(e) => {
+                  e.stopPropagation();
+                  setExactTitleMatch(e?.target?.checked);
+                }}
+              />
             </Layout>
 
             <FormattedMessage
