@@ -45,10 +45,23 @@ const PublicationJournal = () => {
   const pathMutator = (input, path) => {
     const query = generateKiwtQuery(
       {
-        searchKey: 'instances.identifiers.identifier.value,title',
+        ...(!exactTitleMatch && {
+          searchKey: 'instances.identifiers.identifier.value,title',
+        }),
         stats: false,
+        ...(exactTitleMatch && {
+          filterKeys: {
+            title: 'title',
+          },
+        }),
       },
-      { query: input, sort: 'title' }
+      {
+        query: input,
+        sort: 'title',
+        ...(exactTitleMatch && {
+          filters: `title.${input}`,
+        }),
+      }
     );
     return `${path}${query}`;
   };
