@@ -8,6 +8,7 @@ import {
   Headline,
   Row,
   Card,
+  Checkbox,
   IconButton,
   Layout,
   Button,
@@ -42,7 +43,10 @@ const PublicationJournal = () => {
 
   const pathMutator = (input, path) => {
     const query = generateKiwtQuery(
-      { searchKey: 'instances.identifiers.identifier.value,title', stats: false },
+      {
+        searchKey: 'instances.identifiers.identifier.value,title',
+        stats: false,
+      },
       { query: input, sort: 'title' }
     );
     return `${path}${query}`;
@@ -56,7 +60,20 @@ const PublicationJournal = () => {
 
   const renderFooter = () => {
     return (
-      <Layout className="textCentered">
+      <Layout className="display-flex flex-align-items-start">
+        <Layout style={{ 'padding-right': '30%' }}>
+          <fieldset>
+            <Layout style={{ 'padding-right': '5px', display: 'inline' }}>
+              <Checkbox id="my-external-label" />
+            </Layout>
+
+            <FormattedMessage
+              for="my-external-label"
+              id="ui-oa.journal.exactTitleMatch"
+            />
+          </fieldset>
+        </Layout>
+
         <Button
           buttonStyle="primary"
           marginBottom0
