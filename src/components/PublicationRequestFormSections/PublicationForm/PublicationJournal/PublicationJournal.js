@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Field, useFormState, useForm } from 'react-final-form';
 import { Link } from 'react-router-dom';
 
@@ -38,6 +38,7 @@ const PublicationJournal = () => {
   const { change } = useForm();
   const [exactTitleMatch, setExactTitleMatch] = useState(false);
   const [showJournalModal, setShowJournalModal] = useState(false);
+  const intl = useIntl();
   const refdataValues = useOARefdata([YES_NO, OA_STATUS]);
   const yesNoValues = selectifyRefdata(refdataValues, YES_NO);
   const oaStatusValues = selectifyRefdata(refdataValues, OA_STATUS);
@@ -111,14 +112,28 @@ const PublicationJournal = () => {
     const electronicIssn = findIssnByNamespace(work, 'electronic');
 
     return (
-      <FormattedMessage
-        id="ui-oa.publicationJournal.typedown"
-        values={{
-          title: highlightString(input, work.title),
-          printIssn: highlightString(input, printIssn?.value || ''),
-          electronicIssn: highlightString(input, electronicIssn?.value || ''),
-        }}
-      />
+      <>
+        {intl.formatMessage(
+          { id: 'ui-oa.publicationJournal.typedown.title' },
+          { title: highlightString(input, work.title) }
+        )}
+        {!!printIssn?.value &&
+          intl.formatMessage(
+            { id: 'ui-oa.publicationJournal.typedown.printIssn' },
+            { printIssn: highlightString(input, printIssn?.value || '') }
+          )}
+        {!!electronicIssn?.value &&
+          intl.formatMessage(
+            { id: 'ui-oa.publicationJournal.typedown.electronicIssn' },
+            {
+              electronicIssn: highlightString(
+                input,
+                electronicIssn?.value || ''
+              ),
+            }
+          )
+          }
+      </>
     );
   };
 

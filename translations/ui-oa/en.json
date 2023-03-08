@@ -277,6 +277,9 @@
   "publicationJournal.issnPrint": "ISSN (print)",
   "publicationJournal.issnElectronic": "ISSN (electronic)",
   "publicationJournal.typedown": "Title: {title} · Print ISSN: {printIssn} · Electronic ISSN: {electronicIssn} ",
+  "publicationJournal.typedown.title": "Title: {title}",
+  "publicationJournal.typedown.printIssn": " · Print ISSN: {printIssn}",
+  "publicationJournal.typedown.electronicIssn": " · Electronic ISSN: {electronicIssn}",
 
   "publicationRequests": "Publication requests",
   "publicationRequests.recordsFound": "{number} records found",
