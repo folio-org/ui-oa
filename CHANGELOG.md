@@ -8,6 +8,8 @@
 * Upgraded 'stripes-kint-components' to 'v 4.4.0' 
 * Removed validateNoSpecialCharacters validation from checklist item definition label field. Refs UIOA-211
 * Changed publication title fields max length to 4096. Refs UIOA-212
+* Added 'Exact title match' to journal QueryTypedown for filtering by journal title. Refs UIOA-213
+* Fixed journal typedown list item formatting
 
 
 ## 1.0.0 2023-01-10
