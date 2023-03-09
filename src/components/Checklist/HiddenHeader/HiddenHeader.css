@@ -67,7 +67,7 @@
 }
 
 .defaultCollapseButton {
-  composes: interactionStylesControl from '@folio/stripes-components/lib/sharedStyles/interactionStyles.css';
+  composes: interactionStylesControl from '~@folio/stripes-components/lib/sharedStyles/interactionStyles.css';
   flex: 1;
   border: none;
   outline: none;
@@ -91,7 +91,7 @@
 }
 
 .headerInner {
-  composes: interactionStyles boxOffsetStartMedium boxOffsetEndMedium from '@folio/stripes-components/lib/sharedStyles/interactionStyles.css';
+  composes: interactionStyles boxOffsetStartMedium boxOffsetEndMedium from '~@folio/stripes-components/lib/sharedStyles/interactionStyles.css';
   width: 100%;
   display: flex;
   align-items: center;
