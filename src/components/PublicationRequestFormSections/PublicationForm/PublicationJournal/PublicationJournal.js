@@ -77,25 +77,21 @@ const PublicationJournal = () => {
     return (
       <Layout className="display-flex flex-align-items-start">
         <Layout style={{ 'padding-right': '30%' }}>
-          <fieldset>
-            <Layout style={{ 'padding-right': '10px', display: 'inline' }}>
-              <Checkbox
-                checked={exactTitleMatch}
-                id="my-external-label"
-                onChange={(e) => {
-                  e.stopPropagation();
-                  setExactTitleMatch(e?.target?.checked);
-                }}
-              />
-            </Layout>
-
-            <FormattedMessage
-              for="my-external-label"
-              id="ui-oa.journal.exactTitleMatch"
+          <Layout style={{ 'padding-right': '10px', display: 'inline' }}>
+            <Checkbox
+              checked={exactTitleMatch}
+              id="my-external-label"
+              onChange={(e) => {
+                e.stopPropagation();
+                setExactTitleMatch(e?.target?.checked);
+              }}
             />
-          </fieldset>
+          </Layout>
+          <FormattedMessage
+            for="my-external-label"
+            id="ui-oa.journal.exactTitleMatch"
+          />
         </Layout>
-
         <Button
           buttonStyle="primary"
           marginBottom0
@@ -131,8 +127,7 @@ const PublicationJournal = () => {
                 electronicIssn?.value || ''
               ),
             }
-          )
-          }
+          )}
       </>
     );
   };
