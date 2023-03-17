@@ -400,7 +400,7 @@
     "report.reportCreated": "<strong>Report created:</strong> {fileName}, the file will automatically download.",
     "settings.checklistItemDefinitions.newChecklistItem": "New checklist item",
     "settings.checklistItemDefinitions.editChecklistItem": "Edit checklist item",
-    "settings.checklistItemDefinitions.weightPopover": "Item order weight, higher value means lower placement",
+    "settings.checklistItemDefinitions.weightPopover": "Peso dell'ordinamento dell'elemento; un valore più alto significa un posizionamento inferiore",
     "checklist.itemOutcome": "Outcome is {outcome} for {itemName} item",
     "parties.found#People": "Found {total} people",
     "journals.found#Journals": "Found {total} journals",
@@ -443,5 +443,9 @@
     "report.reportFormat.openApcBpc": "OpenAPC BPC",
     "report.reportFormat.openApcTransformativeAgreement": "OpenAPC Transformative Agreement",
     "report.reportParams.inPeriodAffix": " (in period)",
-    "checklistFilter.reapplyFilters": "Reapply filters"
+    "checklistFilter.reapplyFilters": "Reapply filters",
+    "journal.exactTitleMatch": "Exact title match",
+    "publicationJournal.typedown.title": "Title: {title}",
+    "publicationJournal.typedown.printIssn": " · Print ISSN: {printIssn}",
+    "publicationJournal.typedown.electronicIssn": " · Electronic ISSN: {electronicIssn}"
 }

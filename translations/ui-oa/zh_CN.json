@@ -443,5 +443,9 @@
     "report.reportFormat.openApcBpc": "OpenAPC BPC",
     "report.reportFormat.openApcTransformativeAgreement": "OpenAPC转换协议",
     "report.reportParams.inPeriodAffix": "（期间）",
-    "checklistFilter.reapplyFilters": "重新应用筛选"
+    "checklistFilter.reapplyFilters": "重新应用筛选",
+    "journal.exactTitleMatch": "Exact title match",
+    "publicationJournal.typedown.title": "Title: {title}",
+    "publicationJournal.typedown.printIssn": " · Print ISSN: {printIssn}",
+    "publicationJournal.typedown.electronicIssn": " · Electronic ISSN: {electronicIssn}"
 }
