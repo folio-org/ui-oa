@@ -443,5 +443,9 @@
     "report.reportFormat.openApcBpc": "OpenAPC BPC",
     "report.reportFormat.openApcTransformativeAgreement": "OpenAPC 변환 계약",
     "report.reportParams.inPeriodAffix": " (in period)",
-    "checklistFilter.reapplyFilters": "필터 재적용"
+    "checklistFilter.reapplyFilters": "필터 재적용",
+    "journal.exactTitleMatch": "Exact title match",
+    "publicationJournal.typedown.title": "Title: {title}",
+    "publicationJournal.typedown.printIssn": " · Print ISSN: {printIssn}",
+    "publicationJournal.typedown.electronicIssn": " · Electronic ISSN: {electronicIssn}"
 }
