@@ -1,5 +1,7 @@
 # Change history for ui-oa
 
+## 1.2.0 In progress
+
 ## 1.1.0 2023-03-20
 * Added enabled option to invoice hooks to prevent fetches with undefined values
 * Added path to interaction styles within checklist hidden header
