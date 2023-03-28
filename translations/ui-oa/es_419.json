@@ -438,7 +438,7 @@
     "publicationRequest.closureReason": "Motivo del cierre",
     "searchAndFilter.correspondenceStatus": "Estado de la correspondencia",
     "searchAndFilter.correspondenceFilters": "Filtros de correspondencia",
-    "report.runOpenApcReport": "Run OpenAPC report",
+    "report.runOpenApcReport": "Ejecutar el informe OpenAPC",
     "report.reportFormat.openApc": "OpenAPC APC",
     "report.reportFormat.openApcBpc": "OpenAPC BPC",
     "report.reportFormat.openApcTransformativeAgreement": "Acuerdo transformador OpenAPC",
