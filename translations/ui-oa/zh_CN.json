@@ -232,7 +232,7 @@
     "charge.invoiceLine.status": "状态",
     "charge.invoiceLine.quantity": "数量",
     "charge.invoiceLine.total": "总计",
-    "charge.invoiceLine.newInvoiceLineMessage": "将在发票{invoiceNo}中添加一个新发票行，其中包含以下详细信息：",
+    "charge.invoiceLine.newInvoiceLineMessage": "将在发票{invoiceNo}中添加一个新发票行，其中包含以下详情：",
     "charge.invoiceLine.newInvoiceLineConfirmMessage": "选择“提交”继续。",
     "charge.invoiceLine.noNewInvoiceLine": "不能为已批准、已取消或已付款的发票生成新的发票行",
     "charge.invoice.status": "状态",
@@ -241,7 +241,7 @@
     "party.uniqueMainError": "<strong>错误： </strong>Party未保存。主电子邮件必须是唯一的。主电子邮件{duplicateElement}的一方已存在",
     "party.creationSuccessCallout": "<strong>Party已创建： </strong> {createdParty}",
     "party.updatedSuccessCallout": "<strong>Party已更新： </strong> {updatedParty}",
-    "journal.creationError": "<strong>错误： </strong>无法创建新期刊，请检查详细信息并重试",
+    "journal.creationError": "<strong>错误： </strong>无法创建新期刊，请检查详情并重试",
     "journal.creationSuccess": "<strong>已创建期刊： </strong> {journalTitle}",
     "party.streetAddresses": "街道地址",
     "party.streetAddress.index": "街道地址{index}",
@@ -443,5 +443,9 @@
     "report.reportFormat.openApcBpc": "OpenAPC BPC",
     "report.reportFormat.openApcTransformativeAgreement": "OpenAPC转换协议",
     "report.reportParams.inPeriodAffix": "（期间）",
-    "checklistFilter.reapplyFilters": "重新应用筛选"
+    "checklistFilter.reapplyFilters": "重新应用筛选",
+    "journal.exactTitleMatch": "题名完全匹配",
+    "publicationJournal.typedown.title": "标题： {title}",
+    "publicationJournal.typedown.printIssn": "- 印刷版ISSN：{printIssn}。",
+    "publicationJournal.typedown.electronicIssn": "· 电子版 ISSN： {electronicIssn}"
 }

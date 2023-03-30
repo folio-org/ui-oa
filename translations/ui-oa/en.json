@@ -198,6 +198,7 @@
   "journal.validate.notElectronicSubtype": "EZB is not a valid option for the subtype 'Print'. Please rectify",
   "journal.validate.duplicateNamespaceID": "This ID and namespace combination exists in another instance, please rectify",
   "journal.subtypePopover": "The Subtype value selected will affect the options available in the Namespace field. For example, 'EZB' is only available for the subtype 'Electronic'.",
+  "journal.exactTitleMatch": "Exact title match",
 
   "publicationRequest.addFunding": "Add funding",
   "publicationRequest.removeFundingIndex": "Remove funding {index}",
@@ -293,6 +294,9 @@
   "publicationJournal.issnPrint": "ISSN (print)",
   "publicationJournal.issnElectronic": "ISSN (electronic)",
   "publicationJournal.typedown": "Title: {title} · Print ISSN: {printIssn} · Electronic ISSN: {electronicIssn} ",
+  "publicationJournal.typedown.title": "Title: {title}",
+  "publicationJournal.typedown.printIssn": " · Print ISSN: {printIssn}",
+  "publicationJournal.typedown.electronicIssn": " · Electronic ISSN: {electronicIssn}",
 
   "publicationRequests": "Publication requests",
   "publicationRequests.recordsFound": "{number} records found",

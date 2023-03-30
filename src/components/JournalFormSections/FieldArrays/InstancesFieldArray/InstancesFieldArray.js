@@ -17,7 +17,7 @@ import {
 } from '@folio/stripes/components';
 import { requiredValidator } from '@folio/stripes-erm-components';
 
-import { InstanceIdentifiersFieldArray } from '..';
+import InstanceIdentifiersFieldArray from '../InstanceIdentifiersFieldArray';
 import { useOARefdata } from '../../../../util';
 
 // TODO: This and InstanceIdentifiersFieldArray requires refactoring

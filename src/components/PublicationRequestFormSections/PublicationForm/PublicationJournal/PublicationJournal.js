@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { Field, useFormState, useForm } from 'react-final-form';
 import { Link } from 'react-router-dom';
 
@@ -8,6 +8,7 @@ import {
   Headline,
   Row,
   Card,
+  Checkbox,
   IconButton,
   Layout,
   Button,
@@ -35,15 +36,33 @@ const [YES_NO, OA_STATUS] = ['Global.Yes_No', 'Work.OaStatus'];
 const PublicationJournal = () => {
   const { values } = useFormState();
   const { change } = useForm();
+  const [exactTitleMatch, setExactTitleMatch] = useState(false);
   const [showJournalModal, setShowJournalModal] = useState(false);
+  const intl = useIntl();
   const refdataValues = useOARefdata([YES_NO, OA_STATUS]);
   const yesNoValues = selectifyRefdata(refdataValues, YES_NO);
   const oaStatusValues = selectifyRefdata(refdataValues, OA_STATUS);
 
   const pathMutator = (input, path) => {
     const query = generateKiwtQuery(
-      { searchKey: 'instances.identifiers.identifier.value,title', stats: false },
-      { query: input, sort: 'title' }
+      {
+        ...(!exactTitleMatch && {
+          searchKey: 'instances.identifiers.identifier.value,title',
+        }),
+        stats: false,
+        ...(exactTitleMatch && {
+          filterKeys: {
+            title: 'title',
+          },
+        }),
+      },
+      {
+        query: input,
+        sort: 'title',
+        ...(exactTitleMatch && {
+          filters: `title.${input}`,
+        }),
+      }
     );
     return `${path}${query}`;
   };
@@ -56,7 +75,23 @@ const PublicationJournal = () => {
 
   const renderFooter = () => {
     return (
-      <Layout className="textCentered">
+      <Layout className="display-flex flex-align-items-start">
+        <Layout style={{ 'padding-right': '30%' }}>
+          <Layout style={{ 'padding-right': '10px', display: 'inline' }}>
+            <Checkbox
+              checked={exactTitleMatch}
+              id="my-external-label"
+              onChange={(e) => {
+                e.stopPropagation();
+                setExactTitleMatch(e?.target?.checked);
+              }}
+            />
+          </Layout>
+          <FormattedMessage
+            for="my-external-label"
+            id="ui-oa.journal.exactTitleMatch"
+          />
+        </Layout>
         <Button
           buttonStyle="primary"
           marginBottom0
@@ -73,14 +108,27 @@ const PublicationJournal = () => {
     const electronicIssn = findIssnByNamespace(work, 'electronic');
 
     return (
-      <FormattedMessage
-        id="ui-oa.publicationJournal.typedown"
-        values={{
-          title: highlightString(input, work.title),
-          printIssn: highlightString(input, printIssn?.value || ''),
-          electronicIssn: highlightString(input, electronicIssn?.value || ''),
-        }}
-      />
+      <>
+        {intl.formatMessage(
+          { id: 'ui-oa.publicationJournal.typedown.title' },
+          { title: highlightString(input, work.title) }
+        )}
+        {!!printIssn?.value &&
+          intl.formatMessage(
+            { id: 'ui-oa.publicationJournal.typedown.printIssn' },
+            { printIssn: highlightString(input, printIssn?.value || '') }
+          )}
+        {!!electronicIssn?.value &&
+          intl.formatMessage(
+            { id: 'ui-oa.publicationJournal.typedown.electronicIssn' },
+            {
+              electronicIssn: highlightString(
+                input,
+                electronicIssn?.value || ''
+              ),
+            }
+          )}
+      </>
     );
   };
 

@@ -443,5 +443,9 @@
     "report.reportFormat.openApcBpc": "OpenAPC BPC",
     "report.reportFormat.openApcTransformativeAgreement": "OpenAPC Transformative Agreement",
     "report.reportParams.inPeriodAffix": " (in period)",
-    "checklistFilter.reapplyFilters": "Reapply filters"
+    "checklistFilter.reapplyFilters": "Reapply filters",
+    "journal.exactTitleMatch": "Exact title match",
+    "publicationJournal.typedown.title": "Title: {title}",
+    "publicationJournal.typedown.printIssn": " · Print ISSN: {printIssn}",
+    "publicationJournal.typedown.electronicIssn": " · Electronic ISSN: {electronicIssn}"
 }
