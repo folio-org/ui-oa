@@ -277,7 +277,7 @@
     "journal.oaStatus": "OA-Status",
     "journal.journalDOAJ": "Zeitschrift in DOAJ",
     "journal.journalOAStatus": "OA-Status der Zeitschrift",
-    "charge.invoiceLine.status.open": "Öffnen",
+    "charge.invoiceLine.status.open": "Offene",
     "publicationRequest.publicationDate": "Veröffentlichungsdatum",
     "publicationRequest.publicationYear.validate": "Bitte Datum im Format JJJJ, JJJJ-MM oder JJJJ-MM-TT eingeben.",
     "journal.validate.notElectronicSubtype": "EZB ist keine gültige Option für den Subtyp 'Print'. Bitte korrigieren",
