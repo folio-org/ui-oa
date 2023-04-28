@@ -397,7 +397,7 @@
     "report.paymentPeriod": "Zahlungszeitraum",
     "report.chargeCategories": "Gebührenkategorie",
     "report.chargeStatuses": "Gebührenstatus",
-    "report.reportCreated": "<strong>Bericht erstellt:</strong> {reportFormat} Bericht. Die Datei wird automatisch heruntergeladen.",
+    "report.reportCreated": "<strong>Report created:</strong> {fileName}, the file will automatically download.",
     "settings.checklistItemDefinitions.newChecklistItem": "Neues Checklistenelement",
     "settings.checklistItemDefinitions.editChecklistItem": "Checklistenelement bearbeiten",
     "settings.checklistItemDefinitions.weightPopover": "Gewichtung des Elements, höherer Wert bedeutet niedrigere Platzierung",
