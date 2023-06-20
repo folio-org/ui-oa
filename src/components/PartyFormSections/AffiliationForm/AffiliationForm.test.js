@@ -1,8 +1,8 @@
-
 import {
   renderWithIntl,
   TestForm,
 } from '@folio/stripes-erm-testing';
+import { Select } from '@folio/stripes-testing'
 import { translationsProperties } from '../../../../test/helpers';
 import AffiliationForm from './AffiliationForm';
 import {
@@ -19,7 +19,7 @@ jest.mock('../../../util', () => ({
     ),
 }));
 
-describe('PartyInfoForm', () => {
+describe('AffiliationForm', () => {
   describe('with no initial values', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
@@ -29,12 +29,11 @@ describe('PartyInfoForm', () => {
         translationsProperties
       );
     });
-    test('renders Title field', () => {
-      const { getByRole } = renderComponent;
-      expect(getByRole('combobox', { name: 'Institution level 1' }));
+    test('renders Institution level 1 field', async () => {
+      await Select('Institution level 1').exists();
     });
 
-    test('renders Family Name field', () => {
+    test('renders Institution level 2 field', () => {
       const { getByRole } = renderComponent;
       expect(getByRole('textbox', { name: 'Institution level 2' }));
     });

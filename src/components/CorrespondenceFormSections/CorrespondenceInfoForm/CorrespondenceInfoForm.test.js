@@ -1,8 +1,10 @@
+import { renderWithIntl, TestForm } from '@folio/stripes-erm-testing';
 import {
-  renderWithIntl,
-  TestForm,
-} from '@folio/stripes-erm-testing';
-import { Datepicker, Select, TextArea, TextField } from '@folio/stripes-testing';
+  Datepicker,
+  Select,
+  TextArea,
+  TextField,
+} from '@folio/stripes-testing';
 import { translationsProperties } from '../../../../test/helpers';
 import CorrespondenceInfoForm from './CorrespondenceInfoForm';
 import { correspondence, mockRefdata } from '../../../../test/resources';
@@ -10,13 +12,13 @@ import { correspondence, mockRefdata } from '../../../../test/resources';
 const onSubmit = jest.fn();
 jest.mock('../../../util', () => ({
   ...jest.requireActual('../../../util'),
-  useOARefdata: () => mockRefdata.filter(
-    obj => (
-      obj.desc === 'Correspondence.Category' ||
-      obj.desc === 'Correspondence.Mode' ||
-      obj.desc === 'Correspondence.Status'
-    )
-  ),
+  useOARefdata: () =>
+    mockRefdata.filter(
+      (obj) =>
+        obj.desc === 'Correspondence.Category' ||
+        obj.desc === 'Correspondence.Mode' ||
+        obj.desc === 'Correspondence.Status'
+    ),
 }));
 
 let renderComponent;
@@ -78,25 +80,16 @@ describe('CorrespondenceInfoForm', () => {
       await Datepicker('Date*').has({ inputValue: '12/30/2021' });
     });
 
-    test('renders the expected value in the Mode field', () => {
-      const { getByRole } = renderComponent;
-      expect(getByRole('combobox', { name: 'Mode' })).toHaveDisplayValue(
-        'Email'
-      );
+    test('renders the expected value in the Mode field', async () => {
+      await Select('Mode*').has({ value: correspondence.mode.id });
     });
 
-    test('renders the expected value in the Status field', () => {
-      const { getByRole } = renderComponent;
-      expect(getByRole('combobox', { name: 'Status' })).toHaveDisplayValue(
-        'Awaiting Reply'
-      );
+    test('renders the expected value in the Status field', async () => {
+      await Select('Status*').has({ value: correspondence.status.id });
     });
 
-    test('renders the expected value in the Category field', () => {
-      const { getByRole } = renderComponent;
-      expect(getByRole('combobox', { name: 'Category' })).toHaveDisplayValue(
-        'Invoice'
-      );
+    test('renders the expected value in the Category field', async () => {
+      await Select('Category').has({ value: correspondence.category.id });
     });
   });
 });

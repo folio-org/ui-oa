@@ -206,7 +206,7 @@
     "journal.deleteInstance": "Smazat titul {index}",
     "journal.deleteIdentifier": "Smazat identifikátor {index}",
     "publicationRequest.addJournal": "Přidat časopis",
-    "publicationRequest.noCurrencySet": "Nelze vytvořit poplatek, protože měna není známa. Nastavte prosím měnu v Nastavení > Otevřený přístup > Jazyk a lokalizace > Primární měna",
+    "publicationRequest.noCurrencySet": "Nelze vytvořit poplatek, protože měna není známa. Nastavte prosím měnu v Nastavení > Otevřený přístup > Jazyk a lokalizace > Hlavní měna",
     "charge.taxPercentage": "Daň (%)",
     "charge.validate.notLessThanZero": "Nesmí být menší než nula",
     "party.noResultsFound": "Nebyly nalezeny žádné výsledky",
