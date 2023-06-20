@@ -33,7 +33,7 @@
     },
     "optionalOkapiInterfaces": {
       "invoice": "7.0",
-      "erm": "5.0",
+      "erm": "5.0 6.0",
       "organizations": "1.0",
       "finance.exchange-rate": "1.0"
     },
