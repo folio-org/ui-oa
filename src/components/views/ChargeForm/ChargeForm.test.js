@@ -2,8 +2,8 @@
 import {
   renderWithIntl,
   TestForm,
+  Button
 } from '@folio/stripes-erm-testing';
-import { Button } from '@folio/stripes-testing';
 import { translationsProperties } from '../../../../test/helpers';
 import ChargeForm from './ChargeForm';
 

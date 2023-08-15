@@ -1,14 +1,10 @@
-
-import { renderWithIntl } from '@folio/stripes-erm-testing';
-import { Accordion } from '@folio/stripes-testing';
+import { renderWithIntl, Accordion } from '@folio/stripes-erm-testing';
 import { MemoryRouter } from 'react-router-dom';
 import RequestContact from './RequestContact';
 
 import { translationsProperties } from '../../../../test/helpers';
 
-import {
-  publicationRequest,
-} from '../../../../test/resources';
+import { publicationRequest } from '../../../../test/resources';
 
 let renderComponent;
 

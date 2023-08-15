@@ -1,9 +1,17 @@
-
-import { renderWithIntl, TestForm } from '@folio/stripes-erm-testing';
-import { Datepicker, Select, KeyValue } from '@folio/stripes-testing';
+import {
+  renderWithIntl,
+  TestForm,
+  Datepicker,
+  Select,
+  KeyValue,
+} from '@folio/stripes-erm-testing';
 import { translationsProperties } from '../../../../test/helpers';
 import RequestInfoForm from './RequestInfoForm';
-import { mockRefdata, publicationRequest, publicationRequestHandlers as handlers } from '../../../../test/resources';
+import {
+  mockRefdata,
+  publicationRequest,
+  publicationRequestHandlers as handlers,
+} from '../../../../test/resources';
 
 jest.mock(
   '../../PublicationRequestFormSections/FieldArrays/ExternalRequestIdFieldArray',
@@ -12,11 +20,8 @@ jest.mock(
 
 jest.mock('../../../util', () => ({
   ...jest.requireActual('../../../util'),
-  useOARefdata: () => mockRefdata.find(
-    obj => (
-      obj.desc === 'PublicationRequest.RequestStatus'
-    )
-  )?.values,
+  useOARefdata: () => mockRefdata.find((obj) => obj.desc === 'PublicationRequest.RequestStatus')
+      ?.values,
 }));
 
 describe('RequestInfoForm', () => {
@@ -54,7 +59,10 @@ describe('RequestInfoForm', () => {
   describe('renders components with initial values', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <TestForm initialValues={publicationRequest} onSubmit={handlers.onSubmit}>
+        <TestForm
+          initialValues={publicationRequest}
+          onSubmit={handlers.onSubmit}
+        >
           <RequestInfoForm request={publicationRequest} />
         </TestForm>,
         translationsProperties

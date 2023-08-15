@@ -1,10 +1,11 @@
-import { renderWithIntl, TestForm } from '@folio/stripes-erm-testing';
 import {
+  renderWithIntl,
+  TestForm,
   Datepicker,
   Select,
   TextArea,
   TextField,
-} from '@folio/stripes-testing';
+} from '@folio/stripes-erm-testing';
 import { translationsProperties } from '../../../../test/helpers';
 import CorrespondenceInfoForm from './CorrespondenceInfoForm';
 import { correspondence, mockRefdata } from '../../../../test/resources';
@@ -12,15 +13,14 @@ import { correspondence, mockRefdata } from '../../../../test/resources';
 const onSubmit = jest.fn();
 jest.mock('../../../util', () => ({
   ...jest.requireActual('../../../util'),
-  useOARefdata: () =>
-    mockRefdata.filter(
-      (obj) =>
-        obj.desc === 'Correspondence.Category' ||
+  useOARefdata: () => mockRefdata.filter(
+      (obj) => obj.desc === 'Correspondence.Category' ||
         obj.desc === 'Correspondence.Mode' ||
         obj.desc === 'Correspondence.Status'
     ),
 }));
 
+// eslint-disable-next-line no-unused-vars
 let renderComponent;
 describe('CorrespondenceInfoForm', () => {
   describe('with no initial values', () => {
