@@ -1,10 +1,6 @@
 import React from 'react';
 
-import {
-  renderWithIntl,
-  TestForm,
-} from '@folio/stripes-erm-testing';
-import { Button } from '@folio/stripes-testing';
+import { renderWithIntl, TestForm, Button } from '@folio/stripes-erm-testing';
 
 import PublicationStatusFieldArray from './PublicationStatusFieldArray';
 
@@ -18,10 +14,8 @@ import {
 jest.mock('../../../../util', () => ({
   ...jest.requireActual('../../../../util'),
   useOARefdata: () => mockRefdata.filter(
-    obj => (
-      obj.desc === 'PublicationStatus.PublicationStatus'
-    )
-  ),
+      (obj) => obj.desc === 'PublicationStatus.PublicationStatus'
+    ),
 }));
 
 describe('PublicationStatusFieldArray', () => {

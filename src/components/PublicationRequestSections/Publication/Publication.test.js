@@ -1,18 +1,16 @@
-
-import { renderWithIntl } from '@folio/stripes-erm-testing';
 import {
+  renderWithIntl,
   Accordion,
   MultiColumnList,
   MultiColumnListCell,
   KeyValue,
-} from '@folio/stripes-testing';
+} from '@folio/stripes-erm-testing';
+
 import Publication from './Publication';
 
 import { translationsProperties } from '../../../../test/helpers';
 
-import {
-  publicationRequest,
-} from '../../../../test/resources';
+import { publicationRequest } from '../../../../test/resources';
 
 let renderComponent;
 jest.mock('../PublicationType/JournalDetails', () => () => (

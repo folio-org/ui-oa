@@ -1,17 +1,15 @@
-
-import { renderWithIntl } from '@folio/stripes-erm-testing';
 import {
+  renderWithIntl,
   Accordion,
   MultiColumnList,
   MultiColumnListCell,
-} from '@folio/stripes-testing';
+} from '@folio/stripes-erm-testing';
+
 import PublicationStatus from './PublicationStatus';
 
 import { translationsProperties } from '../../../../test/helpers';
 
-import {
-  publicationRequest,
-} from '../../../../test/resources';
+import { publicationRequest } from '../../../../test/resources';
 
 let renderComponent;
 
@@ -30,7 +28,9 @@ describe('PublicationStatus', () => {
 
     test('renders Empty list', () => {
       const { getByText } = renderComponent;
-      expect(getByText('No publication statuses for this request')).toBeInTheDocument();
+      expect(
+        getByText('No publication statuses for this request')
+      ).toBeInTheDocument();
     });
   });
 

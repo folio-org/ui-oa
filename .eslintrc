@@ -16,9 +16,12 @@
     ]
   },
   "env": {
-    "jest/globals": true
+    "jest": true
   },
-  "plugins": ["jest"],
+  "plugins": [
+    "testing-library",
+    "jest-dom"
+  ],
   "settings": {
     "import/resolver": {
       "node": "extensions"

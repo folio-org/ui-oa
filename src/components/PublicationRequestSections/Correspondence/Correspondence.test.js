@@ -1,16 +1,14 @@
-
-import { renderWithIntl } from '@folio/stripes-erm-testing';
 import {
+  renderWithIntl,
   Accordion,
   MultiColumnList,
   MultiColumnListCell,
-} from '@folio/stripes-testing';
+} from '@folio/stripes-erm-testing';
+
 import { translationsProperties } from '../../../../test/helpers';
 import Correspondence from './Correspondence';
 
-import {
-  publicationRequest,
-} from '../../../../test/resources';
+import { publicationRequest } from '../../../../test/resources';
 
 let renderComponent;
 

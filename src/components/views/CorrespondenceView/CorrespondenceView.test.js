@@ -1,11 +1,14 @@
-
-import { renderWithIntl } from '@folio/stripes-erm-testing';
-import { KeyValue, Button, Modal } from '@folio/stripes-testing';
+import {
+  renderWithIntl,
+  KeyValue,
+  Button,
+  Modal,
+} from '@folio/stripes-erm-testing';
 import { translationsProperties } from '../../../../test/helpers';
 import CorrespondenceView from './CorrespondenceView';
 import {
   correspondence,
-  correspondenceHandlers as handlers
+  correspondenceHandlers as handlers,
 } from '../../../../test/resources';
 
 describe('CorrespondenceView', () => {

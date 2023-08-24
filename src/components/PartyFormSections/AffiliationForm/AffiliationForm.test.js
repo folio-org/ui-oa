@@ -1,8 +1,4 @@
-import {
-  renderWithIntl,
-  TestForm,
-} from '@folio/stripes-erm-testing';
-import { Select } from '@folio/stripes-testing'
+import { renderWithIntl, TestForm, Select } from '@folio/stripes-erm-testing';
 import { translationsProperties } from '../../../../test/helpers';
 import AffiliationForm from './AffiliationForm';
 import {
@@ -14,9 +10,7 @@ let renderComponent;
 
 jest.mock('../../../util', () => ({
   ...jest.requireActual('../../../util'),
-  useOARefdata: () => mockRefdata.filter(
-      (obj) => obj.desc === 'Party.InstitutionLevel1'
-    ),
+  useOARefdata: () => mockRefdata.filter((obj) => obj.desc === 'Party.InstitutionLevel1'),
 }));
 
 describe('AffiliationForm', () => {

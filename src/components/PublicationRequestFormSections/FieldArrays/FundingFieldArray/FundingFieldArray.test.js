@@ -3,8 +3,8 @@ import React from 'react';
 import {
   renderWithIntl,
   TestForm,
+  Button
 } from '@folio/stripes-erm-testing';
-import { Button } from '@folio/stripes-testing';
 
 import FundingFieldArray from './FundingFieldArray';
 
