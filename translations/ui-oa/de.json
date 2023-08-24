@@ -90,7 +90,7 @@
     "publicationRequest.addCorrespondence": "Korrespondenz hinzufügen",
     "publicationRequest.correspondence": "Korrespondenz",
     "correspondence.description": "Beschreibung",
-    "correspondence.correspondent": "Korrespondent-/in",
+    "correspondence.correspondent": "Korrespondent/-in",
     "correspondence.dateOfCorrespondence": "Datum",
     "correspondence.mode": "Modus",
     "correspondence.category": "Kategorie",
@@ -444,8 +444,8 @@
     "report.reportFormat.openApcTransformativeAgreement": "OpenAPC Transformationsvertrag",
     "report.reportParams.inPeriodAffix": " (im Zeitraum)",
     "checklistFilter.reapplyFilters": "Filter erneut anwenden",
-    "journal.exactTitleMatch": "Exact title match",
-    "publicationJournal.typedown.title": "Title: {title}",
-    "publicationJournal.typedown.printIssn": " · Print ISSN: {printIssn}",
-    "publicationJournal.typedown.electronicIssn": " · Electronic ISSN: {electronicIssn}"
+    "journal.exactTitleMatch": "genaue Titelübereinstimmung",
+    "publicationJournal.typedown.title": "Titel: {title}",
+    "publicationJournal.typedown.printIssn": " · ISSN (Druckausgabe): {printIssn}",
+    "publicationJournal.typedown.electronicIssn": " · elektronische ISSN: {electronicIssn}"
 }
