@@ -268,7 +268,7 @@
     "charge.invoiceLine.removeInvoiceLine": "Odebrat řádek faktury",
     "charge.linkToInvoiceLineIndex": "Zobrazení řádku faktury pro náklady {index}",
     "charge.estimatedAmount": "Odhadovaná částka včetně slev a daně",
-    "charge.invoiceLine.currencyDifferenceMessage": "Upozornění: <strong>Konfliktní měny</strong>. Měna poplatku za žádost je {chargeCurrency}. Tento řádek faktury bude vytvořen pomocí měny na faktuře: {invoiceCurrency}",
+    "charge.invoiceLine.currencyDifferenceMessage": "Varování: <strong>Konfliktní měny</strong>. Měna poplatku za žádost je {chargeCurrency}. Tento řádek faktury bude vytvořen pomocí měny na faktuře: {invoiceCurrency}",
     "publicationRequest.emptyFundings": "Žádné financování pro tuto žádanku",
     "publicationRequest.emptyPublicationStatuses": "Žádné stavy publikace pro tuto žádanku",
     "publicationRequest.emptyCorrespondence": "Žádná korespondence k této žádance",
