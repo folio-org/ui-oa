@@ -6,7 +6,6 @@ import { useAppSettings } from '@k-int/stripes-kint-components';
 import { useMutation, useQuery } from 'react-query';
 
 import ChargeForm from '../../components/views/ChargeForm';
-import { useOARefdata } from '../../util';
 import urls from '../../util/urls';
 import {
   CHARGES_ENDPOINT,
@@ -19,10 +18,6 @@ const ChargeCreateRoute = () => {
   const location = useLocation();
   const ky = useOkapiKy();
   const { id } = useParams();
-
-  const perecentage = useOARefdata('Charge.DiscountType').find(
-    (e) => e.label === 'percentage'
-  );
 
   const defaultTax = useAppSettings({
     endpoint: 'oa/settings/appSettings',
@@ -71,7 +66,7 @@ const ChargeCreateRoute = () => {
     <Form
       initialValues={{
         tax: defaultTax?.value,
-        discountType: { id: perecentage?.id },
+        discountType: { value: 'percentage' },
         exchangeRate: { coefficient: 1 },
         amount: { baseCurrency: stripes?.currency },
       }}
