@@ -60,7 +60,7 @@ const ChargeInfoForm = () => {
   const statusValues = selectifyRefdata(refdataValues, CHARGE_STATUS);
   const discountTypeValues = selectifyRefdata(
     refdataValues,
-    CHARGE_DISCOUNT_TYPE
+    CHARGE_DISCOUNT_TYPE, 'value'
   );
 
   const estimatedInvoicePrice = getEstimatedInvoicePrice(values);
@@ -225,7 +225,7 @@ const ChargeInfoForm = () => {
         </Col>
         <Col xs={3}>
           <Field
-            name="discountType.id"
+            name="discountType.value"
             render={() => (
               <KeyValue
                 label={<FormattedMessage id="ui-oa.charge.discountType" />}
@@ -234,17 +234,16 @@ const ChargeInfoForm = () => {
                   {discountTypeValues.map((discountType) => (
                     <Button
                       buttonStyle={
-                        values?.discountType?.id === discountType.value
+                        values?.discountType?.value === discountType.value
                           ? 'primary'
                           : 'default'
                       }
                       onClick={() => {
-                        change('discountType.id', discountType.value);
-                        change('discountType.value', discountType.label);
+                        change('discountType.value', discountType.value);
                       }}
                     >
                       <FormattedMessage
-                        id={`ui-oa.charge.discountType.${discountType.label}`}
+                        id={`ui-oa.charge.discountType.${discountType.value}`}
                         values={{
                           currency: (
                             <CurrencySymbol
