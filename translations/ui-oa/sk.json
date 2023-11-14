@@ -415,7 +415,7 @@
     "publicationRequest.retrospectiveOpenAccess.formTooltip": "Check this box if this request is to retrospectively convert an existing closed access publication to open access",
     "publicationRequest.retrospectiveOpenAccess.viewTooltip": "Is the existing closed access publication being retrospectively converted to open access",
     "OR": "OR",
-    "AND": "AND",
+    "AND": "A",
     "checklistFilter.filtersApplied": "{filtersLength} checklist filters applied",
     "checklistFilter.checklistItems": "Checklist items",
     "checklistFilter.checklistItem": "Checklist item",
