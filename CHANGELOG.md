@@ -1,8 +1,16 @@
 # Change history for ui-oa
 
-## 2.0.0 In progress
+## 2.1.0 In progress
+
+## 2.0.0 2023-11-02
 * Upgraded ui-oa to React v18
-* *BREAKING* bump `react-intl` to `v6.4.4`. Refs UIOA-218
+  * Update to react 18 Tweak tests to make use of changed stripes-erm-testing shape
+  * Changed github actions node_version to 18 Removed node engines from package.json
+* Upgrade to Grails 5 (including Hibernate 5.6.x) for Poppy
+  * Added okapi interface dependency on new erm interface 6.0
+* UIOA-220 Updated dependencies to their react v18-/stripes v9-compatible versions
+* UIOA-219 Fixed Incorrect id for formatted message in charge form
+* UIOA-218 *BREAKING* bump `react-intl` to `v6.4.4`
 
 ## 1.1.0 2023-03-20
 * Added enabled option to invoice hooks to prevent fetches with undefined values
