@@ -251,7 +251,7 @@
     "party.streetAddress.addressLineOne": "1. řádek adresy",
     "party.streetAddress.addressLineTwo": "2. řádek adresy",
     "party.streetAddress.city": "Město",
-    "party.streetAddress.region": "Stát/Prov./Region",
+    "party.streetAddress.region": "Stát/Prov./Oblast",
     "party.streetAddress.country": "Země",
     "party.streetAddress.postalCode": "Poštovní směrovací číslo",
     "party.emailAddress": "E-mailová adresa",
