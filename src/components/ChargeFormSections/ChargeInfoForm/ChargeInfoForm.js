@@ -309,7 +309,7 @@ const ChargeInfoForm = () => {
                 </div>
                 <div className={css.info}>
                   {values?.amount?.baseCurrency}
-                  {estimatedInvoicePrice?.toFixed(2)}
+                  {estimatedInvoicePrice}
                 </div>
                 <div className={css.info}>
                   {stripes?.currency}
