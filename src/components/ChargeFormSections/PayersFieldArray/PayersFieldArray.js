@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
-import { Field, useFormState } from 'react-final-form';
+import { Field, useFormState, useForm } from 'react-final-form';
 import { FieldArray } from 'react-final-form-arrays';
 import { ARRAY_ERROR } from 'final-form';
 
@@ -41,6 +41,7 @@ import css from './PayersFieldArray.css';
 
 const PayersField = ({ fields: { name } }) => {
   const { values } = useFormState();
+  const { change } = useForm();
   const [optionsInUse, setOptionsInUse] = useState([]);
   const { items, onAddField, onDeleteField } = useKiwtFieldArray(name);
   const payerNameValues = selectifyRefdata(useOARefdata('Payer.Payer'));
@@ -80,6 +81,11 @@ const PayersField = ({ fields: { name } }) => {
                 component={TextField}
                 label={<FormattedMessage id="ui-oa.charge.payerAmount" />}
                 name={`${name}[${index}].payerAmount`}
+                onChange={(e) => change(
+                    `${name}[${index}].payerAmount`,
+                    parseFloat(e?.target?.value)
+                  )
+                }
                 required
                 type="number"
                 validate={composeValidators(
@@ -113,7 +119,7 @@ const PayersField = ({ fields: { name } }) => {
                     aria-labelledby={ariaIds.text}
                     icon="trash"
                     onClick={() => onDeleteField(index, payer)}
-                    style={{ 'paddingTop': '25px' }}
+                    style={{ paddingTop: '25px' }}
                   />
                 )}
               </Tooltip>
@@ -123,7 +129,7 @@ const PayersField = ({ fields: { name } }) => {
       })}
       <Button
         disabled={items?.length >= payerNameValues?.length}
-        onClick={() => onAddField({ payerAmount: estimatedInvoicePrice - totalPayersAmount })
+        onClick={() => onAddField({ payerAmount: parseFloat(estimatedInvoicePrice - totalPayersAmount) })
         }
       >
         <FormattedMessage id="ui-oa.charge.addPayer" />
