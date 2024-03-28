@@ -42,7 +42,7 @@ const ChargeBreakdown = ({ charge }) => {
       chargeAmount: (
         <>
           {charge?.amount?.baseCurrency}
-          {chargeDiscountAmount?.toFixed(2)}
+          {chargeDiscountAmount}
         </>
       ),
       localAmount: (
@@ -57,7 +57,7 @@ const ChargeBreakdown = ({ charge }) => {
       chargeAmount: (
         <>
           {charge?.amount?.baseCurrency}
-          {chargeTaxAmount?.toFixed(2)}
+          {chargeTaxAmount}
         </>
       ),
       localAmount: (
