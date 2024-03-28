@@ -68,11 +68,12 @@ const PublicationRequestCreateRoute = () => {
   );
 
   const submitRequest = async (values) => {
-    const generatedString = await generate();
+    const numberGeneratorReturn = await generate();
+
     const submitValues = publicationRequestSubmitHandler(
       {
         ...values,
-        requestNumber: generatedString?.data,
+        requestNumber: numberGeneratorReturn?.data?.nextValue,
       },
       journalArticleId
     );

@@ -129,7 +129,7 @@
     "@folio/jest-config-stripes": "^2.0.0",
     "@folio/stripes-erm-components": "^9.0.1",
     "@folio/stripes-erm-testing": "^2.0.0",
-    "@folio/service-interaction": "^2.0.0",
+    "@folio/service-interaction": "^3.0.0",
     "@folio/stripes": "^9.0.0",
     "@folio/stripes-cli": "^3.0.0",
     "eslint": "^7.32.0",
@@ -148,7 +148,7 @@
   },
   "dependencies": {
     "@folio/stripes-acq-components": "^5.0.0",
-    "@k-int/stripes-kint-components": "^5.2.2",
+    "@k-int/stripes-kint-components": "^5.5.1",
     "classnames": "^2.2.6",
     "compose-function": "^3.0.3",
     "final-form": "^4.18.5",
@@ -163,7 +163,7 @@
   "peerDependencies": {
     "@folio/handler-stripes-registry": "^2.1.0",
     "@folio/stripes-erm-components": "^9.0.0",
-    "@folio/service-interaction": "^2.0.0",
+    "@folio/service-interaction": "^3.0.0",
     "@folio/stripes": "^9.0.0",
     "moment": "^2.22.2",
     "react": "^18.2.0",
