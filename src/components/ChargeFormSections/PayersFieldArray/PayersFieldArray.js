@@ -129,7 +129,11 @@ const PayersField = ({ fields: { name } }) => {
       })}
       <Button
         disabled={items?.length >= payerNameValues?.length}
-        onClick={() => onAddField({ payerAmount: parseFloat(estimatedInvoicePrice - totalPayersAmount) })
+        onClick={() => onAddField({
+            payerAmount: parseFloat(
+              estimatedInvoicePrice - totalPayersAmount
+            )?.toFixed(2),
+          })
         }
       >
         <FormattedMessage id="ui-oa.charge.addPayer" />
