@@ -1,5 +1,10 @@
 # Change history for ui-oa
 
+## 2.0.1 2024-04-26
+* UIOA-222 Charges - Decimal separator ignored when saving with non-english locale
+* UIOA-215 Calculations on OA charges can result in invalid values
+* Updated translations
+
 ## 2.0.0 2023-11-02
 * Upgraded ui-oa to React v18
   * Update to react 18 Tweak tests to make use of changed stripes-erm-testing shape

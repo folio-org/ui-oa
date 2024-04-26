@@ -60,7 +60,8 @@ const ChargeInfoForm = () => {
   const statusValues = selectifyRefdata(refdataValues, CHARGE_STATUS);
   const discountTypeValues = selectifyRefdata(
     refdataValues,
-    CHARGE_DISCOUNT_TYPE, 'value'
+    CHARGE_DISCOUNT_TYPE,
+    'value'
   );
 
   const estimatedInvoicePrice = getEstimatedInvoicePrice(values);
@@ -125,6 +126,7 @@ const ChargeInfoForm = () => {
             component={TextField}
             label={<FormattedMessage id="ui-oa.charge.netAmount" />}
             name="amount.value"
+            onChange={(e) => change('amount.value', parseFloat(e?.target?.value))}
             required
             type="number"
             validate={composeValidators(
@@ -307,7 +309,7 @@ const ChargeInfoForm = () => {
                 </div>
                 <div className={css.info}>
                   {values?.amount?.baseCurrency}
-                  {estimatedInvoicePrice?.toFixed(2)}
+                  {estimatedInvoicePrice}
                 </div>
                 <div className={css.info}>
                   {stripes?.currency}
