@@ -130,9 +130,9 @@ const PayersField = ({ fields: { name } }) => {
       <Button
         disabled={items?.length >= payerNameValues?.length}
         onClick={() => onAddField({
-            payerAmount: parseFloat(
-              estimatedInvoicePrice - totalPayersAmount
-            )?.toFixed(2),
+            payerAmount: Number(
+              parseFloat(estimatedInvoicePrice - totalPayersAmount)?.toFixed(2)
+            ),
           })
         }
       >
