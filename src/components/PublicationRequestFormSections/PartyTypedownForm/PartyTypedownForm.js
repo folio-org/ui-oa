@@ -22,7 +22,7 @@ import {
   generateKiwtQuery,
   QueryTypedown,
 } from '@k-int/stripes-kint-components';
-import { AppIcon } from '@folio/stripes/core';
+import { AppIcon, useStripes } from '@folio/stripes/core';
 import { requiredValidator } from '@folio/stripes-erm-components';
 import PartyInfo from '../../PartySections/PartyInfo';
 import urls from '../../../util/urls';
@@ -37,10 +37,13 @@ const propTypes = {
 };
 
 const PartyTypedownForm = ({ formName }) => {
+  const stripes = useStripes();
   const { values } = useFormState();
   const { change } = useForm();
   const [showPartyModal, setShowPartyModal] = useState(false);
-  const institutionLevel1Refdata = selectifyRefdata(useOARefdata('Party.InstitutionLevel1'));
+  const institutionLevel1Refdata = selectifyRefdata(
+    useOARefdata('Party.InstitutionLevel1')
+  );
 
   const pathMutator = (input, path) => {
     const query = generateKiwtQuery(
@@ -142,22 +145,18 @@ const PartyTypedownForm = ({ formName }) => {
         </Row>
         {(!values.useCorrespondingAuthor ||
           formName === 'correspondingAuthor') && (
-          <>
-            <Field
-              component={QueryTypedown}
-              endOfList={renderEndOFList()}
-              id={`${formName}-typedown`}
-              label={
-                <FormattedMessage id="ui-oa.publicationRequest.addPerson" />
-              }
-              name={`${formName}.partyOwner`}
-              onChange={(e) => handlePartyChange(e)}
-              path={PARTIES_ENDPOINT}
-              pathMutator={pathMutator}
-              renderFooter={renderFooter}
-              renderListItem={renderListItem}
-            />
-          </>
+          <Field
+            component={QueryTypedown}
+            endOfList={renderEndOFList()}
+            id={`${formName}-typedown`}
+            label={<FormattedMessage id="ui-oa.publicationRequest.addPerson" />}
+            name={`${formName}.partyOwner`}
+            onChange={(e) => handlePartyChange(e)}
+            path={PARTIES_ENDPOINT}
+            pathMutator={pathMutator}
+            renderFooter={stripes.hasPerm('ui-oa.party.edit') && renderFooter}
+            renderListItem={renderListItem}
+          />
         )}
 
         {values[formName]?.partyOwner && (
@@ -201,7 +200,10 @@ const PartyTypedownForm = ({ formName }) => {
                 <Col xs={3}>
                   <Field
                     component={Select}
-                    dataOptions={[{ value: '', label: '' }, ...institutionLevel1Refdata]}
+                    dataOptions={[
+                      { value: '', label: '' },
+                      ...institutionLevel1Refdata,
+                    ]}
                     id="publication-request-corresponding-institution-level-1"
                     label={
                       <FormattedMessage id="ui-oa.party.institutionLevelOne" />

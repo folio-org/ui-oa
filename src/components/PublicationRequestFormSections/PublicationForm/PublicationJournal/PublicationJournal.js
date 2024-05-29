@@ -20,7 +20,7 @@ import {
   generateKiwtQuery,
   QueryTypedown,
 } from '@k-int/stripes-kint-components';
-import { AppIcon } from '@folio/stripes/core';
+import { AppIcon, useStripes } from '@folio/stripes/core';
 
 import { JournalModal } from '../../../Modals';
 import { JournalDetails } from '../../../PublicationRequestSections/PublicationType';
@@ -34,6 +34,7 @@ import { WORKS_ENDPOINT } from '../../../../constants/endpoints';
 const [YES_NO, OA_STATUS] = ['Global.Yes_No', 'Work.OaStatus'];
 
 const PublicationJournal = () => {
+  const stripes = useStripes();
   const { values } = useFormState();
   const { change } = useForm();
   const [exactTitleMatch, setExactTitleMatch] = useState(false);
@@ -92,13 +93,15 @@ const PublicationJournal = () => {
             id="ui-oa.journal.exactTitleMatch"
           />
         </Layout>
-        <Button
-          buttonStyle="primary"
-          marginBottom0
-          onClick={() => setShowJournalModal(true)}
-        >
-          <FormattedMessage id="ui-oa.journal.newJournal" />
-        </Button>
+        {stripes.hasPerm('ui-oa.journal.edit') && (
+          <Button
+            buttonStyle="primary"
+            marginBottom0
+            onClick={() => setShowJournalModal(true)}
+          >
+            <FormattedMessage id="ui-oa.journal.newJournal" />
+          </Button>
+        )}
       </Layout>
     );
   };
