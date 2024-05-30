@@ -60,7 +60,7 @@
         "displayName": "UI: ui-oa module is enabled",
         "visible": false,
         "subPermissions": [
-          "oa.refdata.view"
+          "oa.refdata.read"
         ]
       },
       {
@@ -99,13 +99,25 @@
       {
         "permissionName": "ui-oa.publicationRequest.edit",
         "displayName": "Open Access: Edit publication requests",
-        "description": "Grants all permissions included in 'Open Access: Search & view publication requests' plus the ability to edit agreements",
+        "description": "Grants all permissions included in 'Open Access: Search & view publication requests' plus the ability to edit publication requests",
         "visible": true,
         "subPermissions": [
           "ui-oa.publicationRequest.view",
           "oa.publicationRequest.edit",
           "oa.correspondence.edit",
           "oa.charges.edit"
+        ]
+      },
+      {
+        "permissionName": "ui-oa.publicationRequest.manage",
+        "displayName": "Open Access: Manage publication requests",
+        "description": "Grants all permissions included in 'Open Access: Edit publication requests' plus the ability to manage publication requests",
+        "visible": true,
+        "subPermissions": [
+          "ui-oa.publicationRequest.edit",
+          "oa.publicationRequest.manage",
+          "oa.correspondence.manage",
+          "oa.charges.manage"
         ]
       },
       {
@@ -126,6 +138,16 @@
         "subPermissions": [
           "ui-oa.party.view",
           "oa.party.edit"
+        ]
+      },
+      {
+        "permissionName": "ui-oa.party.manage",
+        "displayName": "Open Access: Manage partys",
+        "description": "Grants all permissions included in 'Open Access: Edit partys' plus the ability to manage partys",
+        "visible": true,
+        "subPermissions": [
+          "ui-oa.party.edit",
+          "oa.party.manage"
         ]
       },
       {
@@ -152,21 +174,24 @@
         ]
       },
       {
+        "permissionName": "ui-oa.journal.manage",
+        "displayName": "Open Access: Manage journals",
+        "description": "Grants all permissions included in 'Open Access: Edit journals' plus the ability to manage journals",
+        "visible": true,
+        "subPermissions": [
+          "ui-oa.journal.edit",
+          "oa.scholarlyWork.manage"
+        ]
+      },
+      {
         "permissionName": "ui-oa.view",
         "displayName": "Open Access Requests: Search & view all",
         "description": "A user with this permission can search and view existing Open Access publication requests and related information including checklists. This includes the permission to see and access the OA app in the Folio interface",
         "subPermissions": [
           "module.oa.enabled",
-          "oa.publicationRequest.view",
-          "oa.scholarlyWork.view",
-          "oa.works.view",
-          "oa.titleInstances.view",
-          "oa.correspondence.view",
-          "oa.party.view",
-          "oa.charges.view",
-          "oa.checklistItems.view",
-          "oa.refdata.read",
-          "oa.reports.item.get"
+          "ui-oa.publicationRequest.view",
+          "ui-oa.party.view",
+          "ui-oa.journal.view"
         ],
         "replaces": [
           "ui-oa.oa.view"
@@ -178,16 +203,10 @@
         "displayName": "Open Access Requests: Edit all",
         "description": "A user with this permission can search, view and edit Open Access publication requests and related information including checklists. This includes the permission to create and edit new requests, parties (people), works, charges as well as to change the status and visibility of checklist items on a request",
         "subPermissions": [
-          "oa.publicationRequest.manage",
-          "oa.scholarlyWork.manage",
-          "oa.works.edit",
-          "oa.titleInstances.view",
-          "oa.correspondence.manage",
-          "oa.party.manage",
-          "oa.charges.manage",
-          "oa.checklistItems.manage",
-          "oa.refdata.read",
-          "oa.reports.item.get"
+          "ui-oa.view",
+          "ui-oa.publicationRequest.edit",
+          "ui-oa.party.edit",
+          "ui-oa.journal.edit"
         ],
         "replaces": [
           "ui-oa.oa.manage"
