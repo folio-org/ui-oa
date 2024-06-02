@@ -97,7 +97,7 @@ const Party = ({ resource: party, onClose, queryProps: { isLoading } }) => {
 
   const renderActionMenu = () => {
     const buttons = [];
-    if (stripes.hasPerm('oa.party.manage')) {
+    if (stripes.hasPerm('ui-oa.party.edit')) {
       buttons.push(
         <Button
           buttonStyle="dropdownItem"
