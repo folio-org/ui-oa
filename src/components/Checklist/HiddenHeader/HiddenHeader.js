@@ -30,7 +30,7 @@ const HiddenHeader = ({
   id,
   label,
   onToggle,
-  open = false,
+  open,
   toggleRef,
 }) => {
   function handleHeaderClick(e) {
