@@ -17,20 +17,24 @@ const propTypes = {
   toggleRef: PropTypes.func,
 };
 
-const defaultProps = {
-  headerProps: {
-    headingLevel: 3,
-  },
-};
-
 // TODO This will need to be changed in the future
 // The accordion component does not allow styling changes to only header so an entirely new header needs to be created
 // This accordion header is a copy of the default accordion header with slight styling changes
 
-const HiddenHeader = (props) => {
+const HiddenHeader = ({
+  autoFocus,
+  contentId,
+  displayWhenClosed,
+  displayWhenOpen,
+  headerProps: { headingLevel = 3, ...restHeaderProps } = { headingLevel: 3 },
+  id,
+  label,
+  onToggle,
+  open,
+  toggleRef,
+}) => {
   function handleHeaderClick(e) {
-    const { id, label } = props;
-    props.onToggle({ id, label });
+    onToggle({ id, label });
     e.stopPropagation();
   }
 
@@ -38,19 +42,9 @@ const HiddenHeader = (props) => {
     e.preventDefault();
     if (e.charCode === 13) {
       // enter key
-      const { id, label } = props;
-      props.onToggle({ id, label });
+      onToggle({ id, label });
     }
   }
-
-  const {
-    label,
-    open,
-    displayWhenOpen,
-    displayWhenClosed,
-    id,
-    headerProps: { headingLevel, ...restHeaderProps },
-  } = props;
 
   // Content in the right side of the header
   let headerRight = null;
@@ -71,10 +65,10 @@ const HiddenHeader = (props) => {
           tag={headingLevel ? `h${headingLevel}` : 'div'}
         >
           <button
-            ref={props.toggleRef}
-            aria-controls={props.contentId}
+            ref={toggleRef}
+            aria-controls={contentId}
             aria-expanded={open}
-            autoFocus={props.autoFocus}
+            autoFocus={autoFocus}
             className={css.defaultCollapseButton}
             id={`accordion-toggle-button-${id}`}
             onClick={handleHeaderClick}
@@ -85,7 +79,7 @@ const HiddenHeader = (props) => {
             <span className={css.headerInner}>
               <span className={css.defaultHeaderIcon}>
                 <Icon
-                  icon={props.open ? 'caret-up' : 'caret-down'}
+                  icon={open ? 'caret-up' : 'caret-down'}
                   size="small"
                 />
               </span>
@@ -100,6 +94,5 @@ const HiddenHeader = (props) => {
 };
 
 HiddenHeader.propTypes = propTypes;
-HiddenHeader.defaultProps = defaultProps;
 
 export default HiddenHeader;
