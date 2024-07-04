@@ -435,7 +435,7 @@
     "checklistFilter.attribute.outcome": "Outcome",
     "checklistFilter.attribute.visibility": "Widoczność",
     "checklistFilter.value.notSet": "Not set",
-    "publicationRequest.closureReason": "Reason for closure",
+    "publicationRequest.closureReason": "Powód zamknięcia",
     "searchAndFilter.correspondenceStatus": "Correspondence status",
     "searchAndFilter.correspondenceFilters": "Correspondence filters",
     "report.runOpenApcReport": "Run OpenAPC report",
