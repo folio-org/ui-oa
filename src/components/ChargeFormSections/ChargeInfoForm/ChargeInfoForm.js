@@ -2,11 +2,11 @@
 import { useState, useEffect } from 'react';
 import { FormattedDisplayName, FormattedMessage } from 'react-intl';
 import { Field, useFormState, useForm } from 'react-final-form';
+import { NumberField } from '@k-int/stripes-kint-components';
 
 import {
   Row,
   Col,
-  TextField,
   Select,
   TextArea,
   ButtonGroup,
@@ -15,10 +15,7 @@ import {
   Label,
   Tooltip,
 } from '@folio/stripes/components';
-import {
-  requiredValidator,
-  composeValidators,
-} from '@folio/stripes-erm-components';
+import { requiredValidator, composeValidators } from '@folio/stripes-erm-components';
 import { FieldCurrency, CurrencySymbol } from '@folio/stripes-acq-components';
 import { useStripes } from '@folio/stripes/core';
 import {
@@ -123,12 +120,11 @@ const ChargeInfoForm = () => {
       <Row>
         <Col xs={3}>
           <Field
-            component={TextField}
+            component={NumberField}
             label={<FormattedMessage id="ui-oa.charge.netAmount" />}
             name="amount.value"
             onChange={(e) => change('amount.value', parseFloat(e?.target?.value))}
             required
-            type="number"
             validate={composeValidators(
               requiredValidator,
               validateNotNegative,
@@ -147,12 +143,11 @@ const ChargeInfoForm = () => {
         </Col>
         <Col xs={3}>
           <Field
-            component={TextField}
+            component={NumberField}
             disabled={values?.amount?.baseCurrency === stripes?.currency}
             label={<FormattedMessage id="ui-oa.charge.exchangeRate" />}
             name="exchangeRate.coefficient"
             required
-            type="number"
             validate={composeValidators(
               requiredValidator,
               validateNotNegative,
@@ -197,15 +192,11 @@ const ChargeInfoForm = () => {
             <Button
               buttonStyle="primary"
               disabled={
-                !exchangeRate ||
-                values?.amount?.baseCurrency === stripes?.currency
+                !exchangeRate || values?.amount?.baseCurrency === stripes?.currency
               }
               onClick={() => {
                 refetch().then(
-                  change(
-                    'exchangeRate.coefficient',
-                    truncateNumber(exchangeRate)
-                  )
+                  change('exchangeRate.coefficient', truncateNumber(exchangeRate))
                 );
               }}
             >
@@ -217,11 +208,10 @@ const ChargeInfoForm = () => {
       <Row>
         <Col xs={3}>
           <Field
-            component={TextField}
+            component={NumberField}
             label={<FormattedMessage id="ui-oa.charge.discount" />}
             name="discount"
             parse={(v) => Number(v)}
-            type="number"
             validate={composeValidators(validateNotNegative, validateAsDecimal)}
           />
         </Col>
@@ -229,9 +219,7 @@ const ChargeInfoForm = () => {
           <Field
             name="discountType.value"
             render={() => (
-              <KeyValue
-                label={<FormattedMessage id="ui-oa.charge.discountType" />}
-              >
+              <KeyValue label={<FormattedMessage id="ui-oa.charge.discountType" />}>
                 <ButtonGroup fullWidth>
                   {discountTypeValues.map((discountType) => (
                     <Button
@@ -274,11 +262,10 @@ const ChargeInfoForm = () => {
       <Row>
         <Col xs={3}>
           <Field
-            component={TextField}
+            component={NumberField}
             label={<FormattedMessage id="ui-oa.charge.taxPercentage" />}
             name="tax"
             required
-            type="number"
             validate={composeValidators(
               requiredValidator,
               validateNotLessThanZero,
@@ -288,11 +275,10 @@ const ChargeInfoForm = () => {
         </Col>
         <Col xs={3}>
           <Field
-            component={TextField}
+            component={NumberField}
             label={<FormattedMessage id="ui-oa.charge.paymentPeriod" />}
             name="paymentPeriod"
             parse={(v) => v}
-            type="number"
             validate={validateYear}
           />
         </Col>

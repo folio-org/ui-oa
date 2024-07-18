@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';
+import { NumberField } from '@k-int/stripes-kint-components';
 
 import {
   Col,
@@ -50,7 +51,7 @@ const ChecklistItemDefinitionForm = ({ definition }) => {
         </Col>
         <Col xs={6}>
           <Field
-            component={TextField}
+            component={NumberField}
             label={
               <>
                 <InfoPopover
@@ -63,7 +64,6 @@ const ChecklistItemDefinitionForm = ({ definition }) => {
             }
             name="weight"
             required
-            type="number"
             validate={requiredValidator}
           />
         </Col>

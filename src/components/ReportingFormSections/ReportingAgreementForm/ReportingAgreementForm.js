@@ -2,12 +2,12 @@ import { useState } from 'react';
 
 import { Field, useForm, useFormState } from 'react-final-form';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { NumberField } from '@k-int/stripes-kint-components';
 
 import {
   Col,
   Select,
   Row,
-  TextField,
   MessageBanner,
 } from '@folio/stripes/components';
 import { Registry } from '@folio/handler-stripes-registry';
@@ -54,11 +54,10 @@ const ReportingAgreementForm = () => {
       <Row>
         <Col xs={3}>
           <Field
-            component={TextField}
+            component={NumberField}
             label={<FormattedMessage id="ui-oa.report.paymentPeriod" />}
             name="paymentPeriod"
             required={!!values?.publicationStatus || !!values?.paymentPeriod}
-            type="number"
             validate={(value, allValues, meta) => {
               if (allValues?.publicationStatus || value) {
                 return composeValidators(requiredValidator, validateYear)(

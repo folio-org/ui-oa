@@ -1,13 +1,12 @@
-import { Col, MultiSelection, Row, TextField } from '@folio/stripes/components';
+import { NumberField } from '@k-int/stripes-kint-components';
+
+import { Col, MultiSelection, Row } from '@folio/stripes/components';
 import { Field } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';
 import { useOARefdata, selectifyRefdata } from '../../../util';
 import { validateYear } from '../../../util/validators';
 
-const [CHARGE_CATEGORY, CHARGE_STATUS] = [
-  'Charge.Category',
-  'Charge.ChargeStatus',
-];
+const [CHARGE_CATEGORY, CHARGE_STATUS] = ['Charge.Category', 'Charge.ChargeStatus'];
 
 const ReportingChargeForm = () => {
   const refdataValues = useOARefdata([CHARGE_CATEGORY, CHARGE_STATUS]);
@@ -28,10 +27,9 @@ const ReportingChargeForm = () => {
       <Row>
         <Col xs={3}>
           <Field
-            component={TextField}
+            component={NumberField}
             label={<FormattedMessage id="ui-oa.report.paymentPeriod" />}
             name="paymentPeriod"
-            type="number"
             validate={validateYear}
           />
         </Col>
