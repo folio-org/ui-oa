@@ -161,6 +161,15 @@
         ]
       },
       {
+        "permissionName": "ui-oa.checklist.view",
+        "displayName": "Open Access: View checklists",
+        "description": "A user with this permission can view checklist items",
+        "visible": false,
+        "subPermissions": [
+          "oa.checklistItems.view"
+        ]
+      },
+      {
         "permissionName": "ui-oa.journal.edit",
         "displayName": "Open Access: Edit journals",
         "description": "Grants all permissions included in 'Open Access: Search & view journals' plus the ability to edit journals",
@@ -178,7 +187,8 @@
           "module.oa.enabled",
           "ui-oa.publicationRequest.view",
           "ui-oa.party.view",
-          "ui-oa.journal.view"
+          "ui-oa.journal.view",
+          "ui-oa.checklist.view"
         ],
         "replaces": [
           "ui-oa.oa.view"
