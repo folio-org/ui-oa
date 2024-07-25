@@ -79,7 +79,7 @@ const PartiesRoute = ({ path }) => {
   };
 
   const lastpaneMenu = (
-    <IfPermission perm="oa.party.edit">
+    <IfPermission perm="ui-oa.party.edit">
       <PaneMenu>
         <FormattedMessage id="ui-oa.party.new">
           {(ariaLabel) => (
