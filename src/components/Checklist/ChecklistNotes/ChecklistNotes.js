@@ -34,7 +34,7 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
       <div className={css.notesButton}>
         <Button
           buttonStyle="primary"
-          disabled={editing || !stripes.hasPerm('ui-oa.publicationRequest.edit')}
+          disabled={editing || !stripes.hasPerm('oa.checklistItems.manage')}
           onClick={() => {
             setEditing('NEW_NOTE');
             notes.unshift({});
@@ -119,7 +119,7 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
                       <IconButton
                         disabled={
                           editing ||
-                          !stripes.hasPerm('ui-oa.publicationRequest.edit')
+                          !stripes.hasPerm('oa.checklistItems.manage')
                         }
                         icon="edit"
                         onClick={() => setEditing(note.id)}
@@ -127,7 +127,7 @@ const ChecklistNotes = ({ notes, submitNotes, handleDelete }) => {
                       <IconButton
                         disabled={
                           editing ||
-                          !stripes.hasPerm('ui-oa.publicationRequest.edit')
+                          !stripes.hasPerm('oa.checklistItems.manage')
                         }
                         icon="trash"
                         onClick={() => handleDelete(note)}
