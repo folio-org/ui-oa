@@ -86,7 +86,7 @@ const JournalsRoute = ({ path }) => {
   };
 
   const lastpaneMenu = (
-    <IfPermission perm="ui-oa.journal.edit">
+    <IfPermission perm="oa.works.create">
       <PaneMenu>
         <FormattedMessage id="ui-oa.journal.new">
           {(ariaLabel) => (

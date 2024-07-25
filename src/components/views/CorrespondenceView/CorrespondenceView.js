@@ -40,7 +40,7 @@ const CorrespondenceView = ({
   const getActionMenu = () => {
     return (
       <>
-        <IfPermission perm="ui-oa.publicationRequest.edit">
+        <IfPermission perm="oa.correspondence.edit">
           <Button
             buttonStyle="dropdownItem"
             id="correspondence-edit-button"
@@ -51,7 +51,7 @@ const CorrespondenceView = ({
             </Icon>
           </Button>
         </IfPermission>
-        <IfPermission perm="ui-oa.publicationRequest.manage">
+        <IfPermission perm="oa.correspondence.manage">
           <Button
             buttonStyle="dropdownItem"
             id="correspondence-delete-button"
