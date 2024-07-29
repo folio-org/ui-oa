@@ -62,7 +62,7 @@ const Correspondence = ({ request }) => {
   const renderAddCorrespondenceButton = () => {
     return (
       <>
-        <IfPermission perm="oa.publicationRequest.edit">
+        <IfPermission perm="ui-oa.publicationRequest.edit">
           <Button
             id="add-correspondence-button"
             to={`${urls.publicationRequestCorrespondenceCreate(request?.id)}${
@@ -78,7 +78,7 @@ const Correspondence = ({ request }) => {
 
   const renderEditButton = (correspondence) => {
     return (
-      <IfPermission perm="oa.publicationRequest.edit">
+      <IfPermission perm="ui-oa.publicationRequest.edit">
         <button
           className={css.CorrespondenceEditButton}
           onClick={(e) => handleEditClick(e, correspondence)}

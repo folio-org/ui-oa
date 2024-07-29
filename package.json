@@ -87,7 +87,7 @@
         "permissionName": "ui-oa.publicationRequest.view",
         "displayName": "Open Access: Search & view publication requests",
         "description": "A user with this permission can search and view existing publication requests. This includes the permission to see and access the Open Access app in the Folio interface",
-        "visible": true,
+        "visible": false,
         "subPermissions": [
           "module.oa.enabled",
           "oa.publicationRequest.view",
@@ -100,7 +100,7 @@
         "permissionName": "ui-oa.publicationRequest.edit",
         "displayName": "Open Access: Edit publication requests",
         "description": "Grants all permissions included in 'Open Access: Search & view publication requests' plus the ability to edit publication requests",
-        "visible": true,
+        "visible": false,
         "subPermissions": [
           "ui-oa.publicationRequest.view",
           "oa.publicationRequest.edit",
@@ -111,8 +111,8 @@
       {
         "permissionName": "ui-oa.publicationRequest.manage",
         "displayName": "Open Access: Manage publication requests",
-        "description": "Grants all permissions included in 'Open Access: Edit publication requests' plus the ability to manage publication requests",
-        "visible": true,
+        "description": "Grants all permissions included in 'Open Access: Edit publication requests' plus the ability to delete publication requests",
+        "visible": false,
         "subPermissions": [
           "ui-oa.publicationRequest.edit",
           "oa.publicationRequest.manage",
@@ -122,9 +122,9 @@
       },
       {
         "permissionName": "ui-oa.party.view",
-        "displayName": "Open Access: Search & view partys",
-        "description": "A user with this permission can search and view existing partys. This includes the permission to see and access the Open Access app in the Folio interface",
-        "visible": true,
+        "displayName": "Open Access: Search & view people",
+        "description": "A user with this permission can search and view existing people. This includes the permission to see and access the Open Access app in the Folio interface",
+        "visible": false,
         "subPermissions": [
           "module.oa.enabled",
           "oa.party.view"
@@ -132,9 +132,9 @@
       },
       {
         "permissionName": "ui-oa.party.edit",
-        "displayName": "Open Access: Edit partys",
-        "description": "Grants all permissions included in 'Open Access: Search & view partys' plus the ability to edit partys",
-        "visible": true,
+        "displayName": "Open Access: Edit people",
+        "description": "Grants all permissions included in 'Open Access: Search & view people' plus the ability to edit people",
+        "visible": false,
         "subPermissions": [
           "ui-oa.party.view",
           "oa.party.edit"
@@ -142,9 +142,9 @@
       },
       {
         "permissionName": "ui-oa.party.manage",
-        "displayName": "Open Access: Manage partys",
-        "description": "Grants all permissions included in 'Open Access: Edit partys' plus the ability to manage partys",
-        "visible": true,
+        "displayName": "Open Access: Manage people",
+        "description": "Grants all permissions included in 'Open Access: Edit people' plus the ability to delete people records",
+        "visible": false,
         "subPermissions": [
           "ui-oa.party.edit",
           "oa.party.manage"
@@ -154,33 +154,29 @@
         "permissionName": "ui-oa.journal.view",
         "displayName": "Open Access: Search & view journals",
         "description": "A user with this permission can search and view existing journals. This includes the permission to see and access the Open Access app in the Folio interface",
-        "visible": true,
+        "visible": false,
         "subPermissions": [
           "module.oa.enabled",
-          "oa.works.view",
-          "oa.titleInstances.view",
-          "oa.scholarlyWork.view"
+          "oa.works.view"
+        ]
+      },
+      {
+        "permissionName": "ui-oa.checklist.view",
+        "displayName": "Open Access: View checklists",
+        "description": "A user with this permission can view checklist items",
+        "visible": false,
+        "subPermissions": [
+          "oa.checklistItems.view"
         ]
       },
       {
         "permissionName": "ui-oa.journal.edit",
         "displayName": "Open Access: Edit journals",
         "description": "Grants all permissions included in 'Open Access: Search & view journals' plus the ability to edit journals",
-        "visible": true,
+        "visible": false,
         "subPermissions": [
           "ui-oa.journal.view",
-          "oa.works.edit",
-          "oa.scholarlyWork.edit"
-        ]
-      },
-      {
-        "permissionName": "ui-oa.journal.manage",
-        "displayName": "Open Access: Manage journals",
-        "description": "Grants all permissions included in 'Open Access: Edit journals' plus the ability to manage journals",
-        "visible": true,
-        "subPermissions": [
-          "ui-oa.journal.edit",
-          "oa.scholarlyWork.manage"
+          "oa.works.edit"
         ]
       },
       {
@@ -191,7 +187,8 @@
           "module.oa.enabled",
           "ui-oa.publicationRequest.view",
           "ui-oa.party.view",
-          "ui-oa.journal.view"
+          "ui-oa.journal.view",
+          "ui-oa.checklist.view"
         ],
         "replaces": [
           "ui-oa.oa.view"
@@ -199,7 +196,7 @@
         "visible": true
       },
       {
-        "permissionName": "ui-oa.manage",
+        "permissionName": "ui-oa.edit",
         "displayName": "Open Access Requests: Edit all",
         "description": "A user with this permission can search, view and edit Open Access publication requests and related information including checklists. This includes the permission to create and edit new requests, parties (people), works, charges as well as to change the status and visibility of checklist items on a request",
         "subPermissions": [
@@ -212,6 +209,17 @@
           "ui-oa.oa.manage"
         ],
         "visible": true
+      },
+      {
+        "permissionName": "ui-oa.manage",
+        "displayName": "Open Access Requests: Manage all",
+        "description": "A user with this permission can search, view, edit and delete Open Access publication requests and related information with the exception of journal records.",
+        "subPermissions": [
+          "ui-oa.edit",
+          "ui-oa.publicationRequest.manage",
+          "ui-oa.party.manage"
+        ],
+        "visible": false
       }
     ]
   },

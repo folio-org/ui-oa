@@ -104,7 +104,7 @@ const Charges = ({ request }) => {
   const renderAddChargesButton = () => {
     return (
       <>
-        <IfPermission perm="oa.publicationRequest.edit">
+        <IfPermission perm="ui-oa.publicationRequest.edit">
           <Button
             disabled={!stripes?.currency}
             id="add-charge-button"
