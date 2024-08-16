@@ -84,7 +84,7 @@
     "publicationJournal.title": "Název",
     "publicationJournal.typedown": "Název: {title} · Tisk ISSN: {printIssn} · Elektronické ISSN: {electronicIssn}",
     "publicationRequest.selectedJournal": "Časopis",
-    "publicationRequest.agreement": "Dohoda",
+    "publicationRequest.agreement": "Smlouva",
     "publicationRequest.noAgreement": "Žádost nemá souhlas",
     "publicationRequest.closeForm": "Zavřít formulář",
     "publicationRequest.addCorrespondence": "Přidat korespondenci",
