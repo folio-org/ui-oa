@@ -60,7 +60,8 @@
         "displayName": "UI: ui-oa module is enabled",
         "visible": false,
         "subPermissions": [
-          "oa.refdata.read"
+          "oa.refdata.read",
+          "oa.settings.read"
         ]
       },
       {
