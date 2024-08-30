@@ -321,7 +321,7 @@
     "charge.chargeBreakdown": "Charge breakdown",
     "charge.payers.isEmptyMessage": "There are no payers associated with this charge",
     "charge.amountCurrency": "Amount ({currency})",
-    "edit": "Edit",
+    "edit": "Bewerken",
     "delete": "Delete",
     "settings.checklistItemDefinitions": "Checklist items",
     "settings.checklistItemDefinitions.name": "Name",
