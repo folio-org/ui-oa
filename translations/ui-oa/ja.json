@@ -59,7 +59,7 @@
     "affiliation.addAffiliation": "Add affiliation",
     "affiliation.affiliationTitle": "Affiliation {number}",
     "affiliation.removeAffiliation": "Remove affiliation {number}",
-    "publicationStatus.addPublicationStatus": "Add publication status",
+    "publicationStatus.addPublicationStatus": "出版物ステータスの追加",
     "publicationStatus.requestHasNone": "No publication statuses for this publication request",
     "publicationStatus.publicationStatusDate": "Status Date",
     "publicationStatus.publicationStatusNote": "ステータスノート",
