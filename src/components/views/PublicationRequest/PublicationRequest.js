@@ -83,7 +83,7 @@ const PublicationRequest = ({
 
   const renderActionMenu = () => {
     const buttons = [];
-    if (stripes.hasPerm('oa.publicationRequest.manage')) {
+    if (stripes.hasPerm('ui-oa.publicationRequest.edit')) {
       buttons.push(
         <Button
           buttonStyle="dropdownItem"

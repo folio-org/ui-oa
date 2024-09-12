@@ -98,7 +98,7 @@ const Journal = ({ resource: journal, onClose, queryProps: { isLoading } }) => {
 
   const renderActionMenu = () => {
     const buttons = [];
-    if (stripes.hasPerm('oa.works.manage')) {
+    if (stripes.hasPerm('ui-oa.journal.edit')) {
       buttons.push(
         <Button
           buttonStyle="dropdownItem"

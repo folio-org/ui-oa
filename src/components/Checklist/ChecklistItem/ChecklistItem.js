@@ -105,7 +105,7 @@ const ChecklistItem = ({
             {([ariaLabel]) => (
               <IconSelect
                 ariaLabel={ariaLabel}
-                disabled={!stripes.hasPerm('oa.checklistItems.manage')}
+                disabled={!stripes.hasPerm('ui-oa.publicationRequest.edit')}
                 id={`${item?.definition?.name}-icon-select`}
                 input={{
                   name: 'outcome',
@@ -160,7 +160,7 @@ const ChecklistItem = ({
                   ariaLabel={ariaLabel}
                   badgeCount={item?.notes?.length || 0}
                   disabled={
-                    !stripes.hasPerm('oa.checklistItems.manage') &&
+                    !stripes.hasPerm('ui-oa.publicationRequest.edit') &&
                     !item?.notes?.length
                   }
                   icon="document"
@@ -189,7 +189,7 @@ const ChecklistItem = ({
                   ref={ref}
                   aria-describedby={ariaIds.sub}
                   aria-labelledby={ariaIds.text}
-                  disabled={!stripes.hasPerm('oa.checklistItems.manage')}
+                  disabled={!stripes.hasPerm('ui-oa.publicationRequest.edit')}
                   icon={
                     item?.status?.value === 'hidden'
                       ? 'eye-open'
