@@ -2,6 +2,10 @@
 
 ## 2.1.0 In progress
 
+## 2.0.2 2024-09-12
+* UIOA-229 UI uses non-existent permission oa.work.manage
+* UIOA-230 Payers' amounts lose decimal separator with non-English locale
+
 ## 2.0.1 2024-04-26
 * UIOA-222 Charges - Decimal separator ignored when saving with non-english locale
 * UIOA-215 Calculations on OA charges can result in invalid values
