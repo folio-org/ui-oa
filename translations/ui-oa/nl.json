@@ -446,6 +446,6 @@
     "checklistFilter.reapplyFilters": "Filters opnieuw toepassen",
     "journal.exactTitleMatch": "Exacte titelovereenkomst",
     "publicationJournal.typedown.title": "Titel: {title}",
-    "publicationJournal.typedown.printIssn": " - Print ISSN: {printIssn}",
-    "publicationJournal.typedown.electronicIssn": " - Digitaal ISSN: {electronicIssn}"
+    "publicationJournal.typedown.printIssn": " · Print ISSN: {printIssn}",
+    "publicationJournal.typedown.electronicIssn": " · Digitaal ISSN: {electronicIssn}"
 }
