@@ -12,7 +12,10 @@ import {
 } from '@folio/stripes/components';
 import { SASQRoute } from '@k-int/stripes-kint-components';
 
-import { OAFilterHeaderComponent, JournalsFilters } from '../../components/SearchAndFilter';
+import {
+  OAFilterHeaderComponent,
+  JournalsFilters,
+} from '../../components/SearchAndFilter';
 import { findIssnByNamespace } from '../../util/journalUtils';
 import Journal from '../../components/views/Journal';
 import { JournalModal } from '../../components/Modals';
@@ -23,7 +26,7 @@ import { WORKS_ENDPOINT } from '../../constants/endpoints';
 import {
   MAIN_FILTER_PANE_CONFIG,
   MAIN_PANE_ID,
-  MAIN_PANESET_CONFIG
+  MAIN_PANESET_CONFIG,
 } from '../../constants/panesetConfigs';
 
 const JournalsRoute = ({ path }) => {
@@ -131,7 +134,10 @@ const JournalsRoute = ({ path }) => {
           path={path}
           persistedPanesetProps={MAIN_PANESET_CONFIG}
           resultColumns={resultColumns}
-          sasqProps={{ initialSortState: { sort: 'title' } }}
+          sasqProps={{
+            initialSortState: { sort: 'title' },
+            sortableColumns: ['title'],
+          }}
           searchFieldAriaLabel="journals-search-field"
           ViewComponent={Journal}
         />
