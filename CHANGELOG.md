@@ -1,6 +1,7 @@
 # Change history for ui-oa
 
 ## 2.1.0 In progress
+* FOLIO-4086 Fix GitHub Actions workflow not running for tags
 
 ## 2.0.2 2024-09-12
 * UIOA-229 UI uses non-existent permission oa.work.manage
