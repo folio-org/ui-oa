@@ -146,7 +146,7 @@
           "ui-oa.charge.edit",
           "oa.charges.manage"
         ]
-      }
+      },
       {
         "permissionName": "ui-oa.party.view",
         "displayName": "Open Access Requests: Search & view people",
@@ -253,7 +253,7 @@
         ],
         "replaces": [
           "ui-oa.manage"
-        ]
+        ],
         "visible": true
       }
     ]
