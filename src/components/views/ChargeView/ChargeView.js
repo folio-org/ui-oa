@@ -1,7 +1,7 @@
 import { useState, createRef } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { AppIcon, IfInterface } from '@folio/stripes/core';
+import { AppIcon, IfInterface, useStripes } from '@folio/stripes/core';
 
 import {
   AccordionSet,
@@ -50,6 +50,7 @@ const ChargeView = ({
   const invoice = useInvoice(charge?.invoiceReference);
   const invoiceLine = useInvoiceLine(charge?.invoiceLineItemReference);
   const accordionStatusRef = createRef();
+  const stripes = useStripes();
 
   const shortcuts = [
     {
@@ -67,40 +68,47 @@ const ChargeView = ({
   ];
 
   const renderActionMenu = () => {
-    return (
-      <>
-        <Button
-          buttonStyle="dropdownItem"
-          id="charge-edit-button"
-          onClick={handleEdit}
-        >
-          <Icon icon="edit">
-            <FormattedMessage id="ui-oa.charge.edit" />
-          </Icon>
-        </Button>
-        <IfInterface name="invoice">
-          {!charge?.invoiceReference ? (
-            <Button
-              buttonStyle="dropdownItem"
-              id="link-invoice-button"
-              onClick={handleLink}
-            >
-              <Icon icon="link">
-                <FormattedMessage id="ui-oa.charge.invoice.linkInvoiceLine" />
-              </Icon>
-            </Button>
-          ) : (
-            <Button
-              buttonStyle="dropdownItem"
-              id="unlink-invoice-button"
-              onClick={() => setShowUnlinkConfirmModal(true)}
-            >
-              <Icon icon="unlink">
-                <FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceLine" />
-              </Icon>
-            </Button>
-          )}
-        </IfInterface>
+    const buttons = [];
+    if (stripes?.hasPerm('ui-oa.charge.edit')) {
+      buttons.push(
+        <>
+          <Button
+            buttonStyle="dropdownItem"
+            id="charge-edit-button"
+            onClick={handleEdit}
+          >
+            <Icon icon="edit">
+              <FormattedMessage id="ui-oa.charge.edit" />
+            </Icon>
+          </Button>
+          <IfInterface name="invoice">
+            {!charge?.invoiceReference ? (
+              <Button
+                buttonStyle="dropdownItem"
+                id="link-invoice-button"
+                onClick={handleLink}
+              >
+                <Icon icon="link">
+                  <FormattedMessage id="ui-oa.charge.invoice.linkInvoiceLine" />
+                </Icon>
+              </Button>
+            ) : (
+              <Button
+                buttonStyle="dropdownItem"
+                id="unlink-invoice-button"
+                onClick={() => setShowUnlinkConfirmModal(true)}
+              >
+                <Icon icon="unlink">
+                  <FormattedMessage id="ui-oa.charge.invoice.unlinkInvoiceLine" />
+                </Icon>
+              </Button>
+            )}
+          </IfInterface>
+        </>
+      );
+    }
+    if (stripes?.hasPerm('ui-oa.charge.manage')) {
+      buttons.push(
         <Button
           buttonStyle="dropdownItem"
           id="charge-delete-button"
@@ -110,8 +118,10 @@ const ChargeView = ({
             <FormattedMessage id="ui-oa.charge.delete" />
           </Icon>
         </Button>
-      </>
-    );
+      );
+    }
+
+    return buttons?.length ? buttons : null;
   };
 
   return (

@@ -11,7 +11,7 @@ import {
   Icon,
   ConfirmationModal,
 } from '@folio/stripes/components';
-import { AppIcon, IfPermission } from '@folio/stripes/core';
+import { AppIcon, useStripes } from '@folio/stripes/core';
 import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
 
 const propTypes = {
@@ -21,13 +21,9 @@ const propTypes = {
   correspondence: PropTypes.object,
 };
 
-const CorrespondenceView = ({
-  onClose,
-  onDelete,
-  onEdit,
-  correspondence,
-}) => {
+const CorrespondenceView = ({ onClose, onDelete, onEdit, correspondence }) => {
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const stripes = useStripes();
 
   const openDeleteConfirmationModal = () => {
     setShowConfirmationModal(true);
@@ -38,32 +34,34 @@ const CorrespondenceView = ({
   };
 
   const getActionMenu = () => {
-    return (
-      <>
-        <IfPermission perm="ui-oa.publicationRequest.edit">
-          <Button
-            buttonStyle="dropdownItem"
-            id="correspondence-edit-button"
-            onClick={onEdit}
-          >
-            <Icon icon="edit">
-              <FormattedMessage id="ui-oa.correspondence.edit" />
-            </Icon>
-          </Button>
-        </IfPermission>
-        <IfPermission perm="ui-oa.publicationRequest.edit">
-          <Button
-            buttonStyle="dropdownItem"
-            id="correspondence-delete-button"
-            onClick={openDeleteConfirmationModal}
-          >
-            <Icon icon="trash">
-              <FormattedMessage id="ui-oa.correspondence.delete" />
-            </Icon>
-          </Button>
-        </IfPermission>
-      </>
-    );
+    const buttons = [];
+    if (stripes?.hasPerm('ui-oa.publicationRequest.edit')) {
+      buttons.push(
+        <Button
+          buttonStyle="dropdownItem"
+          id="correspondence-edit-button"
+          onClick={onEdit}
+        >
+          <Icon icon="edit">
+            <FormattedMessage id="ui-oa.correspondence.edit" />
+          </Icon>
+        </Button>
+      );
+    }
+    if (stripes?.hasPerm('ui-oa.publicationRequest.manage')) {
+      buttons.push(
+        <Button
+          buttonStyle="dropdownItem"
+          id="correspondence-delete-button"
+          onClick={openDeleteConfirmationModal}
+        >
+          <Icon icon="trash">
+            <FormattedMessage id="ui-oa.correspondence.delete" />
+          </Icon>
+        </Button>
+      );
+    }
+    return buttons?.length ? buttons : null;
   };
 
   return (
