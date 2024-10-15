@@ -229,7 +229,7 @@
         "displayName": "Open Access Requests: Edit all",
         "description": "A user with this permission can search, view and edit Open Access publication requests and related information including checklists. This includes the permission to create and edit new requests, parties (people), works, charges as well as to change the status and visibility of checklist items on a request",
         "subPermissions": [
-          "ui-oa.view",
+          "ui-oa.all-open-access.view",
           "ui-oa.publicationRequest.edit",
           "ui-oa.party.edit",
           "ui-oa.journal.edit",
@@ -246,7 +246,7 @@
         "displayName": "Open Access Requests: Manage all",
         "description": "A user with this permission can search, view, edit and delete Open Access publication requests and related information with the exception of journal records.",
         "subPermissions": [
-          "ui-oa.edit",
+          "ui-oa.all-open-access.edit",
           "ui-oa.publicationRequest.manage",
           "ui-oa.party.manage",
           "ui-oa.charge.manage"
