@@ -31,16 +31,6 @@ const formatter = {
   },
 };
 
-const isJournal = (request) => {
-  return (
-    request?.publicationType?.value === publicationRequestFields.JOURNAL_ARTICLE
-  );
-};
-
-const isBook = (request) => {
-  return request?.publicationType?.value === publicationRequestFields.BOOK;
-};
-
 const hasPublication = (request) => {
   return !!(
     request?.doi ||
@@ -204,32 +194,36 @@ const Publication = ({ request }) => {
           </Col>
         </Row>
       )}
-      {isJournal(request) && (
-        <>
-          <br />
-          <Headline margin="small" size="large" tag="h5">
-            <FormattedMessage id="ui-oa.publicationRequest.journalDetails" />
-          </Headline>
-          <Card
-            cardStyle="positive"
-            headerStart={
-              <AppIcon app="oa" iconKey="journal" size="small">
-                {request.work?.id ? (
-                  <Link to={urls.journal(request.work.id)}>
+      {request?.publicationType?.value ===
+        publicationRequestFields.JOURNAL_ARTICLE &&
+        request?.work && (
+          <>
+            <br />
+            <Headline margin="small" size="large" tag="h5">
+              <FormattedMessage id="ui-oa.publicationRequest.journalDetails" />
+            </Headline>
+            <Card
+              cardStyle="positive"
+              headerStart={
+                <AppIcon app="oa" iconKey="journal" size="small">
+                  {request.work?.id ? (
+                    <Link to={urls.journal(request.work.id)}>
+                      <strong>{request?.work?.title}</strong>
+                    </Link>
+                  ) : (
                     <strong>{request?.work?.title}</strong>
-                  </Link>
-                ) : (
-                  <strong>{request?.work?.title}</strong>
-                )}
-              </AppIcon>
-            }
-            roundedBorder
-          >
-            <JournalDetails isCard journal={request?.work} />
-          </Card>
-        </>
+                  )}
+                </AppIcon>
+              }
+              roundedBorder
+            >
+              <JournalDetails isCard journal={request?.work} />
+            </Card>
+          </>
+        )}
+      {request?.publicationType?.value === publicationRequestFields.BOOK && (
+        <BookDetails request={request} />
       )}
-      {isBook(request) && <BookDetails request={request} />}
     </Accordion>
   );
 };
