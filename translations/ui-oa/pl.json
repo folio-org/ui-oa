@@ -177,7 +177,7 @@
     "journal.addInstance": "Add instance",
     "journal.instanceIndex": "Instance {index}",
     "journal.instance.subtype": "Subtype",
-    "journal.instance.subType.electronic": "Electronic",
+    "journal.instance.subType.electronic": "Elektroniczny",
     "journal.instance.subType.print": "Drukuj",
     "journal.instance.identifier.addIdentifier": "Dodaj identyfikator",
     "journal.instance.identifier.nameSpace": "Namespace",
