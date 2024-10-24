@@ -1,47 +1,64 @@
 import { correspondence } from './correspondence';
 import { party2 } from './party';
+import { journal } from './journal';
 import refdata from './refdata';
 
 const publicationRequest = {
   id: '709ac8b2-3730-49ec-9332-06c28d82e0fd',
-  correspondences: [
-    correspondence,
-  ],
-  publisher: refdata?.find(rdc => rdc.desc === 'PublicationRequest.Publisher')?.values?.find(rdv => rdv?.value === 'publisher_1'),
+  correspondences: [correspondence],
+  publisher: refdata
+    ?.find((rdc) => rdc.desc === 'PublicationRequest.Publisher')
+    ?.values?.find((rdv) => rdv?.value === 'publisher_1'),
   dateCreated: '2022-01-18T10:05:21Z',
   correspondingAuthor: {
     id: 'bb6040e5-b574-4d99-97d5-c5d849c1ef64',
     partyOwner: party2,
-    role: refdata?.find(rdc => rdc.desc === 'RequestParty.Role')?.values?.find(rdv => rdv?.value === 'corresponding_author'),
+    role: refdata
+      ?.find((rdc) => rdc.desc === 'RequestParty.Role')
+      ?.values?.find((rdv) => rdv?.value === 'corresponding_author'),
   },
   lastUpdated: '2022-01-18T10:24:51Z',
   requestDate: '2022-01-01',
   doi: 'Test DOI',
-  publicationType: refdata?.find(rdc => rdc.desc === 'PublicationRequest.PublicationType')?.values?.find(rdv => rdv?.value === 'journal_article'),
+  publicationType: {
+    id: '2c9180b382668a1a0182668e6bef000c',
+    value: 'journal_article',
+    label: 'Journal Article',
+  },
   requestNumber: '1',
   requestContact: {
     id: '9f1d03c9-c479-496f-922d-16a5894b8a8c',
     partyOwner: party2,
-    role: refdata?.find(rdc => rdc.desc === 'RequestParty.Role')?.values?.find(rdv => rdv?.value === 'request_contact'),
+    role: refdata
+      ?.find((rdc) => rdc.desc === 'RequestParty.Role')
+      ?.values?.find((rdv) => rdv?.value === 'request_contact'),
   },
-  license: refdata?.find(rdc => rdc.desc === 'PublicationRequest.License')?.values?.find(rdv => rdv?.value === 'license_1'),
+  license: refdata
+    ?.find((rdc) => rdc.desc === 'PublicationRequest.License')
+    ?.values?.find((rdv) => rdv?.value === 'license_1'),
   identifiers: [
     {
       id: '1c78f224-fba5-4afe-a62f-98285c8bc622',
       publicationIdentifier: 'Test Identifier',
-      type: refdata?.find(rdc => rdc.desc === 'PublicationIdentifier.Type')?.values?.find(rdv => rdv?.value === 'pmid'),
+      type: refdata
+        ?.find((rdc) => rdc.desc === 'PublicationIdentifier.Type')
+        ?.values?.find((rdv) => rdv?.value === 'pmid'),
     },
   ],
   publicationStatuses: [
     {
       id: 'b883a28a-deb8-42cb-bb07-cd9b6c1769db',
-      publicationStatus: refdata?.find(rdc => rdc.desc === 'PublicationStatus.PublicationStatus')?.values?.find(rdv => rdv?.value === 'submitted'),
+      publicationStatus: refdata
+        ?.find((rdc) => rdc.desc === 'PublicationStatus.PublicationStatus')
+        ?.values?.find((rdv) => rdv?.value === 'submitted'),
       statusNote: 'Test Note 2',
       statusDate: '2022-01-02',
     },
     {
       id: '80c92a66-43e8-40cc-be26-afadeb02128a',
-      publicationStatus: refdata?.find(rdc => rdc.desc === 'PublicationStatus.PublicationStatus')?.values?.find(rdv => rdv?.value === 'submitted'),
+      publicationStatus: refdata
+        ?.find((rdc) => rdc.desc === 'PublicationStatus.PublicationStatus')
+        ?.values?.find((rdv) => rdv?.value === 'submitted'),
       statusNote: 'Test Note',
       statusDate: '2022-01-01',
     },
@@ -178,23 +195,35 @@ const publicationRequest = {
     },
     externalRequestIds: [],
   },
-  subtype: refdata?.find(rdc => rdc.desc === 'PublicationRequest.Subtype')?.values?.find(rdv => rdv?.value === 'subtype_1'),
+  subtype: refdata
+    ?.find((rdc) => rdc.desc === 'PublicationRequest.Subtype')
+    ?.values?.find((rdv) => rdv?.value === 'subtype_1'),
   history: [],
   fundings: [
     {
       id: '6050ebc9-8e4c-487e-81bf-bc3cfee690e3',
-      aspectFunded: refdata?.find(rdc => rdc.desc === 'Funding.AspectFunded')?.values?.find(rdv => rdv?.value === 'publication'),
+      aspectFunded: refdata
+        ?.find((rdc) => rdc.desc === 'Funding.AspectFunded')
+        ?.values?.find((rdv) => rdv?.value === 'publication'),
       lastUpdated: '2022-02-01T09:57:06Z',
-      funder: refdata?.find(rdc => rdc.desc === 'Funding.Funder')?.values?.find(rdv => rdv?.value === 'funder_1'),
+      funder: refdata
+        ?.find((rdc) => rdc.desc === 'Funding.Funder')
+        ?.values?.find((rdv) => rdv?.value === 'funder_1'),
     },
     {
       id: 'd8086d83-9dc1-4536-ace9-ee04c138b9bf',
-      aspectFunded: refdata?.find(rdc => rdc.desc === 'Funding.AspectFunded')?.values?.find(rdv => rdv?.value === 'research'),
+      aspectFunded: refdata
+        ?.find((rdc) => rdc.desc === 'Funding.AspectFunded')
+        ?.values?.find((rdv) => rdv?.value === 'research'),
       lastUpdated: '2022-01-18T10:24:51Z',
-      funder: refdata?.find(rdc => rdc.desc === 'Funding.Funder')?.values?.find(rdv => rdv?.value === 'funder_1'),
+      funder: refdata
+        ?.find((rdc) => rdc.desc === 'Funding.Funder')
+        ?.values?.find((rdv) => rdv?.value === 'funder_1'),
     },
   ],
-  requestStatus: refdata?.find(rdc => rdc.desc === 'PublicationRequest.RequestStatus')?.values?.find(rdv => rdv?.value === 'new'),
+  requestStatus: refdata
+    ?.find((rdc) => rdc.desc === 'PublicationRequest.RequestStatus')
+    ?.values?.find((rdv) => rdv?.value === 'new'),
   publicationTitle: 'Test Publication',
   authorNames: 'Test Author',
   externalRequestIds: [
@@ -209,6 +238,7 @@ const publicationRequest = {
   ],
   localReference: 'Test Reference',
   publicationUrl: 'Test Url',
+  work: journal,
 };
 
 const handlers = {
