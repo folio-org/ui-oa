@@ -251,7 +251,7 @@
     "party.streetAddress.addressLineOne": "Adresszeile 1",
     "party.streetAddress.addressLineTwo": "Adresszeile 2",
     "party.streetAddress.city": "Stadt",
-    "party.streetAddress.region": "Bundesland",
+    "party.streetAddress.region": "Staat / Land / Bundesland",
     "party.streetAddress.country": "Land",
     "party.streetAddress.postalCode": "Postleitzahl",
     "party.emailAddress": "E-Mail-Adresse",
