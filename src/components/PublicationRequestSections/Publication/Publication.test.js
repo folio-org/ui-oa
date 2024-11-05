@@ -6,6 +6,7 @@ import {
   KeyValue,
 } from '@folio/stripes-erm-testing';
 
+import { MemoryRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import Publication from './Publication';
 
 import { translationsProperties } from '../../../../test/helpers';
@@ -46,7 +47,9 @@ describe('Publication', () => {
   describe('renders components with values', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <Publication request={publicationRequest} />,
+        <MemoryRouter>
+          <Publication request={publicationRequest} />
+        </MemoryRouter>,
         translationsProperties
       );
     });
