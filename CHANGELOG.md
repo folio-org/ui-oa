@@ -1,7 +1,17 @@
 # Change history for ui-oa
 
-## 2.1.0 In progress
+## 2.1.0 2024-11-07
+* UIOA-242 Update menus to only offer functionality user has permission to access
+* UIOA-240 Review and cleanup Module Descriptor for ui-oa
+* UIOA-238 Remove sort options from ISSN(Print) and ISSN(Electronic) columns on Journal sort
+* UIOA-233 Add "charge" permissions and other permission updates
+* UIOA-228 React v19: refactor ui-oa away from default props for functional components
+* UIOA-224 Number generator openAccess not considering sequence information output template and format
+* UIOA-221 Remove explicit typescript version
+* ERM-3184 Make use of shared NumberField from stripes-kint-components
 * FOLIO-4086 Fix GitHub Actions workflow not running for tags
+* Translations updated
+* Permissions and module decriptor overhaul (Eureka)
 
 ## 2.0.2 2024-09-12
 * UIOA-229 UI uses non-existent permission oa.work.manage
