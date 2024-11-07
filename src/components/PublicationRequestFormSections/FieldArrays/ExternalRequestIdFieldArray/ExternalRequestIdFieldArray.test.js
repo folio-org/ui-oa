@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { renderWithIntl, TestForm, Button } from '@folio/stripes-erm-testing';
-import { within } from '@testing-library/react';
+import { within } from '@folio/jest-config-stripes/testing-library/react';
 import {
   publicationRequest,
   publicationRequestHandlers as handlers,

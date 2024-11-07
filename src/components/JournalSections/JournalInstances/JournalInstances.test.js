@@ -1,6 +1,6 @@
 
 import { renderWithIntl } from '@folio/stripes-erm-testing';
-import { within } from '@testing-library/react';
+import { within } from '@folio/jest-config-stripes/testing-library/react';
 import { translationsProperties } from '../../../../test/helpers';
 import JournalInstances from './JournalInstances';
 import { journal } from '../../../../test/resources';
