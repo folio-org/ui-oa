@@ -1,5 +1,8 @@
 # Change history for ui-oa
 
+## 2.2.0 In progress
+* UIOA-241 Update module license and guidance for ui-oa
+
 ## 2.1.0 2024-11-07
 * UIOA-242 Update menus to only offer functionality user has permission to access
 * UIOA-240 Review and cleanup Module Descriptor for ui-oa
