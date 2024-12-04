@@ -1,6 +1,6 @@
 # Change history for ui-oa
 
-## 2.2.0 In progress
+## 2.2.0 2024-12-04
 * UIOA-241 Update module license and guidance for ui-oa
 
 ## 2.1.0 2024-11-07
