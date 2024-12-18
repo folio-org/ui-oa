@@ -320,7 +320,7 @@
     "charge.invoiceLineNotLinked": "發票細項未連結",
     "charge.chargeBreakdown": "收費細項",
     "charge.payers.isEmptyMessage": "沒有與此費用相關的付款人",
-    "charge.amountCurrency": "金額（ {currency} ）",
+    "charge.amountCurrency": "金額 ({currency})",
     "edit": "編輯",
     "delete": "刪除",
     "settings.checklistItemDefinitions": "檢查清單項目",
