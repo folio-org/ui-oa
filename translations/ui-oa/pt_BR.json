@@ -173,7 +173,7 @@
     "charge.title": "Cobrança",
     "journal.newJournal": "Novo periódico",
     "journal.type": "Tipo",
-    "journal.type.serial": "Seriado",
+    "journal.type.serial": "Publicação seriada",
     "journal.addInstance": "Adicionar instância",
     "journal.instanceIndex": "Instância {index}",
     "journal.instance.subtype": "Subtipo",
