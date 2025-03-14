@@ -1,6 +1,8 @@
 # Change history for ui-oa
 
-## 2.3.0 - In progress
+## 3.0.0 2024-03-14
+  * UIOA-247 *BREAKING* Stripes v10 dependencies update (#491)
+    * Updated all stripes-* dependencies for the stripes v10 upgrade along with react-intl and formatjs/cli
 
 ## 2.2.0 2024-12-04
 * UIOA-241 Update module license and guidance for ui-oa
