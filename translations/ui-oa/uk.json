@@ -326,7 +326,7 @@
     "settings.checklistItemDefinitions": "Checklist items",
     "settings.checklistItemDefinitions.name": "Name",
     "settings.checklistItemDefinitions.label": "Label",
-    "settings.checklistItemDefinitions.description": "Description",
+    "settings.checklistItemDefinitions.description": "Опис",
     "settings.checklistItemDefinitions.weight": "Weight",
     "settings.checklistItemDefinitions.deleteAriaLabel": "Delete checklist item {label}",
     "settings.checklistItemDefinitions.editAriaLabel": "Edit checklist item {label}",
