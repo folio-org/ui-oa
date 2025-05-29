@@ -221,7 +221,7 @@
     "charge.invoice.invoiceNumber": "Invoice number",
     "charge.invoice.vendorOrganisation": "Vendor organisation",
     "charge.invoice.paymentMethod": "Payment method",
-    "charge.invoice.batchGroup": "Batch group",
+    "charge.invoice.batchGroup": "Grupa batch",
     "charge.invoice.unlink": "Unlink",
     "charge.invoice.addInvoice": "Add invoice",
     "charge.invoiceLine.addInvoiceLine": "Add invoice line",
