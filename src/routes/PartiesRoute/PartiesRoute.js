@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 
+import kyImport from 'ky';
+
 import { FormattedMessage } from 'react-intl';
 import { useHistory, useLocation } from 'react-router-dom';
 
@@ -24,7 +26,7 @@ import { PARTIES_ENDPOINT } from '../../constants/endpoints';
 import {
   MAIN_FILTER_PANE_CONFIG,
   MAIN_PANE_ID,
-  MAIN_PANESET_CONFIG
+  MAIN_PANESET_CONFIG,
 } from '../../constants/panesetConfigs';
 
 const PartiesRoute = ({ path }) => {
@@ -35,7 +37,7 @@ const PartiesRoute = ({ path }) => {
   };
 
   const fetchParameters = {
-    endpoint: PARTIES_ENDPOINT,
+    endpoint: 'https://gokb.org/gokb/rest/titles',
     SASQ_MAP: {
       searchKey: 'mainEmail,givenNames,familyName,orcidId',
       filterKeys: { institutionLevel1: 'institutionLevel1.value' },
@@ -98,6 +100,12 @@ const PartiesRoute = ({ path }) => {
     </IfPermission>
   );
 
+  const generateQuery = (params, _query) => {
+    const offset = (params.page - 1) * params.perPage;
+
+    return `?max=${params.perPage}&offset=${offset}&es=true`;
+  };
+
   return (
     <HasCommand
       commands={shortcuts}
@@ -113,6 +121,8 @@ const PartiesRoute = ({ path }) => {
         labelOverrides={{
           foundValues: 'ui-oa.parties.found#People',
         }}
+        lookupQueryPromise={({ _ky, queryParams, endpoint }) =>
+          kyImport.get(`${endpoint}${queryParams}`).json()}
         mainPaneProps={{
           appIcon: <AppIcon app="oa" iconKey="party" size="small" />,
           lastMenu: lastpaneMenu,
@@ -122,6 +132,15 @@ const PartiesRoute = ({ path }) => {
         mclProps={{ formatter }}
         path={path}
         persistedPanesetProps={MAIN_PANESET_CONFIG}
+        queryParameterGenerator={generateQuery}
+        responseTransform={(data) => {
+          const transformedData = {
+            ...data,
+            totalRecords: data._pagination.total,
+            results: data?.data,
+          };
+          return transformedData;
+        }}
         resultColumns={resultColumns}
         sasqProps={{ initialSortState: { sort: 'familyName,givenNames' } }}
         searchFieldAriaLabel="parties-search-field"
