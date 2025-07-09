@@ -219,7 +219,7 @@
     "charge.invoice.newInvoice": "Nová faktura",
     "charge.invoice.invoiceDate": "Datum faktury",
     "charge.invoice.invoiceNumber": "Číslo faktury",
-    "charge.invoice.vendorOrganisation": "Organizace prodejce",
+    "charge.invoice.vendorOrganisation": "Organizace distributora",
     "charge.invoice.paymentMethod": "Platební metoda",
     "charge.invoice.batchGroup": "Skupina dávek",
     "charge.invoice.unlink": "Odpojit",
