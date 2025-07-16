@@ -48,7 +48,7 @@
     "publicationRequest.subtype": "Підтип",
     "publicationRequest.title": "Назва",
     "publicationRequest.useCorrespondingAuthor": "Використовуйте відповідного автора",
-    "externalRequestId.externalRequestId": "External request ID",
+    "externalRequestId.externalRequestId": "ІД зовнішнього замовлення",
     "identifiers.addIdentifier": "Додати ідентифікатор",
     "identifiers.identifier": "Ідентифікатор",
     "identifiers.type": "Тип",
