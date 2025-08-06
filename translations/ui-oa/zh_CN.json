@@ -295,7 +295,7 @@
     "charge.payers.remainingAmount": "<strong>付款人之间分配的剩余金额 :  {amount} </strong>",
     "charge.payers.amountsMoreThanChargeTotal": "金额应等于或小于收费总额",
     "settings.refdata.picklist": "选取清单",
-    "charge.updateExchangeRate.disabledToolTip": "{exchangeCurrency}的汇率未知，请手动输入",
+    "charge.updateExchangeRate.disabledToolTip": "{exchangeCurrency}的汇率未知，请人工输入",
     "charge.discountType": "折扣类型",
     "charge.discountType.percentage": "%",
     "charge.discountType.subtracted": "{currency}",
