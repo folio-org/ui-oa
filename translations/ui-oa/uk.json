@@ -173,7 +173,7 @@
     "charge.title": "Платіж",
     "journal.newJournal": "Новий журнал",
     "journal.type": "Тип",
-    "journal.type.serial": "Серіальне видання",
+    "journal.type.serial": "Серійне видання",
     "journal.addInstance": "Додати біб.запис (інстанс)",
     "journal.instanceIndex": "Біб.запис (інстанс) {index}",
     "journal.instance.subtype": "Підтип",
