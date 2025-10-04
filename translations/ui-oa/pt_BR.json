@@ -361,7 +361,7 @@
     "checklist.closeChecklistPane": "Fechar o painel da lista de verificação",
     "charge.paymentMethod.cash": "Dinheiro",
     "charge.paymentMethod.card": "Cartão de crédito",
-    "charge.paymentMethod.eft": "EFT",
+    "charge.paymentMethod.eft": "EFT (Transf Elet de Fundos)",
     "charge.paymentMethod.depAccount": "Conta para depósito",
     "charge.paymentMethod.physicalCheck": "Verificação física",
     "charge.paymentMethod.bankDraft": "Letra de câmbio",
