@@ -361,7 +361,7 @@
     "checklist.closeChecklistPane": "Venster met checklist sluiten",
     "charge.paymentMethod.cash": "Contant",
     "charge.paymentMethod.card": "Creditcard",
-    "charge.paymentMethod.eft": "Electronische overboeking (EFT)",
+    "charge.paymentMethod.eft": "EFT",
     "charge.paymentMethod.depAccount": "Depositorekening",
     "charge.paymentMethod.physicalCheck": "Cheque",
     "charge.paymentMethod.bankDraft": "Bankoverschrijving",
