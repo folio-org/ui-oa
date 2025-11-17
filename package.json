@@ -113,7 +113,8 @@
         "subPermissions": [
           "oa.refdata.read",
           "oa.settings.read",
-          "mod-settings.global.read.stripes-core.prefs.manage"
+          "mod-settings.global.read.stripes-core.prefs.manage",
+          "mod-settings.entries.collection.get"
         ]
       },
       {
@@ -121,7 +122,8 @@
         "displayName": "Settings (OA): display list of settings pages",
         "subPermissions": [
           "settings.enabled",
-          "mod-settings.global.read.stripes-core.prefs.manage"
+          "mod-settings.global.read.stripes-core.prefs.manage",
+          "mod-settings.entries.collection.get"
         ],
         "visible": false
       },
