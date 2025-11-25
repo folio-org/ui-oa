@@ -5,7 +5,7 @@ const getEstimatedInvoicePrice = (values) => {
   if (values?.discountType?.value === 'subtracted') {
     // STATIC DISCOUNT
     estimatedInvoicePrice =
-      baseAmount - (values?.discount || 0) * (1 + (values?.tax || 0) / 100);
+      (baseAmount - (values?.discount || 0)) * (1 + (values?.tax || 0) / 100);
     // value = amount.value.subtract(discount).multiply(getTaxMultiplicand())
   } else {
     // PERCENTAGE DISCOUNT
