@@ -222,7 +222,7 @@
     "charge.invoice.vendorOrganisation": "ベンダー組織",
     "charge.invoice.paymentMethod": "支払方法",
     "charge.invoice.batchGroup": "バッチグループ",
-    "charge.invoice.unlink": "Unlink",
+    "charge.invoice.unlink": "リンク解除",
     "charge.invoice.addInvoice": "請求書の追加",
     "charge.invoiceLine.addInvoiceLine": "請求書明細の追加",
     "charge.invoiceLine.newInvoiceLine": "新規請求書明細",

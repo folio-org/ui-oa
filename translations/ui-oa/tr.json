@@ -82,7 +82,7 @@
     "publicationRequest.editPublicationRequest": "Yayın talebini düzenleyin - {id}",
     "settings.refdata.picklistValues": "Seçim listesi değerlerini seç",
     "publicationJournal.title": "Başlık",
-    "publicationJournal.typedown": "Başlık: {title} - Basılı ISSN: {printIssn} Elektronik ISSN: {electronicIssn} ",
+    "publicationJournal.typedown": "Başlık: {title} - Basılı ISSN: {printIssn} Elektronik ISSN: {electronicIssn}",
     "publicationRequest.selectedJournal": "Dergiler",
     "publicationRequest.agreement": "Anlaşma",
     "publicationRequest.noAgreement": "Talep anlaşması yok",
@@ -206,7 +206,7 @@
     "journal.deleteInstance": "Örneği Sil {index}",
     "journal.deleteIdentifier": "Tanımlayıcıyı Sil {index}",
     "publicationRequest.addJournal": "Günlük ekle",
-    "publicationRequest.noCurrencySet": " Para birimi bilinmeyen olduğu için ücret oluşturulamıyor. Lütfen Ayarlar > Erişimi Aç > Dil ve yerelleştirme > Birincil para birimi bölümünde bir para birimi ayarlayın",
+    "publicationRequest.noCurrencySet": "Para birimi bilinmeyen olduğu için ücret oluşturulamıyor. Lütfen Ayarlar > Erişimi Aç > Dil ve yerelleştirme > Birincil para birimi bölümünde bir para birimi ayarlayın",
     "charge.taxPercentage": "Vergi (%)",
     "charge.validate.notLessThanZero": "Sıfırdan küçük olamaz",
     "party.noResultsFound": "Sonuç bulunamadı",
@@ -442,10 +442,10 @@
     "report.reportFormat.openApc": "OpenAPC APC",
     "report.reportFormat.openApcBpc": "OpenAPC BPC",
     "report.reportFormat.openApcTransformativeAgreement": "OpenAPC Dönüştürücü Anlaşma",
-    "report.reportParams.inPeriodAffix": " (dönem içinde)",
+    "report.reportParams.inPeriodAffix": "(dönem içinde)",
     "checklistFilter.reapplyFilters": "Filtreleri yeniden uygulayın",
     "journal.exactTitleMatch": "Tam başlık eşleşmesi",
     "publicationJournal.typedown.title": "Başlık: {title}",
-    "publicationJournal.typedown.printIssn": " - Basılı ISSN: {printIssn}",
-    "publicationJournal.typedown.electronicIssn": " Elektronik ISSN: {electronicIssn}"
+    "publicationJournal.typedown.printIssn": "- Basılı ISSN: {printIssn}",
+    "publicationJournal.typedown.electronicIssn": "Elektronik ISSN: {electronicIssn}"
 }
