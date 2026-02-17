@@ -187,7 +187,7 @@
     "journal.instance.identifier.ns.zdb": "ZDB",
     "publicationRequest.success.callout": "출판 요청 {requestNumber} 이(가) 성공적으로 생성되었습니다.",
     "charge.chargeInformation": "요금 정보",
-    "charge.publicationRequestCharge": "출판 요청 요금",
+    "charge.publicationRequestCharge": "부과: 출판 요청 요금{requestNumber}",
     "charge.publicationRequest": "출판 요청",
     "charge.discountNote": "할인 메모",
     "charge.tax": "세금",
