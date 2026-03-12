@@ -77,7 +77,7 @@
     "affiliation.dateFrom": "Datum od",
     "affiliation.dateTo": "Datum do",
     "publicationStatus.status": "Stav",
-    "publicationRequest.party": "Strana",
+    "publicationRequest.party": "Subjekt",
     "publicationRequest.person": "Osoba",
     "publicationRequest.editPublicationRequest": "Upravit žádanku na publikaci - {id}",
     "settings.refdata.picklistValues": "Hodnoty výběrového seznamu",
