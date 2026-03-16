@@ -48,7 +48,7 @@ const PartyTypedownForm = ({ formName }) => {
   const pathMutator = (input, path) => {
     const query = generateKiwtQuery(
       {
-        searchKey: 'familyName,givenNames',
+        searchKey: 'familyName,givenNames,orcidId,mainEmail,alternateEmails.email',
         stats: false,
         sort: [{ path: 'familyName' }, { path: 'givenNames' }],
       },
@@ -87,8 +87,10 @@ const PartyTypedownForm = ({ formName }) => {
         {party?.title} {highlightString(input, party?.familyName)}
         {', '}
         {highlightString(input, party?.givenNames)}
-        {party?.orcidId && ' - ' + party.orcidId}
-        {party?.mainEmail && ' - ' + party.mainEmail}
+        {party?.orcidId && ' - '}
+        {party?.orcidId && highlightString(input, party?.orcidId)}
+        {party?.mainEmail && ' - '}
+        {party?.mainEmail && highlightString(input, party?.mainEmail)}
       </>
     );
   };
