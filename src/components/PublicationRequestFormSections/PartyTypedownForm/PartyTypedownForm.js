@@ -48,7 +48,7 @@ const PartyTypedownForm = ({ formName }) => {
   const pathMutator = (input, path) => {
     const query = generateKiwtQuery(
       {
-        searchKey: 'familyName,givenNames,orcidId,mainEmail',
+        searchKey: 'familyName,givenNames,orcidId,mainEmail,alternateEmails.email',
         stats: false,
         sort: [{ path: 'familyName' }, { path: 'givenNames' }],
       },
