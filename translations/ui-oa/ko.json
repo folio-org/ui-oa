@@ -339,7 +339,7 @@
     "checklist.created": "생성됨: {date} {time}",
     "checklist.latestNote": "최신 메모",
     "checklist.notesForItem": "{item} 에 대한 메모",
-    "checklist.addNote": "메모 추가",
+    "checklist.addNote": "노트 추가",
     "checklist.save": "저장",
     "checklist.cancel": "취소",
     "checklist.close": "닫기",
