@@ -15,7 +15,10 @@ import {
   Label,
   Tooltip,
 } from '@folio/stripes/components';
-import { requiredValidator, composeValidators } from '@folio/stripes-erm-components';
+import {
+  requiredValidator,
+  composeValidators,
+} from '@folio/stripes-erm-components';
 import { FieldCurrency, CurrencySymbol } from '@folio/stripes-acq-components';
 import { useStripes } from '@folio/stripes/core';
 import {
@@ -42,7 +45,7 @@ const ChargeInfoForm = () => {
   const stripes = useStripes();
   const { exchangeRate, isLoading, refetch } = useExchangeRateValue(
     values?.amount?.baseCurrency,
-    stripes?.currency
+    stripes?.currency,
   );
 
   const [isEdit, setIsEdit] = useState(!!initialValues);
@@ -55,11 +58,11 @@ const ChargeInfoForm = () => {
 
   const categoryValues = selectifyRefdata(refdataValues, CHARGE_CATEGORY);
   const statusValues = selectifyRefdata(refdataValues, CHARGE_STATUS);
-  const discountTypeValues = selectifyRefdata(
-    refdataValues,
-    CHARGE_DISCOUNT_TYPE,
-    'value'
-  );
+
+  // Since we rely on both the value for translations/discount calculations and the ID for updates, we need to keep the whole object as the value of discountType instead of just the ID or value
+  const discountTypeValues = refdataValues?.filter(
+    (obj) => obj.desc === CHARGE_DISCOUNT_TYPE,
+  )[0]?.values || [];
 
   const estimatedInvoicePrice = getEstimatedInvoicePrice(values);
 
@@ -123,12 +126,13 @@ const ChargeInfoForm = () => {
             component={NumberField}
             label={<FormattedMessage id="ui-oa.charge.netAmount" />}
             name="amount.value"
-            onChange={(e) => change('amount.value', parseFloat(e?.target?.value))}
+            onChange={(e) => change('amount.value', parseFloat(e?.target?.value))
+            }
             required
             validate={composeValidators(
               requiredValidator,
               validateNotNegative,
-              validateAsDecimal
+              validateAsDecimal,
             )}
           />
         </Col>
@@ -151,7 +155,7 @@ const ChargeInfoForm = () => {
             validate={composeValidators(
               requiredValidator,
               validateNotNegative,
-              validateAsDecimal
+              validateAsDecimal,
             )}
           />
         </Col>
@@ -192,11 +196,15 @@ const ChargeInfoForm = () => {
             <Button
               buttonStyle="primary"
               disabled={
-                !exchangeRate || values?.amount?.baseCurrency === stripes?.currency
+                !exchangeRate ||
+                values?.amount?.baseCurrency === stripes?.currency
               }
               onClick={() => {
                 refetch().then(
-                  change('exchangeRate.coefficient', truncateNumber(exchangeRate))
+                  change(
+                    'exchangeRate.coefficient',
+                    truncateNumber(exchangeRate),
+                  ),
                 );
               }}
             >
@@ -217,9 +225,11 @@ const ChargeInfoForm = () => {
         </Col>
         <Col xs={3}>
           <Field
-            name="discountType.value"
+            name="discountType"
             render={() => (
-              <KeyValue label={<FormattedMessage id="ui-oa.charge.discountType" />}>
+              <KeyValue
+                label={<FormattedMessage id="ui-oa.charge.discountType" />}
+              >
                 <ButtonGroup fullWidth>
                   {discountTypeValues.map((discountType) => (
                     <Button
@@ -229,7 +239,7 @@ const ChargeInfoForm = () => {
                           : 'default'
                       }
                       onClick={() => {
-                        change('discountType.value', discountType.value);
+                        change('discountType', discountType);
                       }}
                     >
                       <FormattedMessage
@@ -269,7 +279,7 @@ const ChargeInfoForm = () => {
             validate={composeValidators(
               requiredValidator,
               validateNotLessThanZero,
-              validateAsDecimal
+              validateAsDecimal,
             )}
           />
         </Col>
