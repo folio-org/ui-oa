@@ -1,6 +1,7 @@
 # Change history for ui-oa
 
 ## 3.1.0 IN PROGRESS
+  * ERM-4014: Change default `headingLevel` in meta section header to `3`
 
 ## 3.0.0 2025-03-14
   * UIOA-247 *BREAKING* Stripes v10 dependencies update (#491)

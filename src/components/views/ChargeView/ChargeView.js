@@ -23,7 +23,7 @@ import {
 
 import { ChargeBreakdown, ChargeInfo, Payers } from '../../ChargeSections';
 import { useInvoice, useInvoiceLine } from '../../../hooks/invoiceHooks';
-import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
+import { DEFAULT_META_SECTION_HEADING_LEVEL, PANE_DEFAULT_WIDTH } from '../../../constants/config';
 import ChargeInvoice from '../../ChargeSections/ChargeInvoice';
 import Agreement from '../../PublicationRequestSections/Agreement/Agreement';
 
@@ -152,6 +152,7 @@ const ChargeView = ({
           <MetaSection
             contentId="chargeMetaContent"
             createdDate={charge?.dateCreated}
+            headingLevel={DEFAULT_META_SECTION_HEADING_LEVEL}
             hideSource
             lastUpdatedDate={charge?.lastUpdated}
           />
