@@ -37,7 +37,7 @@ import {
 
 import urls from '../../../util/urls';
 import useOAHelperApp from '../../../hooks/useOAHelperApp';
-import { PANE_DEFAULT_WIDTH } from '../../../constants/config';
+import { DEFAULT_META_SECTION_HEADING_LEVEL, PANE_DEFAULT_WIDTH } from '../../../constants/config';
 import { PUBLICATION_REQUEST_ENDPOINT } from '../../../constants/endpoints';
 
 const propTypes = {
@@ -137,6 +137,7 @@ const PublicationRequest = ({
         <MetaSection
           contentId="publicationRequestMetaContent"
           createdDate={request?.dateCreated}
+          headingLevel={DEFAULT_META_SECTION_HEADING_LEVEL}
           hideSource
           lastUpdatedDate={request?.lastUpdated}
         />
