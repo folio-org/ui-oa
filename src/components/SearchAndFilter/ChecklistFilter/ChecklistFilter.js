@@ -13,6 +13,7 @@ import useChecklistItemDefinitions from '../../../hooks/useChecklistItemDefiniti
 import ChecklistFilterForm from './ChecklistFilterForm';
 
 const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
+  const activeFiltersState = activeFilters?.state || activeFilters;
   const queryClient = useQueryClient();
   const checklistItems = useChecklistItemDefinitions();
   const [editingFilters, setEditingFilters] = useState(false);
@@ -53,7 +54,7 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
   };
 
   const parsedFilterData = parseQueryString(
-    activeFilters?.checklistItems || null
+    activeFiltersState?.checklistItems || null
   );
 
   const handleSubmit = (values) => {
@@ -104,7 +105,7 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
       })`;
     });
     filterHandlers.state({
-      ...activeFilters,
+      ...activeFiltersState,
       checklistItems: [...filterStrings],
     });
     setEditingFilters(false);
@@ -144,7 +145,7 @@ const ChecklistFilter = ({ activeFilters, filterHandlers }) => {
       header={FilterAccordionHeader}
       id="clickable-checklist-filter"
       label={<FormattedMessage id="ui-oa.checklistFilter.checklistItems" />}
-      onClearFilter={() => filterHandlers.state({ ...activeFilters, checklistItems: [] })
+      onClearFilter={() => filterHandlers.state({ ...activeFiltersState, checklistItems: [] })
       }
       separator={false}
     >
