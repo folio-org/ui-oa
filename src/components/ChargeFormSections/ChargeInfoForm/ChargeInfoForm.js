@@ -126,8 +126,7 @@ const ChargeInfoForm = () => {
             component={NumberField}
             label={<FormattedMessage id="ui-oa.charge.netAmount" />}
             name="amount.value"
-            onChange={(e) => change('amount.value', parseFloat(e?.target?.value))
-            }
+            onChange={(e) => change('amount.value', e?.target?.value)}
             required
             validate={composeValidators(
               requiredValidator,
@@ -219,7 +218,6 @@ const ChargeInfoForm = () => {
             component={NumberField}
             label={<FormattedMessage id="ui-oa.charge.discount" />}
             name="discount"
-            parse={(v) => Number(v)}
             validate={composeValidators(validateNotNegative, validateAsDecimal)}
           />
         </Col>

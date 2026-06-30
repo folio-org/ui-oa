@@ -82,7 +82,7 @@ const PayersField = ({ fields: { name } }) => {
                 name={`${name}[${index}].payerAmount`}
                 onChange={(e) => change(
                     `${name}[${index}].payerAmount`,
-                    parseFloat(e?.target?.value)
+                    e?.target?.value
                   )
                 }
                 required

@@ -8,7 +8,7 @@ const validateNotNegative = (value) => {
 };
 
 const validateAsDecimal = (value) => {
-  const regexp = /(?!^0*$)(?!^0*\.0*$)^\d{1,10}(\.\d{1,10})?$/;
+  const regexp = /^\d{1,10}(\.\d{0,10})?$/;
   if (value === '0') {
     return undefined;
   } else {
