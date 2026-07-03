@@ -21,6 +21,7 @@ const propTypes = {
 };
 
 const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
+  const activeFiltersState = activeFilters?.state || activeFilters;
   const [
     REQUEST_STATUS,
     CHARGE_STATUS,
@@ -97,7 +98,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
 
   const onChangeHandler = (group) => {
     filterHandlers.state({
-      ...activeFilters,
+      ...activeFiltersState,
       [group.name]: group.values,
     });
   };
@@ -105,7 +106,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
   const renderChecklistFilter = () => {
     return (
       <ChecklistFilter
-        activeFilters={activeFilters}
+        activeFilters={activeFiltersState}
         filterHandlers={filterHandlers}
       />
     );
@@ -114,7 +115,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
   const renderRequestStatusFilter = () => {
     return (
       <Accordion
-        displayClearButton={activeFilters?.requestStatus?.length > 0}
+        displayClearButton={activeFiltersState?.requestStatus?.length > 0}
         header={FilterAccordionHeader}
         id="request-status-filter-accordion"
         label={<FormattedMessage id="ui-oa.publicationRequest.status" />}
@@ -127,7 +128,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
           dataOptions={requestStatusValues}
           name="requestStatus"
           onChange={onChangeHandler}
-          selectedValues={activeFilters?.requestStatus || []}
+          selectedValues={activeFiltersState?.requestStatus || []}
         />
       </Accordion>
     );
@@ -139,7 +140,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
         accordionLabel={
           <FormattedMessage id="ui-oa.publicationRequest.requestDate" />
         }
-        activeFilters={activeFilters}
+        activeFilters={activeFiltersState}
         closedByDefault={false}
         filterHandlers={filterHandlers}
         hideNoDateSetCheckbox
@@ -151,7 +152,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
   const renderRetrospectiveOAFilter = () => {
     return (
       <Accordion
-        displayClearButton={activeFilters?.retrospectiveOA?.length > 0}
+        displayClearButton={activeFiltersState?.retrospectiveOA?.length > 0}
         header={FilterAccordionHeader}
         id="retrospective-open-access-filter-accordion"
         label={
@@ -166,7 +167,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
           dataOptions={retrospectiveOAValues}
           name="retrospectiveOA"
           onChange={onChangeHandler}
-          selectedValues={activeFilters?.retrospectiveOA || []}
+          selectedValues={activeFiltersState?.retrospectiveOA || []}
         />
       </Accordion>
     );
@@ -176,7 +177,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
     return (
       <Accordion
         displayClearButton={
-          activeFilters?.correspondingInstitutionLevel1?.length > 0
+          activeFiltersState?.correspondingInstitutionLevel1?.length > 0
         }
         header={FilterAccordionHeader}
         id="corresponding-institution-level-one-filter-accordion"
@@ -192,7 +193,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
           id="corresponding-institution-level-one-filter"
           name="correspondingInstitutionLevel1"
           onChange={onChangeHandler}
-          selectedValues={activeFilters?.correspondingInstitutionLevel1 || []}
+          selectedValues={activeFiltersState?.correspondingInstitutionLevel1 || []}
         />
       </Accordion>
     );
@@ -201,7 +202,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
   const renderChargeStatusFitler = () => {
     return (
       <Accordion
-        displayClearButton={activeFilters?.chargeStatus?.length > 0}
+        displayClearButton={activeFiltersState?.chargeStatus?.length > 0}
         header={FilterAccordionHeader}
         id="charge-status-filter-accordion"
         label={<FormattedMessage id="ui-oa.searchAndFilter.chargeStatus" />}
@@ -214,7 +215,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
           dataOptions={chargeStatusValues}
           name="chargeStatus"
           onChange={onChangeHandler}
-          selectedValues={activeFilters?.chargeStatus || []}
+          selectedValues={activeFiltersState?.chargeStatus || []}
         />
       </Accordion>
     );
@@ -223,7 +224,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
   const renderPublicationTypeFilter = () => {
     return (
       <Accordion
-        displayClearButton={activeFilters?.publicationType?.length > 0}
+        displayClearButton={activeFiltersState?.publicationType?.length > 0}
         header={FilterAccordionHeader}
         id="publication-type-filter-accordion"
         label={
@@ -238,7 +239,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
           dataOptions={publicationTypeValues}
           name="publicationType"
           onChange={onChangeHandler}
-          selectedValues={activeFilters?.publicationType || []}
+          selectedValues={activeFiltersState?.publicationType || []}
         />
       </Accordion>
     );
@@ -247,7 +248,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
   const renderOAStatusFilter = () => {
     return (
       <Accordion
-        displayClearButton={activeFilters?.workOAStatus?.length > 0}
+        displayClearButton={activeFiltersState?.workOAStatus?.length > 0}
         header={FilterAccordionHeader}
         id="work-oa-status-filter-accordion"
         label={<FormattedMessage id="ui-oa.journal.oaStatus" />}
@@ -260,7 +261,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
           dataOptions={workOAStatusValues}
           name="workOAStatus"
           onChange={onChangeHandler}
-          selectedValues={activeFilters?.workOAStatus || []}
+          selectedValues={activeFiltersState?.workOAStatus || []}
         />
       </Accordion>
     );
@@ -269,7 +270,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
   const renderPublisherFilter = () => {
     return (
       <Accordion
-        displayClearButton={activeFilters?.publisher?.length > 0}
+        displayClearButton={activeFiltersState?.publisher?.length > 0}
         header={FilterAccordionHeader}
         id="publisher-filter-accordion"
         label={<FormattedMessage id="ui-oa.publicationRequest.publisher" />}
@@ -284,7 +285,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
           id="publisher-filter"
           name="publisher"
           onChange={onChangeHandler}
-          selectedValues={activeFilters?.publisher || []}
+          selectedValues={activeFiltersState?.publisher || []}
         />
       </Accordion>
     );
@@ -293,7 +294,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
   const renderChargePayersFilter = () => {
     return (
       <Accordion
-        displayClearButton={activeFilters?.chargePayers?.length > 0}
+        displayClearButton={activeFiltersState?.chargePayers?.length > 0}
         header={FilterAccordionHeader}
         id="charge-payers-filter-accordion"
         label={<FormattedMessage id="ui-oa.searchAndFilter.chargePayers" />}
@@ -308,7 +309,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
           id="charge-payers-filter"
           name="chargePayers"
           onChange={onChangeHandler}
-          selectedValues={activeFilters?.chargePayers || []}
+          selectedValues={activeFiltersState?.chargePayers || []}
         />
       </Accordion>
     );
@@ -317,7 +318,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
   const renderCorrespondenceStatusFilter = () => {
     return (
       <Accordion
-        displayClearButton={activeFilters?.correspondenceStatus?.length > 0}
+        displayClearButton={activeFiltersState?.correspondenceStatus?.length > 0}
         header={FilterAccordionHeader}
         id="correspondence-status-filter-accordion"
         label={
@@ -334,7 +335,7 @@ const PublicationRequestsFilters = ({ activeFilters, filterHandlers }) => {
           id="correspondence-status-filter"
           name="correspondenceStatus"
           onChange={onChangeHandler}
-          selectedValues={activeFilters?.correspondenceStatus || []}
+          selectedValues={activeFiltersState?.correspondenceStatus || []}
         />
       </Accordion>
     );
