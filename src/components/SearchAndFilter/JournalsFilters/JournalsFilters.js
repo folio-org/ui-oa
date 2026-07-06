@@ -18,13 +18,14 @@ const propTypes = {
 const [OA_STATUS, YES_NO] = ['Work.OaStatus', 'Global.Yes_No'];
 
 const JournalsFilters = ({ activeFilters, filterHandlers }) => {
+  const activeFiltersState = activeFilters?.state || activeFilters;
   const refdataValues = useOARefdata([OA_STATUS, YES_NO]);
   const oaStatusValues = selectifyRefdata(refdataValues, OA_STATUS, 'value');
   const indexedInDOAJ = selectifyRefdata(refdataValues, YES_NO, 'value');
 
   const onChangeHandler = (group) => {
     filterHandlers.state({
-      ...activeFilters,
+      ...activeFiltersState,
       [group.name]: group.values,
     });
   };
@@ -32,7 +33,7 @@ const JournalsFilters = ({ activeFilters, filterHandlers }) => {
   const renderOAStatusFilter = () => {
     return (
       <Accordion
-        displayClearButton={activeFilters?.oaStatus?.length > 0}
+        displayClearButton={activeFiltersState?.oaStatus?.length > 0}
         header={FilterAccordionHeader}
         id="oa-status-filter-accordion"
         label={<FormattedMessage id="ui-oa.journal.oaStatus" />}
@@ -45,7 +46,7 @@ const JournalsFilters = ({ activeFilters, filterHandlers }) => {
           dataOptions={oaStatusValues}
           name="oaStatus"
           onChange={onChangeHandler}
-          selectedValues={activeFilters?.oaStatus || []}
+          selectedValues={activeFiltersState?.oaStatus || []}
         />
       </Accordion>
     );
@@ -54,7 +55,7 @@ const JournalsFilters = ({ activeFilters, filterHandlers }) => {
   const renderInDOAJFilter = () => {
     return (
       <Accordion
-        displayClearButton={activeFilters?.indexedInDOAJ?.length > 0}
+        displayClearButton={activeFiltersState?.indexedInDOAJ?.length > 0}
         header={FilterAccordionHeader}
         id="indexed-in-doaj-filter-accordion"
         label={<FormattedMessage id="ui-oa.journal.inDOAJ" />}
@@ -67,7 +68,7 @@ const JournalsFilters = ({ activeFilters, filterHandlers }) => {
           dataOptions={indexedInDOAJ}
           name="indexedInDOAJ"
           onChange={onChangeHandler}
-          selectedValues={activeFilters?.indexedInDOAJ || []}
+          selectedValues={activeFiltersState?.indexedInDOAJ || []}
         />
       </Accordion>
     );
