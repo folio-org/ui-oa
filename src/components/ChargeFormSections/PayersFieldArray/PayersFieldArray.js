@@ -17,17 +17,16 @@ import {
   Select,
   TextArea,
   Tooltip,
-  TextField,
 } from '@folio/stripes/components';
 import {
   requiredValidator,
   composeValidators,
 } from '@folio/stripes-erm-components';
-import { useKiwtFieldArray } from '@k-int/stripes-kint-components';
+import { useKiwtFieldArray, NumberField } from '@k-int/stripes-kint-components';
 
 import {
   validateNotNegative,
-  validateAsDecimal,
+  validateAsCurrency,
   validateMoreThanTotal,
 } from '../../../util/validators';
 
@@ -78,20 +77,19 @@ const PayersField = ({ fields: { name } }) => {
             </Col>
             <Col xs={3}>
               <Field
-                component={TextField}
+                component={NumberField}
                 label={<FormattedMessage id="ui-oa.charge.payerAmount" />}
                 name={`${name}[${index}].payerAmount`}
                 onChange={(e) => change(
                     `${name}[${index}].payerAmount`,
-                    e?.target?.value
+                    parseFloat(e?.target?.value)
                   )
                 }
                 required
-                type="number"
                 validate={composeValidators(
                   requiredValidator,
                   validateNotNegative,
-                  validateAsDecimal
+                  validateAsCurrency
                 )}
               />
             </Col>
