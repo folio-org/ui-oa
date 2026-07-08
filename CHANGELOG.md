@@ -1,6 +1,10 @@
 # Change history for ui-oa
 
-## 3.1.0 IN PROGRESS
+## 3.1.0 2026-07-08
+  * UIOA-260: In OA UI Filters do not show correct set/values
+  * UIOA-252: Allow OrcId and email searching in request form
+  * UIOA-250: In Payment creation/edit form, "Amount to pay" calculation does not correctly apply tax when Discount type set to amount rather than percentage
+  * UIOA-249: Include global permissions in package.json base permissions
   * ERM-4014: Change default `headingLevel` in meta section header to `3`
 
 ## 3.0.0 2025-03-14
