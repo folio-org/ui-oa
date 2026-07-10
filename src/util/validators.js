@@ -1,4 +1,5 @@
 import { FormattedMessage } from 'react-intl';
+import isDecimal from 'validator/lib/isDecimal';
 import { getEstimatedInvoicePrice } from './chargeUtils';
 
 const validateNotNegative = (value) => {
@@ -8,14 +9,19 @@ const validateNotNegative = (value) => {
 };
 
 const validateAsDecimal = (value) => {
-  const regexp = /(?!^0*$)(?!^0*\.0*$)^\d{1,10}(\.\d{1,10})?$/;
-  if (value === '0') {
+  if (!value && value !== 0) {
     return undefined;
-  } else {
-    return value && !regexp.test(value) && value !== 0 ? (
-      <FormattedMessage id="ui-oa.charge.validate.maxDigits" />
-    ) : undefined;
   }
+  const stringValue = String(value);
+  // Up to 10 digits either side of the decimal point
+  const [integerDigits] = stringValue.replace('-', '').split('.');
+  if (
+    integerDigits.length <= 10 &&
+    isDecimal(stringValue, { decimal_digits: '0,10' })
+  ) {
+    return undefined;
+  }
+  return <FormattedMessage id="ui-oa.charge.validate.maxDigits" />;
 };
 
 const validateNotLessThanZero = (value) => {
