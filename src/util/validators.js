@@ -13,20 +13,12 @@ const validateAsDecimal = (value) => {
     return undefined;
   }
   const stringValue = String(value);
-  const regex = /^\d{1,10}(\.\d{0,10})?$/;
-  if (isDecimal(stringValue, { decimal_digits: '0,10' }) && regex.test(stringValue)) {
-    return undefined;
-  }
-  return <FormattedMessage id="ui-oa.charge.validate.maxDigits" />;
-};
-
-const validateAsCurrency = (value) => {
-  if (!value && value !== 0) {
-    return undefined;
-  }
-  const stringValue = String(value);
-  const regex = /^\d{1,10}(\.\d{0,10})?$/;
-  if (isDecimal(stringValue, { decimal_digits: '0,10' }) && regex.test(stringValue)) {
+  // Up to 10 digits either side of the decimal point
+  const [integerDigits] = stringValue.replace('-', '').split('.');
+  if (
+    integerDigits.length <= 10 &&
+    isDecimal(stringValue, { decimal_digits: '0,10' })
+  ) {
     return undefined;
   }
   return <FormattedMessage id="ui-oa.charge.validate.maxDigits" />;
@@ -103,7 +95,6 @@ const validateNoSpecialCharacters = (value) => {
 export {
   validateNotNegative,
   validateAsDecimal,
-  validateAsCurrency,
   validateNotLessThanZero,
   validateDateFormat,
   validateURL,

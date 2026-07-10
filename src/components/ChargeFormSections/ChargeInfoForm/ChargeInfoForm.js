@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import { FormattedDisplayName, FormattedMessage } from 'react-intl';
 import { Field, useFormState, useForm } from 'react-final-form';
-import { NumberField } from '@k-int/stripes-kint-components';
 
 import {
   Row,
@@ -14,6 +13,7 @@ import {
   KeyValue,
   Label,
   Tooltip,
+  TextField,
 } from '@folio/stripes/components';
 import {
   requiredValidator,
@@ -24,7 +24,6 @@ import { useStripes } from '@folio/stripes/core';
 import {
   validateNotNegative,
   validateAsDecimal,
-  validateAsCurrency,
   validateNotLessThanZero,
   validateYear,
 } from '../../../util/validators';
@@ -124,15 +123,16 @@ const ChargeInfoForm = () => {
       <Row>
         <Col xs={3}>
           <Field
-            component={NumberField}
+            component={TextField}
             label={<FormattedMessage id="ui-oa.charge.netAmount" />}
             name="amount.value"
-            onChange={(e) => change('amount.value', parseFloat(e?.target?.value))}
+            onChange={(e) => change('amount.value', e?.target?.value)}
             required
+            type="number"
             validate={composeValidators(
               requiredValidator,
               validateNotNegative,
-              validateAsCurrency,
+              validateAsDecimal,
             )}
           />
         </Col>
@@ -147,11 +147,12 @@ const ChargeInfoForm = () => {
         </Col>
         <Col xs={3}>
           <Field
-            component={NumberField}
+            component={TextField}
             disabled={values?.amount?.baseCurrency === stripes?.currency}
             label={<FormattedMessage id="ui-oa.charge.exchangeRate" />}
             name="exchangeRate.coefficient"
             required
+            type="number"
             validate={composeValidators(
               requiredValidator,
               validateNotNegative,
@@ -216,10 +217,11 @@ const ChargeInfoForm = () => {
       <Row>
         <Col xs={3}>
           <Field
-            component={NumberField}
+            component={TextField}
             label={<FormattedMessage id="ui-oa.charge.discount" />}
             name="discount"
-            validate={composeValidators(validateNotNegative, validateAsCurrency)}
+            type="number"
+            validate={composeValidators(validateNotNegative, validateAsDecimal)}
           />
         </Col>
         <Col xs={3}>
@@ -271,10 +273,11 @@ const ChargeInfoForm = () => {
       <Row>
         <Col xs={3}>
           <Field
-            component={NumberField}
+            component={TextField}
             label={<FormattedMessage id="ui-oa.charge.taxPercentage" />}
             name="tax"
             required
+            type="number"
             validate={composeValidators(
               requiredValidator,
               validateNotLessThanZero,
@@ -284,10 +287,11 @@ const ChargeInfoForm = () => {
         </Col>
         <Col xs={3}>
           <Field
-            component={NumberField}
+            component={TextField}
             label={<FormattedMessage id="ui-oa.charge.paymentPeriod" />}
             name="paymentPeriod"
             parse={(v) => v}
+            type="number"
             validate={validateYear}
           />
         </Col>
